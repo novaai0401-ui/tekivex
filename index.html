@@ -42,19 +42,15 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Google AdSense intentionally not loaded — re-enable after site has
-       sufficient original editorial content and approval is granted. -->
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C65SFGKM00"></script>
+  <!-- Analytics (gtag.js) and Google AdSense are loaded by
+       src/consent/ScriptLoader.tsx only after the visitor accepts
+       cookies via the consent banner. This keeps the site compliant
+       with GDPR / DPDP and avoids dropping any tracking cookies for
+       visitors who reject. The stub below queues calls until the
+       script actually loads. -->
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-C65SFGKM00');
-    // SPA pageview tracking is wired up in src/analytics/pageview.ts —
-    // it listens for popstate + the router's `tekivex:navigate` event
-    // and forwards the History API pathname to gtag.
+    window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
   </script>
 
   <!-- ── Fonts ──────────────────────────────────────────────────────────── -->

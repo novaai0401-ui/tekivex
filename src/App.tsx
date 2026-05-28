@@ -15,6 +15,7 @@ import { TutorialLayout } from './tutorials/TutorialLayout';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { ConsentProvider } from './consent/ConsentProvider';
 import { CookieBanner } from './consent/CookieBanner';
+import { ScriptLoader } from './consent/ScriptLoader';
 
 const CONSENT_BANNER_SUPPRESS_ROUTES = new Set<string>([
   '/privacy-policy',
@@ -125,6 +126,7 @@ export function App() {
             <Footer />
           </div>
           <CookieBanner suppressOnRoute={CONSENT_BANNER_SUPPRESS_ROUTES.has(route)} />
+          <ScriptLoader />
           {/* AI Support Chat — temporarily disabled */}
         </PlatformProvider>
       </ConsentProvider>
