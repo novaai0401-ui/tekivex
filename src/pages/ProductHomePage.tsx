@@ -2,6 +2,7 @@ import React from 'react';
 import { usePlatform } from '../platform/PlatformProvider';
 import { Icon } from '../icons/Icon';
 import { navigate } from '../App';
+import { AdSlot } from '../ads/AdSlot';
 import type { ProductManifest, ProductStatus } from '../platform/types';
 
 const STATUS_CONFIG: Record<ProductStatus, { label: string; color: string; bg: string }> = {
@@ -71,6 +72,9 @@ function GenericProductHome({ product }: { product: ProductManifest }) {
           </div>
         ))}
       </div>
+
+      {/* Sponsored — keeps product pages free */}
+      <AdSlot slot="2345678901" label="Sponsored" className="ad-slot--product" />
 
       {/* Features + Quick Links */}
       <div className="prod-body-grid">

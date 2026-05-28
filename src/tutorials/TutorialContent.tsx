@@ -4,6 +4,7 @@ import { CodeBlock } from './CodeBlock';
 import { FlowDiagram, ComparisonCard } from './FlowDiagram';
 import { MarkdownRenderer } from './MarkdownRenderer';
 import { navigate } from '../App';
+import { AdSlot } from '../ads/AdSlot';
 
 // ─── ContentBlock Renderer ───
 
@@ -163,6 +164,9 @@ export function TutorialContent({ topic, category, onNavigate, prev, next, markd
                 <RenderBlock key={i} block={block} />
               ))
           }
+
+          {/* Sponsored — appears below the article body */}
+          <AdSlot slot="1234567890" label="Sponsored — supports free tutorials" className="ad-slot--article" />
 
           {/* Prev / Next Navigation */}
           <div className="tutorial-prev-next">
