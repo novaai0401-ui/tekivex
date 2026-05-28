@@ -13,6 +13,11 @@ import { getSeoForRoute } from './platform/seoConfig';
 import { TutorialLanding } from './tutorials/TutorialLanding';
 import { TutorialLayout } from './tutorials/TutorialLayout';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsOfServicePage } from './pages/TermsOfServicePage';
+import { CookiePolicyPage } from './pages/CookiePolicyPage';
+import { DisclaimerPage } from './pages/DisclaimerPage';
+import { ContactPage } from './pages/ContactPage';
+import { FaqPage } from './pages/FaqPage';
 import { ConsentProvider } from './consent/ConsentProvider';
 import { CookieBanner } from './consent/CookieBanner';
 import { ScriptLoader } from './consent/ScriptLoader';
@@ -21,6 +26,7 @@ const CONSENT_BANNER_SUPPRESS_ROUTES = new Set<string>([
   '/privacy-policy',
   '/cookie-policy',
   '/terms-of-service',
+  '/disclaimer',
 ]);
 
 // History API routing — real URLs (not hash fragments) so Google indexes
@@ -109,6 +115,16 @@ export function App() {
     page = <AboutPage />;
   } else if (route === '/privacy-policy') {
     page = <PrivacyPolicyPage />;
+  } else if (route === '/terms-of-service') {
+    page = <TermsOfServicePage />;
+  } else if (route === '/cookie-policy') {
+    page = <CookiePolicyPage />;
+  } else if (route === '/disclaimer') {
+    page = <DisclaimerPage />;
+  } else if (route === '/contact') {
+    page = <ContactPage />;
+  } else if (route === '/faq') {
+    page = <FaqPage />;
   } else {
     // Default: platform product launcher
     page = <PlatformPage />;

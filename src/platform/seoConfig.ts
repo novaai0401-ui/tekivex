@@ -174,6 +174,63 @@ const PLATFORM_SEO: SeoConfig = {
   jsonLd: null,
 };
 
+// ── Legal & informational pages ───────────────────────────────────────────
+function makeBasicSeo(path: string, title: string, description: string): SeoConfig {
+  return {
+    title,
+    description,
+    keywords: ['Tekivex', title.toLowerCase()],
+    canonical: `${BASE_URL}${path}`,
+    ogTitle: title,
+    ogDescription: description,
+    ogImage: `${BASE_URL}/og-tekivex.png`,
+    ogType: 'website',
+    twitterTitle: title,
+    twitterDescription: description,
+    twitterImage: `${BASE_URL}/og-tekivex.png`,
+    jsonLd: null,
+  };
+}
+
+const TERMS_SEO = makeBasicSeo(
+  '/terms-of-service',
+  'Terms of Service — Tekivex',
+  'Read the Terms of Service for tekivex.com and the open-source products published by Tekivex.',
+);
+
+const COOKIE_SEO = makeBasicSeo(
+  '/cookie-policy',
+  'Cookie Policy — Tekivex',
+  'How Tekivex uses cookies for analytics and advertising, and how you can manage your consent at any time.',
+);
+
+const DISCLAIMER_SEO = makeBasicSeo(
+  '/disclaimer',
+  'Disclaimer — Tekivex',
+  'Tekivex tutorials are educational; this page sets out the limits of warranty and the meaning of beta / preview product status.',
+);
+
+const CONTACT_SEO = makeBasicSeo(
+  '/contact',
+  'Contact Tekivex',
+  'Get in touch with the Tekivex team — email, GitHub issues, security disclosures, and partnership enquiries.',
+);
+
+const FAQ_SEO: SeoConfig = {
+  ...makeBasicSeo(
+    '/faq',
+    'FAQ — Tekivex',
+    'Answers to common questions about Tekivex products, licensing, demos, advertising, and contributing tutorials.',
+  ),
+  jsonLd: {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'FAQ — Tekivex',
+    url: `${BASE_URL}/faq`,
+    description: 'Frequently asked questions about Tekivex products and tutorials.',
+  },
+};
+
 // ── Route resolver ────────────────────────────────────────────────────────
 export function getSeoForRoute(route: string): SeoConfig {
   if (route === '/' || route === '' || route === '/products') {
@@ -181,6 +238,11 @@ export function getSeoForRoute(route: string): SeoConfig {
   }
   if (route === '/about') return ABOUT_SEO;
   if (route === '/platform') return PLATFORM_SEO;
+  if (route === '/terms-of-service') return TERMS_SEO;
+  if (route === '/cookie-policy') return COOKIE_SEO;
+  if (route === '/disclaimer') return DISCLAIMER_SEO;
+  if (route === '/contact') return CONTACT_SEO;
+  if (route === '/faq') return FAQ_SEO;
 
   // ── Tutorials ──
   if (route === '/tutorials') {

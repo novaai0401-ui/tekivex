@@ -90,6 +90,51 @@ const routes = [
       'How Tekivex handles information about visitors to tekivex.com. Plain language, no dark patterns, only the third-party analytics needed to operate the site.',
   },
   {
+    path: '/terms-of-service',
+    title: 'Terms of Service — Tekivex',
+    description:
+      'Terms governing your use of tekivex.com and the open-source software, tutorials, and demos published by Tekivex.',
+    h1: 'Terms of Service',
+    body:
+      'Plain-language Terms of Service for tekivex.com. Covers acceptable use, intellectual property, warranties, and limitation of liability.',
+  },
+  {
+    path: '/cookie-policy',
+    title: 'Cookie Policy — Tekivex',
+    description:
+      'How Tekivex uses cookies and similar technologies for analytics and advertising, and how you can manage your consent at any time.',
+    h1: 'Cookie Policy',
+    body:
+      'Tekivex uses a small set of cookies — essential, analytics, and advertising. Analytics and advertising cookies only load after you accept on the consent banner.',
+  },
+  {
+    path: '/disclaimer',
+    title: 'Disclaimer — Tekivex',
+    description:
+      'Disclaimer for tekivex.com. Tutorials are educational; product status badges describe maturity; advertisements support free content.',
+    h1: 'Disclaimer',
+    body:
+      'Tutorials on Tekivex are educational and reflect best practice at the time of writing. Always verify against authoritative sources before using in production.',
+  },
+  {
+    path: '/contact',
+    title: 'Contact Tekivex',
+    description:
+      'Reach the Tekivex team — email hello@tekivex.com, file a GitHub issue, or report a security disclosure privately.',
+    h1: 'Contact',
+    body:
+      'Email hello@tekivex.com for general questions, or open a GitHub issue for bug reports and feature requests. Security disclosures go to the same email with a Security subject line.',
+  },
+  {
+    path: '/faq',
+    title: 'FAQ — Tekivex',
+    description:
+      'Frequently asked questions about Tekivex products, MIT licensing, demos, advertising, cookies, and contributing tutorials.',
+    h1: 'Frequently Asked Questions',
+    body:
+      'Quick answers to common questions about Tekivex — what we build, how we make money, how to disable advertising, and how to contribute.',
+  },
+  {
     path: '/tutorials',
     title: 'Tekivex tutorials — System design, AI/ML, software architecture',
     description:
