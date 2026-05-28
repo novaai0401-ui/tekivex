@@ -1,6 +1,7 @@
 // ─── SEO Config — per-route metadata map ─────────────────────────────────
 import { type SeoConfig, seoFromManifest } from './useSeo';
 import { getProduct } from './registry';
+import { isThinTopic } from '../tutorials/thinTopics';
 
 const BASE_URL = 'https://tekivex.com';
 
@@ -292,6 +293,7 @@ export function getSeoForRoute(route: string): SeoConfig {
     const parts = route.slice('/tutorials/'.length).split('/');
     const categoryId = parts[0];
     const topicSlug = parts[1];
+    const thin = isThinTopic(route);
     const catTitles: Record<string, string> = {
       'system-design': 'System Design', 'software-architecture': 'Software Architecture',
       'frontend-patterns': 'Frontend Patterns', 'backend-patterns': 'Backend Patterns', 'ai-ml': 'AI & Machine Learning',
@@ -305,6 +307,7 @@ export function getSeoForRoute(route: string): SeoConfig {
       description: `Learn ${catTitle.toLowerCase()} with in-depth tutorials, flow diagrams, and code examples. Part of 70 free tutorials on Tekivex.`,
       keywords: [catTitle.toLowerCase(), 'tutorial', 'guide', 'explained', 'Tekivex', 'design patterns', 'architecture'],
       canonical: `${BASE_URL}${route}`,
+      noindex: thin,
       ogTitle: title,
       ogDescription: `Learn ${catTitle.toLowerCase()} with visual diagrams and code examples — free on Tekivex.`,
       ogImage: `${BASE_URL}/og-tekivex.png`,

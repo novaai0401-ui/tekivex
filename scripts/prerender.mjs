@@ -29,6 +29,17 @@ if (!existsSync(join(DIST, 'index.html'))) {
 
 const baseHtml = readFileSync(join(DIST, 'index.html'), 'utf8');
 
+// Thin-content list (see scripts/compute-thin-topics.mjs). Parse the
+// generated .ts file as text instead of importing it so this script
+// stays free of TypeScript build dependencies.
+const THIN_TOPICS_FILE = join(ROOT, 'src', 'tutorials', 'thinTopics.ts');
+const THIN_TOPICS = (() => {
+  if (!existsSync(THIN_TOPICS_FILE)) return new Set();
+  const src = readFileSync(THIN_TOPICS_FILE, 'utf8');
+  const matches = src.match(/'(\/tutorials\/[^']+)'/g) ?? [];
+  return new Set(matches.map((m) => m.slice(1, -1)));
+})();
+
 // ─── Routes ────────────────────────────────────────────────────────────────
 const products = [
   { id: 'gridstorm',        name: 'GridStorm',        tagline: 'High-performance React data grid with 35+ plugins. MIT-licensed, free forever.' },
@@ -435,18 +446,30 @@ for (const catId of categoryIds) {
       }
       const md = readFileSync(mdPath, 'utf8');
       const contentHtml = marked.parse(md);
-      const html = topicHtml({ category, section, topic, contentHtml });
+      const topicPath = `/tutorials/${category.id}/${topic.slug}`;
+      const isThin = THIN_TOPICS.has(topicPath);
+      let html = topicHtml({ category, section, topic, contentHtml });
+      if (isThin) {
+        // Keep crawlable for context but exclude from the index — no
+        // SERP impressions, no AdSense "thin content" hit.
+        html = html.replace(
+          /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/,
+          '<meta name="robots" content="noindex, follow" />',
+        );
+      }
       const dir = join(DIST, 'tutorials', category.id, topic.slug);
       if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
       writeFileSync(join(dir, 'index.html'), html, 'utf8');
-      topicRoutes.push({
-        path: `/tutorials/${category.id}/${topic.slug}`,
-        priority: '0.7',
-        changefreq: 'monthly',
-        title: topic.title,
-        description: topic.description,
-        categoryTitle: category.title,
-      });
+      if (!isThin) {
+        topicRoutes.push({
+          path: topicPath,
+          priority: '0.7',
+          changefreq: 'monthly',
+          title: topic.title,
+          description: topic.description,
+          categoryTitle: category.title,
+        });
+      }
       topicCount++;
     }
   }

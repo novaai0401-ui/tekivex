@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/compute-thin-topics.mjs",
     "build": "vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
     "test": "vitest",

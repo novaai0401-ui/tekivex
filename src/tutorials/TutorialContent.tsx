@@ -5,6 +5,7 @@ import { FlowDiagram, ComparisonCard } from './FlowDiagram';
 import { MarkdownRenderer } from './MarkdownRenderer';
 import { navigate } from '../App';
 import { AdSlot } from '../ads/AdSlot';
+import { isThinTopic } from './thinTopics';
 
 // ─── ContentBlock Renderer ───
 
@@ -133,6 +134,8 @@ interface TutorialContentProps {
 }
 
 export function TutorialContent({ topic, category, onNavigate, prev, next, markdownContent }: TutorialContentProps) {
+  const topicPath = `/tutorials/${category.id}/${topic.slug}`;
+  const showAd = !isThinTopic(topicPath);
   return (
     <div className="docs-main">
       <div className="tutorial-content-wrap">
@@ -165,8 +168,11 @@ export function TutorialContent({ topic, category, onNavigate, prev, next, markd
               ))
           }
 
-          {/* Sponsored — appears below the article body */}
-          <AdSlot slot="1234567890" label="Sponsored — supports free tutorials" className="ad-slot--article" />
+          {/* Sponsored — appears below the article body, but only on
+              articles substantive enough to satisfy AdSense policy. */}
+          {showAd && (
+            <AdSlot slot="1234567890" label="Sponsored — supports free tutorials" className="ad-slot--article" />
+          )}
 
           {/* Prev / Next Navigation */}
           <div className="tutorial-prev-next">
