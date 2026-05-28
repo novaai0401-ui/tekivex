@@ -13,6 +13,14 @@ import { getSeoForRoute } from './platform/seoConfig';
 import { TutorialLanding } from './tutorials/TutorialLanding';
 import { TutorialLayout } from './tutorials/TutorialLayout';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { ConsentProvider } from './consent/ConsentProvider';
+import { CookieBanner } from './consent/CookieBanner';
+
+const CONSENT_BANNER_SUPPRESS_ROUTES = new Set<string>([
+  '/privacy-policy',
+  '/cookie-policy',
+  '/terms-of-service',
+]);
 
 // History API routing — real URLs (not hash fragments) so Google indexes
 // every page as a distinct document. SPA fallback is configured in
@@ -107,16 +115,19 @@ export function App() {
 
   return (
     <ThemeProvider>
-      <PlatformProvider activeProductId={activeProductId}>
-        <div className="bg-pattern" />
-        <div className="bg-glow" />
-        <div className="hub-container">
-          <TopNav route={route} />
-          {page}
-          <Footer />
-        </div>
-        {/* AI Support Chat — temporarily disabled */}
-      </PlatformProvider>
+      <ConsentProvider>
+        <PlatformProvider activeProductId={activeProductId}>
+          <div className="bg-pattern" />
+          <div className="bg-glow" />
+          <div className="hub-container">
+            <TopNav route={route} />
+            {page}
+            <Footer />
+          </div>
+          <CookieBanner suppressOnRoute={CONSENT_BANNER_SUPPRESS_ROUTES.has(route)} />
+          {/* AI Support Chat — temporarily disabled */}
+        </PlatformProvider>
+      </ConsentProvider>
     </ThemeProvider>
   );
 }
