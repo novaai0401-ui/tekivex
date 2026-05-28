@@ -8,6 +8,7 @@
 // product pages load WebGL / AI runtimes that don't exist in Node.
 // ─────────────────────────────────────────────────────────────────────────────
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
+import { buildRss } from './lib/rss.mjs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import esbuild from 'esbuild';
@@ -442,6 +443,9 @@ for (const catId of categoryIds) {
         path: `/tutorials/${category.id}/${topic.slug}`,
         priority: '0.7',
         changefreq: 'monthly',
+        title: topic.title,
+        description: topic.description,
+        categoryTitle: category.title,
       });
       topicCount++;
     }
@@ -502,9 +506,16 @@ const humans = [
   '',
 ].join('\n');
 
+// ── RSS feed for tutorials ────────────────────────────────────────────────
+const rssXml = buildRss(
+  { origin: ORIGIN, buildDate: new Date(`${TODAY}T00:00:00Z`), limit: 60 },
+  topicRoutes,
+);
+
 writeFileSync(join(DIST, 'sitemap.xml'), sitemapXml, 'utf8');
 writeFileSync(join(DIST, 'sitemap-index.xml'), sitemapIndex, 'utf8');
 writeFileSync(join(DIST, 'humans.txt'), humans, 'utf8');
+writeFileSync(join(DIST, 'feed.xml'), rssXml, 'utf8');
 
 // Mirror into public/ so vite dev serves them too
 const pub = join(ROOT, 'public');
