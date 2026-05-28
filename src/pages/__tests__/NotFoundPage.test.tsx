@@ -50,4 +50,19 @@ describe('NotFoundPage', () => {
     render(<App />);
     expect(screen.queryByTestId('notfound-page')).not.toBeInTheDocument();
   });
+
+  it('suppresses the cookie banner on the 404 page', () => {
+    localStorage.clear();
+    pushRoute('/this-route-does-not-exist');
+    render(<App />);
+    expect(screen.getByTestId('notfound-page')).toBeInTheDocument();
+    expect(screen.queryByText(/Cookies on Tekivex/i)).not.toBeInTheDocument();
+  });
+
+  it('still shows the cookie banner on a real route', () => {
+    localStorage.clear();
+    pushRoute('/faq');
+    render(<App />);
+    expect(screen.getByText(/Cookies on Tekivex/i)).toBeInTheDocument();
+  });
 });

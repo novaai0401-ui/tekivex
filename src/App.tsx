@@ -171,7 +171,7 @@ export function App() {
             {page}
             <Footer />
           </div>
-          <CookieBanner suppressOnRoute={CONSENT_BANNER_SUPPRESS_ROUTES.has(route)} />
+          <CookieBanner suppressOnRoute={CONSENT_BANNER_SUPPRESS_ROUTES.has(route) || !isKnown} />
           <ScriptLoader />
           {/* AI Support Chat — temporarily disabled */}
         </PlatformProvider>

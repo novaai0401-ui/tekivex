@@ -43,8 +43,8 @@ export function PrivacyPolicyPage() {
           Privacy Policy
         </h1>
         <p style={{ ...prose, color: '#64748b', marginBottom: '20px' }}>
-          <strong style={{ color: '#94a3b8' }}>Last updated:</strong> April 20, 2026 &nbsp;·&nbsp;
-          <strong style={{ color: '#94a3b8' }}>Effective date:</strong> April 20, 2026
+          <strong style={{ color: '#94a3b8' }}>Last updated:</strong> May 28, 2026 &nbsp;·&nbsp;
+          <strong style={{ color: '#94a3b8' }}>Effective date:</strong> May 28, 2026
         </p>
         <div style={{
           padding: '18px 22px', borderRadius: '10px',
@@ -71,13 +71,14 @@ export function PrivacyPolicyPage() {
         <p style={prose}>We use cookies and similar tracking technologies. Types we use:</p>
         <ul style={{ paddingLeft: '24px', margin: '0 0 14px' }}>
           {[
-            'Essential cookies — required for the site to function correctly.',
-            'Preference cookies — remember your theme or settings.',
-            'Analytics cookies — help us understand how visitors use our sites (Google Analytics 4).',
+            'Essential cookies — required for the site to function correctly (e.g. tekivex.consent.v1 in localStorage, which remembers your cookie choice).',
+            'Preference cookies — remember your theme or settings (e.g. hub-theme in localStorage).',
+            'Analytics cookies — help us understand how visitors use our sites (Google Analytics 4, _ga / _ga_*). Loaded only after you accept on the consent banner.',
+            'Advertising cookies — set by Google AdSense (__gads, __gpi, IDE) so ads can be selected and frequency-capped. Loaded only after you accept on the consent banner.',
           ].map(t => <li key={t} style={li}>{t}</li>)}
         </ul>
         <p style={prose}>
-          You can disable cookies in your browser settings. Some features may not function correctly if cookies are disabled.
+          When you first visit tekivex.com you will see a consent banner with <strong style={{ color: '#f1f5f9' }}>Accept all</strong> and <strong style={{ color: '#f1f5f9' }}>Reject non-essential</strong> buttons. We do not load Google Analytics or Google AdSense until you click Accept. You can change your choice at any time from the <a href="/cookie-policy" style={{ color: '#3b82f6' }}>Cookie Policy</a> page using the "Reopen cookie banner" button, or by clearing cookies and site data for tekivex.com in your browser.
         </p>
 
         <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e2e8f0', margin: '20px 0 8px' }}>
@@ -123,9 +124,33 @@ export function PrivacyPolicyPage() {
       </Section>
 
       {/* 4 */}
-      <Section title="4. Advertising">
+      <Section title="4. Advertising (Google AdSense)">
         <p style={prose}>
-          Tekivex does not currently display advertisements on this site. If we begin serving ads in the future, this section will be updated to disclose the provider, the cookies set, and your opt-out options before any ads are loaded.
+          tekivex.com displays advertisements served by{' '}
+          <strong style={{ color: '#f1f5f9' }}>Google AdSense</strong> (publisher ID{' '}
+          <code style={{ background: 'rgba(15,23,42,0.8)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ca-pub-4630229006617891</code>)
+          to help keep our tutorials free. AdSense is loaded only after you click <strong style={{ color: '#f1f5f9' }}>Accept all</strong> on the consent banner described in section 1.2.
+        </p>
+        <p style={prose}>
+          Once loaded, Google and its partners may use cookies — including the DART cookie — to serve ads based on your visit to this site and other sites on the Internet. The DART cookie enables Google to show personalised ads. You can opt out of the DART cookie and personalised advertising at any time by visiting{' '}
+          <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+            Google Ads Settings
+          </a>{' '}or{' '}
+          <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+            Google's advertising policies
+          </a>.
+        </p>
+        <p style={prose}>
+          Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites. You may also opt out of third-party vendor use of cookies for personalised advertising by visiting{' '}
+          <a href="https://optout.aboutads.info/" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+            aboutads.info
+          </a>{' '}or{' '}
+          <a href="https://www.youronlinechoices.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+            youronlinechoices.com
+          </a>.
+        </p>
+        <p style={prose}>
+          If you reject non-essential cookies, AdSense will not be loaded at all and we will not place any advertising cookies on your device.
         </p>
       </Section>
 
@@ -133,7 +158,8 @@ export function PrivacyPolicyPage() {
       <Section title="5. Third-Party Services">
         <ul style={{ paddingLeft: '24px', margin: '0 0 14px' }}>
           {[
-            'Google Analytics 4 — analytics (privacy.google.com)',
+            'Google Analytics 4 — analytics (policies.google.com/privacy)',
+            'Google AdSense — advertising (policies.google.com/technologies/ads)',
             'GitHub — code hosting and issue tracking',
             'npm / npmjs.com — package registry for open-source packages',
             'Vercel / Render — web hosting',
