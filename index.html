@@ -52,12 +52,9 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-C65SFGKM00');
-    // Track hash-router navigation (SPA page views)
-    window.addEventListener('hashchange', function() {
-      gtag('event', 'page_view', {
-        page_path: window.location.hash.replace('#', '') || '/'
-      });
-    });
+    // SPA pageview tracking is wired up in src/analytics/pageview.ts —
+    // it listens for popstate + the router's `tekivex:navigate` event
+    // and forwards the History API pathname to gtag.
   </script>
 
   <!-- ── Fonts ──────────────────────────────────────────────────────────── -->
