@@ -18,6 +18,25 @@ import { CookiePolicyPage } from './pages/CookiePolicyPage';
 import { DisclaimerPage } from './pages/DisclaimerPage';
 import { ContactPage } from './pages/ContactPage';
 import { FaqPage } from './pages/FaqPage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { getProduct } from './platform/registry';
+
+const STATIC_ROUTES = new Set<string>([
+  '/', '/products', '/platform', '/about',
+  '/privacy-policy', '/terms-of-service', '/cookie-policy',
+  '/disclaimer', '/contact', '/faq',
+  '/tutorials',
+]);
+
+function isKnownRoute(route: string): boolean {
+  if (STATIC_ROUTES.has(route)) return true;
+  if (route.startsWith('/tutorials/')) return true;
+  if (route.startsWith('/product/')) {
+    const id = route.slice('/product/'.length).split('/')[0];
+    return !!id && !!getProduct(id);
+  }
+  return false;
+}
 import { ConsentProvider } from './consent/ConsentProvider';
 import { CookieBanner } from './consent/CookieBanner';
 import { ScriptLoader } from './consent/ScriptLoader';
@@ -97,11 +116,23 @@ export function App() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [route]);
 
-  useSeo(getSeoForRoute(route));
+  const isKnown = isKnownRoute(route);
+  const seo = isKnown
+    ? getSeoForRoute(route)
+    : {
+        title: 'Page not found — Tekivex',
+        description: 'The page you are looking for does not exist on tekivex.com. Browse our products, tutorials, or contact us.',
+        canonical: 'https://tekivex.com' + route,
+        noindex: true,
+        jsonLd: null,
+      };
+  useSeo(seo);
 
   let page: React.ReactNode;
 
-  if (route === '/tutorials') {
+  if (!isKnown) {
+    page = <NotFoundPage />;
+  } else if (route === '/tutorials') {
     page = <TutorialLanding />;
   } else if (route.startsWith('/tutorials/')) {
     const parts = route.slice('/tutorials/'.length).split('/');
@@ -126,7 +157,6 @@ export function App() {
   } else if (route === '/faq') {
     page = <FaqPage />;
   } else {
-    // Default: platform product launcher
     page = <PlatformPage />;
   }
 

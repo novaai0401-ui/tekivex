@@ -249,6 +249,21 @@ for (const route of routes) {
   count++;
 }
 
+// Emit dist/404.html for crawlers / static hosts that serve it on misses.
+const notFoundRoute = {
+  path: '/404',
+  title: 'Page not found — Tekivex',
+  description: 'The page you are looking for does not exist on tekivex.com.',
+  h1: 'Page not found',
+  body: 'The page you requested does not exist. Try the Products, Tutorials, or About pages.',
+};
+let notFoundHtml = makeHtml(notFoundRoute);
+notFoundHtml = notFoundHtml.replace(
+  /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/,
+  '<meta name="robots" content="noindex, follow" />',
+);
+writeFileSync(join(DIST, '404.html'), notFoundHtml, 'utf8');
+
 // ─── Per-topic tutorial prerendering ──────────────────────────────────────
 // Tutorial topic markdown lives in public/tutorials/content/<cat>/<slug>.md
 // and topic metadata lives in src/tutorials/data/<cat>.ts. We compile the .ts
