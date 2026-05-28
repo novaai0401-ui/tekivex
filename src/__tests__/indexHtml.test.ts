@@ -22,4 +22,8 @@ describe('index.html — AdSense ownership verification', () => {
       /<link\s+rel="alternate"\s+type="application\/rss\+xml"[^>]*href="\/feed\.xml"/,
     );
   });
+
+  it('includes a google-site-verification meta tag (Search Console)', () => {
+    expect(indexHtml).toMatch(/<meta\s+name="google-site-verification"\s+content="[^"]+"/);
+  });
 });

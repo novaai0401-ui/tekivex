@@ -39,28 +39,47 @@ const HOME_SEO: SeoConfig = {
   twitterDescription:
     'GridStorm data grid, Analytics Studio, DataFlow streaming, PDF Toolkit — one platform, all open source.',
   twitterImage: `${BASE_URL}/og-tekivex.png`,
-  jsonLd: {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Tekivex',
-    url: BASE_URL,
-    logo: {
-      '@type': 'ImageObject',
-      url: `${BASE_URL}/logo.svg`,
-      width: 200,
-      height: 60,
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Tekivex',
+      url: BASE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}/logo.svg`,
+        width: 200,
+        height: 60,
+      },
+      description:
+        'Tekivex builds open-source enterprise developer tools — GridStorm, Analytics Studio, DataFlow, and PDF Toolkit. All MIT-licensed.',
+      sameAs: [
+        'https://github.com/novaai0401-ui/tekivex-issue-report',
+      ],
+      foundingDate: '2025',
+      knowsAbout: [
+        'Data Grids', 'Business Intelligence', 'Real-time Streaming',
+        'PDF Processing', 'Enterprise Software', 'TypeScript', 'React', 'Vue', 'Svelte',
+      ],
     },
-    description:
-      'Tekivex builds open-source enterprise developer tools — GridStorm, Analytics Studio, DataFlow, and PDF Toolkit. All MIT-licensed.',
-    sameAs: [
-      'https://github.com/novaai0401-ui/tekivex-issue-report',
-    ],
-    foundingDate: '2025',
-    knowsAbout: [
-      'Data Grids', 'Business Intelligence', 'Real-time Streaming',
-      'PDF Processing', 'Enterprise Software', 'TypeScript', 'React', 'Vue', 'Svelte',
-    ],
-  },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Tekivex',
+      url: BASE_URL,
+      description:
+        'Open-source enterprise developer tools — GridStorm data grid, Analytics Studio, DataFlow streaming, PDF Toolkit.',
+      publisher: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${BASE_URL}/tutorials?q={search_term_string}`,
+        },
+        'query-input': 'required name=search_term_string',
+      },
+    },
+  ],
 };
 
 // ── Products ──────────────────────────────────────────────────────────────

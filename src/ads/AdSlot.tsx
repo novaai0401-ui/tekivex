@@ -61,6 +61,7 @@ export function AdSlot({ slot, format = 'auto', label, className }: AdSlotProps)
 
   return (
     <div className={`ad-slot ${className ?? ''}`.trim()} aria-label={label ?? 'Advertisement'}>
+      <div className="ad-slot-label" data-testid="ad-slot-label">Advertisement</div>
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}

@@ -51,6 +51,22 @@ describe('AdSlot', () => {
     expect(ins.getAttribute('data-full-width-responsive')).toBe('true');
   });
 
+  it('renders a visible "Advertisement" label above the <ins> (AdSense policy)', () => {
+    vi.stubEnv('DEV', false);
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    renderSlot({ slot: '424242' });
+    const label = screen.getByTestId('ad-slot-label');
+    expect(label).toBeInTheDocument();
+    expect(label.textContent).toBe('Advertisement');
+  });
+
+  it('does NOT render the label when consent is denied (whole slot is hidden)', () => {
+    vi.stubEnv('DEV', false);
+    localStorage.setItem(CONSENT_KEY, 'denied');
+    renderSlot({ slot: '424242' });
+    expect(screen.queryByTestId('ad-slot-label')).toBeNull();
+  });
+
   it('pushes once to the adsbygoogle queue when rendered in production', () => {
     vi.stubEnv('DEV', false);
     localStorage.setItem(CONSENT_KEY, 'accepted');

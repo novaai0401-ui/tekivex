@@ -49,6 +49,12 @@
        visitor accepts cookies. -->
   <meta name="google-adsense-account" content="ca-pub-4630229006617891" />
 
+  <!-- Google Search Console verification. Paste the token from
+       https://search.google.com/search-console (Property → Verification
+       details → HTML tag) between the quotes. Leaving as REPLACE_ME is
+       harmless — Google simply will not verify until a real token is set. -->
+  <meta name="google-site-verification" content="REPLACE_ME" />
+
   <!-- Analytics (gtag.js) and Google AdSense are loaded by
        src/consent/ScriptLoader.tsx only after the visitor accepts
        cookies via the consent banner. This keeps the site compliant
@@ -115,7 +121,7 @@
     },
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://tekivex.com/#/products?q={search_term_string}",
+      "target": "https://tekivex.com/tutorials?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }

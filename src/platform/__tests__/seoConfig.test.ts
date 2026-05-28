@@ -33,9 +33,10 @@ describe('getSeoForRoute', () => {
   it('home SEO has JSON-LD with @context schema.org', () => {
     const seo = getSeoForRoute('/');
     expect(seo.jsonLd).not.toBeNull();
-    const ld = seo.jsonLd as Record<string, unknown>;
-    expect(ld['@context']).toBe('https://schema.org');
-    expect(ld['@type']).toBe('Organization');
+    const blocks = (Array.isArray(seo.jsonLd) ? seo.jsonLd : [seo.jsonLd]) as Array<Record<string, unknown>>;
+    const org = blocks.find((b) => b['@type'] === 'Organization');
+    expect(org).toBeDefined();
+    expect(org!['@context']).toBe('https://schema.org');
   });
 
   // ── Products page ────────────────────────────────────────────────────────
