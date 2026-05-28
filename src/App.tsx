@@ -13,6 +13,40 @@ import { getSeoForRoute } from './platform/seoConfig';
 import { TutorialLanding } from './tutorials/TutorialLanding';
 import { TutorialLayout } from './tutorials/TutorialLayout';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsOfServicePage } from './pages/TermsOfServicePage';
+import { CookiePolicyPage } from './pages/CookiePolicyPage';
+import { DisclaimerPage } from './pages/DisclaimerPage';
+import { ContactPage } from './pages/ContactPage';
+import { FaqPage } from './pages/FaqPage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { getProduct } from './platform/registry';
+
+const STATIC_ROUTES = new Set<string>([
+  '/', '/products', '/platform', '/about',
+  '/privacy-policy', '/terms-of-service', '/cookie-policy',
+  '/disclaimer', '/contact', '/faq',
+  '/tutorials',
+]);
+
+function isKnownRoute(route: string): boolean {
+  if (STATIC_ROUTES.has(route)) return true;
+  if (route.startsWith('/tutorials/')) return true;
+  if (route.startsWith('/product/')) {
+    const id = route.slice('/product/'.length).split('/')[0];
+    return !!id && !!getProduct(id);
+  }
+  return false;
+}
+import { ConsentProvider } from './consent/ConsentProvider';
+import { CookieBanner } from './consent/CookieBanner';
+import { ScriptLoader } from './consent/ScriptLoader';
+
+const CONSENT_BANNER_SUPPRESS_ROUTES = new Set<string>([
+  '/privacy-policy',
+  '/cookie-policy',
+  '/terms-of-service',
+  '/disclaimer',
+]);
 
 // History API routing — real URLs (not hash fragments) so Google indexes
 // every page as a distinct document. SPA fallback is configured in
@@ -82,11 +116,23 @@ export function App() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [route]);
 
-  useSeo(getSeoForRoute(route));
+  const isKnown = isKnownRoute(route);
+  const seo = isKnown
+    ? getSeoForRoute(route)
+    : {
+        title: 'Page not found — Tekivex',
+        description: 'The page you are looking for does not exist on tekivex.com. Browse our products, tutorials, or contact us.',
+        canonical: 'https://tekivex.com' + route,
+        noindex: true,
+        jsonLd: null,
+      };
+  useSeo(seo);
 
   let page: React.ReactNode;
 
-  if (route === '/tutorials') {
+  if (!isKnown) {
+    page = <NotFoundPage />;
+  } else if (route === '/tutorials') {
     page = <TutorialLanding />;
   } else if (route.startsWith('/tutorials/')) {
     const parts = route.slice('/tutorials/'.length).split('/');
@@ -100,23 +146,36 @@ export function App() {
     page = <AboutPage />;
   } else if (route === '/privacy-policy') {
     page = <PrivacyPolicyPage />;
+  } else if (route === '/terms-of-service') {
+    page = <TermsOfServicePage />;
+  } else if (route === '/cookie-policy') {
+    page = <CookiePolicyPage />;
+  } else if (route === '/disclaimer') {
+    page = <DisclaimerPage />;
+  } else if (route === '/contact') {
+    page = <ContactPage />;
+  } else if (route === '/faq') {
+    page = <FaqPage />;
   } else {
-    // Default: platform product launcher
     page = <PlatformPage />;
   }
 
   return (
     <ThemeProvider>
-      <PlatformProvider activeProductId={activeProductId}>
-        <div className="bg-pattern" />
-        <div className="bg-glow" />
-        <div className="hub-container">
-          <TopNav route={route} />
-          {page}
-          <Footer />
-        </div>
-        {/* AI Support Chat — temporarily disabled */}
-      </PlatformProvider>
+      <ConsentProvider>
+        <PlatformProvider activeProductId={activeProductId}>
+          <div className="bg-pattern" />
+          <div className="bg-glow" />
+          <div className="hub-container">
+            <TopNav route={route} />
+            {page}
+            <Footer />
+          </div>
+          <CookieBanner suppressOnRoute={CONSENT_BANNER_SUPPRESS_ROUTES.has(route) || !isKnown} />
+          <ScriptLoader />
+          {/* AI Support Chat — temporarily disabled */}
+        </PlatformProvider>
+      </ConsentProvider>
     </ThemeProvider>
   );
 }

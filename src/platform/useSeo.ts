@@ -20,6 +20,8 @@ export interface SeoConfig {
   twitterImage?: string;
   /** Single object or array of JSON-LD objects (e.g. [SoftwareApplication, BreadcrumbList]) */
   jsonLd?: object | object[] | null;
+  /** If true, emit <meta name="robots" content="noindex,follow"> (used for 404 etc). */
+  noindex?: boolean;
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────
@@ -123,7 +125,12 @@ export function useSeo(config: SeoConfig) {
 
     // Basic meta
     setMeta('meta[name="description"]', config.description);
-    setMeta('meta[name="robots"]', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+    setMeta(
+      'meta[name="robots"]',
+      config.noindex
+        ? 'noindex, follow'
+        : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+    );
     if (config.keywords?.length) {
       setMeta('meta[name="keywords"]', config.keywords.join(', '));
     }

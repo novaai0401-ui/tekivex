@@ -64,6 +64,18 @@ const FOOTER_COLS = [
       { label: 'Report an Issue', href: 'https://github.com/novaai0401-ui/tekivex-issue-report/issues' },
       { label: 'Tutorials',       href: '/tutorials' },
       { label: 'About Us',        href: '/about' },
+      { label: 'Contact',         href: '/contact' },
+      { label: 'FAQ',             href: '/faq' },
+    ],
+  },
+  {
+    heading: 'Legal',
+    links: [
+      { label: 'Privacy Policy',    href: '/privacy-policy' },
+      { label: 'Terms of Service',  href: '/terms-of-service' },
+      { label: 'Cookie Policy',     href: '/cookie-policy' },
+      { label: 'Disclaimer',        href: '/disclaimer' },
+      { label: 'Contact',           href: '/contact' },
     ],
   },
 ];
@@ -133,7 +145,12 @@ export function Footer() {
           <a href="https://ui.tekivex.com" className="hub-footer-bottom-link" style={footerLinkStyle} target="_blank" rel="noopener noreferrer">TekiVex UI</a>
           <a href={`${GS}/#/docs/getting-started/introduction`} className="hub-footer-bottom-link" style={footerLinkStyle} target="_blank" rel="noopener noreferrer">Docs</a>
           <a href="/about" className="hub-footer-bottom-link" style={footerLinkStyle}>About</a>
-          <a href="/privacy-policy" className="hub-footer-bottom-link" style={footerLinkStyle}>Privacy Policy</a>
+          <a href="/contact" className="hub-footer-bottom-link" style={footerLinkStyle}>Contact</a>
+          <a href="/faq" className="hub-footer-bottom-link" style={footerLinkStyle}>FAQ</a>
+          <a href="/privacy-policy" className="hub-footer-bottom-link" style={footerLinkStyle}>Privacy</a>
+          <a href="/terms-of-service" className="hub-footer-bottom-link" style={footerLinkStyle}>Terms</a>
+          <a href="/cookie-policy" className="hub-footer-bottom-link" style={footerLinkStyle}>Cookies</a>
+          <a href="/disclaimer" className="hub-footer-bottom-link" style={footerLinkStyle}>Disclaimer</a>
           <a href="https://github.com/novaai0401-ui/tekivex-issue-report/issues" className="hub-footer-bottom-link" style={footerLinkStyle} target="_blank" rel="noopener noreferrer">Report Issue</a>
         </div>
         <div className="hub-footer-social">

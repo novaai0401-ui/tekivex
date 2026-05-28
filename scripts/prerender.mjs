@@ -8,6 +8,7 @@
 // product pages load WebGL / AI runtimes that don't exist in Node.
 // ─────────────────────────────────────────────────────────────────────────────
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
+import { buildRss } from './lib/rss.mjs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import esbuild from 'esbuild';
@@ -27,6 +28,17 @@ if (!existsSync(join(DIST, 'index.html'))) {
 }
 
 const baseHtml = readFileSync(join(DIST, 'index.html'), 'utf8');
+
+// Thin-content list (see scripts/compute-thin-topics.mjs). Parse the
+// generated .ts file as text instead of importing it so this script
+// stays free of TypeScript build dependencies.
+const THIN_TOPICS_FILE = join(ROOT, 'src', 'tutorials', 'thinTopics.ts');
+const THIN_TOPICS = (() => {
+  if (!existsSync(THIN_TOPICS_FILE)) return new Set();
+  const src = readFileSync(THIN_TOPICS_FILE, 'utf8');
+  const matches = src.match(/'(\/tutorials\/[^']+)'/g) ?? [];
+  return new Set(matches.map((m) => m.slice(1, -1)));
+})();
 
 // ─── Routes ────────────────────────────────────────────────────────────────
 const products = [
@@ -88,6 +100,51 @@ const routes = [
     h1: 'Privacy Policy',
     body:
       'How Tekivex handles information about visitors to tekivex.com. Plain language, no dark patterns, only the third-party analytics needed to operate the site.',
+  },
+  {
+    path: '/terms-of-service',
+    title: 'Terms of Service — Tekivex',
+    description:
+      'Terms governing your use of tekivex.com and the open-source software, tutorials, and demos published by Tekivex.',
+    h1: 'Terms of Service',
+    body:
+      'Plain-language Terms of Service for tekivex.com. Covers acceptable use, intellectual property, warranties, and limitation of liability.',
+  },
+  {
+    path: '/cookie-policy',
+    title: 'Cookie Policy — Tekivex',
+    description:
+      'How Tekivex uses cookies and similar technologies for analytics and advertising, and how you can manage your consent at any time.',
+    h1: 'Cookie Policy',
+    body:
+      'Tekivex uses a small set of cookies — essential, analytics, and advertising. Analytics and advertising cookies only load after you accept on the consent banner.',
+  },
+  {
+    path: '/disclaimer',
+    title: 'Disclaimer — Tekivex',
+    description:
+      'Disclaimer for tekivex.com. Tutorials are educational; product status badges describe maturity; advertisements support free content.',
+    h1: 'Disclaimer',
+    body:
+      'Tutorials on Tekivex are educational and reflect best practice at the time of writing. Always verify against authoritative sources before using in production.',
+  },
+  {
+    path: '/contact',
+    title: 'Contact Tekivex',
+    description:
+      'Reach the Tekivex team — email hello@tekivex.com, file a GitHub issue, or report a security disclosure privately.',
+    h1: 'Contact',
+    body:
+      'Email hello@tekivex.com for general questions, or open a GitHub issue for bug reports and feature requests. Security disclosures go to the same email with a Security subject line.',
+  },
+  {
+    path: '/faq',
+    title: 'FAQ — Tekivex',
+    description:
+      'Frequently asked questions about Tekivex products, MIT licensing, demos, advertising, cookies, and contributing tutorials.',
+    h1: 'Frequently Asked Questions',
+    body:
+      'Quick answers to common questions about Tekivex — what we build, how we make money, how to disable advertising, and how to contribute.',
   },
   {
     path: '/tutorials',
@@ -203,6 +260,21 @@ for (const route of routes) {
   writeFileSync(join(dir, 'index.html'), makeHtml(route), 'utf8');
   count++;
 }
+
+// Emit dist/404.html for crawlers / static hosts that serve it on misses.
+const notFoundRoute = {
+  path: '/404',
+  title: 'Page not found — Tekivex',
+  description: 'The page you are looking for does not exist on tekivex.com.',
+  h1: 'Page not found',
+  body: 'The page you requested does not exist. Try the Products, Tutorials, or About pages.',
+};
+let notFoundHtml = makeHtml(notFoundRoute);
+notFoundHtml = notFoundHtml.replace(
+  /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/,
+  '<meta name="robots" content="noindex, follow" />',
+);
+writeFileSync(join(DIST, '404.html'), notFoundHtml, 'utf8');
 
 // ─── Per-topic tutorial prerendering ──────────────────────────────────────
 // Tutorial topic markdown lives in public/tutorials/content/<cat>/<slug>.md
@@ -374,15 +446,30 @@ for (const catId of categoryIds) {
       }
       const md = readFileSync(mdPath, 'utf8');
       const contentHtml = marked.parse(md);
-      const html = topicHtml({ category, section, topic, contentHtml });
+      const topicPath = `/tutorials/${category.id}/${topic.slug}`;
+      const isThin = THIN_TOPICS.has(topicPath);
+      let html = topicHtml({ category, section, topic, contentHtml });
+      if (isThin) {
+        // Keep crawlable for context but exclude from the index — no
+        // SERP impressions, no AdSense "thin content" hit.
+        html = html.replace(
+          /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/,
+          '<meta name="robots" content="noindex, follow" />',
+        );
+      }
       const dir = join(DIST, 'tutorials', category.id, topic.slug);
       if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
       writeFileSync(join(dir, 'index.html'), html, 'utf8');
-      topicRoutes.push({
-        path: `/tutorials/${category.id}/${topic.slug}`,
-        priority: '0.7',
-        changefreq: 'monthly',
-      });
+      if (!isThin) {
+        topicRoutes.push({
+          path: topicPath,
+          priority: '0.7',
+          changefreq: 'monthly',
+          title: topic.title,
+          description: topic.description,
+          categoryTitle: category.title,
+        });
+      }
       topicCount++;
     }
   }
@@ -442,9 +529,16 @@ const humans = [
   '',
 ].join('\n');
 
+// ── RSS feed for tutorials ────────────────────────────────────────────────
+const rssXml = buildRss(
+  { origin: ORIGIN, buildDate: new Date(`${TODAY}T00:00:00Z`), limit: 60 },
+  topicRoutes,
+);
+
 writeFileSync(join(DIST, 'sitemap.xml'), sitemapXml, 'utf8');
 writeFileSync(join(DIST, 'sitemap-index.xml'), sitemapIndex, 'utf8');
 writeFileSync(join(DIST, 'humans.txt'), humans, 'utf8');
+writeFileSync(join(DIST, 'feed.xml'), rssXml, 'utf8');
 
 // Mirror into public/ so vite dev serves them too
 const pub = join(ROOT, 'public');

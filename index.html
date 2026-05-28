@@ -41,24 +41,46 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
+  <link rel="alternate" type="application/rss+xml" title="Tekivex Tutorials" href="/feed.xml" />
 
-  <!-- Google AdSense intentionally not loaded — re-enable after site has
-       sufficient original editorial content and approval is granted. -->
+  <!-- Google AdSense account verification. Cookie-free: associates the
+       property with the publisher account. The actual adsbygoogle.js
+       script is loaded by src/consent/ScriptLoader.tsx only after the
+       visitor accepts cookies. -->
+  <meta name="google-adsense-account" content="ca-pub-4630229006617891" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C65SFGKM00"></script>
+  <!-- Google Search Console verification. Paste the token from
+       https://search.google.com/search-console (Property → Verification
+       details → HTML tag) between the quotes. Leaving as REPLACE_ME is
+       harmless — Google simply will not verify until a real token is set. -->
+  <meta name="google-site-verification" content="REPLACE_ME" />
+
+  <!-- Google Consent Mode v2 — default-deny all storage and ad signals
+       before gtag.js or adsbygoogle.js load. The ConsentProvider in the
+       React app upgrades these signals to "granted" once the visitor
+       clicks Accept on the cookie banner, or leaves them denied if they
+       click Reject. This is the GDPR/DPDP-compliant pattern Google
+       recommends for AdSense + Analytics, and it lets the
+       Mediapartners-Google crawler see the <ins> tags even though no
+       cookies are dropped for un-consented visitors. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-C65SFGKM00');
-    // Track hash-router navigation (SPA page views)
-    window.addEventListener('hashchange', function() {
-      gtag('event', 'page_view', {
-        page_path: window.location.hash.replace('#', '') || '/'
-      });
+    window.gtag = gtag;
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+      wait_for_update: 500,
     });
+    gtag('js', new Date());
+    gtag('config', 'G-C65SFGKM00', { anonymize_ip: true });
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C65SFGKM00"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4630229006617891" crossorigin="anonymous"></script>
 
   <!-- ── Fonts ──────────────────────────────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -115,7 +137,7 @@
     },
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://tekivex.com/#/products?q={search_term_string}",
+      "target": "https://tekivex.com/tutorials?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }

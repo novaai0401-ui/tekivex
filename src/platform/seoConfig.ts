@@ -1,6 +1,7 @@
 // ─── SEO Config — per-route metadata map ─────────────────────────────────
 import { type SeoConfig, seoFromManifest } from './useSeo';
 import { getProduct } from './registry';
+import { isThinTopic } from '../tutorials/thinTopics';
 
 const BASE_URL = 'https://tekivex.com';
 
@@ -39,28 +40,47 @@ const HOME_SEO: SeoConfig = {
   twitterDescription:
     'GridStorm data grid, Analytics Studio, DataFlow streaming, PDF Toolkit — one platform, all open source.',
   twitterImage: `${BASE_URL}/og-tekivex.png`,
-  jsonLd: {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Tekivex',
-    url: BASE_URL,
-    logo: {
-      '@type': 'ImageObject',
-      url: `${BASE_URL}/logo.svg`,
-      width: 200,
-      height: 60,
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Tekivex',
+      url: BASE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}/logo.svg`,
+        width: 200,
+        height: 60,
+      },
+      description:
+        'Tekivex builds open-source enterprise developer tools — GridStorm, Analytics Studio, DataFlow, and PDF Toolkit. All MIT-licensed.',
+      sameAs: [
+        'https://github.com/novaai0401-ui/tekivex-issue-report',
+      ],
+      foundingDate: '2025',
+      knowsAbout: [
+        'Data Grids', 'Business Intelligence', 'Real-time Streaming',
+        'PDF Processing', 'Enterprise Software', 'TypeScript', 'React', 'Vue', 'Svelte',
+      ],
     },
-    description:
-      'Tekivex builds open-source enterprise developer tools — GridStorm, Analytics Studio, DataFlow, and PDF Toolkit. All MIT-licensed.',
-    sameAs: [
-      'https://github.com/novaai0401-ui/tekivex-issue-report',
-    ],
-    foundingDate: '2025',
-    knowsAbout: [
-      'Data Grids', 'Business Intelligence', 'Real-time Streaming',
-      'PDF Processing', 'Enterprise Software', 'TypeScript', 'React', 'Vue', 'Svelte',
-    ],
-  },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Tekivex',
+      url: BASE_URL,
+      description:
+        'Open-source enterprise developer tools — GridStorm data grid, Analytics Studio, DataFlow streaming, PDF Toolkit.',
+      publisher: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${BASE_URL}/tutorials?q={search_term_string}`,
+        },
+        'query-input': 'required name=search_term_string',
+      },
+    },
+  ],
 };
 
 // ── Products ──────────────────────────────────────────────────────────────
@@ -174,6 +194,63 @@ const PLATFORM_SEO: SeoConfig = {
   jsonLd: null,
 };
 
+// ── Legal & informational pages ───────────────────────────────────────────
+function makeBasicSeo(path: string, title: string, description: string): SeoConfig {
+  return {
+    title,
+    description,
+    keywords: ['Tekivex', title.toLowerCase()],
+    canonical: `${BASE_URL}${path}`,
+    ogTitle: title,
+    ogDescription: description,
+    ogImage: `${BASE_URL}/og-tekivex.png`,
+    ogType: 'website',
+    twitterTitle: title,
+    twitterDescription: description,
+    twitterImage: `${BASE_URL}/og-tekivex.png`,
+    jsonLd: null,
+  };
+}
+
+const TERMS_SEO = makeBasicSeo(
+  '/terms-of-service',
+  'Terms of Service — Tekivex',
+  'Read the Terms of Service for tekivex.com and the open-source products published by Tekivex.',
+);
+
+const COOKIE_SEO = makeBasicSeo(
+  '/cookie-policy',
+  'Cookie Policy — Tekivex',
+  'How Tekivex uses cookies for analytics and advertising, and how you can manage your consent at any time.',
+);
+
+const DISCLAIMER_SEO = makeBasicSeo(
+  '/disclaimer',
+  'Disclaimer — Tekivex',
+  'Tekivex tutorials are educational; this page sets out the limits of warranty and the meaning of beta / preview product status.',
+);
+
+const CONTACT_SEO = makeBasicSeo(
+  '/contact',
+  'Contact Tekivex',
+  'Get in touch with the Tekivex team — email, GitHub issues, security disclosures, and partnership enquiries.',
+);
+
+const FAQ_SEO: SeoConfig = {
+  ...makeBasicSeo(
+    '/faq',
+    'FAQ — Tekivex',
+    'Answers to common questions about Tekivex products, licensing, demos, advertising, and contributing tutorials.',
+  ),
+  jsonLd: {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'FAQ — Tekivex',
+    url: `${BASE_URL}/faq`,
+    description: 'Frequently asked questions about Tekivex products and tutorials.',
+  },
+};
+
 // ── Route resolver ────────────────────────────────────────────────────────
 export function getSeoForRoute(route: string): SeoConfig {
   if (route === '/' || route === '' || route === '/products') {
@@ -181,6 +258,11 @@ export function getSeoForRoute(route: string): SeoConfig {
   }
   if (route === '/about') return ABOUT_SEO;
   if (route === '/platform') return PLATFORM_SEO;
+  if (route === '/terms-of-service') return TERMS_SEO;
+  if (route === '/cookie-policy') return COOKIE_SEO;
+  if (route === '/disclaimer') return DISCLAIMER_SEO;
+  if (route === '/contact') return CONTACT_SEO;
+  if (route === '/faq') return FAQ_SEO;
 
   // ── Tutorials ──
   if (route === '/tutorials') {
@@ -211,6 +293,7 @@ export function getSeoForRoute(route: string): SeoConfig {
     const parts = route.slice('/tutorials/'.length).split('/');
     const categoryId = parts[0];
     const topicSlug = parts[1];
+    const thin = isThinTopic(route);
     const catTitles: Record<string, string> = {
       'system-design': 'System Design', 'software-architecture': 'Software Architecture',
       'frontend-patterns': 'Frontend Patterns', 'backend-patterns': 'Backend Patterns', 'ai-ml': 'AI & Machine Learning',
@@ -224,6 +307,7 @@ export function getSeoForRoute(route: string): SeoConfig {
       description: `Learn ${catTitle.toLowerCase()} with in-depth tutorials, flow diagrams, and code examples. Part of 70 free tutorials on Tekivex.`,
       keywords: [catTitle.toLowerCase(), 'tutorial', 'guide', 'explained', 'Tekivex', 'design patterns', 'architecture'],
       canonical: `${BASE_URL}${route}`,
+      noindex: thin,
       ogTitle: title,
       ogDescription: `Learn ${catTitle.toLowerCase()} with visual diagrams and code examples — free on Tekivex.`,
       ogImage: `${BASE_URL}/og-tekivex.png`,
