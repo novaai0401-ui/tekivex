@@ -171,7 +171,7 @@ export function TutorialContent({ topic, category, onNavigate, prev, next, markd
           {/* Sponsored — appears below the article body, but only on
               articles substantive enough to satisfy AdSense policy. */}
           {showAd && (
-            <AdSlot slot="1234567890" label="Sponsored — supports free tutorials" className="ad-slot--article" />
+            <AdSlot slot="8131722172" label="Sponsored — supports free tutorials" className="ad-slot--article" />
           )}
 
           {/* Prev / Next Navigation */}

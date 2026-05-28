@@ -74,7 +74,7 @@ function GenericProductHome({ product }: { product: ProductManifest }) {
       </div>
 
       {/* Sponsored — keeps product pages free */}
-      <AdSlot slot="2345678901" label="Sponsored" className="ad-slot--product" />
+      <AdSlot slot="5896441076" label="Sponsored" className="ad-slot--product" />
 
       {/* Features + Quick Links */}
       <div className="prod-body-grid">
