@@ -54,7 +54,36 @@ export function ConsentProvider({ children }: { children: ReactNode }) {
       // ignore — UI still updates in-memory
     }
     setStatus(next);
+    // Google Consent Mode v2: upgrade or downgrade the default-denied
+    // signals from index.html based on the user's choice.
+    const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag;
+    if (typeof gtag === 'function' && (next === 'accepted' || next === 'denied')) {
+      const grant = next === 'accepted' ? 'granted' : 'denied';
+      gtag('consent', 'update', {
+        ad_storage: grant,
+        ad_user_data: grant,
+        ad_personalization: grant,
+        analytics_storage: grant,
+      });
+    }
     window.dispatchEvent(new Event(CONSENT_CHANGE_EVENT));
+  }, []);
+
+  // On mount, if we hydrated to a decided state from localStorage, push
+  // the same signal so a returning visitor doesn't get a default-denied
+  // session.
+  useEffect(() => {
+    const initial = readStored();
+    if (initial === 'undecided') return;
+    const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag;
+    if (typeof gtag !== 'function') return;
+    const grant = initial === 'accepted' ? 'granted' : 'denied';
+    gtag('consent', 'update', {
+      ad_storage: grant,
+      ad_user_data: grant,
+      ad_personalization: grant,
+      analytics_storage: grant,
+    });
   }, []);
 
   const value = useMemo<ConsentContextValue>(

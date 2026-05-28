@@ -19,29 +19,23 @@ describe('AdSlot', () => {
     vi.unstubAllEnvs();
   });
 
-  it('renders nothing when consent is undecided', () => {
-    const { container } = renderSlot({ slot: '111' });
-    expect(container.firstChild).toBeNull();
-  });
-
-  it('renders nothing when consent is denied', () => {
-    localStorage.setItem(CONSENT_KEY, 'denied');
-    const { container } = renderSlot({ slot: '111' });
-    expect(container.firstChild).toBeNull();
-  });
-
-  it('renders the dev placeholder when accepted in DEV mode', () => {
+  it('renders the dev placeholder when consent is undecided in DEV mode', () => {
     vi.stubEnv('DEV', true);
-    localStorage.setItem(CONSENT_KEY, 'accepted');
     renderSlot({ slot: '999' });
     const placeholder = screen.getByTestId('ad-slot-placeholder');
     expect(placeholder).toBeInTheDocument();
     expect(placeholder.textContent).toContain('999');
   });
 
-  it('renders the real <ins> tag in production with correct ad-client + slot', () => {
+  it('renders the dev placeholder when consent is denied in DEV mode', () => {
+    vi.stubEnv('DEV', true);
+    localStorage.setItem(CONSENT_KEY, 'denied');
+    renderSlot({ slot: '999' });
+    expect(screen.getByTestId('ad-slot-placeholder')).toBeInTheDocument();
+  });
+
+  it('renders the real <ins> in production with correct ad-client + slot', () => {
     vi.stubEnv('DEV', false);
-    localStorage.setItem(CONSENT_KEY, 'accepted');
     renderSlot({ slot: '424242', format: 'rectangle' });
     const ins = screen.getByTestId('ad-slot-ins');
     expect(ins).toBeInTheDocument();
@@ -51,38 +45,33 @@ describe('AdSlot', () => {
     expect(ins.getAttribute('data-full-width-responsive')).toBe('true');
   });
 
-  it('renders a visible "Advertisement" label above the <ins> (AdSense policy)', () => {
-    vi.stubEnv('DEV', false);
-    localStorage.setItem(CONSENT_KEY, 'accepted');
-    renderSlot({ slot: '424242' });
-    const label = screen.getByTestId('ad-slot-label');
-    expect(label).toBeInTheDocument();
-    expect(label.textContent).toBe('Advertisement');
-  });
-
-  it('does NOT render the label when consent is denied (whole slot is hidden)', () => {
+  it('renders the <ins> even when consent is denied (Consent Mode v2 handles serving)', () => {
     vi.stubEnv('DEV', false);
     localStorage.setItem(CONSENT_KEY, 'denied');
     renderSlot({ slot: '424242' });
-    expect(screen.queryByTestId('ad-slot-label')).toBeNull();
+    expect(screen.getByTestId('ad-slot-ins')).toBeInTheDocument();
+  });
+
+  it('renders a visible "Advertisement" label above the <ins> (AdSense policy)', () => {
+    vi.stubEnv('DEV', false);
+    renderSlot({ slot: '424242' });
+    expect(screen.getByTestId('ad-slot-label').textContent).toBe('Advertisement');
   });
 
   it('pushes once to the adsbygoogle queue when rendered in production', () => {
     vi.stubEnv('DEV', false);
-    localStorage.setItem(CONSENT_KEY, 'accepted');
     const w = window as Window & { adsbygoogle?: unknown[] };
     w.adsbygoogle = [];
     renderSlot({ slot: '5555' });
-    expect(Array.isArray(w.adsbygoogle)).toBe(true);
     expect((w.adsbygoogle as unknown[]).length).toBe(1);
   });
 
-  it('does not push to adsbygoogle when consent is denied', () => {
+  it('pushes regardless of consent state (script load gated by Consent Mode v2)', () => {
     vi.stubEnv('DEV', false);
     localStorage.setItem(CONSENT_KEY, 'denied');
     const w = window as Window & { adsbygoogle?: unknown[] };
     w.adsbygoogle = [];
     renderSlot({ slot: '5555' });
-    expect((w.adsbygoogle as unknown[]).length).toBe(0);
+    expect((w.adsbygoogle as unknown[]).length).toBe(1);
   });
 });

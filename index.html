@@ -55,16 +55,32 @@
        harmless — Google simply will not verify until a real token is set. -->
   <meta name="google-site-verification" content="REPLACE_ME" />
 
-  <!-- Analytics (gtag.js) and Google AdSense are loaded by
-       src/consent/ScriptLoader.tsx only after the visitor accepts
-       cookies via the consent banner. This keeps the site compliant
-       with GDPR / DPDP and avoids dropping any tracking cookies for
-       visitors who reject. The stub below queues calls until the
-       script actually loads. -->
+  <!-- Google Consent Mode v2 — default-deny all storage and ad signals
+       before gtag.js or adsbygoogle.js load. The ConsentProvider in the
+       React app upgrades these signals to "granted" once the visitor
+       clicks Accept on the cookie banner, or leaves them denied if they
+       click Reject. This is the GDPR/DPDP-compliant pattern Google
+       recommends for AdSense + Analytics, and it lets the
+       Mediapartners-Google crawler see the <ins> tags even though no
+       cookies are dropped for un-consented visitors. -->
   <script>
     window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+      wait_for_update: 500,
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-C65SFGKM00', { anonymize_ip: true });
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C65SFGKM00"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4630229006617891" crossorigin="anonymous"></script>
 
   <!-- ── Fonts ──────────────────────────────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { useConsent } from '../consent/ConsentProvider';
 import { ADSENSE_CLIENT } from '../consent/ScriptLoader';
 
 interface AdSlotProps {
@@ -20,19 +19,19 @@ declare global {
 }
 
 /**
- * Renders an AdSense ad unit, but only when the visitor has accepted
- * cookies. Returns null otherwise so denied/undecided visitors get
- * the full content area with no reserved blank space.
+ * Renders an AdSense ad unit. Always rendered on substantive pages so
+ * the Mediapartners-Google crawler can discover the inventory; whether
+ * a personalised, non-personalised, or no ad serves to a given visitor
+ * is governed by Google Consent Mode v2 signals dispatched by
+ * ConsentProvider on Accept / Reject.
  *
  * In dev (import.meta.env.DEV) a labelled placeholder is rendered so
  * authors can verify placements without loading real ads.
  */
 export function AdSlot({ slot, format = 'auto', label, className }: AdSlotProps) {
-  const { status } = useConsent();
   const pushed = useRef(false);
 
   useEffect(() => {
-    if (status !== 'accepted') return;
     if (pushed.current) return;
     if (typeof window === 'undefined') return;
     try {
@@ -43,9 +42,7 @@ export function AdSlot({ slot, format = 'auto', label, className }: AdSlotProps)
       // adsbygoogle may not be ready yet; AdSense retries on the next
       // script load. Silently skip rather than crashing the page.
     }
-  }, [status, slot]);
-
-  if (status !== 'accepted') return null;
+  }, [slot]);
 
   if (import.meta.env?.DEV) {
     return (
