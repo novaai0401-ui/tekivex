@@ -1,4 +1,5 @@
 import { Icon } from '../icons/Icon';
+import { Link } from '../App';
 
 const PRODUCTS = [
   {
@@ -8,7 +9,7 @@ const PRODUCTS = [
     status: 'GA',
     statusColor: '#4ade80',
     description: 'Headless enterprise data grid — 57 packages, 35 plugins, 100K+ rows at 60fps.',
-    href: '#/product/gridstorm',
+    href: '/product/gridstorm',
   },
   {
     name: 'Analytics Studio',
@@ -17,7 +18,7 @@ const PRODUCTS = [
     status: 'Beta',
     statusColor: '#fbbf24',
     description: 'Drag-and-drop BI platform — 26+ charts, pivot tables, SQL engine, KPI dashboards.',
-    href: '#/product/analytics-studio',
+    href: '/product/analytics-studio',
   },
   {
     name: 'PDF Toolkit',
@@ -26,7 +27,7 @@ const PRODUCTS = [
     status: 'Beta',
     statusColor: '#fbbf24',
     description: 'Rust/WASM PDF renderer — 13 annotation types, digital signatures, AES-256 encryption.',
-    href: '#/product/pdf-toolkit',
+    href: '/product/pdf-toolkit',
   },
   {
     name: 'DataFlow',
@@ -35,7 +36,7 @@ const PRODUCTS = [
     status: 'Beta',
     statusColor: '#fbbf24',
     description: 'Zero-dependency streaming engine — WebSocket, SSE, anomaly detection, time-travel replay.',
-    href: '#/product/dataflow',
+    href: '/product/dataflow',
   },
 ];
 
@@ -172,9 +173,9 @@ export function AboutPage() {
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1rem', marginTop: '2rem' }}>
           {PRODUCTS.map(p => (
-            <a
+            <Link
               key={p.name}
-              href={p.href}
+              to={p.href}
               className="about-product-tile"
               style={{ '--pc': p.color } as React.CSSProperties}
             >
@@ -189,7 +190,7 @@ export function AboutPage() {
               <div className="about-tile-name">{p.name}</div>
               <div className="about-tile-desc">{p.description}</div>
               <div className="about-tile-arrow" style={{ color: p.color }}>Learn more →</div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
