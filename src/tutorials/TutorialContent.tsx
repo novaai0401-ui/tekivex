@@ -79,7 +79,7 @@ function DifficultyBadge({ level }: { level: string }) {
 // ─── Share Button ───
 function ShareButton({ categoryId, slug }: { categoryId: string; slug: string }) {
   const [copied, setCopied] = React.useState(false);
-  const url = `https://tekivex.com/#/tutorials/${categoryId}/${slug}`;
+  const url = `https://tekivex.com/tutorials/${categoryId}/${slug}`;
 
   const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(url).then(() => {
