@@ -1,6 +1,7 @@
 import React from 'react';
 import { CATEGORY_META } from './registry';
 import { useProgress } from './useProgress';
+import { Link } from '../App';
 
 export function TutorialLanding() {
   const { visited } = useProgress();
@@ -29,7 +30,7 @@ export function TutorialLanding() {
           const pct = Math.round((completedCount / cat.topicCount) * 100);
 
           return (
-            <a key={cat.id} href={`#/tutorials/${cat.id}`} className="tutorial-category-card"
+            <Link key={cat.id} to={`/tutorials/${cat.id}`} className="tutorial-category-card"
                style={{ '--cat-color': cat.color } as React.CSSProperties}>
               <div className="tutorial-category-icon" style={{ color: cat.color }}>
                 {ICON_MAP[cat.icon] || '▦'}
@@ -48,7 +49,7 @@ export function TutorialLanding() {
                   <div className="tutorial-progress-fill" style={{ width: `${pct}%`, background: cat.color }} />
                 </div>
               )}
-            </a>
+            </Link>
           );
         })}
       </div>

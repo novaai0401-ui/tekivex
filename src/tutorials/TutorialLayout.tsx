@@ -3,6 +3,7 @@ import type { TutorialCategory } from './types';
 import { loadCategory, findTopic, getFirstTopic, getAdjacentTopics } from './registry';
 import { TutorialSidebar } from './TutorialSidebar';
 import { TutorialContent } from './TutorialContent';
+import { Link } from '../App';
 import { useProgress } from './useProgress';
 import { navigate } from '../App';
 
@@ -94,9 +95,9 @@ export function TutorialLayout({ categoryId, topicSlug }: TutorialLayoutProps) {
         <div className="docs-error">
           <h2>Topic Not Found</h2>
           <p>The topic <code>{topicSlug}</code> does not exist in {category.title}.</p>
-          <a href={`#/tutorials/${categoryId}`} className="btn-primary" style={{ marginTop: 16 }}>
+          <Link to={`/tutorials/${categoryId}`} className="btn-primary" style={{ marginTop: 16 }}>
             Go to {category.title}
-          </a>
+          </Link>
         </div>
       </div>
     );
