@@ -54,7 +54,7 @@ export function ContactPage() {
 
       <LegalSection title="What to include">
         <ul>
-          <li style={legalLi}>The product (GridStorm, Analytics Studio, PDF Toolkit, DataFlow, Tekivex UI).</li>
+          <li style={legalLi}>The product (GridStorm, Analytics Studio, DataFlow, Quantum Vault, Tekivex UI).</li>
           <li style={legalLi}>Version number from your <code>package.json</code>.</li>
           <li style={legalLi}>Browser + OS for runtime issues.</li>
           <li style={legalLi}>Minimal reproducible example (StackBlitz / CodeSandbox link is ideal).</li>

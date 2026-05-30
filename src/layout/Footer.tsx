@@ -13,7 +13,7 @@ const FOOTER_COLS = [
       { label: 'Privacy Policy',     href: '/privacy-policy' },
       { label: 'GridStorm',          href: '/product/gridstorm' },
       { label: 'Analytics Studio',   href: '/product/analytics-studio' },
-      { label: 'PDF Toolkit',        href: '/product/pdf-toolkit' },
+      { label: 'Quantum Vault',      href: '/product/quantum-vault' },
       { label: 'DataFlow',           href: '/product/dataflow' },
       { label: 'Report an Issue',     href: 'https://github.com/novaai0401-ui/tekivex-issue-report/issues' },
     ],
@@ -23,7 +23,6 @@ const FOOTER_COLS = [
     links: [
       { label: 'Introduction',    href: `${GS}/#/docs/getting-started/introduction` },
       { label: 'Plugin System',   href: `${GS}/#/docs/plugins/plugin-system` },
-      { label: 'PDF Toolkit',     href: `${GS}/#/docs/guides/pdf-toolkit` },
       { label: 'AI & MCP',        href: `${GS}/#/docs/core-concepts/architecture` },
       { label: 'Migration Guide', href: `${GS}/#/docs/guides/migration-from-ag-grid` },
     ],

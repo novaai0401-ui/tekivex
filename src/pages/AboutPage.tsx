@@ -21,13 +21,13 @@ const PRODUCTS = [
     href: '/product/analytics-studio',
   },
   {
-    name: 'PDF Toolkit',
-    color: '#ef4444',
-    icon: 'file-pdf',
+    name: 'Quantum Vault',
+    color: '#8b5cf6',
+    icon: 'shield',
     status: 'Beta',
     statusColor: '#fbbf24',
-    description: 'Rust/WASM PDF renderer — 13 annotation types, digital signatures, AES-256 encryption.',
-    href: '/product/pdf-toolkit',
+    description: 'Sovereign post-quantum tokens — CRYSTALS-Kyber + Dilithium, NIST-standardised, self-hosted.',
+    href: '/product/quantum-vault',
   },
   {
     name: 'DataFlow',
@@ -78,7 +78,7 @@ const TECH_STACK = [
   { label: 'Runtime', value: 'Browser-first, Node-compatible' },
   { label: 'Build', value: 'tsup + pnpm monorepo' },
   { label: 'Testing', value: 'Vitest + jsdom (1,899+ tests)' },
-  { label: 'Native', value: 'Rust + WASM (PDF Toolkit)' },
+  { label: 'Crypto', value: 'NIST PQC (Kyber + Dilithium)' },
   { label: 'Frameworks', value: 'React, Vue 3, Svelte 5, Angular 17+' },
 ];
 
