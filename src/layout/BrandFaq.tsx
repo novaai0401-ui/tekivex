@@ -12,7 +12,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'What is Tekivex?',
     answer:
-      'Tekivex is an open-source enterprise developer-tools platform. It ships a suite of MIT-licensed products under one roof: GridStorm (high-performance React data grid with 35+ plugins), Analytics Studio (drag-and-drop business intelligence with 26+ chart types), DataFlow (real-time streaming engine), Quantum Vault (sovereign post-quantum token issuance and verification), and TekiVex UI (the React component library at ui.tekivex.com). Every product is free forever, fully tree-shakable, and ships TypeScript declarations.',
+      'Tekivex is an open-source enterprise developer-tools platform. It ships a suite of MIT-licensed products under one roof: GridStorm (high-performance React data grid with 35+ plugins), PDFCraft (browser-native PDF editor with headless React hooks), Analytics Studio (drag-and-drop business intelligence with 26+ chart types), DataFlow (real-time streaming engine), Quantum Vault (sovereign post-quantum token issuance and verification), and TekiVex UI (the React component library at ui.tekivex.com). Every product is free forever, fully tree-shakable, and ships TypeScript declarations.',
   },
   {
     question: 'What does Tekivex offer for React developers?',
@@ -22,7 +22,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'How do I install Tekivex products?',
     answer:
-      'Pick a package and install from npm. For UI components: "npm install tekivex-ui". For 3D: "npm install tekivex-3d". For the GridStorm grid: "npm install @tekivex/gridstorm". For post-quantum tokens: "npm install @tekivex/quantum-vault". Every package ships with TypeScript declarations and tree-shaking support so the bundle scales with your imports — not the library size.',
+      'Pick a package and install from npm. For UI components: "npm install tekivex-ui". For 3D: "npm install tekivex-3d". For the GridStorm grid: "npm install @tekivex/gridstorm". For PDF editing: "npm install @pdfcraft/engine". For post-quantum tokens: "npm install @tekivex/quantum-vault". Every package ships with TypeScript declarations and tree-shaking support so the bundle scales with your imports — not the library size.',
   },
   {
     question: 'Is Tekivex free for commercial use?',
@@ -140,6 +140,7 @@ export function BrandFaq() {
           ) is a high-performance data grid with 35+ plugins;{' '}
           <strong>Analytics Studio</strong> is a drag-and-drop BI tool with 26+
           chart types; <strong>DataFlow</strong> is a real-time streaming engine;{' '}
+          <strong>PDFCraft</strong> is a client-side PDF editor with form filling, signing, and AES-256;{' '}
           <strong>Quantum Vault</strong> is a sovereign post-quantum token vault; and{' '}
           <strong>TekiVex UI</strong> (npm: <code>tekivex-ui</code>) is the React
           component library at{' '}

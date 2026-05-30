@@ -80,6 +80,13 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/gridstorm"/>
   </url>
   <url>
+    <loc>https://tekivex.com/product/pdfcraft</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/pdfcraft"/>
+  </url>
+  <url>
     <loc>https://tekivex.com/product/analytics-studio</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>

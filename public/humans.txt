@@ -8,6 +8,7 @@
   Analytics Studio — drag-and-drop BI with 26+ charts
   DataFlow         — real-time streaming engine
   Quantum Vault    — sovereign post-quantum tokens
+  PDFCraft         — browser-native PDF editor with headless React hooks
   TekiVex UI       — React component library (113 components)
 
 /* SITE */

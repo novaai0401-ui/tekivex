@@ -8,7 +8,7 @@ interface QA {
 const FAQS: QA[] = [
   {
     q: 'What is Tekivex?',
-    a: 'Tekivex is an independent developer-tools project that publishes open-source enterprise software — GridStorm (data grid), Analytics Studio (BI), DataFlow (real-time streaming), Quantum Vault (post-quantum tokens), and Tekivex UI. All of our products are MIT licensed.',
+    a: 'Tekivex is an independent developer-tools project that publishes open-source enterprise software — GridStorm (data grid), PDFCraft (browser PDF editor), Analytics Studio (BI), DataFlow (real-time streaming), Quantum Vault (post-quantum tokens), and Tekivex UI. All of our products are MIT licensed.',
   },
   {
     q: 'Are Tekivex products really free to use commercially?',
