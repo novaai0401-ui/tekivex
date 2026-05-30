@@ -4069,8 +4069,14 @@ body {
   border-radius: 6px;
 }
 .tx-badge-tier { color: #94a3b8; background: rgba(148,163,184,0.1); }
-.tx-card-name { font-size: 18px; font-weight: 700; color: #f1f5f9; margin: 0 0 3px; }
-.tx-card-tagline { font-size: 12px; color: #64748b; margin: 0; }
+.tx-card-name {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #f1f5f9;
+  margin: 0 0 4px;
+}
+.tx-card-tagline { font-size: 12.5px; font-weight: 500; color: #94a3b8; margin: 0; line-height: 1.5; }
 .tx-card-ver { font-size: 11px; color: #475569; font-family: monospace; flex-shrink: 0; margin-top: 2px; }
 
 .tx-card-desc {
@@ -4081,7 +4087,7 @@ body {
 }
 
 .tx-feat-list { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-direction: column; gap: 7px; }
-.tx-feat-item { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #cbd5e1; }
+.tx-feat-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #cbd5e1; line-height: 1.5; }
 .tx-feat-dot  { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
 
 .tx-card-stats {
@@ -6139,3 +6145,25 @@ body {
   text-align: left;
 }
 [data-hub-theme="light"] .ad-slot-label { color: #64748b; }
+
+/* ── Product card legibility in light mode (corporate finish) ─────────────
+ * Earlier light-mode overrides targeted class names that don't exist
+ * (.tx-card-title / .tx-card-sub), so the dark-mode colours leaked into
+ * light mode and the product name / tagline / feature bullets rendered
+ * near-invisible on white. Restore proper light-mode text colours. */
+[data-hub-theme="light"] .tx-card-name {
+  color: #0b1220;
+}
+[data-hub-theme="light"] .tx-card-tagline {
+  color: #475569;
+}
+[data-hub-theme="light"] .tx-feat-item {
+  color: #1f2937;
+}
+[data-hub-theme="light"] .tx-card-ver {
+  color: #64748b;
+}
+[data-hub-theme="light"] .tx-badge-tier {
+  color: #334155;
+  background: #f1f5f9;
+}

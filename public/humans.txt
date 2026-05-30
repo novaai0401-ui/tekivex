@@ -7,10 +7,10 @@
   GridStorm        — high-performance React data grid
   Analytics Studio — drag-and-drop BI with 26+ charts
   DataFlow         — real-time streaming engine
-  PDF Toolkit      — WASM-based PDF renderer
+  Quantum Vault    — sovereign post-quantum tokens
   TekiVex UI       — React component library (113 components)
 
 /* SITE */
-  Last update: 2026-05-28
+  Last update: 2026-05-30
   Standards: HTML5, CSS3, ES2022, WCAG 2.1 AAA
   License: MIT
