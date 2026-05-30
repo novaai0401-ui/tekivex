@@ -12,6 +12,7 @@ const FOOTER_COLS = [
       { label: 'About Us',           href: '/about' },
       { label: 'Privacy Policy',     href: '/privacy-policy' },
       { label: 'GridStorm',          href: '/product/gridstorm' },
+      { label: 'PDFCraft',           href: '/product/pdfcraft' },
       { label: 'Analytics Studio',   href: '/product/analytics-studio' },
       { label: 'Quantum Vault',      href: '/product/quantum-vault' },
       { label: 'DataFlow',           href: '/product/dataflow' },

@@ -112,21 +112,24 @@ const PRODUCTS_SEO: SeoConfig = {
     name: 'Tekivex Product Suite',
     description: 'Enterprise developer tools built by Tekivex',
     url: `${BASE_URL}/products`,
-    numberOfItems: 5,
+    numberOfItems: 6,
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'GridStorm',
         description: 'Open-source enterprise data grid — virtual scrolling, 35 plugins, MIT-licensed',
         url: `${BASE_URL}/product/gridstorm` },
-      { '@type': 'ListItem', position: 2, name: 'Analytics Studio',
+      { '@type': 'ListItem', position: 2, name: 'PDFCraft',
+        description: 'Client-side PDF editor — form filling, annotation, signing, AES-256, headless React',
+        url: `${BASE_URL}/product/pdfcraft` },
+      { '@type': 'ListItem', position: 3, name: 'Analytics Studio',
         description: 'Drag-and-drop BI platform — 26+ charts, in-browser SQL, KPI dashboards',
         url: `${BASE_URL}/product/analytics-studio` },
-      { '@type': 'ListItem', position: 3, name: 'Quantum Vault',
+      { '@type': 'ListItem', position: 4, name: 'Quantum Vault',
         description: 'Sovereign post-quantum tokens — CRYSTALS-Kyber + Dilithium, NIST-standardised',
         url: `${BASE_URL}/product/quantum-vault` },
-      { '@type': 'ListItem', position: 4, name: 'DataFlow',
+      { '@type': 'ListItem', position: 5, name: 'DataFlow',
         description: 'Real-time streaming engine — WebSocket, SSE, anomaly detection, time-travel replay',
         url: `${BASE_URL}/product/dataflow` },
-      { '@type': 'ListItem', position: 5, name: 'Tekivex UI',
+      { '@type': 'ListItem', position: 6, name: 'Tekivex UI',
         description: 'Enterprise component library — 50+ accessible components for React, Vue & Svelte',
         url: `${BASE_URL}/product/tekivex-ui` },
     ],
@@ -138,8 +141,8 @@ const ABOUT_SEO: SeoConfig = {
   title: 'About Tekivex — Open-Source Enterprise Developer Tools',
   description:
     'Tekivex is an independent developer tools company building open-source enterprise software — ' +
-    'GridStorm data grid, Analytics Studio, Quantum Vault, DataFlow streaming engine, and Tekivex UI component library. ' +
-    '5 products, 57 npm packages, 1,899+ tests. All MIT-licensed. Founded 2025.',
+    'GridStorm data grid, PDFCraft browser PDF editor, Analytics Studio, Quantum Vault, DataFlow streaming engine, and Tekivex UI component library. ' +
+    '6 products, 57 npm packages, 1,899+ tests. All MIT-licensed. Founded 2025.',
   keywords: [
     'about Tekivex', 'Tekivex company', 'open-source developer tools company',
     'GridStorm team', 'enterprise software company', 'MIT licensed tools',
