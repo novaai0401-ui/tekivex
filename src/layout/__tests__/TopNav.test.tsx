@@ -118,25 +118,8 @@ describe('TopNav', () => {
     expect(btn).toBeInTheDocument();
   });
 
-  // ── GitHub button ──────────────────────────────────────────────────────────
-
-  it('renders a GitHub link', () => {
-    renderTopNav('/');
-    const githubLink = screen.getByRole('link', { name: /github/i });
-    expect(githubLink).toBeInTheDocument();
-  });
-
-  it('GitHub link opens in new tab', () => {
-    renderTopNav('/');
-    const githubLink = screen.getByRole('link', { name: /github/i });
-    expect(githubLink.getAttribute('target')).toBe('_blank');
-  });
-
-  it('GitHub link has rel="noopener noreferrer"', () => {
-    renderTopNav('/');
-    const githubLink = screen.getByRole('link', { name: /github/i });
-    expect(githubLink.getAttribute('rel')).toContain('noopener');
-  });
+  // Note: the GitHub button was intentionally removed from the homepage nav
+  // (commit 45cb75f). Tests for it were dropped accordingly.
 
   // ── Mobile menu toggle ────────────────────────────────────────────────────
 

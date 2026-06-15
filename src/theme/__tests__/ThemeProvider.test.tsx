@@ -23,6 +23,10 @@ function ThemeConsumer() {
 describe('ThemeProvider', () => {
   beforeEach(() => {
     localStorage.clear();
+    // Mark the one-time "stale dark → light" migration as already applied so
+    // these tests exercise a returning visitor whose stored preference is
+    // honoured. The migration itself is covered by its own test below.
+    localStorage.setItem('hub-theme-reset-v2', '1');
     // Reset data-hub-theme attribute
     delete document.documentElement.dataset.hubTheme;
   });
@@ -54,6 +58,17 @@ describe('ThemeProvider', () => {
     localStorage.setItem('hub-theme', 'invalid-theme');
     render(<ThemeProvider><ThemeConsumer /></ThemeProvider>);
     expect(screen.getByTestId('theme').textContent).toBe('light');
+  });
+
+  it('one-time migration resets a stale stored "dark" preference to "light"', () => {
+    // Returning visitor from before light became the default: 'dark' is stored
+    // but the migration flag has not been set yet.
+    localStorage.removeItem('hub-theme-reset-v2');
+    localStorage.setItem('hub-theme', 'dark');
+    render(<ThemeProvider><ThemeConsumer /></ThemeProvider>);
+    expect(screen.getByTestId('theme').textContent).toBe('light');
+    // Flag is now persisted so the migration runs only once.
+    expect(localStorage.getItem('hub-theme-reset-v2')).toBe('1');
   });
 
   // ── setTheme ───────────────────────────────────────────────────────────────

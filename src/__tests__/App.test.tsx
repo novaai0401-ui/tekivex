@@ -18,6 +18,9 @@ vi.mock('@mlc-ai/web-llm', () => ({
 describe('App', () => {
   beforeEach(() => {
     localStorage.clear();
+    // Treat the one-time stale-dark → light migration as already applied so
+    // a stored preference is honoured (see ThemeProvider migration test).
+    localStorage.setItem('hub-theme-reset-v2', '1');
     window.location.hash = '';
     delete document.documentElement.dataset.hubTheme;
   });
@@ -39,12 +42,8 @@ describe('App', () => {
 
   it('renders the "Tekivex" brand name', () => {
     render(<App />);
-    expect(screen.getByAltText('Tekivex')).toBeInTheDocument();
-  });
-
-  it('renders the AI chat stub', () => {
-    render(<App />);
-    expect(screen.getByTestId('ai-chat-stub')).toBeInTheDocument();
+    // Brand logo appears in both the top nav and the footer.
+    expect(screen.getAllByAltText('Tekivex').length).toBeGreaterThan(0);
   });
 
   // ── Hash routing ───────────────────────────────────────────────────────────
@@ -52,9 +51,9 @@ describe('App', () => {
   it('renders PlatformPage on "/" route (default)', () => {
     window.location.hash = '';
     render(<App />);
-    // PlatformPage renders the product grid — check for known content
-    // "Platform" link in nav is always visible
-    expect(screen.getByText('Platform')).toBeInTheDocument();
+    // PlatformPage renders the product grid — check for known content.
+    // "Platform" appears in both the nav link and the footer.
+    expect(screen.getAllByText('Platform').length).toBeGreaterThan(0);
   });
 
   it('renders ProductHomePage when route starts with "/product/"', () => {

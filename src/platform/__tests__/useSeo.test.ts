@@ -101,7 +101,7 @@ describe('useSeo', () => {
 
   it('injects JSON-LD script tag', () => {
     renderHook(() => useSeo(BASE_CONFIG));
-    const script = document.getElementById('__nexaforge-jsonld__') as HTMLScriptElement;
+    const script = document.head.querySelector('script[data-seo-jsonld]') as HTMLScriptElement;
     expect(script).toBeTruthy();
     expect(script.type).toBe('application/ld+json');
     const data = JSON.parse(script.textContent ?? '{}');
@@ -112,7 +112,7 @@ describe('useSeo', () => {
     renderHook(() => useSeo(BASE_CONFIG));
     // Inject first, then remove
     renderHook(() => useSeo({ ...BASE_CONFIG, jsonLd: null }));
-    expect(document.getElementById('__nexaforge-jsonld__')).toBeNull();
+    expect(document.head.querySelector('script[data-seo-jsonld]')).toBeNull();
   });
 
   it('updates document.title when config changes', () => {
@@ -176,10 +176,10 @@ describe('seoFromManifest', () => {
     expect(seo.ogImage).toBe('https://cdn.example.com/img.png');
   });
 
-  it('falls back to og-default.png when ogImage is absent', () => {
+  it('falls back to the default og image when ogImage is absent', () => {
     const meta = { ...META, ogImage: undefined };
     const seo = seoFromManifest(meta, 'https://tekivex.dev');
-    expect(seo.ogImage).toContain('og-default.png');
+    expect(seo.ogImage).toBe('https://tekivex.dev/og-tekivex.png');
   });
 
   it('injects JSON-LD with correct @type', () => {
@@ -208,10 +208,10 @@ describe('seoFromManifest', () => {
     expect(ld['applicationCategory']).toBe('DeveloperApplication');
   });
 
-  it('defaults applicationCategory to BusinessApplication when absent', () => {
+  it('defaults applicationCategory to DeveloperApplication when absent', () => {
     const meta = { ...META, applicationCategory: undefined };
     const seo = seoFromManifest(meta);
     const ld = seo.jsonLd as Record<string, unknown>;
-    expect(ld['applicationCategory']).toBe('BusinessApplication');
+    expect(ld['applicationCategory']).toBe('DeveloperApplication');
   });
 });

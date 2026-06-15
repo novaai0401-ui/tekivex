@@ -51,9 +51,13 @@ describe('getSeoForRoute', () => {
     expect(seo.canonical).toContain('/products');
   });
 
-  it('products SEO has null jsonLd', () => {
+  it('products SEO exposes an ItemList JSON-LD of the catalogue', () => {
     const seo = getSeoForRoute('/products');
-    expect(seo.jsonLd).toBeNull();
+    const blocks = (Array.isArray(seo.jsonLd) ? seo.jsonLd : [seo.jsonLd]) as Array<Record<string, unknown>>;
+    const list = blocks.find((b) => b && b['@type'] === 'ItemList');
+    expect(list).toBeDefined();
+    expect(list!['@context']).toBe('https://schema.org');
+    expect(Array.isArray(list!['itemListElement'])).toBe(true);
   });
 
   // ── Product page ─────────────────────────────────────────────────────────
