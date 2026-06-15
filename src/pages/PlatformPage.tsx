@@ -405,8 +405,8 @@ export function PlatformPage() {
             What's <span className="tx-gradient-text">coming next</span>
           </h2>
           <p className="tx-section-sub">
-            Tekivex grows as new products register with a single{' '}
-            <code className="tx-inline-code">ProductManifest</code> file.
+            New tools we're actively building. Each ships to the same production
+            quality bar as everything already live on the platform.
           </p>
           <div className="tx-products-grid">
             {comingSoon.map(p => <ProductCard3D key={p.id} product={p} />)}
@@ -416,20 +416,27 @@ export function PlatformPage() {
 
       <BrandFaq />
 
-      {/* ── Integration CTA ── */}
+      {/* ── Closing CTA ── */}
       <section className="tx-cta-section">
         <div className="tx-cta-card">
           <div className="tx-cta-glow" />
           <div className="tx-cta-icon-wrap">
             <Icon name="puzzle" size={32} />
           </div>
-          <h3 className="tx-cta-title">Integrate a new product</h3>
+          <h3 className="tx-cta-title">Build with Tekivex</h3>
           <p className="tx-cta-body">
-            Any product joins the platform in minutes. Implement a{' '}
-            <code className="tx-inline-code">ProductManifest</code>, call{' '}
-            <code className="tx-inline-code">productRegistry.register()</code>, and your
-            product appears in the launcher, nav, and routing automatically.
+            Every tool on the platform is open source, MIT-licensed, and free to use
+            in production. Explore what's available today, or get in touch about
+            enterprise support, partnerships, and what we're building next.
           </p>
+          <div className="tx-cta-actions">
+            <button className="tx-cta-btn" onClick={() => navigate('/products')}>
+              Explore Products
+            </button>
+            <button className="tx-btn-demo" onClick={() => navigate('/contact')}>
+              Contact Us
+            </button>
+          </div>
         </div>
       </section>
 
