@@ -59,7 +59,6 @@ export const analyticsStudioManifest: ProductManifest = {
       'no-code analytics',
       'Analytics Studio Tekivex',
     ],
-    ogImage: '/og-analytics-studio.png',
     jsonLdType: 'SoftwareApplication',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'All',

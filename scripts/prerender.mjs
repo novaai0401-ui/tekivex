@@ -236,7 +236,16 @@ function makeHtml(route) {
   if (route.path !== '/') {
     const parts = route.path.split('/').filter(Boolean);
     let acc = '';
-    for (const p of parts) {
+    for (let i = 0; i < parts.length; i++) {
+      const p = parts[i];
+      // The bare "/product" segment is not a navigable page — the catalogue
+      // lives at "/products". Remap the intermediate crumb so the breadcrumb
+      // never points crawlers at a 404.
+      if (p === 'product' && i < parts.length - 1) {
+        acc += '/' + p;
+        crumbs.push({ name: 'Products', item: ORIGIN + '/products' });
+        continue;
+      }
       acc += '/' + p;
       crumbs.push({ name: p.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()), item: ORIGIN + acc });
     }

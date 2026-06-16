@@ -12,7 +12,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'What is Tekivex?',
     answer:
-      'Tekivex is an open-source enterprise developer-tools platform. It ships a suite of MIT-licensed products under one roof: GridStorm (high-performance React data grid with 35+ plugins), PDFCraft (browser-native PDF editor with headless React hooks), Analytics Studio (drag-and-drop business intelligence with 26+ chart types), DataFlow (real-time streaming engine), Quantum Vault (sovereign post-quantum token issuance and verification), and TekiVex UI (the React component library at ui.tekivex.com). Every product is free forever, fully tree-shakable, and ships TypeScript declarations.',
+      'Tekivex is an open-source enterprise developer-tools platform. It ships a suite of MIT-licensed products under one roof: GridStorm (high-performance React data grid with 35+ plugins), Pyntra (browser-native PDF editor with headless React hooks), Analytics Studio (drag-and-drop business intelligence with 26+ chart types), DataFlow (real-time streaming engine), Quantum Vault (sovereign post-quantum token issuance and verification), and TekiVex UI (the React component library at ui.tekivex.com). Every product is free forever, fully tree-shakable, and ships TypeScript declarations.',
   },
   {
     question: 'What does Tekivex offer for React developers?',

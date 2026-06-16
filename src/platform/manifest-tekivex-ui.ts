@@ -61,7 +61,6 @@ export const tekivexUiManifest: ProductManifest = {
       'dark mode components',
       'Tekivex UI',
     ],
-    ogImage: '/og-tekivex-ui.png',
     jsonLdType: 'SoftwareApplication',
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'All',

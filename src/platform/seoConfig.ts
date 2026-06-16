@@ -152,12 +152,12 @@ const ABOUT_SEO: SeoConfig = {
   canonical: `${BASE_URL}/about`,
   ogTitle: 'About Tekivex — Enterprise Software, Crafted with Skill',
   ogDescription:
-    '4 products, 57 packages, 1,899+ tests, MIT license. We build open-source enterprise developer tools. Founded 2025.',
+    '6 products, 57 packages, 1,899+ tests, MIT license. We build open-source enterprise developer tools. Founded 2025.',
   ogImage: `${BASE_URL}/og-tekivex.png`,
   ogType: 'website',
   twitterTitle: 'About Tekivex',
   twitterDescription:
-    'The team behind GridStorm, Analytics Studio, Quantum Vault, and DataFlow — all MIT-licensed.',
+    'The team behind GridStorm, Pyntra, Analytics Studio, Quantum Vault, DataFlow, and Tekivex UI — all MIT-licensed.',
   twitterImage: `${BASE_URL}/og-tekivex.png`,
   jsonLd: {
     '@context': 'https://schema.org',

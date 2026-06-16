@@ -6,6 +6,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/product/pdfcraft", "destination": "/product/pyntra", "permanent": true }
+    { "source": "/product/pdfcraft", "destination": "/product/pyntra", "permanent": true },
+    { "source": "/platform", "destination": "/products", "permanent": true }
   ]
 }

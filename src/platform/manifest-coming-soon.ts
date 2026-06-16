@@ -62,7 +62,6 @@ export const dataFlowManifest: ProductManifest = {
       'DataFlow Tekivex',
       'time-travel replay',
     ],
-    ogImage: '/og-dataflow.png',
     jsonLdType: 'SoftwareApplication',
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'All',

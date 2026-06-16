@@ -64,7 +64,6 @@ export const gridstormManifest: ProductManifest = {
       'headless data grid',
       'GridStorm',
     ],
-    ogImage: '/og-gridstorm.png',
     jsonLdType: 'SoftwareApplication',
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'All',

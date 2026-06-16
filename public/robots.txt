@@ -1,10 +1,8 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://tekivex.com/sitemap.xml
+# Sitemaps — sitemap-index.xml references tekivex.com + ui.tekivex.com children
 Sitemap: https://tekivex.com/sitemap-index.xml
-Sitemap: https://ui.tekivex.com/sitemap.xml
 Sitemap: https://gridstorm.tekivex.com/sitemap.xml
 
 # AdSense crawlers — explicit allow
