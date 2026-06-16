@@ -156,8 +156,8 @@ export function useSeo(config: SeoConfig) {
 
     // Twitter Card
     setMeta('meta[name="twitter:card"]', 'summary_large_image');
-    setMeta('meta[name="twitter:site"]', '@tekivex');
-    setMeta('meta[name="twitter:creator"]', '@tekivex');
+    setMeta('meta[name="twitter:site"]', '@BharatTechPath');
+    setMeta('meta[name="twitter:creator"]', '@BharatTechPath');
     setMeta('meta[name="twitter:title"]', config.twitterTitle ?? config.title);
     setMeta('meta[name="twitter:description"]', config.twitterDescription ?? config.description);
     if (config.twitterImage) {

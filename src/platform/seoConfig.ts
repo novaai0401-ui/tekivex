@@ -55,7 +55,10 @@ const HOME_SEO: SeoConfig = {
       description:
         'Tekivex builds open-source enterprise developer tools — GridStorm, Analytics Studio, DataFlow, and Quantum Vault. All MIT-licensed.',
       sameAs: [
-        'https://github.com/novaai0401-ui/tekivex-issue-report',
+        'https://github.com/novaai0401-ui/tekivex',
+        'https://www.linkedin.com/company/tekivex/',
+        'https://x.com/BharatTechPath',
+        'https://whatsapp.com/channel/0029Va4q7fr0lwgt6bUyjV2Y',
       ],
       foundingDate: '2025',
       knowsAbout: [
@@ -169,7 +172,10 @@ const ABOUT_SEO: SeoConfig = {
       'Tekivex builds enterprise-grade developer tools: GridStorm data grid, Analytics Studio, Quantum Vault, and DataFlow.',
     foundingDate: '2025',
     sameAs: [
-      'https://github.com/novaai0401-ui/tekivex-issue-report',
+      'https://github.com/novaai0401-ui/tekivex',
+      'https://www.linkedin.com/company/tekivex/',
+      'https://x.com/BharatTechPath',
+      'https://whatsapp.com/channel/0029Va4q7fr0lwgt6bUyjV2Y',
     ],
     knowsAbout: [
       'Data Grids', 'Post-Quantum Cryptography', 'Business Intelligence',
