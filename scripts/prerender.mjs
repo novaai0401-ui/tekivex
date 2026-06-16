@@ -43,7 +43,7 @@ const THIN_TOPICS = (() => {
 // ─── Routes ────────────────────────────────────────────────────────────────
 const products = [
   { id: 'gridstorm',        name: 'GridStorm',        tagline: 'High-performance React data grid with 35+ plugins. MIT-licensed, free forever.' },
-  { id: 'pdfcraft',         name: 'PDFCraft',         tagline: 'Client-side PDF editor with React headless hooks — form filling, annotation, signing, AES-256.' },
+  { id: 'pyntra',           name: 'Pyntra',           tagline: 'Client-side PDF editor with React headless hooks — form filling, annotation, signing, AES-256.' },
   { id: 'analytics-studio', name: 'Analytics Studio', tagline: 'Drag-and-drop business intelligence with 26+ chart types and live data binding.' },
   { id: 'quantum-vault',    name: 'Quantum Vault',    tagline: 'Sovereign post-quantum tokens — CRYSTALS-Kyber + Dilithium, NIST-standardised.' },
   { id: 'dataflow',         name: 'DataFlow',         tagline: 'Real-time streaming engine for React with backpressure and replay.' },
@@ -70,7 +70,7 @@ const routes = [
     path: '/',
     title: 'Tekivex — Open-Source Enterprise Developer Tools Platform',
     description:
-      'Tekivex is an open-source enterprise developer tools platform. GridStorm data grid, PDFCraft browser PDF editor, Analytics Studio BI, DataFlow streaming, Quantum Vault, and TekiVex UI components — all MIT-licensed, free forever, accessibility-first.',
+      'Tekivex is an open-source enterprise developer tools platform. GridStorm data grid, Pyntra browser PDF editor, Analytics Studio BI, DataFlow streaming, Quantum Vault, and TekiVex UI components — all MIT-licensed, free forever, accessibility-first.',
     h1: 'Tekivex — open-source enterprise developer tools',
     body:
       'Tekivex groups several React-focused open-source products under one roof: GridStorm, Analytics Studio, DataFlow, Quantum Vault, and TekiVex UI. Every package is MIT-licensed, fully typed in TypeScript, and free for commercial use.',
@@ -79,7 +79,7 @@ const routes = [
     path: '/products',
     title: 'Tekivex products — Data grid, charts, streaming, PDF, components',
     description:
-      'Browse Tekivex products: GridStorm React data grid, PDFCraft browser PDF editor, Analytics Studio BI, DataFlow streaming engine, Quantum Vault, and TekiVex UI component library. All open source.',
+      'Browse Tekivex products: GridStorm React data grid, Pyntra browser PDF editor, Analytics Studio BI, DataFlow streaming engine, Quantum Vault, and TekiVex UI component library. All open source.',
     h1: 'Tekivex products',
     body:
       'A unified catalog of every Tekivex product — data grid, charts, streaming, PDF, components. All open source under the MIT license, all production-tested.',
@@ -521,7 +521,7 @@ const humans = [
   '  Analytics Studio — drag-and-drop BI with 26+ charts',
   '  DataFlow         — real-time streaming engine',
   '  Quantum Vault    — sovereign post-quantum tokens',
-  '  PDFCraft         — browser-native PDF editor with headless React hooks',
+  '  Pyntra           — browser-native PDF editor with headless React hooks',
   '  TekiVex UI       — React component library (113 components)',
   '',
   '/* SITE */',

@@ -4,539 +4,539 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://tekivex.com/</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/"/>
   </url>
   <url>
     <loc>https://tekivex.com/products</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/products"/>
   </url>
   <url>
     <loc>https://tekivex.com/about</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/about"/>
   </url>
   <url>
     <loc>https://tekivex.com/privacy-policy</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/privacy-policy"/>
   </url>
   <url>
     <loc>https://tekivex.com/terms-of-service</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/terms-of-service"/>
   </url>
   <url>
     <loc>https://tekivex.com/cookie-policy</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/cookie-policy"/>
   </url>
   <url>
     <loc>https://tekivex.com/disclaimer</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/disclaimer"/>
   </url>
   <url>
     <loc>https://tekivex.com/contact</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/contact"/>
   </url>
   <url>
     <loc>https://tekivex.com/faq</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/faq"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/gridstorm</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/gridstorm"/>
   </url>
   <url>
-    <loc>https://tekivex.com/product/pdfcraft</loc>
-    <lastmod>2026-05-30</lastmod>
+    <loc>https://tekivex.com/product/pyntra</loc>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/pdfcraft"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/pyntra"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/analytics-studio</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/analytics-studio"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/quantum-vault</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/quantum-vault"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/dataflow</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/dataflow"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/tekivex-ui</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/tekivex-ui"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-transformers</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-transformers"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-training</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-training"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-agents</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-agents"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-nlp</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-nlp"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-langchain</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-langchain"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-speech</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-speech"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ethics</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ethics"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/software-architecture</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/software-architecture"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/frontend-patterns</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/frontend-patterns"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/backend-patterns</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/backend-patterns"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/intro-to-system-design</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/intro-to-system-design"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/scalability</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/scalability"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/cap-theorem</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/cap-theorem"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/latency-throughput</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/latency-throughput"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/load-balancing</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/load-balancing"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/caching-strategies</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/caching-strategies"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/cdn-edge</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/cdn-edge"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/rate-limiting</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/rate-limiting"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/database-design</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/database-design"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/sharding-replication</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/sharding-replication"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/message-queues</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/message-queues"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/microservices-vs-monolith</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/microservices-vs-monolith"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/api-design</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/api-design"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/design-url-shortener</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/design-url-shortener"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/understanding-ip-addresses</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/understanding-ip-addresses"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/how-dns-works</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/how-dns-works"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/client-server-model</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/client-server-model"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/api-gateway</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/api-gateway"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/tcp-and-udp</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/tcp-and-udp"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/system-design/introduction-to-security-in-system-design</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/system-design/introduction-to-security-in-system-design"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/software-architecture/ddd-fundamentals</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/software-architecture/ddd-fundamentals"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/software-architecture/cqrs</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/software-architecture/cqrs"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/software-architecture/creational-patterns</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/software-architecture/creational-patterns"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/software-architecture/structural-behavioral</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/software-architecture/structural-behavioral"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/frontend-patterns/data-fetching</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/frontend-patterns/data-fetching"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/frontend-patterns/rendering-patterns</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/frontend-patterns/rendering-patterns"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/frontend-patterns/error-handling</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/frontend-patterns/error-handling"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/backend-patterns/auth-patterns</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/backend-patterns/auth-patterns"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml/intro-to-ai-ml</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml/intro-to-ai-ml"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml/math-behind-ml</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml/math-behind-ml"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml/neural-network-basics</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml/neural-network-basics"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml/first-ml-model</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml/first-ml-model"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml/classification-regression</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml/classification-regression"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml/training-deep-networks</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml/training-deep-networks"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml/cnn</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml/cnn"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml/rnn-sequence-models</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml/rnn-sequence-models"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-transformers/attention-mechanism</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-transformers/attention-mechanism"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-transformers/transformer-architecture</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-transformers/transformer-architecture"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-transformers/large-language-models</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-transformers/large-language-models"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-transformers/fine-tuning-transfer</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-transformers/fine-tuning-transfer"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-training/model-training-pipeline</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-training/model-training-pipeline"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-training/hyperparameter-tuning</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-training/hyperparameter-tuning"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-training/model-evaluation</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-training/model-evaluation"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-agents/what-is-ai-agent</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-agents/what-is-ai-agent"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-agents/agent-architectures</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-agents/agent-architectures"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-agents/swarm-intelligence</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-agents/swarm-intelligence"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-agents/mcp-protocol</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-agents/mcp-protocol"/>
   </url>
   <url>
     <loc>https://tekivex.com/tutorials/ai-ml-agents/langchain-langgraph</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tutorials/ai-ml-agents/langchain-langgraph"/>
   </url>
   <url>
     <loc>https://ui.tekivex.com/</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>

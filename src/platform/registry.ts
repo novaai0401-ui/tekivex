@@ -8,7 +8,7 @@
 
 import type { ProductManifest } from './types';
 import { gridstormManifest } from './manifest-gridstorm';
-import { pdfcraftManifest } from './manifest-pdfcraft';
+import { pyntraManifest } from './manifest-pyntra';
 import { analyticsStudioManifest } from './manifest-analytics-studio';
 import { dataFlowManifest } from './manifest-coming-soon';
 import { tekivexUiManifest } from './manifest-tekivex-ui';
@@ -17,7 +17,7 @@ import { quantumVaultManifest } from './manifest-quantum-vault';
 /** Ordered list — determines display order in launcher + nav */
 const PRODUCT_MANIFESTS: ProductManifest[] = [
   gridstormManifest,        // GA   — Data Grid
-  pdfcraftManifest,         // GA   — Browser PDF Editor
+  pyntraManifest,           // GA   — Browser PDF Editor
   analyticsStudioManifest,  // Beta — Analytics Studio
   dataFlowManifest,         // Beta — Real-time Streaming
   quantumVaultManifest,     // Beta — Post-Quantum Tokens

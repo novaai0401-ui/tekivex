@@ -117,9 +117,9 @@ const PRODUCTS_SEO: SeoConfig = {
       { '@type': 'ListItem', position: 1, name: 'GridStorm',
         description: 'Open-source enterprise data grid — virtual scrolling, 35 plugins, MIT-licensed',
         url: `${BASE_URL}/product/gridstorm` },
-      { '@type': 'ListItem', position: 2, name: 'PDFCraft',
+      { '@type': 'ListItem', position: 2, name: 'Pyntra',
         description: 'Client-side PDF editor — form filling, annotation, signing, AES-256, headless React',
-        url: `${BASE_URL}/product/pdfcraft` },
+        url: `${BASE_URL}/product/pyntra` },
       { '@type': 'ListItem', position: 3, name: 'Analytics Studio',
         description: 'Drag-and-drop BI platform — 26+ charts, in-browser SQL, KPI dashboards',
         url: `${BASE_URL}/product/analytics-studio` },
@@ -141,7 +141,7 @@ const ABOUT_SEO: SeoConfig = {
   title: 'About Tekivex — Open-Source Enterprise Developer Tools',
   description:
     'Tekivex is an independent developer tools company building open-source enterprise software — ' +
-    'GridStorm data grid, PDFCraft browser PDF editor, Analytics Studio, Quantum Vault, DataFlow streaming engine, and Tekivex UI component library. ' +
+    'GridStorm data grid, Pyntra browser PDF editor, Analytics Studio, Quantum Vault, DataFlow streaming engine, and Tekivex UI component library. ' +
     '6 products, 57 npm packages, 1,899+ tests. All MIT-licensed. Founded 2025.',
   keywords: [
     'about Tekivex', 'Tekivex company', 'open-source developer tools company',

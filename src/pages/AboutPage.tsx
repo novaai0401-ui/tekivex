@@ -12,13 +12,13 @@ const PRODUCTS = [
     href: '/product/gridstorm',
   },
   {
-    name: 'PDFCraft',
+    name: 'Pyntra',
     color: '#ef4444',
     icon: 'file-pdf',
     status: 'GA',
     statusColor: '#4ade80',
     description: 'Client-side PDF editor — form filling, annotation, signing, AES-256, headless React hooks.',
-    href: '/product/pdfcraft',
+    href: '/product/pyntra',
   },
   {
     name: 'Analytics Studio',

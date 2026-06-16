@@ -4,5 +4,8 @@
   "outputDirectory": "dist",
   "framework": null,
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/product/pdfcraft", "destination": "/product/pyntra", "permanent": true }
+  ]
 }

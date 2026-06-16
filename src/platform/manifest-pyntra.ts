@@ -1,13 +1,13 @@
 import type { ProductManifest } from './types';
 
-const PDFCRAFT_URL = 'https://editable-pdf.onrender.com';
-const PDFCRAFT_GITHUB = 'https://github.com/novaai0401-ui/tekivex-issue-report/issues';
+const PYNTRA_URL = 'https://pyntra.tekivex.com';
+const PYNTRA_GITHUB = 'https://github.com/novaai0401-ui/tekivex-issue-report/issues';
 
-export const pdfcraftManifest: ProductManifest = {
-  id: 'pdfcraft',
-  name: 'PDFCraft',
+export const pyntraManifest: ProductManifest = {
+  id: 'pyntra',
+  name: 'Pyntra',
   tagline: 'Craft PDFs in any browser, with any UI library',
-  githubUrl: PDFCRAFT_GITHUB,
+  githubUrl: PYNTRA_GITHUB,
   description:
     'Client-side PDF editor with React headless hooks and a bring-your-own UI adapter. ' +
     'Fill and add form fields, sign and stamp, annotate, redact, and edit encrypted PDFs — ' +
@@ -18,9 +18,9 @@ export const pdfcraftManifest: ProductManifest = {
   color: '#ef4444',
   accentColor: 'rgba(239, 68, 68, 0.1)',
   iconName: 'file-pdf',
-  homePath: '/product/pdfcraft',
-  docsRoot: PDFCRAFT_URL,
-  primaryDemoPath: PDFCRAFT_URL,
+  homePath: '/product/pyntra',
+  docsRoot: PYNTRA_URL,
+  primaryDemoPath: PYNTRA_URL,
   stats: [
     { value: '7',       label: 'Packages' },
     { value: 'AES-256', label: 'Encryption' },
@@ -36,11 +36,11 @@ export const pdfcraftManifest: ProductManifest = {
     'Bring-your-own UI — Material UI, Tekivex UI, or custom adapter',
   ],
   quickLinks: [
-    { label: 'Live Demo', path: PDFCRAFT_URL, external: true, isNew: true },
+    { label: 'Live Demo', path: PYNTRA_URL, external: true, isNew: true },
   ],
   tags: ['PDF', 'Forms', 'Annotations', 'AES-256', 'React', 'Headless'],
   seo: {
-    title: 'PDFCraft — Browser-Native PDF Editor with Headless React Hooks | Tekivex',
+    title: 'Pyntra — Browser-Native PDF Editor with Headless React Hooks | Tekivex',
     description:
       'Client-side PDF editor with React headless hooks and a bring-your-own UI adapter. ' +
       'Form filling, signing, annotation, redaction, and AES-256 encrypted PDFs — entirely in ' +
@@ -55,7 +55,8 @@ export const pdfcraftManifest: ProductManifest = {
       'encrypted PDF editor',
       'headless PDF hooks',
       'client-side PDF',
-      'PDFCraft',
+      'Pyntra',
+      'Pyntra PDF editor',
     ],
     jsonLdType: 'SoftwareApplication',
     applicationCategory: 'BusinessApplication',
