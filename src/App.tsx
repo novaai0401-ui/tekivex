@@ -18,15 +18,23 @@ import { ContactPage } from './pages/ContactPage';
 import { FaqPage } from './pages/FaqPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { getProduct } from './platform/registry';
+import { ContentHub } from './content/ContentHub';
+import { ArticlePage } from './content/ArticlePage';
+import { getArticle } from './content/registry';
 
 const STATIC_ROUTES = new Set<string>([
   '/', '/products', '/platform', '/about',
   '/privacy-policy', '/terms-of-service', '/cookie-policy',
   '/disclaimer', '/contact', '/faq',
+  '/use-cases',
 ]);
 
 function isKnownRoute(route: string): boolean {
   if (STATIC_ROUTES.has(route)) return true;
+  if (route.startsWith('/use-cases/')) {
+    const slug = route.slice('/use-cases/'.length).split('/')[0];
+    return !!slug && !!getArticle(slug);
+  }
   if (route.startsWith('/product/')) {
     const id = route.slice('/product/'.length).split('/')[0];
     return !!id && !!getProduct(id);
@@ -128,6 +136,11 @@ export function App() {
 
   if (!isKnown) {
     page = <NotFoundPage />;
+  } else if (route === '/use-cases') {
+    page = <ContentHub />;
+  } else if (route.startsWith('/use-cases/')) {
+    const slug = route.slice('/use-cases/'.length).split('/')[0];
+    page = <ArticlePage slug={slug ?? ''} />;
   } else if (route.startsWith('/product/')) {
     const productId = route.slice('/product/'.length).split('/')[0];
     page = <ProductHomePage productId={productId ?? ''} />;

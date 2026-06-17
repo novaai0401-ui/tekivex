@@ -1,6 +1,7 @@
 // ─── SEO Config — per-route metadata map ─────────────────────────────────
 import { type SeoConfig, seoFromManifest } from './useSeo';
 import { getProduct } from './registry';
+import { getArticle, getAllArticles } from '../content/registry';
 
 const BASE_URL = 'https://tekivex.com';
 
@@ -263,6 +264,86 @@ export function getSeoForRoute(route: string): SeoConfig {
   if (route === '/disclaimer') return DISCLAIMER_SEO;
   if (route === '/contact') return CONTACT_SEO;
   if (route === '/faq') return FAQ_SEO;
+
+  // ── Use-Cases content hub ──
+  if (route === '/use-cases') {
+    const count = getAllArticles().length;
+    return {
+      title: 'Use Cases — Product Guides, Comparisons & Deep Dives | Tekivex',
+      description: `${count} in-depth articles on the Tekivex product suite — GridStorm, Pyntra, Analytics Studio, DataFlow, Quantum Vault, and Tekivex UI. Architecture deep dives, migration guides, and real-world use cases.`,
+      keywords: ['Tekivex use cases', 'GridStorm guide', 'Pyntra guide', 'Analytics Studio', 'Quantum Vault', 'DataFlow', 'Tekivex UI', 'react data grid guide', 'developer tools articles'],
+      canonical: `${BASE_URL}/use-cases`,
+      ogTitle: 'Use Cases — Tekivex Product Guides & Deep Dives',
+      ogDescription: `${count} in-depth articles on the Tekivex product suite, written by the Tekivex Engineering team.`,
+      ogImage: `${BASE_URL}/og-tekivex.png`,
+      ogType: 'website',
+      twitterTitle: 'Use Cases — Tekivex Product Guides & Deep Dives',
+      twitterDescription: `${count} in-depth articles on the Tekivex product suite.`,
+      twitterImage: `${BASE_URL}/og-tekivex.png`,
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Tekivex Use Cases',
+        description: 'In-depth product guides, comparisons, and deep dives on the Tekivex developer-tools suite.',
+        url: `${BASE_URL}/use-cases`,
+        publisher: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
+      },
+    };
+  }
+
+  if (route.startsWith('/use-cases/')) {
+    const slug = route.slice('/use-cases/'.length).split('/')[0];
+    const article = slug ? getArticle(slug) : undefined;
+    if (article) {
+      const title = `${article.title} | Tekivex`;
+      const url = `${BASE_URL}${route}`;
+      return {
+        title,
+        description: article.description,
+        keywords: article.keywords,
+        canonical: url,
+        ogTitle: article.title,
+        ogDescription: article.description,
+        ogImage: `${BASE_URL}/og-tekivex.png`,
+        ogType: 'article',
+        twitterTitle: article.title,
+        twitterDescription: article.description,
+        twitterImage: `${BASE_URL}/og-tekivex.png`,
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'TechArticle',
+            headline: article.title,
+            description: article.description,
+            url,
+            author: { '@type': 'Organization', name: article.author, url: BASE_URL },
+            publisher: {
+              '@type': 'Organization',
+              name: 'Tekivex',
+              url: BASE_URL,
+              logo: { '@type': 'ImageObject', url: `${BASE_URL}/logo.svg` },
+            },
+            datePublished: article.datePublished,
+            dateModified: article.dateModified,
+            image: `${BASE_URL}/og-tekivex.png`,
+            inLanguage: 'en',
+            keywords: article.keywords.join(', '),
+            about: { '@type': 'SoftwareApplication', name: article.productName, applicationCategory: 'DeveloperApplication' },
+            isPartOf: { '@type': 'CollectionPage', name: 'Tekivex Use Cases', url: `${BASE_URL}/use-cases` },
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+              { '@type': 'ListItem', position: 2, name: 'Use Cases', item: `${BASE_URL}/use-cases` },
+              { '@type': 'ListItem', position: 3, name: article.title, item: url },
+            ],
+          },
+        ] as any,
+      };
+    }
+  }
 
   if (route.startsWith('/product/')) {
     const id = route.slice('/product/'.length).split('/')[0];

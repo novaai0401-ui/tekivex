@@ -62,6 +62,7 @@ const FOOTER_COLS = [
     heading: 'Community',
     links: [
       { label: 'Report an Issue', href: 'https://github.com/novaai0401-ui/tekivex-issue-report/issues' },
+      { label: 'Use Cases',       href: '/use-cases' },
       { label: 'About Us',        href: '/about' },
       { label: 'Contact',         href: '/contact' },
       { label: 'FAQ',             href: '/faq' },

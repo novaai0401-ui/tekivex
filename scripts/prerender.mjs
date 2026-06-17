@@ -7,9 +7,13 @@
 // We deliberately avoid trying to SSR the full React tree because some
 // product pages load WebGL / AI runtimes that don't exist in Node.
 // ─────────────────────────────────────────────────────────────────────────────
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import esbuild from 'esbuild';
+import { marked } from 'marked';
+
+marked.setOptions({ gfm: true, breaks: false });
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -118,6 +122,15 @@ const routes = [
     body:
       'Quick answers to common questions about Tekivex — what we build, how we make money, how to disable advertising, and how to contribute.',
   },
+  {
+    path: '/use-cases',
+    title: 'Use Cases — Product Guides, Comparisons & Deep Dives | Tekivex',
+    description:
+      'In-depth articles on the Tekivex product suite — GridStorm, Pyntra, Analytics Studio, DataFlow, Quantum Vault, and Tekivex UI. Architecture deep dives, migration guides, and real-world use cases by the Tekivex Engineering team.',
+    h1: 'Tekivex use cases',
+    body:
+      'Product guides, comparisons, and engineering deep dives across the Tekivex suite — how each library works, how to put it to work, and how it compares to the alternatives.',
+  },
   ...products.map((p) => ({
     path: `/product/${p.id}`,
     title: `${p.name} — Tekivex`,
@@ -182,7 +195,7 @@ function makeHtml(route) {
       <nav aria-label="Breadcrumb" style="font-size:13px;color:#64748b;margin-bottom:24px"><a href="/" style="color:#3a86ff;text-decoration:none">Tekivex</a></nav>
       <h1 style="font-size:2.4rem;font-weight:800;letter-spacing:-0.025em;color:#0a0f1f;margin:0 0 12px;line-height:1.15">${escapeHtml(route.h1)}</h1>
       <p style="color:#3a3a52;font-size:18px;line-height:1.6;margin:0 0 24px">${escapeHtml(route.body)}</p>
-      <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px">Tekivex · open-source enterprise developer tools · MIT licensed · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://ui.tekivex.com" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
+      <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px">Tekivex · open-source enterprise developer tools · MIT licensed · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://ui.tekivex.com" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
     </main>`;
   html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${ssr}</div>`);
 
@@ -241,6 +254,153 @@ notFoundHtml = notFoundHtml.replace(
 );
 writeFileSync(join(DIST, '404.html'), notFoundHtml, 'utf8');
 
+// ─── Use-Cases articles ────────────────────────────────────────────────────
+// Compile the article registry (TS) so we read the same metadata the app uses,
+// then server-render each article's full markdown so crawlers and AI agents see
+// the real content without executing JavaScript.
+const TMP_DIR = join(DIST, '.prerender-tmp');
+if (!existsSync(TMP_DIR)) mkdirSync(TMP_DIR, { recursive: true });
+
+async function loadArticles() {
+  const srcPath = join(ROOT, 'src', 'content', 'registry.ts');
+  const src = readFileSync(srcPath, 'utf8');
+  const transformed = esbuild.transformSync(src, { loader: 'ts', format: 'esm', target: 'esnext' }).code;
+  const outPath = join(TMP_DIR, 'registry.mjs');
+  writeFileSync(outPath, transformed, 'utf8');
+  const mod = await import(pathToFileURL(outPath).href);
+  return mod.ARTICLES;
+}
+
+function articleHtml(article, contentHtml) {
+  const path = `/use-cases/${article.slug}`;
+  const url = `${ORIGIN}${path}`;
+  const title = `${article.title} | Tekivex`;
+  const description = article.description;
+
+  let html = baseHtml;
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(title)}</title>`);
+  html = html.replace(
+    /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/,
+    `<meta name="description" content="${escapeHtml(description)}" />`,
+  );
+  if (/<link\s+rel="canonical"/i.test(html)) {
+    html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${url}" />`);
+  } else {
+    html = html.replace('</head>', `  <link rel="canonical" href="${url}" />\n</head>`);
+  }
+  html = html.replace(/<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${escapeHtml(article.title)}" />`);
+  html = html.replace(/<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/, `<meta property="og:url" content="${url}" />`);
+  html = html.replace(/<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/, `<meta property="og:description" content="${escapeHtml(description)}" />`);
+  html = html.replace(/<meta\s+property="og:type"\s+content="[^"]*"\s*\/?>/, `<meta property="og:type" content="article" />`);
+  html = html.replace(/<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/, `<meta name="twitter:title" content="${escapeHtml(article.title)}" />`);
+  html = html.replace(/<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/, `<meta name="twitter:description" content="${escapeHtml(description)}" />`);
+
+  const articleLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: article.title,
+    description: article.description,
+    url,
+    author: { '@type': 'Organization', name: article.author, url: ORIGIN },
+    publisher: { '@type': 'Organization', name: 'Tekivex', url: ORIGIN, logo: { '@type': 'ImageObject', url: `${ORIGIN}/logo.svg` } },
+    datePublished: article.datePublished,
+    dateModified: article.dateModified,
+    image: `${ORIGIN}/og-tekivex.png`,
+    inLanguage: 'en',
+    keywords: (article.keywords || []).join(', '),
+    about: { '@type': 'SoftwareApplication', name: article.productName, applicationCategory: 'DeveloperApplication' },
+    isPartOf: { '@type': 'CollectionPage', name: 'Tekivex Use Cases', url: `${ORIGIN}/use-cases` },
+  };
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Tekivex', item: ORIGIN },
+      { '@type': 'ListItem', position: 2, name: 'Use Cases', item: `${ORIGIN}/use-cases` },
+      { '@type': 'ListItem', position: 3, name: article.title, item: url },
+    ],
+  };
+  html = html.replace(
+    '</head>',
+    `    <script type="application/ld+json">${JSON.stringify(articleLd)}</script>\n` +
+    `    <script type="application/ld+json">${JSON.stringify(breadcrumbLd)}</script>\n  </head>`,
+  );
+
+  const ssr = `
+    <article style="max-width:760px;margin:0 auto;padding:56px 24px 96px;color:#1a1f2e;font:16px/1.78 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+      <nav aria-label="Breadcrumb" style="font-size:13px;color:#64748b;margin-bottom:20px">
+        <a href="/" style="color:#3a86ff;text-decoration:none">Tekivex</a> &nbsp;›&nbsp;
+        <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> &nbsp;›&nbsp;
+        <span>${escapeHtml(article.productName)}</span>
+      </nav>
+      <h1 style="font-size:2.2rem;font-weight:800;letter-spacing:-0.02em;color:#0a0f1f;margin:0 0 12px;line-height:1.18">${escapeHtml(article.title)}</h1>
+      <p style="color:#475569;font-size:18px;line-height:1.6;margin:0 0 12px">${escapeHtml(article.description)}</p>
+      <p style="color:#94a3b8;font-size:13px;margin:0 0 28px">By ${escapeHtml(article.author)} · ${escapeHtml(article.readingMinutes + ' min read')}</p>
+      <div class="uc-article-body" style="font-size:16px;line-height:1.78;color:#1f2937">
+        ${contentHtml}
+      </div>
+      <hr style="margin:44px 0 24px;border:none;border-top:1px solid #e6e8ef" />
+      <p style="color:#64748b;font-size:13px">
+        Part of <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Tekivex use cases</a>.
+        Explore our <a href="/products" style="color:#3a86ff;text-decoration:none">open-source products</a>.
+      </p>
+    </article>`;
+  html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${ssr}</div>`);
+  return html;
+}
+
+const CONTENT_DIR = join(ROOT, 'public', 'use-cases', 'content');
+const articleRoutes = [];
+let articleCount = 0;
+let articleSkipped = 0;
+const articles = await loadArticles();
+for (const article of articles) {
+  const mdPath = join(CONTENT_DIR, article.contentFile);
+  if (!existsSync(mdPath)) {
+    console.warn(`  ⚠ missing article markdown: ${article.contentFile}`);
+    articleSkipped++;
+    continue;
+  }
+  const md = readFileSync(mdPath, 'utf8');
+  const contentHtml = marked.parse(md);
+  const dir = join(DIST, 'use-cases', article.slug);
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'index.html'), articleHtml(article, contentHtml), 'utf8');
+  articleRoutes.push({
+    path: `/use-cases/${article.slug}`,
+    title: article.title,
+    description: article.description,
+    category: article.productName,
+    pubDate: new Date(`${article.datePublished}T00:00:00Z`),
+  });
+  articleCount++;
+}
+try { rmSync(TMP_DIR, { recursive: true, force: true }); } catch {}
+
+// Enrich the /use-cases hub shell with a real, crawlable list of every article
+// (grouped by product) so crawlers and AI agents discover the content without JS.
+{
+  const hubFile = join(DIST, 'use-cases', 'index.html');
+  if (existsSync(hubFile) && articleRoutes.length) {
+    const byProduct = new Map();
+    for (const r of articleRoutes) {
+      if (!byProduct.has(r.category)) byProduct.set(r.category, []);
+      byProduct.get(r.category).push(r);
+    }
+    let list = '';
+    for (const [product, items] of byProduct) {
+      list += `<h2 style="font-size:1.25rem;font-weight:800;color:#0a0f1f;margin:32px 0 12px">${escapeHtml(product)}</h2><ul style="margin:0 0 8px;padding-left:20px">`;
+      for (const it of items) {
+        list += `<li style="margin-bottom:8px"><a href="${it.path}" style="color:#3a86ff;text-decoration:none">${escapeHtml(it.title)}</a> — <span style="color:#475569">${escapeHtml(it.description)}</span></li>`;
+      }
+      list += `</ul>`;
+    }
+    let hubHtml = readFileSync(hubFile, 'utf8');
+    hubHtml = hubHtml.replace('</main>', `${list}</main>`);
+    writeFileSync(hubFile, hubHtml, 'utf8');
+  }
+}
+
 // ─── Sitemap (real URLs, hreflang, image extension) ──────────────────────
 const sitemapXml =
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
@@ -255,8 +415,34 @@ const sitemapXml =
       return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
     })
     .join('\n') +
+  '\n' +
+  articleRoutes
+    .map((r) => {
+      const url = `${ORIGIN}${r.path}`;
+      return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
+    })
+    .join('\n') +
   `\n  <url>\n    <loc>https://ui.tekivex.com/</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.95</priority>\n  </url>` +
   `\n</urlset>\n`;
+
+// ─── RSS feed for the use-cases hub (freshness signal) ───────────────────
+const rssXml =
+  `<?xml version="1.0" encoding="UTF-8"?>\n` +
+  `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n` +
+  `  <channel>\n` +
+  `    <title>Tekivex Use Cases</title>\n` +
+  `    <link>${ORIGIN}/use-cases</link>\n` +
+  `    <description>Product guides, comparisons, and engineering deep dives on the Tekivex developer-tools suite.</description>\n` +
+  `    <language>en-us</language>\n` +
+  `    <lastBuildDate>${NOW_RFC}</lastBuildDate>\n` +
+  `    <atom:link href="${ORIGIN}/feed.xml" rel="self" type="application/rss+xml" />\n` +
+  articleRoutes
+    .map((r) => {
+      const link = `${ORIGIN}${r.path}`;
+      return `    <item>\n      <title>${escapeHtml(r.title)}</title>\n      <link>${link}</link>\n      <guid isPermaLink="true">${link}</guid>\n      <description>${escapeHtml(r.description)}</description>\n      <category>${escapeHtml(r.category)}</category>\n      <pubDate>${r.pubDate.toUTCString()}</pubDate>\n    </item>`;
+    })
+    .join('\n') +
+  `\n  </channel>\n</rss>\n`;
 
 const sitemapIndex =
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
@@ -289,6 +475,7 @@ const humans = [
 writeFileSync(join(DIST, 'sitemap.xml'), sitemapXml, 'utf8');
 writeFileSync(join(DIST, 'sitemap-index.xml'), sitemapIndex, 'utf8');
 writeFileSync(join(DIST, 'humans.txt'), humans, 'utf8');
+writeFileSync(join(DIST, 'feed.xml'), rssXml, 'utf8');
 
 // Mirror into public/ so vite dev serves them too
 const pub = join(ROOT, 'public');
@@ -298,8 +485,9 @@ if (existsSync(pub)) {
   writeFileSync(join(pub, 'humans.txt'), humans, 'utf8');
 }
 
-const totalSitemapUrls = routes.length + 1;
+const totalSitemapUrls = routes.length + articleRoutes.length + 1;
 console.log(
-  `✓ ${count} static routes prerendered, ` +
-  `sitemap.xml (${totalSitemapUrls} URLs), sitemap-index.xml, humans.txt`,
+  `✓ ${count} static routes + ${articleCount} use-case articles prerendered` +
+  (articleSkipped ? ` (${articleSkipped} skipped — markdown missing)` : '') +
+  `, sitemap.xml (${totalSitemapUrls} URLs), sitemap-index.xml, feed.xml, humans.txt`,
 );

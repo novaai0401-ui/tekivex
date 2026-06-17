@@ -221,6 +221,15 @@ export function TopNav({ route }: TopNavProps) {
             Platform
           </a>
 
+          {/* Use Cases */}
+          <a
+            href="/use-cases"
+            className={`top-nav-link${route.startsWith('/use-cases') ? ' active' : ''}`}
+            onClick={(e) => { e.preventDefault(); navigate('/use-cases'); setMobileMenuOpen(false); }}
+          >
+            Use Cases
+          </a>
+
           {/* About */}
           <a
             href="/about"
