@@ -31,6 +31,14 @@ describe('Footer — legal links', () => {
     expect(col?.textContent).toContain('Contact');
   });
 
+  it('does not link to the removed tutorials section', () => {
+    render(<Footer />);
+    expect(
+      screen.queryAllByRole('link').some((l) => l.getAttribute('href') === '/tutorials'),
+    ).toBe(false);
+    expect(screen.queryByRole('link', { name: 'Tutorials' })).not.toBeInTheDocument();
+  });
+
   it('exposes legal links as internal hrefs (not external _blank)', () => {
     render(<Footer />);
     const privacy = screen.getByRole('link', { name: 'Privacy' });

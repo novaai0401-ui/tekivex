@@ -15,21 +15,14 @@ describe('Home JSON-LD', () => {
     expect((org as Record<string, unknown>).name).toBe('Tekivex');
   });
 
-  it('includes a WebSite schema with a SearchAction', () => {
+  it('includes a WebSite schema on the canonical domain', () => {
     const website = blocks.find((b) => (b as Record<string, unknown>)['@type'] === 'WebSite');
     expect(website).toBeDefined();
-    const action = (website as Record<string, unknown>).potentialAction as Record<string, unknown>;
-    expect(action).toBeDefined();
-    expect(action['@type']).toBe('SearchAction');
-    const target = action.target as Record<string, unknown>;
-    expect(String(target.urlTemplate)).toContain('{search_term_string}');
-    expect(action['query-input']).toBe('required name=search_term_string');
+    expect((website as Record<string, unknown>).url).toBe('https://tekivex.com');
   });
 
-  it('SearchAction target URL is absolute and on the canonical domain', () => {
+  it('does not advertise an on-site SearchAction (no site search)', () => {
     const website = blocks.find((b) => (b as Record<string, unknown>)['@type'] === 'WebSite');
-    const action = (website as Record<string, unknown>).potentialAction as Record<string, unknown>;
-    const target = action.target as Record<string, unknown>;
-    expect(String(target.urlTemplate)).toMatch(/^https:\/\/tekivex\.com\//);
+    expect((website as Record<string, unknown>).potentialAction).toBeUndefined();
   });
 });

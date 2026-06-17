@@ -150,126 +150,6 @@ function ProductCard3D({ product }: { product: ProductManifest }) {
   );
 }
 
-// ── Featured Tutorials ────────────────────────────────────────────────
-// A hand-curated set of deep articles surfaced on the home page so visitors
-// (and crawlers) see editorial content immediately instead of only a product
-// launcher. Each link points to a real prerendered page under /tutorials.
-
-type FeaturedTutorial = {
-  category: string;
-  categoryColor: string;
-  title: string;
-  description: string;
-  path: string;
-  minutes: number;
-  level: 'Beginner' | 'Intermediate' | 'Advanced';
-};
-
-const FEATURED_TUTORIALS: FeaturedTutorial[] = [
-  {
-    category: 'Transformers & LLMs',
-    categoryColor: '#f59e0b',
-    title: 'The Attention Mechanism',
-    description: 'Self-attention explained simply — Query, Key, Value, attention scores, and a code implementation.',
-    path: '/tutorials/ai-ml-transformers/attention-mechanism',
-    minutes: 18,
-    level: 'Advanced',
-  },
-  {
-    category: 'AI Agents',
-    categoryColor: '#eab308',
-    title: 'Model Context Protocol — Complete Guide',
-    description: 'Master MCP from basics to production: architecture, servers and clients, transports, resources, prompts, and security.',
-    path: '/tutorials/ai-ml-agents/mcp-protocol',
-    minutes: 35,
-    level: 'Advanced',
-  },
-  {
-    category: 'System Design',
-    categoryColor: '#6366f1',
-    title: 'CAP Theorem',
-    description: 'Consistency, Availability, and Partition Tolerance — which distributed databases prioritise which guarantees.',
-    path: '/tutorials/system-design/cap-theorem',
-    minutes: 12,
-    level: 'Intermediate',
-  },
-  {
-    category: 'Software Architecture',
-    categoryColor: '#8b5cf6',
-    title: 'Clean Architecture',
-    description: "Uncle Bob's concentric dependency circles, the Dependency Rule, and how to apply it to real codebases.",
-    path: '/tutorials/software-architecture/clean-architecture',
-    minutes: 18,
-    level: 'Advanced',
-  },
-  {
-    category: 'LangChain & Vector DBs',
-    categoryColor: '#10b981',
-    title: 'RAG — Retrieval-Augmented Generation',
-    description: 'Build a complete RAG pipeline: load documents, chunk, embed to a vector store, retrieve context, generate grounded answers.',
-    path: '/tutorials/ai-langchain/langchain-rag',
-    minutes: 25,
-    level: 'Advanced',
-  },
-  {
-    category: 'Frontend Patterns',
-    categoryColor: '#06b6d4',
-    title: 'Custom Hooks',
-    description: 'Extract and share reusable stateful logic across components — useLocalStorage, useDebounce, useFetch and more.',
-    path: '/tutorials/frontend-patterns/custom-hooks',
-    minutes: 16,
-    level: 'Beginner',
-  },
-];
-
-function FeaturedTutorials() {
-  const { navigate } = usePlatform();
-  return (
-    <section className="tx-section" id="tx-tutorials">
-      <div className="tx-section-label">Tutorials</div>
-      <h2 className="tx-section-title">
-        Learn from <span className="tx-gradient-text">in-depth guides</span>
-      </h2>
-      <p className="tx-section-sub">
-        Practitioner-written tutorials on system design, AI/ML, transformers, LangChain, software architecture, and frontend patterns — free and updated regularly.
-      </p>
-      <div className="tx-tut-grid">
-        {FEATURED_TUTORIALS.map((t) => (
-          <a
-            key={t.path}
-            href={t.path}
-            className="tx-tut-card"
-            style={{ '--tut-c': t.categoryColor } as React.CSSProperties}
-            onClick={(e) => {
-              if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
-              e.preventDefault();
-              navigate(t.path);
-            }}
-          >
-            <div className="tx-tut-accent" />
-            <div className="tx-tut-eyebrow">
-              <span className="tx-tut-cat" style={{ color: t.categoryColor }}>{t.category}</span>
-              <span className="tx-tut-dot" aria-hidden="true">·</span>
-              <span className="tx-tut-level">{t.level}</span>
-            </div>
-            <h3 className="tx-tut-title">{t.title}</h3>
-            <p className="tx-tut-desc">{t.description}</p>
-            <div className="tx-tut-foot">
-              <span className="tx-tut-mins">{t.minutes} min read</span>
-              <span className="tx-tut-arrow" aria-hidden="true">→</span>
-            </div>
-          </a>
-        ))}
-      </div>
-      <div className="tx-tut-all">
-        <button className="tx-btn-demo" onClick={() => navigate('/tutorials')}>
-          Browse all tutorials →
-        </button>
-      </div>
-    </section>
-  );
-}
-
 // ── Hero 3D Floating Stack ────────────────────────────────────────────
 
 function HeroStack({ products }: { products: ProductManifest[] }) {
@@ -382,9 +262,6 @@ export function PlatformPage() {
           </div>
         ))}
       </div>
-
-      {/* ── Featured Tutorials ── */}
-      <FeaturedTutorials />
 
       {/* ── Live Products ── */}
       <section className="tx-section" id="tx-products">

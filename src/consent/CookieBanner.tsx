@@ -23,7 +23,7 @@ export function CookieBanner({ suppressOnRoute }: CookieBannerProps) {
           <strong id="cookie-banner-title">Cookies on Tekivex</strong>
           <p>
             We use cookies for analytics and to personalise the ads from Google AdSense
-            that keep our tutorials free. Accept to enable personalised ads and
+            that keep this site free. Accept to enable personalised ads and
             analytics, or reject for non-personalised ads only. Read our{' '}
             <Link to="/cookie-policy" className="cookie-banner-link">
               cookie policy

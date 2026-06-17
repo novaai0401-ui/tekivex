@@ -12,12 +12,6 @@ describe('index.html — verification meta tags', () => {
   it('includes a google-site-verification meta tag (Search Console)', () => {
     expect(indexHtml).toMatch(/<meta\s+name="google-site-verification"\s+content="[^"]+"/);
   });
-
-  it('declares the RSS feed via rel="alternate"', () => {
-    expect(indexHtml).toMatch(
-      /<link\s+rel="alternate"\s+type="application\/rss\+xml"[^>]*href="\/feed\.xml"/,
-    );
-  });
 });
 
 describe('index.html — Google Consent Mode v2', () => {

@@ -10,8 +10,6 @@ import { getActiveProductId } from './platform/registry';
 import { useSeo } from './platform/useSeo';
 import { getSeoForRoute } from './platform/seoConfig';
 
-import { TutorialLanding } from './tutorials/TutorialLanding';
-import { TutorialLayout } from './tutorials/TutorialLayout';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsOfServicePage } from './pages/TermsOfServicePage';
 import { CookiePolicyPage } from './pages/CookiePolicyPage';
@@ -25,12 +23,10 @@ const STATIC_ROUTES = new Set<string>([
   '/', '/products', '/platform', '/about',
   '/privacy-policy', '/terms-of-service', '/cookie-policy',
   '/disclaimer', '/contact', '/faq',
-  '/tutorials',
 ]);
 
 function isKnownRoute(route: string): boolean {
   if (STATIC_ROUTES.has(route)) return true;
-  if (route.startsWith('/tutorials/')) return true;
   if (route.startsWith('/product/')) {
     const id = route.slice('/product/'.length).split('/')[0];
     return !!id && !!getProduct(id);
@@ -121,7 +117,7 @@ export function App() {
     ? getSeoForRoute(route)
     : {
         title: 'Page not found — Tekivex',
-        description: 'The page you are looking for does not exist on tekivex.com. Browse our products, tutorials, or contact us.',
+        description: 'The page you are looking for does not exist on tekivex.com. Browse our products or contact us.',
         canonical: 'https://tekivex.com' + route,
         noindex: true,
         jsonLd: null,
@@ -132,13 +128,6 @@ export function App() {
 
   if (!isKnown) {
     page = <NotFoundPage />;
-  } else if (route === '/tutorials') {
-    page = <TutorialLanding />;
-  } else if (route.startsWith('/tutorials/')) {
-    const parts = route.slice('/tutorials/'.length).split('/');
-    const categoryId = parts[0];
-    const topicSlug = parts[1] ?? null;
-    page = <TutorialLayout categoryId={categoryId} topicSlug={topicSlug} />;
   } else if (route.startsWith('/product/')) {
     const productId = route.slice('/product/'.length).split('/')[0];
     page = <ProductHomePage productId={productId ?? ''} />;

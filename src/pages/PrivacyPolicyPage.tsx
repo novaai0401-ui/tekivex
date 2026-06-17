@@ -129,7 +129,7 @@ export function PrivacyPolicyPage() {
           tekivex.com displays advertisements served by{' '}
           <strong style={{ color: '#f1f5f9' }}>Google AdSense</strong> (publisher ID{' '}
           <code style={{ background: 'rgba(15,23,42,0.8)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ca-pub-4630229006617891</code>)
-          to help keep our tutorials free. AdSense is loaded only after you click <strong style={{ color: '#f1f5f9' }}>Accept all</strong> on the consent banner described in section 1.2.
+          to help keep this site free. AdSense is loaded only after you click <strong style={{ color: '#f1f5f9' }}>Accept all</strong> on the consent banner described in section 1.2.
         </p>
         <p style={prose}>
           Once loaded, Google and its partners may use cookies — including the DART cookie — to serve ads based on your visit to this site and other sites on the Internet. The DART cookie enables Google to show personalised ads. You can opt out of the DART cookie and personalised advertising at any time by visiting{' '}

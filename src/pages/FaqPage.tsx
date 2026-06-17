@@ -16,7 +16,7 @@ const FAQS: QA[] = [
   },
   {
     q: 'How does Tekivex make money if the products are free?',
-    a: 'The marketing site shows Google AdSense advertisements alongside our free tutorials. We may also offer optional paid support and hosted services in the future. Open-source code stays MIT licensed.',
+    a: 'The marketing site shows Google AdSense advertisements. We may also offer optional paid support and hosted services in the future. Open-source code stays MIT licensed.',
   },
   {
     q: 'Which frameworks do the products support?',
@@ -39,16 +39,8 @@ const FAQS: QA[] = [
     a: 'Yes. Click "Reject non-essential" on the consent banner (or "Reopen cookie banner" on the cookie policy page) and we will not load the AdSense script at all. You can also use a content blocker.',
   },
   {
-    q: 'Where can I find the tutorials?',
-    a: 'Visit /tutorials. We currently publish in-depth guides on system design, software architecture, frontend and backend patterns, and AI/ML. New topics are added regularly.',
-  },
-  {
-    q: 'Can I contribute a tutorial?',
-    a: 'We welcome pull requests. Open an issue first describing the topic so we can confirm fit, then submit a draft as Markdown. We will edit for style consistency before publishing.',
-  },
-  {
     q: 'How often is the site updated?',
-    a: 'Tutorials are added weekly. Product manifests, sitemap, and prerendered SEO are regenerated on every deploy.',
+    a: 'Product manifests, sitemap, and prerendered SEO are regenerated on every deploy.',
   },
   {
     q: 'Is Tekivex hiring?',

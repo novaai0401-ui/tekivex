@@ -32,7 +32,6 @@ export function NotFoundPage() {
       }}>
         <Link to="/" style={primaryBtn}>Home</Link>
         <Link to="/products" style={ghostBtn}>Products</Link>
-        <Link to="/tutorials" style={ghostBtn}>Tutorials</Link>
         <Link to="/contact" style={ghostBtn}>Contact</Link>
       </div>
     </main>

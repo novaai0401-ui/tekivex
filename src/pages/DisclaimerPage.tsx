@@ -14,13 +14,13 @@ export function DisclaimerPage() {
         </p>
       }
     >
-      <LegalSection title="1. Tutorials are educational">
+      <LegalSection title="1. Documentation is informational">
         <p style={legalProse}>
-          Our tutorials on system design, software architecture, frontend and
-          backend patterns, and AI/ML are intended for learning. They reflect the
-          state of the art at the time of writing and may not match the latest API
-          changes, security advisories, or vendor recommendations. Always verify
-          against authoritative sources before applying them in production.
+          Product documentation, guides, and code samples published on tekivex.com
+          are intended for general information. They reflect the state of the
+          software at the time of writing and may not match the latest API changes,
+          security advisories, or vendor recommendations. Always verify against the
+          authoritative source for each product before relying on it in production.
         </p>
       </LegalSection>
 
@@ -52,7 +52,7 @@ export function DisclaimerPage() {
 
       <LegalSection title="5. Affiliate and sponsored content">
         <p style={legalProse}>
-          We display Google AdSense advertisements to support free tutorials. We do
+          We display Google AdSense advertisements to support this free site. We do
           not endorse any specific advertiser. If we add affiliate or sponsored
           posts in the future, they will be clearly labelled.
         </p>

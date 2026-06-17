@@ -50,10 +50,10 @@ describe('CookiePolicyPage', () => {
 });
 
 describe('DisclaimerPage', () => {
-  it('renders the heading and mentions tutorials', () => {
+  it('renders the heading and the informational-content section', () => {
     render(<DisclaimerPage />);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Disclaimer');
-    expect(screen.getByText(/Tutorials are educational/i)).toBeInTheDocument();
+    expect(screen.getByText(/Documentation is informational/i)).toBeInTheDocument();
   });
 });
 
