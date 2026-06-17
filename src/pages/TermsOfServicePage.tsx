@@ -10,7 +10,7 @@ export function TermsOfServicePage() {
         <p style={{ ...legalProse, margin: 0 }}>
           These Terms of Service ("Terms") govern your access to and use of
           <strong style={{ color: '#f1f5f9' }}> tekivex.com</strong>, its subdomains, and any
-          open-source software, tutorials, and demos we publish (the "Services").
+          open-source software and demos we publish (the "Services").
           By using the Services you agree to these Terms.
         </p>
       }
@@ -26,7 +26,7 @@ export function TermsOfServicePage() {
         <ul>
           <li style={legalLi}>Use the Services for any unlawful purpose or to violate any applicable law.</li>
           <li style={legalLi}>Attempt to disrupt, overload, or reverse-engineer the running Services in a way that goes beyond what the open-source licence permits.</li>
-          <li style={legalLi}>Scrape, harvest, or republish our tutorial content in bulk without attribution and a link back.</li>
+          <li style={legalLi}>Scrape, harvest, or republish our content in bulk without attribution and a link back.</li>
           <li style={legalLi}>Misrepresent your affiliation with Tekivex.</li>
         </ul>
       </LegalSection>

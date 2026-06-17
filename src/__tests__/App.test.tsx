@@ -104,4 +104,27 @@ describe('App', () => {
     });
     expect(screen.getAllByText(/GridStorm/i).length).toBeGreaterThan(0);
   });
+
+  // ── Tutorials fully removed (visitor's view) ───────────────────────────────
+
+  it('exposes no /tutorials link anywhere in the rendered app (home)', () => {
+    window.history.pushState(null, '', '/');
+    const { container } = render(<App />);
+    const tutorialLinks = Array.from(container.querySelectorAll('a')).filter((a) =>
+      (a.getAttribute('href') || '').startsWith('/tutorials'),
+    );
+    expect(tutorialLinks).toHaveLength(0);
+  });
+
+  it('renders no "Tutorials" nav/footer label anywhere on the home page', () => {
+    window.history.pushState(null, '', '/');
+    render(<App />);
+    expect(screen.queryByText(/^Tutorials$/)).not.toBeInTheDocument();
+  });
+
+  it('shows the 404 page when a visitor opens an old tutorial URL', () => {
+    window.history.pushState(null, '', '/tutorials/ai-ml/neural-network-basics');
+    render(<App />);
+    expect(screen.getByTestId('notfound-page')).toBeInTheDocument();
+  });
 });
