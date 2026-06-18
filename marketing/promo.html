@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tekivex — Launch Promo (screen-record this)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0b1020;
+    --ink: #f8fafc;
+    --muted: #94a3b8;
+    --gs: #3b82f6;   /* GridStorm */
+    --py: #ef4444;   /* Pyntra */
+    --as: #06b6d4;   /* Analytics Studio */
+    --qv: #8b5cf6;   /* Quantum Vault */
+    --df: #22c55e;   /* DataFlow */
+    --ui: #f97316;   /* Tekivex UI */
+    --stage: 1080px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: #05070f;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  /* ── Recording stage: fixed 1080×1080, scaled to fit the viewport ── */
+  #scaler { display: flex; align-items: center; justify-content: center; }
+  #stage {
+    position: relative;
+    width: var(--stage); height: var(--stage);
+    background:
+      radial-gradient(120% 120% at 50% -10%, rgba(59,130,246,0.18), transparent 55%),
+      radial-gradient(80% 80% at 110% 110%, rgba(139,92,246,0.16), transparent 60%),
+      var(--bg);
+    overflow: hidden;
+    border-radius: 0;
+    transform-origin: center center;
+  }
+  body.fit-1to1 #stage { box-shadow: none; }
+
+  /* faint dot grid background */
+  #stage::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: radial-gradient(100% 100% at 50% 50%, #000 30%, transparent 80%);
+  }
+
+  /* ── Scenes ── */
+  .scene {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 96px;
+    opacity: 0; visibility: hidden;
+    transition: opacity .5s ease;
+    text-align: center;
+  }
+  .scene.active { opacity: 1; visibility: visible; }
+
+  .eyebrow {
+    font-size: 22px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 28px; opacity: 0;
+  }
+  .scene.active .eyebrow { animation: rise .7s .1s ease forwards; }
+
+  .headline { font-size: 88px; font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; }
+  .headline .grad {
+    background: linear-gradient(100deg, var(--gs), #60a5fa 40%, var(--qv));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .subline { font-size: 34px; font-weight: 600; color: var(--muted); margin-top: 28px; }
+
+  .scene.active .anim-up { animation: rise .8s .15s ease forwards; }
+  .scene.active .anim-up-2 { animation: rise .8s .35s ease forwards; }
+  .scene.active .anim-up-3 { animation: rise .8s .55s ease forwards; }
+  .anim-up, .anim-up-2, .anim-up-3 { opacity: 0; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+  @keyframes pop { from { opacity: 0; transform: scale(.7); } to { opacity: 1; transform: scale(1); } }
+
+  /* ── Brand lockup (scene 2) ── */
+  .brand-dots { display: flex; gap: 18px; margin-bottom: 40px; }
+  .brand-dots span { width: 34px; height: 34px; border-radius: 10px; opacity: 0; }
+  .scene.active .brand-dots span { animation: pop .5s ease forwards; }
+  .scene.active .brand-dots span:nth-child(1){ animation-delay:.1s } .brand-dots span:nth-child(1){ background: var(--gs) }
+  .scene.active .brand-dots span:nth-child(2){ animation-delay:.2s } .brand-dots span:nth-child(2){ background: var(--py) }
+  .scene.active .brand-dots span:nth-child(3){ animation-delay:.3s } .brand-dots span:nth-child(3){ background: var(--as) }
+  .scene.active .brand-dots span:nth-child(4){ animation-delay:.4s } .brand-dots span:nth-child(4){ background: var(--qv) }
+  .scene.active .brand-dots span:nth-child(5){ animation-delay:.5s } .brand-dots span:nth-child(5){ background: var(--df) }
+  .scene.active .brand-dots span:nth-child(6){ animation-delay:.6s } .brand-dots span:nth-child(6){ background: var(--ui) }
+  .wordmark { font-size: 120px; font-weight: 900; letter-spacing: -0.04em; }
+  .pill-row { display: flex; gap: 16px; margin-top: 36px; }
+  .pill {
+    font-size: 26px; font-weight: 700; padding: 12px 26px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.16); color: var(--ink);
+    background: rgba(255,255,255,.05);
+  }
+  .pill.free { background: rgba(34,197,94,.16); border-color: rgba(34,197,94,.5); color: #86efac; }
+
+  /* ── Product scene scaffolding ── */
+  .product { width: 100%; max-width: 860px; }
+  .product-tag {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 26px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+    padding: 10px 22px; border-radius: 999px; margin-bottom: 26px;
+  }
+  .product-tag .swatch { width: 18px; height: 18px; border-radius: 5px; }
+  .product-name { font-size: 76px; font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; }
+  .product-stat { font-size: 30px; font-weight: 600; color: var(--muted); margin-top: 18px; }
+
+  /* device mock */
+  .mock {
+    margin-top: 44px; width: 100%; height: 360px; border-radius: 22px;
+    background: #0f1730; border: 1px solid rgba(255,255,255,.1);
+    box-shadow: 0 40px 80px rgba(0,0,0,.5); overflow: hidden; position: relative;
+  }
+
+  /* GridStorm grid */
+  .grid-clip { position: absolute; inset: 0; overflow: hidden; }
+  .grid-head { display: grid; grid-template-columns: repeat(5,1fr); background: #16203f; height: 52px; }
+  .grid-head div { display: flex; align-items: center; padding: 0 18px; font-size: 18px; font-weight: 700; color: #cbd5e1; border-right: 1px solid rgba(255,255,255,.06); }
+  .grid-scroll { position: absolute; top: 52px; left: 0; right: 0; }
+  .scene.active .grid-scroll { animation: gridscroll 6s linear infinite; }
+  @keyframes gridscroll { from { transform: translateY(0);} to { transform: translateY(-440px);} }
+  .grow { display: grid; grid-template-columns: repeat(5,1fr); height: 44px; border-bottom: 1px solid rgba(255,255,255,.05); }
+  .grow div { display: flex; align-items: center; padding: 0 18px; font-size: 17px; color: #94a3b8; font-variant-numeric: tabular-nums; }
+  .cell-flash { animation: flash 1.6s ease-in-out infinite; color: #86efac !important; }
+  @keyframes flash { 0%,100%{ background: transparent;} 30%{ background: rgba(34,197,94,.22);} }
+
+  /* Pyntra doc */
+  .pdf { position: absolute; inset: 28px; background: #f8fafc; border-radius: 10px; padding: 28px; }
+  .pdf .ln { height: 14px; border-radius: 4px; background: #e2e8f0; margin-bottom: 14px; }
+  .pdf .ln.s { width: 60%; }
+  .pdf .field { height: 40px; border: 2px solid var(--py); border-radius: 6px; margin: 18px 0; position: relative; overflow: hidden; }
+  .pdf .field::after { content:""; position:absolute; left:0; top:0; bottom:0; width:0; background: rgba(239,68,68,.14); }
+  .scene.active .pdf .field::after { animation: fill 1.2s .4s ease forwards; }
+  @keyframes fill { to { width: 100%; } }
+  .sig { position: absolute; right: 40px; bottom: 40px; width: 220px; height: 90px; }
+  .sig path { stroke: #1e293b; stroke-width: 4; fill: none; stroke-linecap: round; stroke-dasharray: 600; stroke-dashoffset: 600; }
+  .scene.active .sig path { animation: draw 1.6s .6s ease forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .lock { position: absolute; left: 40px; bottom: 40px; font-size: 24px; font-weight: 800; color: #16a34a; opacity: 0; display: flex; align-items: center; gap: 8px; }
+  .scene.active .lock { animation: pop .5s 1.6s ease forwards; }
+
+  /* Trio (Analytics / DataFlow / Quantum) */
+  .trio { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; width: 100%; max-width: 920px; margin-top: 36px; }
+  .tcard { background: #0f1730; border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 30px; height: 320px; display: flex; flex-direction: column; }
+  .tcard h4 { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+  .tcard p { font-size: 18px; color: var(--muted); }
+  .bars { margin-top: auto; display: flex; gap: 12px; align-items: flex-end; height: 130px; }
+  .bars i { flex: 1; border-radius: 6px 6px 0 0; height: 8px; background: var(--as); }
+  .scene.active .bars i { animation: barGrow 1s ease forwards; }
+  .bars i:nth-child(1){ animation-delay:.1s } .bars i:nth-child(2){ animation-delay:.2s }
+  .bars i:nth-child(3){ animation-delay:.3s } .bars i:nth-child(4){ animation-delay:.4s }
+  .bars i:nth-child(5){ animation-delay:.5s }
+  @keyframes barGrow { from { height: 8px; } to { height: var(--h); } }
+  .ticker { margin-top: auto; font-size: 64px; font-weight: 900; color: var(--df); font-variant-numeric: tabular-nums; }
+  .spark { margin-top: 10px; height: 8px; }
+  .shieldwrap { margin-top: auto; display: flex; justify-content: center; }
+  .shieldwrap svg { width: 130px; height: 130px; }
+  .scene.active .shieldwrap svg { animation: pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{ filter: drop-shadow(0 0 0 rgba(139,92,246,0)); transform: scale(1);} 50%{ filter: drop-shadow(0 0 26px rgba(139,92,246,.7)); transform: scale(1.05);} }
+
+  /* Tekivex UI scene */
+  .ui-stage { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 820px; margin-top: 40px; }
+  .ui-el { opacity: 0; }
+  .scene.active .ui-el { animation: pop .5s ease forwards; }
+  .scene.active .ui-el:nth-child(1){animation-delay:.1s}.scene.active .ui-el:nth-child(2){animation-delay:.2s}
+  .scene.active .ui-el:nth-child(3){animation-delay:.3s}.scene.active .ui-el:nth-child(4){animation-delay:.4s}
+  .scene.active .ui-el:nth-child(5){animation-delay:.5s}.scene.active .ui-el:nth-child(6){animation-delay:.6s}
+  .ui-btn { padding: 18px 34px; border-radius: 12px; font-size: 24px; font-weight: 700; }
+  .ui-btn.p { background: var(--ui); color: #1a1205; }
+  .ui-btn.g { background: transparent; border: 1px solid rgba(255,255,255,.2); color: var(--ink); }
+  .ui-input { padding: 18px 22px; border-radius: 12px; background: #0f1730; border: 1px solid rgba(255,255,255,.15); color: var(--muted); font-size: 22px; width: 320px; text-align: left; }
+  .ui-toggle { width: 92px; height: 48px; border-radius: 999px; background: var(--ui); position: relative; }
+  .ui-toggle::after { content:""; position:absolute; top:6px; left:6px; width:36px; height:36px; border-radius:50%; background:#fff; }
+  .ui-chip { padding: 14px 24px; border-radius: 999px; background: rgba(249,115,22,.16); border: 1px solid rgba(249,115,22,.5); color: #fdba74; font-size: 22px; font-weight: 700; }
+
+  /* Use cases grid */
+  .uc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; width: 100%; max-width: 900px; margin-top: 40px; }
+  .uc-c { background: #0f1730; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; padding: 22px; text-align: left; opacity: 0; min-height: 120px; }
+  .scene.active .uc-c { animation: rise .5s ease forwards; }
+  .uc-c .k { font-size: 14px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--gs); }
+  .uc-c .t { font-size: 19px; font-weight: 700; margin-top: 8px; line-height: 1.3; }
+  .scene.active .uc-c:nth-child(1){animation-delay:.05s}.scene.active .uc-c:nth-child(2){animation-delay:.12s}
+  .scene.active .uc-c:nth-child(3){animation-delay:.19s}.scene.active .uc-c:nth-child(4){animation-delay:.26s}
+  .scene.active .uc-c:nth-child(5){animation-delay:.33s}.scene.active .uc-c:nth-child(6){animation-delay:.40s}
+
+  /* CTA scene */
+  .cta-free { font-size: 96px; font-weight: 900; letter-spacing: -0.03em; }
+  .cta-sub { font-size: 34px; color: var(--muted); margin-top: 18px; }
+  .terminal {
+    margin: 44px auto 0; background: #0a0f1f; border: 1px solid rgba(255,255,255,.12);
+    border-radius: 14px; padding: 24px 28px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 28px; color: #86efac; width: 620px; text-align: left;
+  }
+  .terminal .prompt { color: var(--muted); }
+  .caret { display: inline-block; width: 14px; height: 30px; background: #86efac; margin-left: 4px; vertical-align: -4px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .url { font-size: 56px; font-weight: 900; margin-top: 40px; }
+  .url .grad { background: linear-gradient(100deg, var(--gs), var(--qv)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* progress bar */
+  #bar { position: absolute; left: 0; bottom: 0; height: 6px; width: 0; background: linear-gradient(90deg, var(--gs), var(--qv)); }
+
+  /* watermark */
+  .wm { position: absolute; top: 40px; left: 48px; display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 28px; opacity: .9; }
+  .wm .logo { width: 30px; height: 30px; border-radius: 8px; background: linear-gradient(135deg, var(--gs), var(--qv)); }
+
+  /* ── Controls (outside the stage — not part of the recording) ── */
+  #controls {
+    margin-top: 18px; display: flex; gap: 12px; align-items: center;
+    font-family: 'Inter', system-ui, sans-serif; color: #cbd5e1; font-size: 14px;
+  }
+  #controls button {
+    background: #1e293b; color: #f8fafc; border: 1px solid #334155;
+    padding: 9px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px;
+  }
+  #controls button:hover { background: #334155; }
+  #controls .hint { color: #64748b; }
+  body.recording #controls { display: none; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body>
+  <div id="scaler">
+    <div id="stage">
+      <div class="wm"><span class="logo"></span> Tekivex</div>
+
+      <!-- Scene 1 — Hook -->
+      <section class="scene" data-scene="1">
+        <div class="eyebrow">Open source · MIT licensed</div>
+        <h1 class="headline anim-up">Enterprise developer tools,<br><span class="grad">open and free.</span></h1>
+        <p class="subline anim-up-2">No paywalls. No per-seat fees. Free forever.</p>
+      </section>
+
+      <!-- Scene 2 — Brand -->
+      <section class="scene" data-scene="2">
+        <div class="brand-dots"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="wordmark anim-up">Tekivex</div>
+        <div class="pill-row">
+          <span class="pill anim-up-2">6 products</span>
+          <span class="pill anim-up-2">MIT licensed</span>
+          <span class="pill free anim-up-3">Free forever</span>
+        </div>
+      </section>
+
+      <!-- Scene 3 — GridStorm -->
+      <section class="scene" data-scene="3">
+        <div class="product">
+          <span class="product-tag anim-up" style="background:rgba(59,130,246,.16);color:#93c5fd"><span class="swatch" style="background:var(--gs)"></span>GridStorm</span>
+          <div class="product-name anim-up">The data grid that flies</div>
+          <div class="product-stat anim-up-2">100K+ rows @ 60fps · 42 Excel formulas · &lt;50KB core</div>
+          <div class="mock anim-up-2">
+            <div class="grid-clip">
+              <div class="grid-head"><div>Symbol</div><div>Price</div><div>Change</div><div>Volume</div><div>Status</div></div>
+              <div class="grid-scroll" id="gridScroll"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scene 4 — Pyntra -->
+      <section class="scene" data-scene="4">
+        <div class="product">
+          <span class="product-tag anim-up" style="background:rgba(239,68,68,.16);color:#fca5a5"><span class="swatch" style="background:var(--py)"></span>Pyntra</span>
+          <div class="product-name anim-up">Edit &amp; sign PDFs in the browser</div>
+          <div class="product-stat anim-up-2">Form-fill · annotate · AES-256 · zero server, zero upload</div>
+          <div class="mock anim-up-2">
+            <div class="pdf">
+              <div class="ln"></div><div class="ln s"></div>
+              <div class="field"></div>
+              <div class="ln"></div><div class="ln s"></div>
+              <div class="lock">🔒 Encrypted (AES-256)</div>
+              <svg class="sig" viewBox="0 0 220 90"><path d="M10 60 C 40 10, 60 80, 90 40 S 150 10, 180 50 C 195 65, 205 35, 215 45"/></svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scene 5 — Trio -->
+      <section class="scene" data-scene="5">
+        <h2 class="headline anim-up" style="font-size:64px">One stack. <span class="grad">All open source.</span></h2>
+        <div class="trio">
+          <div class="tcard anim-up-2">
+            <h4 style="color:var(--as)">Analytics Studio</h4>
+            <p>26+ charts · in-browser SQL</p>
+            <div class="bars"><i style="--h:60%"></i><i style="--h:90%"></i><i style="--h:45%"></i><i style="--h:75%"></i><i style="--h:100%"></i></div>
+          </div>
+          <div class="tcard anim-up-2">
+            <h4 style="color:var(--df)">DataFlow</h4>
+            <p>real-time streaming</p>
+            <div class="ticker" id="ticker">0</div>
+            <svg class="spark" viewBox="0 0 200 20" preserveAspectRatio="none"><polyline fill="none" stroke="var(--df)" stroke-width="3" points="0,15 25,8 50,12 75,4 100,14 125,6 150,11 175,3 200,9"/></svg>
+          </div>
+          <div class="tcard anim-up-2">
+            <h4 style="color:var(--qv)">Quantum Vault</h4>
+            <p>post-quantum tokens</p>
+            <div class="shieldwrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--qv)" stroke-width="1.6"><path d="M12 2 L20 5 V11 C20 16 16.5 20.5 12 22 C7.5 20.5 4 16 4 11 V5 Z"/><path d="M9 12 l2 2 l4 -4"/></svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scene 6 — Tekivex UI -->
+      <section class="scene" data-scene="6">
+        <span class="product-tag anim-up" style="background:rgba(249,115,22,.16);color:#fdba74"><span class="swatch" style="background:var(--ui)"></span>Tekivex UI</span>
+        <div class="product-name anim-up">50+ accessible components</div>
+        <div class="product-stat anim-up-2">React · Vue · Svelte · WCAG 2.1 AA · tree-shakeable</div>
+        <div class="ui-stage">
+          <button class="ui-el ui-btn p">Get started</button>
+          <button class="ui-el ui-btn g">Docs</button>
+          <div class="ui-el ui-input">Search components…</div>
+          <div class="ui-el ui-toggle"></div>
+          <span class="ui-el ui-chip">Accessible</span>
+          <span class="ui-el ui-chip">Themeable</span>
+        </div>
+      </section>
+
+      <!-- Scene 7 — Use cases -->
+      <section class="scene" data-scene="7">
+        <div class="eyebrow">New</div>
+        <h2 class="headline anim-up" style="font-size:62px">27 engineering <span class="grad">deep-dives</span></h2>
+        <p class="subline anim-up-2" style="margin-top:18px">Architecture, migrations &amp; comparisons — by the team that builds the tools.</p>
+        <div class="uc-grid">
+          <div class="uc-c"><div class="k">Architecture</div><div class="t">How GridStorm renders 100K rows at 60fps</div></div>
+          <div class="uc-c"><div class="k">Comparison</div><div class="t">Pyntra vs PDF.js vs Puppeteer</div></div>
+          <div class="uc-c"><div class="k">Explainer</div><div class="t">Post-quantum tokens, explained</div></div>
+          <div class="uc-c"><div class="k">Use case</div><div class="t">Real-time streaming in React with DataFlow</div></div>
+          <div class="uc-c"><div class="k">Comparison</div><div class="t">Tekivex UI vs MUI vs Chakra</div></div>
+          <div class="uc-c"><div class="k">Use case</div><div class="t">Drag-and-drop dashboards with Analytics Studio</div></div>
+        </div>
+      </section>
+
+      <!-- Scene 8 — CTA -->
+      <section class="scene" data-scene="8">
+        <div class="cta-free anim-up">Free forever. <span class="grad" style="background:linear-gradient(100deg,var(--df),#86efac);-webkit-background-clip:text;background-clip:text;color:transparent">No paywalls.</span></div>
+        <div class="cta-sub anim-up-2">Open-source enterprise developer tools.</div>
+        <div class="terminal anim-up-2"><span class="prompt">$</span> npm i @tekivex/gridstorm<span class="caret"></span></div>
+        <div class="url anim-up-3"><span class="grad">tekivex.com</span></div>
+      </section>
+
+      <div id="bar"></div>
+    </div>
+  </div>
+
+  <div id="controls">
+    <button id="replay">▶ Replay</button>
+    <button id="rec">● Recording mode (hide controls)</button>
+    <button id="scale">⤢ Toggle 1:1 / fit</button>
+    <span class="hint">50s · 1080×1080 · record the dark square. Tip: browser zoom + window-capture, or use a screen recorder cropped to the square.</span>
+  </div>
+
+<script>
+  // ── Build the GridStorm rows ──
+  (function () {
+    const syms = ['AAPL','MSFT','NVDA','TSLA','AMZN','META','GOOGL','AMD','NFLX','INTC','BABA','ORCL','CRM','UBER','SHOP'];
+    const scroll = document.getElementById('gridScroll');
+    let html = '';
+    for (let i = 0; i < 24; i++) {
+      const s = syms[i % syms.length];
+      const price = (50 + Math.random() * 400).toFixed(2);
+      const chg = (Math.random() * 6 - 3).toFixed(2);
+      const vol = (Math.random() * 9 + 1).toFixed(1) + 'M';
+      const up = parseFloat(chg) >= 0;
+      const flash = i % 5 === 0 ? ' cell-flash' : '';
+      html += '<div class="grow">'
+        + '<div>' + s + '</div>'
+        + '<div>$' + price + '</div>'
+        + '<div class="' + (up ? '' : '') + '"' + (up ? ' style="color:#86efac"' : ' style="color:#fca5a5"') + '>' + (up ? '+' : '') + chg + '%</div>'
+        + '<div>' + vol + '</div>'
+        + '<div class="' + flash.trim() + '">' + (up ? '▲' : '▼') + '</div>'
+        + '</div>';
+    }
+    scroll.innerHTML = html;
+  })();
+
+  // ── Scene timeline (ms) ──
+  const STAGE_END = 50000;
+  const timeline = [
+    { s: 1, at: 0 },
+    { s: 2, at: 4000 },
+    { s: 3, at: 8000 },
+    { s: 4, at: 16000 },
+    { s: 5, at: 23000 },
+    { s: 6, at: 30000 },
+    { s: 7, at: 36000 },
+    { s: 8, at: 43000 },
+  ];
+  const scenes = [...document.querySelectorAll('.scene')];
+  const bar = document.getElementById('bar');
+  let timers = [];
+  let rafId = null;
+  let startTs = 0;
+
+  function clearAll() {
+    timers.forEach(clearTimeout); timers = [];
+    if (rafId) cancelAnimationFrame(rafId);
+    scenes.forEach(s => s.classList.remove('active'));
+  }
+
+  function setScene(n) {
+    scenes.forEach(s => s.classList.toggle('active', +s.dataset.scene === n));
+    if (n === 5) runTicker();
+  }
+
+  let tickerRaf = null;
+  function runTicker() {
+    const el = document.getElementById('ticker');
+    if (!el) return;
+    cancelAnimationFrame(tickerRaf);
+    const t0 = performance.now();
+    (function step(now){
+      const k = Math.min((now - t0) / 1500, 1);
+      const base = Math.floor(1240 + k * 8600);
+      const jitter = Math.floor(Math.random() * 40);
+      el.textContent = (base + jitter).toLocaleString();
+      if (k < 1 || true) tickerRaf = requestAnimationFrame(step);
+    })(t0);
+  }
+
+  function progress() {
+    const elapsed = performance.now() - startTs;
+    bar.style.width = Math.min(elapsed / STAGE_END * 100, 100) + '%';
+    if (elapsed < STAGE_END) rafId = requestAnimationFrame(progress);
+  }
+
+  function play() {
+    clearAll();
+    startTs = performance.now();
+    timeline.forEach(({ s, at }) => timers.push(setTimeout(() => setScene(s), at)));
+    setScene(1);
+    rafId = requestAnimationFrame(progress);
+  }
+
+  document.getElementById('replay').addEventListener('click', play);
+  document.getElementById('rec').addEventListener('click', () => document.body.classList.toggle('recording'));
+
+  // ── Scale stage to fit viewport (recording uses crisp 1:1 when toggled) ──
+  let fit = true;
+  function rescale() {
+    const stage = document.getElementById('stage');
+    if (!fit) { stage.style.transform = 'scale(1)'; return; }
+    const pad = 120;
+    const k = Math.min((window.innerWidth - 40) / 1080, (window.innerHeight - pad) / 1080, 1);
+    stage.style.transform = 'scale(' + k + ')';
+  }
+  document.getElementById('scale').addEventListener('click', () => { fit = !fit; rescale(); });
+  window.addEventListener('resize', rescale);
+
+  rescale();
+  play();
+</script>
+</body>
+</html>
