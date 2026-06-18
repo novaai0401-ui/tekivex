@@ -263,6 +263,26 @@ export function PlatformPage() {
         ))}
       </div>
 
+      {/* ── Showcase (animated promo) ── */}
+      <section className="tx-section" id="tx-showcase">
+        <div className="tx-section-label">Watch</div>
+        <h2 className="tx-section-title">
+          The platform <span className="tx-gradient-text">in motion</span>
+        </h2>
+        <p className="tx-section-sub">
+          A 30-second tour of the Tekivex suite — GridStorm, Pyntra, Analytics Studio,
+          DataFlow, Quantum Vault, and Tekivex UI. Open source and free forever.
+        </p>
+        <div className="tx-showcase-frame">
+          <iframe
+            src="/promo.html"
+            title="Tekivex platform — animated product showcase"
+            loading="lazy"
+            aria-label="Animated showcase of the Tekivex product suite"
+          />
+        </div>
+      </section>
+
       {/* ── Live Products ── */}
       <section className="tx-section" id="tx-products">
         <div className="tx-section-label">Products</div>

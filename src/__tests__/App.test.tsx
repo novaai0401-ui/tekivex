@@ -127,4 +127,12 @@ describe('App', () => {
     render(<App />);
     expect(screen.getByTestId('notfound-page')).toBeInTheDocument();
   });
+
+  it('embeds the animated promo showcase on the landing page', () => {
+    window.history.pushState(null, '', '/');
+    const { container } = render(<App />);
+    const iframe = container.querySelector('iframe[src="/promo.html"]');
+    expect(iframe).not.toBeNull();
+    expect(iframe?.getAttribute('title') || '').toMatch(/showcase/i);
+  });
 });

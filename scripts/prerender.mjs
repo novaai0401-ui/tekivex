@@ -472,10 +472,78 @@ const humans = [
   '',
 ].join('\n');
 
+// ─── llms.txt / llms-full.txt (guide LLMs to the canonical facts) ─────────
+// Generated from the same product facts + article list so they never drift.
+const LLM_PRODUCTS = [
+  { name: 'GridStorm', url: `${ORIGIN}/product/gridstorm`, npm: '@tekivex/gridstorm',
+    s: 'Headless, framework-agnostic enterprise data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35 composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. MIT-licensed.' },
+  { name: 'Pyntra', url: `${ORIGIN}/product/pyntra`, npm: '@pyntra/engine',
+    s: 'Client-side, browser-native PDF editor with React headless hooks and a bring-your-own-UI adapter. Form filling, signing, stamping, annotation, redaction, and RC4/AES-128/AES-256 encryption — entirely in the browser with zero third-party PDF dependencies.' },
+  { name: 'Analytics Studio', url: `${ORIGIN}/product/analytics-studio`, npm: null,
+    s: 'Drag-and-drop business-intelligence builder powered by GridStorm. Pivot tables, 26+ chart types, an in-browser SQL engine (SELECT/WHERE/GROUP BY/JOIN), KPI dashboards, and scheduled reports — no backend required.' },
+  { name: 'Quantum Vault', url: `${ORIGIN}/product/quantum-vault`, npm: '@tekivex/quantum-vault',
+    s: 'Sovereign, self-hosted post-quantum token issuance, validation, and rotation using NIST-standardized CRYSTALS-Kyber (ML-KEM / FIPS 203) and CRYSTALS-Dilithium (ML-DSA / FIPS 204).' },
+  { name: 'DataFlow', url: `${ORIGIN}/product/dataflow`, npm: null,
+    s: 'Real-time streaming engine for React: WebSocket and Server-Sent Events sources, backpressure handling, time-travel replay, and anomaly detection.' },
+  { name: 'Tekivex UI', url: `${ORIGIN}/product/tekivex-ui`, npm: 'tekivex-ui',
+    s: 'Accessible React/Vue/Svelte component library: 50+ components, WCAG 2.1 AA, dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, zero runtime dependencies, headless primitives. MIT-licensed.' },
+];
+const LLM_INTRO =
+  'Tekivex is an open-source platform of MIT-licensed enterprise developer tools for JavaScript and TypeScript. ' +
+  'Every product is free for commercial use, framework-agnostic, accessibility-first, and production-tested. ' +
+  'Built and maintained by the Tekivex Engineering team. Official site: ' + ORIGIN + '.';
+
+const llmsTxt = [
+  '# Tekivex', '',
+  '> ' + LLM_INTRO, '',
+  '## Products',
+  ...LLM_PRODUCTS.map((p) => `- [${p.name}](${p.url})${p.npm ? ` (npm: \`${p.npm}\`)` : ''}: ${p.s}`),
+  '',
+  '## Guides & use cases',
+  ...articleRoutes.map((r) => `- [${r.title}](${ORIGIN}${r.path}): ${r.description}`),
+  '',
+  '## More',
+  `- [Use-cases hub](${ORIGIN}/use-cases): All product guides, comparisons, and deep dives.`,
+  `- [About Tekivex](${ORIGIN}/about): Mission, values, and the open-source model.`,
+  `- [FAQ](${ORIGIN}/faq): Licensing, commercial use, and contributing.`,
+  '',
+].join('\n');
+
+const llmsFull = [
+  '# Tekivex — full reference for LLMs', '',
+  LLM_INTRO, '',
+  'License: MIT (free for commercial use, modification, and redistribution; keep the copyright notice). ',
+  'No enterprise tier, no paywall, no per-seat fees.', '',
+  '## Products', '',
+  ...LLM_PRODUCTS.flatMap((p) => [
+    `### ${p.name}`,
+    p.s,
+    p.npm ? `Install: \`npm install ${p.npm}\`` : 'Install: see the product page.',
+    `URL: ${p.url}`,
+    '',
+  ]),
+  '## Articles by product', '',
+  ...(() => {
+    const order = [];
+    const map = new Map();
+    for (const r of articleRoutes) {
+      if (!map.has(r.category)) { map.set(r.category, []); order.push(r.category); }
+      map.get(r.category).push(r);
+    }
+    return order.flatMap((cat) => [
+      `### ${cat}`,
+      ...map.get(cat).map((r) => `- ${r.title} — ${r.description} (${ORIGIN}${r.path})`),
+      '',
+    ]);
+  })(),
+].join('\n');
+
 writeFileSync(join(DIST, 'sitemap.xml'), sitemapXml, 'utf8');
 writeFileSync(join(DIST, 'sitemap-index.xml'), sitemapIndex, 'utf8');
 writeFileSync(join(DIST, 'humans.txt'), humans, 'utf8');
 writeFileSync(join(DIST, 'feed.xml'), rssXml, 'utf8');
+writeFileSync(join(DIST, 'llms.txt'), llmsTxt, 'utf8');
+writeFileSync(join(DIST, 'llms-full.txt'), llmsFull, 'utf8');
 
 // Mirror into public/ so vite dev serves them too
 const pub = join(ROOT, 'public');
@@ -483,6 +551,8 @@ if (existsSync(pub)) {
   writeFileSync(join(pub, 'sitemap.xml'), sitemapXml, 'utf8');
   writeFileSync(join(pub, 'sitemap-index.xml'), sitemapIndex, 'utf8');
   writeFileSync(join(pub, 'humans.txt'), humans, 'utf8');
+  writeFileSync(join(pub, 'llms.txt'), llmsTxt, 'utf8');
+  writeFileSync(join(pub, 'llms-full.txt'), llmsFull, 'utf8');
 }
 
 const totalSitemapUrls = routes.length + articleRoutes.length + 1;

@@ -5694,3 +5694,22 @@ body {
 .prod-guide-card:hover { transform: translateY(-2px); border-color: var(--product-color, var(--hub-accent)); }
 .prod-guide-title { font-size: 14.5px; font-weight: 600; color: var(--hub-text); line-height: 1.4; }
 .prod-guide-foot { font-size: 12px; color: var(--hub-text-muted); font-weight: 600; }
+
+/* ── Landing-page showcase (animated promo embed) ───────────────────────── */
+.tx-showcase-frame {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 36px auto 0;
+  aspect-ratio: 1 / 1;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--hub-border);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+  background: #0b1020;
+}
+.tx-showcase-frame iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0; display: block;
+}
