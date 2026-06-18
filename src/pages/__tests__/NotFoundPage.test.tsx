@@ -19,7 +19,6 @@ describe('NotFoundPage', () => {
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/couldn't find/i);
     expect(screen.getByRole('link', { name: /^Home$/ })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: /^Products$/ })).toHaveAttribute('href', '/products');
-    expect(screen.getByRole('link', { name: /^Tutorials$/ })).toHaveAttribute('href', '/tutorials');
     expect(screen.getByRole('link', { name: /^Contact$/ })).toHaveAttribute('href', '/contact');
   });
 
@@ -37,6 +36,18 @@ describe('NotFoundPage', () => {
     expect(screen.queryByTestId('notfound-page')).not.toBeInTheDocument();
     const robots = document.head.querySelector('meta[name="robots"]');
     expect(robots?.getAttribute('content')).toContain('index, follow');
+  });
+
+  it('App 404s on the removed /tutorials route', () => {
+    pushRoute('/tutorials');
+    render(<App />);
+    expect(screen.getByTestId('notfound-page')).toBeInTheDocument();
+  });
+
+  it('App 404s on a former tutorial topic route', () => {
+    pushRoute('/tutorials/system-design/cap-theorem');
+    render(<App />);
+    expect(screen.getByTestId('notfound-page')).toBeInTheDocument();
   });
 
   it('App 404s on a product id that does not exist', () => {

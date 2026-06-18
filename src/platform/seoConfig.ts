@@ -1,7 +1,7 @@
 // ─── SEO Config — per-route metadata map ─────────────────────────────────
 import { type SeoConfig, seoFromManifest } from './useSeo';
 import { getProduct } from './registry';
-import { isThinTopic } from '../tutorials/thinTopics';
+import { getArticle, getAllArticles } from '../content/registry';
 
 const BASE_URL = 'https://tekivex.com';
 
@@ -74,14 +74,6 @@ const HOME_SEO: SeoConfig = {
       description:
         'Open-source enterprise developer tools — GridStorm data grid, Analytics Studio, DataFlow streaming, Quantum Vault.',
       publisher: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: {
-          '@type': 'EntryPoint',
-          urlTemplate: `${BASE_URL}/tutorials?q={search_term_string}`,
-        },
-        'query-input': 'required name=search_term_string',
-      },
     },
   ],
 };
@@ -236,7 +228,7 @@ const COOKIE_SEO = makeBasicSeo(
 const DISCLAIMER_SEO = makeBasicSeo(
   '/disclaimer',
   'Disclaimer — Tekivex',
-  'Tekivex tutorials are educational; this page sets out the limits of warranty and the meaning of beta / preview product status.',
+  'This page sets out the limits of warranty for tekivex.com and the meaning of beta / preview product status.',
 );
 
 const CONTACT_SEO = makeBasicSeo(
@@ -249,14 +241,14 @@ const FAQ_SEO: SeoConfig = {
   ...makeBasicSeo(
     '/faq',
     'FAQ — Tekivex',
-    'Answers to common questions about Tekivex products, licensing, demos, advertising, and contributing tutorials.',
+    'Answers to common questions about Tekivex products, licensing, demos, and advertising.',
   ),
   jsonLd: {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: 'FAQ — Tekivex',
     url: `${BASE_URL}/faq`,
-    description: 'Frequently asked questions about Tekivex products and tutorials.',
+    description: 'Frequently asked questions about Tekivex products.',
   },
 };
 
@@ -273,76 +265,84 @@ export function getSeoForRoute(route: string): SeoConfig {
   if (route === '/contact') return CONTACT_SEO;
   if (route === '/faq') return FAQ_SEO;
 
-  // ── Tutorials ──
-  if (route === '/tutorials') {
+  // ── Use-Cases content hub ──
+  if (route === '/use-cases') {
+    const count = getAllArticles().length;
     return {
-      title: 'Tutorials — System Design, Architecture, AI/ML & Design Patterns | Tekivex',
-      description: '70 in-depth tutorials covering system design, software architecture, frontend & backend design patterns, and AI/ML from neural networks to LLM agents. Free, with flow diagrams and code examples.',
-      keywords: ['system design tutorial', 'software architecture guide', 'design patterns explained', 'AI machine learning tutorial', 'frontend patterns', 'backend patterns', 'clean architecture', 'microservices tutorial', 'neural network explained', 'LLM agents tutorial', 'MCP protocol', 'LangChain guide', 'SOLID principles', 'React patterns', 'Node.js patterns'],
-      canonical: `${BASE_URL}/tutorials`,
-      ogTitle: 'Tutorials — System Design, Architecture, AI/ML & Design Patterns',
-      ogDescription: '70 in-depth tutorials with flow diagrams, code examples, and visual explanations. From system design fundamentals to AI agent architectures.',
+      title: 'Use Cases — Product Guides, Comparisons & Deep Dives | Tekivex',
+      description: `${count} in-depth articles on the Tekivex product suite — GridStorm, Pyntra, Analytics Studio, DataFlow, Quantum Vault, and Tekivex UI. Architecture deep dives, migration guides, and real-world use cases.`,
+      keywords: ['Tekivex use cases', 'GridStorm guide', 'Pyntra guide', 'Analytics Studio', 'Quantum Vault', 'DataFlow', 'Tekivex UI', 'react data grid guide', 'developer tools articles'],
+      canonical: `${BASE_URL}/use-cases`,
+      ogTitle: 'Use Cases — Tekivex Product Guides & Deep Dives',
+      ogDescription: `${count} in-depth articles on the Tekivex product suite, written by the Tekivex Engineering team.`,
       ogImage: `${BASE_URL}/og-tekivex.png`,
       ogType: 'website',
-      twitterTitle: 'Tutorials — System Design, Architecture & AI/ML | Tekivex',
-      twitterDescription: '70 free tutorials: system design, architecture patterns, frontend/backend, and AI/ML. Visual diagrams + code examples.',
+      twitterTitle: 'Use Cases — Tekivex Product Guides & Deep Dives',
+      twitterDescription: `${count} in-depth articles on the Tekivex product suite.`,
       twitterImage: `${BASE_URL}/og-tekivex.png`,
       jsonLd: {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
-        name: 'Tekivex Tutorials',
-        description: '70 in-depth tutorials on system design, software architecture, design patterns, and AI/ML.',
-        url: `${BASE_URL}/tutorials`,
+        name: 'Tekivex Use Cases',
+        description: 'In-depth product guides, comparisons, and deep dives on the Tekivex developer-tools suite.',
+        url: `${BASE_URL}/use-cases`,
         publisher: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
       },
     };
   }
 
-  if (route.startsWith('/tutorials/')) {
-    const parts = route.slice('/tutorials/'.length).split('/');
-    const categoryId = parts[0];
-    const topicSlug = parts[1];
-    const thin = isThinTopic(route);
-    const catTitles: Record<string, string> = {
-      'system-design': 'System Design', 'software-architecture': 'Software Architecture',
-      'frontend-patterns': 'Frontend Patterns', 'backend-patterns': 'Backend Patterns', 'ai-ml': 'AI & Machine Learning',
-    };
-    const catTitle = catTitles[categoryId] || categoryId;
-    const title = topicSlug
-      ? `${topicSlug.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ')} — ${catTitle} Tutorial | Tekivex`
-      : `${catTitle} Tutorials | Tekivex`;
-    return {
-      title,
-      description: `Learn ${catTitle.toLowerCase()} with in-depth tutorials, flow diagrams, and code examples. Part of 70 free tutorials on Tekivex.`,
-      keywords: [catTitle.toLowerCase(), 'tutorial', 'guide', 'explained', 'Tekivex', 'design patterns', 'architecture'],
-      canonical: `${BASE_URL}${route}`,
-      noindex: thin,
-      ogTitle: title,
-      ogDescription: `Learn ${catTitle.toLowerCase()} with visual diagrams and code examples — free on Tekivex.`,
-      ogImage: `${BASE_URL}/og-tekivex.png`,
-      ogType: 'article',
-      twitterTitle: title,
-      twitterDescription: `${catTitle} tutorial with flow diagrams and code examples — free on Tekivex.`,
-      twitterImage: `${BASE_URL}/og-tekivex.png`,
-      jsonLd: [
-        {
-          '@context': 'https://schema.org', '@type': 'Article',
-          headline: title,
-          author: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
-          publisher: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
-          url: `${BASE_URL}${route}`,
-        },
-        {
-          '@context': 'https://schema.org', '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
-            { '@type': 'ListItem', position: 2, name: 'Tutorials', item: `${BASE_URL}/tutorials` },
-            { '@type': 'ListItem', position: 3, name: catTitle, item: `${BASE_URL}/tutorials/${categoryId}` },
-            ...(topicSlug ? [{ '@type': 'ListItem', position: 4, name: topicSlug.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' '), item: `${BASE_URL}${route}` }] : []),
-          ],
-        },
-      ] as any,
-    };
+  if (route.startsWith('/use-cases/')) {
+    const slug = route.slice('/use-cases/'.length).split('/')[0];
+    const article = slug ? getArticle(slug) : undefined;
+    if (article) {
+      const title = `${article.title} | Tekivex`;
+      const url = `${BASE_URL}${route}`;
+      return {
+        title,
+        description: article.description,
+        keywords: article.keywords,
+        canonical: url,
+        ogTitle: article.title,
+        ogDescription: article.description,
+        ogImage: `${BASE_URL}/og-tekivex.png`,
+        ogType: 'article',
+        twitterTitle: article.title,
+        twitterDescription: article.description,
+        twitterImage: `${BASE_URL}/og-tekivex.png`,
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'TechArticle',
+            headline: article.title,
+            description: article.description,
+            url,
+            author: { '@type': 'Organization', name: article.author, url: BASE_URL },
+            publisher: {
+              '@type': 'Organization',
+              name: 'Tekivex',
+              url: BASE_URL,
+              logo: { '@type': 'ImageObject', url: `${BASE_URL}/logo.svg` },
+            },
+            datePublished: article.datePublished,
+            dateModified: article.dateModified,
+            image: `${BASE_URL}/og-tekivex.png`,
+            inLanguage: 'en',
+            keywords: article.keywords.join(', '),
+            about: { '@type': 'SoftwareApplication', name: article.productName, applicationCategory: 'DeveloperApplication' },
+            isPartOf: { '@type': 'CollectionPage', name: 'Tekivex Use Cases', url: `${BASE_URL}/use-cases` },
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+              { '@type': 'ListItem', position: 2, name: 'Use Cases', item: `${BASE_URL}/use-cases` },
+              { '@type': 'ListItem', position: 3, name: article.title, item: url },
+            ],
+          },
+        ] as any,
+      };
+    }
   }
 
   if (route.startsWith('/product/')) {

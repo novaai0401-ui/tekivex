@@ -7,7 +7,7 @@ describe('initPageviewTracking', () => {
 
   beforeEach(() => {
     gtagSpy = vi.fn();
-    window.gtag = gtagSpy;
+    window.gtag = gtagSpy as unknown as typeof window.gtag;
     window.history.replaceState(null, '', '/');
     teardown = initPageviewTracking();
   });
@@ -24,9 +24,9 @@ describe('initPageviewTracking', () => {
   });
 
   it('sends a page_view on popstate (back/forward)', () => {
-    window.history.pushState(null, '', '/tutorials');
+    window.history.pushState(null, '', '/products');
     window.dispatchEvent(new Event('popstate'));
-    expect(gtagSpy).toHaveBeenCalledWith('event', 'page_view', { page_path: '/tutorials' });
+    expect(gtagSpy).toHaveBeenCalledWith('event', 'page_view', { page_path: '/products' });
   });
 
   it('uses the current pathname, not a hash fragment', () => {
@@ -39,9 +39,9 @@ describe('initPageviewTracking', () => {
   });
 
   it('includes the search string when present', () => {
-    window.history.pushState(null, '', '/tutorials?utm=x');
+    window.history.pushState(null, '', '/products?utm=x');
     window.dispatchEvent(new Event('tekivex:navigate'));
-    expect(gtagSpy).toHaveBeenLastCalledWith('event', 'page_view', { page_path: '/tutorials?utm=x' });
+    expect(gtagSpy).toHaveBeenLastCalledWith('event', 'page_view', { page_path: '/products?utm=x' });
   });
 
   it('is a no-op when gtag is not loaded', () => {

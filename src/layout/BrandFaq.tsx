@@ -37,7 +37,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'Where can I see Tekivex products in action?',
     answer:
-      'GridStorm has live demos at gridstorm.tekivex.com (financial trading, analytics explorer, feature showcase, spreadsheet, cookbook). The TekiVex UI component library has an interactive playground at ui.tekivex.com/playground and an engineering blog with deep-dives at ui.tekivex.com/blog. Each product page on tekivex.com links directly to its live demo and source repository.',
+      'GridStorm has live demos at gridstorm.tekivex.com (financial trading, analytics explorer, feature showcase, spreadsheet, cookbook). The TekiVex UI component library has an interactive playground at ui.tekivex.com/playground. Each product page on tekivex.com links directly to its live demo and source repository.',
   },
   {
     question: 'How do I report bugs or contribute to Tekivex?',

@@ -1,8 +1,9 @@
 import React from 'react';
 import { usePlatform } from '../platform/PlatformProvider';
 import { Icon } from '../icons/Icon';
-import { navigate } from '../App';
+import { Link, navigate } from '../App';
 import { AdSlot } from '../ads/AdSlot';
+import { getArticlesForProductId } from '../content/registry';
 import type { ProductManifest, ProductStatus } from '../platform/types';
 
 const STATUS_CONFIG: Record<ProductStatus, { label: string; color: string; bg: string }> = {
@@ -16,6 +17,7 @@ const STATUS_CONFIG: Record<ProductStatus, { label: string; color: string; bg: s
 
 function GenericProductHome({ product }: { product: ProductManifest }) {
   const status = STATUS_CONFIG[product.status];
+  const guides = getArticlesForProductId(product.id).filter((a) => a.productName === product.name);
 
   return (
     <div className="prod-home">
@@ -113,6 +115,26 @@ function GenericProductHome({ product }: { product: ProductManifest }) {
           </div>
         )}
       </div>
+
+      {/* In-depth guides — internal links to the use-cases hub */}
+      {guides.length > 0 && (
+        <section className="prod-guides">
+          <h3 className="prod-card-title">In-depth guides &amp; deep dives</h3>
+          <p className="prod-guides-sub">
+            Engineering articles on {product.name} — architecture, use cases, and comparisons,
+            written by the Tekivex Engineering team.
+          </p>
+          <div className="prod-guides-grid">
+            {guides.map((g) => (
+              <Link key={g.slug} to={`/use-cases/${g.slug}`} className="prod-guide-card">
+                <span className="uc-kind-pill uc-kind-pill--sm">{g.kind}</span>
+                <span className="prod-guide-title">{g.title}</span>
+                <span className="prod-guide-foot">{g.readingMinutes} min read →</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Tags */}
       <div className="plat-tags" style={{ marginTop: 32 }}>

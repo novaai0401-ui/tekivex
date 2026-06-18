@@ -59,6 +59,16 @@ describe('TopNav', () => {
     expect(link?.className).not.toContain('active');
   });
 
+  // ── Tutorials removed ────────────────────────────────────────────────────────
+
+  it('does not render a Tutorials nav link', () => {
+    renderTopNav('/');
+    expect(screen.queryByText('Tutorials')).not.toBeInTheDocument();
+    expect(
+      screen.queryAllByRole('link').some((l) => l.getAttribute('href') === '/tutorials'),
+    ).toBe(false);
+  });
+
   // ── Product switcher ───────────────────────────────────────────────────────
 
   it('renders the Products switcher button', () => {

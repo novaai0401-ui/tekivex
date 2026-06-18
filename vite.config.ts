@@ -4,9 +4,6 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   base: '/',
-  esbuild: {
-    sourcemap: false,
-  },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
