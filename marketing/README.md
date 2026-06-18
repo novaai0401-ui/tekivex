@@ -4,7 +4,25 @@ Promotional assets for the Tekivex platform. **Not part of the app build** —
 `vite build` only includes the root `index.html` + `src/`, so nothing here ships
 to production or affects tests.
 
-## 🎬 `promo.html` — animated launch promo (screen-record this)
+## 📥 Ready-to-post files (download these)
+
+- **`tekivex-promo.mp4`** — 31s · 1080×1080 · H.264/yuv420p · ~1.8 MB. **Post this directly to X/Twitter** (native upload). Twitter does NOT accept SVG; MP4 is the right format.
+- **`tekivex-promo-poster.png`** — 1080×1080 still (the end card) for a static image post or thumbnail.
+
+### Regenerate the MP4
+The renderer is headless (no browser). It uses two prebuilt packages installed
+*without* touching `package.json`:
+
+```bash
+npm install --no-save @resvg/resvg-js ffmpeg-static
+node marketing/build-video.mjs
+```
+
+`build-video.mjs` draws every frame as SVG, rasterizes with resvg, and encodes
+with a bundled static ffmpeg. Edit scene timings/colors at the top of that file.
+Twitter accepts MP4/MOV and GIF/PNG/JPG — not SVG.
+
+## 🎬 `promo.html` — animated launch promo (for showing in the UI / screen-record)
 
 A self-contained, dependency-free animated promo. **50 seconds, 1080×1080**
 (square — best for X/Twitter and Instagram autoplay). Message: open source &
