@@ -17,7 +17,7 @@ describe('ConsentProvider — Google Consent Mode v2 signals', () => {
   beforeEach(() => {
     localStorage.clear();
     gtag = vi.fn();
-    (window as Window & { gtag?: unknown }).gtag = gtag;
+    (window as unknown as { gtag?: unknown }).gtag = gtag;
   });
   afterEach(() => {
     delete (window as Window & { gtag?: unknown }).gtag;

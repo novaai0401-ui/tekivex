@@ -11,7 +11,12 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['src/**/*.{ts,tsx}'],
-      exclude: ['src/main.tsx', 'src/**/*.d.ts'],
+      // src/ai-support/** is the WebGPU / @mlc-ai/web-llm in-browser chat: it is
+      // externalized from the build (see vite.config.ts rollupOptions.external)
+      // and cannot run in jsdom, so it is not unit-tested. Vitest 4's coverage-v8
+      // now counts never-imported files (vitest 2 did not), so excluding it keeps
+      // the coverage metric scoped to testable code, as it was before the upgrade.
+      exclude: ['src/main.tsx', 'src/**/*.d.ts', 'src/ai-support/**'],
       thresholds: {
         lines: 65,
         functions: 60,

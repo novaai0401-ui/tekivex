@@ -7,7 +7,7 @@ describe('initPageviewTracking', () => {
 
   beforeEach(() => {
     gtagSpy = vi.fn();
-    window.gtag = gtagSpy;
+    window.gtag = gtagSpy as unknown as typeof window.gtag;
     window.history.replaceState(null, '', '/');
     teardown = initPageviewTracking();
   });
