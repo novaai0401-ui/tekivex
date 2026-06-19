@@ -30,15 +30,98 @@ if (!existsSync(join(DIST, 'index.html'))) {
 
 const baseHtml = readFileSync(join(DIST, 'index.html'), 'utf8');
 
+// ─── Shared tmp dir for compiling TS modules we read at build time ───────────
+const TMP_DIR = join(DIST, '.prerender-tmp');
+if (!existsSync(TMP_DIR)) mkdirSync(TMP_DIR, { recursive: true });
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// ─── Load the real product manifests (single source of truth) ───────────────
+// We bundle the platform registry with esbuild so the prerendered HTML carries
+// the exact same product copy — descriptions, stats, capabilities, tags — that
+// the React app renders. This keeps crawlers (and the AdSense reviewer) from
+// seeing a near-empty shell.
+async function loadProducts() {
+  const entry = join(ROOT, 'src', 'platform', 'registry.ts');
+  const outPath = join(TMP_DIR, 'registry.platform.mjs');
+  esbuild.buildSync({
+    entryPoints: [entry],
+    bundle: true,
+    format: 'esm',
+    platform: 'node',
+    target: 'esnext',
+    outfile: outPath,
+    logLevel: 'silent',
+  });
+  const mod = await import(pathToFileURL(outPath).href);
+  return mod.getAllProducts();
+}
+
+const PRODUCTS = await loadProducts();
+
+const STATUS_LABEL = {
+  ga: 'Generally Available',
+  beta: 'Beta',
+  preview: 'Preview',
+  'coming-soon': 'Coming Soon',
+};
+
+// Full, crawlable detail block for a single product page.
+function productDetailBlock(p) {
+  const stats = (p.stats || [])
+    .map(
+      (s) =>
+        `<div style="flex:1;min-width:120px;text-align:center;padding:16px;background:#f8fafc;border:1px solid #e6e8ef;border-radius:10px"><div style="font-size:1.6rem;font-weight:800;color:#0a0f1f">${escapeHtml(s.value)}</div><div style="font-size:13px;color:#64748b">${escapeHtml(s.label)}</div></div>`,
+    )
+    .join('');
+  const features = (p.keyFeatures || [])
+    .map((f) => `<li style="margin-bottom:8px">${escapeHtml(f)}</li>`)
+    .join('');
+  const links = (p.quickLinks || [])
+    .map(
+      (l) =>
+        `<li style="margin-bottom:6px"><a href="${escapeHtml(l.path)}" style="color:#3a86ff;text-decoration:none"${l.external ? ' rel="noopener noreferrer"' : ''}>${escapeHtml(l.label)}</a></li>`,
+    )
+    .join('');
+  const tags = (p.tags || [])
+    .map(
+      (t) =>
+        `<span style="display:inline-block;font-size:12px;color:#475569;background:#eef2f7;border:1px solid #e6e8ef;border-radius:999px;padding:4px 12px;margin:0 6px 6px 0">${escapeHtml(t)}</span>`,
+    )
+    .join('');
+  return `
+      <p style="font-size:13px;color:#64748b;margin:0 0 6px"><strong>${escapeHtml(STATUS_LABEL[p.status] || p.status)}</strong> · v${escapeHtml(p.version)} · MIT licensed</p>
+      <p style="font-size:18px;line-height:1.6;color:#3a3a52;margin:0 0 16px">${escapeHtml(p.tagline)}</p>
+      <p style="font-size:16px;line-height:1.78;color:#1f2937;margin:0 0 28px">${escapeHtml(p.description)}</p>
+      ${stats ? `<div style="display:flex;flex-wrap:wrap;gap:12px;margin:0 0 32px">${stats}</div>` : ''}
+      <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:0 0 12px">Key capabilities</h2>
+      <ul style="margin:0 0 32px;padding-left:20px;color:#1f2937;line-height:1.7">${features}</ul>
+      ${links ? `<h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:0 0 12px">Resources &amp; quick links</h2><ul style="margin:0 0 32px;padding-left:20px">${links}</ul>` : ''}
+      ${tags ? `<div style="margin:0 0 8px">${tags}</div>` : ''}`;
+}
+
+// Compact, crawlable card for catalogue/home pages.
+function productCardBlock(p) {
+  const features = (p.keyFeatures || [])
+    .slice(0, 4)
+    .map((f) => `<li style="margin-bottom:4px">${escapeHtml(f)}</li>`)
+    .join('');
+  return `
+      <section style="border:1px solid #e6e8ef;border-radius:12px;padding:24px;margin:0 0 20px">
+        <h2 style="font-size:1.4rem;font-weight:800;color:#0a0f1f;margin:0 0 4px"><a href="${escapeHtml(p.homePath)}" style="color:#0a0f1f;text-decoration:none">${escapeHtml(p.name)}</a> <span style="font-size:12px;font-weight:600;color:#64748b">${escapeHtml(STATUS_LABEL[p.status] || p.status)}</span></h2>
+        <p style="font-size:15px;color:#475569;margin:0 0 8px">${escapeHtml(p.tagline)}</p>
+        <p style="font-size:15px;line-height:1.7;color:#1f2937;margin:0 0 12px">${escapeHtml(p.description)}</p>
+        <ul style="margin:0 0 12px;padding-left:20px;color:#334155;line-height:1.6;font-size:14px">${features}</ul>
+        <a href="${escapeHtml(p.homePath)}" style="color:#3a86ff;text-decoration:none;font-weight:600">Explore ${escapeHtml(p.name)} →</a>
+      </section>`;
+}
+
+const productCatalogBlock = PRODUCTS.map(productCardBlock).join('');
+
 // ─── Routes ────────────────────────────────────────────────────────────────
-const products = [
-  { id: 'gridstorm',        name: 'GridStorm',        tagline: 'High-performance React data grid with 35+ plugins. MIT-licensed, free forever.' },
-  { id: 'pyntra',           name: 'Pyntra',           tagline: 'Client-side PDF editor with React headless hooks — form filling, annotation, signing, AES-256.' },
-  { id: 'analytics-studio', name: 'Analytics Studio', tagline: 'Drag-and-drop business intelligence with 26+ chart types and live data binding.' },
-  { id: 'quantum-vault',    name: 'Quantum Vault',    tagline: 'Sovereign post-quantum tokens — CRYSTALS-Kyber + Dilithium, NIST-standardised.' },
-  { id: 'dataflow',         name: 'DataFlow',         tagline: 'Real-time streaming engine for React with backpressure and replay.' },
-  { id: 'tekivex-ui',       name: 'TekiVex UI',       tagline: 'Open-source React component library — 113 production-grade components, WCAG 2.1 AAA.' },
-];
+const products = PRODUCTS.map((p) => ({ id: p.id, name: p.name, tagline: p.tagline, manifest: p }));
 
 const routes = [
   {
@@ -49,6 +132,7 @@ const routes = [
     h1: 'Tekivex — open-source enterprise developer tools',
     body:
       'Tekivex groups several React-focused open-source products under one roof: GridStorm, Analytics Studio, DataFlow, Quantum Vault, and TekiVex UI. Every package is MIT-licensed, fully typed in TypeScript, and free for commercial use.',
+    contentHtml: `<h2 style="font-size:1.5rem;font-weight:800;color:#0a0f1f;margin:32px 0 16px">The Tekivex product suite</h2>${productCatalogBlock}`,
   },
   {
     path: '/products',
@@ -58,6 +142,7 @@ const routes = [
     h1: 'Tekivex products',
     body:
       'A unified catalog of every Tekivex product — data grid, charts, streaming, PDF, components. All open source under the MIT license, all production-tested.',
+    contentHtml: productCatalogBlock,
   },
   {
     path: '/about',
@@ -133,16 +218,13 @@ const routes = [
   },
   ...products.map((p) => ({
     path: `/product/${p.id}`,
-    title: `${p.name} — Tekivex`,
-    description: p.tagline,
+    title: p.manifest.seo?.title || `${p.name} — Tekivex`,
+    description: p.manifest.seo?.description || p.tagline,
     h1: p.name,
     body: p.tagline,
+    contentHtml: productDetailBlock(p.manifest),
   })),
 ];
-
-function escapeHtml(s) {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
 
 function makeHtml(route) {
   let html = baseHtml;
@@ -195,7 +277,8 @@ function makeHtml(route) {
       <nav aria-label="Breadcrumb" style="font-size:13px;color:#64748b;margin-bottom:24px"><a href="/" style="color:#3a86ff;text-decoration:none">Tekivex</a></nav>
       <h1 style="font-size:2.4rem;font-weight:800;letter-spacing:-0.025em;color:#0a0f1f;margin:0 0 12px;line-height:1.15">${escapeHtml(route.h1)}</h1>
       <p style="color:#3a3a52;font-size:18px;line-height:1.6;margin:0 0 24px">${escapeHtml(route.body)}</p>
-      <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px">Tekivex · open-source enterprise developer tools · MIT licensed · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://ui.tekivex.com" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
+      ${route.contentHtml || ''}
+      <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px;margin-top:32px">Tekivex · open-source enterprise developer tools · MIT licensed · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://ui.tekivex.com" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
     </main>`;
   html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${ssr}</div>`);
 
@@ -258,9 +341,6 @@ writeFileSync(join(DIST, '404.html'), notFoundHtml, 'utf8');
 // Compile the article registry (TS) so we read the same metadata the app uses,
 // then server-render each article's full markdown so crawlers and AI agents see
 // the real content without executing JavaScript.
-const TMP_DIR = join(DIST, '.prerender-tmp');
-if (!existsSync(TMP_DIR)) mkdirSync(TMP_DIR, { recursive: true });
-
 async function loadArticles() {
   const srcPath = join(ROOT, 'src', 'content', 'registry.ts');
   const src = readFileSync(srcPath, 'utf8');
