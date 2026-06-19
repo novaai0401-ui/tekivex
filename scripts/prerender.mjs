@@ -120,6 +120,26 @@ function productCardBlock(p) {
 
 const productCatalogBlock = PRODUCTS.map(productCardBlock).join('');
 
+// ─── Load articles early so the home page can lead with content ──────────────
+// (loadArticles is a hoisted function declaration defined further below.)
+const ARTICLES = await loadArticles();
+
+// A crawlable "Featured guides" block — original first-party editorial content
+// shown above the product catalog so the homepage reads as a content
+// destination, not a launcher.
+function featuredGuidesBlock(limit) {
+  const items = ARTICLES.slice(0, limit)
+    .map(
+      (a) =>
+        `<li style="margin-bottom:12px"><a href="/use-cases/${escapeHtml(a.slug)}" style="color:#3a86ff;text-decoration:none;font-weight:600">${escapeHtml(a.title)}</a> <span style="color:#94a3b8;font-size:13px">· ${escapeHtml(a.readingMinutes + ' min read')}</span><br><span style="color:#475569;font-size:14px">${escapeHtml(a.description)}</span></li>`,
+    )
+    .join('');
+  return `
+      <h2 style="font-size:1.5rem;font-weight:800;color:#0a0f1f;margin:32px 0 8px">Guides &amp; engineering deep dives</h2>
+      <p style="color:#475569;font-size:15px;margin:0 0 16px">${ARTICLES.length} in-depth, original articles by the Tekivex Engineering team — architecture, migration guides, and real-world use cases, free to read. <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Browse all guides →</a></p>
+      <ul style="margin:0 0 8px;padding-left:20px;list-style:disc">${items}</ul>`;
+}
+
 // ─── Routes ────────────────────────────────────────────────────────────────
 const products = PRODUCTS.map((p) => ({ id: p.id, name: p.name, tagline: p.tagline, manifest: p }));
 
@@ -132,7 +152,7 @@ const routes = [
     h1: 'Tekivex — open-source enterprise developer tools',
     body:
       'Tekivex groups several React-focused open-source products under one roof: GridStorm, Analytics Studio, DataFlow, Quantum Vault, and TekiVex UI. Every package is MIT-licensed, fully typed in TypeScript, and free for commercial use.',
-    contentHtml: `<h2 style="font-size:1.5rem;font-weight:800;color:#0a0f1f;margin:32px 0 16px">The Tekivex product suite</h2>${productCatalogBlock}`,
+    contentHtml: `${featuredGuidesBlock(8)}<h2 style="font-size:1.5rem;font-weight:800;color:#0a0f1f;margin:40px 0 16px">The Tekivex product suite</h2>${productCatalogBlock}`,
   },
   {
     path: '/products',
@@ -433,8 +453,7 @@ const CONTENT_DIR = join(ROOT, 'public', 'use-cases', 'content');
 const articleRoutes = [];
 let articleCount = 0;
 let articleSkipped = 0;
-const articles = await loadArticles();
-for (const article of articles) {
+for (const article of ARTICLES) {
   const mdPath = join(CONTENT_DIR, article.contentFile);
   if (!existsSync(mdPath)) {
     console.warn(`  ⚠ missing article markdown: ${article.contentFile}`);
