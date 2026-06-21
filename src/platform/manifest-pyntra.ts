@@ -13,7 +13,7 @@ export const pyntraManifest: ProductManifest = {
     'Fill and add form fields, sign and stamp, annotate, redact, and edit encrypted PDFs — ' +
     'all entirely in the browser with zero third-party PDF dependencies.',
   version: '1.0.0',
-  status: 'ga',
+  status: 'beta',
   tier: 'enterprise',
   color: '#ef4444',
   accentColor: 'rgba(239, 68, 68, 0.1)',

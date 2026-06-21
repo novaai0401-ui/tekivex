@@ -129,7 +129,7 @@ Report issues at **github.com/novaai0401-ui/tekivex-issue-report/issues**.`,
 - 📋 True Excel copy/paste with type coercion
 - 🎨 Framework-agnostic: React, Vue, Svelte, Angular
 - 📦 <50KB core bundle
-- 📝 1,899+ tests across 90 test suites
+- 📝 Comprehensive automated test suite
 - 🆓 MIT license — free forever
 
 **Compared to AG Grid Enterprise ($999/dev/yr):** GridStorm provides the same enterprise features for $0.`,

@@ -640,11 +640,11 @@ const humans = [
   '  DataFlow         — real-time streaming engine',
   '  Quantum Vault    — sovereign post-quantum tokens',
   '  Pyntra           — browser-native PDF editor with headless React hooks',
-  '  TekiVex UI       — React component library (113 components)',
+  '  TekiVex UI       — accessible React/Vue/Svelte component library',
   '',
   '/* SITE */',
   `  Last update: ${TODAY}`,
-  '  Standards: HTML5, CSS3, ES2022, WCAG 2.1 AAA',
+  '  Standards: HTML5, CSS3, ES2022, WCAG 2.1 AA',
   '  License: MIT',
   '',
 ].join('\n');
@@ -652,13 +652,13 @@ const humans = [
 // ─── llms.txt / llms-full.txt (guide LLMs to the canonical facts) ─────────
 // Generated from the same product facts + article list so they never drift.
 const LLM_PRODUCTS = [
-  { name: 'GridStorm', url: `${ORIGIN}/product/gridstorm`, npm: '@tekivex/gridstorm',
+  { name: 'GridStorm', url: `${ORIGIN}/product/gridstorm`, npm: null,
     s: 'Headless, framework-agnostic enterprise data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35 composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. MIT-licensed.' },
-  { name: 'Pyntra', url: `${ORIGIN}/product/pyntra`, npm: '@pyntra/engine',
+  { name: 'Pyntra', url: `${ORIGIN}/product/pyntra`, npm: null,
     s: 'Client-side, browser-native PDF editor with React headless hooks and a bring-your-own-UI adapter. Form filling, signing, stamping, annotation, redaction, and RC4/AES-128/AES-256 encryption — entirely in the browser with zero third-party PDF dependencies.' },
   { name: 'Analytics Studio', url: `${ORIGIN}/product/analytics-studio`, npm: null,
     s: 'Drag-and-drop business-intelligence builder powered by GridStorm. Pivot tables, 26+ chart types, an in-browser SQL engine (SELECT/WHERE/GROUP BY/JOIN), KPI dashboards, and scheduled reports — no backend required.' },
-  { name: 'Quantum Vault', url: `${ORIGIN}/product/quantum-vault`, npm: '@tekivex/quantum-vault',
+  { name: 'Quantum Vault', url: `${ORIGIN}/product/quantum-vault`, npm: null,
     s: 'Sovereign, self-hosted post-quantum token issuance, validation, and rotation using NIST-standardized CRYSTALS-Kyber (ML-KEM / FIPS 203) and CRYSTALS-Dilithium (ML-DSA / FIPS 204).' },
   { name: 'DataFlow', url: `${ORIGIN}/product/dataflow`, npm: null,
     s: 'Real-time streaming engine for React: WebSocket and Server-Sent Events sources, backpressure handling, time-travel replay, and anomaly detection.' },

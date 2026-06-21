@@ -17,12 +17,12 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'What does Tekivex offer for React developers?',
     answer:
-      'For React developers Tekivex publishes the tekivex-ui component library (113 production primitives, accessibility-first, WCAG 2.1 AAA), tekivex-3d (a WebGL 3D + 360° toolkit), tekivex-pdf (browser-native PDF generation without Puppeteer), and printable templates as tekivex-resume-templates and tekivex-biodata-templates. All packages are on npm and documented at ui.tekivex.com.',
+      'For React developers Tekivex publishes the tekivex-ui component library (accessibility-first, WCAG 2.1 AA), tekivex-3d (a WebGL 3D + 360° toolkit), and tekivex-pdf (browser-native PDF generation without Puppeteer) on npm, documented at ui.tekivex.com. Additional products are available as live, hosted demos linked from each product page.',
   },
   {
-    question: 'How do I install Tekivex products?',
+    question: 'How do I get started with Tekivex products?',
     answer:
-      'Pick a package and install from npm. For UI components: "npm install tekivex-ui". For 3D: "npm install tekivex-3d". For the GridStorm grid: "npm install @tekivex/gridstorm". For PDF editing: "npm install @pyntra/engine". For post-quantum tokens: "npm install @tekivex/quantum-vault". Every package ships with TypeScript declarations and tree-shaking support so the bundle scales with your imports — not the library size.',
+      'Tekivex UI is available on npm today ("npm install tekivex-ui"). The other products are available as live, hosted demos linked from each product page; visit a product page to open its demo and documentation. Everything is built TypeScript-first with tree-shaking support so your bundle scales with what you use.',
   },
   {
     question: 'Is Tekivex free for commercial use?',
@@ -32,7 +32,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'How is Tekivex different from AG Grid, Material UI, or Chakra?',
     answer:
-      'Three differences. First, Tekivex is a unified platform — one brand, one design language, one issue tracker for the data grid, the chart library, the streaming engine, the PDF renderer, and the component library. Second, every Tekivex product targets WCAG 2.1 AAA out of the box, not as a paid add-on. Third, the entire stack is MIT-licensed with no enterprise tier hidden behind a paywall — every feature is in the open-source build.',
+      'Three differences. First, Tekivex is a unified platform — one brand, one design language, one issue tracker for the data grid, the chart library, the streaming engine, the PDF renderer, and the component library. Second, every Tekivex product targets WCAG 2.1 AA out of the box, not as a paid add-on. Third, the entire stack is MIT-licensed with no enterprise tier hidden behind a paywall — every feature is in the open-source build.',
   },
   {
     question: 'Where can I see Tekivex products in action?',
@@ -147,9 +147,8 @@ export function BrandFaq() {
           <a href="https://ui.tekivex.com" target="_blank" rel="noopener noreferrer">
             ui.tekivex.com
           </a>{' '}
-          covering 113 accessible primitives, a 3D toolkit (<code>tekivex-3d</code>),
-          and printable templates (<code>tekivex-resume-templates</code> +{' '}
-          <code>tekivex-biodata-templates</code>). Every package is MIT-licensed,
+          covering an accessible component library, a 3D toolkit (<code>tekivex-3d</code>),
+          and browser-native PDF generation (<code>tekivex-pdf</code>). Every package is MIT-licensed,
           fully typed in TypeScript, and free for commercial use.
         </p>
       </div>

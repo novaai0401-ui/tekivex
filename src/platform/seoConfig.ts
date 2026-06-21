@@ -137,7 +137,7 @@ const ABOUT_SEO: SeoConfig = {
   description:
     'Tekivex is an independent developer tools company building open-source enterprise software — ' +
     'GridStorm data grid, Pyntra browser PDF editor, Analytics Studio, Quantum Vault, DataFlow streaming engine, and Tekivex UI component library. ' +
-    '6 products, 57 npm packages, 1,899+ tests. All MIT-licensed. Founded 2025.',
+    '6 products, all MIT-licensed and TypeScript-native. Founded 2025.',
   keywords: [
     'about Tekivex', 'Tekivex company', 'open-source developer tools company',
     'GridStorm team', 'enterprise software company', 'MIT licensed tools',
@@ -147,7 +147,7 @@ const ABOUT_SEO: SeoConfig = {
   canonical: `${BASE_URL}/about`,
   ogTitle: 'About Tekivex — Enterprise Software, Crafted with Skill',
   ogDescription:
-    '6 products, 57 packages, 1,899+ tests, MIT license. We build open-source enterprise developer tools. Founded 2025.',
+    '6 products, MIT-licensed. We build open-source enterprise developer tools. Founded 2025.',
   ogImage: `${BASE_URL}/og-tekivex.png`,
   ogType: 'website',
   twitterTitle: 'About Tekivex',

@@ -17,7 +17,7 @@ export const gridstormManifest: ProductManifest = {
     '42 Excel-compatible formula functions, Excel copy/paste, and a full plugin ' +
     'ecosystem. MIT-licensed. No per-dev license fees.',
   version: '0.1.3',
-  status: 'ga',
+  status: 'beta',
   tier: 'open-source',
   color: '#3b82f6',
   accentColor: 'rgba(59, 130, 246, 0.1)',
@@ -26,9 +26,9 @@ export const gridstormManifest: ProductManifest = {
   docsRoot: `${GRIDSTORM_URL}/#/docs`,
   primaryDemoPath: `${GRIDSTORM_URL}/feature-showcase/`,
   stats: [
-    { value: '57',     label: 'Packages' },
     { value: '35',     label: 'Plugins' },
     { value: '100K+',  label: 'Rows @ 60fps' },
+    { value: '42',     label: 'Excel functions' },
     { value: '<50KB',  label: 'Core bundle' },
   ],
   keyFeatures: [
@@ -37,7 +37,7 @@ export const gridstormManifest: ProductManifest = {
     '42 Excel-compatible formula functions',
     'Excel copy/paste with type coercion',
     'Headless + framework-agnostic (React, Vue, Svelte, Angular)',
-    '1,899+ tests across 90 test suites',
+    'Comprehensive automated test suite',
   ],
   quickLinks: [
     { label: 'Get Started',            path: `${GRIDSTORM_URL}/#/docs/getting-started/introduction`, external: true },

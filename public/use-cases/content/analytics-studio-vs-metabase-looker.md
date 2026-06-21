@@ -51,8 +51,8 @@ export function CustomerAnalytics() {
 For multi-tenant SaaS, this also sidesteps a hard problem: with a central BI service you must guarantee one tenant cannot see another's data through the shared connection. When each user's browser only ever holds their own data, that isolation is structural rather than something you configure and audit. Vue and Svelte adapters mean the same model applies regardless of framework.
 
 ```bash
-npm install @tekivex/analytics-studio
-# no database driver, no server config, no connection string
+# Add Analytics Studio to your app — no database driver, no server config,
+# no connection string
 ```
 
 ## Where Metabase and Looker are the better fit
