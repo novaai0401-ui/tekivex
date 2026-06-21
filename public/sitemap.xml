@@ -4,308 +4,308 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://tekivex.com/</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/"/>
   </url>
   <url>
     <loc>https://tekivex.com/products</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/products"/>
   </url>
   <url>
     <loc>https://tekivex.com/about</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/about"/>
   </url>
   <url>
     <loc>https://tekivex.com/privacy-policy</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/privacy-policy"/>
   </url>
   <url>
     <loc>https://tekivex.com/terms-of-service</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/terms-of-service"/>
   </url>
   <url>
     <loc>https://tekivex.com/cookie-policy</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/cookie-policy"/>
   </url>
   <url>
     <loc>https://tekivex.com/disclaimer</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/disclaimer"/>
   </url>
   <url>
     <loc>https://tekivex.com/contact</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/contact"/>
   </url>
   <url>
     <loc>https://tekivex.com/faq</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/faq"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/gridstorm</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/gridstorm"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/pyntra</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/pyntra"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/analytics-studio</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/analytics-studio"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/dataflow</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/dataflow"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/quantum-vault</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/quantum-vault"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/tekivex-ui</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/tekivex-ui"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/gridstorm-virtual-scrolling-60fps</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/gridstorm-virtual-scrolling-60fps"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/gridstorm-vs-ag-grid-migration</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/gridstorm-vs-ag-grid-migration"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/gridstorm-financial-trading-grid</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/gridstorm-financial-trading-grid"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/gridstorm-plugin-architecture</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/gridstorm-plugin-architecture"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/gridstorm-excel-formulas</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/gridstorm-excel-formulas"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/gridstorm-accessible-data-grid</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/gridstorm-accessible-data-grid"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/pyntra-client-side-pdf-editing</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/pyntra-client-side-pdf-editing"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/pyntra-fill-sign-pdf-browser</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/pyntra-fill-sign-pdf-browser"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/pyntra-vs-pdfjs-puppeteer</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/pyntra-vs-pdfjs-puppeteer"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/pyntra-headless-react-pdf-hooks</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/pyntra-headless-react-pdf-hooks"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/analytics-studio-drag-drop-dashboards</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/analytics-studio-drag-drop-dashboards"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/analytics-studio-in-browser-sql</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/analytics-studio-in-browser-sql"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/analytics-studio-chart-types-guide</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/analytics-studio-chart-types-guide"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/analytics-studio-vs-metabase-looker</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/analytics-studio-vs-metabase-looker"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/quantum-vault-post-quantum-tokens-explained</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/quantum-vault-post-quantum-tokens-explained"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/quantum-vault-migrate-pqc-token-issuance</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/quantum-vault-migrate-pqc-token-issuance"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/quantum-vault-sovereign-token-verification</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/quantum-vault-sovereign-token-verification"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/quantum-vault-why-nist-pqc-matters</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/quantum-vault-why-nist-pqc-matters"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/dataflow-realtime-streaming-react</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/dataflow-realtime-streaming-react"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/dataflow-backpressure-time-travel-replay</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/dataflow-backpressure-time-travel-replay"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/dataflow-anomaly-detection-streams</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/dataflow-anomaly-detection-streams"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/tekivex-ui-vs-mui-chakra</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/tekivex-ui-vs-mui-chakra"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/tekivex-ui-headless-design-system</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/tekivex-ui-headless-design-system"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/tekivex-ui-theming-css-variables</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/tekivex-ui-theming-css-variables"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/tekivex-ui-accessible-forms</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/tekivex-ui-accessible-forms"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/tekivex-stack-how-products-fit</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/tekivex-stack-how-products-fit"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/tekivex-mit-open-source-model</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/tekivex-mit-open-source-model"/>
   </url>
   <url>
     <loc>https://ui.tekivex.com/</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>

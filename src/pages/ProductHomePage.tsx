@@ -4,6 +4,7 @@ import { Icon } from '../icons/Icon';
 import { Link, navigate } from '../App';
 import { AdSlot } from '../ads/AdSlot';
 import { getArticlesForProductId } from '../content/registry';
+import { getEditorial } from '../platform/productEditorial';
 import type { ProductManifest, ProductStatus } from '../platform/types';
 
 const STATUS_CONFIG: Record<ProductStatus, { label: string; color: string; bg: string }> = {
@@ -12,6 +13,58 @@ const STATUS_CONFIG: Record<ProductStatus, { label: string; color: string; bg: s
   preview:      { label: 'Preview',             color: '#7c3aed', bg: 'rgba(124, 58, 237, 0.08)' },
   'coming-soon':{ label: 'Coming Soon',         color: '#64748b', bg: 'rgba(100, 116, 139, 0.08)' },
 };
+
+// ── Editorial explainer section ───────────────────────────────────
+// Long-form, original content rendered directly on the product page so the
+// page carries genuine value (and FAQ structured data) rather than only
+// linking out to an external demo.
+
+function ProductEditorialSection({ product }: { product: ProductManifest }) {
+  const editorial = getEditorial(product.id);
+  if (!editorial) return null;
+
+  return (
+    <section className="prod-editorial" aria-label={`About ${product.name}`}>
+      <h2 className="prod-card-title">What is {product.name}?</h2>
+      {editorial.overview.map((p, i) => (
+        <p key={i} className="prod-editorial-p">{p}</p>
+      ))}
+
+      <h3 className="prod-card-title">How it works</h3>
+      <ol className="prod-editorial-steps">
+        {editorial.howItWorks.map((s) => (
+          <li key={s.title} className="prod-editorial-step">
+            <strong>{s.title}.</strong> {s.body}
+          </li>
+        ))}
+      </ol>
+
+      <h3 className="prod-card-title">When to use {product.name}</h3>
+      <ul className="prod-editorial-list">
+        {editorial.useCases.map((u) => (
+          <li key={u}>{u}</li>
+        ))}
+      </ul>
+
+      <h3 className="prod-card-title">Limitations &amp; honest trade-offs</h3>
+      <ul className="prod-editorial-list">
+        {editorial.limitations.map((l) => (
+          <li key={l}>{l}</li>
+        ))}
+      </ul>
+
+      <h3 className="prod-card-title">Frequently asked questions</h3>
+      <dl className="prod-editorial-faq">
+        {editorial.faqs.map((f) => (
+          <div key={f.q} className="prod-editorial-faq-item">
+            <dt>{f.q}</dt>
+            <dd>{f.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  );
+}
 
 // ── Generic product home (for non-gridstorm products) ─────────────
 
@@ -115,6 +168,9 @@ function GenericProductHome({ product }: { product: ProductManifest }) {
           </div>
         )}
       </div>
+
+      {/* Editorial explainer — original, first-party content on the page itself */}
+      <ProductEditorialSection product={product} />
 
       {/* In-depth guides — internal links to the use-cases hub */}
       {guides.length > 0 && (

@@ -61,6 +61,69 @@ async function loadProducts() {
 
 const PRODUCTS = await loadProducts();
 
+// Long-form editorial content (overview / how it works / use cases /
+// limitations / FAQ) — bundled the same way so the prerendered product pages
+// carry genuine on-page content instead of only linking out to a demo.
+async function loadEditorial() {
+  const entry = join(ROOT, 'src', 'platform', 'productEditorial.ts');
+  const outPath = join(TMP_DIR, 'editorial.mjs');
+  esbuild.buildSync({
+    entryPoints: [entry],
+    bundle: true,
+    format: 'esm',
+    platform: 'node',
+    target: 'esnext',
+    outfile: outPath,
+    logLevel: 'silent',
+  });
+  const mod = await import(pathToFileURL(outPath).href);
+  return mod.PRODUCT_EDITORIAL;
+}
+
+const EDITORIAL = await loadEditorial();
+
+function productEditorialBlock(id, name) {
+  const e = EDITORIAL[id];
+  if (!e) return '';
+  const overview = e.overview.map((p) => `<p style="margin:0 0 14px;line-height:1.78">${escapeHtml(p)}</p>`).join('');
+  const steps = e.howItWorks
+    .map((s) => `<li style="margin-bottom:10px;line-height:1.7"><strong>${escapeHtml(s.title)}.</strong> ${escapeHtml(s.body)}</li>`)
+    .join('');
+  const useCases = e.useCases.map((u) => `<li style="margin-bottom:6px;line-height:1.7">${escapeHtml(u)}</li>`).join('');
+  const limits = e.limitations.map((l) => `<li style="margin-bottom:6px;line-height:1.7">${escapeHtml(l)}</li>`).join('');
+  const faqs = e.faqs
+    .map(
+      (f) =>
+        `<div style="margin-bottom:16px"><p style="font-weight:700;color:#0a0f1f;margin:0 0 4px">${escapeHtml(f.q)}</p><p style="margin:0;line-height:1.7;color:#334155">${escapeHtml(f.a)}</p></div>`,
+    )
+    .join('');
+  return `
+      <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:40px 0 12px">What is ${escapeHtml(name)}?</h2>
+      <div style="color:#334155;font-size:16px">${overview}</div>
+      <h3 style="font-size:1.15rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">How it works</h3>
+      <ol style="margin:0 0 8px;padding-left:22px;color:#334155">${steps}</ol>
+      <h3 style="font-size:1.15rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">When to use ${escapeHtml(name)}</h3>
+      <ul style="margin:0 0 8px;padding-left:22px;color:#334155">${useCases}</ul>
+      <h3 style="font-size:1.15rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">Limitations &amp; honest trade-offs</h3>
+      <ul style="margin:0 0 8px;padding-left:22px;color:#334155">${limits}</ul>
+      <h3 style="font-size:1.15rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">Frequently asked questions</h3>
+      <div>${faqs}</div>`;
+}
+
+function productFaqLd(id) {
+  const e = EDITORIAL[id];
+  if (!e || !e.faqs.length) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: e.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
+}
+
 const STATUS_LABEL = {
   ga: 'Generally Available',
   beta: 'Beta',
@@ -242,7 +305,8 @@ const routes = [
     description: p.manifest.seo?.description || p.tagline,
     h1: p.name,
     body: p.tagline,
-    contentHtml: productDetailBlock(p.manifest),
+    contentHtml: productDetailBlock(p.manifest) + productEditorialBlock(p.id, p.name),
+    extraLd: productFaqLd(p.id),
   })),
 ];
 
@@ -330,6 +394,14 @@ function makeHtml(route) {
     '</head>',
     `    <script type="application/ld+json">${JSON.stringify(breadcrumbLd)}</script>\n  </head>`,
   );
+
+  // Optional extra JSON-LD (e.g. FAQPage for product pages).
+  if (route.extraLd) {
+    html = html.replace(
+      '</head>',
+      `    <script type="application/ld+json">${JSON.stringify(route.extraLd)}</script>\n  </head>`,
+    );
+  }
 
   return html;
 }
