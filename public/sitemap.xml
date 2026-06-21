@@ -164,13 +164,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/pyntra-client-side-pdf-editing"/>
   </url>
   <url>
-    <loc>https://tekivex.com/use-cases/pyntra-fill-sign-pdf-browser</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/pyntra-fill-sign-pdf-browser"/>
-  </url>
-  <url>
     <loc>https://tekivex.com/use-cases/pyntra-vs-pdfjs-puppeteer</loc>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -234,13 +227,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/quantum-vault-sovereign-token-verification"/>
   </url>
   <url>
-    <loc>https://tekivex.com/use-cases/quantum-vault-why-nist-pqc-matters</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/quantum-vault-why-nist-pqc-matters"/>
-  </url>
-  <url>
     <loc>https://tekivex.com/use-cases/dataflow-realtime-streaming-react</loc>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -274,13 +260,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/tekivex-ui-headless-design-system"/>
-  </url>
-  <url>
-    <loc>https://tekivex.com/use-cases/tekivex-ui-theming-css-variables</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/tekivex-ui-theming-css-variables"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/tekivex-ui-accessible-forms</loc>

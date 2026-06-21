@@ -90,7 +90,62 @@ function CheckboxField({ name }: { name: string }) {
 }
 ```
 
-This separation is what makes the client-side approach practical at scale. The engine does not care whether you are building a one-field web form or a full annotation suite — it just exposes the document model and the operations that mutate it. Your UI is yours. We go deeper on this pattern in [headless React PDF hooks](/use-cases/pyntra-headless-react-pdf-hooks), and on the end-to-end fill-and-sign flow in [filling and signing PDFs in the browser](/use-cases/pyntra-fill-sign-pdf-browser).
+This separation is what makes the client-side approach practical at scale. The engine does not care whether you are building a one-field web form or a full annotation suite — it just exposes the document model and the operations that mutate it. Your UI is yours. We go deeper on this pattern in [headless React PDF hooks](/use-cases/pyntra-headless-react-pdf-hooks).
+
+## End to end: fill, sign, and encrypt
+
+The most common business flow — fill a form, sign it, protect it with a password — runs entirely client-side. PDF forms support more than text boxes, and Pyntra models each field type explicitly, so a checkbox is a boolean and a listbox holds multiple selections:
+
+```ts
+const f = doc.fields;
+f.set("full_name", "Dana Okoro");        // text
+f.set("start_date", "2026-07-01");       // date
+f.set("agree_terms", true);              // checkbox
+f.set("department", "Engineering");      // dropdown (constrained to options)
+f.set("skills", ["TypeScript", "Rust"]); // listbox (multi-select)
+
+// Missing a field? Add one by drawing a rectangle on the page.
+doc.fields.add({ type: "text", name: "employee_id", page: 0,
+  rect: { x: 320, y: 540, width: 180, height: 24 } });
+```
+
+| Field type | Pyntra value | Notes |
+| --- | --- | --- |
+| Text / Multiline | `string` | Newlines preserved in multiline |
+| Date | `string` (ISO) | Rendered per field format |
+| Number | `number` | Validated on set |
+| Checkbox | `boolean` | On/off state |
+| Radio / Dropdown | `string` | Constrained to a group / options |
+| Listbox | `string[]` | Multi-select |
+
+Signing is capture plus stamp: a signature pad records strokes on a canvas and exports a transparent PNG, which `stamp` embeds as a real PDF resource — the same mechanism used for seals and logos.
+
+```tsx
+import { useSignaturePad } from "@pyntra/engine/react";
+
+const { canvasRef, toImage, isEmpty } = useSignaturePad();
+const png = await toImage(); // Uint8Array, transparent background
+await doc.stamp({ image: png, page: 0, rect: { x: 80, y: 120, width: 200, height: 60 } });
+```
+
+The final step protects the document. Pyntra supports RC4, AES-128, and AES-256; for anything sensitive use AES-256, applied at save time so the protected file is produced locally:
+
+```ts
+const encrypted = await doc.save({
+  encryption: {
+    algorithm: "AES-256",
+    userPassword: "openWithThis",
+    ownerPassword: "fullControl",
+    permissions: { printing: true, copying: false, modifying: false },
+  },
+});
+const blob = new Blob([encrypted], { type: "application/pdf" });
+const a = Object.assign(document.createElement("a"),
+  { href: URL.createObjectURL(blob), download: "signed-contract.pdf" });
+a.click();
+```
+
+Bytes in, edited and encrypted bytes out, and the user clicks download — the plaintext document and the password never touched a server.
 
 ## When to use client-side editing
 

@@ -7,6 +7,9 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/product/pdfcraft", "destination": "/product/pyntra", "permanent": true },
-    { "source": "/platform", "destination": "/products", "permanent": true }
+    { "source": "/platform", "destination": "/products", "permanent": true },
+    { "source": "/use-cases/pyntra-fill-sign-pdf-browser", "destination": "/use-cases/pyntra-client-side-pdf-editing", "permanent": true },
+    { "source": "/use-cases/quantum-vault-why-nist-pqc-matters", "destination": "/use-cases/quantum-vault-post-quantum-tokens-explained", "permanent": true },
+    { "source": "/use-cases/tekivex-ui-theming-css-variables", "destination": "/use-cases/tekivex-ui-headless-design-system", "permanent": true }
   ]
 }

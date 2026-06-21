@@ -61,7 +61,7 @@ Tekivex UI takes the CSS-variable route. Themes — including built-in dark, lig
 }
 ```
 
-This approach makes server rendering, theme persistence, and per-section overrides straightforward, and it plays nicely with native CSS cascading. If you want the full picture, we go deeper in [theming with CSS variables](/use-cases/tekivex-ui-theming-css-variables). The honest trade-off: a JS theme object can be more convenient for highly dynamic, computed themes, and MUI's and Chakra's tooling around that is more mature.
+This approach makes server rendering, theme persistence, and per-section overrides straightforward, and it plays nicely with native CSS cascading. If you want the full picture, the [headless design system guide](/use-cases/tekivex-ui-headless-design-system) goes deeper on the CSS-variable theming architecture. The honest trade-off: a JS theme object can be more convenient for highly dynamic, computed themes, and MUI's and Chakra's tooling around that is more mature.
 
 ## Accessibility
 

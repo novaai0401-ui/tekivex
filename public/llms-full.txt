@@ -49,7 +49,6 @@ URL: https://tekivex.com/product/tekivex-ui
 
 ### Pyntra
 - Client-Side PDF Editing Without a Server: The Pyntra Approach — Pyntra edits, fills, signs, and encrypts PDFs entirely in the browser — no upload, no server round-trip. Here is the architecture that makes it private and fast. (https://tekivex.com/use-cases/pyntra-client-side-pdf-editing)
-- Filling and Signing PDFs in the Browser with Pyntra (AES-256) — A walkthrough of PDF form filling, signature capture, stamping, and AES-256 encryption with Pyntra’s headless React hooks. (https://tekivex.com/use-cases/pyntra-fill-sign-pdf-browser)
 - Pyntra vs PDF.js vs Puppeteer: Choosing a PDF Stack — When do you reach for Pyntra, PDF.js, or server-side Puppeteer? A clear breakdown of viewing vs editing vs generation, and the trade-offs of each. (https://tekivex.com/use-cases/pyntra-vs-pdfjs-puppeteer)
 - Headless React PDF Hooks: Building a Custom Viewer with Pyntra — Pyntra exposes headless hooks and a bring-your-own-UI adapter. Build a fully custom PDF viewer and editor with Material UI, Tekivex UI, or your own components. (https://tekivex.com/use-cases/pyntra-headless-react-pdf-hooks)
 
@@ -63,7 +62,6 @@ URL: https://tekivex.com/product/tekivex-ui
 - Post-Quantum Tokens Explained: Kyber and Dilithium in Quantum Vault — What post-quantum tokens are, why Q-Day threatens today’s cryptography, and how Quantum Vault uses CRYSTALS-Kyber and Dilithium (FIPS 203/204) to stay safe. (https://tekivex.com/use-cases/quantum-vault-post-quantum-tokens-explained)
 - Migrating Token Issuance to Post-Quantum Crypto with Quantum Vault — A migration playbook for moving JWT/RSA-style token issuance to quantum-resistant signatures using Quantum Vault, with a hybrid transition strategy. (https://tekivex.com/use-cases/quantum-vault-migrate-pqc-token-issuance)
 - Sovereign, Self-Hosted Token Verification with Quantum Vault — Why sovereignty matters for cryptographic infrastructure and how to run self-hosted, no-third-party-trust token issuance and verification with Quantum Vault. (https://tekivex.com/use-cases/quantum-vault-sovereign-token-verification)
-- Why NIST-Standardized PQC Matters (and What FIPS 203/204 Mean) — NIST standardized the first post-quantum algorithms in 2024. Here is what FIPS 203 (ML-KEM) and FIPS 204 (ML-DSA) mean and why Quantum Vault builds on them. (https://tekivex.com/use-cases/quantum-vault-why-nist-pqc-matters)
 
 ### DataFlow
 - Real-Time Streaming in React with DataFlow (WebSocket and SSE) — Wire up live WebSocket and Server-Sent Events streams in React with DataFlow — connection management, reconnection, and rendering high-frequency updates. (https://tekivex.com/use-cases/dataflow-realtime-streaming-react)
@@ -73,7 +71,6 @@ URL: https://tekivex.com/product/tekivex-ui
 ### Tekivex UI
 - Tekivex UI vs MUI vs Chakra: An Honest Comparison — How Tekivex UI compares with Material UI and Chakra on bundle size, theming, accessibility, and headless flexibility — with guidance on when to pick which. (https://tekivex.com/use-cases/tekivex-ui-vs-mui-chakra)
 - Tree-Shakeable, Headless Components: The Tekivex UI Design System — Tekivex UI ships headless primitives with zero runtime dependencies and tree-shakeable ESM. Here is the design-system philosophy and how to compose it. (https://tekivex.com/use-cases/tekivex-ui-headless-design-system)
-- Theming with CSS Custom Properties in Tekivex UI — Build dark, light, and high-contrast themes with Tekivex UI using CSS custom properties — no theme provider re-renders, no runtime cost. (https://tekivex.com/use-cases/tekivex-ui-theming-css-variables)
 - Building Accessible Forms with Tekivex UI Primitives — Accessible forms are hard: labels, error states, ARIA, focus management. Tekivex UI’s form toolkit handles them so you ship WCAG-compliant forms faster. (https://tekivex.com/use-cases/tekivex-ui-accessible-forms)
 
 ### Tekivex Platform

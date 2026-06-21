@@ -98,7 +98,35 @@ You pay for what you import — nothing more.
 
 ## Theming without inheritance headaches
 
-Because Tekivex UI doesn't ship presentation, theming isn't a matter of overriding library styles. Dark, light, and high-contrast modes are expressed entirely through CSS custom properties that *you* read in your own stylesheets. The components emit semantic state; you map that state to design tokens. Switching themes is a matter of swapping variable values at a `data-theme` boundary — no JavaScript re-render, no theme provider gymnastics. The full approach is covered in [theming with CSS variables](/use-cases/tekivex-ui-theming-css-variables).
+Because Tekivex UI doesn't ship presentation, theming isn't a matter of overriding library styles — it is a job for the browser's cascade, not for JavaScript. Every theme is expressed as a set of CSS custom properties on the document root. Switching themes means changing one attribute on that root. No context provider re-renders, no component subscribes to a theme value, no reconciliation pass fires; the browser repaints with the new values and the work is done.
+
+That distinction is a performance one. The common React pattern is a runtime `<ThemeProvider>` holding the theme in context; when the theme changes, every subscribed component must re-render to recompute styles, and runtime CSS-in-JS re-injects style objects on top. The cost scales with the number of theme consumers, not with what actually changed on screen.
+
+| Concern | Runtime CSS-in-JS provider | CSS custom properties |
+| --- | --- | --- |
+| Theme switch cost | Re-render every subscribed component | One attribute write, browser repaint |
+| Scales with | Number of theme consumers | Constant — independent of tree size |
+| Runtime JS on switch | Recompute + re-inject styles | None |
+| SSR / first paint | Hydration-sensitive | Resolved by the cascade immediately |
+
+Themes are just **design tokens** — named semantic decisions (`--tkv-color-surface`, `--tkv-space-4`, `--tkv-radius-sm`) organised into a few narrow categories: color, spacing, typography, radius. Spacing and radius are theme-invariant in most products, so a custom theme usually overrides only the color tokens and inherits the rest. Base tokens live on `:root`; each theme is an override block keyed by `data-theme`, with high-contrast a first-class peer of dark (set deliberately to meet WCAG 2.1 AA), not a tweak of it.
+
+```css
+:root { --tkv-color-surface: #ffffff; --tkv-color-text: #1a1d21; --tkv-color-accent: #2563eb; }
+[data-theme="dark"] { --tkv-color-surface: #14171a; --tkv-color-text: #e8eaed; --tkv-color-accent: #5b8cff; }
+[data-theme="high-contrast"] { --tkv-color-surface: #000; --tkv-color-text: #fff; --tkv-color-accent: #ff0; }
+```
+
+The switch itself is a one-liner — and the only component that re-renders is the toggle whose own label changed:
+
+```ts
+function applyTheme(theme: 'light' | 'dark' | 'high-contrast') {
+  document.documentElement.setAttribute('data-theme', theme); // cascade does the rest
+  localStorage.setItem('tkv-theme', theme);
+}
+```
+
+A custom brand theme is just another `data-theme` override block shipped in your own stylesheet. For SSR, set the attribute in a small inline script before paint to avoid hydration flicker.
 
 ## Forms, accessibly
 

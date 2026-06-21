@@ -78,7 +78,7 @@ const out = await doc.save({
 });
 ```
 
-This is the gap PDF.js leaves and Puppeteer cannot fill: an interactive editor that mutates a real PDF and re-serializes it without a backend. The full walkthrough is in [filling and signing PDFs in the browser](/use-cases/pyntra-fill-sign-pdf-browser).
+This is the gap PDF.js leaves and Puppeteer cannot fill: an interactive editor that mutates a real PDF and re-serializes it without a backend. The full walkthrough — fill, sign, and encrypt entirely in the browser — is in [the Pyntra client-side approach](/use-cases/pyntra-client-side-pdf-editing).
 
 ## When to use which
 

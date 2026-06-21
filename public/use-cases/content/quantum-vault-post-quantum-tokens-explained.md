@@ -68,6 +68,24 @@ const valid = await mlDsa.verify(message, signature, publicKey)
 
 The practical trade-off to internalise: post-quantum keys and signatures are *larger* than their classical equivalents. An ML-DSA signature is several kilobytes versus a few dozen bytes for ECDSA. This affects token size, header limits, and bandwidth, and it is the main thing that surprises teams during migration — covered in our [migration playbook](/use-cases/quantum-vault-migrate-pqc-token-issuance).
 
+## Why standardised PQC, not roll-your-own
+
+There is a strong instinct to treat "post-quantum" as a property you bolt on — pick a lattice scheme that looks resistant, implement it, ship it. That instinct is exactly wrong for cryptography. The difference between a primitive that survives and one that does not is rarely the idea; it is the years of public, adversarial scrutiny the idea survived. That is what standardisation buys, and it is why Quantum Vault tracks the NIST standards rather than shipping bespoke algorithms.
+
+NIST ran an open, multi-round competition for post-quantum algorithms beginning in 2016. Candidates were submitted publicly, specified in full, and subjected to years of open cryptanalysis; several promising schemes were broken outright during the process — that is the process working as intended. In **August 2024** NIST published the first finalised standards (FIPS 203 and FIPS 204), drawn primarily from the lattice family. The value is not that NIST is an oracle; it is that the process concentrated worldwide cryptanalytic effort on a few candidates, so the survivors carry an evidentiary record no in-house scheme can match.
+
+Lattice schemes also have subtle implementation pitfalls — constant-time arithmetic, correct error sampling, rejection sampling, side-channel resistance — where a small mistake silently destroys security without breaking functionality. A standard plus published test vectors is how you get those right:
+
+| Property | Standardised (ML-KEM / ML-DSA) | Roll-your-own |
+| --- | --- | --- |
+| Public cryptanalysis | Years, global community | Effectively none |
+| Known-answer test vectors | Published, verifiable | You write your own |
+| Interoperability | Other vendors converge | Isolated |
+| Compliance posture | Maps to FIPS, procurement | Hard to justify |
+| Implementation guidance | Specified parameters & encodings | Improvised |
+
+When a regulator or customer asks which algorithms you use, "FIPS 203 ML-KEM-768 and FIPS 204 ML-DSA-65" maps to procurement checklists and audit frameworks. "Our own lattice variant" does not.
+
 ## What a post-quantum token is in Quantum Vault
 
 A post-quantum token in Quantum Vault is a structured, self-describing credential whose authenticity is guaranteed by an ML-DSA signature and whose confidential portions, where present, are protected using an ML-KEM-derived key. Functionally it behaves like a signed token you already know — claims, expiry, issuer, audience — but the cryptographic core is quantum-resistant.
@@ -95,6 +113,17 @@ if (result.valid) {
 }
 ```
 
+Because the token embeds **algorithm and parameter-set identifiers**, Quantum Vault stays crypto-agile: the standardisation process is ongoing, and a credible PQC product cannot pin itself to one algorithm forever. When a new standard lands or a parameter set should be retired, the change is a configuration and key-rotation exercise, not a rewrite — tokens self-describe their algorithm, so verifiers stay forward-compatible.
+
+```ts
+const vault = new QuantumVault({
+  signingAlg: 'ML-DSA-65', // FIPS 204 — referenced by name
+  kemAlg: 'ML-KEM-768',    // FIPS 203 — swapping is a config change
+})
+const { alg } = await vault.verify(token)
+console.log(alg) // 'ML-DSA-65'
+```
+
 Because issuance, validation, and rotation all happen against keys you control, the design is suited to self-hosted and sovereign deployment — no third party ever holds your signing keys. We cover that model in [sovereign token verification](/use-cases/quantum-vault-sovereign-token-verification).
 
 ## Key takeaways
@@ -104,5 +133,6 @@ Because issuance, validation, and rotation all happen against keys you control, 
 - **Kyber / ML-KEM (FIPS 203)** establishes shared secrets; **Dilithium / ML-DSA (FIPS 204)** produces signatures that prove authenticity.
 - A Quantum Vault post-quantum token is a familiar claims-based credential whose trust anchor is an ML-DSA signature, with algorithm identifiers built in for rotation.
 - The main practical cost is **size**: PQ keys and signatures are larger, so plan token and transport budgets accordingly.
+- Prefer **standardised** PQC (the most-attacked algorithm still standing) over bespoke schemes; Quantum Vault keeps algorithms identifier-driven so evolving standards are an upgrade, not a rewrite.
 
-The migration to post-quantum tokens is not a single switch you flip — it is a transition you stage. Understanding the primitives is step one. If you want the deeper standardisation rationale, see [why NIST-standardised PQC matters](/use-cases/quantum-vault-why-nist-pqc-matters), browse related [use cases](/use-cases), or look at the [Quantum Vault product page](/product/quantum-vault) to start issuing tokens against keys you hold yourself.
+The migration to post-quantum tokens is not a single switch you flip — it is a transition you stage. Understanding the primitives is step one. For the staged rollout, see the [migration playbook](/use-cases/quantum-vault-migrate-pqc-token-issuance), browse related [use cases](/use-cases), or look at the [Quantum Vault product page](/product/quantum-vault) to start issuing tokens against keys you hold yourself.
