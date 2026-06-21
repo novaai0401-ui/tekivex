@@ -12,7 +12,7 @@ export const nexaRecruitManifest: ProductManifest = {
   description:
     'Enterprise applicant tracking system with AI-powered candidate screening, ' +
     'drag-and-drop Kanban pipeline, smart resume builder with PDF export, ' +
-    'interview scheduling, and multi-board job posting. No per-seat pricing.',
+    'interview scheduling, and multi-board job posting. In development.',
   version: '0.2.0',
   status: 'coming-soon',
   tier: 'enterprise',

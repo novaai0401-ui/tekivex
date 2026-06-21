@@ -90,3 +90,7 @@ This is the gap PDF.js leaves and Puppeteer cannot fill: an interactive editor t
 The trade-offs, the architecture rationale, and the editing model are explored further across the [use-cases hub](/use-cases) — including a deeper look at the [client-side approach](/use-cases/pyntra-client-side-pdf-editing) and the [headless React hooks](/use-cases/pyntra-headless-react-pdf-hooks) that make custom editors practical.
 
 There is no single winner here, and any article claiming otherwise is selling something. PDF.js views, Pyntra edits, Puppeteer generates. Match the tool to the verb in your requirement, lean on more than one when the workflow spans verbs, and you will end up with a stack that is both capable and cheap to run.
+
+---
+
+*PDF.js and Puppeteer are projects/trademarks of their respective owners. Tekivex is not affiliated with, endorsed by, or sponsored by them. Comparisons reflect our understanding at the time of writing; verify current capabilities against each project's official documentation.*

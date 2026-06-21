@@ -8,11 +8,11 @@ import type { ProductManifest } from './types';
 export const nexaCareManifest: ProductManifest = {
   id: 'nexa-care',
   name: 'NexaCare',
-  tagline: 'HIPAA-Compliant Healthcare Data Platform',
+  tagline: 'Healthcare Data Platform — Built for HIPAA Compliance',
   description:
     'End-to-end healthcare data platform with HL7/FHIR integration, ' +
-    'clinical workflow automation, HIPAA-compliant document vault, ' +
-    'patient scheduling, and real-time lab/vitals analytics via GridStorm.',
+    'clinical workflow automation, a document vault designed for HIPAA compliance, ' +
+    'patient scheduling, and real-time lab/vitals analytics via GridStorm. In development.',
   version: '0.3.0',
   status: 'coming-soon',
   tier: 'enterprise',
@@ -24,12 +24,12 @@ export const nexaCareManifest: ProductManifest = {
   primaryDemoPath: null,
   stats: [
     { value: 'Q3 2026', label: 'Target GA' },
-    { value: 'HIPAA',   label: 'Compliant' },
+    { value: 'HIPAA',   label: 'By design' },
     { value: 'HL7/FHIR',label: 'Standard' },
     { value: 'AES-256', label: 'Encryption' },
   ],
   keyFeatures: [
-    'HIPAA-compliant patient data management with full audit trail',
+    'Patient data management designed for HIPAA compliance, with full audit trail',
     'HL7/FHIR integration for EHR interoperability',
     'Clinical workflow automation with role-based access control',
     'Secure document vault — AES-256 encryption via PDF Toolkit',
@@ -41,8 +41,8 @@ export const nexaCareManifest: ProductManifest = {
   seo: {
     title: 'NexaCare — Healthcare Data Platform | Tekivex',
     description:
-      'HIPAA-compliant healthcare platform with HL7/FHIR integration, ' +
-      'clinical workflow automation, and EHR interoperability. Powered by Tekivex.',
+      'Healthcare platform designed for HIPAA compliance, with HL7/FHIR integration, ' +
+      'clinical workflow automation, and EHR interoperability. In development. Powered by Tekivex.',
     keywords: [
       'healthcare software platform',
       'HIPAA compliant software',
