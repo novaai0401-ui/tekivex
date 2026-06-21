@@ -35,6 +35,7 @@ jobs:
     needs: [typecheck]
     strategy:
       fail-fast: false
+      matrix:
         # Node 18 dropped: Vite 8 requires Node ^20.19 || >=22.12 and Vitest 4 drops Node 18.
         node-version: [20, 22]
     steps:
