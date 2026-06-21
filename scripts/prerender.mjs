@@ -243,7 +243,13 @@ const routes = [
       'How Tekivex collects, uses, and protects information about visitors to tekivex.com and users of the open-source Tekivex products.',
     h1: 'Privacy Policy',
     body:
-      'How Tekivex handles information about visitors to tekivex.com. Plain language, no dark patterns, only the third-party analytics needed to operate the site.',
+      'How Tekivex handles information about visitors to tekivex.com. Plain language, no dark patterns, only the third-party analytics and advertising needed to operate the site.',
+    contentHtml: `
+      <h2 style="font-size:1.25rem;font-weight:800;color:#0a0f1f;margin:32px 0 10px">Cookies, analytics &amp; advertising</h2>
+      <p style="line-height:1.78;margin:0 0 14px">tekivex.com uses cookies for essential functionality, analytics (Google Analytics 4), and advertising (Google AdSense, publisher ID ca-pub-4630229006617891). Google Analytics and Google AdSense are loaded only after you accept on the consent banner; if you reject non-essential cookies, no analytics or advertising cookies are placed on your device.</p>
+      <h3 style="font-size:1.05rem;font-weight:800;color:#0a0f1f;margin:24px 0 10px">Advertising (Google AdSense)</h3>
+      <p style="line-height:1.78;margin:0 0 14px">Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites. Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to this and/or other sites on the Internet. You may opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" rel="noopener noreferrer">Google Ads Settings</a>, or opt out of a third-party vendor's use of cookies for personalised advertising at <a href="https://optout.aboutads.info/" rel="noopener noreferrer">aboutads.info</a> and <a href="https://www.youronlinechoices.com/" rel="noopener noreferrer">youronlinechoices.com</a>.</p>
+      <p style="line-height:1.78;margin:0 0 14px">You can change your consent choice at any time from the <a href="/cookie-policy">Cookie Policy</a> page, and exercise your GDPR/CCPA rights (access, rectification, erasure, portability) by contacting us. This summary is rendered for crawlers; the full policy, including data retention and your rights, loads on this page.</p>`,
   },
   {
     path: '/terms-of-service',

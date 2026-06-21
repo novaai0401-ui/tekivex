@@ -257,7 +257,7 @@ export function PrivacyPolicyPage() {
         background: 'rgba(59,130,246,0.06)', border: '1px solid rgba(59,130,246,0.18)',
       }}>
         <p style={{ ...prose, margin: 0, fontSize: '13px', color: '#64748b' }}>
-          This Privacy Policy was drafted to comply with the EU General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA), and to meet the cookie-and-data-collection disclosure obligations of any third-party services we integrate (currently Google Analytics 4). We are committed to handling your data transparently and responsibly.
+          This Privacy Policy was drafted to comply with the EU General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA), and to meet the cookie-and-data-collection disclosure obligations of the third-party services we integrate (currently Google Analytics 4 and Google AdSense). We are committed to handling your data transparently and responsibly.
         </p>
       </div>
     </main>
