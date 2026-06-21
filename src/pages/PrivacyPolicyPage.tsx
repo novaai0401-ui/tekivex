@@ -68,7 +68,7 @@ export function PrivacyPolicyPage() {
         <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e2e8f0', margin: '20px 0 8px' }}>
           1.2 Cookies and Tracking Technologies
         </h3>
-        <p style={prose}>We use cookies and similar tracking technologies. Types we use:</p>
+        <p style={prose}>We and our third-party partners (including Google) use cookies and similar tracking technologies — such as web beacons (pixel tags / clear GIFs), local storage, and IP addresses — to collect information as a result of ad serving and analytics on this site. Types of cookies we use:</p>
         <ul style={{ paddingLeft: '24px', margin: '0 0 14px' }}>
           {[
             'Essential cookies — required for the site to function correctly (e.g. tekivex.consent.v1 in localStorage, which remembers your cookie choice).',
@@ -78,7 +78,7 @@ export function PrivacyPolicyPage() {
           ].map(t => <li key={t} style={li}>{t}</li>)}
         </ul>
         <p style={prose}>
-          When you first visit tekivex.com you will see a consent banner with <strong style={{ color: '#f1f5f9' }}>Accept all</strong> and <strong style={{ color: '#f1f5f9' }}>Reject non-essential</strong> buttons. We do not load Google Analytics or Google AdSense until you click Accept. You can change your choice at any time from the <a href="/cookie-policy" style={{ color: '#3b82f6' }}>Cookie Policy</a> page using the "Reopen cookie banner" button, or by clearing cookies and site data for tekivex.com in your browser.
+          When you first visit tekivex.com you will see a consent banner with <strong style={{ color: '#f1f5f9' }}>Accept all</strong> and <strong style={{ color: '#f1f5f9' }}>Reject non-essential</strong> buttons. We use Google Consent Mode v2: until you accept, all advertising and analytics storage signals default to <em>denied</em>, so no analytics or advertising cookies are stored on your device and any ads shown are non-personalised. You can change your choice at any time from the <a href="/cookie-policy" style={{ color: '#3b82f6' }}>Cookie Policy</a> page using the "Reopen cookie banner" button, or by clearing cookies and site data for tekivex.com in your browser.
         </p>
 
         <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e2e8f0', margin: '20px 0 8px' }}>
@@ -141,7 +141,10 @@ export function PrivacyPolicyPage() {
           </a>.
         </p>
         <p style={prose}>
-          Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites. You may also opt out of third-party vendor use of cookies for personalised advertising by visiting{' '}
+          Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites. You can review how Google uses information from sites or apps that use its services at{' '}
+          <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+            How Google uses data when you use our partners' sites or apps
+          </a>. You may also opt out of third-party vendor use of cookies for personalised advertising by visiting{' '}
           <a href="https://optout.aboutads.info/" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
             aboutads.info
           </a>{' '}or{' '}
@@ -150,7 +153,7 @@ export function PrivacyPolicyPage() {
           </a>.
         </p>
         <p style={prose}>
-          If you reject non-essential cookies, AdSense will not be loaded at all and we will not place any advertising cookies on your device.
+          If you reject non-essential cookies, no advertising cookies are stored on your device (Google Consent Mode keeps <code style={{ background: 'rgba(15,23,42,0.8)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ad_storage</code> and <code style={{ background: 'rgba(15,23,42,0.8)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ad_personalization</code> denied), and any ads shown remain non-personalised.
         </p>
       </Section>
 

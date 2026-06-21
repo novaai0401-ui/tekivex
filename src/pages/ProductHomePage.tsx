@@ -128,9 +128,6 @@ function GenericProductHome({ product }: { product: ProductManifest }) {
         ))}
       </div>
 
-      {/* Sponsored — keeps product pages free */}
-      <AdSlot slot="5896441076" label="Sponsored" className="ad-slot--product" />
-
       {/* Features + Quick Links */}
       <div className="prod-body-grid">
         <div className="prod-features-card">
@@ -171,6 +168,13 @@ function GenericProductHome({ product }: { product: ProductManifest }) {
 
       {/* Editorial explainer — original, first-party content on the page itself */}
       <ProductEditorialSection product={product} />
+
+      {/* Sponsored — only on pages with substantial first-party content (never on
+          coming-soon / thin product pages), placed after the editorial body to
+          comply with Google's inventory-value policy. */}
+      {product.status !== 'coming-soon' && getEditorial(product.id) && (
+        <AdSlot slot="5896441076" label="Sponsored" className="ad-slot--product" />
+      )}
 
       {/* In-depth guides — internal links to the use-cases hub */}
       {guides.length > 0 && (

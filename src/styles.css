@@ -5431,11 +5431,14 @@ body {
   padding: 9px 16px; border-radius: 8px; cursor: pointer;
   border: 1px solid transparent; transition: background 120ms, border-color 120ms;
 }
+/* Reject is given equal visual weight to Accept (EU user-consent equal-prominence
+   requirement): same size, a solid filled surface, and clear contrast — not a
+   de-emphasized ghost. */
 .cookie-banner-btn--ghost {
-  background: transparent; color: #e2e8f0;
-  border-color: rgba(148, 163, 184, 0.4);
+  background: #475569; color: #ffffff;
+  border-color: #475569;
 }
-.cookie-banner-btn--ghost:hover { background: rgba(148, 163, 184, 0.12); }
+.cookie-banner-btn--ghost:hover { background: #334155; border-color: #334155; }
 .cookie-banner-btn--primary { background: #3a86ff; color: #fff; }
 .cookie-banner-btn--primary:hover { background: #2563eb; }
 [data-hub-theme="light"] .cookie-banner {
@@ -5443,8 +5446,8 @@ body {
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
 }
 [data-hub-theme="light"] .cookie-banner-text p { color: #475569; }
-[data-hub-theme="light"] .cookie-banner-btn--ghost { color: #334155; border-color: #cbd5e1; }
-[data-hub-theme="light"] .cookie-banner-btn--ghost:hover { background: #f1f5f9; }
+[data-hub-theme="light"] .cookie-banner-btn--ghost { background: #475569; color: #ffffff; border-color: #475569; }
+[data-hub-theme="light"] .cookie-banner-btn--ghost:hover { background: #334155; border-color: #334155; }
 @media (max-width: 640px) {
   .cookie-banner-inner { padding: 14px 16px; }
   .cookie-banner-actions { width: 100%; }
