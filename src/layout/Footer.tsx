@@ -101,6 +101,21 @@ export function Footer() {
           <span className="hub-footer-badge">6 products</span>
           <span className="hub-footer-badge">TypeScript-native</span>
           <span className="hub-footer-badge">MIT License</span>
+          <a
+            href="https://www.producthunt.com/products/tekivex?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-tekivex"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hub-footer-ph-badge"
+            aria-label="Tekivex on Product Hunt"
+          >
+            <img
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1175121&theme=light&t=1782130779644"
+              alt="Tekivex - MIT-licensed dev tools for modern web applications | Product Hunt"
+              width={250}
+              height={54}
+              loading="lazy"
+            />
+          </a>
         </div>
       </div>
 
