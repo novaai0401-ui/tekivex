@@ -181,7 +181,7 @@ const PLATFORM_SEO: SeoConfig = {
   title: 'Platform — Tekivex Developer Tools Hub',
   description:
     'The Tekivex platform hub — launch GridStorm, Analytics Studio, DataFlow, and Quantum Vault ' +
-    'from a single dashboard. All products are MIT-licensed and production-ready.',
+    'from a single dashboard. All products are MIT-licensed and built TypeScript-first.',
   keywords: [
     'Tekivex platform', 'developer tools hub', 'GridStorm',
     'Analytics Studio', 'DataFlow', 'Quantum Vault', 'enterprise software platform',
