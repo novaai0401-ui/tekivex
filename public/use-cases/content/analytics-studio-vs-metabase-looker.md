@@ -85,3 +85,7 @@ Think of it as data location and governance versus embedding and interactivity. 
 Metabase and Looker are server-backed BI platforms that excel at warehouse-scale data, central governance, and broad analyst access. Analytics Studio is a client-side analytics builder that excels at native embedding, instant interactivity, and zero backend operation, comfortable up to the low millions of rows. The architectural fork — server versus browser — determines everything else, so match it to your real constraints rather than to a feature checklist.
 
 For embedded, in-app analytics with no infrastructure to run, start with the [product page](/product/analytics-studio) or compare approaches across the [use cases hub](/use-cases). For warehouse-scale, centrally governed reporting, the incumbents remain the right tool — and there is no shame in using both.
+
+---
+
+*Metabase and Looker are trademarks of their respective owners. Tekivex is not affiliated with, endorsed by, or sponsored by them. Comparisons reflect our understanding at the time of writing; verify current capabilities against each vendor's official documentation.*
