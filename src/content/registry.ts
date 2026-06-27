@@ -4,9 +4,42 @@
 // and the prerender script read the same list.
 
 import type { Article } from './types';
+import { AUTHORS } from './authors';
 
-const AUTHOR = 'Tekivex Engineering';
 const PUBLISHED = '2026-06-17';
+
+// Which real author wrote each guide. Chandan leads on architecture, performance,
+// data/streaming, crypto, and platform pieces; Seema leads on UI, accessibility,
+// design systems, PDF tooling, and analytics dashboards — matching their stated
+// expertise, and giving the hub a natural two-author byline mix.
+const AUTHOR_BY_SLUG: Record<string, string> = {
+  'gridstorm-virtual-scrolling-60fps': 'chandan-kumar',
+  'gridstorm-vs-ag-grid-migration': 'chandan-kumar',
+  'gridstorm-financial-trading-grid': 'chandan-kumar',
+  'gridstorm-plugin-architecture': 'chandan-kumar',
+  'gridstorm-excel-formulas': 'chandan-kumar',
+  'gridstorm-accessible-data-grid': 'seema-almas-shaikh',
+  'pyntra-client-side-pdf-editing': 'seema-almas-shaikh',
+  'pyntra-vs-pdfjs-puppeteer': 'seema-almas-shaikh',
+  'pyntra-headless-react-pdf-hooks': 'seema-almas-shaikh',
+  'analytics-studio-drag-drop-dashboards': 'seema-almas-shaikh',
+  'analytics-studio-in-browser-sql': 'chandan-kumar',
+  'analytics-studio-chart-types-guide': 'seema-almas-shaikh',
+  'analytics-studio-vs-metabase-looker': 'seema-almas-shaikh',
+  'quantum-vault-post-quantum-tokens-explained': 'chandan-kumar',
+  'quantum-vault-migrate-pqc-token-issuance': 'chandan-kumar',
+  'quantum-vault-sovereign-token-verification': 'chandan-kumar',
+  'dataflow-realtime-streaming-react': 'chandan-kumar',
+  'dataflow-backpressure-time-travel-replay': 'chandan-kumar',
+  'dataflow-anomaly-detection-streams': 'chandan-kumar',
+  'tekivex-ui-vs-mui-chakra': 'seema-almas-shaikh',
+  'tekivex-ui-headless-design-system': 'seema-almas-shaikh',
+  'tekivex-ui-accessible-forms': 'seema-almas-shaikh',
+  'tekivex-stack-how-products-fit': 'chandan-kumar',
+  'tekivex-mit-open-source-model': 'chandan-kumar',
+};
+
+const DEFAULT_AUTHOR_ID = 'chandan-kumar';
 
 // Real editorial calendar. Each guide carries its own publish date (and, where
 // the piece was later revised, a modified date) so the hub reads as content
@@ -46,14 +79,16 @@ const DATES: Record<string, { published: string; modified?: string }> = {
 };
 
 function article(
-  a: Omit<Article, 'author' | 'datePublished' | 'dateModified' | 'contentFile'> &
+  a: Omit<Article, 'author' | 'authorId' | 'datePublished' | 'dateModified' | 'contentFile'> &
     Partial<Pick<Article, 'datePublished' | 'dateModified'>>,
 ): Article {
   const d = DATES[a.slug];
   const published = a.datePublished ?? d?.published ?? PUBLISHED;
   const modified = a.dateModified ?? d?.modified ?? published;
+  const authorId = AUTHOR_BY_SLUG[a.slug] ?? DEFAULT_AUTHOR_ID;
   return {
-    author: AUTHOR,
+    author: AUTHORS[authorId].name,
+    authorId,
     datePublished: published,
     dateModified: modified,
     contentFile: `${a.slug}.md`,

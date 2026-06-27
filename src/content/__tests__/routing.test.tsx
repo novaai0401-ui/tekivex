@@ -56,7 +56,9 @@ describe('use-cases SEO', () => {
     expect(types).toContain('TechArticle');
     expect(types).toContain('BreadcrumbList');
     const article = blocks.find((b) => b['@type'] === 'TechArticle')!;
-    expect(article.author.name).toBe('Tekivex Engineering');
+    expect(article.author['@type']).toBe('Person');
+    expect(article.author.name.length).toBeGreaterThan(0);
+    expect(Array.isArray(article.author.sameAs)).toBe(true);
     expect(article.datePublished).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 

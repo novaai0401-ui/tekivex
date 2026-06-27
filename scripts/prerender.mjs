@@ -186,6 +186,7 @@ const productCatalogBlock = PRODUCTS.map(productCardBlock).join('');
 // ─── Load articles early so the home page can lead with content ──────────────
 // (loadArticles is a hoisted function declaration defined further below.)
 const ARTICLES = await loadArticles();
+const AUTHORS = await loadAuthors();
 
 // A crawlable "Featured guides" block — original first-party editorial content
 // shown above the product catalog so the homepage reads as a content
@@ -440,13 +441,40 @@ writeFileSync(join(DIST, '404.html'), notFoundHtml, 'utf8');
 // then server-render each article's full markdown so crawlers and AI agents see
 // the real content without executing JavaScript.
 async function loadArticles() {
-  const srcPath = join(ROOT, 'src', 'content', 'registry.ts');
-  const src = readFileSync(srcPath, 'utf8');
-  const transformed = esbuild.transformSync(src, { loader: 'ts', format: 'esm', target: 'esnext' }).code;
-  const outPath = join(TMP_DIR, 'registry.mjs');
-  writeFileSync(outPath, transformed, 'utf8');
+  // Bundle (not just transform) because the registry now imports the authors
+  // module at runtime — a bare transform would leave an unresolved relative
+  // import when executed from the tmp dir.
+  const entry = join(ROOT, 'src', 'content', 'registry.ts');
+  const outPath = join(TMP_DIR, 'registry.content.mjs');
+  esbuild.buildSync({
+    entryPoints: [entry],
+    bundle: true,
+    format: 'esm',
+    platform: 'node',
+    target: 'esnext',
+    outfile: outPath,
+    logLevel: 'silent',
+  });
   const mod = await import(pathToFileURL(outPath).href);
   return mod.ARTICLES;
+}
+
+// Author registry — bundled the same way so prerendered Person JSON-LD and the
+// on-page author bio carry the exact same facts the React app renders.
+async function loadAuthors() {
+  const entry = join(ROOT, 'src', 'content', 'authors.ts');
+  const outPath = join(TMP_DIR, 'authors.mjs');
+  esbuild.buildSync({
+    entryPoints: [entry],
+    bundle: true,
+    format: 'esm',
+    platform: 'node',
+    target: 'esnext',
+    outfile: outPath,
+    logLevel: 'silent',
+  });
+  const mod = await import(pathToFileURL(outPath).href);
+  return mod.AUTHORS;
 }
 
 function articleHtml(article, contentHtml) {
@@ -473,13 +501,17 @@ function articleHtml(article, contentHtml) {
   html = html.replace(/<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/, `<meta name="twitter:title" content="${escapeHtml(article.title)}" />`);
   html = html.replace(/<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/, `<meta name="twitter:description" content="${escapeHtml(description)}" />`);
 
+  const author = AUTHORS[article.authorId];
+  const authorLd = author
+    ? { '@type': 'Person', name: author.name, url: author.url, jobTitle: author.role, sameAs: author.sameAs }
+    : { '@type': 'Organization', name: article.author, url: ORIGIN };
   const articleLd = {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
     headline: article.title,
     description: article.description,
     url,
-    author: { '@type': 'Organization', name: article.author, url: ORIGIN },
+    author: authorLd,
     publisher: { '@type': 'Organization', name: 'Tekivex', url: ORIGIN, logo: { '@type': 'ImageObject', url: `${ORIGIN}/logo.svg` } },
     datePublished: article.datePublished,
     dateModified: article.dateModified,
@@ -513,10 +545,21 @@ function articleHtml(article, contentHtml) {
       </nav>
       <h1 style="font-size:2.2rem;font-weight:800;letter-spacing:-0.02em;color:#0a0f1f;margin:0 0 12px;line-height:1.18">${escapeHtml(article.title)}</h1>
       <p style="color:#475569;font-size:18px;line-height:1.6;margin:0 0 12px">${escapeHtml(article.description)}</p>
-      <p style="color:#94a3b8;font-size:13px;margin:0 0 28px">By ${escapeHtml(article.author)} · ${escapeHtml(article.readingMinutes + ' min read')}</p>
+      <p style="color:#94a3b8;font-size:13px;margin:0 0 28px">By ${escapeHtml(article.author)}${author ? `, ${escapeHtml(author.role)}` : ''} · ${escapeHtml(article.readingMinutes + ' min read')}</p>
       <div class="uc-article-body" style="font-size:16px;line-height:1.78;color:#1f2937">
         ${contentHtml}
       </div>
+      ${author ? `
+      <aside style="display:flex;gap:16px;align-items:flex-start;margin:44px 0 0;padding:24px;background:#f8fafc;border:1px solid #e6e8ef;border-radius:12px">
+        <div style="flex-shrink:0;width:48px;height:48px;border-radius:50%;background:#3a86ff;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700">${escapeHtml(author.name.split(' ').map((p) => p[0]).slice(0, 2).join(''))}</div>
+        <div>
+          <p style="font-size:12px;color:#64748b;margin:0 0 2px">Written by</p>
+          <p style="font-weight:700;color:#0a0f1f;margin:0">${escapeHtml(author.name)}</p>
+          <p style="font-size:13px;color:#475569;margin:0 0 8px">${escapeHtml(author.role)}</p>
+          <p style="font-size:14px;line-height:1.7;color:#334155;margin:0 0 8px">${escapeHtml(author.bio)}</p>
+          <p style="font-size:13px;margin:0"><a href="${escapeHtml(author.url)}" rel="noopener noreferrer author" style="color:#3a86ff;text-decoration:none">LinkedIn</a> · <a href="mailto:${escapeHtml(author.email)}" rel="author" style="color:#3a86ff;text-decoration:none">Email</a></p>
+        </div>
+      </aside>` : ''}
       <hr style="margin:44px 0 24px;border:none;border-top:1px solid #e6e8ef" />
       <p style="color:#64748b;font-size:13px">
         Part of <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Tekivex use cases</a>.
