@@ -3,6 +3,7 @@ import { Link, navigate } from '../App';
 import { AdSlot } from '../ads/AdSlot';
 import { Markdown } from './Markdown';
 import { getArticle, getArticlesByProduct } from './registry';
+import { getAuthor } from './authors';
 import { getProduct } from '../platform/registry';
 
 function formatDate(iso: string): string {
@@ -51,6 +52,7 @@ export function ArticlePage({ slug }: { slug: string }) {
   }
 
   const product = getProduct(article.productId);
+  const author = getAuthor(article.authorId);
   const related = getArticlesByProduct(article.productName).filter((a) => a.slug !== article.slug).slice(0, 3);
 
   return (
@@ -88,6 +90,25 @@ export function ArticlePage({ slug }: { slug: string }) {
           (Google inventory-value policy). */}
       {source && source.length > 1500 && (
         <AdSlot slot="5896441076" label="Sponsored" className="ad-slot--article" />
+      )}
+
+      {author && (
+        <aside className="uc-author-box">
+          <div className="uc-author-avatar" aria-hidden="true">
+            {author.name.split(' ').map((p) => p[0]).slice(0, 2).join('')}
+          </div>
+          <div className="uc-author-meta">
+            <span className="uc-author-label">Written by</span>
+            <strong className="uc-author-name">{author.name}</strong>
+            <span className="uc-author-role">{author.role}</span>
+            <p className="uc-author-bio">{author.bio}</p>
+            <span className="uc-author-links">
+              <a href={author.url} target="_blank" rel="noopener noreferrer author">LinkedIn</a>
+              <span className="uc-meta-sep">·</span>
+              <a href={`mailto:${author.email}`} rel="author">Email</a>
+            </span>
+          </div>
+        </aside>
       )}
 
       {product && (

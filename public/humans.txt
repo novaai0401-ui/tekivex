@@ -12,6 +12,6 @@
   TekiVex UI       — accessible React/Vue/Svelte component library
 
 /* SITE */
-  Last update: 2026-06-25
+  Last update: 2026-06-27
   Standards: HTML5, CSS3, ES2022, WCAG 2.1 AA
   License: MIT

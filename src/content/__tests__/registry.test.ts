@@ -7,6 +7,7 @@ import {
   getArticlesGroupedByProduct,
 } from '../registry';
 import { getProduct } from '../../platform/registry';
+import { getAuthor } from '../authors';
 
 // Load every article markdown at test time via Vite (no node:fs needed).
 const MD = import.meta.glob('../../../public/use-cases/content/*.md', {
@@ -39,7 +40,9 @@ describe('use-cases article registry', () => {
       expect(a.kind.length).toBeGreaterThan(0);
       expect(a.keywords.length).toBeGreaterThan(0);
       expect(a.readingMinutes).toBeGreaterThan(0);
-      expect(a.author).toBe('Tekivex Engineering');
+      expect(a.author.length).toBeGreaterThan(0);
+      expect(getAuthor(a.authorId), `unknown author for ${a.slug}`).toBeDefined();
+      expect(a.author).toBe(getAuthor(a.authorId)!.name);
       expect(a.contentFile).toBe(`${a.slug}.md`);
       expect(a.datePublished).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }

@@ -2,6 +2,7 @@
 import { type SeoConfig, seoFromManifest } from './useSeo';
 import { getProduct } from './registry';
 import { getArticle, getAllArticles } from '../content/registry';
+import { getAuthor } from '../content/authors';
 
 const BASE_URL = 'https://tekivex.com';
 
@@ -316,7 +317,12 @@ export function getSeoForRoute(route: string): SeoConfig {
             headline: article.title,
             description: article.description,
             url,
-            author: { '@type': 'Organization', name: article.author, url: BASE_URL },
+            author: (() => {
+              const a = getAuthor(article.authorId);
+              return a
+                ? { '@type': 'Person', name: a.name, url: a.url, jobTitle: a.role, sameAs: a.sameAs }
+                : { '@type': 'Organization', name: article.author, url: BASE_URL };
+            })(),
             publisher: {
               '@type': 'Organization',
               name: 'Tekivex',

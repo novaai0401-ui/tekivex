@@ -25,8 +25,10 @@ export interface Article {
   datePublished: string;
   /** ISO date last updated */
   dateModified: string;
-  /** Byline */
+  /** Byline (author display name — resolved from authorId). */
   author: string;
+  /** Id of the human author in the authors registry (E-E-A-T). */
+  authorId: string;
   /** Markdown file under public/use-cases/content/<contentFile> */
   contentFile: string;
 }
