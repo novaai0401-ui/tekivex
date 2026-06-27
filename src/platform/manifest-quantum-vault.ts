@@ -1,6 +1,5 @@
 import type { ProductManifest } from './types';
 
-const QV_URL = 'https://quantum-vault-3k7c.onrender.com';
 const QV_GITHUB = 'https://github.com/novaai0401-ui/tekivex-issue-report/issues';
 
 export const quantumVaultManifest: ProductManifest = {
@@ -19,8 +18,8 @@ export const quantumVaultManifest: ProductManifest = {
   accentColor: 'rgba(139, 92, 246, 0.1)',
   iconName: 'shield',
   homePath: '/product/quantum-vault',
-  docsRoot: QV_URL,
-  primaryDemoPath: QV_URL,
+  docsRoot: null,
+  primaryDemoPath: null,
   stats: [
     { value: 'PQC',        label: 'NIST Standard' },
     { value: 'Kyber',      label: 'KEM' },
@@ -34,9 +33,7 @@ export const quantumVaultManifest: ProductManifest = {
     'Token issuance, validation, and rotation primitives',
     'Built on the NIST PQC standards (FIPS 203 / 204)',
   ],
-  quickLinks: [
-    { label: 'Live Demo', path: QV_URL, external: true, isNew: true },
-  ],
+  quickLinks: [],
   tags: ['Post-Quantum', 'PQC', 'NIST', 'Cryptography', 'Tokens', 'Security'],
   seo: {
     title: 'Quantum Vault — Sovereign Post-Quantum Tokens | Tekivex',
