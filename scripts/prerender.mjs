@@ -549,6 +549,7 @@ for (const article of ARTICLES) {
     description: article.description,
     category: article.productName,
     pubDate: new Date(`${article.datePublished}T00:00:00Z`),
+    lastmod: article.dateModified || article.datePublished,
   });
   articleCount++;
 }
@@ -596,7 +597,7 @@ const sitemapXml =
   articleRoutes
     .map((r) => {
       const url = `${ORIGIN}${r.path}`;
-      return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
+      return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${r.lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
     })
     .join('\n') +
   `\n  <url>\n    <loc>https://ui.tekivex.com/</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.95</priority>\n  </url>` +

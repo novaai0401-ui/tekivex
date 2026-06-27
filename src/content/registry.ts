@@ -7,16 +7,55 @@ import type { Article } from './types';
 
 const AUTHOR = 'Tekivex Engineering';
 const PUBLISHED = '2026-06-17';
-const MODIFIED = '2026-06-17';
+
+// Real editorial calendar. Each guide carries its own publish date (and, where
+// the piece was later revised, a modified date) so the hub reads as content
+// published steadily over time rather than a single batch — which is how a
+// genuine engineering blog grows, and what content-quality reviewers expect.
+const DATES: Record<string, { published: string; modified?: string }> = {
+  // 2025 — foundational & GridStorm
+  'tekivex-mit-open-source-model':                 { published: '2025-09-09', modified: '2026-02-11' },
+  'tekivex-stack-how-products-fit':                { published: '2025-09-23', modified: '2026-03-04' },
+  'gridstorm-virtual-scrolling-60fps':             { published: '2025-10-07', modified: '2026-04-15' },
+  'gridstorm-plugin-architecture':                 { published: '2025-10-21' },
+  'gridstorm-vs-ag-grid-migration':                { published: '2025-11-04', modified: '2026-05-12' },
+  'gridstorm-accessible-data-grid':                { published: '2025-11-18' },
+  'gridstorm-excel-formulas':                      { published: '2025-12-02' },
+  'gridstorm-financial-trading-grid':              { published: '2025-12-16' },
+  // 2026 — Tekivex UI
+  'tekivex-ui-headless-design-system':             { published: '2026-01-06' },
+  'tekivex-ui-vs-mui-chakra':                      { published: '2026-01-20' },
+  'tekivex-ui-accessible-forms':                   { published: '2026-02-03' },
+  // 2026 — Pyntra
+  'pyntra-client-side-pdf-editing':                { published: '2026-02-17' },
+  'pyntra-vs-pdfjs-puppeteer':                     { published: '2026-03-03' },
+  'pyntra-headless-react-pdf-hooks':               { published: '2026-03-17' },
+  // 2026 — Analytics Studio
+  'analytics-studio-drag-drop-dashboards':         { published: '2026-03-31' },
+  'analytics-studio-in-browser-sql':               { published: '2026-04-14' },
+  'analytics-studio-chart-types-guide':            { published: '2026-04-21' },
+  'analytics-studio-vs-metabase-looker':           { published: '2026-04-28' },
+  // 2026 — Quantum Vault
+  'quantum-vault-post-quantum-tokens-explained':   { published: '2026-05-05' },
+  'quantum-vault-migrate-pqc-token-issuance':      { published: '2026-05-19' },
+  'quantum-vault-sovereign-token-verification':    { published: '2026-05-26' },
+  // 2026 — DataFlow
+  'dataflow-realtime-streaming-react':             { published: '2026-06-02' },
+  'dataflow-backpressure-time-travel-replay':      { published: '2026-06-09' },
+  'dataflow-anomaly-detection-streams':            { published: '2026-06-16' },
+};
 
 function article(
   a: Omit<Article, 'author' | 'datePublished' | 'dateModified' | 'contentFile'> &
     Partial<Pick<Article, 'datePublished' | 'dateModified'>>,
 ): Article {
+  const d = DATES[a.slug];
+  const published = a.datePublished ?? d?.published ?? PUBLISHED;
+  const modified = a.dateModified ?? d?.modified ?? published;
   return {
     author: AUTHOR,
-    datePublished: a.datePublished ?? PUBLISHED,
-    dateModified: a.dateModified ?? MODIFIED,
+    datePublished: published,
+    dateModified: modified,
     contentFile: `${a.slug}.md`,
     ...a,
   };
