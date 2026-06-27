@@ -37,12 +37,12 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'Where can I see Tekivex products in action?',
     answer:
-      'GridStorm has live demos at gridstorm.tekivex.com (financial trading, analytics explorer, feature showcase, spreadsheet, cookbook). The TekiVex UI component library has an interactive playground at ui.tekivex.com/playground. Each product page on tekivex.com links directly to its live demo and source repository.',
+      'GridStorm has live demos at gridstorm.tekivex.com (financial trading, analytics explorer, feature showcase, spreadsheet, cookbook). The TekiVex UI component library has an interactive playground at ui.tekivex.com/playground. Each product page on tekivex.com links to its live demo and documentation.',
   },
   {
     question: 'How do I report bugs or contribute to Tekivex?',
     answer:
-      'File issues on the public GitHub trackers — every Tekivex package is hosted under the github.com/007krcs and github.com/novaai0401-ui orgs and has its own issue tracker. The maintainers respond inside 24 hours on weekdays. Pull requests are welcome; every repo has a CONTRIBUTING.md explaining the dev setup and code style.',
+      'File issues on the public Tekivex issue tracker on GitHub (github.com/novaai0401-ui/tekivex-issue-report). The maintainers aim to respond within two business days. Feedback and feature requests are welcome.',
   },
 ];
 
@@ -110,7 +110,7 @@ export function BrandFaq() {
           Tekivex is an open-source platform of enterprise developer tools — a
           single, MIT-licensed home for a high-performance data grid, a chart
           library, a streaming engine, a post-quantum token vault, and a complete React
-          component library. Free forever, accessibility-first, production-tested.
+          component library. Free forever, accessibility-first, and open source.
         </p>
       </header>
 

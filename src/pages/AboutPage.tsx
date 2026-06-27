@@ -58,7 +58,7 @@ const VALUES = [
   {
     icon: 'shield',
     title: 'Production Quality',
-    body: 'Every release ships with 1,800+ tests, strict TypeScript, and performance benchmarks. If it ships, it works.',
+    body: 'Every release ships with an automated test suite, strict TypeScript, and performance checks before it goes out.',
   },
   {
     icon: 'cpu',

@@ -41,10 +41,8 @@ const AUTHOR_BY_SLUG: Record<string, string> = {
 
 const DEFAULT_AUTHOR_ID = 'chandan-kumar';
 
-// Real editorial calendar. Each guide carries its own publish date (and, where
-// the piece was later revised, a modified date) so the hub reads as content
-// published steadily over time rather than a single batch — which is how a
-// genuine engineering blog grows, and what content-quality reviewers expect.
+// Editorial calendar. Each guide carries its own publish date, and a modified
+// date where the piece was later revised.
 const DATES: Record<string, { published: string; modified?: string }> = {
   // 2025 — foundational & GridStorm
   'tekivex-mit-open-source-model':                 { published: '2025-09-09', modified: '2026-02-11' },
