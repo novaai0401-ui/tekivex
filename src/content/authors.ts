@@ -25,9 +25,9 @@ export const AUTHORS: Record<string, Author> = {
   'chandan-kumar': {
     id: 'chandan-kumar',
     name: 'Chandan Kumar',
-    role: 'Tech Lead & AVP, Full-Stack Engineering',
+    role: 'Assistant Vice President, UI Lead & Technical Project Leadership',
     bio:
-      'Chandan Kumar is a full-stack engineering lead with 11+ years building React and Node.js enterprise platforms in the financial-services sector. He writes about frontend architecture, performance, and developer experience.',
+      'Chandan Kumar is a UI lead and technical project leader with 12+ years building React and Node.js enterprise platforms in the financial-services sector. He writes about frontend architecture, performance, AI innovation, and developer experience.',
     url: 'https://www.linkedin.com/in/chandankumar007',
     email: 'novaai0401@gmail.com',
     sameAs: [
@@ -38,9 +38,9 @@ export const AUTHORS: Record<string, Author> = {
   'seema-almas-shaikh': {
     id: 'seema-almas-shaikh',
     name: 'Seema Almas Shaikh',
-    role: 'Full-Stack Developer — ReactJS, NodeJS',
+    role: 'Vice President, Technical Lead & Frontend Architect',
     bio:
-      'Seema Almas Shaikh is a full-stack developer with 11+ years of experience specializing in ReactJS, Redux, and Node.js. She focuses on scalable UI architecture, accessibility, and design systems.',
+      'Seema Almas Shaikh is a frontend architect and technical lead with 12+ years of experience in ReactJS, Redux, and micro-frontends. She focuses on scalable UI architecture, design systems, accessibility, and GenAI proofs of concept.',
     url: 'https://www.linkedin.com/in/seema-almas-shaikh',
     email: 'novaai0401@gmail.com',
     sameAs: [
