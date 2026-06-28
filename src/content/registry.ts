@@ -41,10 +41,8 @@ const AUTHOR_BY_SLUG: Record<string, string> = {
 
 const DEFAULT_AUTHOR_ID = 'chandan-kumar';
 
-// Real editorial calendar. Each guide carries its own publish date (and, where
-// the piece was later revised, a modified date) so the hub reads as content
-// published steadily over time rather than a single batch — which is how a
-// genuine engineering blog grows, and what content-quality reviewers expect.
+// Editorial calendar. Each guide carries its own publish date, and a modified
+// date where the piece was later revised.
 const DATES: Record<string, { published: string; modified?: string }> = {
   // 2025 — foundational & GridStorm
   'tekivex-mit-open-source-model':                 { published: '2025-09-09', modified: '2026-02-11' },
@@ -117,7 +115,7 @@ export const ARTICLES: Article[] = [
     productId: 'gridstorm',
     productName: 'GridStorm',
     kind: 'Comparison',
-    keywords: ['GridStorm vs AG Grid', 'AG Grid alternative', 'data grid migration', 'open source data grid', 'react grid comparison'],
+    keywords: ['GridStorm vs AG Grid', 'AG Grid alternative', 'data grid migration', 'free data grid', 'react grid comparison'],
     readingMinutes: 11,
   }),
   article({
@@ -360,18 +358,18 @@ export const ARTICLES: Article[] = [
     productId: 'gridstorm',
     productName: 'Tekivex Platform',
     kind: 'Overview',
-    keywords: ['Tekivex stack', 'developer tools platform', 'open source stack', 'react enterprise tools', 'Tekivex products'],
+    keywords: ['Tekivex stack', 'developer tools platform', 'free stack', 'react enterprise tools', 'Tekivex products'],
     readingMinutes: 8,
   }),
   article({
     slug: 'tekivex-mit-open-source-model',
-    title: 'Why Everything Is MIT-Licensed: The Tekivex Open-Source Model',
+    title: 'Why Tekivex Products Are Free to Use: No Paywall, No Per-Seat Fees',
     description:
-      'No enterprise tier, no paywall, no per-seat fees — every Tekivex product is MIT-licensed. Here is the reasoning and what it means for commercial use.',
+      'No enterprise tier, no paywall, no per-seat fees — every Tekivex product is free to use, including commercially. Here is the reasoning and what it means for your team.',
     productId: 'gridstorm',
     productName: 'Tekivex Platform',
     kind: 'Overview',
-    keywords: ['MIT license', 'open source business model', 'free for commercial use', 'Tekivex licensing', 'no paywall'],
+    keywords: ['free for commercial use', 'Tekivex pricing', 'no paywall', 'free developer tools'],
     readingMinutes: 7,
   }),
 ];

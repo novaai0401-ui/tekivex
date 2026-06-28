@@ -10,12 +10,12 @@ const BASE_URL = 'https://tekivex.com';
 const HOME_SEO: SeoConfig = {
   title: 'Tekivex — Enterprise Developer Tools Platform',
   description:
-    'Tekivex builds open-source enterprise developer tools: GridStorm (high-performance data grid, ' +
+    'Tekivex builds free enterprise developer tools: GridStorm (high-performance data grid, ' +
     '35 plugins), Analytics Studio (26+ charts, drag-drop BI), DataFlow (real-time streaming), and ' +
-    'Quantum Vault (sovereign post-quantum tokens). MIT-licensed. Free forever.',
+    'Quantum Vault (sovereign post-quantum tokens). Free for commercial use. Free forever.',
   keywords: [
     'enterprise developer tools',
-    'open source data grid',
+    'free data grid',
     'react data grid',
     'AG Grid alternative',
     'data grid library',
@@ -25,21 +25,21 @@ const HOME_SEO: SeoConfig = {
     'GridStorm',
     'Tekivex',
     'TypeScript enterprise',
-    'open source enterprise software',
-    'MIT license developer tools',
+    'free enterprise software',
+    'free developer tools',
     'headless data grid',
     'virtual scrolling grid',
   ],
   canonical: BASE_URL,
   ogTitle: 'Tekivex — Enterprise Developer Tools Platform',
   ogDescription:
-    'Open-source enterprise developer tools: GridStorm data grid, Analytics Studio, DataFlow streaming, ' +
-    'Quantum Vault — MIT-licensed, free forever.',
+    'Free enterprise developer tools: GridStorm data grid, Analytics Studio, DataFlow streaming, ' +
+    'Quantum Vault — free for commercial use, free forever.',
   ogImage: `${BASE_URL}/og-tekivex.png`,
   ogType: 'website',
   twitterTitle: 'Tekivex — Enterprise Developer Tools Platform',
   twitterDescription:
-    'GridStorm data grid, Analytics Studio, DataFlow streaming, Quantum Vault — one platform, all open source.',
+    'GridStorm data grid, Analytics Studio, DataFlow streaming, Quantum Vault — one platform, all free.',
   twitterImage: `${BASE_URL}/og-tekivex.png`,
   jsonLd: [
     {
@@ -54,7 +54,7 @@ const HOME_SEO: SeoConfig = {
         height: 60,
       },
       description:
-        'Tekivex builds open-source enterprise developer tools — GridStorm, Analytics Studio, DataFlow, and Quantum Vault. All MIT-licensed.',
+        'Tekivex builds free enterprise developer tools — GridStorm, Analytics Studio, DataFlow, and Quantum Vault. All free for commercial use.',
       sameAs: [
         'https://github.com/novaai0401-ui/tekivex',
         'https://www.linkedin.com/company/tekivex/',
@@ -73,7 +73,7 @@ const HOME_SEO: SeoConfig = {
       name: 'Tekivex',
       url: BASE_URL,
       description:
-        'Open-source enterprise developer tools — GridStorm data grid, Analytics Studio, DataFlow streaming, Quantum Vault.',
+        'Free enterprise developer tools — GridStorm data grid, Analytics Studio, DataFlow streaming, Quantum Vault.',
       publisher: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
     },
   ],
@@ -85,17 +85,17 @@ const PRODUCTS_SEO: SeoConfig = {
   description:
     'Explore Tekivex products: GridStorm enterprise data grid (35 plugins, 100K+ rows), ' +
     'Analytics Studio (26+ charts, in-browser SQL), DataFlow (real-time streaming, WebSocket/SSE), ' +
-    'and Quantum Vault (post-quantum tokens — Kyber + Dilithium). All MIT-licensed.',
+    'and Quantum Vault (post-quantum tokens — Kyber + Dilithium). All free for commercial use.',
   keywords: [
     'GridStorm data grid', 'Analytics Studio BI', 'DataFlow streaming',
-    'Quantum Vault PQC', 'open source enterprise tools', 'Tekivex products',
+    'Quantum Vault PQC', 'free enterprise tools', 'Tekivex products',
     'developer software suite', 'TypeScript libraries', 'React data grid',
     'Vue data grid', 'Svelte data grid',
   ],
   canonical: `${BASE_URL}/products`,
   ogTitle: 'Products — Tekivex Developer Tools Suite',
   ogDescription:
-    'GridStorm, Analytics Studio, DataFlow, Quantum Vault — enterprise developer tools, MIT-licensed, free forever.',
+    'GridStorm, Analytics Studio, DataFlow, Quantum Vault — enterprise developer tools, free for commercial use, free forever.',
   ogImage: `${BASE_URL}/og-tekivex.png`,
   ogType: 'website',
   twitterTitle: 'Tekivex Product Suite',
@@ -111,7 +111,7 @@ const PRODUCTS_SEO: SeoConfig = {
     numberOfItems: 6,
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'GridStorm',
-        description: 'Open-source enterprise data grid — virtual scrolling, 35 plugins, MIT-licensed',
+        description: 'Free enterprise data grid — virtual scrolling, 35 plugins, free for commercial use',
         url: `${BASE_URL}/product/gridstorm` },
       { '@type': 'ListItem', position: 2, name: 'Pyntra',
         description: 'Client-side PDF editor — form filling, annotation, signing, AES-256, headless React',
@@ -134,26 +134,26 @@ const PRODUCTS_SEO: SeoConfig = {
 
 // ── About ─────────────────────────────────────────────────────────────────
 const ABOUT_SEO: SeoConfig = {
-  title: 'About Tekivex — Open-Source Enterprise Developer Tools',
+  title: 'About Tekivex — Free Enterprise Developer Tools',
   description:
-    'Tekivex is an independent developer tools company building open-source enterprise software — ' +
+    'Tekivex is an independent developer tools company building free enterprise software — ' +
     'GridStorm data grid, Pyntra browser PDF editor, Analytics Studio, Quantum Vault, DataFlow streaming engine, and Tekivex UI component library. ' +
-    '6 products, all MIT-licensed and TypeScript-native. Founded 2025.',
+    '6 products, all free for commercial use and TypeScript-native. Founded 2025.',
   keywords: [
-    'about Tekivex', 'Tekivex company', 'open-source developer tools company',
-    'GridStorm team', 'enterprise software company', 'MIT licensed tools',
+    'about Tekivex', 'Tekivex company', 'free developer tools company',
+    'GridStorm team', 'enterprise software company', 'free tools',
     'TypeScript developer tools', 'independent software developer',
-    'open source business', 'developer tools startup',
+    'free business', 'developer tools startup',
   ],
   canonical: `${BASE_URL}/about`,
   ogTitle: 'About Tekivex — Enterprise Software, Crafted with Skill',
   ogDescription:
-    '6 products, MIT-licensed. We build open-source enterprise developer tools. Founded 2025.',
+    '6 products, free for commercial use. We build free enterprise developer tools. Founded 2025.',
   ogImage: `${BASE_URL}/og-tekivex.png`,
   ogType: 'website',
   twitterTitle: 'About Tekivex',
   twitterDescription:
-    'The team behind GridStorm, Pyntra, Analytics Studio, Quantum Vault, DataFlow, and Tekivex UI — all MIT-licensed.',
+    'The team behind GridStorm, Pyntra, Analytics Studio, Quantum Vault, DataFlow, and Tekivex UI — all free for commercial use.',
   twitterImage: `${BASE_URL}/og-tekivex.png`,
   jsonLd: {
     '@context': 'https://schema.org',
@@ -182,7 +182,7 @@ const PLATFORM_SEO: SeoConfig = {
   title: 'Platform — Tekivex Developer Tools Hub',
   description:
     'The Tekivex platform hub — launch GridStorm, Analytics Studio, DataFlow, and Quantum Vault ' +
-    'from a single dashboard. All products are MIT-licensed and built TypeScript-first.',
+    'from a single dashboard. All products are free for commercial use and built TypeScript-first.',
   keywords: [
     'Tekivex platform', 'developer tools hub', 'GridStorm',
     'Analytics Studio', 'DataFlow', 'Quantum Vault', 'enterprise software platform',
@@ -217,7 +217,7 @@ function makeBasicSeo(path: string, title: string, description: string): SeoConf
 const TERMS_SEO = makeBasicSeo(
   '/terms-of-service',
   'Terms of Service — Tekivex',
-  'Read the Terms of Service for tekivex.com and the open-source products published by Tekivex.',
+  'Read the Terms of Service for tekivex.com and the free products published by Tekivex.',
 );
 
 const COOKIE_SEO = makeBasicSeo(
@@ -373,7 +373,7 @@ export function getSeoForRoute(route: string): SeoConfig {
       return {
         title: `${product.name} — Tekivex`,
         description: product.description,
-        keywords: [...product.tags, 'open source', 'MIT license', 'enterprise software', 'Tekivex', 'TypeScript'],
+        keywords: [...product.tags, 'free', 'enterprise software', 'Tekivex', 'TypeScript'],
         canonical: `${BASE_URL}${route}`,
         ogTitle: `${product.name} — Tekivex`,
         ogDescription: product.description,

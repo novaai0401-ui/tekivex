@@ -120,7 +120,7 @@ This is also what makes accessibility work as a plugin rather than a core concer
 
 - Use it when **bundle size matters** — you ship only the features you import.
 - Use it when you need **custom grid behavior** that an integrated grid would force you to fork or hack around; a plugin is a first-class, testable extension point.
-- Use it when you want to **reason about and audit** what the grid does — every package is open source and the contracts are explicit.
+- Use it when you want to **reason about** what the grid does — the plugin contracts are explicit and documented.
 - The trade-off: composing plugins requires understanding ordering and shared state, which is marginally more to learn than a grid where everything is on by default.
 
 The plugin architecture is the reason GridStorm can be both small and capable: the core stays under 50KB and feature breadth lives in 35 independently versioned, separately importable plugins, validated by a comprehensive automated test suite. Explore the composition live on the [demo](https://gridstorm.tekivex.com), see how [Analytics Studio](/product/analytics-studio) builds an entire analytics surface on this core, or browse the full [use cases](/use-cases) hub.

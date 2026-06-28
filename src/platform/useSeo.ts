@@ -103,7 +103,7 @@ export function seoFromManifest(
     description: seo.description,
     keywords: [
       ...(seo.keywords ?? []),
-      'open source', 'MIT license', 'Tekivex', 'enterprise software',
+      'free', 'Tekivex', 'enterprise software',
     ],
     canonical,
     ogTitle: seo.title,

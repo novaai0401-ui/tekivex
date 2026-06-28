@@ -10,7 +10,7 @@ export function TermsOfServicePage() {
         <p style={{ ...legalProse, margin: 0 }}>
           These Terms of Service ("Terms") govern your access to and use of
           <strong style={{ color: '#f1f5f9' }}> tekivex.com</strong>, its subdomains, and any
-          open-source software and demos we publish (the "Services").
+          free software and demos we publish (the "Services").
           By using the Services you agree to these Terms.
         </p>
       }
@@ -18,14 +18,14 @@ export function TermsOfServicePage() {
       <LegalSection title="1. Use of the Services">
         <p style={legalProse}>
           The Services are provided for personal, educational, and commercial use,
-          subject to these Terms and to the open-source licence accompanying each
-          product. Most of our software is published under the MIT licence; the
-          licence text in the relevant repository controls in the event of conflict.
+          subject to these Terms and to the licence accompanying each
+          product. Our software is free for commercial use; the
+          licence text accompanying each product controls in the event of conflict.
         </p>
         <p style={legalProse}>You agree not to:</p>
         <ul>
           <li style={legalLi}>Use the Services for any unlawful purpose or to violate any applicable law.</li>
-          <li style={legalLi}>Attempt to disrupt, overload, or reverse-engineer the running Services in a way that goes beyond what the open-source licence permits.</li>
+          <li style={legalLi}>Attempt to disrupt, overload, or reverse-engineer the running Services in a way that goes beyond what the licence permits.</li>
           <li style={legalLi}>Scrape, harvest, or republish our content in bulk without attribution and a link back.</li>
           <li style={legalLi}>Misrepresent your affiliation with Tekivex.</li>
         </ul>
@@ -41,11 +41,11 @@ export function TermsOfServicePage() {
 
       <LegalSection title="3. Intellectual Property">
         <p style={legalProse}>
-          The Tekivex name, logo, and marketing copy are owned by Tekivex. Source
-          code is licensed under the terms shown in each repository (MIT unless
-          otherwise stated). You retain ownership of anything you contribute through
-          pull requests; by submitting a contribution you grant us the same MIT
-          rights to use, modify, and redistribute it.
+          The Tekivex name, logo, and marketing copy are owned by Tekivex. Our
+          software is licensed under the terms accompanying each product, and is
+          free for commercial use. You retain ownership of anything you contribute
+          through feedback or bug reports; by submitting a contribution you grant us
+          the right to use, modify, and redistribute it.
         </p>
       </LegalSection>
 

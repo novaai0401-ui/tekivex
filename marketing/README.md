@@ -25,18 +25,18 @@ Twitter accepts MP4/MOV and GIF/PNG/JPG — not SVG.
 ## 🎬 `promo.html` — animated launch promo (for showing in the UI / screen-record)
 
 A self-contained, dependency-free animated promo. **50 seconds, 1080×1080**
-(square — best for X/Twitter and Instagram autoplay). Message: open source &
+(square — best for X/Twitter and Instagram autoplay). Message: free &
 **free forever** — no pricing or competitor references.
 
 ### Scene order
 1. Hook — "Enterprise developer tools, open and free."
-2. Brand lockup — Tekivex · 6 products · MIT · Free forever
+2. Brand lockup — Tekivex · 6 products · Free · Free forever
 3. GridStorm — live data grid, 100K rows @ 60fps
 4. Pyntra — fill + sign + AES-256 encrypt a PDF in-browser
 5. Analytics Studio · DataFlow · Quantum Vault montage
 6. Tekivex UI — 50+ accessible components
 7. New: 27 engineering deep-dives (/use-cases)
-8. CTA — "Free forever. No paywalls." → tekivex.com
+8. CTA — "Free forever. No paywalls." → tekivex.com (free to use)
 
 ### How to record it
 1. Open `marketing/promo.html` in Chrome (double-click, or `open marketing/promo.html`).
@@ -60,7 +60,7 @@ the `<script>` at the bottom; colors are CSS variables in `:root`.
 ## 🐦 Suggested X/Twitter copy (free-focused, no pricing)
 
 **Single tweet:**
-> Tekivex: open-source enterprise dev tools. MIT-licensed. Free forever. No paywalls.
+> Tekivex: free enterprise dev tools. Free for commercial use. Free forever. No paywalls.
 >
 > ⚡ GridStorm — 100K-row data grid @ 60fps
 > 📄 Pyntra — PDF editing in the browser

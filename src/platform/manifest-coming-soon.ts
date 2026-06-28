@@ -12,7 +12,7 @@ export const dataFlowManifest: ProductManifest = {
     'and simulated scenarios out of the box. Batched backpressure control, cell change ' +
     'direction tracking, multi-method anomaly detection (Z-score, IQR, MAD), schema ' +
     'auto-inference, time-travel replay, and multi-stream join. React, Vue 3, and Svelte 5 ' +
-    'adapters included. MIT-licensed.',
+    'adapters included. Free for commercial use.',
   version: '0.3.0',
   status: 'beta',
   tier: 'open-source',
@@ -45,12 +45,12 @@ export const dataFlowManifest: ProductManifest = {
     { label: 'README',     path: `${DATAFLOW_GITHUB}#readme`,           external: true },
     { label: 'Financial',  path: `${DATAFLOW_URL}`,                     external: true },
   ],
-  tags: ['Beta', 'MIT', 'Streaming', 'Real-time', 'WebSocket', 'React', 'Vue', 'Svelte', 'Anomaly'],
+  tags: ['Beta', 'Free', 'Streaming', 'Real-time', 'WebSocket', 'React', 'Vue', 'Svelte', 'Anomaly'],
   seo: {
     title: 'DataFlow — Real-Time Streaming Data Platform | Tekivex',
     description:
       'Zero-dependency streaming engine with WebSocket, SSE, and simulated adapters. ' +
-      'Anomaly detection, time-travel replay, schema inference, and React/Vue/Svelte adapters. Free, MIT-licensed.',
+      'Anomaly detection, time-travel replay, schema inference, and React/Vue/Svelte adapters. Free for commercial use.',
     keywords: [
       'real-time data streaming',
       'WebSocket data grid',

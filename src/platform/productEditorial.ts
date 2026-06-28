@@ -46,15 +46,15 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
       'High-frequency financial blotters and trading grids with streaming cell updates and flash highlighting.',
       'Internal admin tools that must display tens of thousands of records without pagination.',
       'Data-heavy SaaS dashboards that need Excel-style editing, formulas, and copy/paste.',
-      'Teams migrating off AG Grid who want an MIT-licensed alternative with no per-developer fee.',
+      'Teams migrating off AG Grid who want a free alternative with no per-developer fee.',
     ],
     limitations: [
       'GridStorm is a grid engine, not a full BI suite — charting and reporting live in Analytics Studio, which is built on top of it.',
       'The headless model means you write (or adopt) the rendering layer; if you want batteries-included styled components out of the box, expect some initial wiring.',
     ],
     faqs: [
-      { q: 'Is GridStorm really free for commercial use?', a: 'Yes. It is MIT-licensed with no enterprise tier, no per-seat pricing, and no feature gating. You can use it in commercial products and redistribute it as long as you keep the copyright notice.' },
-      { q: 'How does it compare to AG Grid?', a: 'GridStorm is open source under MIT (AG Grid gates many features behind a paid enterprise license), ships a smaller core, and is headless-first. See our in-depth GridStorm vs AG Grid comparison and migration guide in the guides section.' },
+      { q: 'Is GridStorm really free for commercial use?', a: 'Yes. It is free for commercial use with no enterprise tier, no per-seat pricing, and no feature gating. You can use it in commercial products and redistribute it as long as you keep the copyright notice.' },
+      { q: 'How does it compare to AG Grid?', a: 'GridStorm is free for commercial use (AG Grid gates many features behind a paid enterprise license), ships a smaller core, and is headless-first. See our in-depth GridStorm vs AG Grid comparison and migration guide in the guides section.' },
       { q: 'Which frameworks are supported?', a: 'React, Vue, Svelte, and Angular via official adapters. The core itself is framework-agnostic, so you can also drive it from vanilla JavaScript.' },
     ],
   },

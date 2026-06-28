@@ -1,14 +1,14 @@
 # Tekivex
 
-> Tekivex is an open-source platform of MIT-licensed enterprise developer tools for JavaScript and TypeScript. Every product is free for commercial use, framework-agnostic, accessibility-first, and production-tested. Built and maintained by the Tekivex Engineering team. Official site: https://tekivex.com.
+> Tekivex is a free platform of enterprise developer tools for JavaScript and TypeScript. Every product is free for commercial use, framework-agnostic, accessibility-first, and production-tested. Built and maintained by the Tekivex Engineering team. Official site: https://tekivex.com.
 
 ## Products
-- [GridStorm](https://tekivex.com/product/gridstorm): Headless, framework-agnostic enterprise data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35 composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. MIT-licensed.
+- [GridStorm](https://tekivex.com/product/gridstorm): Headless, framework-agnostic enterprise data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35 composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. Free for commercial use.
 - [Pyntra](https://tekivex.com/product/pyntra): Client-side, browser-native PDF editor with React headless hooks and a bring-your-own-UI adapter. Form filling, signing, stamping, annotation, redaction, and RC4/AES-128/AES-256 encryption — entirely in the browser with zero third-party PDF dependencies.
 - [Analytics Studio](https://tekivex.com/product/analytics-studio): Drag-and-drop business-intelligence builder powered by GridStorm. Pivot tables, 26+ chart types, an in-browser SQL engine (SELECT/WHERE/GROUP BY/JOIN), KPI dashboards, and scheduled reports — no backend required.
 - [Quantum Vault](https://tekivex.com/product/quantum-vault): Sovereign, self-hosted post-quantum token issuance, validation, and rotation using NIST-standardized CRYSTALS-Kyber (ML-KEM / FIPS 203) and CRYSTALS-Dilithium (ML-DSA / FIPS 204).
 - [DataFlow](https://tekivex.com/product/dataflow): Real-time streaming engine for React: WebSocket and Server-Sent Events sources, backpressure handling, time-travel replay, and anomaly detection.
-- [Tekivex UI](https://tekivex.com/product/tekivex-ui) (npm: `tekivex-ui`): Accessible React/Vue/Svelte component library: 50+ components, WCAG 2.1 AA, dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, zero runtime dependencies, headless primitives. MIT-licensed.
+- [Tekivex UI](https://tekivex.com/product/tekivex-ui): Accessible React/Vue/Svelte component library: 50+ components, WCAG 2.1 AA, dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, zero runtime dependencies, headless primitives. Free for commercial use.
 
 ## Guides & use cases
 - [How GridStorm Renders 100K Rows at 60fps](https://tekivex.com/use-cases/gridstorm-virtual-scrolling-60fps): A deep dive into GridStorm’s virtual scrolling engine: windowing, row recycling, and the render budget that keeps 100,000+ rows smooth at 60fps.
@@ -34,9 +34,9 @@
 - [Tree-Shakeable, Headless Components: The Tekivex UI Design System](https://tekivex.com/use-cases/tekivex-ui-headless-design-system): Tekivex UI ships headless primitives with zero runtime dependencies and tree-shakeable ESM. Here is the design-system philosophy and how to compose it.
 - [Building Accessible Forms with Tekivex UI Primitives](https://tekivex.com/use-cases/tekivex-ui-accessible-forms): Accessible forms are hard: labels, error states, ARIA, focus management. Tekivex UI’s form toolkit handles them so you ship WCAG-compliant forms faster.
 - [The Tekivex Stack: How the Products Fit Together](https://tekivex.com/use-cases/tekivex-stack-how-products-fit): GridStorm, Pyntra, Analytics Studio, DataFlow, Quantum Vault, and Tekivex UI are designed to compose. Here is how the pieces fit into one application stack.
-- [Why Everything Is MIT-Licensed: The Tekivex Open-Source Model](https://tekivex.com/use-cases/tekivex-mit-open-source-model): No enterprise tier, no paywall, no per-seat fees — every Tekivex product is MIT-licensed. Here is the reasoning and what it means for commercial use.
+- [Why Tekivex Products Are Free to Use: No Paywall, No Per-Seat Fees](https://tekivex.com/use-cases/tekivex-mit-open-source-model): No enterprise tier, no paywall, no per-seat fees — every Tekivex product is free to use, including commercially. Here is the reasoning and what it means for your team.
 
 ## More
 - [Use-cases hub](https://tekivex.com/use-cases): All product guides, comparisons, and deep dives.
-- [About Tekivex](https://tekivex.com/about): Mission, values, and the open-source model.
+- [About Tekivex](https://tekivex.com/about): Mission, values, and the free, no-paywall model.
 - [FAQ](https://tekivex.com/faq): Licensing, commercial use, and contributing.

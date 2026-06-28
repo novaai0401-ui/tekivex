@@ -8,8 +8,8 @@ We will compare licensing and cost, bundle size, the plugin and feature model, a
 
 | Dimension | AG Grid | GridStorm |
 | --- | --- | --- |
-| Licensing | Community edition MIT; Enterprise features require a paid per-developer license | Fully MIT, free, no per-developer fees |
-| Enterprise features | Extensive (pivoting, aggregation, integrated charting, server-side row model) behind Enterprise | Composable via 35 plugins, all open source |
+| Licensing | Community edition MIT; Enterprise features require a paid per-developer license | Free for commercial use, no per-developer fees |
+| Enterprise features | Extensive (pivoting, aggregation, integrated charting, server-side row model) behind Enterprise | Composable via 35 plugins, all included free |
 | Bundle size | Larger; full-featured by design | Under 50KB core, plus only the plugins you import |
 | Architecture | Integrated grid with module system | Headless core + plugin system |
 | Frameworks | React, Angular, Vue, vanilla JS | React, Vue, Svelte, Angular adapters |
@@ -19,7 +19,7 @@ We will compare licensing and cost, bundle size, the plugin and feature model, a
 
 Where AG Grid wins today: ecosystem maturity, breadth of out-of-the-box enterprise features, and the depth of community knowledge you can search for when you hit an edge case. If you need integrated charting or server-side pivoting *right now* and budget for the Enterprise license is not a concern, AG Grid is a safe, excellent choice.
 
-Where GridStorm tends to win: cost predictability (there is no per-seat license to negotiate as your team grows), bundle size for applications that only need a subset of features, accessibility out of the box, and the ability to read and extend the entire codebase because every package is open source. The headless model also means you fully own rendering, which some teams value and others would rather not deal with.
+Where GridStorm tends to win: cost predictability (there is no per-seat license to negotiate as your team grows, and no Enterprise tier to buy), bundle size for applications that only need a subset of features, and accessibility out of the box. The headless model also means you fully own rendering, which some teams value and others would rather not deal with.
 
 Choose deliberately. The migration below assumes you have weighed these and decided to move.
 
@@ -108,7 +108,7 @@ For deeper background on the plugin model you are adopting, see the [plugin arch
 
 ## When to migrate (and when not to)
 
-- **Migrate** if per-developer licensing cost is a growing line item, if bundle size matters for your application, if you need WCAG 2.1 AA accessibility without bolting it on, or if you want a fully open-source grid you can read and extend.
+- **Migrate** if per-developer licensing cost is a growing line item, if bundle size matters for your application, if you need WCAG 2.1 AA accessibility without bolting it on, or if you want a grid that is free for commercial use with no Enterprise tier.
 - **Stay on AG Grid** if you depend heavily on its Enterprise-only features (integrated charting, server-side pivoting), if your team's productivity is tied to its mature ecosystem, or if a migration's cost outweighs the benefit for a stable, working application.
 - **Run both** during transition: GridStorm's headless core lets you migrate one screen at a time rather than in a single big-bang cutover.
 

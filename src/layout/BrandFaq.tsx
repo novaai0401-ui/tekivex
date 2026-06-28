@@ -12,37 +12,37 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'What is Tekivex?',
     answer:
-      'Tekivex is an open-source enterprise developer-tools platform. It ships a suite of MIT-licensed products under one roof: GridStorm (high-performance React data grid with 35+ plugins), Pyntra (browser-native PDF editor with headless React hooks), Analytics Studio (drag-and-drop business intelligence with 26+ chart types), DataFlow (real-time streaming engine), Quantum Vault (sovereign post-quantum token issuance and verification), and TekiVex UI (the React component library at ui.tekivex.com). Every product is free forever, fully tree-shakable, and ships TypeScript declarations.',
+      'Tekivex is a free enterprise developer-tools platform. It ships a suite of free-to-use products under one roof: GridStorm (high-performance React data grid with 35+ plugins), Pyntra (browser-native PDF editor with headless React hooks), Analytics Studio (drag-and-drop business intelligence with 26+ chart types), DataFlow (real-time streaming engine), Quantum Vault (sovereign post-quantum token issuance and verification), and TekiVex UI (the React component library at ui.tekivex.com). Every product is free forever, fully tree-shakable, and ships TypeScript declarations.',
   },
   {
     question: 'What does Tekivex offer for React developers?',
     answer:
-      'For React developers Tekivex publishes the tekivex-ui component library (accessibility-first, WCAG 2.1 AA), tekivex-3d (a WebGL 3D + 360° toolkit), and tekivex-pdf (browser-native PDF generation without Puppeteer) on npm, documented at ui.tekivex.com. Additional products are available as live, hosted demos linked from each product page.',
+      'For React developers Tekivex offers the tekivex-ui component library (accessibility-first, WCAG 2.1 AA), tekivex-3d (a WebGL 3D + 360° toolkit), and tekivex-pdf (browser-native PDF generation without Puppeteer), all free to use and documented at ui.tekivex.com. Additional products are available as live, hosted demos linked from each product page.',
   },
   {
     question: 'How do I get started with Tekivex products?',
     answer:
-      'Tekivex UI is available on npm today ("npm install tekivex-ui"). The other products are available as live, hosted demos linked from each product page; visit a product page to open its demo and documentation. Everything is built TypeScript-first with tree-shaking support so your bundle scales with what you use.',
+      'Tekivex UI is free to use, documented at ui.tekivex.com. The other products are available as live, hosted demos linked from each product page; visit a product page to open its demo and documentation. Everything is built TypeScript-first with tree-shaking support so your bundle scales with what you use.',
   },
   {
     question: 'Is Tekivex free for commercial use?',
     answer:
-      'Yes. Every Tekivex product is open-source under the MIT license: free for commercial use, modification, and redistribution, no royalties, no per-seat or per-document fees. Attribution is appreciated but not required. The full license appears in each repository on GitHub and at opensource.org/licenses/MIT.',
+      'Yes. Every Tekivex product is free for commercial use, with no royalties, no per-seat or per-document fees. There is no paywall and no enterprise tier — every feature is free for everyone to use.',
   },
   {
     question: 'How is Tekivex different from AG Grid, Material UI, or Chakra?',
     answer:
-      'Three differences. First, Tekivex is a unified platform — one brand, one design language, one issue tracker for the data grid, the chart library, the streaming engine, the PDF renderer, and the component library. Second, every Tekivex product targets WCAG 2.1 AA out of the box, not as a paid add-on. Third, the entire stack is MIT-licensed with no enterprise tier hidden behind a paywall — every feature is in the open-source build.',
+      'Three differences. First, Tekivex is a unified platform — one brand, one design language, one issue tracker for the data grid, the chart library, the streaming engine, the PDF renderer, and the component library. Second, every Tekivex product targets WCAG 2.1 AA out of the box, not as a paid add-on. Third, the entire stack is free for commercial use with no enterprise tier hidden behind a paywall — every feature is free, with no paywall.',
   },
   {
     question: 'Where can I see Tekivex products in action?',
     answer:
-      'GridStorm has live demos at gridstorm.tekivex.com (financial trading, analytics explorer, feature showcase, spreadsheet, cookbook). The TekiVex UI component library has an interactive playground at ui.tekivex.com/playground. Each product page on tekivex.com links directly to its live demo and source repository.',
+      'GridStorm has live demos at gridstorm.tekivex.com (financial trading, analytics explorer, feature showcase, spreadsheet, cookbook). The TekiVex UI component library has an interactive playground at ui.tekivex.com/playground. Each product page on tekivex.com links to its live demo and documentation.',
   },
   {
     question: 'How do I report bugs or contribute to Tekivex?',
     answer:
-      'File issues on the public GitHub trackers — every Tekivex package is hosted under the github.com/007krcs and github.com/novaai0401-ui orgs and has its own issue tracker. The maintainers respond inside 24 hours on weekdays. Pull requests are welcome; every repo has a CONTRIBUTING.md explaining the dev setup and code style.',
+      'File issues on the public Tekivex issue tracker on GitHub (github.com/novaai0401-ui/tekivex-issue-report). The maintainers aim to respond within two business days. Feedback and feature requests are welcome.',
   },
 ];
 
@@ -107,10 +107,10 @@ export function BrandFaq() {
             margin: '0 auto',
           }}
         >
-          Tekivex is an open-source platform of enterprise developer tools — a
-          single, MIT-licensed home for a high-performance data grid, a chart
+          Tekivex is a free platform of enterprise developer tools — a
+          single, free-to-use home for a high-performance data grid, a chart
           library, a streaming engine, a post-quantum token vault, and a complete React
-          component library. Free forever, accessibility-first, production-tested.
+          component library. Free forever, accessibility-first, and free for commercial use.
         </p>
       </header>
 
@@ -133,7 +133,7 @@ export function BrandFaq() {
       >
         <p style={{ margin: 0 }}>
           The <strong>Tekivex</strong> platform groups several React-focused
-          open-source products: <strong>GridStorm</strong> (live at{' '}
+          free products: <strong>GridStorm</strong> (live at{' '}
           <a href="https://gridstorm.tekivex.com" target="_blank" rel="noopener noreferrer">
             gridstorm.tekivex.com
           </a>
@@ -142,13 +142,13 @@ export function BrandFaq() {
           chart types; <strong>DataFlow</strong> is a real-time streaming engine;{' '}
           <strong>Pyntra</strong> is a client-side PDF editor with form filling, signing, and AES-256;{' '}
           <strong>Quantum Vault</strong> is a sovereign post-quantum token vault; and{' '}
-          <strong>TekiVex UI</strong> (npm: <code>tekivex-ui</code>) is the React
+          <strong>TekiVex UI</strong> (<code>tekivex-ui</code>) is the React
           component library at{' '}
           <a href="https://ui.tekivex.com" target="_blank" rel="noopener noreferrer">
             ui.tekivex.com
           </a>{' '}
           covering an accessible component library, a 3D toolkit (<code>tekivex-3d</code>),
-          and browser-native PDF generation (<code>tekivex-pdf</code>). Every package is MIT-licensed,
+          and browser-native PDF generation (<code>tekivex-pdf</code>). Every product is
           fully typed in TypeScript, and free for commercial use.
         </p>
       </div>

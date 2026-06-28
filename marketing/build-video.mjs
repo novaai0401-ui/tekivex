@@ -60,7 +60,7 @@ function tag(cx, y, label, color) {
 // ── scene draws (return SVG markup; lt = seconds into scene) ──
 const scenes = [
   { name: 'hook', dur: 3.5, draw: (lt) => `
-    ${rise(lt, text(540, 360, 'OPEN SOURCE · MIT LICENSED', { size: 30, weight: 700, fill: C.muted, spacing: 6 }), { delay: 0.05 })}
+    ${rise(lt, text(540, 360, 'FREE · NO PAYWALL', { size: 30, weight: 700, fill: C.muted, spacing: 6 }), { delay: 0.05 })}
     ${rise(lt, text(540, 470, 'Enterprise developer tools,', { size: 78, weight: 700 }), { delay: 0.15 })}
     ${rise(lt, text(540, 575, 'open and free.', { size: 78, weight: 700, fill: C.gs }), { delay: 0.3 })}
     ${rise(lt, text(540, 680, 'No paywalls. No per-seat fees. Free forever.', { size: 36, weight: 400, fill: C.muted }), { delay: 0.5 })}
@@ -78,7 +78,7 @@ const scenes = [
     return `
       ${dots}
       ${rise(lt, text(540, 540, 'Tekivex', { size: 132, weight: 700 }), { delay: 0.25 })}
-      ${rise(lt, `${pill(540 - 250, 660, 200, '6 products')}${pill(540, 660, 230, 'MIT licensed')}${pill(540 + 255, 660, 220, 'Free forever', true)}`, { delay: 0.5 })}
+      ${rise(lt, `${pill(540 - 250, 660, 200, '6 products')}${pill(540, 660, 230, 'Free')}${pill(540 + 255, 660, 220, 'Free forever', true)}`, { delay: 0.5 })}
     `;
   } },
 
@@ -185,7 +185,7 @@ const scenes = [
         </g></g>`;
     };
     return `
-      ${rise(lt, text(540, 320, 'One stack. All open source.', { size: 60, weight: 700 }), { delay: 0.05 })}
+      ${rise(lt, text(540, 320, 'One stack. All free.', { size: 60, weight: 700 }), { delay: 0.05 })}
       ${rise(lt, card(0, 'Analytics Studio', C.as, '26+ charts · in-browser SQL', barsInner), { delay: 0.3, dur: 0.6 })}
       ${rise(lt, card(1, 'DataFlow', C.df, 'real-time streaming', flowInner), { delay: 0.4, dur: 0.6 })}
       ${rise(lt, card(2, 'Quantum Vault', C.qv, 'post-quantum tokens', shieldInner), { delay: 0.5, dur: 0.6 })}
@@ -238,11 +238,11 @@ const scenes = [
     return `
       ${rise(lt, `${text(540, 400, 'Free forever.', { size: 92, weight: 700 })}`, { delay: 0.1 })}
       ${rise(lt, text(540, 510, 'No paywalls.', { size: 92, weight: 700, fill: C.green }), { delay: 0.25 })}
-      ${rise(lt, text(540, 590, 'Open-source enterprise developer tools.', { size: 32, weight: 400, fill: C.muted }), { delay: 0.45 })}
+      ${rise(lt, text(540, 590, 'Free enterprise developer tools.', { size: 32, weight: 400, fill: C.muted }), { delay: 0.45 })}
       ${rise(lt, `
         <rect x="${540 - 320}" y="650" width="640" height="84" rx="14" fill="#0a0f1f" stroke="#ffffff1f"/>
-        ${text(540 - 290, 702, '$', { size: 30, weight: 700, fill: C.muted, anchor: 'start', family: 'JetBrains Mono' })}
-        ${text(540 - 262, 702, 'npm i @tekivex/gridstorm', { size: 30, weight: 700, fill: C.green, anchor: 'start', family: 'JetBrains Mono' })}
+        ${text(540 - 290, 702, '›', { size: 30, weight: 700, fill: C.muted, anchor: 'start', family: 'JetBrains Mono' })}
+        ${text(540 - 262, 702, 'Free to use', { size: 30, weight: 700, fill: C.green, anchor: 'start', family: 'JetBrains Mono' })}
         <rect x="${540 + 232}" y="680" width="14" height="34" fill="${C.green}" opacity="${caret}"/>
       `, { delay: 0.6 })}
       ${rise(lt, text(540, 860, 'tekivex.com', { size: 64, weight: 700, fill: C.gs }), { delay: 0.8 })}
