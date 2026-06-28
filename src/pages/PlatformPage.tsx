@@ -14,7 +14,7 @@ const STATUS_CONFIG: Record<ProductStatus, { label: string; color: string; bg: s
 };
 
 const TIER_CONFIG: Record<ProductTier, { label: string }> = {
-  'open-source': { label: 'MIT / Open Source' },
+  'open-source': { label: 'Free' },
   'enterprise':  { label: 'Enterprise' },
   'platform':    { label: 'Platform' },
 };
@@ -237,8 +237,8 @@ export function PlatformPage() {
 
   const platformStats = [
     { val: String(launched.length), lbl: 'Live Products' },
-    { val: '57',   lbl: 'Packages' },
-    { val: 'MIT',  lbl: 'License' },
+    { val: 'Free', lbl: 'To use' },
+    { val: 'AA',   lbl: 'WCAG 2.1' },
     { val: 'TS',   lbl: 'TypeScript-native' },
   ];
 
@@ -327,7 +327,7 @@ export function PlatformPage() {
         </h2>
         <p className="tx-section-sub">
           A 30-second tour of the Tekivex suite — GridStorm, Pyntra, Analytics Studio,
-          DataFlow, Quantum Vault, and Tekivex UI. Open source and free forever.
+          DataFlow, Quantum Vault, and Tekivex UI. Free forever.
         </p>
         <div className="tx-showcase-frame">
           <iframe
@@ -378,7 +378,7 @@ export function PlatformPage() {
           </div>
           <h3 className="tx-cta-title">Build with Tekivex</h3>
           <p className="tx-cta-body">
-            Every tool on the platform is open source, MIT-licensed, and free to use
+            Every tool on the platform is free to use and free for commercial use
             in production. Explore what's available today, or get in touch about
             enterprise support, partnerships, and what we're building next.
           </p>

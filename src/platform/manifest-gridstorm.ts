@@ -15,7 +15,7 @@ export const gridstormManifest: ProductManifest = {
   description:
     'Headless data grid engine with virtual scrolling, WCAG 2.1 AA accessibility, ' +
     '42 Excel-compatible formula functions, Excel copy/paste, and a full plugin ' +
-    'ecosystem. MIT-licensed. No per-dev license fees.',
+    'ecosystem. Free for commercial use. No per-dev license fees.',
   version: '0.1.3',
   status: 'beta',
   tier: 'open-source',
@@ -46,16 +46,16 @@ export const gridstormManifest: ProductManifest = {
     { label: 'Migration from AG Grid', path: `${GRIDSTORM_URL}/#/docs/guides/migration-from-ag-grid`, external: true },
     { label: 'Playground',             path: `${GRIDSTORM_URL}/playground/`, external: true, isNew: true },
   ],
-  tags: ['MIT', 'TypeScript', 'React', 'Vue', 'Svelte', 'Virtual Scroll', 'WCAG 2.1 AA'],
+  tags: ['Free', 'TypeScript', 'React', 'Vue', 'Svelte', 'Virtual Scroll', 'WCAG 2.1 AA'],
   seo: {
     title: 'GridStorm — Enterprise React Data Grid | Tekivex',
     description:
-      'Open-source enterprise data grid with virtual scrolling (100K rows @ 60fps), ' +
+      'Free enterprise data grid with virtual scrolling (100K rows @ 60fps), ' +
       'WCAG 2.1 AA, 42 Excel formula functions, and 35 composable plugins. Free forever.',
     keywords: [
       'enterprise data grid',
       'react data grid',
-      'open source data table',
+      'free data table',
       'ag grid alternative',
       'virtual scrolling grid',
       'TypeScript data grid',

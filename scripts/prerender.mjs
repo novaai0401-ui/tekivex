@@ -155,7 +155,7 @@ function productDetailBlock(p) {
     )
     .join('');
   return `
-      <p style="font-size:13px;color:#64748b;margin:0 0 6px"><strong>${escapeHtml(STATUS_LABEL[p.status] || p.status)}</strong> · v${escapeHtml(p.version)} · MIT licensed</p>
+      <p style="font-size:13px;color:#64748b;margin:0 0 6px"><strong>${escapeHtml(STATUS_LABEL[p.status] || p.status)}</strong> · v${escapeHtml(p.version)} · Free for commercial use</p>
       <p style="font-size:18px;line-height:1.6;color:#3a3a52;margin:0 0 16px">${escapeHtml(p.tagline)}</p>
       <p style="font-size:16px;line-height:1.78;color:#1f2937;margin:0 0 28px">${escapeHtml(p.description)}</p>
       ${stats ? `<div style="display:flex;flex-wrap:wrap;gap:12px;margin:0 0 32px">${stats}</div>` : ''}
@@ -210,38 +210,38 @@ const products = PRODUCTS.map((p) => ({ id: p.id, name: p.name, tagline: p.tagli
 const routes = [
   {
     path: '/',
-    title: 'Tekivex — Open-Source Enterprise Developer Tools Platform',
+    title: 'Tekivex — Free Enterprise Developer Tools Platform',
     description:
-      'Tekivex is an open-source enterprise developer tools platform. GridStorm data grid, Pyntra browser PDF editor, Analytics Studio BI, DataFlow streaming, Quantum Vault, and TekiVex UI components — all MIT-licensed, free forever, accessibility-first.',
-    h1: 'Tekivex — open-source enterprise developer tools',
+      'Tekivex is a free enterprise developer tools platform. GridStorm data grid, Pyntra browser PDF editor, Analytics Studio BI, DataFlow streaming, Quantum Vault, and TekiVex UI components — all free for commercial use, free forever, accessibility-first.',
+    h1: 'Tekivex — free enterprise developer tools',
     body:
-      'Tekivex groups several React-focused open-source products under one roof: GridStorm, Analytics Studio, DataFlow, Quantum Vault, and TekiVex UI. Every package is MIT-licensed, fully typed in TypeScript, and free for commercial use.',
+      'Tekivex groups several React-focused free products under one roof: GridStorm, Analytics Studio, DataFlow, Quantum Vault, and TekiVex UI. Every package is free for commercial use, fully typed in TypeScript, and free to use.',
     contentHtml: `${featuredGuidesBlock(8)}<h2 style="font-size:1.5rem;font-weight:800;color:#0a0f1f;margin:40px 0 16px">The Tekivex product suite</h2>${productCatalogBlock}`,
   },
   {
     path: '/products',
     title: 'Tekivex products — Data grid, charts, streaming, PDF, components',
     description:
-      'Browse Tekivex products: GridStorm React data grid, Pyntra browser PDF editor, Analytics Studio BI, DataFlow streaming engine, Quantum Vault, and TekiVex UI component library. All open source.',
+      'Browse Tekivex products: GridStorm React data grid, Pyntra browser PDF editor, Analytics Studio BI, DataFlow streaming engine, Quantum Vault, and TekiVex UI component library. All free.',
     h1: 'Tekivex products',
     body:
-      'A unified catalog of every Tekivex product — data grid, charts, streaming, PDF, components. All open source under the MIT license, all production-tested.',
+      'A unified catalog of every Tekivex product — data grid, charts, streaming, PDF, components. All free for commercial use, all production-tested.',
     contentHtml: productCatalogBlock,
   },
   {
     path: '/about',
-    title: 'About Tekivex — Open-source enterprise tools, MIT licensed',
+    title: 'About Tekivex — Free enterprise tools',
     description:
-      'Tekivex builds open-source enterprise developer tools that are free forever. Read about the platform, the mission, and the team behind GridStorm, Analytics Studio, DataFlow, and TekiVex UI.',
+      'Tekivex builds free enterprise developer tools that are free forever. Read about the platform, the mission, and the team behind GridStorm, Analytics Studio, DataFlow, and TekiVex UI.',
     h1: 'About Tekivex',
     body:
-      'Tekivex is an independent open-source project that builds production-grade enterprise developer tools and releases them under the MIT license — no enterprise tier, no paywall, no per-seat pricing.',
+      'Tekivex is an independent project that builds production-grade enterprise developer tools and releases them free for commercial use — no enterprise tier, no paywall, no per-seat pricing.',
   },
   {
     path: '/privacy-policy',
     title: 'Privacy Policy — Tekivex',
     description:
-      'How Tekivex collects, uses, and protects information about visitors to tekivex.com and users of the open-source Tekivex products.',
+      'How Tekivex collects, uses, and protects information about visitors to tekivex.com and users of the free Tekivex products.',
     h1: 'Privacy Policy',
     body:
       'How Tekivex handles information about visitors to tekivex.com. Plain language, no dark patterns, only the third-party analytics and advertising needed to operate the site.',
@@ -256,7 +256,7 @@ const routes = [
     path: '/terms-of-service',
     title: 'Terms of Service — Tekivex',
     description:
-      'Terms governing your use of tekivex.com and the open-source software and demos published by Tekivex.',
+      'Terms governing your use of tekivex.com and the free software and demos published by Tekivex.',
     h1: 'Terms of Service',
     body:
       'Plain-language Terms of Service for tekivex.com. Covers acceptable use, intellectual property, warranties, and limitation of liability.',
@@ -292,7 +292,7 @@ const routes = [
     path: '/faq',
     title: 'FAQ — Tekivex',
     description:
-      'Frequently asked questions about Tekivex products, MIT licensing, demos, advertising, and cookies.',
+      'Frequently asked questions about Tekivex products, free commercial use, demos, advertising, and cookies.',
     h1: 'Frequently Asked Questions',
     body:
       'Quick answers to common questions about Tekivex — what we build, how we make money, how to disable advertising, and how to contribute.',
@@ -369,7 +369,7 @@ function makeHtml(route) {
       <h1 style="font-size:2.4rem;font-weight:800;letter-spacing:-0.025em;color:#0a0f1f;margin:0 0 12px;line-height:1.15">${escapeHtml(route.h1)}</h1>
       <p style="color:#3a3a52;font-size:18px;line-height:1.6;margin:0 0 24px">${escapeHtml(route.body)}</p>
       ${route.contentHtml || ''}
-      <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px;margin-top:32px">Tekivex · open-source enterprise developer tools · MIT licensed · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://ui.tekivex.com" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
+      <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px;margin-top:32px">Tekivex · free enterprise developer tools · Free for commercial use · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://ui.tekivex.com" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
     </main>`;
   html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${ssr}</div>`);
 
@@ -563,7 +563,7 @@ function articleHtml(article, contentHtml) {
       <hr style="margin:44px 0 24px;border:none;border-top:1px solid #e6e8ef" />
       <p style="color:#64748b;font-size:13px">
         Part of <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Tekivex use cases</a>.
-        Explore our <a href="/products" style="color:#3a86ff;text-decoration:none">open-source products</a>.
+        Explore our <a href="/products" style="color:#3a86ff;text-decoration:none">free products</a>.
       </p>
     </article>`;
   html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${ssr}</div>`);
@@ -697,7 +697,7 @@ const humans = [
 // Generated from the same product facts + article list so they never drift.
 const LLM_PRODUCTS = [
   { name: 'GridStorm', url: `${ORIGIN}/product/gridstorm`, npm: null,
-    s: 'Headless, framework-agnostic enterprise data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35 composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. MIT-licensed.' },
+    s: 'Headless, framework-agnostic enterprise data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35 composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. Free for commercial use.' },
   { name: 'Pyntra', url: `${ORIGIN}/product/pyntra`, npm: null,
     s: 'Client-side, browser-native PDF editor with React headless hooks and a bring-your-own-UI adapter. Form filling, signing, stamping, annotation, redaction, and RC4/AES-128/AES-256 encryption — entirely in the browser with zero third-party PDF dependencies.' },
   { name: 'Analytics Studio', url: `${ORIGIN}/product/analytics-studio`, npm: null,
@@ -706,11 +706,11 @@ const LLM_PRODUCTS = [
     s: 'Sovereign, self-hosted post-quantum token issuance, validation, and rotation using NIST-standardized CRYSTALS-Kyber (ML-KEM / FIPS 203) and CRYSTALS-Dilithium (ML-DSA / FIPS 204).' },
   { name: 'DataFlow', url: `${ORIGIN}/product/dataflow`, npm: null,
     s: 'Real-time streaming engine for React: WebSocket and Server-Sent Events sources, backpressure handling, time-travel replay, and anomaly detection.' },
-  { name: 'Tekivex UI', url: `${ORIGIN}/product/tekivex-ui`, npm: 'tekivex-ui',
-    s: 'Accessible React/Vue/Svelte component library: 50+ components, WCAG 2.1 AA, dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, zero runtime dependencies, headless primitives. MIT-licensed.' },
+  { name: 'Tekivex UI', url: `${ORIGIN}/product/tekivex-ui`, npm: null,
+    s: 'Accessible React/Vue/Svelte component library: 50+ components, WCAG 2.1 AA, dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, zero runtime dependencies, headless primitives. Free for commercial use.' },
 ];
 const LLM_INTRO =
-  'Tekivex is an open-source platform of MIT-licensed enterprise developer tools for JavaScript and TypeScript. ' +
+  'Tekivex is a free platform of enterprise developer tools for JavaScript and TypeScript. ' +
   'Every product is free for commercial use, framework-agnostic, accessibility-first, and production-tested. ' +
   'Built and maintained by the Tekivex Engineering team. Official site: ' + ORIGIN + '.';
 
@@ -725,7 +725,7 @@ const llmsTxt = [
   '',
   '## More',
   `- [Use-cases hub](${ORIGIN}/use-cases): All product guides, comparisons, and deep dives.`,
-  `- [About Tekivex](${ORIGIN}/about): Mission, values, and the open-source model.`,
+  `- [About Tekivex](${ORIGIN}/about): Mission, values, and the free, no-paywall model.`,
   `- [FAQ](${ORIGIN}/faq): Licensing, commercial use, and contributing.`,
   '',
 ].join('\n');
@@ -733,7 +733,7 @@ const llmsTxt = [
 const llmsFull = [
   '# Tekivex — full reference for LLMs', '',
   LLM_INTRO, '',
-  'License: MIT (free for commercial use, modification, and redistribution; keep the copyright notice). ',
+  'Free for commercial use. ',
   'No enterprise tier, no paywall, no per-seat fees.', '',
   '## Products', '',
   ...LLM_PRODUCTS.flatMap((p) => [

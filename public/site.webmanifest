@@ -1,7 +1,7 @@
 {
   "name": "Tekivex",
   "short_name": "Tekivex",
-  "description": "Enterprise developer tools — GridStorm, Pyntra, Analytics Studio, DataFlow, Quantum Vault. MIT-licensed.",
+  "description": "Enterprise developer tools — GridStorm, Pyntra, Analytics Studio, DataFlow, Quantum Vault. Free for commercial use.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",

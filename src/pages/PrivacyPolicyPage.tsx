@@ -93,7 +93,7 @@ export function PrivacyPolicyPage() {
       <Section title="2. How We Use Your Information">
         <ul style={{ paddingLeft: '24px', margin: '0 0 14px' }}>
           {[
-            'Operate and maintain our websites and open-source products.',
+            'Operate and maintain our websites and free products.',
             'Understand and analyse how visitors use our sites (Google Analytics 4).',
             'Improve and develop new features and products.',
             'Detect and address technical issues and security threats.',
@@ -164,7 +164,7 @@ export function PrivacyPolicyPage() {
             'Google Analytics 4 — analytics (policies.google.com/privacy)',
             'Google AdSense — advertising (policies.google.com/technologies/ads)',
             'GitHub — code hosting and issue tracking',
-            'npm / npmjs.com — package registry for open-source packages',
+            'Content delivery / download hosting',
             'Vercel / Render — web hosting',
             'Google Fonts — Inter typeface (fonts.googleapis.com)',
           ].map(t => <li key={t} style={li}>{t}</li>)}
@@ -175,9 +175,9 @@ export function PrivacyPolicyPage() {
       </Section>
 
       {/* 6 */}
-      <Section title="6. Open-Source Products and npm Packages">
+      <Section title="6. Free Products and Downloads">
         <p style={prose}>
-          Tekivex publishes open-source software packages on npm and GitHub. When you download or use these packages, your interaction is governed by the npm Terms of Service and GitHub's Privacy Statement. We do not collect personal data through the use of our npm packages themselves.
+          Tekivex offers free software downloads. When you download or use this software, your interaction is governed by the applicable download terms. We do not collect personal data through the use of the downloaded software itself.
         </p>
       </Section>
 
@@ -216,7 +216,7 @@ export function PrivacyPolicyPage() {
       {/* 10 */}
       <Section title="10. Security">
         <p style={prose}>
-          All data in transit between your browser and our services is encrypted using HTTPS/TLS. Our open-source products are built with security-first principles — zero runtime dependencies where possible, no eval(), and regular dependency audits. However, no method of electronic transmission is 100% secure.
+          All data in transit between your browser and our services is encrypted using HTTPS/TLS. Our free products are built with security-first principles — zero runtime dependencies where possible, no eval(), and regular dependency audits. However, no method of electronic transmission is 100% secure.
         </p>
       </Section>
 

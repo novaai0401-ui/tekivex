@@ -18,7 +18,7 @@ Analytics Studio assumes no server. The data you want to analyze is already in t
 | Backend required | None | Yes (app + database) | Yes (warehouse + LookML) |
 | Data location | In the browser | In connected database | In connected warehouse |
 | Modeling layer | None — query data directly | Light (optional models) | LookML semantic model |
-| Cost model | Open-source library | Open-source + paid tiers | Commercial, seat/usage based |
+| Cost model | Free to use, no paid tier | Open-source + paid tiers | Commercial, seat/usage based |
 | Embedding | Native — it is a component | Iframe / signed embed | Embedded analytics product |
 | Best data scale | Up to ~low millions of rows | Database-scale | Warehouse-scale |
 | Governance / row-level security | App-enforced | Built-in | Strong, central |

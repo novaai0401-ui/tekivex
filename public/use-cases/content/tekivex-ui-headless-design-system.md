@@ -2,7 +2,7 @@ Most component libraries make a quiet bargain with you: in exchange for ready-ma
 
 Tekivex UI takes a different stance. It is a headless-first component system for React, Vue, and Svelte that separates *behavior* from *presentation*. The primitives handle the hard, error-prone parts — keyboard interaction, focus management, ARIA wiring, state machines — and hand you the markup and styling decisions. You own the look. The library owns the correctness.
 
-This article walks through the design philosophy behind that split, why headless matters more than it first appears, and how zero runtime dependencies plus tree-shakeable ESM keep your bundle honest. Tekivex UI is MIT-licensed and ships 50+ accessible components meeting WCAG 2.1 AA. The full reference lives on the [Tekivex UI product page](/product/tekivex-ui).
+This article walks through the design philosophy behind that split, why headless matters more than it first appears, and how zero runtime dependencies plus tree-shakeable ESM keep your bundle honest. Tekivex UI is free to use and ships 50+ accessible components meeting WCAG 2.1 AA. The full reference lives on the [Tekivex UI product page](/product/tekivex-ui).
 
 ## What "headless" actually means
 

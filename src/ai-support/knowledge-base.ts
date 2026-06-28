@@ -48,10 +48,10 @@ export const KNOWLEDGE_BASE: KbEntry[] = [
       'Who makes these products?',
       'What company is this?',
     ],
-    answer: `**Tekivex** is a developer tools company building next-generation open-source and enterprise software products.
+    answer: `**Tekivex** is a developer tools company building next-generation free and enterprise software products.
 
 Our product portfolio includes:
-- 🟦 **GridStorm** — Enterprise data grid (GA, MIT-licensed, free)
+- 🟦 **GridStorm** — Enterprise data grid (GA, free for commercial use)
 - 📄 **PDF Toolkit** — WASM-powered PDF processing (Beta, enterprise tier)
 - 👥 **NexaRecruit** — AI-powered ATS & resume builder (Coming Soon)
 - 🏥 **NexaCare** — Healthcare platform (Coming Soon)
@@ -90,20 +90,20 @@ Visit each product page for demos, docs, and quick-start guides.`,
     id: 'open-source',
     category: 'general',
     questions: [
-      'Is Tekivex open source?',
+      'Is Tekivex free?',
       'Are the products free?',
       'What is the license?',
-      'MIT license',
+      'Can I use it commercially?',
       'Can I use it for free?',
     ],
-    answer: `**GridStorm** is fully **MIT-licensed** — free for personal and commercial use, forever. No per-developer fees, no licensing servers.
+    answer: `**GridStorm** is fully **free for commercial use** — free for personal and commercial use, forever. No per-developer fees, no licensing servers.
 
-**PDF Toolkit** has an enterprise tier — the core API is open-source, advanced features (PII detection, digital signatures, bulk processing) are enterprise.
+**PDF Toolkit** has an enterprise tier — the core API is free, advanced features (PII detection, digital signatures, bulk processing) are enterprise.
 
 Upcoming products (NexaRecruit, NexaCare, Analytics Studio) will follow the same open-core model: free community edition + optional enterprise features.
 
 Report issues at **github.com/novaai0401-ui/tekivex-issue-report/issues**.`,
-    tags: ['license', 'MIT', 'free', 'open source', 'cost', 'pricing'],
+    tags: ['license', 'free', 'free', 'cost', 'pricing'],
   },
 
   // ══════════════════════════════════════
@@ -119,7 +119,7 @@ Report issues at **github.com/novaai0401-ui/tekivex-issue-report/issues**.`,
       'What does the data grid do?',
       'GridStorm overview',
     ],
-    answer: `**GridStorm** is an open-source enterprise data grid built for modern web applications.
+    answer: `**GridStorm** is a free enterprise data grid built for modern web applications.
 
 **Key highlights:**
 - ⚡ Virtual scrolling — 100,000+ rows at 60fps
@@ -130,7 +130,7 @@ Report issues at **github.com/novaai0401-ui/tekivex-issue-report/issues**.`,
 - 🎨 Framework-agnostic: React, Vue, Svelte, Angular
 - 📦 <50KB core bundle
 - 📝 Comprehensive automated test suite
-- 🆓 MIT license — free forever
+- 🆓 Free forever
 
 **Compared to AG Grid Enterprise ($999/dev/yr):** GridStorm provides the same enterprise features for $0.`,
     tags: ['gridstorm', 'data grid', 'react grid', 'table', 'virtual scroll'],
@@ -187,7 +187,7 @@ See the [full documentation](https://gridstorm.tekivex.com/#/docs/getting-starte
     ],
     answer: `GridStorm ships **35 composable plugins** across 3 tiers:
 
-**Tier 1 — Core (Open Source)**
+**Tier 1 — Core (Free)**
 sorting · filtering · selection · editing · pagination · column-pinning · column-resize · column-reorder · context-menu · clipboard
 
 **Tier 2 — Enterprise**
@@ -314,7 +314,7 @@ This satisfies procurement requirements for government, healthcare, and educatio
 
 | Feature | GridStorm | AG Grid Community | AG Grid Enterprise |
 |---------|-----------|------------------|-------------------|
-| Price | **Free (MIT)** | Free | $999/dev/yr |
+| Price | **Free** | Free | $999/dev/yr |
 | Virtual Scroll | ✅ | ✅ | ✅ |
 | WCAG 2.1 AA | ✅ | ❌ | ✅ |
 | Excel Formulas | ✅ 42 functions | ❌ | ✅ |
@@ -695,7 +695,7 @@ Built with full HIPAA and GDPR compliance from day one, leveraging PDF Toolkit f
     ],
     answer: `**Tekivex Pricing:**
 
-**GridStorm** — **Free forever** (MIT license)
+**GridStorm** — **Free forever** (free forever)
 No seat fees, no usage limits, no license servers.
 Use in any project, commercial or personal.
 

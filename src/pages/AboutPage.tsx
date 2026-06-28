@@ -52,8 +52,8 @@ const PRODUCTS = [
 const VALUES = [
   {
     icon: 'lock',
-    title: 'Open-Source First',
-    body: 'Core packages are MIT-licensed — forever. No lock-in, no per-developer license fees, no surprise paywalls.',
+    title: 'Free First',
+    body: 'Core packages are free for commercial use — forever. No lock-in, no per-developer license fees, no surprise paywalls.',
   },
   {
     icon: 'shield',
@@ -116,8 +116,8 @@ export function AboutPage() {
           </h1>
           <p className="tx-hero-tagline" style={{ maxWidth: 600 }}>
             Tekivex is an independent developer tools company building the next generation of
-            open-source enterprise software — data grids, analytics, PDF processing, and real-time
-            streaming, all MIT-licensed and free forever.
+            free enterprise software — data grids, analytics, PDF processing, and real-time
+            streaming, all free for commercial use and free forever.
           </p>
           <div className="tx-hero-ctas">
             <a
@@ -159,16 +159,16 @@ export function AboutPage() {
           </div>
           <div className="about-prose-card">
             <h3 style={{ color: 'var(--hub-text)', marginBottom: '0.75rem', fontSize: '1.1rem' }}>
-              Open-source is the right default
+              Free should be the default
             </h3>
             <p style={{ color: 'var(--hub-text-muted)', lineHeight: 1.7, fontSize: '0.95rem' }}>
-              Every product at Tekivex ships with an MIT license. We believe the best way to earn
-              trust is to show the code, welcome contributions, and let the community hold us to a
-              high standard.
+              Every product at Tekivex is free for commercial use — no per-seat fees, no enterprise
+              tier, no paywall on the features that matter. We would rather earn trust by removing
+              the cost barrier than by gating the good parts.
             </p>
             <p style={{ color: 'var(--hub-text-muted)', lineHeight: 1.7, fontSize: '0.95rem', marginTop: '0.75rem' }}>
-              Open-source doesn't mean low quality — it means better quality, because everyone can
-              see exactly what we shipped.
+              Free doesn't mean low quality — every release ships with strict TypeScript, an
+              automated test suite, and accessibility built in from the start.
             </p>
           </div>
         </div>
@@ -243,7 +243,7 @@ export function AboutPage() {
       <div className="tx-stats-bar" style={{ marginTop: 0 }}>
         {[
           { val: '6',      lbl: 'Products' },
-          { val: 'MIT',    lbl: 'License' },
+          { val: 'Free',   lbl: 'License' },
           { val: 'TS',     lbl: 'TypeScript-native' },
           { val: '2025',   lbl: 'Founded' },
         ].map(s => (

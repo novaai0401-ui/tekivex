@@ -1,6 +1,6 @@
 # tekivex.com — crawl policy
 # Everyone is welcome, including AI assistants and answer engines. We *want*
-# Tekivex and its open-source libraries to be discoverable and citable.
+# Tekivex and its free libraries to be discoverable and citable.
 
 User-agent: *
 Allow: /

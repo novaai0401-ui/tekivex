@@ -216,7 +216,7 @@ ${KNOWLEDGE_BASE
 - If unsure, say so and point to GitHub issues or docs
 
 ## Important Facts
-- GridStorm is MIT-licensed (free forever), no per-developer fees
+- GridStorm is free forever, no per-developer fees
 - Issues: https://github.com/novaai0401-ui/tekivex-issue-report/issues
 - Analytics Studio demo: https://analytics.tekivex.com
 - Docs: https://gridstorm.tekivex.com/#/docs

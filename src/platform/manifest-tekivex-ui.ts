@@ -11,7 +11,7 @@ export const tekivexUiManifest: ProductManifest = {
     'Production-ready UI component library built for enterprise apps — buttons, forms, modals, ' +
     'tables, toasts, navigation, and layout primitives. Fully accessible (WCAG 2.1 AA), ' +
     'dark/light theme support via CSS custom properties, tree-shakeable ESM bundles, and ' +
-    'zero runtime dependencies. React 18+, Vue 3, and Svelte 5 bindings included. MIT-licensed.',
+    'zero runtime dependencies. React 18+, Vue 3, and Svelte 5 bindings included. Free for commercial use.',
   version: '0.1.0',
   status: 'preview',
   tier: 'open-source',
@@ -44,12 +44,12 @@ export const tekivexUiManifest: ProductManifest = {
     { label: 'Docs',          path: `${UI_URL}/docs`,           external: true },
     { label: 'Storybook',     path: `${UI_URL}/storybook`,      external: true },
   ],
-  tags: ['Preview', 'MIT', 'React', 'Vue', 'Svelte', 'Accessible', 'Themeable', 'TypeScript', 'Headless'],
+  tags: ['Preview', 'Free', 'React', 'Vue', 'Svelte', 'Accessible', 'Themeable', 'TypeScript', 'Headless'],
   seo: {
     title: 'Tekivex UI — Enterprise Component Library for React, Vue & Svelte | Tekivex',
     description:
       'Production-ready UI component library with 50+ accessible components, dark/light themes, ' +
-      'tree-shakeable ESM bundles, and React/Vue/Svelte bindings. Free, MIT-licensed.',
+      'tree-shakeable ESM bundles, and React/Vue/Svelte bindings. Free for commercial use.',
     keywords: [
       'UI component library',
       'React component library',

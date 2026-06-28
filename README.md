@@ -28,7 +28,7 @@ tekivex (this repo)            ← platform shell, product catalog, SEO
 
 | Product | Status | Description |
 |---|---|---|
-| **GridStorm** | ✅ GA | Open-source enterprise data grid — 35 plugins, 100K rows @ 60fps, WCAG 2.1 AA |
+| **GridStorm** | ✅ GA | Free enterprise data grid — 35 plugins, 100K rows @ 60fps, WCAG 2.1 AA |
 | **PDF Toolkit** | 🔵 Beta | WASM/Rust PDF renderer — 13 annotation types, PII detection, AES-256 |
 | **Analytics Studio** | 🔜 Q3 2026 | Visual BI & dashboards — drag-and-drop, 20+ chart types, no SQL |
 | **DataFlow** | 🔜 Q4 2026 | Real-time streaming — WebSocket, Kafka, sub-10ms latency |

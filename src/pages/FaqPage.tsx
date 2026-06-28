@@ -8,19 +8,19 @@ interface QA {
 const FAQS: QA[] = [
   {
     q: 'What is Tekivex?',
-    a: 'Tekivex is an independent developer-tools project that publishes open-source enterprise software — GridStorm (data grid), Pyntra (browser PDF editor), Analytics Studio (BI), DataFlow (real-time streaming), Quantum Vault (post-quantum tokens), and Tekivex UI. All of our products are MIT licensed.',
+    a: 'Tekivex is an independent developer-tools project that publishes free enterprise software — GridStorm (data grid), Pyntra (browser PDF editor), Analytics Studio (BI), DataFlow (real-time streaming), Quantum Vault (post-quantum tokens), and Tekivex UI. All of our products are free for commercial use.',
   },
   {
     q: 'Are Tekivex products really free to use commercially?',
-    a: 'Yes. Every published product is MIT licensed, which permits commercial use, modification, and redistribution. You only have to keep the copyright notice in your distribution.',
+    a: 'Yes. Every product is free for commercial use, with no royalties and no per-seat or per-document fees. There is no paywall and no enterprise tier.',
   },
   {
     q: 'How does Tekivex make money if the products are free?',
-    a: 'The marketing site shows Google AdSense advertisements. We may also offer optional paid support and hosted services in the future. Open-source code stays MIT licensed.',
+    a: 'The marketing site shows Google AdSense advertisements. We may also offer optional paid support and hosted services in the future. Our products stay free for commercial use.',
   },
   {
     q: 'Which frameworks do the products support?',
-    a: 'Most products ship a TypeScript-first core with React, Vue, and Svelte adapters. Check each product page or its npm README for the up-to-date support matrix.',
+    a: 'Most products ship a TypeScript-first core with React, Vue, and Svelte adapters. Check each product page for the up-to-date support matrix.',
   },
   {
     q: 'Where can I see live demos?',

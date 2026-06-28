@@ -1,14 +1,14 @@
 # Tekivex — full reference for LLMs
 
-Tekivex is an open-source platform of MIT-licensed enterprise developer tools for JavaScript and TypeScript. Every product is free for commercial use, framework-agnostic, accessibility-first, and production-tested. Built and maintained by the Tekivex Engineering team. Official site: https://tekivex.com.
+Tekivex is a free platform of enterprise developer tools for JavaScript and TypeScript. Every product is free for commercial use, framework-agnostic, accessibility-first, and production-tested. Built and maintained by the Tekivex Engineering team. Official site: https://tekivex.com.
 
-License: MIT (free for commercial use, modification, and redistribution; keep the copyright notice). 
+Free for commercial use. 
 No enterprise tier, no paywall, no per-seat fees.
 
 ## Products
 
 ### GridStorm
-Headless, framework-agnostic enterprise data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35 composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. MIT-licensed.
+Headless, framework-agnostic enterprise data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35 composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. Free for commercial use.
 Install: see the product page.
 URL: https://tekivex.com/product/gridstorm
 
@@ -33,8 +33,8 @@ Install: see the product page.
 URL: https://tekivex.com/product/dataflow
 
 ### Tekivex UI
-Accessible React/Vue/Svelte component library: 50+ components, WCAG 2.1 AA, dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, zero runtime dependencies, headless primitives. MIT-licensed.
-Install: `npm install tekivex-ui`
+Accessible React/Vue/Svelte component library: 50+ components, WCAG 2.1 AA, dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, zero runtime dependencies, headless primitives. Free for commercial use.
+Install: see the product page.
 URL: https://tekivex.com/product/tekivex-ui
 
 ## Articles by product
@@ -75,4 +75,4 @@ URL: https://tekivex.com/product/tekivex-ui
 
 ### Tekivex Platform
 - The Tekivex Stack: How the Products Fit Together — GridStorm, Pyntra, Analytics Studio, DataFlow, Quantum Vault, and Tekivex UI are designed to compose. Here is how the pieces fit into one application stack. (https://tekivex.com/use-cases/tekivex-stack-how-products-fit)
-- Why Everything Is MIT-Licensed: The Tekivex Open-Source Model — No enterprise tier, no paywall, no per-seat fees — every Tekivex product is MIT-licensed. Here is the reasoning and what it means for commercial use. (https://tekivex.com/use-cases/tekivex-mit-open-source-model)
+- Why Tekivex Products Are Free to Use: No Paywall, No Per-Seat Fees — No enterprise tier, no paywall, no per-seat fees — every Tekivex product is free to use, including commercially. Here is the reasoning and what it means for your team. (https://tekivex.com/use-cases/tekivex-mit-open-source-model)
