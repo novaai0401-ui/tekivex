@@ -6,10 +6,25 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/product/pdfcraft", "destination": "/product/pyntra", "permanent": true },
     { "source": "/platform", "destination": "/products", "permanent": true },
-    { "source": "/use-cases/pyntra-fill-sign-pdf-browser", "destination": "/use-cases/pyntra-client-side-pdf-editing", "permanent": true },
     { "source": "/use-cases/quantum-vault-why-nist-pqc-matters", "destination": "/use-cases/quantum-vault-post-quantum-tokens-explained", "permanent": true },
-    { "source": "/use-cases/tekivex-ui-theming-css-variables", "destination": "/use-cases/tekivex-ui-headless-design-system", "permanent": true }
+    { "source": "/use-cases/tekivex-ui-theming-css-variables", "destination": "/use-cases/tekivex-ui-headless-design-system", "permanent": true },
+
+    { "source": "/product/pdfcraft", "destination": "/products", "permanent": true },
+    { "source": "/product/pyntra", "destination": "/products", "permanent": true },
+    { "source": "/product/analytics-studio", "destination": "/products", "permanent": true },
+    { "source": "/product/dataflow", "destination": "/products", "permanent": true },
+
+    { "source": "/use-cases/pyntra-fill-sign-pdf-browser", "destination": "/use-cases", "permanent": true },
+    { "source": "/use-cases/pyntra-client-side-pdf-editing", "destination": "/use-cases", "permanent": true },
+    { "source": "/use-cases/pyntra-vs-pdfjs-puppeteer", "destination": "/use-cases", "permanent": true },
+    { "source": "/use-cases/pyntra-headless-react-pdf-hooks", "destination": "/use-cases", "permanent": true },
+    { "source": "/use-cases/analytics-studio-drag-drop-dashboards", "destination": "/use-cases", "permanent": true },
+    { "source": "/use-cases/analytics-studio-in-browser-sql", "destination": "/use-cases", "permanent": true },
+    { "source": "/use-cases/analytics-studio-chart-types-guide", "destination": "/use-cases", "permanent": true },
+    { "source": "/use-cases/analytics-studio-vs-metabase-looker", "destination": "/use-cases", "permanent": true },
+    { "source": "/use-cases/dataflow-realtime-streaming-react", "destination": "/use-cases", "permanent": true },
+    { "source": "/use-cases/dataflow-backpressure-time-travel-replay", "destination": "/use-cases", "permanent": true },
+    { "source": "/use-cases/dataflow-anomaly-detection-streams", "destination": "/use-cases", "permanent": true }
   ]
 }

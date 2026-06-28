@@ -18,30 +18,32 @@ Tekivex UI favors composition. Instead of one monolithic `<Select variant="..." 
 
 ```tsx
 // Import only the primitives you use — each is independently tree-shakeable.
-import { Combobox, ComboboxInput, ComboboxList, ComboboxOption } from 'tekivex-ui/combobox'
+import { useCombobox } from 'tekivex-ui/headless'
 
 export function CountryPicker({ countries }: { countries: string[] }) {
+  const combobox = useCombobox({ options: countries })
   return (
-    <Combobox className="cp">
+    <div className="cp">
       {/* Your markup, your classes. The primitive wires up ARIA + keyboard nav. */}
-      <ComboboxInput className="cp__input" placeholder="Search countries…" />
-      <ComboboxList className="cp__list">
-        {countries.map((c) => (
-          <ComboboxOption key={c} value={c} className="cp__option">
-            {({ active, selected }) => (
+      <input {...combobox.inputProps} className="cp__input" placeholder="Search countries…" />
+      <ul {...combobox.listProps} className="cp__list">
+        {combobox.options.map((c) => {
+          const { active, selected, optionProps } = combobox.getOption(c)
+          return (
+            <li key={c} {...optionProps} className="cp__option">
               <span data-active={active} data-selected={selected}>
                 {c}
               </span>
-            )}
-          </ComboboxOption>
-        ))}
-      </ComboboxList>
-    </Combobox>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
   )
 }
 ```
 
-Notice the render-prop on `ComboboxOption`: the primitive surfaces its internal state (`active`, `selected`) so you can drive your own styling from it. You never inspect a `.tekivex-option--active` class that might change in a minor release. The state is contract; the styling is yours.
+Notice what the `getOption` helper surfaces: the primitive exposes its internal state (`active`, `selected`) so you can drive your own styling from it. You never inspect a `.tekivex-option--active` class that might change in a minor release. The state is contract; the styling is yours.
 
 ```css
 /* Style against the state the primitive exposes. No overrides, no !important. */
@@ -72,26 +74,26 @@ The honest tradeoff: headless asks for more up-front work. If you need a generic
 
 Headless architecture has a happy side effect on bundle size. Because each primitive is a self-contained ESM module with no shared theme runtime, your bundler can drop everything you don't import. Tekivex UI ships as tree-shakeable ES modules with **zero runtime dependencies** — nothing is pulled in transitively at runtime, so there is no hidden weight and no version-conflict surface from a dependency tree you didn't choose.
 
-The core is under 8 kB. Everything else is pay-as-you-go: import a `Dialog` and you ship a dialog; you don't ship the data table you never touched.
+The core is under 8 kB. Everything else is pay-as-you-go: import a `TkxDialog` and you ship a dialog; you don't ship the data table you never touched.
 
 ```bash
 npm install tekivex-ui
 ```
 
 ```ts
-// Good: granular imports let the bundler keep only what you use.
-import { Dialog, DialogTrigger, DialogPanel } from 'tekivex-ui/dialog'
-import { Stack } from 'tekivex-ui/layout'
+// Good: named imports let the bundler keep only what you use.
+import { TkxDialog, TkxButton } from 'tekivex-ui'
+import { useDismiss } from 'tekivex-ui/headless'
 
-// Avoid: a single barrel import can defeat tree-shaking in older toolchains.
+// Avoid: a namespace import can defeat tree-shaking in older toolchains.
 // import * as Tekivex from 'tekivex-ui'
 ```
 
 Roughly, the budget breaks down like this:
 
 - **Core (<8 kB):** state primitives, the composition utilities, focus and dismiss management that most components reuse.
-- **Per-component:** each primitive set (`combobox`, `dialog`, `tabs`, …) adds only its own logic.
-- **Layout system:** `Stack`, `Grid`, `Flex`, `Container`, and `Divider` are likewise independent imports.
+- **Per-component:** each primitive set (combobox, dialog, tabs, …) adds only its own logic.
+- **Layout system:** layout primitives are likewise independent named imports.
 - **Form toolkit:** validation and field-binding helpers, imported only when you build forms.
 
 You pay for what you import — nothing more.

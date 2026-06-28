@@ -20,18 +20,15 @@ It does **not** own the DOM (that is the framework adapter's job) and it does no
 A plugin is a factory that returns an object with a known shape. When you register it, the core calls its `setup` hook with a context handle that exposes the state, the row pipeline, and the lifecycle bus. The plugin uses that handle to register pipeline stages, listen for events, expose API methods, and contribute view metadata.
 
 ```ts
-import { createGrid } from '@tekivex/gridstorm';
-import { sortingPlugin } from '@tekivex/gridstorm/plugins/sorting';
-import { filteringPlugin } from '@tekivex/gridstorm/plugins/filtering';
-import { selectionPlugin } from '@tekivex/gridstorm/plugins/selection';
+import { createGrid, FilteringPlugin, SortingPlugin, SelectionPlugin } from 'gridstorm';
 
 const grid = createGrid({
-  columns,
-  rows,
+  columnDefs,
+  rowData,
   plugins: [
-    filteringPlugin(),  // pipeline stage: narrows rows
-    sortingPlugin(),    // pipeline stage: orders rows
-    selectionPlugin(),  // listens to events, exposes selection API
+    new FilteringPlugin(),  // pipeline stage: narrows rows
+    new SortingPlugin(),    // pipeline stage: orders rows
+    new SelectionPlugin(),  // listens to events, exposes selection API
   ],
 });
 ```
@@ -68,7 +65,7 @@ Plugins never reach into each other directly. They communicate through state and
 Suppose you want a plugin that highlights every row whose value in a numeric column exceeds a threshold — a simple "outlier" marker. It needs to listen for data changes, compute which rows qualify, and contribute a row class. Here is the whole thing:
 
 ```ts
-import type { GridPlugin } from '@tekivex/gridstorm';
+import type { GridPlugin } from 'gridstorm';
 
 export function outlierPlugin(opts: { column: string; threshold: number }): GridPlugin {
   return {
@@ -96,8 +93,8 @@ Register it like any built-in plugin:
 
 ```ts
 const grid = createGrid({
-  columns,
-  rows,
+  columnDefs,
+  rowData,
   plugins: [outlierPlugin({ column: 'latency', threshold: 500 })],
 });
 
@@ -123,4 +120,4 @@ This is also what makes accessibility work as a plugin rather than a core concer
 - Use it when you want to **reason about** what the grid does — the plugin contracts are explicit and documented.
 - The trade-off: composing plugins requires understanding ordering and shared state, which is marginally more to learn than a grid where everything is on by default.
 
-The plugin architecture is the reason GridStorm can be both small and capable: the core stays under 50KB and feature breadth lives in 35 independently versioned, separately importable plugins, validated by a comprehensive automated test suite. Explore the composition live on the [demo](https://gridstorm.tekivex.com), see how [Analytics Studio](/product/analytics-studio) builds an entire analytics surface on this core, or browse the full [use cases](/use-cases) hub.
+The plugin architecture is the reason GridStorm can be both small and capable: the core stays under 50KB and feature breadth lives in 35+ independently versioned, separately importable plugins, validated by a comprehensive automated test suite. Explore the composition live on the [demo](https://gridstorm.tekivex.com), read how the [Tekivex products fit together](/use-cases/tekivex-stack-how-products-fit), or browse the full [use cases](/use-cases) hub.

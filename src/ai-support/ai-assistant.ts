@@ -163,10 +163,8 @@ function scoreTagMatch(queryTokens: string[], entry: KbEntry): number {
 function detectCategoryIntent(query: string): Category | null {
   const q = query.toLowerCase();
   if (/gridstorm|data grid|react grid|table component/.test(q)) return 'gridstorm';
-  if (/pdf|document|annotation|signature|pii|wasm/.test(q)) return 'pdf-toolkit';
-  if (/recruit|hiring|ats|resume|applicant|candidate/.test(q)) return 'nexa-recruit';
-  if (/care|health|patient|medical|hipaa|clinic/.test(q)) return 'nexa-care';
-  if (/analytics|dashboard|bi|business intelligence|chart|report/.test(q)) return 'analytics-studio';
+  if (/tekivex ui|component library|components|accessible|wcag|a11y/.test(q)) return 'tekivex-ui';
+  if (/quantum vault|post-quantum|post quantum|token|ml-dsa|xchacha|cryptograph/.test(q)) return 'quantum-vault';
   if (/pric|cost|free|licens|money|pay|subscri/.test(q)) return 'pricing';
   if (/start|begin|install|setup|quickstart|new to/.test(q)) return 'getting-started';
   if (/error|broken|not working|issue|bug|slow|fix|trouble/.test(q)) return 'troubleshooting';

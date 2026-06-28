@@ -23,18 +23,20 @@ Tekivex UI started from three constraints that the incumbents handle differently
 Here is a minimal React example using the composed components and the layout system:
 
 ```tsx
-import { Stack, Button, Input, Toast } from 'tekivex-ui/react';
+import { TkxConfigProvider, TkxInput, TkxButton } from 'tekivex-ui';
+import 'tekivex-ui/styles';
 
 export function SignInCard() {
   return (
-    <Stack gap="md" as="form" onSubmit={handleSubmit}>
-      <Input name="email" type="email" label="Work email" required />
-      <Input name="password" type="password" label="Password" required />
-      <Button type="submit" variant="primary">
-        Sign in
-      </Button>
-      <Toast.Region aria-label="Notifications" />
-    </Stack>
+    <TkxConfigProvider>
+      <form onSubmit={handleSubmit}>
+        <TkxInput name="email" type="email" label="Work email" required />
+        <TkxInput name="password" type="password" label="Password" required />
+        <TkxButton type="submit" variant="primary">
+          Sign in
+        </TkxButton>
+      </form>
+    </TkxConfigProvider>
   );
 }
 ```
@@ -105,6 +107,8 @@ function StatusPicker({ options }) {
   );
 }
 ```
+
+If you prefer the ready-made composed control, `TkxSelect` (or `TkxAutocomplete` for type-ahead) ships the same accessibility wiring out of the box.
 
 This is the pattern teams reach for when they need a bespoke design language without rebuilding keyboard navigation and ARIA wiring from scratch. We explore the philosophy in [building a headless design system](/use-cases/tekivex-ui-headless-design-system).
 

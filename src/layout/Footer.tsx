@@ -12,10 +12,8 @@ const FOOTER_COLS = [
       { label: 'About Us',           href: '/about' },
       { label: 'Privacy Policy',     href: '/privacy-policy' },
       { label: 'GridStorm',          href: '/product/gridstorm' },
-      { label: 'Pyntra',             href: '/product/pyntra' },
-      { label: 'Analytics Studio',   href: '/product/analytics-studio' },
+      { label: 'Tekivex UI',         href: '/product/tekivex-ui' },
       { label: 'Quantum Vault',      href: '/product/quantum-vault' },
-      { label: 'DataFlow',           href: '/product/dataflow' },
       { label: 'Report an Issue',     href: 'https://github.com/novaai0401-ui/tekivex-issue-report/issues' },
     ],
   },
@@ -98,7 +96,7 @@ export function Footer() {
           </div>
         </div>
         <div className="hub-footer-badges">
-          <span className="hub-footer-badge">6 products</span>
+          <span className="hub-footer-badge">3 products</span>
           <span className="hub-footer-badge">TypeScript-native</span>
           <span className="hub-footer-badge">Free</span>
           <a

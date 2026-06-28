@@ -41,36 +41,37 @@ const columnDefs = [
 The equivalent GridStorm columns:
 
 ```ts
-import { defineColumns } from '@tekivex/gridstorm';
+import type { ColumnDef } from 'gridstorm';
 
-const columns = defineColumns([
-  { id: 'symbol', header: 'Symbol', sortable: true, pin: 'left', width: 120 },
-  { id: 'price', header: 'Price', sortable: true, filter: 'number' },
-  { id: 'change', header: 'Change', cellClass: (row) => (row.change < 0 ? 'down' : 'up') },
-]);
+const columnDefs: ColumnDef[] = [
+  { field: 'symbol', headerName: 'Symbol', sortable: true, pin: 'left', width: 120 },
+  { field: 'price', headerName: 'Price', sortable: true, filter: 'number' },
+  { field: 'change', headerName: 'Change', cellClass: (row) => (row.change < 0 ? 'down' : 'up') },
+];
 ```
 
-The mapping is direct: `field` becomes `id`, `headerName` becomes `header`, `pinned: 'left'` becomes `pin: 'left'`, and AG Grid's named filter components (`agNumberColumnFilter`) become GridStorm's filter type strings (`'number'`), which are provided by the filtering plugin. The cell-class callback receives the row object rather than a `params` wrapper.
+The mapping is direct: `field` and `headerName` carry over, `pinned: 'left'` becomes `pin: 'left'`, and AG Grid's named filter components (`agNumberColumnFilter`) become GridStorm's filter type strings (`'number'`), which are provided by the filtering plugin. Columns are plain `ColumnDef[]` arrays — there is no `defineColumns()` helper. The cell-class callback receives the row object rather than a `params` wrapper.
 
 ## Migrating cell renderers
 
 This is the area where the headless model is most visibly different. In AG Grid you typically register a framework component as a `cellRenderer`. In GridStorm, because the adapter owns rendering, you provide a render function (or a framework component through the adapter) and the core simply tells it which row and column to draw.
 
 ```tsx
-import { Grid } from '@tekivex/gridstorm/react';
+import { GridStorm } from 'gridstorm/react';
+import type { ColumnDef } from 'gridstorm';
 
-const columns = defineColumns([
+const columnDefs: ColumnDef[] = [
   {
-    id: 'status',
-    header: 'Status',
+    field: 'status',
+    headerName: 'Status',
     cell: ({ value }) => (
       <span className={`badge badge--${value}`}>{value.toUpperCase()}</span>
     ),
   },
-]);
+];
 
 export function StatusGrid({ rows }) {
-  return <Grid columns={columns} rows={rows} getRowId={(r) => r.id} />;
+  return <GridStorm columnDefs={columnDefs} rowData={rows} getRowId={(r) => r.id} />;
 }
 ```
 
@@ -81,16 +82,14 @@ The practical rule when porting renderers: anything that was JSX inside an AG Gr
 In AG Grid, sorting and filtering are largely configured by flags on column defs and handled internally. In GridStorm those behaviors live in plugins you compose onto the grid, which keeps the core small and your bundle lean.
 
 ```ts
-import { createGrid } from '@tekivex/gridstorm';
-import { sortingPlugin } from '@tekivex/gridstorm/plugins/sorting';
-import { filteringPlugin } from '@tekivex/gridstorm/plugins/filtering';
+import { createGrid, SortingPlugin, FilteringPlugin } from 'gridstorm';
 
 const grid = createGrid({
-  columns,
-  rows,
+  columnDefs,
+  rowData,
   plugins: [
-    sortingPlugin({ multiSort: true }),
-    filteringPlugin({ debounceMs: 150 }),
+    new SortingPlugin({ multiSort: true }),
+    new FilteringPlugin({ debounceMs: 150 }),
   ],
 });
 ```

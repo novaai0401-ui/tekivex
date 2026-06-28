@@ -4,12 +4,9 @@
   Docs:    https://ui.tekivex.com
 
 /* PRODUCTS */
-  GridStorm        — high-performance React data grid
-  Analytics Studio — drag-and-drop BI with 26+ charts
-  DataFlow         — real-time streaming engine
-  Quantum Vault    — sovereign post-quantum tokens
-  Pyntra           — browser-native PDF editor with headless React hooks
-  TekiVex UI       — accessible React/Vue/Svelte component library
+  GridStorm        — high-performance React data grid (npm: gridstorm)
+  TekiVex UI       — accessible React/Vue/Svelte component library (npm: tekivex-ui)
+  Quantum Vault    — sovereign post-quantum tokens (npm: @sigvault/sdk)
 
 /* SITE */
   Last update: 2026-06-28

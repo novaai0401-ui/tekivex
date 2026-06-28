@@ -4,7 +4,8 @@ import type { ProductManifest } from './types';
 // All demo and docs links are external to the grid-data deployment.
 const GRIDSTORM_URL = 'https://gridstorm.tekivex.com';
 
-const GRIDSTORM_GITHUB = 'https://github.com/novaai0401-ui/tekivex-issue-report/issues';
+const GRIDSTORM_GITHUB = 'https://github.com/007krcs/grid-data';
+const GRIDSTORM_NPM = 'https://www.npmjs.com/package/gridstorm';
 
 export const gridstormManifest: ProductManifest = {
   id: 'gridstorm',
@@ -40,6 +41,7 @@ export const gridstormManifest: ProductManifest = {
     'Comprehensive automated test suite',
   ],
   quickLinks: [
+    { label: 'npm — gridstorm',        path: GRIDSTORM_NPM, external: true },
     { label: 'Get Started',            path: `${GRIDSTORM_URL}/#/docs/getting-started/introduction`, external: true },
     { label: 'Feature Showcase',       path: `${GRIDSTORM_URL}/feature-showcase/`, external: true },
     { label: 'Plugin Reference',       path: `${GRIDSTORM_URL}/#/docs/plugins/plugin-system`, external: true },

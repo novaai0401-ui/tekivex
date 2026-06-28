@@ -11,14 +11,13 @@ The first instinct — replace the whole row dataset whenever a price changes �
 GridStorm exposes targeted cell updates. You push a value for a specific row and column, and the core updates only that cell, leaving the rest of the row's DOM untouched.
 
 ```ts
-import { createGrid } from '@tekivex/gridstorm';
-import { streamingPlugin } from '@tekivex/gridstorm/plugins/streaming';
+import { createGrid, StreamingPlugin } from 'gridstorm';
 
 const grid = createGrid({
-  columns,
-  rows: initialQuotes,
+  columnDefs,
+  rowData: initialQuotes,
   getRowId: (r) => r.symbol,
-  plugins: [streamingPlugin()],
+  plugins: [new StreamingPlugin()],
 });
 
 socket.on('tick', ({ symbol, price, change }) => {
@@ -33,7 +32,7 @@ Because updates are addressed by row id and column, an update to an off-screen s
 Traders read direction from color. The convention is a brief flash — green when a value ticks up, red when it ticks down — that fades after a couple hundred milliseconds. GridStorm's streaming plugin can emit a transition class on the changed cell so you drive the flash purely in CSS, which keeps the animation on the compositor and off the main thread.
 
 ```ts
-streamingPlugin({
+new StreamingPlugin({
   flash: {
     duration: 400,
     classFor: (next, prev) => (next > prev ? 'tick-up' : next < prev ? 'tick-down' : null),
@@ -55,17 +54,19 @@ Using CSS animations rather than JavaScript-driven color interpolation matters a
 Beyond the transient flash, traders want persistent visual encoding: negative changes in red, positive in green, values past a threshold emphasized. This is conditional formatting driven by the cell's current value, applied through the column's `cellClass` and `cellStyle` callbacks.
 
 ```ts
-const columns = defineColumns([
-  { id: 'symbol', header: 'Symbol', pin: 'left', width: 90 },
+import type { ColumnDef } from 'gridstorm';
+
+const columnDefs: ColumnDef[] = [
+  { field: 'symbol', headerName: 'Symbol', pin: 'left', width: 90 },
   {
-    id: 'change',
-    header: 'Chg %',
+    field: 'change',
+    headerName: 'Chg %',
     cellClass: (row) => (row.change < 0 ? 'neg' : row.change > 0 ? 'pos' : ''),
     cellStyle: (row) => ({ fontWeight: Math.abs(row.change) > 5 ? 700 : 400 }),
   },
-  { id: 'bid', header: 'Bid' },
-  { id: 'ask', header: 'Ask' },
-]);
+  { field: 'bid', headerName: 'Bid' },
+  { field: 'ask', headerName: 'Ask' },
+];
 ```
 
 The formatting callbacks are evaluated only for cells in the rendered window, so conditional formatting across a 5,000-row watchlist costs the same as across the ~40 rows actually on screen.
@@ -106,7 +107,7 @@ Additional strategies that compound:
 
 ## Pairing with a streaming data source
 
-GridStorm renders; it does not manage your transport. For the data side — connection management, backpressure, reconnection, and fan-out to multiple grids — pair it with a dedicated streaming layer. Tekivex's DataFlow is designed for exactly this, and the integration pattern (subscribe, buffer per frame, flush into `updateCells`) is covered in the [real-time streaming with React](/use-cases/dataflow-realtime-streaming-react) guide. The division of labor is clean: DataFlow owns the stream, GridStorm owns the frame.
+GridStorm renders; it does not manage your transport. For the data side — connection management, backpressure, reconnection, and fan-out to multiple grids — pair it with a dedicated streaming layer (a `WebSocket`, an SSE `EventSource`, or your own client). The integration pattern is the same regardless of transport: subscribe to the stream, buffer incoming messages per animation frame, then flush the batch into `updateCells` once per frame. The division of labor is clean: your transport owns the stream, GridStorm owns the frame.
 
 ## When to use this pattern
 

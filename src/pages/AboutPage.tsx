@@ -12,22 +12,13 @@ const PRODUCTS = [
     href: '/product/gridstorm',
   },
   {
-    name: 'Pyntra',
-    color: '#ef4444',
-    icon: 'file-pdf',
-    status: 'Beta',
-    statusColor: '#fbbf24',
-    description: 'Client-side PDF editor — form filling, annotation, signing, AES-256, headless React hooks.',
-    href: '/product/pyntra',
-  },
-  {
-    name: 'Analytics Studio',
+    name: 'Tekivex UI',
     color: '#06b6d4',
-    icon: 'bar-chart',
+    icon: 'layers',
     status: 'Beta',
     statusColor: '#fbbf24',
-    description: 'Drag-and-drop BI platform — 26+ charts, pivot tables, SQL engine, KPI dashboards.',
-    href: '/product/analytics-studio',
+    description: 'Accessible component library for React, Vue & Svelte — WCAG 2.1 AA out of the box.',
+    href: '/product/tekivex-ui',
   },
   {
     name: 'Quantum Vault',
@@ -35,17 +26,8 @@ const PRODUCTS = [
     icon: 'shield',
     status: 'Beta',
     statusColor: '#fbbf24',
-    description: 'Sovereign post-quantum tokens — CRYSTALS-Kyber + Dilithium, NIST-standardised, self-hosted.',
+    description: 'Sovereign post-quantum tokens — ML-DSA-87 (FIPS 204) + XChaCha20-Poly1305, self-hosted.',
     href: '/product/quantum-vault',
-  },
-  {
-    name: 'DataFlow',
-    color: '#22c55e',
-    icon: 'trending-up',
-    status: 'Beta',
-    statusColor: '#fbbf24',
-    description: 'Zero-dependency streaming engine — WebSocket, SSE, anomaly detection, time-travel replay.',
-    href: '/product/dataflow',
   },
 ];
 
@@ -63,7 +45,7 @@ const VALUES = [
   {
     icon: 'cpu',
     title: 'Zero Dependencies',
-    body: "We obsess over bundle size. GridStorm's core is under 50KB. DataFlow streams without a single runtime dep.",
+    body: "We obsess over bundle size. GridStorm's core is under 50KB, and every package is fully tree-shakable.",
   },
   {
     icon: 'accessibility',
@@ -87,7 +69,7 @@ const TECH_STACK = [
   { label: 'Runtime', value: 'Browser-first, Node-compatible' },
   { label: 'Build', value: 'tsup + pnpm monorepo' },
   { label: 'Testing', value: 'Vitest + jsdom' },
-  { label: 'Crypto', value: 'NIST PQC (Kyber + Dilithium)' },
+  { label: 'Crypto', value: 'Post-quantum (ML-DSA-87 + XChaCha20)' },
   { label: 'Frameworks', value: 'React, Vue 3, Svelte 5, Angular 17+' },
 ];
 
@@ -116,8 +98,8 @@ export function AboutPage() {
           </h1>
           <p className="tx-hero-tagline" style={{ maxWidth: 600 }}>
             Tekivex is an independent developer tools company building the next generation of
-            free enterprise software — data grids, analytics, PDF processing, and real-time
-            streaming, all free for commercial use and free forever.
+            free enterprise software — data grids, accessible UI components, and
+            post-quantum security, all free for commercial use and free forever.
           </p>
           <div className="tx-hero-ctas">
             <a
@@ -242,7 +224,7 @@ export function AboutPage() {
       {/* ── Stats ── */}
       <div className="tx-stats-bar" style={{ marginTop: 0 }}>
         {[
-          { val: '6',      lbl: 'Products' },
+          { val: '3',      lbl: 'Products' },
           { val: 'Free',   lbl: 'License' },
           { val: 'TS',     lbl: 'TypeScript-native' },
           { val: '2025',   lbl: 'Founded' },

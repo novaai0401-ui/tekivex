@@ -80,25 +80,11 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/gridstorm"/>
   </url>
   <url>
-    <loc>https://tekivex.com/product/pyntra</loc>
+    <loc>https://tekivex.com/product/tekivex-ui</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/pyntra"/>
-  </url>
-  <url>
-    <loc>https://tekivex.com/product/analytics-studio</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/analytics-studio"/>
-  </url>
-  <url>
-    <loc>https://tekivex.com/product/dataflow</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/dataflow"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/tekivex-ui"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/quantum-vault</loc>
@@ -106,13 +92,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/quantum-vault"/>
-  </url>
-  <url>
-    <loc>https://tekivex.com/product/tekivex-ui</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/tekivex-ui"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/gridstorm-virtual-scrolling-60fps</loc>
@@ -157,55 +136,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/gridstorm-accessible-data-grid"/>
   </url>
   <url>
-    <loc>https://tekivex.com/use-cases/pyntra-client-side-pdf-editing</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/pyntra-client-side-pdf-editing"/>
-  </url>
-  <url>
-    <loc>https://tekivex.com/use-cases/pyntra-vs-pdfjs-puppeteer</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/pyntra-vs-pdfjs-puppeteer"/>
-  </url>
-  <url>
-    <loc>https://tekivex.com/use-cases/pyntra-headless-react-pdf-hooks</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/pyntra-headless-react-pdf-hooks"/>
-  </url>
-  <url>
-    <loc>https://tekivex.com/use-cases/analytics-studio-drag-drop-dashboards</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/analytics-studio-drag-drop-dashboards"/>
-  </url>
-  <url>
-    <loc>https://tekivex.com/use-cases/analytics-studio-in-browser-sql</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/analytics-studio-in-browser-sql"/>
-  </url>
-  <url>
-    <loc>https://tekivex.com/use-cases/analytics-studio-chart-types-guide</loc>
-    <lastmod>2026-04-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/analytics-studio-chart-types-guide"/>
-  </url>
-  <url>
-    <loc>https://tekivex.com/use-cases/analytics-studio-vs-metabase-looker</loc>
-    <lastmod>2026-04-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/analytics-studio-vs-metabase-looker"/>
-  </url>
-  <url>
     <loc>https://tekivex.com/use-cases/quantum-vault-post-quantum-tokens-explained</loc>
     <lastmod>2026-05-05</lastmod>
     <changefreq>monthly</changefreq>
@@ -225,27 +155,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/quantum-vault-sovereign-token-verification"/>
-  </url>
-  <url>
-    <loc>https://tekivex.com/use-cases/dataflow-realtime-streaming-react</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/dataflow-realtime-streaming-react"/>
-  </url>
-  <url>
-    <loc>https://tekivex.com/use-cases/dataflow-backpressure-time-travel-replay</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/dataflow-backpressure-time-travel-replay"/>
-  </url>
-  <url>
-    <loc>https://tekivex.com/use-cases/dataflow-anomaly-detection-streams</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/dataflow-anomaly-detection-streams"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/tekivex-ui-vs-mui-chakra</loc>

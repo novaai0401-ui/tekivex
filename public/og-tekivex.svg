@@ -93,22 +93,18 @@
   <!-- Divider line -->
   <rect x="362" y="390" width="600" height="2" fill="url(#accent)" opacity="0.4" rx="1"/>
 
-  <!-- Product pills -->
+  <!-- Product pills (the three published products) -->
   <!-- GridStorm pill -->
-  <rect x="362" y="415" width="160" height="40" rx="20" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-opacity="0.5" stroke-width="1.5"/>
-  <text x="442" y="440" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#a5b4fc">GridStorm</text>
+  <rect x="337" y="415" width="160" height="40" rx="20" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-opacity="0.5" stroke-width="1.5"/>
+  <text x="417" y="440" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#93c5fd">GridStorm</text>
 
-  <!-- Pyntra pill -->
-  <rect x="538" y="415" width="155" height="40" rx="20" fill="#06b6d4" fill-opacity="0.15" stroke="#06b6d4" stroke-opacity="0.4" stroke-width="1.5"/>
-  <text x="615" y="440" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#67e8f9">Pyntra</text>
+  <!-- Tekivex UI pill -->
+  <rect x="517" y="415" width="150" height="40" rx="20" fill="#f97316" fill-opacity="0.18" stroke="#f97316" stroke-opacity="0.45" stroke-width="1.5"/>
+  <text x="592" y="440" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#fdba74">Tekivex UI</text>
 
-  <!-- Analytics pill -->
-  <rect x="709" y="415" width="180" height="40" rx="20" fill="#8b5cf6" fill-opacity="0.15" stroke="#8b5cf6" stroke-opacity="0.4" stroke-width="1.5"/>
-  <text x="799" y="440" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#c4b5fd">Analytics Studio</text>
-
-  <!-- DataFlow pill -->
-  <rect x="905" y="415" width="140" height="40" rx="20" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-opacity="0.4" stroke-width="1.5"/>
-  <text x="975" y="440" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#6ee7b7">DataFlow</text>
+  <!-- Quantum Vault pill -->
+  <rect x="687" y="415" width="186" height="40" rx="20" fill="#8b5cf6" fill-opacity="0.15" stroke="#8b5cf6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="780" y="440" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#c4b5fd">Quantum Vault</text>
 
   <!-- Domain watermark -->
   <text
