@@ -9,14 +9,13 @@ The hard part is that accessibility and virtualization are in tension — assist
 Like everything else, accessibility is a plugin you compose onto the grid. It hooks the same lifecycle described in the [plugin architecture article](/use-cases/gridstorm-plugin-architecture) to contribute roles, attributes, and keyboard handling.
 
 ```ts
-import { createGrid } from '@tekivex/gridstorm';
-import { a11yPlugin } from '@tekivex/gridstorm/plugins/a11y';
+import { createGrid, A11yPlugin } from 'gridstorm';
 
 const grid = createGrid({
-  columns,
-  rows,
+  columnDefs,
+  rowData,
   plugins: [
-    a11yPlugin({
+    new A11yPlugin({
       label: 'Quarterly revenue by region',
       announceSelection: true,
       announceSort: true,

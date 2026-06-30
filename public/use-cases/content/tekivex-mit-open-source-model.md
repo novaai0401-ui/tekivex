@@ -1,4 +1,4 @@
-Every product in the Tekivex Platform ships the same way: free to use, with no paid tier. Not "free for the community edition," not "free until you hit a usage threshold," not "free for non-commercial use only." Genuinely free — for [GridStorm](/product/gridstorm), [Pyntra](/product/pyntra), [Analytics Studio](/product/analytics-studio), [DataFlow](/product/dataflow), [Quantum Vault](/product/quantum-vault), and [Tekivex UI](/product/tekivex-ui) alike.
+Every product in the Tekivex Platform ships the same way: free to use, with no paid tier. Not "free for the community edition," not "free until you hit a usage threshold," not "free for non-commercial use only." Genuinely free — for [GridStorm](/product/gridstorm), [Quantum Vault](/product/quantum-vault), and [Tekivex UI](/product/tekivex-ui) alike.
 
 That decision shapes how teams adopt and budget for these tools, so it is worth being precise about what "free to use" actually grants, what it does not, and why we deliberately avoided the enterprise-tier model that dominates developer tooling. This is not a manifesto. It is an honest account of a pricing choice and its consequences — including the parts that are genuinely hard, like sustainability.
 
@@ -6,14 +6,14 @@ If you are an engineering lead evaluating whether to build on Tekivex, pricing i
 
 ## What "free to use" actually means here
 
-Tekivex products are **proprietary software offered free of charge for commercial and non-commercial use**. You can:
+Tekivex products are **free and open — MIT or Apache-2.0 — and free of charge for commercial and non-commercial use**. GridStorm and Tekivex UI are MIT-licensed; Quantum Vault (`@sigvault/sdk`) is Apache-2.0. Both are permissive, OSI-approved licenses. You can:
 
 - **Use them commercially.** Ship them inside a product you sell. No royalty, no usage report, no revenue threshold.
 - **Use them at any scale.** There is no per-seat, per-developer, or per-document fee — the price does not change as your team or usage grows.
 - **Use them privately.** Internal tools and dashboards that never see daylight are fine.
-- **Build proprietary products on top.** Your application stays entirely yours; nothing about using Tekivex obliges you to publish or share your own code.
+- **Build proprietary products on top.** Your application stays entirely yours; under both MIT and Apache-2.0 nothing about using Tekivex obliges you to publish or share your own code.
 
-What "free to use" does **not** mean: the source code is not published. Tekivex is not an open-source project, and we want to be straight about that rather than imply otherwise. You consume the products as hosted demos, documented components, and distributed builds — not as a public repository you fork. If reading and self-patching vendor source is a hard requirement for your team, a permissively-licensed open-source library is the better fit, and we would rather tell you that up front.
+What "free to use" does **not** mean is that there are no obligations at all: permissive licenses still ask you to retain the copyright and license notice, and Apache-2.0 additionally includes an explicit patent grant. But there is no copyleft, no per-seat fee, and the full source is published — you can read, fork, and self-patch any of these libraries. If reading and self-patching vendor source is a hard requirement for your team, that is exactly what these MIT and Apache-2.0 packages give you.
 
 ## Why no enterprise tier, paywall, or per-seat fees
 
@@ -37,7 +37,7 @@ The practical effects show up well before any code is written.
 
 Two of these deserve emphasis. First, **procurement**: with a free, no-contract tool there is little to negotiate — no seat counts to track, no annual renewal to budget. Second, **cost predictability**: because there is no per-seat or usage fee, the cost does not balloon as your application succeeds and your team grows.
 
-A fair question is lock-in. Because the source is not public, you cannot fork and self-maintain the way you could with an open-source library — that is a real trade-off, and the honest mitigation is that the products are built on open standards and framework-native primitives (React, Vue, Svelte adapters; standard PDF and crypto formats), so the data and patterns you build around are portable even though the implementation is ours.
+A fair question is lock-in. Because the source is public and permissively licensed, you can fork and self-maintain if you ever need to — that meaningfully reduces lock-in. The products are also built on open standards and framework-native primitives (React, Vue, Svelte adapters; standard crypto formats such as ML-DSA-87 and XChaCha20-Poly1305), so the data and patterns you build around stay portable regardless.
 
 Your own application's manifest stays exactly as restrictive as you want:
 
@@ -49,19 +49,19 @@ Your own application's manifest stays exactly as restrictive as you want:
 }
 ```
 
-Using a free Tekivex product does not change the license or ownership of your own product. There is no copyleft obligation and no attribution requirement baked into your shipped application.
+Using a free Tekivex product does not change the license or ownership of your own product. There is no copyleft obligation; MIT and Apache-2.0 only ask that you retain their license and copyright notices, which does not extend to or encumber your own application code.
 
 ## The honest part: sustainability
 
 The obvious question about a fully-free, no-paywall model is how it sustains itself. We will not pretend the answer is automatic — it is the genuine hard problem of this approach, and any company claiming otherwise is hand-waving.
 
-A free-to-use model is sustained through means that do not depend on gating the software: optional professional services and support for teams that want a contract and an SLA, sponsorship from organizations that depend on the tools, and the simple fact that broad adoption creates opportunities a niche paid tool never gets. What we owe in return is to be transparent that sustainability is an ongoing commitment, not a solved problem — and to be clear about what the product is (free to use, proprietary) rather than dressing it up as something it is not.
+A free-to-use model is sustained through means that do not depend on gating the software: optional professional services and support for teams that want a contract and an SLA, sponsorship from organizations that depend on the tools, and the simple fact that broad adoption creates opportunities a niche paid tool never gets. What we owe in return is to be transparent that sustainability is an ongoing commitment, not a solved problem — and to be clear about what the products are (free to use, permissively open-source under MIT or Apache-2.0) rather than dressing them up as something they are not.
 
 ## Key takeaways
 
 - **Free to use, for everyone.** Commercial use, any scale, private use — no royalty, no per-seat fee, no revenue threshold.
 - **No enterprise tier, no paywall.** Every feature is available from day one; your costs do not scale with headcount.
-- **Proprietary, not open source.** The source is not published — if forking vendor code is a hard requirement, a permissive open-source library is the better fit, and we will say so.
+- **Open source, permissively licensed.** MIT (GridStorm, Tekivex UI) and Apache-2.0 (Quantum Vault) — the source is public, so you can read, fork, and self-patch.
 - **Your application stays yours.** Using Tekivex imposes no license, attribution, or copyleft obligation on your own product.
 - **Low procurement friction.** Nothing to license, audit, or true-up.
 

@@ -1,6 +1,7 @@
 import type { ProductManifest } from './types';
 
-const QV_GITHUB = 'https://github.com/novaai0401-ui/tekivex-issue-report/issues';
+const QV_GITHUB = 'https://github.com/novaai0401-ui/quantum-vault';
+const QV_NPM = 'https://www.npmjs.com/package/@sigvault/sdk';
 
 export const quantumVaultManifest: ProductManifest = {
   id: 'quantum-vault',
@@ -8,9 +9,10 @@ export const quantumVaultManifest: ProductManifest = {
   tagline: 'Sovereign post-quantum tokens for the Q-Day era',
   githubUrl: QV_GITHUB,
   description:
-    'Issue, store, and validate post-quantum cryptographic tokens using NIST-standardised ' +
-    'algorithms. Designed for sovereign identity, signed credentials, and quantum-resistant ' +
-    'secrets management — ready before Q-Day breaks today\'s public-key cryptography.',
+    'Issue, validate, and rotate post-quantum cryptographic tokens using NIST-standardised ' +
+    'ML-DSA-87 (Dilithium-5 / FIPS 204) signatures with XChaCha20-Poly1305 encrypted payloads. ' +
+    'Designed for sovereign identity, signed credentials, and quantum-resistant secrets ' +
+    'management — ready before Q-Day breaks today\'s public-key cryptography. Ships on npm as @sigvault/sdk.',
   version: '0.1.0',
   status: 'beta',
   tier: 'enterprise',
@@ -21,35 +23,38 @@ export const quantumVaultManifest: ProductManifest = {
   docsRoot: null,
   primaryDemoPath: null,
   stats: [
-    { value: 'PQC',        label: 'NIST Standard' },
-    { value: 'Kyber',      label: 'KEM' },
-    { value: 'Dilithium',  label: 'Signatures' },
+    { value: 'FIPS 204',   label: 'NIST Standard' },
+    { value: 'ML-DSA-87',  label: 'Signatures' },
+    { value: 'XChaCha20',  label: 'Encryption' },
     { value: 'Self-host',  label: 'Sovereign' },
   ],
   keyFeatures: [
-    'Post-quantum tokens — CRYSTALS-Kyber + Dilithium',
+    'Post-quantum signatures — CRYSTALS-Dilithium (ML-DSA-87, FIPS 204)',
+    'Encrypted payloads — XChaCha20-Poly1305 authenticated encryption',
+    'Replay protection — stateful HYDRA mutation chain',
     'Sovereign deployment — self-hosted, no third-party trust',
-    'Quantum-resistant ahead of Q-Day',
-    'Token issuance, validation, and rotation primitives',
-    'Built on the NIST PQC standards (FIPS 203 / 204)',
+    'Token issuance, validation, and rotation primitives — pure JS (@sigvault/sdk)',
   ],
-  quickLinks: [],
+  quickLinks: [
+    { label: 'npm — @sigvault/sdk', path: QV_NPM,    external: true },
+    { label: 'Source on GitHub',    path: QV_GITHUB, external: true },
+  ],
   tags: ['Post-Quantum', 'PQC', 'NIST', 'Cryptography', 'Tokens', 'Security'],
   seo: {
     title: 'Quantum Vault — Sovereign Post-Quantum Tokens | Tekivex',
     description:
-      'Quantum-resistant token issuance and verification using NIST-standardised CRYSTALS-Kyber ' +
-      'and Dilithium. Self-hosted, sovereign, ready before Q-Day. Part of the Tekivex platform.',
+      'Quantum-resistant token issuance and verification using NIST-standardised CRYSTALS-Dilithium ' +
+      '(ML-DSA-87, FIPS 204) with XChaCha20-Poly1305 payloads. Self-hosted, sovereign, ready before Q-Day. Ships as @sigvault/sdk.',
     keywords: [
       'post-quantum cryptography',
       'PQC',
-      'CRYSTALS-Kyber',
       'CRYSTALS-Dilithium',
+      'ML-DSA-87',
+      'FIPS 204',
       'quantum-resistant tokens',
       'sovereign identity',
       'NIST PQC',
       'Q-Day',
-      'cryptographic tokens',
       'Quantum Vault',
     ],
     jsonLdType: 'SoftwareApplication',

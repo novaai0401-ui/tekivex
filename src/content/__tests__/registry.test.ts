@@ -23,8 +23,9 @@ function readArticle(contentFile: string): string | undefined {
 
 describe('use-cases article registry', () => {
   it('ships a curated library of in-depth articles', () => {
-    // Curated set (duplicates merged) — kept intentionally substantial.
-    expect(ARTICLES.length).toBeGreaterThanOrEqual(20);
+    // Curated set — focused on the three published products (GridStorm,
+    // Tekivex UI, Quantum Vault). Kept intentionally substantial.
+    expect(ARTICLES.length).toBeGreaterThanOrEqual(12);
   });
 
   it('has unique slugs', () => {

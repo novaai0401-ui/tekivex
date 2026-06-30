@@ -26,37 +26,39 @@ Three concrete properties distinguish a self-hosted crypto stack from a managed 
 
 The operational shape of a sovereign deployment is deliberately simple: a signing service inside your boundary issues tokens, and every consumer verifies them with the issuer's public key — no callback to an authority. Public keys are safe to distribute widely; secret keys never leave the issuer.
 
+> Quantum Vault ships on npm as `@sigvault/sdk`. Install it with `npm install @sigvault/sdk` and deploy it inside your own boundary.
+
 ```ts
-import { QuantumVault } from '@tekivex/quantum-vault'
-import { readFileSync } from 'node:fs'
+import { generateKeypair, MutationChain, issueToken } from '@sigvault/sdk'
 
-// Issuer service — holds the secret key, never exports it
-const issuer = new QuantumVault({
-  signingAlg: 'ML-DSA-65',
-  secretKey: loadFromHsm('quantum-vault-signing'), // see key custody below
-})
+// Issuer service — holds the signing seed, never exports it.
+// In production load `signingKey` and `encryptKey` from an HSM/KMS (see key custody below).
+const { signingKey, verifyingKey, encryptKey } = generateKeypair()
+const chain = new MutationChain()
 
-const token = await issuer.issue({
-  sub: 'svc-payments',
-  aud: 'internal-ledger',
-  scope: ['ledger:append'],
-  exp: Math.floor(Date.now() / 1000) + 600,
+const { tokenHex } = issueToken({
+  signingKeySeed: signingKey, // ML-DSA-87 — stays inside the issuer
+  encryptKey,                 // XChaCha20-Poly1305 payload key
+  chain,
+  claims: { sub: 'svc-payments', aud: 'internal-ledger', role: 'ledger:append' },
+  ttl: 600,
 })
 ```
 
-Verifiers are configured with only the public half. They validate offline — no network round-trip, no shared secret, nothing to leak:
+Verifiers are configured with only the verifying key (and the shared payload key, where claims are encrypted). They validate offline — no network round-trip, no signing secret, nothing to leak:
 
 ```ts
-// Verifier — any service, holds only the public key
-const verifier = new QuantumVault({
-  publicKeys: {
-    'k-2026-ml': readFileSync('/etc/qv/issuer.k-2026-ml.pub'),
-  },
-})
+import { verifyToken, MutationChain } from '@sigvault/sdk'
 
-const result = await verifier.verify(token, { aud: 'internal-ledger' })
-if (!result.valid) throw new Error('rejected: ' + result.reason)
-// No external call was made. Trust is rooted in the public key you provisioned.
+// Verifier — any service, holds the public verifying key, never the signing seed
+const result = verifyToken({
+  token: tokenHex,
+  verifyingKey,
+  encryptKey,
+  chain: new MutationChain(chain.state),
+})
+if (result.claims.aud !== 'internal-ledger') throw new Error('rejected: audience')
+// No external call was made. Trust is rooted in the verifying key you provisioned.
 ```
 
 Distributing the public key is a provisioning problem you already know how to solve: bake it into images, push it via your config-management system, or serve it from an internal endpoint you control. The point is that the *secret* never travels.
@@ -70,26 +72,33 @@ The security of the whole system reduces to one question: where does the secret 
 - **Auditability.** Log every signing operation with the key ID used. Because verification is offline, your signing logs are the authoritative record of what was issued.
 - **Separation from data.** The signing key and the token store should have independent blast radii; compromise of the database should not yield the ability to forge.
 
-Quantum Vault keeps secret-key material behind an interface so you can back it with an HSM or KMS rather than a file on disk in production. The token format embeds a key ID so verifiers always know which public key applies — which is also the foundation for rotation.
+Quantum Vault takes signing and encryption key material as inputs you supply, so you can source it from an HSM or KMS rather than a file on disk in production. Because the signing seed never has to live alongside the verifiers, you can keep verifiers stateless and rotate the issuer's keys independently — the foundation for rotation below.
 
 ## Rotating keys without downtime
 
 Keys must rotate — on a schedule, and immediately on suspected compromise. The challenge is rotating without invalidating tokens that are still in flight. The technique is overlap: introduce the new key, sign with it, but keep the old public key trusted until every token it signed has expired.
 
 ```ts
-// 1. Add the new key alongside the old; start signing with the new one
-issuer.addSigningKey('k-2026-ml', { alg: 'ML-DSA-65', secretKey: newSecret })
-issuer.setActiveSigningKey('k-2026-ml')
+import { generateKeypair, verifyToken, MutationChain } from '@sigvault/sdk'
 
-// 2. Verifiers trust BOTH public keys during the overlap window
-const verifier = new QuantumVault({
-  publicKeys: {
-    'k-2025-ml': oldPub, // still valid until its tokens expire
-    'k-2026-ml': newPub,
-  },
-})
+// 1. Generate the new keypair; the issuer starts signing with the new signing seed
+const next = generateKeypair() // next.signingKey / next.verifyingKey / next.encryptKey
 
-// 3. After the overlap (>= max token lifetime), drop the old public key
+// 2. Verifiers trust BOTH verifying keys during the overlap window.
+//    Select by the key ID the token carries (inspectToken can surface it).
+const verifyingKeys = {
+  'k-2025-ml': oldVerifyingKey, // still valid until its tokens expire
+  'k-2026-ml': next.verifyingKey,
+}
+
+const claims = verifyToken({
+  token: tokenHex,
+  verifyingKey: verifyingKeys[keyIdFor(tokenHex)],
+  encryptKey,
+  chain: new MutationChain(chain.state),
+}).claims
+
+// 3. After the overlap (>= max token lifetime), drop the old verifying key
 ```
 
 The overlap window must be at least the maximum lifetime of any token signed by the outgoing key. For an emergency rotation after compromise, you cut the window short deliberately and accept that tokens signed by the revoked key are now rejected — a controlled outage is preferable to honouring potentially forged tokens. This is the same key-ID-driven mechanism that supports algorithm migration, described in the [migration playbook](/use-cases/quantum-vault-migrate-pqc-token-issuance).

@@ -51,7 +51,7 @@ export function PrivacyPolicyPage() {
           background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(148,163,184,0.12)',
         }}>
           <p style={{ ...prose, margin: 0 }}>
-            Tekivex ("we", "our", or "us") operates <strong style={{ color: '#f1f5f9' }}>tekivex.com</strong> and related subdomains including <strong style={{ color: '#f1f5f9' }}>gridstorm.tekivex.com</strong>, <strong style={{ color: '#f1f5f9' }}>analytics.tekivex.com</strong>, <strong style={{ color: '#f1f5f9' }}>dataflow.tekivex.com</strong>, and <strong style={{ color: '#f1f5f9' }}>ui.tekivex.com</strong>. This Privacy Policy explains how we collect, use, and protect your information when you visit these sites.
+            Tekivex ("we", "our", or "us") operates <strong style={{ color: '#f1f5f9' }}>tekivex.com</strong> and related subdomains including <strong style={{ color: '#f1f5f9' }}>gridstorm.tekivex.com</strong> and <strong style={{ color: '#f1f5f9' }}>ui.tekivex.com</strong>. This Privacy Policy explains how we collect, use, and protect your information when you visit these sites.
           </p>
         </div>
       </header>

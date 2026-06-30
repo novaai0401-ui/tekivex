@@ -49,7 +49,7 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
       'Teams migrating off AG Grid who want a free alternative with no per-developer fee.',
     ],
     limitations: [
-      'GridStorm is a grid engine, not a full BI suite — charting and reporting live in Analytics Studio, which is built on top of it.',
+      'GridStorm is a grid engine, not a full BI suite — it focuses on fast, editable tables; charting, dashboards, and reporting are out of scope.',
       'The headless model means you write (or adopt) the rendering layer; if you want batteries-included styled components out of the box, expect some initial wiring.',
     ],
     faqs: [
@@ -59,118 +59,32 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
     ],
   },
 
-  // ── Pyntra ──────────────────────────────────────────────────────────────
-  pyntra: {
-    overview: [
-      'Pyntra is a browser-native PDF editor delivered as React headless hooks. Every operation — filling form fields, adding new fields, signing, stamping, annotating, redacting, and editing encrypted documents — happens entirely client-side. The PDF never leaves the browser, which matters for documents containing personal or regulated data.',
-      'It ships with zero third-party PDF dependencies and a bring-your-own-UI model: Pyntra owns the document logic and exposes it through hooks, while you render the interface with Material UI, Tekivex UI, or your own components. That separation lets you match your product\'s look exactly instead of fighting a pre-styled viewer.',
-    ],
-    howItWorks: [
-      { title: 'Load in the browser', body: 'A PDF is read into memory client-side. Pyntra parses the document structure — pages, form fields, annotations, and encryption — without a server round-trip.' },
-      { title: 'Edit through hooks', body: 'React hooks expose the document state: field values, annotation layers, signatures, and redactions. Your UI calls these hooks; Pyntra keeps the underlying PDF consistent.' },
-      { title: 'Export securely', body: 'On save, Pyntra serialises the edited document back to a PDF, optionally re-encrypting with RC4, AES-128, or AES-256 — all in the browser, so sensitive content is never uploaded.' },
-    ],
-    useCases: [
-      'Healthcare, legal, and finance apps where uploading documents to a server is a compliance risk.',
-      'Form-filling workflows — text, date, number, checkbox, radio, dropdown, and listbox fields.',
-      'Signature and stamping flows with a signature pad and embedded images.',
-      'Redaction of sensitive content before sharing, performed entirely on the client.',
-    ],
-    limitations: [
-      'Because everything runs in the browser, very large or scanned PDFs are bounded by the user\'s device memory rather than a server.',
-      'Pyntra provides the document engine and hooks, not a finished UI — you build (or adopt an adapter for) the interface.',
-    ],
-    faqs: [
-      { q: 'Does any document data leave the browser?', a: 'No. All parsing, editing, and encryption happen client-side. This is the core privacy guarantee — there is no upload step unless you add one.' },
-      { q: 'Can it open password-protected PDFs?', a: 'Yes. Pyntra supports encrypted PDFs using RC4, AES-128, and AES-256, and can re-encrypt on export.' },
-      { q: 'Which UI libraries work with it?', a: 'Any. The headless hooks are UI-agnostic; there are adapters for Material UI and Tekivex UI, or you can wire your own components.' },
-    ],
-  },
-
-  // ── Analytics Studio ─────────────────────────────────────────────────────
-  'analytics-studio': {
-    overview: [
-      'Analytics Studio is a drag-and-drop business-intelligence builder that runs in the browser, powered by the GridStorm engine. You connect data, drag fields into a pivot builder, and get pivot tables, 26+ interactive chart types, and KPI dashboards — without standing up a backend or writing application code.',
-      'It is currently in Beta. The data model, pivot builder, charting, and the in-browser SQL engine (SELECT / WHERE / GROUP BY / JOIN) are all functional today; we are actively expanding connectors, the scheduled-report designer, and the natural-language query parser ahead of a stable release.',
-    ],
-    howItWorks: [
-      { title: 'Bring your data', body: 'Load tabular data into the browser. Analytics Studio infers a schema and makes the fields available to the pivot builder and SQL engine.' },
-      { title: 'Build visually', body: 'Drag fields to group, aggregate, and filter. Switch between 26+ chart types — bar, line, scatter, radar, heatmap, treemap, sankey, and more — or compose a KPI dashboard with threshold-based alerts.' },
-      { title: 'Query and share', body: 'Run SQL directly in the browser for ad-hoc analysis, then export to PDF or Excel — manually or on a schedule via the report designer.' },
-    ],
-    useCases: [
-      'Embedding self-service analytics inside a SaaS product without a separate BI backend.',
-      'Internal KPI dashboards with auto-thresholds and alert rules.',
-      'Ad-hoc data exploration using in-browser SQL, no database connection required.',
-      'Cross-framework embedding — React, plus Vue and Svelte adapters.',
-    ],
-    limitations: [
-      'Beta: APIs and the report-scheduling features are still stabilising and may change between releases.',
-      'The in-browser SQL engine supports a practical subset (SELECT / WHERE / GROUP BY / JOIN); it is not a full database replacement.',
-      'The natural-language query parser is regex-based (no external AI API), so it handles common phrasings rather than arbitrary free text.',
-    ],
-    faqs: [
-      { q: 'Do I need a backend or database?', a: 'No. Analytics Studio runs in the browser and processes data client-side, including its SQL engine. You can wire it to your own data sources, but nothing is required server-side to get started.' },
-      { q: 'It says Beta — is it safe to use?', a: 'It is functional and we publish it openly, but expect occasional API changes before the stable release. Pin a version and read the changelog if you adopt it in production.' },
-      { q: 'What is it built on?', a: 'The same GridStorm engine that powers our data grid, which is how it handles large datasets and pivoting efficiently in the browser.' },
-    ],
-  },
-
-  // ── DataFlow ────────────────────────────────────────────────────────────
-  dataflow: {
-    overview: [
-      'DataFlow is a zero-dependency streaming engine for live data in front-end apps. It normalises WebSocket, Server-Sent Events, HTTP polling, and simulated sources behind one API, then handles the hard parts of real-time UIs: backpressure, change tracking, anomaly detection, and replay.',
-      'It is in Beta. The adapters, backpressure control, anomaly methods, and time-travel replay work today across React, Vue 3, and Svelte 5; we are hardening the APIs and broadening connector coverage toward a stable release.',
-    ],
-    howItWorks: [
-      { title: 'Connect a source', body: 'Point DataFlow at a WebSocket, SSE endpoint, polling URL, or a simulated scenario. All sources expose the same stream interface, so swapping transports does not change your UI code.' },
-      { title: 'Control the firehose', body: 'Batched requestAnimationFrame backpressure lets you cap update frequency and choose a drop strategy (oldest, newest, or sampled) so a fast stream never overwhelms the render loop.' },
-      { title: 'Track and replay', body: 'DataFlow tracks per-cell change direction for flash highlighting, runs anomaly detection (Z-score, IQR, MAD, or static thresholds), and records the stream so you can seek and replay at variable speed.' },
-    ],
-    useCases: [
-      'Live financial tickers and trading dashboards with directional flash highlighting.',
-      'Operational monitoring where you need anomaly alerts on streaming metrics.',
-      'IoT and telemetry dashboards consuming high-rate WebSocket or SSE feeds.',
-      'Debugging real-time UIs by recording a session and replaying it deterministically.',
-    ],
-    limitations: [
-      'Beta: the streaming APIs are still stabilising and may change between releases.',
-      'Anomaly detection uses statistical methods (Z-score, IQR, MAD), which suit numeric streams rather than complex ML-based detection.',
-      'DataFlow handles the client side of streaming; you still provide the WebSocket/SSE backend.',
-    ],
-    faqs: [
-      { q: 'Which transports are supported?', a: 'WebSocket, Server-Sent Events, HTTP polling, and a simulated source for development and testing — all behind a single stream interface.' },
-      { q: 'How does it avoid freezing the UI under heavy load?', a: 'It batches updates on a requestAnimationFrame loop with a configurable frame rate and drop strategy (oldest / newest / sample), so render work stays bounded regardless of incoming message rate.' },
-      { q: 'Does it work outside React?', a: 'Yes — React hooks, Vue 3 composables, and a Svelte 5 store factory all ship in the box.' },
-    ],
-  },
-
   // ── Quantum Vault ────────────────────────────────────────────────────────
   'quantum-vault': {
     overview: [
-      'Quantum Vault issues, validates, and rotates cryptographic tokens using NIST-standardised post-quantum algorithms — CRYSTALS-Kyber (ML-KEM / FIPS 203) for key encapsulation and CRYSTALS-Dilithium (ML-DSA / FIPS 204) for signatures. It is built for teams that want their identity and secrets infrastructure to be resistant to a future quantum adversary.',
-      'It is in Beta, and deliberately sovereign: you self-host it, so there is no third-party trust dependency for issuing or validating tokens. The threat it addresses is "harvest now, decrypt later" — data captured today that a quantum computer could break once Q-Day arrives.',
+      'Quantum Vault issues, validates, and rotates cryptographic tokens using NIST-standardised post-quantum cryptography — CRYSTALS-Dilithium (ML-DSA-87 / FIPS 204) for signatures, with payload confidentiality provided by XChaCha20-Poly1305 authenticated encryption. It is built for teams that want their identity and secrets infrastructure to be resistant to a future quantum adversary. On npm it ships as @sigvault/sdk.',
+      'It is deliberately sovereign: you self-host it, so there is no third-party trust dependency for issuing or validating tokens. The threat it addresses is "harvest now, decrypt later" — data captured today that a quantum computer could break once Q-Day arrives.',
     ],
     howItWorks: [
-      { title: 'Issue', body: 'Quantum Vault generates tokens signed with Dilithium and, where confidentiality is needed, wraps secrets using Kyber key encapsulation — both NIST-standardised post-quantum schemes.' },
-      { title: 'Validate', body: 'Services verify token signatures locally against the issuer\'s public key, so validation does not depend on an external authority being online.' },
+      { title: 'Issue', body: 'Quantum Vault generates tokens signed with ML-DSA-87 (Dilithium-5) and encrypts the payload with XChaCha20-Poly1305, so claims are confidential rather than merely base64-encoded as in a JWT.' },
+      { title: 'Validate', body: 'Services verify token signatures locally against the issuer\'s public (verifying) key, so validation does not depend on an external authority being online. A stateful HYDRA mutation chain provides replay protection.' },
       { title: 'Rotate', body: 'Issuance, validation, and rotation primitives let you roll keys and expire tokens on a schedule, which is essential for long-lived credentials in a post-quantum posture.' },
     ],
     useCases: [
       'Sovereign identity and signed-credential systems that must outlive current public-key cryptography.',
       'Long-lived secrets where "harvest now, decrypt later" is a realistic threat.',
       'Air-gapped or self-hosted environments that cannot depend on a third-party token service.',
-      'Organisations preparing migration plans for NIST PQC standards (FIPS 203 / 204).',
+      'Organisations preparing migration plans for the NIST PQC signature standard (ML-DSA / FIPS 204).',
     ],
     limitations: [
-      'Beta and security-sensitive: evaluate carefully and review against your threat model before production use.',
-      'Post-quantum keys and signatures are larger than classical equivalents, which has bandwidth and storage implications worth measuring.',
+      'Security-sensitive: evaluate carefully and review against your threat model before production use.',
+      'Post-quantum signatures are larger than classical equivalents (ML-DSA-87 signatures are roughly 4,627 bytes), which has bandwidth and storage implications worth measuring.',
       'It is self-hosted by design — you operate the deployment and own key management.',
     ],
     faqs: [
       { q: 'Why post-quantum now, before quantum computers can break RSA?', a: 'Because of "harvest now, decrypt later" — encrypted data captured today can be stored and broken once a capable quantum computer exists. Anything that must stay secret for years should migrate ahead of Q-Day.' },
-      { q: 'Which algorithms does it use?', a: 'CRYSTALS-Kyber (ML-KEM, FIPS 203) for key encapsulation and CRYSTALS-Dilithium (ML-DSA, FIPS 204) for signatures — both standardised by NIST.' },
-      { q: 'Is it hosted or self-managed?', a: 'Self-managed. Quantum Vault is sovereign by design so there is no third-party trust dependency for issuing or validating tokens.' },
+      { q: 'Which algorithms does it use?', a: 'CRYSTALS-Dilithium (ML-DSA-87, FIPS 204) for signatures, standardised by NIST, plus XChaCha20-Poly1305 for authenticated payload encryption and a HYDRA mutation chain for replay protection.' },
+      { q: 'Is it hosted or self-managed?', a: 'Self-managed. Quantum Vault is sovereign by design so there is no third-party trust dependency for issuing or validating tokens. On npm the package is @sigvault/sdk.' },
     ],
   },
 

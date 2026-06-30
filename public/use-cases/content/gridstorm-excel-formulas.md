@@ -9,14 +9,13 @@ If you have ever wondered what it actually takes to put a working formula bar in
 The engine is a plugin, so you opt in and point it at the columns that should accept formulas.
 
 ```ts
-import { createGrid } from '@tekivex/gridstorm';
-import { formulaPlugin } from '@tekivex/gridstorm/plugins/formula';
+import { createGrid, FormulaPlugin } from 'gridstorm';
 
 const grid = createGrid({
-  columns,
-  rows,
+  columnDefs,
+  rowData,
   plugins: [
-    formulaPlugin({
+    new FormulaPlugin({
       // Cells whose raw value starts with '=' are treated as formulas.
       enabledColumns: ['amount', 'tax', 'total'],
       locale: 'en-US',

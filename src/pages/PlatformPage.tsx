@@ -326,8 +326,8 @@ export function PlatformPage() {
           The platform <span className="tx-gradient-text">in motion</span>
         </h2>
         <p className="tx-section-sub">
-          A 30-second tour of the Tekivex suite — GridStorm, Pyntra, Analytics Studio,
-          DataFlow, Quantum Vault, and Tekivex UI. Free forever.
+          A 30-second tour of the Tekivex suite — GridStorm, Tekivex UI,
+          and Quantum Vault. Free forever.
         </p>
         <div className="tx-showcase-frame">
           <iframe

@@ -13,10 +13,8 @@
 export type Category =
   | 'general'
   | 'gridstorm'
-  | 'pdf-toolkit'
-  | 'nexa-recruit'
-  | 'nexa-care'
-  | 'analytics-studio'
+  | 'tekivex-ui'
+  | 'quantum-vault'
   | 'pricing'
   | 'getting-started'
   | 'troubleshooting';
@@ -48,15 +46,12 @@ export const KNOWLEDGE_BASE: KbEntry[] = [
       'Who makes these products?',
       'What company is this?',
     ],
-    answer: `**Tekivex** is a developer tools company building next-generation free and enterprise software products.
+    answer: `**Tekivex** is a developer tools company building next-generation free enterprise software products.
 
 Our product portfolio includes:
-- 🟦 **GridStorm** — Enterprise data grid (GA, free for commercial use)
-- 📄 **PDF Toolkit** — WASM-powered PDF processing (Beta, enterprise tier)
-- 👥 **NexaRecruit** — AI-powered ATS & resume builder (Coming Soon)
-- 🏥 **NexaCare** — Healthcare platform (Coming Soon)
-- 📊 **Analytics Studio** — Self-service analytics (Coming Soon)
-- 🔄 **DataFlow** — Real-time streaming (Coming Soon)
+- 🟦 **GridStorm** — High-performance React/headless data grid (free for commercial use)
+- 🎨 **Tekivex UI** — Accessible React/Vue/Svelte component library (free for commercial use)
+- 🔐 **Quantum Vault** — Sovereign post-quantum tokens (self-hosted library)
 
 We believe enterprise-grade software should be accessible to every team regardless of budget.`,
     tags: ['tekivex', 'company', 'about', 'products', 'portfolio'],
@@ -73,14 +68,11 @@ We believe enterprise-grade software should be accessible to every team regardle
     ],
     answer: `Tekivex currently offers the following products:
 
-| Product | Status | Description |
-|---------|--------|-------------|
-| GridStorm | ✅ GA | Enterprise data grid — 35 plugins, WCAG 2.1 AA |
-| PDF Toolkit | 🧪 Beta | WASM PDF renderer, annotations, PII masking |
-| NexaRecruit | 🔜 Soon | AI-powered applicant tracking system |
-| NexaCare | 🔜 Soon | Healthcare management platform |
-| Analytics Studio | 🔜 Soon | Self-service BI & analytics |
-| DataFlow | 🔜 Soon | Real-time event streaming |
+| Product | Description |
+|---------|-------------|
+| GridStorm | Enterprise data grid — 35 plugins, WCAG 2.1 AA |
+| Tekivex UI | Accessible React/Vue/Svelte component library |
+| Quantum Vault | Sovereign post-quantum tokens (self-hosted) |
 
 Visit each product page for demos, docs, and quick-start guides.`,
     tags: ['products', 'list', 'overview', 'all'],
@@ -96,11 +88,9 @@ Visit each product page for demos, docs, and quick-start guides.`,
       'Can I use it commercially?',
       'Can I use it for free?',
     ],
-    answer: `**GridStorm** is fully **free for commercial use** — free for personal and commercial use, forever. No per-developer fees, no licensing servers.
+    answer: `Every Tekivex product is **free for commercial use** — free for personal and commercial use, forever. No per-developer fees, no licensing servers.
 
-**PDF Toolkit** has an enterprise tier — the core API is free, advanced features (PII detection, digital signatures, bulk processing) are enterprise.
-
-Upcoming products (NexaRecruit, NexaCare, Analytics Studio) will follow the same open-core model: free community edition + optional enterprise features.
+This covers **GridStorm** (data grid), **Tekivex UI** (component library), and **Quantum Vault** (post-quantum tokens). There is no paywall and no enterprise tier.
 
 Report issues at **github.com/novaai0401-ui/tekivex-issue-report/issues**.`,
     tags: ['license', 'free', 'free', 'cost', 'pricing'],
@@ -474,208 +464,67 @@ grid.dispatch('charts:open', {
   },
 
   // ══════════════════════════════════════
-  // PDF TOOLKIT
+  // TEKIVEX UI
   // ══════════════════════════════════════
 
   {
-    id: 'pdf-toolkit-what-is',
-    category: 'pdf-toolkit',
+    id: 'tekivex-ui-what-is',
+    category: 'tekivex-ui',
     questions: [
-      'What is PDF Toolkit?',
-      'Tell me about PDF Toolkit',
-      'WASM PDF processing',
-      'PDF Toolkit overview',
+      'What is Tekivex UI?',
+      'Tell me about Tekivex UI',
+      'Component library Tekivex',
+      'Tekivex UI overview',
+      'React component library',
     ],
-    answer: `**Tekivex PDF Toolkit** is a WASM-powered PDF processing library for web applications.
+    answer: `**Tekivex UI** is an accessible component library for React, Vue, and Svelte.
 
-**Core capabilities:**
-- 🦀 Rust-compiled WASM renderer — no JS PDF libraries
-- 🖊️ 13 annotation types (text, highlight, underline, strikethrough, shapes, signatures, stamps, and more)
-- 📝 Smart form auto-fill with JSON data binding
-- 🔒 PII detection & GDPR-compliant masking
-- ✍️ Digital signatures with certificate validation
-- 🔐 AES-256 encryption / password protection
-- 🤖 AI text extraction & semantic analysis
+**Core highlights:**
+- ♿ WCAG 2.1 AA out of the box (targeting AAA — audit in progress)
+- ⚛️ Works across React, Vue, and Svelte
+- 🎨 Themeable with CSS custom properties
+- 📦 Tree-shakable, TypeScript-native
+- 🆓 Free for commercial use
 
-**Current status:** Beta (v0.1.2) — production-ready for most use cases.
-
-[View Demo](https://gridstorm.tekivex.com/pdf-viewer/) | [Documentation](https://gridstorm.tekivex.com/#/docs/guides/pdf-toolkit)`,
-    tags: ['PDF', 'WASM', 'Rust', 'annotation', 'form fill', 'encryption'],
-  },
-
-  {
-    id: 'pdf-toolkit-pii',
-    category: 'pdf-toolkit',
-    questions: [
-      'PII detection in PDF Toolkit',
-      'GDPR PDF masking',
-      'Redact sensitive data from PDF',
-      'Privacy PDF',
-      'Remove personal information from PDF',
-    ],
-    answer: `**PDF Toolkit PII Detection & Masking:**
-
-Automatically detect and optionally redact Personally Identifiable Information (PII) from PDF documents.
-
-**Detected PII types:**
-- Email addresses
-- Phone numbers (US, international)
-- Social Security Numbers
-- Credit card numbers
-- Passport numbers
-- Date of birth patterns
-- IP addresses
-- Physical addresses
-
-**Usage:**
-\`\`\`js
-const result = await pdfToolkit.detectPii(pdfBuffer);
-// result.entities: [{ type: 'email', text: '...', page: 1, bounds: {...} }]
-
-// Auto-mask all PII
-const maskedPdf = await pdfToolkit.maskPii(pdfBuffer, {
-  types: ['email', 'phone', 'ssn'],
-  replacement: '████████'
-});
+**Install:**
+\`\`\`bash
+npm install tekivex-ui
 \`\`\`
 
-This supports GDPR Article 17 (right to erasure) and HIPAA de-identification workflows.`,
-    tags: ['PII', 'GDPR', 'privacy', 'redact', 'mask', 'HIPAA'],
+[Docs & playground](https://ui.tekivex.com) · [Repo](https://github.com/007krcs/tekivex-ui)`,
+    tags: ['Tekivex UI', 'component library', 'React', 'Vue', 'Svelte', 'accessible'],
   },
 
-  {
-    id: 'pdf-toolkit-signatures',
-    category: 'pdf-toolkit',
-    questions: [
-      'Digital signatures PDF',
-      'Sign PDF',
-      'PDF signature verification',
-      'Certificate PDF',
-      'eSign',
-    ],
-    answer: `**PDF Toolkit Digital Signatures:**
+  // ══════════════════════════════════════
+  // QUANTUM VAULT
+  // ══════════════════════════════════════
 
-**Signing a PDF:**
-\`\`\`js
-const signedPdf = await pdfToolkit.sign(pdfBuffer, {
-  certificate: myCert,        // X.509 PEM certificate
-  privateKey: myPrivateKey,   // PEM private key
-  reason: 'Approved by manager',
-  location: 'New York, USA',
-  signaturePage: 'last',
-});
+  {
+    id: 'quantum-vault-what-is',
+    category: 'quantum-vault',
+    questions: [
+      'What is Quantum Vault?',
+      'Tell me about Quantum Vault',
+      'Post-quantum tokens',
+      'Quantum Vault overview',
+      'Sovereign tokens',
+    ],
+    answer: `**Quantum Vault** is a sovereign, self-hosted post-quantum token library.
+
+**Core highlights:**
+- 🔐 ML-DSA-87 signatures (FIPS 204)
+- 🛡️ XChaCha20-Poly1305 authenticated encryption
+- 🏠 Self-hosted — no public hosted demo, you run it yourself
+- 📦 TypeScript-native
+- 🆓 Free for commercial use
+
+**Install:**
+\`\`\`bash
+npm install @sigvault/sdk
 \`\`\`
 
-**Verifying signatures:**
-\`\`\`js
-const verification = await pdfToolkit.verifySignatures(pdfBuffer);
-// { valid: true, signers: [{ name: 'John Doe', timestamp: '...', trusted: true }] }
-\`\`\`
-
-Supports:
-- Multiple signers / sequential signing workflows
-- Timestamp Authority (TSA) integration
-- Certificate chain validation
-- Long-Term Validation (LTV) profiles`,
-    tags: ['signature', 'digital signature', 'sign', 'certificate', 'verify'],
-  },
-
-  // ══════════════════════════════════════
-  // NEXA RECRUIT
-  // ══════════════════════════════════════
-
-  {
-    id: 'nexa-recruit-what-is',
-    category: 'nexa-recruit',
-    questions: [
-      'What is NexaRecruit?',
-      'Tell me about NexaRecruit',
-      'ATS platform Tekivex',
-      'Applicant tracking',
-      'Resume builder',
-      'Hiring software',
-    ],
-    answer: `**NexaRecruit** is Tekivex's upcoming AI-powered Applicant Tracking System (ATS) and resume builder.
-
-**Planned features:**
-- 🤖 AI resume parsing & scoring
-- 📊 Candidate pipeline kanban board
-- 🔍 Smart candidate search & ranking
-- 📧 Automated email sequences
-- 📋 Job posting management
-- 🎯 Skills-based matching
-- 📈 Hiring analytics dashboard
-- 📄 AI-powered resume builder for candidates
-
-**Current status:** Coming Soon — join the waitlist at tekivex.com.
-
-NexaRecruit will be built on top of GridStorm (for candidate tables and analytics) and integrate with LinkedIn, Indeed, and other job boards.`,
-    tags: ['ATS', 'recruiting', 'hiring', 'resume', 'NexaRecruit', 'HR'],
-  },
-
-  // ══════════════════════════════════════
-  // NEXA CARE
-  // ══════════════════════════════════════
-
-  {
-    id: 'nexa-care-what-is',
-    category: 'nexa-care',
-    questions: [
-      'What is NexaCare?',
-      'Tell me about NexaCare',
-      'Healthcare platform Tekivex',
-      'Medical software',
-      'Patient management',
-    ],
-    answer: `**NexaCare** is Tekivex's upcoming healthcare management platform.
-
-**Planned features:**
-- 🏥 Patient record management (EHR-compliant)
-- 📅 Appointment scheduling & reminders
-- 💊 Prescription management
-- 🔒 HIPAA-compliant data storage
-- 📊 Clinical analytics dashboard
-- 🧬 Lab results tracking
-- 💳 Insurance billing integration
-- 📱 Patient portal (mobile-first)
-
-**Current status:** Coming Soon — designed for clinics, private practices, and telehealth providers.
-
-Built with full HIPAA and GDPR compliance from day one, leveraging PDF Toolkit for document management and GridStorm for clinical data grids.`,
-    tags: ['healthcare', 'EHR', 'HIPAA', 'patients', 'medical', 'NexaCare'],
-  },
-
-  // ══════════════════════════════════════
-  // ANALYTICS STUDIO
-  // ══════════════════════════════════════
-
-  {
-    id: 'analytics-studio-what-is',
-    category: 'analytics-studio',
-    questions: [
-      'What is Analytics Studio?',
-      'Self-service analytics',
-      'BI tool Tekivex',
-      'Business intelligence',
-      'Data analytics platform',
-      'dashboard builder',
-    ],
-    answer: `**Analytics Studio** is Tekivex's upcoming self-service analytics and BI platform.
-
-**Planned features:**
-- 🖱️ Drag-and-drop dashboard builder
-- 📊 30+ chart types (built on GridStorm charts engine)
-- 🔌 Data connectors: SQL, REST API, CSV, Google Sheets, Excel
-- 🤖 Natural language queries ("Show me sales by region last quarter")
-- 📅 Scheduled reports with email delivery
-- 👥 Collaborative dashboards with sharing & comments
-- 📱 Mobile-responsive embeddable widgets
-- 🔔 KPI alerts & anomaly detection
-
-**Target users:** Business analysts, operations teams, product managers who need insights without writing code.
-
-**Current status:** Coming Soon — [join the waitlist](https://tekivex.com).`,
-    tags: ['analytics', 'BI', 'dashboard', 'charts', 'SQL', 'reports'],
+[Repo](https://github.com/novaai0401-ui/quantum-vault)`,
+    tags: ['Quantum Vault', 'post-quantum', 'ML-DSA-87', 'XChaCha20', 'tokens', 'cryptography'],
   },
 
   // ══════════════════════════════════════
@@ -695,19 +544,12 @@ Built with full HIPAA and GDPR compliance from day one, leveraging PDF Toolkit f
     ],
     answer: `**Tekivex Pricing:**
 
-**GridStorm** — **Free forever** (free forever)
+Every Tekivex product is **free forever** — free for commercial and personal use.
 No seat fees, no usage limits, no license servers.
-Use in any project, commercial or personal.
 
-**PDF Toolkit** — Enterprise tier
-- Community: Free (core rendering, basic annotations)
-- Enterprise: Contact us for pricing (PII masking, bulk processing, digital signatures)
+This covers **GridStorm** (data grid), **Tekivex UI** (component library), and **Quantum Vault** (post-quantum tokens). There is no paywall and no enterprise tier.
 
-**Upcoming products** (NexaRecruit, NexaCare, Analytics Studio):
-- Will follow open-core model: free community edition + paid enterprise tier
-- Pricing TBD — join waitlist for early adopter pricing
-
-For enterprise licensing, SLAs, or volume discounts, contact **enterprise@tekivex.com**.`,
+For partnerships or volume questions, contact **enterprise@tekivex.com**.`,
     tags: ['pricing', 'cost', 'free', 'enterprise', 'subscription', 'license'],
   },
 
@@ -1164,10 +1006,8 @@ GridStorm sends your API the current sort/filter/group state — your backend ap
 export const CATEGORY_META: Record<Category, { label: string; emoji: string; color: string }> = {
   general:           { label: 'General',          emoji: '💬', color: '#6366f1' },
   gridstorm:         { label: 'GridStorm',         emoji: '🟦', color: '#3b82f6' },
-  'pdf-toolkit':     { label: 'PDF Toolkit',       emoji: '📄', color: '#ef4444' },
-  'nexa-recruit':    { label: 'NexaRecruit',       emoji: '👥', color: '#10b981' },
-  'nexa-care':       { label: 'NexaCare',          emoji: '🏥', color: '#ec4899' },
-  'analytics-studio':{ label: 'Analytics Studio',  emoji: '📊', color: '#f59e0b' },
+  'tekivex-ui':      { label: 'Tekivex UI',        emoji: '🎨', color: '#06b6d4' },
+  'quantum-vault':   { label: 'Quantum Vault',     emoji: '🔐', color: '#8b5cf6' },
   pricing:           { label: 'Pricing',           emoji: '💰', color: '#8b5cf6' },
   'getting-started': { label: 'Getting Started',   emoji: '🚀', color: '#06b6d4' },
   troubleshooting:   { label: 'Troubleshooting',   emoji: '🔧', color: '#f97316' },
@@ -1183,6 +1023,7 @@ export const STARTER_QUESTIONS = [
   'How does GridStorm compare to AG Grid?',
   'What chart types are supported?',
   'How do I enable accessibility features?',
-  'What is PDF Toolkit?',
+  'What is Tekivex UI?',
+  'What is Quantum Vault?',
   'How to get started with Tekivex?',
 ];

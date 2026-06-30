@@ -18,10 +18,11 @@ A 60fps target gives you a budget of about **16.67 milliseconds per frame**. Wit
 
 Virtual scrolling — also called windowing — renders only the rows currently inside the viewport, plus a small overscan buffer above and below. As the user scrolls, GridStorm computes which rows should now be visible and updates the rendered set.
 
-The math is straightforward when rows share a fixed height. Given the scroll offset, viewport height, and row height, you can derive the first and last visible index directly:
+The math is straightforward when rows share a fixed height. Given the scroll offset, viewport height, and row height, you can derive the first and last visible index directly. GridStorm's `VirtualScroller` does this internally; conceptually the calculation is:
 
 ```ts
-import { computeWindow } from '@tekivex/gridstorm';
+import { createGrid } from 'gridstorm';
+import type { ColumnDef } from 'gridstorm';
 
 function visibleRange(scrollTop: number, viewportHeight: number, rowHeight: number, total: number, overscan = 6) {
   const first = Math.floor(scrollTop / rowHeight);
@@ -30,6 +31,10 @@ function visibleRange(scrollTop: number, viewportHeight: number, rowHeight: numb
   const end = Math.min(total - 1, first + visibleCount + overscan);
   return { start, end };
 }
+
+// You don't call this yourself — createGrid wires the scroller for you:
+const columnDefs: ColumnDef[] = [{ field: 'name', headerName: 'Name' }];
+const grid = createGrid({ container: el, columnDefs, rowData });
 ```
 
 A full-height spacer element gives the scrollbar the correct size and position, so the browser's native scrolling behaves exactly as a user expects. The rendered rows are absolutely positioned (or translated) to their true offset within that spacer. The result: a viewport showing ~30 rows touches ~30 row's worth of DOM nodes regardless of whether the dataset has a thousand rows or a million.

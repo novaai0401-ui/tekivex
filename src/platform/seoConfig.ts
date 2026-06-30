@@ -11,7 +11,7 @@ const HOME_SEO: SeoConfig = {
   title: 'Tekivex — Enterprise Developer Tools Platform',
   description:
     'Tekivex builds free enterprise developer tools: GridStorm (high-performance data grid, ' +
-    '35 plugins), Analytics Studio (26+ charts, drag-drop BI), DataFlow (real-time streaming), and ' +
+    '35 plugins), Tekivex UI (accessible React/Vue/Svelte component library), and ' +
     'Quantum Vault (sovereign post-quantum tokens). Free for commercial use. Free forever.',
   keywords: [
     'enterprise developer tools',
@@ -19,8 +19,8 @@ const HOME_SEO: SeoConfig = {
     'react data grid',
     'AG Grid alternative',
     'data grid library',
-    'analytics dashboard builder',
-    'real-time streaming engine',
+    'react component library',
+    'accessible components',
     'post-quantum cryptography',
     'GridStorm',
     'Tekivex',
@@ -33,13 +33,13 @@ const HOME_SEO: SeoConfig = {
   canonical: BASE_URL,
   ogTitle: 'Tekivex — Enterprise Developer Tools Platform',
   ogDescription:
-    'Free enterprise developer tools: GridStorm data grid, Analytics Studio, DataFlow streaming, ' +
+    'Free enterprise developer tools: GridStorm data grid, Tekivex UI component library, ' +
     'Quantum Vault — free for commercial use, free forever.',
   ogImage: `${BASE_URL}/og-tekivex.png`,
   ogType: 'website',
   twitterTitle: 'Tekivex — Enterprise Developer Tools Platform',
   twitterDescription:
-    'GridStorm data grid, Analytics Studio, DataFlow streaming, Quantum Vault — one platform, all free.',
+    'GridStorm data grid, Tekivex UI component library, Quantum Vault — one platform, all free.',
   twitterImage: `${BASE_URL}/og-tekivex.png`,
   jsonLd: [
     {
@@ -54,7 +54,7 @@ const HOME_SEO: SeoConfig = {
         height: 60,
       },
       description:
-        'Tekivex builds free enterprise developer tools — GridStorm, Analytics Studio, DataFlow, and Quantum Vault. All free for commercial use.',
+        'Tekivex builds free enterprise developer tools — GridStorm, Tekivex UI, and Quantum Vault. All free for commercial use.',
       sameAs: [
         'https://github.com/novaai0401-ui/tekivex',
         'https://www.linkedin.com/company/tekivex/',
@@ -63,7 +63,7 @@ const HOME_SEO: SeoConfig = {
       ],
       foundingDate: '2025',
       knowsAbout: [
-        'Data Grids', 'Business Intelligence', 'Real-time Streaming',
+        'Data Grids', 'Component Libraries', 'Accessibility',
         'Post-Quantum Cryptography', 'Enterprise Software', 'TypeScript', 'React', 'Vue', 'Svelte',
       ],
     },
@@ -73,7 +73,7 @@ const HOME_SEO: SeoConfig = {
       name: 'Tekivex',
       url: BASE_URL,
       description:
-        'Free enterprise developer tools — GridStorm data grid, Analytics Studio, DataFlow streaming, Quantum Vault.',
+        'Free enterprise developer tools — GridStorm data grid, Tekivex UI component library, Quantum Vault.',
       publisher: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
     },
   ],
@@ -84,10 +84,10 @@ const PRODUCTS_SEO: SeoConfig = {
   title: 'Products — Tekivex Enterprise Developer Tools',
   description:
     'Explore Tekivex products: GridStorm enterprise data grid (35 plugins, 100K+ rows), ' +
-    'Analytics Studio (26+ charts, in-browser SQL), DataFlow (real-time streaming, WebSocket/SSE), ' +
-    'and Quantum Vault (post-quantum tokens — Kyber + Dilithium). All free for commercial use.',
+    'Tekivex UI (accessible React/Vue/Svelte component library), ' +
+    'and Quantum Vault (post-quantum tokens — ML-DSA-87 + XChaCha20). All free for commercial use.',
   keywords: [
-    'GridStorm data grid', 'Analytics Studio BI', 'DataFlow streaming',
+    'GridStorm data grid', 'Tekivex UI components', 'accessible component library',
     'Quantum Vault PQC', 'free enterprise tools', 'Tekivex products',
     'developer software suite', 'TypeScript libraries', 'React data grid',
     'Vue data grid', 'Svelte data grid',
@@ -95,12 +95,12 @@ const PRODUCTS_SEO: SeoConfig = {
   canonical: `${BASE_URL}/products`,
   ogTitle: 'Products — Tekivex Developer Tools Suite',
   ogDescription:
-    'GridStorm, Analytics Studio, DataFlow, Quantum Vault — enterprise developer tools, free for commercial use, free forever.',
+    'GridStorm, Tekivex UI, Quantum Vault — enterprise developer tools, free for commercial use, free forever.',
   ogImage: `${BASE_URL}/og-tekivex.png`,
   ogType: 'website',
   twitterTitle: 'Tekivex Product Suite',
   twitterDescription:
-    'GridStorm, Analytics Studio, DataFlow, Quantum Vault — enterprise tools for every team.',
+    'GridStorm, Tekivex UI, Quantum Vault — enterprise tools for every team.',
   twitterImage: `${BASE_URL}/og-tekivex.png`,
   jsonLd: {
     '@context': 'https://schema.org',
@@ -108,26 +108,17 @@ const PRODUCTS_SEO: SeoConfig = {
     name: 'Tekivex Product Suite',
     description: 'Enterprise developer tools built by Tekivex',
     url: `${BASE_URL}/products`,
-    numberOfItems: 6,
+    numberOfItems: 3,
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'GridStorm',
         description: 'Free enterprise data grid — virtual scrolling, 35 plugins, free for commercial use',
         url: `${BASE_URL}/product/gridstorm` },
-      { '@type': 'ListItem', position: 2, name: 'Pyntra',
-        description: 'Client-side PDF editor — form filling, annotation, signing, AES-256, headless React',
-        url: `${BASE_URL}/product/pyntra` },
-      { '@type': 'ListItem', position: 3, name: 'Analytics Studio',
-        description: 'Drag-and-drop BI platform — 26+ charts, in-browser SQL, KPI dashboards',
-        url: `${BASE_URL}/product/analytics-studio` },
-      { '@type': 'ListItem', position: 4, name: 'Quantum Vault',
-        description: 'Sovereign post-quantum tokens — CRYSTALS-Kyber + Dilithium, NIST-standardised',
-        url: `${BASE_URL}/product/quantum-vault` },
-      { '@type': 'ListItem', position: 5, name: 'DataFlow',
-        description: 'Real-time streaming engine — WebSocket, SSE, anomaly detection, time-travel replay',
-        url: `${BASE_URL}/product/dataflow` },
-      { '@type': 'ListItem', position: 6, name: 'Tekivex UI',
-        description: 'Enterprise component library — 50+ accessible components for React, Vue & Svelte',
+      { '@type': 'ListItem', position: 2, name: 'Tekivex UI',
+        description: 'Accessible component library for React, Vue & Svelte — WCAG 2.1 AA',
         url: `${BASE_URL}/product/tekivex-ui` },
+      { '@type': 'ListItem', position: 3, name: 'Quantum Vault',
+        description: 'Sovereign post-quantum tokens — ML-DSA-87 (FIPS 204) + XChaCha20-Poly1305',
+        url: `${BASE_URL}/product/quantum-vault` },
     ],
   },
 };
@@ -137,8 +128,8 @@ const ABOUT_SEO: SeoConfig = {
   title: 'About Tekivex — Free Enterprise Developer Tools',
   description:
     'Tekivex is an independent developer tools company building free enterprise software — ' +
-    'GridStorm data grid, Pyntra browser PDF editor, Analytics Studio, Quantum Vault, DataFlow streaming engine, and Tekivex UI component library. ' +
-    '6 products, all free for commercial use and TypeScript-native. Founded 2025.',
+    'GridStorm data grid, Tekivex UI component library, and Quantum Vault post-quantum tokens. ' +
+    'Three products, all free for commercial use and TypeScript-native. Founded 2025.',
   keywords: [
     'about Tekivex', 'Tekivex company', 'free developer tools company',
     'GridStorm team', 'enterprise software company', 'free tools',
@@ -148,12 +139,12 @@ const ABOUT_SEO: SeoConfig = {
   canonical: `${BASE_URL}/about`,
   ogTitle: 'About Tekivex — Enterprise Software, Crafted with Skill',
   ogDescription:
-    '6 products, free for commercial use. We build free enterprise developer tools. Founded 2025.',
+    'Three products, free for commercial use. We build free enterprise developer tools. Founded 2025.',
   ogImage: `${BASE_URL}/og-tekivex.png`,
   ogType: 'website',
   twitterTitle: 'About Tekivex',
   twitterDescription:
-    'The team behind GridStorm, Pyntra, Analytics Studio, Quantum Vault, DataFlow, and Tekivex UI — all free for commercial use.',
+    'The team behind GridStorm, Tekivex UI, and Quantum Vault — all free for commercial use.',
   twitterImage: `${BASE_URL}/og-tekivex.png`,
   jsonLd: {
     '@context': 'https://schema.org',
@@ -162,7 +153,7 @@ const ABOUT_SEO: SeoConfig = {
     url: BASE_URL,
     logo: { '@type': 'ImageObject', url: `${BASE_URL}/favicon.svg` },
     description:
-      'Tekivex builds enterprise-grade developer tools: GridStorm data grid, Analytics Studio, Quantum Vault, and DataFlow.',
+      'Tekivex builds enterprise-grade developer tools: GridStorm data grid, Tekivex UI component library, and Quantum Vault.',
     foundingDate: '2025',
     sameAs: [
       'https://github.com/novaai0401-ui/tekivex',
@@ -171,8 +162,8 @@ const ABOUT_SEO: SeoConfig = {
       'https://whatsapp.com/channel/0029Va4q7fr0lwgt6bUyjV2Y',
     ],
     knowsAbout: [
-      'Data Grids', 'Post-Quantum Cryptography', 'Business Intelligence',
-      'Real-time Streaming', 'TypeScript', 'React', 'Vue', 'Svelte',
+      'Data Grids', 'Post-Quantum Cryptography', 'Component Libraries',
+      'Accessibility', 'TypeScript', 'React', 'Vue', 'Svelte',
     ],
   },
 };
@@ -181,16 +172,16 @@ const ABOUT_SEO: SeoConfig = {
 const PLATFORM_SEO: SeoConfig = {
   title: 'Platform — Tekivex Developer Tools Hub',
   description:
-    'The Tekivex platform hub — launch GridStorm, Analytics Studio, DataFlow, and Quantum Vault ' +
+    'The Tekivex platform hub — launch GridStorm, Tekivex UI, and Quantum Vault ' +
     'from a single dashboard. All products are free for commercial use and built TypeScript-first.',
   keywords: [
     'Tekivex platform', 'developer tools hub', 'GridStorm',
-    'Analytics Studio', 'DataFlow', 'Quantum Vault', 'enterprise software platform',
+    'Tekivex UI', 'Quantum Vault', 'enterprise software platform',
   ],
   canonical: `${BASE_URL}/platform`,
   ogTitle: 'Tekivex Platform Hub',
   ogDescription:
-    'Launch all Tekivex products from one place — GridStorm, Analytics Studio, DataFlow, Quantum Vault.',
+    'Launch all Tekivex products from one place — GridStorm, Tekivex UI, Quantum Vault.',
   ogImage: `${BASE_URL}/og-tekivex.png`,
   ogType: 'website',
   jsonLd: null,
@@ -271,8 +262,8 @@ export function getSeoForRoute(route: string): SeoConfig {
     const count = getAllArticles().length;
     return {
       title: 'Use Cases — Product Guides, Comparisons & Deep Dives | Tekivex',
-      description: `${count} in-depth articles on the Tekivex product suite — GridStorm, Pyntra, Analytics Studio, DataFlow, Quantum Vault, and Tekivex UI. Architecture deep dives, migration guides, and real-world use cases.`,
-      keywords: ['Tekivex use cases', 'GridStorm guide', 'Pyntra guide', 'Analytics Studio', 'Quantum Vault', 'DataFlow', 'Tekivex UI', 'react data grid guide', 'developer tools articles'],
+      description: `${count} in-depth articles on the Tekivex product suite — GridStorm, Tekivex UI, and Quantum Vault. Architecture deep dives, migration guides, and real-world use cases.`,
+      keywords: ['Tekivex use cases', 'GridStorm guide', 'Tekivex UI', 'Quantum Vault', 'react data grid guide', 'developer tools articles'],
       canonical: `${BASE_URL}/use-cases`,
       ogTitle: 'Use Cases — Tekivex Product Guides & Deep Dives',
       ogDescription: `${count} in-depth articles on the Tekivex product suite, written by the Tekivex Engineering team.`,

@@ -1,7 +1,8 @@
 import type { ProductManifest } from '../platform/types';
 
 const UI_URL    = 'https://ui.tekivex.com';
-const UI_GITHUB = 'https://github.com/novaai0401-ui/tekivex-issue-report/issues';
+const UI_GITHUB = 'https://github.com/007krcs/tekivex-ui';
+const UI_NPM    = 'https://www.npmjs.com/package/tekivex-ui';
 
 export const tekivexUiManifest: ProductManifest = {
   id: 'tekivex-ui',
@@ -40,6 +41,7 @@ export const tekivexUiManifest: ProductManifest = {
     'Form toolkit — validation, error states, field groups, and controlled/uncontrolled modes',
   ],
   quickLinks: [
+    { label: 'npm — tekivex-ui', path: UI_NPM,                  external: true },
     { label: 'Live Demo',     path: UI_URL,                     external: true, isNew: true },
     { label: 'Docs',          path: `${UI_URL}/docs`,           external: true },
     { label: 'Storybook',     path: `${UI_URL}/storybook`,      external: true },

@@ -1,6 +1,6 @@
 Most of the security tokens running in production today — session tokens, API access tokens, signed JWTs, federation assertions — rest on a single assumption: that factoring large integers or solving the elliptic-curve discrete-log problem is computationally infeasible. That assumption has held for decades. It will not hold against a sufficiently large quantum computer, and that changes the threat model for anything you sign or encrypt today and expect to remain confidential or trustworthy tomorrow.
 
-Post-quantum cryptography (PQC) is the set of algorithms designed to resist attacks from both classical and quantum adversaries. Quantum Vault issues, stores, and validates tokens built on these algorithms, using the families NIST standardised in 2024. This article explains what PQC actually is, why the threat is real even before a quantum computer exists, how the two core primitives — Kyber and Dilithium — work at a high level, and what a "post-quantum token" means inside Quantum Vault.
+Post-quantum cryptography (PQC) is the set of algorithms designed to resist attacks from both classical and quantum adversaries. Quantum Vault issues, stores, and validates tokens built on these algorithms, anchored on the digital-signature family NIST standardised in 2024. This article explains what PQC actually is, why the threat is real even before a quantum computer exists, how lattice-based primitives like Kyber and Dilithium work at a high level, and what a "post-quantum token" means inside Quantum Vault.
 
 The goal is to give you an accurate mental model, not marketing. Quantum computers do not break RSA today. But the migration is a multi-year exercise, and the data you protect now may need to stay protected long after Q-Day.
 
@@ -30,43 +30,40 @@ If the confidentiality lifetime plus the migration time exceeds time-to-Q-Day, y
 
 ## Kyber (ML-KEM): establishing shared secrets
 
-CRYSTALS-Kyber, standardised as **ML-KEM in FIPS 203**, is a key encapsulation mechanism (KEM). A KEM is the post-quantum replacement for the key-exchange role that RSA encryption and Diffie-Hellman play today. Its security rests on the Module Learning With Errors (Module-LWE) problem over lattices.
+CRYSTALS-Kyber, standardised as **ML-KEM in FIPS 203**, is a key encapsulation mechanism (KEM). A KEM is the post-quantum replacement for the key-exchange role that RSA encryption and Diffie-Hellman play today. Its security rests on the Module Learning With Errors (Module-LWE) problem over lattices. It belongs to the same NIST lattice family as the signature scheme below, and is worth understanding as part of the PQC landscape — though, as the next sections make clear, it is not the primitive Quantum Vault relies on to protect token payloads.
 
-The interaction has three operations rather than a classic encrypt/decrypt pair:
+A KEM has three operations rather than a classic encrypt/decrypt pair: the recipient generates a keypair and publishes the public key; the sender *encapsulates* against that public key, producing a ciphertext plus a shared secret; the recipient *decapsulates* the ciphertext to recover the same shared secret. The shared secret is never sent over the wire — only the ciphertext is. Both parties derive the same symmetric key, which then protects the actual payload with a fast symmetric cipher.
 
-```ts
-import { mlKem } from '@tekivex/quantum-vault'
-
-// Recipient generates a keypair and publishes the public key
-const { publicKey, secretKey } = await mlKem.generateKeyPair()
-
-// Sender encapsulates: produces a ciphertext + a shared secret
-const { ciphertext, sharedSecret } = await mlKem.encapsulate(publicKey)
-
-// Recipient decapsulates the ciphertext to recover the SAME shared secret
-const recovered = await mlKem.decapsulate(ciphertext, secretKey)
-// recovered === sharedSecret  -> use it to key a symmetric cipher (AES-256-GCM)
-```
-
-The shared secret is never sent over the wire — only the ciphertext is. Both parties derive the same symmetric key, which then protects the actual payload with a fast classical cipher. This is the mechanism Quantum Vault uses when it needs to protect token material in transit or at rest against HNDL capture.
+Quantum Vault does not use a KEM for token confidentiality. Where a token carries confidential claims, Quantum Vault protects them directly with **XChaCha20-Poly1305**, a fast symmetric authenticated cipher (AEAD), keyed from material both parties already hold — so there is no key encapsulation step in the token path at all.
 
 ## Dilithium (ML-DSA): proving authenticity
 
-CRYSTALS-Dilithium, standardised as **ML-DSA in FIPS 204**, is a digital signature scheme. Signatures are what make a token *trustworthy*: they let a verifier confirm a token was issued by the holder of the signing key and has not been tampered with. ML-DSA is the post-quantum replacement for RSA and ECDSA signatures and is also lattice-based.
+CRYSTALS-Dilithium, standardised as **ML-DSA in FIPS 204**, is a digital signature scheme. Signatures are what make a token *trustworthy*: they let a verifier confirm a token was issued by the holder of the signing key and has not been tampered with. ML-DSA is the post-quantum replacement for RSA and ECDSA signatures and is also lattice-based. This is the primitive at the core of Quantum Vault: every token is signed with **ML-DSA-87 (Dilithium-5)** under FIPS 204. (Falcon-512 is also available where a smaller signature matters more than the larger ML-DSA security margin.)
 
 ```ts
-import { mlDsa } from '@tekivex/quantum-vault'
+import { generateKeypair, MutationChain, issueToken, verifyToken } from '@sigvault/sdk'
 
-const { publicKey, secretKey } = await mlDsa.generateKeyPair()
+const { signingKey, verifyingKey, encryptKey } = generateKeypair()
+const chain = new MutationChain()
 
-const message = new TextEncoder().encode('sub:1024;scope:read;exp:1718600000')
-const signature = await mlDsa.sign(message, secretKey)
+const { tokenHex } = issueToken({
+  signingKeySeed: signingKey,
+  encryptKey,
+  chain,
+  claims: { sub: 'user-123', role: 'read' },
+  ttl: 3600,
+})
 
-const valid = await mlDsa.verify(message, signature, publicKey)
-// valid === true only if message + signature match the public key
+const result = verifyToken({
+  token: tokenHex,
+  verifyingKey,
+  encryptKey,
+  chain: new MutationChain(chain.state),
+})
+// result.claims is populated only if the ML-DSA-87 signature checks out
 ```
 
-The practical trade-off to internalise: post-quantum keys and signatures are *larger* than their classical equivalents. An ML-DSA signature is several kilobytes versus a few dozen bytes for ECDSA. This affects token size, header limits, and bandwidth, and it is the main thing that surprises teams during migration — covered in our [migration playbook](/use-cases/quantum-vault-migrate-pqc-token-issuance).
+The practical trade-off to internalise: post-quantum keys and signatures are *larger* than their classical equivalents. An ML-DSA-87 signature is roughly 4,627 bytes versus a few dozen bytes for ECDSA. This affects token size, header limits, and bandwidth, and it is the main thing that surprises teams during migration — covered in our [migration playbook](/use-cases/quantum-vault-migrate-pqc-token-issuance).
 
 ## Why standardised PQC, not roll-your-own
 
@@ -84,55 +81,52 @@ Lattice schemes also have subtle implementation pitfalls — constant-time arith
 | Compliance posture | Maps to FIPS, procurement | Hard to justify |
 | Implementation guidance | Specified parameters & encodings | Improvised |
 
-When a regulator or customer asks which algorithms you use, "FIPS 203 ML-KEM-768 and FIPS 204 ML-DSA-65" maps to procurement checklists and audit frameworks. "Our own lattice variant" does not.
+When a regulator or customer asks which algorithm you use, naming a published standard — for Quantum Vault, "FIPS 204 ML-DSA-87" — maps to procurement checklists and audit frameworks. "Our own lattice variant" does not.
 
 ## What a post-quantum token is in Quantum Vault
 
-A post-quantum token in Quantum Vault is a structured, self-describing credential whose authenticity is guaranteed by an ML-DSA signature and whose confidential portions, where present, are protected using an ML-KEM-derived key. Functionally it behaves like a signed token you already know — claims, expiry, issuer, audience — but the cryptographic core is quantum-resistant.
+A post-quantum token in Quantum Vault is a structured, self-describing credential whose authenticity is guaranteed by an **ML-DSA-87 signature** and whose confidential claims, where present, are protected with **XChaCha20-Poly1305** symmetric encryption. Replay is prevented by a stateful **HYDRA mutation chain** that advances on every issuance. Functionally it behaves like a signed token you already know — claims, expiry, issuer — but the cryptographic core is quantum-resistant.
 
 A Quantum Vault token therefore carries:
 
-- **Claims** — the payload (subject, scope, expiry, issuer), identical in spirit to a JWT.
-- **An ML-DSA signature** — proving the issuer signed exactly these claims.
-- **Algorithm and key identifiers** — so verifiers know which standard and which key version to apply, enabling rotation and crypto-agility.
+- **Claims** — the payload (subject, role, expiry), identical in spirit to a JWT, with confidential fields sealed under XChaCha20-Poly1305.
+- **An ML-DSA-87 signature** — proving the issuer signed exactly these claims.
+- **A mutation-chain position** — so a replayed token is detected and rejected by the verifier's chain state.
+
+> Quantum Vault ships on npm as `@sigvault/sdk`. Install it with `npm install @sigvault/sdk`.
 
 ```ts
-import { QuantumVault } from '@tekivex/quantum-vault'
+import { generateKeypair, MutationChain, issueToken, verifyToken } from '@sigvault/sdk'
 
-const vault = new QuantumVault({ signingAlg: 'ML-DSA-65' })
+const { signingKey, verifyingKey, encryptKey } = generateKeypair()
+const chain = new MutationChain()
 
-const token = await vault.issue({
-  sub: 'user-1024',
-  scope: ['read', 'write'],
-  exp: Math.floor(Date.now() / 1000) + 3600,
+const { tokenHex } = issueToken({
+  signingKeySeed: signingKey,
+  encryptKey,
+  chain,
+  claims: { sub: 'user-1024', role: 'admin' },
+  ttl: 3600,
 })
 
-const result = await vault.verify(token)
-if (result.valid) {
-  console.log(result.claims.sub) // 'user-1024'
-}
-```
-
-Because the token embeds **algorithm and parameter-set identifiers**, Quantum Vault stays crypto-agile: the standardisation process is ongoing, and a credible PQC product cannot pin itself to one algorithm forever. When a new standard lands or a parameter set should be retired, the change is a configuration and key-rotation exercise, not a rewrite — tokens self-describe their algorithm, so verifiers stay forward-compatible.
-
-```ts
-const vault = new QuantumVault({
-  signingAlg: 'ML-DSA-65', // FIPS 204 — referenced by name
-  kemAlg: 'ML-KEM-768',    // FIPS 203 — swapping is a config change
+const result = verifyToken({
+  token: tokenHex,
+  verifyingKey,
+  encryptKey,
+  chain: new MutationChain(chain.state),
 })
-const { alg } = await vault.verify(token)
-console.log(alg) // 'ML-DSA-65'
+console.log(result.claims.sub) // 'user-1024'
 ```
 
-Because issuance, validation, and rotation all happen against keys you control, the design is suited to self-hosted and sovereign deployment — no third party ever holds your signing keys. We cover that model in [sovereign token verification](/use-cases/quantum-vault-sovereign-token-verification).
+You can inspect a token's structure without verifying it using `inspectToken`, which is useful for debugging and tooling. Because issuance, validation, and rotation all happen against keys you control, the design is suited to self-hosted and sovereign deployment — no third party ever holds your signing keys. We cover that model in [sovereign token verification](/use-cases/quantum-vault-sovereign-token-verification).
 
 ## Key takeaways
 
 - Quantum computers do not break RSA today, but **harvest-now, decrypt-later** makes today's captured data a future liability, and signing keys can be forged retroactively once Q-Day arrives.
 - PQC swaps the vulnerable asymmetric layer for **lattice-based** primitives that run on ordinary hardware. Symmetric crypto only needs larger keys.
-- **Kyber / ML-KEM (FIPS 203)** establishes shared secrets; **Dilithium / ML-DSA (FIPS 204)** produces signatures that prove authenticity.
-- A Quantum Vault post-quantum token is a familiar claims-based credential whose trust anchor is an ML-DSA signature, with algorithm identifiers built in for rotation.
-- The main practical cost is **size**: PQ keys and signatures are larger, so plan token and transport budgets accordingly.
-- Prefer **standardised** PQC (the most-attacked algorithm still standing) over bespoke schemes; Quantum Vault keeps algorithms identifier-driven so evolving standards are an upgrade, not a rewrite.
+- In the broader PQC landscape, **Kyber / ML-KEM (FIPS 203)** establishes shared secrets; **Dilithium / ML-DSA (FIPS 204)** produces signatures that prove authenticity. Quantum Vault is built on the signature side.
+- A Quantum Vault post-quantum token is a familiar claims-based credential whose trust anchor is an **ML-DSA-87** signature, with confidential claims sealed under **XChaCha20-Poly1305** and replay blocked by a **mutation chain**.
+- The main practical cost is **size**: PQ keys and signatures are larger — an ML-DSA-87 signature is roughly 4,627 bytes — so plan token and transport budgets accordingly.
+- Prefer **standardised** PQC (the most-attacked algorithm still standing) over bespoke schemes; Quantum Vault tracks the NIST FIPS 204 standard rather than shipping a homegrown lattice variant.
 
 The migration to post-quantum tokens is not a single switch you flip — it is a transition you stage. Understanding the primitives is step one. For the staged rollout, see the [migration playbook](/use-cases/quantum-vault-migrate-pqc-token-issuance), browse related [use cases](/use-cases), or look at the [Quantum Vault product page](/product/quantum-vault) to start issuing tokens against keys you hold yourself.
