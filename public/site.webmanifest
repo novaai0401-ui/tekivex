@@ -1,7 +1,7 @@
 {
   "name": "Tekivex",
   "short_name": "Tekivex",
-  "description": "Enterprise developer tools — GridStorm, Tekivex UI, Quantum Vault. Free for commercial use.",
+  "description": "Free developer tools and web apps — GridStorm, Tekivex UI, Quantum Vault, plus the hosted Pyntra, Analytics Studio, and DataFlow apps.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",

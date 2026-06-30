@@ -59,6 +59,91 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
     ],
   },
 
+  // ── Pyntra (hosted web app) ──────────────────────────────────────────────
+  pyntra: {
+    overview: [
+      'Pyntra is a free, browser-based PDF editor you use directly — open pyntra.tekivex.com, drop in a PDF, and start editing. There is no account to create and no software to install, and there is no upload step: the document is processed entirely in your browser, so it never leaves your device.',
+      'It covers the everyday PDF tasks that usually push people toward expensive desktop software — filling and adding form fields, signing and stamping, annotating and redacting, and opening password-protected files. Because everything runs client-side, it is well suited to documents that contain personal or sensitive information.',
+    ],
+    howItWorks: [
+      { title: 'Open the app', body: 'Go to pyntra.tekivex.com in any modern browser. The editor loads right away — there is nothing to download and no sign-up.' },
+      { title: 'Edit your document', body: 'Open a PDF from your device and work on it directly: fill or draw form fields, add a signature or stamp, highlight, redact, or crop. The original file stays on your machine.' },
+      { title: 'Save it back', body: 'Download the edited PDF to your device when you are done. Nothing is uploaded to a server at any point in the process.' },
+    ],
+    useCases: [
+      'Filling out forms — applications, contracts, tax, and HR documents.',
+      'Signing and returning a document without printing and scanning.',
+      'Redacting sensitive content before sharing a file.',
+      'Quick annotation and markup during a review.',
+    ],
+    limitations: [
+      'Because everything runs in your browser, very large or heavily scanned PDFs are bounded by your device\'s available memory.',
+      'It is in beta — if you hit a problem with a specific document, your feedback helps us improve it.',
+    ],
+    faqs: [
+      { q: 'Do I need to install anything?', a: 'No. Pyntra runs entirely in your browser at pyntra.tekivex.com — there is nothing to install and no account to create.' },
+      { q: 'Are my files uploaded anywhere?', a: 'No. All editing happens client-side in your browser, so your documents never leave your device.' },
+      { q: 'Can it open password-protected PDFs?', a: 'Yes — Pyntra can open PDFs encrypted with RC4, AES-128, and AES-256.' },
+    ],
+  },
+
+  // ── Analytics Studio (hosted web app) ────────────────────────────────────
+  'analytics-studio': {
+    overview: [
+      'Analytics Studio is a free, browser-based business-intelligence app. Open analytics.tekivex.com, bring your data, and build pivot tables, charts, and KPI dashboards by dragging fields — there is no backend to stand up and no software to install.',
+      'It is in beta. The pivot builder, 26+ chart types, KPI dashboards, and an in-browser SQL engine (SELECT / WHERE / GROUP BY / JOIN) all work today. Your data is processed in the browser, so you can explore it without sending it to a server.',
+    ],
+    howItWorks: [
+      { title: 'Open the app', body: 'Go to analytics.tekivex.com — the studio loads in your browser with nothing to install.' },
+      { title: 'Bring your data', body: 'Load tabular data into the app. Analytics Studio infers a schema and makes the fields available to the pivot builder and the SQL view.' },
+      { title: 'Build and explore', body: 'Drag fields to group, aggregate, and filter; switch between 26+ chart types; compose a KPI dashboard; or run SQL directly. Export to PDF or Excel when you are done.' },
+    ],
+    useCases: [
+      'Exploring a CSV or dataset without setting up a database.',
+      'Building a KPI dashboard with threshold-based alerts.',
+      'Running ad-hoc SQL queries against your data, in the browser.',
+      'Producing a quick chart or pivot table for a report.',
+    ],
+    limitations: [
+      'Beta — features are still stabilising and may change.',
+      'The in-browser SQL engine supports a practical subset (SELECT / WHERE / GROUP BY / JOIN); it is not a full database.',
+      'The natural-language query parser handles common phrasings rather than arbitrary free text.',
+    ],
+    faqs: [
+      { q: 'Do I need a backend or database?', a: 'No. Analytics Studio runs in your browser and processes data client-side, including its SQL engine. Just open the app and load your data.' },
+      { q: 'Is there anything to install?', a: 'No — it is a hosted web app at analytics.tekivex.com.' },
+      { q: 'What is it built on?', a: 'It uses the same high-performance GridStorm engine that powers our data grid, which is how it handles large datasets and pivoting smoothly in the browser.' },
+    ],
+  },
+
+  // ── DataFlow (hosted web app) ────────────────────────────────────────────
+  dataflow: {
+    overview: [
+      'DataFlow is a free, browser-based real-time streaming dashboard. Open the live app at dataflow.tekivex.com/stocks to watch high-frequency data update in place — values flash as they change, anomalies are flagged automatically, and you can rewind the stream.',
+      'It is in beta. The live dashboard demonstrates streaming feeds, backpressure handling, anomaly detection, and time-travel replay — all running in the browser with nothing to install.',
+    ],
+    howItWorks: [
+      { title: 'Open the live app', body: 'Go to dataflow.tekivex.com/stocks — the streaming dashboard starts immediately, with no setup required.' },
+      { title: 'Watch data stream', body: 'Live values update in place with directional flash highlighting, while backpressure control keeps the view smooth even under a fast feed.' },
+      { title: 'Investigate and replay', body: 'Anomalies are flagged automatically (Z-score, IQR, MAD, or thresholds), and time-travel replay lets you record, seek, and play the stream back at variable speed.' },
+    ],
+    useCases: [
+      'Watching live, market-style data update in real time.',
+      'Seeing how anomaly detection flags spikes and drops on a stream.',
+      'Reviewing a recorded stream with time-travel replay.',
+      'Demonstrating real-time dashboard patterns to a team.',
+    ],
+    limitations: [
+      'Beta — the live dashboard is still evolving.',
+      'Anomaly detection uses statistical methods (Z-score, IQR, MAD) suited to numeric streams rather than complex ML-based detection.',
+    ],
+    faqs: [
+      { q: 'Is there anything to install?', a: 'No. DataFlow is a hosted web app — open dataflow.tekivex.com/stocks and the live dashboard runs in your browser.' },
+      { q: 'What can I do in the live app?', a: 'Watch streaming data update in place with change highlighting, see anomaly alerts, and use time-travel replay to record and rewind the stream.' },
+      { q: 'Where does the data come from?', a: 'The hosted demo streams a live, simulated market-style feed so you can see the real-time behaviour end to end.' },
+    ],
+  },
+
   // ── Quantum Vault ────────────────────────────────────────────────────────
   'quantum-vault': {
     overview: [

@@ -54,8 +54,8 @@ export function ContactPage() {
 
       <LegalSection title="What to include">
         <ul>
-          <li style={legalLi}>The product (GridStorm, Tekivex UI, Quantum Vault).</li>
-          <li style={legalLi}>Version number from your <code>package.json</code>.</li>
+          <li style={legalLi}>The product (GridStorm, Tekivex UI, Quantum Vault, Pyntra, Analytics Studio, or DataFlow).</li>
+          <li style={legalLi}>For the libraries, the version number from your <code>package.json</code>; for the hosted apps (Pyntra, Analytics Studio, DataFlow), the page URL where it happened.</li>
           <li style={legalLi}>Browser + OS for runtime issues.</li>
           <li style={legalLi}>Minimal reproducible example (StackBlitz / CodeSandbox link is ideal).</li>
           <li style={legalLi}>Expected vs actual behaviour.</li>

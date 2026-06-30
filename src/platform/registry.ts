@@ -10,12 +10,20 @@ import type { ProductManifest } from './types';
 import { gridstormManifest } from './manifest-gridstorm';
 import { tekivexUiManifest } from './manifest-tekivex-ui';
 import { quantumVaultManifest } from './manifest-quantum-vault';
+import { pyntraManifest } from './manifest-pyntra';
+import { analyticsStudioManifest } from './manifest-analytics-studio';
+import { dataFlowManifest } from './manifest-dataflow';
 
 /** Ordered list — determines display order in launcher + nav */
 const PRODUCT_MANIFESTS: ProductManifest[] = [
+  // Developer libraries (published on npm)
   gridstormManifest,        // Data Grid (npm: gridstorm)
   tekivexUiManifest,        // UI Component Library (npm: tekivex-ui)
   quantumVaultManifest,     // Post-Quantum Tokens (npm: @sigvault/sdk)
+  // Hosted web apps (use them live — nothing to install)
+  pyntraManifest,           // Browser PDF editor — pyntra.tekivex.com
+  analyticsStudioManifest,  // Browser BI app — analytics.tekivex.com
+  dataFlowManifest,         // Real-time streaming dashboard — dataflow.tekivex.com
 ];
 
 export function getAllProducts(): readonly ProductManifest[] {

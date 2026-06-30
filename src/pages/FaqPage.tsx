@@ -8,7 +8,7 @@ interface QA {
 const FAQS: QA[] = [
   {
     q: 'What is Tekivex?',
-    a: 'Tekivex is an independent developer-tools project that publishes free enterprise software — GridStorm (data grid), Tekivex UI (accessible component library), and Quantum Vault (post-quantum tokens). All of our products are free for commercial use.',
+    a: 'Tekivex is an independent developer-tools project with six free products. Three are npm libraries: GridStorm (data grid), Tekivex UI (accessible component library), and Quantum Vault (post-quantum tokens). Three are free hosted web apps you open and use in the browser — nothing to install: Pyntra (a PDF editor at pyntra.tekivex.com), Analytics Studio (an in-browser BI app at analytics.tekivex.com), and DataFlow (a real-time streaming dashboard at dataflow.tekivex.com). All of our products are free for commercial use.',
   },
   {
     q: 'Are Tekivex products really free to use commercially?',

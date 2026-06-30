@@ -22,6 +22,21 @@ Sovereign, self-hosted post-quantum token issuance, validation, and rotation usi
 Install: `npm install @sigvault/sdk`
 URL: https://tekivex.com/product/quantum-vault
 
+### Pyntra
+Free, hosted browser-based PDF editor (use it live at https://pyntra.tekivex.com — nothing to install). Fill and add form fields, sign, stamp, annotate, redact, and open encrypted PDFs entirely client-side; files are never uploaded.
+Install: see the product page.
+URL: https://tekivex.com/product/pyntra
+
+### Analytics Studio
+Free, hosted browser-based BI app (use it live at https://analytics.tekivex.com — nothing to install). Drag-and-drop pivot tables, 26+ chart types, KPI dashboards, and an in-browser SQL engine, with no backend required.
+Install: see the product page.
+URL: https://tekivex.com/product/analytics-studio
+
+### DataFlow
+Free, hosted browser-based real-time streaming dashboard (use it live at https://dataflow.tekivex.com/stocks — nothing to install). Live feeds with directional change highlighting, anomaly alerts, backpressure control, and time-travel replay.
+Install: see the product page.
+URL: https://tekivex.com/product/dataflow
+
 ## Articles by product
 
 ### GridStorm
