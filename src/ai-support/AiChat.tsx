@@ -385,7 +385,7 @@ export function AiChatWidget() {
         role: 'assistant',
         content: `Hi! 👋 I'm the **Tekivex AI Support Assistant**.
 
-I can answer any question about our products — GridStorm, Tekivex UI, and Quantum Vault.
+I can answer any question about our six products — the GridStorm, Tekivex UI, and Quantum Vault libraries, plus our hosted web apps Pyntra, Analytics Studio, and DataFlow.
 
 ${anyModelCached() ? '🦙 **Llama 3.2 is cached** in your browser — restoring AI engine…' : 'Tip: Enable **Llama 3.2** for conversational AI, or ask now for instant answers.'}`,
         timestamp: new Date().toISOString(),

@@ -15,6 +15,9 @@ export type Category =
   | 'gridstorm'
   | 'tekivex-ui'
   | 'quantum-vault'
+  | 'pyntra'
+  | 'analytics-studio'
+  | 'dataflow'
   | 'pricing'
   | 'getting-started'
   | 'troubleshooting';
@@ -48,10 +51,15 @@ export const KNOWLEDGE_BASE: KbEntry[] = [
     ],
     answer: `**Tekivex** is a developer tools company building next-generation free enterprise software products.
 
-Our product portfolio includes:
+**Three npm libraries:**
 - 🟦 **GridStorm** — High-performance React/headless data grid (free for commercial use)
 - 🎨 **Tekivex UI** — Accessible React/Vue/Svelte component library (free for commercial use)
 - 🔐 **Quantum Vault** — Sovereign post-quantum tokens (self-hosted library)
+
+**Three free hosted web apps** — nothing to install, just open the URL and use them:
+- 📄 **Pyntra** — Browser-based PDF editor · https://pyntra.tekivex.com
+- 📊 **Analytics Studio** — In-browser BI & dashboards · https://analytics.tekivex.com
+- 📈 **DataFlow** — Real-time streaming dashboard · https://dataflow.tekivex.com/stocks
 
 We believe enterprise-grade software should be accessible to every team regardless of budget.`,
     tags: ['tekivex', 'company', 'about', 'products', 'portfolio'],
@@ -66,15 +74,18 @@ We believe enterprise-grade software should be accessible to every team regardle
       'List all Tekivex products',
       'What can I build with Tekivex?',
     ],
-    answer: `Tekivex currently offers the following products:
+    answer: `Tekivex currently offers six free products — three npm libraries and three hosted web apps:
 
-| Product | Description |
-|---------|-------------|
-| GridStorm | Enterprise data grid — 35 plugins, WCAG 2.1 AA |
-| Tekivex UI | Accessible React/Vue/Svelte component library |
-| Quantum Vault | Sovereign post-quantum tokens (self-hosted) |
+| Product | Type | Description |
+|---------|------|-------------|
+| GridStorm | Library | Enterprise data grid — 35 plugins, WCAG 2.1 AA |
+| Tekivex UI | Library | Accessible React/Vue/Svelte component library |
+| Quantum Vault | Library | Sovereign post-quantum tokens (self-hosted) |
+| Pyntra | Hosted app | Browser PDF editor — open it at pyntra.tekivex.com |
+| Analytics Studio | Hosted app | In-browser BI & dashboards at analytics.tekivex.com |
+| DataFlow | Hosted app | Real-time streaming dashboard at dataflow.tekivex.com/stocks |
 
-Visit each product page for demos, docs, and quick-start guides.`,
+The three apps are free and hosted — there's nothing to install, just open the URL and use them. Visit each product page for demos, docs, and quick-start guides.`,
     tags: ['products', 'list', 'overview', 'all'],
   },
 
@@ -90,7 +101,7 @@ Visit each product page for demos, docs, and quick-start guides.`,
     ],
     answer: `Every Tekivex product is **free for commercial use** — free for personal and commercial use, forever. No per-developer fees, no licensing servers.
 
-This covers **GridStorm** (data grid), **Tekivex UI** (component library), and **Quantum Vault** (post-quantum tokens). There is no paywall and no enterprise tier.
+This covers the three libraries — **GridStorm** (data grid), **Tekivex UI** (component library), and **Quantum Vault** (post-quantum tokens) — and the three free hosted web apps: **Pyntra**, **Analytics Studio**, and **DataFlow**, which you simply open in your browser. There is no paywall and no enterprise tier.
 
 Report issues at **github.com/novaai0401-ui/tekivex-issue-report/issues**.`,
     tags: ['license', 'free', 'free', 'cost', 'pricing'],
@@ -528,6 +539,97 @@ npm install @sigvault/sdk
   },
 
   // ══════════════════════════════════════
+  // PYNTRA  (hosted web app)
+  // ══════════════════════════════════════
+
+  {
+    id: 'pyntra-what-is',
+    category: 'pyntra',
+    questions: [
+      'What is Pyntra?',
+      'Tell me about Pyntra',
+      'PDF editor Tekivex',
+      'Pyntra overview',
+      'How do I edit a PDF?',
+      'Online PDF editor',
+    ],
+    answer: `**Pyntra** is a free, browser-based PDF editor — there's nothing to install. Just open the app and start working with your documents.
+
+👉 **Open Pyntra:** https://pyntra.tekivex.com
+
+**What you can do:**
+- 📝 Fill forms — text, multiline, date, number, checkbox, radio, dropdown, listbox
+- ✏️ Add new form fields with a drag-to-draw interface
+- ✍️ Sign & stamp with a signature pad and image embedding
+- 🖍️ Annotate — highlight, draw, eraser, redact, crop, shapes
+- 🔓 Opens encrypted PDFs (RC4, AES-128, AES-256)
+- 🔒 Runs entirely in your browser — your files are **never uploaded** to a server
+
+Pyntra is free and currently in beta. No account needed — just open it and use it.`,
+    tags: ['Pyntra', 'PDF', 'PDF editor', 'forms', 'sign', 'annotate', 'redact', 'encrypted', 'web app'],
+  },
+
+  // ══════════════════════════════════════
+  // ANALYTICS STUDIO  (hosted web app)
+  // ══════════════════════════════════════
+
+  {
+    id: 'analytics-studio-what-is',
+    category: 'analytics-studio',
+    questions: [
+      'What is Analytics Studio?',
+      'Tell me about Analytics Studio',
+      'BI tool Tekivex',
+      'Analytics Studio overview',
+      'How do I build a dashboard?',
+      'Browser BI app',
+    ],
+    answer: `**Analytics Studio** is a free, browser-based business-intelligence app — open it and start building, no backend to set up and nothing to install.
+
+👉 **Open Analytics Studio:** https://analytics.tekivex.com
+
+**What you can do:**
+- 🧮 Drag-and-drop pivot builder — group, aggregate, and filter visually
+- 📊 26+ chart types: bar, line, scatter, radar, heatmap, treemap, sankey & more
+- 🗃️ In-browser SQL — SELECT / WHERE / GROUP BY / JOIN, no server required
+- 🎯 KPI dashboards with auto-thresholds and alert rules
+- 📤 Scheduled report designer — export to PDF / Excel
+
+Everything runs client-side in your browser. Analytics Studio is free and currently in beta.`,
+    tags: ['Analytics Studio', 'BI', 'dashboard', 'pivot', 'charts', 'SQL', 'KPI', 'web app'],
+  },
+
+  // ══════════════════════════════════════
+  // DATAFLOW  (hosted web app)
+  // ══════════════════════════════════════
+
+  {
+    id: 'dataflow-what-is',
+    category: 'dataflow',
+    questions: [
+      'What is DataFlow?',
+      'Tell me about DataFlow',
+      'Streaming dashboard Tekivex',
+      'DataFlow overview',
+      'Real-time data dashboard',
+      'Live streaming data',
+    ],
+    answer: `**DataFlow** is a free, browser-based real-time streaming dashboard — open the live app and watch high-frequency data update in place. Nothing to install.
+
+👉 **Open DataFlow:** https://dataflow.tekivex.com/stocks
+
+**What you get:**
+- 🔴 Live streaming feeds that update in place (WebSocket / SSE)
+- ↕️ Directional change tracking (↑↓) with colour-flash highlighting
+- 🚨 Anomaly alerting — Z-score, IQR, MAD, and static thresholds
+- ⏪ Time-travel replay — record, seek, and play back at variable speed
+- 🔗 Multi-stream join and merge across live sources
+
+Everything runs in your browser. DataFlow is free and currently in beta.`,
+    tags: ['DataFlow', 'streaming', 'real-time', 'dashboard', 'anomaly', 'replay', 'live data', 'web app'],
+  },
+
+  // ══════════════════════════════════════
   // PRICING
   // ══════════════════════════════════════
 
@@ -547,7 +649,7 @@ npm install @sigvault/sdk
 Every Tekivex product is **free forever** — free for commercial and personal use.
 No seat fees, no usage limits, no license servers.
 
-This covers **GridStorm** (data grid), **Tekivex UI** (component library), and **Quantum Vault** (post-quantum tokens). There is no paywall and no enterprise tier.
+This covers the three libraries — **GridStorm** (data grid), **Tekivex UI** (component library), and **Quantum Vault** (post-quantum tokens) — and the three free hosted web apps you just open and use: **Pyntra**, **Analytics Studio**, and **DataFlow**. There is no paywall and no enterprise tier.
 
 For partnerships or volume questions, contact **enterprise@tekivex.com**.`,
     tags: ['pricing', 'cost', 'free', 'enterprise', 'subscription', 'license'],
@@ -1008,6 +1110,9 @@ export const CATEGORY_META: Record<Category, { label: string; emoji: string; col
   gridstorm:         { label: 'GridStorm',         emoji: '🟦', color: '#3b82f6' },
   'tekivex-ui':      { label: 'Tekivex UI',        emoji: '🎨', color: '#06b6d4' },
   'quantum-vault':   { label: 'Quantum Vault',     emoji: '🔐', color: '#8b5cf6' },
+  pyntra:            { label: 'Pyntra',            emoji: '📄', color: '#ef4444' },
+  'analytics-studio':{ label: 'Analytics Studio',  emoji: '📊', color: '#06b6d4' },
+  dataflow:          { label: 'DataFlow',          emoji: '📈', color: '#22c55e' },
   pricing:           { label: 'Pricing',           emoji: '💰', color: '#8b5cf6' },
   'getting-started': { label: 'Getting Started',   emoji: '🚀', color: '#06b6d4' },
   troubleshooting:   { label: 'Troubleshooting',   emoji: '🔧', color: '#f97316' },
@@ -1025,5 +1130,8 @@ export const STARTER_QUESTIONS = [
   'How do I enable accessibility features?',
   'What is Tekivex UI?',
   'What is Quantum Vault?',
+  'What is Pyntra?',
+  'What is Analytics Studio?',
+  'What is DataFlow?',
   'How to get started with Tekivex?',
 ];

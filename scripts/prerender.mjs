@@ -212,27 +212,27 @@ const routes = [
     path: '/',
     title: 'Tekivex — Free Enterprise Developer Tools Platform',
     description:
-      'Tekivex is a free enterprise developer tools platform. GridStorm data grid, Tekivex UI component library, and Quantum Vault post-quantum tokens — all free for commercial use, published on npm, accessibility-first.',
+      'Tekivex is a free developer-tools platform. GridStorm data grid, Tekivex UI component library, and Quantum Vault post-quantum tokens are published on npm, and Pyntra (PDF editor), Analytics Studio (BI dashboards), and DataFlow (real-time streaming) are free hosted apps you can use directly — all free, accessibility-first.',
     h1: 'Tekivex — free enterprise developer tools',
     body:
-      'Tekivex groups several React-focused free products under one roof: GridStorm, Tekivex UI, and Quantum Vault. Every package is free for commercial use, fully typed in TypeScript, and published on npm.',
+      'Tekivex groups several free products under one roof: the GridStorm, Tekivex UI, and Quantum Vault libraries on npm, plus the hosted apps Pyntra, Analytics Studio, and DataFlow that run in your browser with nothing to install.',
     contentHtml: `${featuredGuidesBlock(8)}<h2 style="font-size:1.5rem;font-weight:800;color:#0a0f1f;margin:40px 0 16px">The Tekivex product suite</h2>${productCatalogBlock}`,
   },
   {
     path: '/products',
-    title: 'Tekivex products — Data grid, UI components, post-quantum tokens',
+    title: 'Tekivex products — Data grid, UI, tokens, PDF, BI & streaming apps',
     description:
-      'Browse Tekivex products: GridStorm React data grid, Tekivex UI component library, and Quantum Vault post-quantum tokens. All free, all on npm.',
+      'Browse Tekivex products: the GridStorm data grid, Tekivex UI component library, and Quantum Vault tokens on npm, plus the hosted Pyntra PDF editor, Analytics Studio BI app, and DataFlow streaming dashboard. All free.',
     h1: 'Tekivex products',
     body:
-      'A unified catalog of every Tekivex product — data grid, accessible UI components, and post-quantum tokens. All free for commercial use, all published on npm.',
+      'A unified catalog of every Tekivex product — the data grid, UI components, and post-quantum tokens on npm, plus the hosted PDF editor, BI app, and streaming dashboard. All free.',
     contentHtml: productCatalogBlock,
   },
   {
     path: '/about',
     title: 'About Tekivex — Free enterprise tools',
     description:
-      'Tekivex builds free enterprise developer tools that are free forever. Read about the platform, the mission, and the team behind GridStorm, Tekivex UI, and Quantum Vault.',
+      'Tekivex builds free enterprise developer tools that are free forever. Read about the platform, the mission, and the team behind GridStorm, Tekivex UI, Quantum Vault, Pyntra, Analytics Studio, and DataFlow.',
     h1: 'About Tekivex',
     body:
       'Tekivex is an independent project that builds production-grade enterprise developer tools and releases them free for commercial use — no enterprise tier, no paywall, no per-seat pricing.',
@@ -682,6 +682,9 @@ const humans = [
   '  GridStorm        — high-performance React data grid (npm: gridstorm)',
   '  TekiVex UI       — accessible React/Vue/Svelte component library (npm: tekivex-ui)',
   '  Quantum Vault    — sovereign post-quantum tokens (npm: @sigvault/sdk)',
+  '  Pyntra           — hosted browser PDF editor (pyntra.tekivex.com)',
+  '  Analytics Studio — hosted browser BI app (analytics.tekivex.com)',
+  '  DataFlow         — hosted real-time streaming dashboard (dataflow.tekivex.com)',
   '',
   '/* SITE */',
   `  Last update: ${TODAY}`,
@@ -699,6 +702,12 @@ const LLM_PRODUCTS = [
     s: 'Accessible React/Vue/Svelte component library: 100+ components (Tkx-prefixed), WCAG 2.1 AA (targeting AAA), dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, headless primitives. MIT-licensed, free for commercial use.' },
   { name: 'Quantum Vault', url: `${ORIGIN}/product/quantum-vault`, npm: '@sigvault/sdk',
     s: 'Sovereign, self-hosted post-quantum token issuance, validation, and rotation using NIST-standardized CRYSTALS-Dilithium (ML-DSA-87 / FIPS 204) signatures with XChaCha20-Poly1305 encrypted payloads and a HYDRA mutation chain for replay protection. Apache-2.0.' },
+  { name: 'Pyntra', url: `${ORIGIN}/product/pyntra`, npm: null,
+    s: 'Free, hosted browser-based PDF editor (use it live at https://pyntra.tekivex.com — nothing to install). Fill and add form fields, sign, stamp, annotate, redact, and open encrypted PDFs entirely client-side; files are never uploaded.' },
+  { name: 'Analytics Studio', url: `${ORIGIN}/product/analytics-studio`, npm: null,
+    s: 'Free, hosted browser-based BI app (use it live at https://analytics.tekivex.com — nothing to install). Drag-and-drop pivot tables, 26+ chart types, KPI dashboards, and an in-browser SQL engine, with no backend required.' },
+  { name: 'DataFlow', url: `${ORIGIN}/product/dataflow`, npm: null,
+    s: 'Free, hosted browser-based real-time streaming dashboard (use it live at https://dataflow.tekivex.com/stocks — nothing to install). Live feeds with directional change highlighting, anomaly alerts, backpressure control, and time-travel replay.' },
 ];
 const LLM_INTRO =
   'Tekivex is a free platform of enterprise developer tools for JavaScript and TypeScript. ' +

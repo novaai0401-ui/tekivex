@@ -165,6 +165,9 @@ function detectCategoryIntent(query: string): Category | null {
   if (/gridstorm|data grid|react grid|table component/.test(q)) return 'gridstorm';
   if (/tekivex ui|component library|components|accessible|wcag|a11y/.test(q)) return 'tekivex-ui';
   if (/quantum vault|post-quantum|post quantum|token|ml-dsa|xchacha|cryptograph/.test(q)) return 'quantum-vault';
+  if (/pyntra|pdf|fill.*form|sign.*document|annotate|redact/.test(q)) return 'pyntra';
+  if (/analytics studio|dashboard|pivot|\bbi\b|business intelligence|kpi|chart/.test(q)) return 'analytics-studio';
+  if (/dataflow|streaming|real-?time|live feed|anomaly|time-?travel/.test(q)) return 'dataflow';
   if (/pric|cost|free|licens|money|pay|subscri/.test(q)) return 'pricing';
   if (/start|begin|install|setup|quickstart|new to/.test(q)) return 'getting-started';
   if (/error|broken|not working|issue|bug|slow|fix|trouble/.test(q)) return 'troubleshooting';

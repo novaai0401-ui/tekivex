@@ -12,7 +12,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'What is Tekivex?',
     answer:
-      'Tekivex is a free enterprise developer-tools platform. It ships a suite of free-to-use products under one roof: GridStorm (high-performance React data grid with 35+ plugins), Tekivex UI (accessible React/Vue/Svelte component library at ui.tekivex.com), and Quantum Vault (sovereign post-quantum token issuance and verification). Every product is free forever, fully tree-shakable, and ships TypeScript declarations.',
+      'Tekivex is a free enterprise developer-tools platform. It ships a suite of free-to-use products under one roof. Three are npm libraries: GridStorm (high-performance React data grid with 35+ plugins), Tekivex UI (accessible React/Vue/Svelte component library at ui.tekivex.com), and Quantum Vault (sovereign post-quantum token issuance and verification). Three are free hosted web apps you simply open and use in the browser: Pyntra, a PDF editor at pyntra.tekivex.com; Analytics Studio, an in-browser BI app at analytics.tekivex.com; and DataFlow, a real-time streaming dashboard at dataflow.tekivex.com. Everything is free forever.',
   },
   {
     question: 'What does Tekivex offer for React developers?',
@@ -37,7 +37,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'Where can I see Tekivex products in action?',
     answer:
-      'GridStorm has live demos at gridstorm.tekivex.com (financial trading, analytics explorer, feature showcase, spreadsheet, cookbook). The TekiVex UI component library has an interactive playground at ui.tekivex.com/playground. Each product page on tekivex.com links to its live demo and documentation.',
+      'GridStorm has live demos at gridstorm.tekivex.com (financial trading, analytics explorer, feature showcase, spreadsheet, cookbook). The TekiVex UI component library has an interactive playground at ui.tekivex.com/playground. The three hosted web apps are live and ready to use right now: open Pyntra at pyntra.tekivex.com, Analytics Studio at analytics.tekivex.com, and DataFlow at dataflow.tekivex.com/stocks. Each product page on tekivex.com links straight to the app or its live demo.',
   },
   {
     question: 'How do I report bugs or contribute to Tekivex?',
@@ -110,7 +110,10 @@ export function BrandFaq() {
           Tekivex is a free platform of enterprise developer tools — a
           single, free-to-use home for a high-performance data grid, a
           post-quantum token vault, and a complete React/Vue/Svelte
-          component library. Free forever, accessibility-first, and free for commercial use.
+          component library, plus three free hosted web apps you open
+          and use in the browser: a PDF editor, a BI dashboard builder,
+          and a real-time streaming dashboard. Free forever,
+          accessibility-first, and free for commercial use.
         </p>
       </header>
 
@@ -132,8 +135,8 @@ export function BrandFaq() {
         }}
       >
         <p style={{ margin: 0 }}>
-          The <strong>Tekivex</strong> platform groups several React-focused
-          free products: <strong>GridStorm</strong> (<code>gridstorm</code>, live at{' '}
+          The <strong>Tekivex</strong> platform groups six free products. Three are
+          npm libraries: <strong>GridStorm</strong> (<code>gridstorm</code>, live at{' '}
           <a href="https://gridstorm.tekivex.com" target="_blank" rel="noopener noreferrer">
             gridstorm.tekivex.com
           </a>
@@ -144,8 +147,19 @@ export function BrandFaq() {
           React/Vue/Svelte component library at{' '}
           <a href="https://ui.tekivex.com" target="_blank" rel="noopener noreferrer">
             ui.tekivex.com
-          </a>. Every product is
-          fully typed in TypeScript, and free for commercial use.
+          </a>. Three are free hosted web apps — nothing to install, just open the URL
+          and use them: <strong>Pyntra</strong>, a browser-based PDF editor at{' '}
+          <a href="https://pyntra.tekivex.com" target="_blank" rel="noopener noreferrer">
+            pyntra.tekivex.com
+          </a>;{' '}
+          <strong>Analytics Studio</strong>, an in-browser BI app at{' '}
+          <a href="https://analytics.tekivex.com" target="_blank" rel="noopener noreferrer">
+            analytics.tekivex.com
+          </a>; and{' '}
+          <strong>DataFlow</strong>, a real-time streaming dashboard at{' '}
+          <a href="https://dataflow.tekivex.com/stocks" target="_blank" rel="noopener noreferrer">
+            dataflow.tekivex.com
+          </a>. Every product is free for commercial use.
         </p>
       </div>
 

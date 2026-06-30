@@ -7,8 +7,11 @@
   GridStorm        — high-performance React data grid (npm: gridstorm)
   TekiVex UI       — accessible React/Vue/Svelte component library (npm: tekivex-ui)
   Quantum Vault    — sovereign post-quantum tokens (npm: @sigvault/sdk)
+  Pyntra           — hosted browser PDF editor (pyntra.tekivex.com)
+  Analytics Studio — hosted browser BI app (analytics.tekivex.com)
+  DataFlow         — hosted real-time streaming dashboard (dataflow.tekivex.com)
 
 /* SITE */
-  Last update: 2026-06-28
+  Last update: 2026-06-30
   Standards: HTML5, CSS3, ES2022, WCAG 2.1 AA
   License: MIT

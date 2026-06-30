@@ -29,6 +29,33 @@ const PRODUCTS = [
     description: 'Sovereign post-quantum tokens — ML-DSA-87 (FIPS 204) + XChaCha20-Poly1305, self-hosted.',
     href: '/product/quantum-vault',
   },
+  {
+    name: 'Pyntra',
+    color: '#ef4444',
+    icon: 'file-pdf',
+    status: 'Beta',
+    statusColor: '#fbbf24',
+    description: 'Free hosted PDF editor — open the app to fill, sign, annotate & redact PDFs. Opens encrypted PDFs and runs entirely in your browser.',
+    href: '/product/pyntra',
+  },
+  {
+    name: 'Analytics Studio',
+    color: '#06b6d4',
+    icon: 'bar-chart',
+    status: 'Beta',
+    statusColor: '#fbbf24',
+    description: 'Free hosted BI app — open it to build drag-and-drop pivots, 26+ charts, KPI dashboards and run in-browser SQL. No backend to set up.',
+    href: '/product/analytics-studio',
+  },
+  {
+    name: 'DataFlow',
+    color: '#22c55e',
+    icon: 'trending-up',
+    status: 'Beta',
+    statusColor: '#fbbf24',
+    description: 'Free hosted real-time streaming dashboard — open the live app to watch feeds update in place, with anomaly alerts and time-travel replay.',
+    href: '/product/dataflow',
+  },
 ];
 
 const VALUES = [
@@ -98,8 +125,9 @@ export function AboutPage() {
           </h1>
           <p className="tx-hero-tagline" style={{ maxWidth: 600 }}>
             Tekivex is an independent developer tools company building the next generation of
-            free enterprise software — data grids, accessible UI components, and
-            post-quantum security, all free for commercial use and free forever.
+            free software — data grids, accessible UI components, and post-quantum security,
+            plus free hosted web apps for editing PDFs, building dashboards, and watching
+            real-time data. All free for commercial use and free forever.
           </p>
           <div className="tx-hero-ctas">
             <a
@@ -224,7 +252,7 @@ export function AboutPage() {
       {/* ── Stats ── */}
       <div className="tx-stats-bar" style={{ marginTop: 0 }}>
         {[
-          { val: '3',      lbl: 'Products' },
+          { val: '6',      lbl: 'Products' },
           { val: 'Free',   lbl: 'License' },
           { val: 'TS',     lbl: 'TypeScript-native' },
           { val: '2025',   lbl: 'Founded' },

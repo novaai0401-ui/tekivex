@@ -10,10 +10,7 @@
     { "source": "/use-cases/quantum-vault-why-nist-pqc-matters", "destination": "/use-cases/quantum-vault-post-quantum-tokens-explained", "permanent": true },
     { "source": "/use-cases/tekivex-ui-theming-css-variables", "destination": "/use-cases/tekivex-ui-headless-design-system", "permanent": true },
 
-    { "source": "/product/pdfcraft", "destination": "/products", "permanent": true },
-    { "source": "/product/pyntra", "destination": "/products", "permanent": true },
-    { "source": "/product/analytics-studio", "destination": "/products", "permanent": true },
-    { "source": "/product/dataflow", "destination": "/products", "permanent": true },
+    { "source": "/product/pdfcraft", "destination": "/product/pyntra", "permanent": true },
 
     { "source": "/use-cases/pyntra-fill-sign-pdf-browser", "destination": "/use-cases", "permanent": true },
     { "source": "/use-cases/pyntra-client-side-pdf-editing", "destination": "/use-cases", "permanent": true },
