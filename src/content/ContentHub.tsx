@@ -1,9 +1,12 @@
 import { Link } from '../App';
 import { getArticlesGroupedByProduct, getAllArticles } from './registry';
+import { getAllProducts } from '../platform/registry';
 
 export function ContentHub() {
   const groups = getArticlesGroupedByProduct();
   const total = getAllArticles().length;
+  // Hosted web apps (tier 'platform') — no install, used live in the browser.
+  const apps = getAllProducts().filter((p) => p.tier === 'platform' && p.primaryDemoPath);
 
   return (
     <main className="uc-hub">
@@ -17,6 +20,25 @@ export function ContentHub() {
           how to put it to work, and how it compares. Written by the Tekivex Engineering team.
         </p>
       </header>
+
+      {apps.length > 0 && (
+        <section className="uc-hub-section" aria-label="Free apps you can use live">
+          <h2 className="uc-hub-section-title">Free apps — use them live</h2>
+          <div className="uc-hub-grid">
+            {apps.map((a) => (
+              <Link key={a.id} to={a.homePath} className="uc-hub-card">
+                <span className="uc-kind-pill uc-kind-pill--sm">Web app</span>
+                <h3 className="uc-hub-card-title">{a.name}</h3>
+                <p className="uc-hub-card-desc">{a.tagline}</p>
+                <span className="uc-hub-card-foot">
+                  Open {a.name}
+                  <span className="uc-hub-card-arrow" aria-hidden="true">→</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {groups.map(({ product, articles }) => (
         <section key={product} className="uc-hub-section" aria-label={product}>

@@ -609,6 +609,16 @@ try { rmSync(TMP_DIR, { recursive: true, force: true }); } catch {}
       byProduct.get(r.category).push(r);
     }
     let list = '';
+    // Hosted web apps (tier 'platform') — surfaced so the hub links to the live
+    // apps, which have no articles of their own.
+    const hostedApps = PRODUCTS.filter((p) => p.tier === 'platform' && p.primaryDemoPath);
+    if (hostedApps.length) {
+      list += `<h2 style="font-size:1.25rem;font-weight:800;color:#0a0f1f;margin:32px 0 12px">Free apps — use them live</h2><ul style="margin:0 0 8px;padding-left:20px">`;
+      for (const a of hostedApps) {
+        list += `<li style="margin-bottom:8px"><a href="${escapeHtml(a.homePath)}" style="color:#3a86ff;text-decoration:none">${escapeHtml(a.name)}</a> — <span style="color:#475569">${escapeHtml(a.tagline)}</span> · <a href="${escapeHtml(a.primaryDemoPath)}" rel="noopener noreferrer" style="color:#3a86ff;text-decoration:none">Launch ${escapeHtml(a.name)} →</a></li>`;
+      }
+      list += `</ul>`;
+    }
     for (const [product, items] of byProduct) {
       list += `<h2 style="font-size:1.25rem;font-weight:800;color:#0a0f1f;margin:32px 0 12px">${escapeHtml(product)}</h2><ul style="margin:0 0 8px;padding-left:20px">`;
       for (const it of items) {
