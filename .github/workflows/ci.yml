@@ -11,10 +11,34 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # ── 0. Lockfile integrity ─────────────────────────────────────────────────────
+  # Mirrors exactly what the Render deploy does (pnpm install --frozen-lockfile on
+  # Node 22). Fails the PR the moment package.json and pnpm-lock.yaml drift — e.g.
+  # a dependency added to package.json without regenerating the pnpm lockfile —
+  # instead of letting the mismatch surface as a broken deploy.
+  lockfile:
+    name: Lockfile in sync (pnpm)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Verify pnpm-lock.yaml is in sync with package.json
+        run: pnpm install --frozen-lockfile
+
   # ── 1. Typecheck ──────────────────────────────────────────────────────────────
   typecheck:
     name: Typecheck
     runs-on: ubuntu-latest
+    needs: [lockfile]
     steps:
       - uses: actions/checkout@v4
 
