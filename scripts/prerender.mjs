@@ -82,6 +82,70 @@ async function loadEditorial() {
 
 const EDITORIAL = await loadEditorial();
 
+// Free in-browser tools — bundled from the same registry the app renders, so
+// the prerendered tool pages carry the real copy, steps, and FAQs.
+async function loadTools() {
+  const entry = join(ROOT, 'src', 'tools', 'registry.ts');
+  const outPath = join(TMP_DIR, 'tools.mjs');
+  esbuild.buildSync({
+    entryPoints: [entry],
+    bundle: true,
+    format: 'esm',
+    platform: 'node',
+    target: 'esnext',
+    outfile: outPath,
+    logLevel: 'silent',
+  });
+  const mod = await import(pathToFileURL(outPath).href);
+  return mod.TOOLS;
+}
+
+const TOOLS = await loadTools();
+
+function toolDetailBlock(t) {
+  const steps = t.steps
+    .map((s) => `<li style="margin-bottom:10px;line-height:1.7"><strong>${escapeHtml(s.title)}.</strong> ${escapeHtml(s.body)}</li>`)
+    .join('');
+  const limits = t.limitations.map((l) => `<li style="margin-bottom:6px;line-height:1.7">${escapeHtml(l)}</li>`).join('');
+  const faqs = t.faqs
+    .map((f) => `<div style="margin-bottom:16px"><p style="font-weight:700;color:#0a0f1f;margin:0 0 4px">${escapeHtml(f.q)}</p><p style="margin:0;line-height:1.7;color:#334155">${escapeHtml(f.a)}</p></div>`)
+    .join('');
+  const others = TOOLS.filter((o) => o.slug !== t.slug)
+    .map((o) => `<li style="margin-bottom:6px"><a href="/tools/${escapeHtml(o.slug)}" style="color:#3a86ff;text-decoration:none">${escapeHtml(o.name)}</a> — ${escapeHtml(o.short)}</li>`)
+    .join('');
+  return `
+      <p style="font-size:14px;color:#0a7d4f;font-weight:600;margin:0 0 16px">🔒 100% private — this tool runs in your browser; files are never uploaded.</p>
+      <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">How it works</h2>
+      <ol style="margin:0 0 8px;padding-left:22px;color:#334155">${steps}</ol>
+      <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">Honest limitations</h2>
+      <ul style="margin:0 0 8px;padding-left:22px;color:#334155">${limits}</ul>
+      <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">Frequently asked questions</h2>
+      <div>${faqs}</div>
+      <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">More free tools</h2>
+      <ul style="margin:0 0 8px;padding-left:22px">${others}</ul>`;
+}
+
+const toolsCatalogBlock = TOOLS.map(
+  (t) => `
+      <section style="border:1px solid #e6e8ef;border-radius:12px;padding:20px;margin:0 0 16px">
+        <h2 style="font-size:1.25rem;font-weight:800;color:#0a0f1f;margin:0 0 4px"><a href="/tools/${escapeHtml(t.slug)}" style="color:#0a0f1f;text-decoration:none">${escapeHtml(t.name)}</a></h2>
+        <p style="font-size:15px;line-height:1.7;color:#1f2937;margin:0 0 8px">${escapeHtml(t.description)}</p>
+        <a href="/tools/${escapeHtml(t.slug)}" style="color:#3a86ff;text-decoration:none;font-weight:600">Open ${escapeHtml(t.name)} →</a>
+      </section>`,
+).join('');
+
+function toolFaqLd(t) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: t.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
+}
+
 function productEditorialBlock(id, name) {
   const e = EDITORIAL[id];
   if (!e) return '';
@@ -306,6 +370,27 @@ const routes = [
     body:
       'Product guides, comparisons, and engineering deep dives across the Tekivex suite — how each library works, how to put it to work, and how it compares to the alternatives.',
   },
+  {
+    path: '/tools',
+    title: 'Free Online Tools — Private, No Upload | Tekivex',
+    description:
+      `${TOOLS.length} free tools that run entirely in your browser — merge, split, and compress PDFs, ` +
+      'convert JPG to PDF, and turn CSVs into charts. Your files are never uploaded.',
+    h1: 'Free tools that never upload your files',
+    body:
+      'Every tool on this page runs entirely in your browser. Your PDFs, photos, and data are processed ' +
+      'on your device and never sent to a server — no accounts, no watermarks, no file limits from us.',
+    contentHtml: toolsCatalogBlock,
+  },
+  ...TOOLS.map((t) => ({
+    path: `/tools/${t.slug}`,
+    title: t.seoTitle,
+    description: t.seoDescription,
+    h1: t.name,
+    body: t.description,
+    contentHtml: toolDetailBlock(t),
+    extraLd: toolFaqLd(t),
+  })),
   ...products.map((p) => ({
     path: `/product/${p.id}`,
     title: p.manifest.seo?.title || `${p.name} — Tekivex`,
@@ -641,7 +726,7 @@ const sitemapXml =
   routes
     .map((r) => {
       const url = `${ORIGIN}${r.path}`;
-      const priority = r.path === '/' ? '1.0' : r.path.startsWith('/product/') ? '0.85' : '0.7';
+      const priority = r.path === '/' ? '1.0' : r.path.startsWith('/product/') || r.path.startsWith('/tools') ? '0.85' : '0.7';
       const changefreq = r.path === '/' || r.path === '/products' ? 'weekly' : r.path === '/privacy-policy' ? 'yearly' : 'monthly';
       return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
     })
@@ -732,6 +817,9 @@ const llmsTxt = [
   '',
   '## Guides & use cases',
   ...articleRoutes.map((r) => `- [${r.title}](${ORIGIN}${r.path}): ${r.description}`),
+  '',
+  '## Free in-browser tools (no upload — files stay on the visitor\'s device)',
+  ...TOOLS.map((t) => `- [${t.name}](${ORIGIN}/tools/${t.slug}): ${t.short}`),
   '',
   '## More',
   `- [Use-cases hub](${ORIGIN}/use-cases): All product guides, comparisons, and deep dives.`,

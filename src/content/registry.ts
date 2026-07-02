@@ -31,26 +31,25 @@ const AUTHOR_BY_SLUG: Record<string, string> = {
 
 const DEFAULT_AUTHOR_ID = 'chandan-kumar';
 
-// Editorial calendar. Each guide carries its own publish date, and a modified
-// date where the piece was later revised.
+// Publication dates. These reflect when each guide actually entered the
+// repository (git history), with the modified date from the last substantive
+// revision — honest dates, not a back-dated editorial calendar.
+const MODIFIED = '2026-06-28';
 const DATES: Record<string, { published: string; modified?: string }> = {
-  // 2025 — foundational & GridStorm
-  'tekivex-mit-open-source-model':                 { published: '2025-09-09', modified: '2026-02-11' },
-  'tekivex-stack-how-products-fit':                { published: '2025-09-23', modified: '2026-03-04' },
-  'gridstorm-virtual-scrolling-60fps':             { published: '2025-10-07', modified: '2026-04-15' },
-  'gridstorm-plugin-architecture':                 { published: '2025-10-21' },
-  'gridstorm-vs-ag-grid-migration':                { published: '2025-11-04', modified: '2026-05-12' },
-  'gridstorm-accessible-data-grid':                { published: '2025-11-18' },
-  'gridstorm-excel-formulas':                      { published: '2025-12-02' },
-  'gridstorm-financial-trading-grid':              { published: '2025-12-16' },
-  // 2026 — Tekivex UI
-  'tekivex-ui-headless-design-system':             { published: '2026-01-06' },
-  'tekivex-ui-vs-mui-chakra':                      { published: '2026-01-20' },
-  'tekivex-ui-accessible-forms':                   { published: '2026-02-03' },
-  // 2026 — Quantum Vault
-  'quantum-vault-post-quantum-tokens-explained':   { published: '2026-05-05' },
-  'quantum-vault-migrate-pqc-token-issuance':      { published: '2026-05-19' },
-  'quantum-vault-sovereign-token-verification':    { published: '2026-05-26' },
+  'tekivex-mit-open-source-model':                 { published: PUBLISHED, modified: MODIFIED },
+  'tekivex-stack-how-products-fit':                { published: PUBLISHED, modified: MODIFIED },
+  'gridstorm-virtual-scrolling-60fps':             { published: PUBLISHED, modified: MODIFIED },
+  'gridstorm-plugin-architecture':                 { published: PUBLISHED, modified: MODIFIED },
+  'gridstorm-vs-ag-grid-migration':                { published: PUBLISHED, modified: MODIFIED },
+  'gridstorm-accessible-data-grid':                { published: PUBLISHED, modified: MODIFIED },
+  'gridstorm-excel-formulas':                      { published: PUBLISHED, modified: MODIFIED },
+  'gridstorm-financial-trading-grid':              { published: PUBLISHED, modified: MODIFIED },
+  'tekivex-ui-headless-design-system':             { published: PUBLISHED, modified: MODIFIED },
+  'tekivex-ui-vs-mui-chakra':                      { published: PUBLISHED, modified: MODIFIED },
+  'tekivex-ui-accessible-forms':                   { published: PUBLISHED, modified: MODIFIED },
+  'quantum-vault-post-quantum-tokens-explained':   { published: PUBLISHED, modified: MODIFIED },
+  'quantum-vault-migrate-pqc-token-issuance':      { published: PUBLISHED, modified: MODIFIED },
+  'quantum-vault-sovereign-token-verification':    { published: PUBLISHED, modified: MODIFIED },
 };
 
 function article(
