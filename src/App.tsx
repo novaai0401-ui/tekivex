@@ -21,12 +21,15 @@ import { getProduct } from './platform/registry';
 import { ContentHub } from './content/ContentHub';
 import { ArticlePage } from './content/ArticlePage';
 import { getArticle } from './content/registry';
+import { ToolsHub } from './tools/ToolsHub';
+import { ToolPage } from './tools/ToolPage';
+import { getTool } from './tools/registry';
 
 const STATIC_ROUTES = new Set<string>([
   '/', '/products', '/platform', '/about',
   '/privacy-policy', '/terms-of-service', '/cookie-policy',
   '/disclaimer', '/contact', '/faq',
-  '/use-cases',
+  '/use-cases', '/tools',
 ]);
 
 function isKnownRoute(route: string): boolean {
@@ -38,6 +41,10 @@ function isKnownRoute(route: string): boolean {
   if (route.startsWith('/product/')) {
     const id = route.slice('/product/'.length).split('/')[0];
     return !!id && !!getProduct(id);
+  }
+  if (route.startsWith('/tools/')) {
+    const slug = route.slice('/tools/'.length).split('/')[0];
+    return !!slug && !!getTool(slug);
   }
   return false;
 }
@@ -136,6 +143,11 @@ export function App() {
 
   if (!isKnown) {
     page = <NotFoundPage />;
+  } else if (route === '/tools') {
+    page = <ToolsHub />;
+  } else if (route.startsWith('/tools/')) {
+    const slug = route.slice('/tools/'.length).split('/')[0];
+    page = <ToolPage slug={slug ?? ''} />;
   } else if (route === '/use-cases') {
     page = <ContentHub />;
   } else if (route.startsWith('/use-cases/')) {

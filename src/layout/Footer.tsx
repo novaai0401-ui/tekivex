@@ -6,6 +6,17 @@ const GS = 'https://gridstorm.tekivex.com';
 
 const FOOTER_COLS = [
   {
+    heading: 'Free Tools',
+    links: [
+      { label: 'All Tools',     href: '/tools' },
+      { label: 'Merge PDF',     href: '/tools/merge-pdf' },
+      { label: 'Split PDF',     href: '/tools/split-pdf' },
+      { label: 'JPG to PDF',    href: '/tools/jpg-to-pdf' },
+      { label: 'Compress PDF',  href: '/tools/compress-pdf' },
+      { label: 'CSV to Chart',  href: '/tools/csv-to-chart' },
+    ],
+  },
+  {
     heading: 'Platform',
     links: [
       { label: 'All Products',       href: '/products' },

@@ -221,6 +221,15 @@ export function TopNav({ route }: TopNavProps) {
             Platform
           </a>
 
+          {/* Free Tools */}
+          <a
+            href="/tools"
+            className={`top-nav-link${route.startsWith('/tools') ? ' active' : ''}`}
+            onClick={(e) => { e.preventDefault(); navigate('/tools'); setMobileMenuOpen(false); }}
+          >
+            Tools
+          </a>
+
           {/* Use Cases */}
           <a
             href="/use-cases"

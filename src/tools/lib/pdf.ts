@@ -1,0 +1,80 @@
+// pdf-lib engines for the PDF tools. pdf-lib is imported dynamically so the
+// ~200 KB library is only fetched when a visitor actually processes a file —
+// tool pages themselves stay light.
+
+async function pdfLib() {
+  return import('pdf-lib');
+}
+
+/** Thrown with a friendly message when a source PDF cannot be opened. */
+export class PdfOpenError extends Error {
+  constructor(filename: string, cause: unknown) {
+    const encrypted = String(cause).toLowerCase().includes('encrypt');
+    super(
+      encrypted
+        ? `"${filename}" is password-protected. Unlock it first (the Pyntra editor can open encrypted PDFs).`
+        : `"${filename}" could not be read as a PDF.`,
+    );
+    this.name = 'PdfOpenError';
+  }
+}
+
+async function loadDoc(lib: Awaited<ReturnType<typeof pdfLib>>, bytes: ArrayBuffer, filename: string) {
+  try {
+    return await lib.PDFDocument.load(bytes);
+  } catch (e) {
+    throw new PdfOpenError(filename, e);
+  }
+}
+
+export async function mergePdfs(files: { name: string; bytes: ArrayBuffer }[]): Promise<Uint8Array> {
+  const lib = await pdfLib();
+  const out = await lib.PDFDocument.create();
+  for (const f of files) {
+    const src = await loadDoc(lib, f.bytes, f.name);
+    const pages = await out.copyPages(src, src.getPageIndices());
+    pages.forEach((p) => out.addPage(p));
+  }
+  return out.save();
+}
+
+export async function getPageCount(bytes: ArrayBuffer, filename: string): Promise<number> {
+  const lib = await pdfLib();
+  const doc = await loadDoc(lib, bytes, filename);
+  return doc.getPageCount();
+}
+
+export async function extractPages(
+  bytes: ArrayBuffer,
+  filename: string,
+  indices: number[],
+): Promise<Uint8Array> {
+  const lib = await pdfLib();
+  const src = await loadDoc(lib, bytes, filename);
+  const out = await lib.PDFDocument.create();
+  const pages = await out.copyPages(src, indices);
+  pages.forEach((p) => out.addPage(p));
+  return out.save();
+}
+
+/** One image per page; the page matches the image's aspect ratio at A4-ish width. */
+export async function imagesToPdf(files: { name: string; type: string; bytes: ArrayBuffer }[]): Promise<Uint8Array> {
+  const lib = await pdfLib();
+  const out = await lib.PDFDocument.create();
+  const PAGE_W = 595.28; // A4 width in points
+  for (const f of files) {
+    const isPng = f.type === 'image/png' || /\.png$/i.test(f.name);
+    let img;
+    try {
+      img = isPng ? await out.embedPng(f.bytes) : await out.embedJpg(f.bytes);
+    } catch {
+      throw new Error(`"${f.name}" could not be embedded — only JPG and PNG images are supported.`);
+    }
+    const scale = PAGE_W / img.width;
+    const w = PAGE_W;
+    const h = img.height * scale;
+    const page = out.addPage([w, h]);
+    page.drawImage(img, { x: 0, y: 0, width: w, height: h });
+  }
+  return out.save();
+}

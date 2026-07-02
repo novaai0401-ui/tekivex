@@ -26,6 +26,13 @@
 - [The Tekivex Stack: How the Products Fit Together](https://tekivex.com/use-cases/tekivex-stack-how-products-fit): GridStorm, Tekivex UI, and Quantum Vault are designed to compose. Here is how the pieces fit into one application stack.
 - [Why Tekivex Products Are Free to Use: No Paywall, No Per-Seat Fees](https://tekivex.com/use-cases/tekivex-mit-open-source-model): No enterprise tier, no paywall, no per-seat fees — every Tekivex product is free to use, including commercially. Here is the reasoning and what it means for your team.
 
+## Free in-browser tools (no upload — files stay on the visitor's device)
+- [Merge PDF](https://tekivex.com/tools/merge-pdf): Combine several PDFs into one file — private, in your browser.
+- [Split PDF](https://tekivex.com/tools/split-pdf): Extract pages or page ranges from a PDF into a new file.
+- [JPG to PDF](https://tekivex.com/tools/jpg-to-pdf): Turn JPG and PNG images into a single PDF document.
+- [Compress PDF](https://tekivex.com/tools/compress-pdf): Shrink scanned or image-heavy PDFs to a smaller file size.
+- [CSV to Chart](https://tekivex.com/tools/csv-to-chart): Paste or drop a CSV and get a clean, downloadable chart.
+
 ## More
 - [Use-cases hub](https://tekivex.com/use-cases): All product guides, comparisons, and deep dives.
 - [About Tekivex](https://tekivex.com/about): Mission, values, and the free, no-paywall model.

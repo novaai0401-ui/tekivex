@@ -3,6 +3,7 @@ import { type SeoConfig, seoFromManifest } from './useSeo';
 import { getProduct } from './registry';
 import { getArticle, getAllArticles } from '../content/registry';
 import { getAuthor } from '../content/authors';
+import { getTool, getAllTools } from '../tools/registry';
 
 const BASE_URL = 'https://tekivex.com';
 
@@ -294,6 +295,84 @@ export function getSeoForRoute(route: string): SeoConfig {
   if (route === '/disclaimer') return DISCLAIMER_SEO;
   if (route === '/contact') return CONTACT_SEO;
   if (route === '/faq') return FAQ_SEO;
+
+  // ── Free tools hub ──
+  if (route === '/tools') {
+    const count = getAllTools().length;
+    return {
+      title: 'Free Online Tools — Private, No Upload | Tekivex',
+      description: `${count} free tools that run entirely in your browser — merge, split, and compress PDFs, convert JPG to PDF, and turn CSVs into charts. Your files are never uploaded.`,
+      keywords: ['free online tools', 'pdf tools no upload', 'private pdf tools', 'merge pdf', 'split pdf', 'compress pdf', 'jpg to pdf', 'csv to chart'],
+      canonical: `${BASE_URL}/tools`,
+      ogTitle: 'Free Online Tools — Private, No Upload | Tekivex',
+      ogDescription: 'Free in-browser tools for PDFs and data. Files are processed on your device and never uploaded.',
+      ogImage: `${BASE_URL}/og-tekivex.png`,
+      ogType: 'website',
+      twitterTitle: 'Free Online Tools — Private, No Upload',
+      twitterDescription: 'Merge, split, compress PDFs and chart CSVs — all in your browser, nothing uploaded.',
+      twitterImage: `${BASE_URL}/og-tekivex.png`,
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Tekivex Free Tools',
+        description: 'Free in-browser tools — PDFs and data are processed on your device and never uploaded.',
+        url: `${BASE_URL}/tools`,
+        publisher: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
+      },
+    };
+  }
+
+  if (route.startsWith('/tools/')) {
+    const slug = route.slice('/tools/'.length).split('/')[0];
+    const tool = slug ? getTool(slug) : undefined;
+    if (tool) {
+      const url = `${BASE_URL}${route}`;
+      return {
+        title: tool.seoTitle,
+        description: tool.seoDescription,
+        keywords: tool.keywords,
+        canonical: url,
+        ogTitle: tool.seoTitle,
+        ogDescription: tool.seoDescription,
+        ogImage: `${BASE_URL}/og-tekivex.png`,
+        ogType: 'website',
+        twitterTitle: tool.seoTitle,
+        twitterDescription: tool.seoDescription,
+        twitterImage: `${BASE_URL}/og-tekivex.png`,
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebApplication',
+            name: `${tool.name} — Tekivex Tools`,
+            description: tool.seoDescription,
+            url,
+            applicationCategory: 'UtilitiesApplication',
+            operatingSystem: 'All',
+            offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+            publisher: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: tool.faqs.map((f) => ({
+              '@type': 'Question',
+              name: f.q,
+              acceptedAnswer: { '@type': 'Answer', text: f.a },
+            })),
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Tekivex', item: BASE_URL },
+              { '@type': 'ListItem', position: 2, name: 'Tools', item: `${BASE_URL}/tools` },
+              { '@type': 'ListItem', position: 3, name: tool.name, item: url },
+            ],
+          },
+        ] as any,
+      };
+    }
+  }
 
   // ── Use-Cases content hub ──
   if (route === '/use-cases') {

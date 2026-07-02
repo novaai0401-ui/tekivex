@@ -16,7 +16,9 @@ export default defineConfig({
       // and cannot run in jsdom, so it is not unit-tested. Vitest 4's coverage-v8
       // now counts never-imported files (vitest 2 did not), so excluding it keeps
       // the coverage metric scoped to testable code, as it was before the upgrade.
-      exclude: ['src/main.tsx', 'src/**/*.d.ts', 'src/ai-support/**'],
+      // pdfCompress.ts additionally needs a real <canvas> and the pdf.js web
+      // worker, neither of which exists in jsdom — same category as ai-support.
+      exclude: ['src/main.tsx', 'src/**/*.d.ts', 'src/ai-support/**', 'src/tools/lib/pdfCompress.ts'],
       thresholds: {
         lines: 65,
         functions: 60,
