@@ -115,6 +115,27 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tools/compress-pdf"/>
   </url>
   <url>
+    <loc>https://tekivex.com/tools/pdf-to-jpg</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tools/pdf-to-jpg"/>
+  </url>
+  <url>
+    <loc>https://tekivex.com/tools/rotate-pdf</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tools/rotate-pdf"/>
+  </url>
+  <url>
+    <loc>https://tekivex.com/tools/remove-pages-pdf</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tools/remove-pages-pdf"/>
+  </url>
+  <url>
     <loc>https://tekivex.com/tools/csv-to-chart</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { PDFDocument } from 'pdf-lib';
-import { mergePdfs, getPageCount, extractPages, imagesToPdf, PdfOpenError } from '../lib/pdf';
+import { mergePdfs, getPageCount, extractPages, imagesToPdf, rotatePdf, removePages, PdfOpenError } from '../lib/pdf';
 
 // 1×1 transparent PNG.
 const TINY_PNG = Uint8Array.from(atob(
@@ -56,5 +56,33 @@ describe('pdf engine (real pdf-lib round-trips)', () => {
     const garbage = new TextEncoder().encode('GIF89a').buffer as ArrayBuffer;
     await expect(imagesToPdf([{ name: 'a.gif', type: 'image/gif', bytes: garbage }]))
       .rejects.toThrow(/only JPG and PNG/i);
+  });
+
+  it('rotates all pages by a quarter turn, accumulating existing rotation', async () => {
+    const once = await rotatePdf(await makePdf(2), 'x.pdf', 90);
+    const doc1 = await PDFDocument.load(once);
+    expect(doc1.getPage(0).getRotation().angle).toBe(90);
+    // Rotating the already-rotated output again lands on 180.
+    const twice = await rotatePdf(once.slice().buffer as ArrayBuffer, 'x.pdf', 90);
+    const doc2 = await PDFDocument.load(twice);
+    expect(doc2.getPage(0).getRotation().angle).toBe(180);
+  });
+
+  it('rotates only the requested pages', async () => {
+    const out = await rotatePdf(await makePdf(3), 'x.pdf', 270, [1]);
+    const doc = await PDFDocument.load(out);
+    expect(doc.getPage(0).getRotation().angle).toBe(0);
+    expect(doc.getPage(1).getRotation().angle).toBe(270);
+  });
+
+  it('removes the given pages and keeps the rest', async () => {
+    const out = await removePages(await makePdf(5), 'x.pdf', [1, 3]);
+    const doc = await PDFDocument.load(out);
+    expect(doc.getPageCount()).toBe(3);
+  });
+
+  it('refuses to remove every page', async () => {
+    await expect(removePages(await makePdf(2), 'x.pdf', [0, 1]))
+      .rejects.toThrow(/keep at least one/i);
   });
 });

@@ -25,9 +25,13 @@ export async function compressPdf(
   level: CompressLevel,
   onProgress?: (p: CompressProgress) => void,
 ): Promise<Uint8Array> {
+  // The pdf.js "legacy" build targets a much wider browser range than the
+  // default build (whose output crashes on anything but the very newest
+  // engines — e.g. Map.prototype.getOrInsertComputed). Verified against
+  // Chromium 141, where the modern build throws and legacy works.
   const [pdfjs, workerMod, pdfLib] = await Promise.all([
-    import('pdfjs-dist'),
-    import('pdfjs-dist/build/pdf.worker.min.mjs?url'),
+    import('pdfjs-dist/legacy/build/pdf.mjs'),
+    import('pdfjs-dist/legacy/build/pdf.worker.min.mjs?url'),
     import('pdf-lib'),
   ]);
   pdfjs.GlobalWorkerOptions.workerSrc = workerMod.default;

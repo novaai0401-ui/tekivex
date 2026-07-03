@@ -18,7 +18,7 @@ export default defineConfig({
       // the coverage metric scoped to testable code, as it was before the upgrade.
       // pdfCompress.ts additionally needs a real <canvas> and the pdf.js web
       // worker, neither of which exists in jsdom — same category as ai-support.
-      exclude: ['src/main.tsx', 'src/**/*.d.ts', 'src/ai-support/**', 'src/tools/lib/pdfCompress.ts'],
+      exclude: ['src/main.tsx', 'src/**/*.d.ts', 'src/ai-support/**', 'src/tools/lib/pdfCompress.ts', 'src/tools/lib/pdfRender.ts'],
       thresholds: {
         lines: 65,
         functions: 60,

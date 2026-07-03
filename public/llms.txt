@@ -37,6 +37,9 @@
 - [Split PDF](https://tekivex.com/tools/split-pdf): Extract pages or page ranges from a PDF into a new file.
 - [JPG to PDF](https://tekivex.com/tools/jpg-to-pdf): Turn JPG and PNG images into a single PDF document.
 - [Compress PDF](https://tekivex.com/tools/compress-pdf): Shrink scanned or image-heavy PDFs to a smaller file size.
+- [PDF to JPG](https://tekivex.com/tools/pdf-to-jpg): Turn each page of a PDF into a downloadable image.
+- [Rotate PDF](https://tekivex.com/tools/rotate-pdf): Rotate the pages of a PDF and save the result.
+- [Delete PDF Pages](https://tekivex.com/tools/remove-pages-pdf): Remove unwanted pages from a PDF and keep the rest.
 - [CSV to Chart](https://tekivex.com/tools/csv-to-chart): Paste or drop a CSV and get a clean, downloadable chart.
 
 ## More
