@@ -40,6 +40,12 @@ export function ContentHub() {
         </section>
       )}
 
+      <p className="uc-hub-follow">
+        Fresh guides land regularly — see <Link to="/changelog">what&apos;s new</Link>,
+        try the <Link to="/tools">free tools</Link>, or subscribe via{' '}
+        <a href="/feed.xml" rel="noopener noreferrer">RSS</a>.
+      </p>
+
       {groups.map(({ product, articles }) => (
         <section key={product} className="uc-hub-section" aria-label={product}>
           <h2 className="uc-hub-section-title">{product}</h2>

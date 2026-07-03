@@ -29,6 +29,12 @@ export function ToolPage({ slug }: { slug: string }) {
       <header className="tool-header">
         <h1 className="tool-title">{tool.name}</h1>
         <p className="tool-desc">{tool.description}</p>
+        {tool.guideSlug && (
+          <p className="tool-guide-link">
+            New to this? Read the step-by-step guide:{' '}
+            <Link to={`/use-cases/${tool.guideSlug}`}>How to use {tool.name}</Link>
+          </p>
+        )}
       </header>
 
       {ToolUi && (

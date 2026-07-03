@@ -14,6 +14,7 @@ const FOOTER_COLS = [
       { label: 'JPG to PDF',    href: '/tools/jpg-to-pdf' },
       { label: 'Compress PDF',  href: '/tools/compress-pdf' },
       { label: 'CSV to Chart',  href: '/tools/csv-to-chart' },
+      { label: 'Changelog',     href: '/changelog' },
     ],
   },
   {

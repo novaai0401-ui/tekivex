@@ -39,6 +39,14 @@ URL: https://tekivex.com/product/dataflow
 
 ## Articles by product
 
+### Free Tools
+- How to Merge PDF Files for Free Without Uploading Them — A step-by-step guide to combining PDF files into one document entirely in your browser — no upload, no watermark, no account. Includes ordering, common pitfalls, and encrypted-PDF notes. (https://tekivex.com/use-cases/how-to-merge-pdf-free)
+- How to Split a PDF and Extract Pages in Your Browser — Extract a single page, a range, or any combination of pages from a PDF for free and privately. Learn the page-range syntax and how to avoid the mistakes that trip people up. (https://tekivex.com/use-cases/how-to-split-pdf-extract-pages)
+- How to Convert JPG or PNG Images to a PDF, Privately — Turn photos and scans into a single PDF without uploading them anywhere — ideal for IDs, receipts, and documents. Covers image order, page sizing, and unsupported formats like HEIC. (https://tekivex.com/use-cases/how-to-convert-jpg-to-pdf)
+- How to Compress a PDF to a Smaller File Size (Free, No Upload) — Shrink a large PDF so it fits an email or upload limit — in your browser, with an honest look at what compression can and cannot do, and why scanned PDFs shrink most. (https://tekivex.com/use-cases/how-to-compress-pdf)
+- How to Make a Chart from a CSV File (and Share It Privately) — Turn a spreadsheet export into a clean bar, line, area, or donut chart in seconds, download it as SVG or PNG, and share a link whose data never touches a server. (https://tekivex.com/use-cases/how-to-make-chart-from-csv)
+- Why In-Browser Tools Keep Your Files Private (No Upload, Explained) — Most online PDF and file tools upload your document to their servers. Here is what "runs in your browser" actually means, why it is more private, and how to tell the difference. (https://tekivex.com/use-cases/why-browser-tools-keep-files-private)
+
 ### GridStorm
 - How GridStorm Renders 100K Rows at 60fps — A deep dive into GridStorm’s virtual scrolling engine: windowing, row recycling, and the render budget that keeps 100,000+ rows smooth at 60fps. (https://tekivex.com/use-cases/gridstorm-virtual-scrolling-60fps)
 - GridStorm vs AG Grid: Feature Comparison and Migration Guide — A practical, honest comparison of GridStorm and AG Grid — licensing, bundle size, plugins, accessibility — plus a step-by-step migration path. (https://tekivex.com/use-cases/gridstorm-vs-ag-grid-migration)

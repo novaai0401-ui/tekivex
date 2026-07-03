@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { TOOLS, getTool, getAllTools } from '../registry';
+import { getArticle } from '../../content/registry';
 
 describe('tools registry', () => {
   it('ships at least five tools', () => {
@@ -31,6 +32,14 @@ describe('tools registry', () => {
     for (const t of TOOLS) {
       const all = [t.description, t.seoDescription, ...t.faqs.map((f) => f.a)].join(' ').toLowerCase();
       expect(all, `${t.slug} must state files are not uploaded`).toMatch(/never uploaded|not sent to a server|never leaves? your device|nothing is sent to a server|never leave your device/);
+    }
+  });
+
+  it('every guideSlug resolves to a real published guide', () => {
+    for (const t of TOOLS) {
+      if (t.guideSlug) {
+        expect(getArticle(t.guideSlug), `${t.slug} points at missing guide ${t.guideSlug}`).toBeDefined();
+      }
     }
   });
 

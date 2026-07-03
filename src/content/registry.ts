@@ -27,6 +27,13 @@ const AUTHOR_BY_SLUG: Record<string, string> = {
   'tekivex-ui-accessible-forms': 'seema-almas-shaikh',
   'tekivex-stack-how-products-fit': 'chandan-kumar',
   'tekivex-mit-open-source-model': 'chandan-kumar',
+  // Free-tools how-to guides
+  'how-to-merge-pdf-free': 'seema-almas-shaikh',
+  'how-to-split-pdf-extract-pages': 'seema-almas-shaikh',
+  'how-to-convert-jpg-to-pdf': 'seema-almas-shaikh',
+  'how-to-compress-pdf': 'seema-almas-shaikh',
+  'how-to-make-chart-from-csv': 'chandan-kumar',
+  'why-browser-tools-keep-files-private': 'chandan-kumar',
 };
 
 const DEFAULT_AUTHOR_ID = 'chandan-kumar';
@@ -50,6 +57,13 @@ const DATES: Record<string, { published: string; modified?: string }> = {
   'quantum-vault-post-quantum-tokens-explained':   { published: PUBLISHED, modified: MODIFIED },
   'quantum-vault-migrate-pqc-token-issuance':      { published: PUBLISHED, modified: MODIFIED },
   'quantum-vault-sovereign-token-verification':    { published: PUBLISHED, modified: MODIFIED },
+  // Free-tools how-to guides — shipped with the tools hub.
+  'how-to-merge-pdf-free':                         { published: '2026-07-02' },
+  'how-to-split-pdf-extract-pages':                { published: '2026-07-02' },
+  'how-to-convert-jpg-to-pdf':                     { published: '2026-07-02' },
+  'how-to-compress-pdf':                           { published: '2026-07-02' },
+  'how-to-make-chart-from-csv':                    { published: '2026-07-02' },
+  'why-browser-tools-keep-files-private':          { published: '2026-07-02' },
 };
 
 function article(
@@ -71,6 +85,74 @@ function article(
 }
 
 export const ARTICLES: Article[] = [
+  // ── Free Tools — how-to guides for a consumer audience ─────────────────────
+  article({
+    slug: 'how-to-merge-pdf-free',
+    title: 'How to Merge PDF Files for Free Without Uploading Them',
+    description:
+      'A step-by-step guide to combining PDF files into one document entirely in your browser — no upload, no watermark, no account. Includes ordering, common pitfalls, and encrypted-PDF notes.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'How-To',
+    keywords: ['how to merge pdf', 'combine pdf free', 'merge pdf without uploading', 'join pdf files', 'private pdf merge'],
+    readingMinutes: 5,
+  }),
+  article({
+    slug: 'how-to-split-pdf-extract-pages',
+    title: 'How to Split a PDF and Extract Pages in Your Browser',
+    description:
+      'Extract a single page, a range, or any combination of pages from a PDF for free and privately. Learn the page-range syntax and how to avoid the mistakes that trip people up.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'How-To',
+    keywords: ['how to split pdf', 'extract pages from pdf', 'split pdf free', 'remove pages from pdf', 'pdf page range'],
+    readingMinutes: 5,
+  }),
+  article({
+    slug: 'how-to-convert-jpg-to-pdf',
+    title: 'How to Convert JPG or PNG Images to a PDF, Privately',
+    description:
+      'Turn photos and scans into a single PDF without uploading them anywhere — ideal for IDs, receipts, and documents. Covers image order, page sizing, and unsupported formats like HEIC.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'How-To',
+    keywords: ['jpg to pdf', 'convert images to pdf', 'png to pdf', 'scan to pdf private', 'photos to pdf'],
+    readingMinutes: 5,
+  }),
+  article({
+    slug: 'how-to-compress-pdf',
+    title: 'How to Compress a PDF to a Smaller File Size (Free, No Upload)',
+    description:
+      'Shrink a large PDF so it fits an email or upload limit — in your browser, with an honest look at what compression can and cannot do, and why scanned PDFs shrink most.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'How-To',
+    keywords: ['how to compress pdf', 'reduce pdf size', 'shrink pdf', 'make pdf smaller', 'compress pdf free'],
+    readingMinutes: 6,
+  }),
+  article({
+    slug: 'how-to-make-chart-from-csv',
+    title: 'How to Make a Chart from a CSV File (and Share It Privately)',
+    description:
+      'Turn a spreadsheet export into a clean bar, line, area, or donut chart in seconds, download it as SVG or PNG, and share a link whose data never touches a server.',
+    productId: 'analytics-studio',
+    productName: 'Free Tools',
+    kind: 'How-To',
+    keywords: ['csv to chart', 'make a chart from csv', 'chart from spreadsheet', 'csv graph maker', 'shareable chart link'],
+    readingMinutes: 6,
+  }),
+  article({
+    slug: 'why-browser-tools-keep-files-private',
+    title: 'Why In-Browser Tools Keep Your Files Private (No Upload, Explained)',
+    description:
+      'Most online PDF and file tools upload your document to their servers. Here is what "runs in your browser" actually means, why it is more private, and how to tell the difference.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'Explainer',
+    keywords: ['client-side tools', 'no upload pdf tools', 'private online tools', 'browser file processing', 'are online pdf tools safe'],
+    readingMinutes: 6,
+  }),
+
   // ── GridStorm ──────────────────────────────────────────────────────────
   article({
     slug: 'gridstorm-virtual-scrolling-60fps',
@@ -232,6 +314,7 @@ export const ARTICLES: Article[] = [
     keywords: ['free for commercial use', 'Tekivex pricing', 'no paywall', 'free developer tools'],
     readingMinutes: 7,
   }),
+
 ];
 
 export function getAllArticles(): Article[] {

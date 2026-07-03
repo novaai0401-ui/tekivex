@@ -24,12 +24,13 @@ import { getArticle } from './content/registry';
 import { ToolsHub } from './tools/ToolsHub';
 import { ToolPage } from './tools/ToolPage';
 import { getTool } from './tools/registry';
+import { ChangelogPage } from './pages/ChangelogPage';
 
 const STATIC_ROUTES = new Set<string>([
   '/', '/products', '/platform', '/about',
   '/privacy-policy', '/terms-of-service', '/cookie-policy',
   '/disclaimer', '/contact', '/faq',
-  '/use-cases', '/tools',
+  '/use-cases', '/tools', '/changelog',
 ]);
 
 function isKnownRoute(route: string): boolean {
@@ -143,6 +144,8 @@ export function App() {
 
   if (!isKnown) {
     page = <NotFoundPage />;
+  } else if (route === '/changelog') {
+    page = <ChangelogPage />;
   } else if (route === '/tools') {
     page = <ToolsHub />;
   } else if (route.startsWith('/tools/')) {
