@@ -75,4 +75,17 @@ describe('CsvChartTool', () => {
     fireEvent.click(screen.getByRole('button', { name: /start over/i }));
     expect(screen.getByRole('button', { name: /try sample data/i })).toBeInTheDocument();
   });
+
+  it('copies a shareable link whose data lives in the URL fragment', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.assign(navigator, { clipboard: { writeText } });
+    loadSample();
+    fireEvent.click(screen.getByTestId('chart-share'));
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledOnce());
+    const url = writeText.mock.calls[0]![0] as string;
+    expect(url).toContain('#c1:');
+    // The sample's month labels are encoded in the link, proving the data rides along.
+    const { decodeChartState } = await import('../lib/chartShare');
+    expect(decodeChartState(new URL(url).hash)!.csv).toContain('Jan');
+  });
 });

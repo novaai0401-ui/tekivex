@@ -6007,3 +6007,52 @@ body {
   .tool-title { font-size: 1.6rem; }
   .tool-chart-controls { flex-direction: column; align-items: flex-start; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Changelog — /changelog
+   ═══════════════════════════════════════════════════════════════════════════ */
+.cl-page { max-width: 780px; margin: 0 auto; padding: 48px 24px 96px; }
+.cl-list { list-style: none; margin: 32px 0 0; padding: 0; }
+.cl-entry { padding: 24px 0; border-top: 1px solid var(--hub-border); }
+.cl-entry:first-child { border-top: none; }
+.cl-date { font-size: 0.82rem; color: var(--hub-text-muted); font-variant-numeric: tabular-nums; }
+.cl-title { font-size: 1.3rem; font-weight: 800; margin: 2px 0 14px; }
+.cl-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.cl-item { display: flex; gap: 10px; align-items: flex-start; }
+.cl-item-text { color: var(--hub-text-secondary); line-height: 1.65; }
+.cl-tag {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-top: 2px;
+}
+.cl-tag--new { background: color-mix(in srgb, var(--hub-green) 15%, transparent); color: var(--hub-green); }
+.cl-tag--improved { background: var(--hub-accent-glow); color: var(--hub-accent); }
+.cl-tag--fixed { background: color-mix(in srgb, var(--hub-orange) 15%, transparent); color: var(--hub-orange); }
+
+/* Article body images + tool→guide link + hub follow line (Phase 2) */
+.uc-article-body img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--hub-border);
+  border-radius: 10px;
+  margin: 20px 0;
+  display: block;
+  box-shadow: var(--hub-card-shadow);
+}
+.tool-guide-link {
+  font-size: 0.92rem;
+  color: var(--hub-text-secondary);
+  background: var(--hub-accent-glow);
+  border: 1px solid var(--hub-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 4px 0 0;
+}
+.tool-guide-link a { color: var(--hub-accent); text-decoration: none; font-weight: 600; }
+.uc-hub-follow { color: var(--hub-text-secondary); font-size: 0.95rem; margin: 4px 0 8px; }
+.uc-hub-follow a { color: var(--hub-accent); text-decoration: none; }

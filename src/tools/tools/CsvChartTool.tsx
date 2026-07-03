@@ -6,6 +6,7 @@ import {
   MAX_SERIES, type CsvTable, type ChartModel,
 } from '../lib/csv';
 import { currentTheme, type ChartTheme } from '../lib/chartTheme';
+import { encodeChartState, decodeChartState } from '../lib/chartShare';
 
 type ChartKind = 'bar' | 'line' | 'area' | 'donut';
 
@@ -193,6 +194,8 @@ export function CsvChartTool() {
   const [kind, setKind] = React.useState<ChartKind>('bar');
   const [tip, setTip] = React.useState<Tip | null>(null);
   const [error, setError] = React.useState<string | null>(null);
+  const [share, setShare] = React.useState<{ status: 'idle' | 'copied' | 'error'; msg?: string }>({ status: 'idle' });
+  const [rawText, setRawText] = React.useState('');
   const svgRef = React.useRef<SVGSVGElement>(null);
 
   const loadCsv = (text: string) => {
@@ -201,9 +204,42 @@ export function CsvChartTool() {
     const guess = guessColumns(t);
     if (!guess.numericCols.length) { setError('No numeric columns found — at least one column must contain numbers to chart.'); return; }
     setError(null);
+    setRawText(text);
     setTable(t);
     setLabelCol(guess.labelCol);
     setValueCols(guess.numericCols.slice(0, 3));
+  };
+
+  // Restore a chart from a shared link (data lives in the URL fragment, which
+  // browsers never send to a server). Runs once on mount.
+  React.useEffect(() => {
+    if (typeof window === 'undefined' || !window.location.hash) return;
+    const state = decodeChartState(window.location.hash);
+    if (!state) return;
+    const t = parseCsv(state.csv);
+    if (!t.headers.length || !t.rows.length) return;
+    setRawText(state.csv);
+    setTable(t);
+    setKind(state.kind);
+    setLabelCol(Math.min(state.labelCol, Math.max(t.headers.length - 1, 0)));
+    const valid = state.valueCols.filter((c) => c >= 0 && c < t.headers.length);
+    setValueCols(valid.length ? valid.slice(0, MAX_SERIES) : guessColumns(t).numericCols.slice(0, 3));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const copyShareLink = async () => {
+    if (!table) return;
+    const result = encodeChartState({ csv: rawText, kind, labelCol, valueCols });
+    if (!result.ok) { setShare({ status: 'error', msg: result.error }); return; }
+    const url = `${window.location.origin}${window.location.pathname}#${result.fragment}`;
+    try {
+      if (window.location.hash !== `#${result.fragment}`) window.history.replaceState(null, '', url);
+      await navigator.clipboard.writeText(url);
+      setShare({ status: 'copied', msg: 'Link copied — the data rides in the link itself, nothing is uploaded.' });
+    } catch {
+      setShare({ status: 'error', msg: 'Could not copy automatically. The link is in your address bar — copy it from there.' });
+    }
+    setTimeout(() => setShare({ status: 'idle' }), 6000);
   };
 
   const model = React.useMemo(
@@ -288,7 +324,7 @@ export function CsvChartTool() {
                 </label>
               )))}
             </fieldset>
-            <button className="tool-ghost-btn" type="button" onClick={() => { setTable(null); setTip(null); }}>Start over</button>
+            <button className="tool-ghost-btn" type="button" onClick={() => { setTable(null); setTip(null); setRawText(''); setShare({ status: 'idle' }); if (typeof window !== 'undefined' && window.location.hash) window.history.replaceState(null, '', window.location.pathname); }}>Start over</button>
           </div>
 
           {(kind === 'area') && model.series.length > 1 && (
@@ -345,7 +381,15 @@ export function CsvChartTool() {
           <div className="tool-export-row">
             <button className="tool-cta" type="button" onClick={exportSvg}>Download SVG</button>
             <button className="tool-cta tool-cta--secondary" type="button" onClick={exportPng}>Download PNG</button>
+            <button className="tool-cta tool-cta--secondary" type="button" onClick={copyShareLink} data-testid="chart-share">Copy shareable link</button>
           </div>
+          {share.status !== 'idle' && (
+            <p className={share.status === 'copied' ? 'tool-success' : 'tool-warn'} role="status">{share.msg}</p>
+          )}
+          <p className="tool-note">
+            The shareable link carries the data inside the link itself (after the “#”), which your
+            browser never sends to a server — so sharing a chart stays as private as making one.
+          </p>
 
           {/* Table view — the accessible/relief representation of the same data. */}
           <details className="tool-table-details" open={false}>

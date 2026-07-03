@@ -29,6 +29,13 @@ describe('ToolPage', () => {
     expect(ad!.compareDocumentPosition(faqHeading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
+  it('links to the how-to guide for the tool', async () => {
+    render(<ToolPage slug="csv-to-chart" />);
+    await screen.findByTestId('tool-csv-to-chart');
+    const link = screen.getByRole('link', { name: /how to use csv to chart/i });
+    expect(link).toHaveAttribute('href', '/use-cases/how-to-make-chart-from-csv');
+  });
+
   it('falls back to the not-found page for unknown slugs', () => {
     render(<ToolPage slug="does-not-exist" />);
     expect(screen.getByTestId('notfound-page')).toBeInTheDocument();

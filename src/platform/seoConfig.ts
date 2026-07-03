@@ -296,6 +296,31 @@ export function getSeoForRoute(route: string): SeoConfig {
   if (route === '/contact') return CONTACT_SEO;
   if (route === '/faq') return FAQ_SEO;
 
+  // ── Changelog ──
+  if (route === '/changelog') {
+    return {
+      title: 'Changelog — What\'s New | Tekivex',
+      description: 'A dated record of what\'s new across the Tekivex free tools and products — new tools, improvements, and fixes.',
+      keywords: ['Tekivex changelog', 'what\'s new', 'product updates', 'release notes'],
+      canonical: `${BASE_URL}/changelog`,
+      ogTitle: 'Tekivex Changelog — What\'s New',
+      ogDescription: 'New tools, improvements, and fixes across the Tekivex free tools and products.',
+      ogImage: `${BASE_URL}/og-tekivex.png`,
+      ogType: 'website',
+      twitterTitle: 'Tekivex Changelog',
+      twitterDescription: 'What\'s new across the Tekivex free tools and products.',
+      twitterImage: `${BASE_URL}/og-tekivex.png`,
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Tekivex Changelog',
+        description: 'A dated record of what\'s new across the Tekivex free tools and products.',
+        url: `${BASE_URL}/changelog`,
+        publisher: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
+      },
+    };
+  }
+
   // ── Free tools hub ──
   if (route === '/tools') {
     const count = getAllTools().length;

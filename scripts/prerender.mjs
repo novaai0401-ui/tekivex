@@ -102,6 +102,35 @@ async function loadTools() {
 
 const TOOLS = await loadTools();
 
+async function loadChangelog() {
+  const entry = join(ROOT, 'src', 'content', 'changelog.ts');
+  const outPath = join(TMP_DIR, 'changelog.mjs');
+  esbuild.buildSync({
+    entryPoints: [entry], bundle: true, format: 'esm', platform: 'node',
+    target: 'esnext', outfile: outPath, logLevel: 'silent',
+  });
+  const mod = await import(pathToFileURL(outPath).href);
+  return mod.CHANGELOG;
+}
+
+const CHANGELOG = await loadChangelog();
+
+function changelogBlock() {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const fmt = (iso) => { const [y, m, d] = iso.split('-').map(Number); return `${months[m - 1]} ${d}, ${y}`; };
+  return CHANGELOG.map((e) => {
+    const items = e.items
+      .map((it) => `<li style="margin-bottom:8px;line-height:1.7"><strong style="color:#3a86ff">${escapeHtml(it.tag)}</strong> — ${escapeHtml(it.text)}</li>`)
+      .join('');
+    return `
+      <section style="border-top:1px solid #e6e8ef;padding-top:20px;margin:28px 0 0">
+        <p style="font-size:13px;color:#64748b;margin:0 0 2px"><time datetime="${escapeHtml(e.date)}">${escapeHtml(fmt(e.date))}</time></p>
+        <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:0 0 12px">${escapeHtml(e.title)}</h2>
+        <ul style="margin:0;padding-left:20px;color:#334155">${items}</ul>
+      </section>`;
+  }).join('');
+}
+
 function toolDetailBlock(t) {
   const steps = t.steps
     .map((s) => `<li style="margin-bottom:10px;line-height:1.7"><strong>${escapeHtml(s.title)}.</strong> ${escapeHtml(s.body)}</li>`)
@@ -369,6 +398,15 @@ const routes = [
     h1: 'Tekivex use cases',
     body:
       'Product guides, comparisons, and engineering deep dives across the Tekivex suite — how each library works, how to put it to work, and how it compares to the alternatives.',
+  },
+  {
+    path: '/changelog',
+    title: 'Changelog — What\'s New | Tekivex',
+    description:
+      'A dated record of what\'s new across the Tekivex free tools and products — new tools, improvements, and fixes.',
+    h1: 'What\'s new',
+    body: 'A running, dated record of what we\'ve shipped across the Tekivex tools and products.',
+    contentHtml: changelogBlock(),
   },
   {
     path: '/tools',

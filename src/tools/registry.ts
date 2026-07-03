@@ -41,11 +41,14 @@ export interface ToolMeta {
   faqs: ToolFaq[];
   /** Honest limitations shown on the page. */
   limitations: string[];
+  /** Slug of the in-depth how-to guide in /use-cases (optional). */
+  guideSlug?: string;
 }
 
 export const TOOLS: ToolMeta[] = [
   {
     slug: 'merge-pdf',
+    guideSlug: 'how-to-merge-pdf-free',
     name: 'Merge PDF',
     short: 'Combine several PDFs into one file — private, in your browser.',
     description:
@@ -77,6 +80,7 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     slug: 'split-pdf',
+    guideSlug: 'how-to-split-pdf-extract-pages',
     name: 'Split PDF',
     short: 'Extract pages or page ranges from a PDF into a new file.',
     description:
@@ -107,6 +111,7 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     slug: 'jpg-to-pdf',
+    guideSlug: 'how-to-convert-jpg-to-pdf',
     name: 'JPG to PDF',
     short: 'Turn JPG and PNG images into a single PDF document.',
     description:
@@ -137,6 +142,7 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     slug: 'compress-pdf',
+    guideSlug: 'how-to-compress-pdf',
     name: 'Compress PDF',
     short: 'Shrink scanned or image-heavy PDFs to a smaller file size.',
     description:
@@ -168,6 +174,7 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     slug: 'csv-to-chart',
+    guideSlug: 'how-to-make-chart-from-csv',
     name: 'CSV to Chart',
     short: 'Paste or drop a CSV and get a clean, downloadable chart.',
     description:
