@@ -10,6 +10,9 @@ const TOOL_COMPONENTS: Record<string, React.LazyExoticComponent<() => React.JSX.
   'split-pdf':    React.lazy(() => import('./tools/SplitPdfTool').then((m) => ({ default: m.SplitPdfTool }))),
   'jpg-to-pdf':   React.lazy(() => import('./tools/JpgToPdfTool').then((m) => ({ default: m.JpgToPdfTool }))),
   'compress-pdf': React.lazy(() => import('./tools/CompressPdfTool').then((m) => ({ default: m.CompressPdfTool }))),
+  'pdf-to-jpg':   React.lazy(() => import('./tools/PdfToJpgTool').then((m) => ({ default: m.PdfToJpgTool }))),
+  'rotate-pdf':   React.lazy(() => import('./tools/RotatePdfTool').then((m) => ({ default: m.RotatePdfTool }))),
+  'remove-pages-pdf': React.lazy(() => import('./tools/RemovePagesTool').then((m) => ({ default: m.RemovePagesTool }))),
   'csv-to-chart': React.lazy(() => import('./tools/CsvChartTool').then((m) => ({ default: m.CsvChartTool }))),
 };
 

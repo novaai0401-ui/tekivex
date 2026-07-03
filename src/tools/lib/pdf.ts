@@ -57,6 +57,45 @@ export async function extractPages(
   return out.save();
 }
 
+/** Rotate pages by a quarter-turn multiple. `indices` omitted = all pages. */
+export async function rotatePdf(
+  bytes: ArrayBuffer,
+  filename: string,
+  turnDegrees: 90 | 180 | 270,
+  indices?: number[],
+): Promise<Uint8Array> {
+  const lib = await pdfLib();
+  const doc = await loadDoc(lib, bytes, filename);
+  const pages = doc.getPages();
+  const target = indices ?? pages.map((_, i) => i);
+  const targetSet = new Set(target);
+  pages.forEach((p, i) => {
+    if (!targetSet.has(i)) return;
+    const current = p.getRotation().angle;
+    p.setRotation(lib.degrees((current + turnDegrees) % 360));
+  });
+  return doc.save();
+}
+
+/** Remove the given 0-based pages, keeping the rest. At least one page must remain. */
+export async function removePages(
+  bytes: ArrayBuffer,
+  filename: string,
+  removeIndices: number[],
+): Promise<Uint8Array> {
+  const lib = await pdfLib();
+  const src = await loadDoc(lib, bytes, filename);
+  const total = src.getPageCount();
+  const remove = new Set(removeIndices);
+  const keep = [];
+  for (let i = 0; i < total; i++) if (!remove.has(i)) keep.push(i);
+  if (!keep.length) throw new Error('That would remove every page — keep at least one.');
+  const out = await lib.PDFDocument.create();
+  const copied = await out.copyPages(src, keep);
+  copied.forEach((p) => out.addPage(p));
+  return out.save();
+}
+
 /** One image per page; the page matches the image's aspect ratio at A4-ish width. */
 export async function imagesToPdf(files: { name: string; type: string; bytes: ArrayBuffer }[]): Promise<Uint8Array> {
   const lib = await pdfLib();

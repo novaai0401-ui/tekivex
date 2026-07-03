@@ -6056,3 +6056,31 @@ body {
 .tool-guide-link a { color: var(--hub-accent); text-decoration: none; font-weight: 600; }
 .uc-hub-follow { color: var(--hub-text-secondary); font-size: 0.95rem; margin: 4px 0 8px; }
 .uc-hub-follow a { color: var(--hub-accent); text-decoration: none; }
+
+/* ── Phase 3 tools: rotate row + PDF→JPG thumbnails ── */
+.tool-rotate-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.tool-rotate-row .tool-cta { margin-top: 0; }
+.tool-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+  margin: 18px 0 4px;
+}
+.tool-thumb {
+  margin: 0;
+  border: 1px solid var(--hub-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--hub-bg);
+}
+.tool-thumb img { display: block; width: 100%; height: auto; background: #fff; }
+.tool-thumb figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  font-size: 0.82rem;
+  color: var(--hub-text-secondary);
+  border-top: 1px solid var(--hub-border);
+}
+.tool-thumb figcaption .tool-ghost-btn { margin-top: 0; padding: 4px 10px; font-size: 0.8rem; }

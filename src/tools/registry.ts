@@ -173,6 +173,96 @@ export const TOOLS: ToolMeta[] = [
     ],
   },
   {
+    slug: 'pdf-to-jpg',
+    name: 'PDF to JPG',
+    short: 'Turn each page of a PDF into a downloadable image.',
+    description:
+      'Convert a PDF into images — one JPG (or PNG) per page — that you can download ' +
+      'individually or all at once. Each page is rendered in your browser, so the PDF ' +
+      'is never uploaded to a server.',
+    seoTitle: 'PDF to JPG — Convert PDF Pages to Images, Free & Private | Tekivex Tools',
+    seoDescription:
+      'Convert PDF pages to JPG or PNG images for free. 100% private: each page is rendered in ' +
+      'your browser and never uploaded. No watermark, no signup.',
+    keywords: ['pdf to jpg', 'pdf to image', 'pdf to png', 'convert pdf to jpg free', 'pdf to jpg without upload', 'extract images from pdf'],
+    iconName: 'file-pdf',
+    color: '#0ea5e9',
+    steps: [
+      { title: 'Add your PDF', body: 'Drop a PDF onto the page. Each page is rendered to an image locally in your browser.' },
+      { title: 'Pick a format', body: 'Choose JPG (smaller, best for photos and scans) or PNG (lossless, best for text and diagrams).' },
+      { title: 'Download', body: 'Save any single page, or use “Download all” to grab every page image at once.' },
+    ],
+    faqs: [
+      { q: 'Is my PDF uploaded?', a: 'No. Every page is rendered to an image in your browser using client-side code — the PDF never leaves your device.' },
+      { q: 'JPG or PNG — which should I choose?', a: 'JPG makes smaller files and suits scans and photos. PNG is lossless and keeps text and line art crisp, at a larger file size.' },
+      { q: 'Why does each page download separately?', a: 'To avoid bundling a heavyweight ZIP library into the page, each image downloads on its own. “Download all” triggers them in sequence — your browser may ask permission to download multiple files the first time.' },
+    ],
+    limitations: [
+      'Rendered images are pictures of the pages — the text in them is not selectable.',
+      'Each page downloads as its own file (no ZIP), so very large PDFs mean many downloads.',
+      'Encrypted PDFs must be unlocked first.',
+    ],
+  },
+  {
+    slug: 'rotate-pdf',
+    name: 'Rotate PDF',
+    short: 'Rotate the pages of a PDF and save the result.',
+    description:
+      'Fix a sideways or upside-down PDF by rotating its pages 90°, 180°, or 270°, then ' +
+      'download the corrected file. Rotation happens in your browser — the PDF is never uploaded.',
+    seoTitle: 'Rotate PDF — Free & Private, No Upload | Tekivex Tools',
+    seoDescription:
+      'Rotate PDF pages 90, 180, or 270 degrees and download the fixed file, free. 100% private: ' +
+      'the PDF is rotated in your browser and never uploaded.',
+    keywords: ['rotate pdf', 'rotate pdf pages', 'turn pdf sideways', 'fix pdf orientation', 'rotate pdf free', 'rotate pdf without upload'],
+    iconName: 'file-pdf',
+    color: '#14b8a6',
+    steps: [
+      { title: 'Add your PDF', body: 'Drop a PDF onto the page. It is read locally in your browser.' },
+      { title: 'Choose a rotation', body: 'Rotate every page 90° left, 90° right, or 180°. The rotation adds to any the pages already have.' },
+      { title: 'Download', body: 'Click Rotate & download to save the corrected PDF to your device.' },
+    ],
+    faqs: [
+      { q: 'Is my PDF uploaded?', a: 'No. The rotation is applied in your browser with client-side code; the file never leaves your device.' },
+      { q: 'Does rotating lose quality?', a: 'No. Rotation only changes each page’s orientation flag — the underlying text and images are untouched, so there is no quality loss.' },
+      { q: 'Can I rotate just one page?', a: 'This tool rotates all pages together. To rotate a single page, first extract it with Split PDF, rotate that, then Merge it back if needed.' },
+    ],
+    limitations: [
+      'Rotation is applied to all pages at once.',
+      'Encrypted PDFs must be unlocked first.',
+    ],
+  },
+  {
+    slug: 'remove-pages-pdf',
+    name: 'Delete PDF Pages',
+    short: 'Remove unwanted pages from a PDF and keep the rest.',
+    description:
+      'Delete specific pages from a PDF — a single page, a range like 2-5, or a mix like ' +
+      '1,4,9 — and download the trimmed document. Everything runs in your browser; the file ' +
+      'is never uploaded.',
+    seoTitle: 'Delete Pages from a PDF — Free & Private, No Upload | Tekivex Tools',
+    seoDescription:
+      'Remove pages from a PDF for free and download the trimmed file. 100% private: processing ' +
+      'happens in your browser, the PDF is never uploaded. No watermark, no signup.',
+    keywords: ['delete pages from pdf', 'remove pages from pdf', 'delete pdf pages free', 'remove page from pdf without upload', 'trim pdf pages'],
+    iconName: 'file-pdf',
+    color: '#f43f5e',
+    steps: [
+      { title: 'Add your PDF', body: 'Drop a PDF onto the page. The page count is shown so you know the valid range.' },
+      { title: 'Type the pages to remove', body: 'Enter the pages to delete — for example “1,4,9” or “2-5”. Everything else is kept.' },
+      { title: 'Remove and download', body: 'Click Remove pages. A new PDF without those pages is built in your browser and downloaded.' },
+    ],
+    faqs: [
+      { q: 'Is my PDF uploaded?', a: 'No. Page removal runs entirely in your browser — the file never leaves your device.' },
+      { q: 'What page syntax is supported?', a: 'Comma-separated single pages and ranges: “3”, “2-5”, or “1,4,9”. Pages outside the document are reported as errors rather than ignored.' },
+      { q: 'What if I remove every page?', a: 'The tool refuses that and tells you — a PDF must keep at least one page.' },
+    ],
+    limitations: [
+      'At least one page must remain.',
+      'Encrypted PDFs must be unlocked first.',
+    ],
+  },
+  {
     slug: 'csv-to-chart',
     guideSlug: 'how-to-make-chart-from-csv',
     name: 'CSV to Chart',

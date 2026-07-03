@@ -5,6 +5,9 @@ import { MergePdfTool } from '../tools/MergePdfTool';
 import { SplitPdfTool } from '../tools/SplitPdfTool';
 import { JpgToPdfTool } from '../tools/JpgToPdfTool';
 import { CompressPdfTool } from '../tools/CompressPdfTool';
+import { RotatePdfTool } from '../tools/RotatePdfTool';
+import { RemovePagesTool } from '../tools/RemovePagesTool';
+import { PdfToJpgTool } from '../tools/PdfToJpgTool';
 
 const TINY_PNG = Uint8Array.from(atob(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
@@ -104,5 +107,50 @@ describe('CompressPdfTool', () => {
     fireEvent.click(strong);
     expect(strong).toBeChecked();
     expect(screen.getByRole('button', { name: /compress pdf/i })).toBeEnabled();
+  });
+});
+
+describe('RotatePdfTool', () => {
+  it('rotates and downloads the file', async () => {
+    const click = stubDownload();
+    render(<RotatePdfTool />);
+    fireEvent.change(screen.getByTestId('tool-fileinput'), { target: { files: [pdf2] } });
+    fireEvent.click(screen.getByRole('button', { name: /90° right/i }));
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(/rotated/i));
+    expect(click).toHaveBeenCalledOnce();
+  });
+});
+
+describe('RemovePagesTool', () => {
+  it('shows page count, removes pages, and downloads', async () => {
+    const click = stubDownload();
+    render(<RemovePagesTool />);
+    fireEvent.change(screen.getByTestId('tool-fileinput'), { target: { files: [pdf3] } });
+    await screen.findByText(/three\.pdf · 3 pages/);
+    fireEvent.change(screen.getByLabelText(/pages to remove/i), { target: { value: '2' } });
+    fireEvent.click(screen.getByRole('button', { name: /remove pages/i }));
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(/removed 1 page/i));
+    expect(click).toHaveBeenCalledOnce();
+  });
+
+  it('blocks removing every page', async () => {
+    render(<RemovePagesTool />);
+    fireEvent.change(screen.getByTestId('tool-fileinput'), { target: { files: [pdf3] } });
+    await screen.findByText(/three\.pdf · 3 pages/);
+    fireEvent.change(screen.getByLabelText(/pages to remove/i), { target: { value: '1-3' } });
+    expect(screen.getByRole('alert')).toHaveTextContent(/keep at least one/i);
+    expect(screen.getByRole('button', { name: /remove pages/i })).toBeDisabled();
+  });
+});
+
+describe('PdfToJpgTool', () => {
+  it('offers JPG/PNG format selection once a file is added', () => {
+    render(<PdfToJpgTool />);
+    fireEvent.change(screen.getByTestId('tool-fileinput'), { target: { files: [pdf2] } });
+    expect(screen.getByRole('radiogroup', { name: /image format/i })).toBeInTheDocument();
+    const png = screen.getByRole('radio', { name: /png/i });
+    fireEvent.click(png);
+    expect(png).toBeChecked();
+    expect(screen.getByRole('button', { name: /convert to png/i })).toBeEnabled();
   });
 });
