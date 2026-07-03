@@ -28,9 +28,10 @@ export async function renderPdfToImages(
   scale = 2,
   onProgress?: (p: RenderProgress) => void,
 ): Promise<RenderedPage[]> {
+  // Legacy build for broad browser support — see pdfCompress.ts for why.
   const [pdfjs, workerMod] = await Promise.all([
-    import('pdfjs-dist'),
-    import('pdfjs-dist/build/pdf.worker.min.mjs?url'),
+    import('pdfjs-dist/legacy/build/pdf.mjs'),
+    import('pdfjs-dist/legacy/build/pdf.worker.min.mjs?url'),
   ]);
   pdfjs.GlobalWorkerOptions.workerSrc = workerMod.default;
 

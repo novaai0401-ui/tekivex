@@ -5985,7 +5985,7 @@ body {
   gap: 6px;
   z-index: 5;
 }
-.tool-export-row { display: flex; gap: 10px; }
+.tool-export-row { display: flex; flex-wrap: wrap; gap: 10px; }
 .tool-export-row .tool-cta { margin-top: 14px; }
 .tool-table-details { margin-top: 20px; }
 .tool-table-details summary { font-weight: 600; color: var(--hub-text-secondary); cursor: pointer; font-size: 0.9rem; }
