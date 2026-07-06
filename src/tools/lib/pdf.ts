@@ -21,8 +21,24 @@ export class PdfOpenError extends Error {
 
 async function loadDoc(lib: Awaited<ReturnType<typeof pdfLib>>, bytes: ArrayBuffer, filename: string) {
   try {
-    return await lib.PDFDocument.load(bytes);
+    const doc = await lib.PDFDocument.load(bytes);
+    // A structurally broken file can survive load() and only explode later
+    // (e.g. during copyPages) with a raw internal error. Probing the page
+    // tree here surfaces the problem immediately, as a friendly error.
+    if (doc.getPageCount() < 1) throw new Error('no pages');
+    return doc;
   } catch (e) {
+    if (e instanceof PdfOpenError) throw e;
+    throw new PdfOpenError(filename, e);
+  }
+}
+
+/** Wrap post-load pdf-lib failures so raw internals never reach the UI. */
+async function friendly<T>(filename: string, op: () => Promise<T>): Promise<T> {
+  try {
+    return await op();
+  } catch (e) {
+    if (e instanceof PdfOpenError || (e instanceof Error && /keep at least one/.test(e.message))) throw e;
     throw new PdfOpenError(filename, e);
   }
 }
@@ -32,8 +48,10 @@ export async function mergePdfs(files: { name: string; bytes: ArrayBuffer }[]): 
   const out = await lib.PDFDocument.create();
   for (const f of files) {
     const src = await loadDoc(lib, f.bytes, f.name);
-    const pages = await out.copyPages(src, src.getPageIndices());
-    pages.forEach((p) => out.addPage(p));
+    await friendly(f.name, async () => {
+      const pages = await out.copyPages(src, src.getPageIndices());
+      pages.forEach((p) => out.addPage(p));
+    });
   }
   return out.save();
 }
@@ -52,9 +70,11 @@ export async function extractPages(
   const lib = await pdfLib();
   const src = await loadDoc(lib, bytes, filename);
   const out = await lib.PDFDocument.create();
-  const pages = await out.copyPages(src, indices);
-  pages.forEach((p) => out.addPage(p));
-  return out.save();
+  return friendly(filename, async () => {
+    const pages = await out.copyPages(src, indices);
+    pages.forEach((p) => out.addPage(p));
+    return out.save();
+  });
 }
 
 /** Rotate pages by a quarter-turn multiple. `indices` omitted = all pages. */
@@ -66,15 +86,17 @@ export async function rotatePdf(
 ): Promise<Uint8Array> {
   const lib = await pdfLib();
   const doc = await loadDoc(lib, bytes, filename);
-  const pages = doc.getPages();
-  const target = indices ?? pages.map((_, i) => i);
-  const targetSet = new Set(target);
-  pages.forEach((p, i) => {
-    if (!targetSet.has(i)) return;
-    const current = p.getRotation().angle;
-    p.setRotation(lib.degrees((current + turnDegrees) % 360));
+  return friendly(filename, async () => {
+    const pages = doc.getPages();
+    const target = indices ?? pages.map((_, i) => i);
+    const targetSet = new Set(target);
+    pages.forEach((p, i) => {
+      if (!targetSet.has(i)) return;
+      const current = p.getRotation().angle;
+      p.setRotation(lib.degrees((current + turnDegrees) % 360));
+    });
+    return doc.save();
   });
-  return doc.save();
 }
 
 /** Remove the given 0-based pages, keeping the rest. At least one page must remain. */
@@ -87,13 +109,15 @@ export async function removePages(
   const src = await loadDoc(lib, bytes, filename);
   const total = src.getPageCount();
   const remove = new Set(removeIndices);
-  const keep = [];
+  const keep: number[] = [];
   for (let i = 0; i < total; i++) if (!remove.has(i)) keep.push(i);
   if (!keep.length) throw new Error('That would remove every page — keep at least one.');
   const out = await lib.PDFDocument.create();
-  const copied = await out.copyPages(src, keep);
-  copied.forEach((p) => out.addPage(p));
-  return out.save();
+  return friendly(filename, async () => {
+    const copied = await out.copyPages(src, keep);
+    copied.forEach((p) => out.addPage(p));
+    return out.save();
+  });
 }
 
 /** One image per page; the page matches the image's aspect ratio at A4-ish width. */

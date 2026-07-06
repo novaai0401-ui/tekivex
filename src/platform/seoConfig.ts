@@ -11,11 +11,9 @@ const BASE_URL = 'https://tekivex.com';
 const HOME_SEO: SeoConfig = {
   title: 'Tekivex — Enterprise Developer Tools Platform',
   description:
-    'Tekivex builds free developer tools: GridStorm (high-performance data grid), Tekivex UI ' +
-    '(accessible React/Vue/Svelte component library), and Quantum Vault (post-quantum tokens), ' +
-    'plus three free hosted web apps you open and use right away — Pyntra (browser PDF editor), ' +
-    'Analytics Studio (in-browser BI & dashboards), and DataFlow (real-time streaming dashboards). ' +
-    'Free for commercial use. Free forever.',
+    'Free developer tools & private web apps: GridStorm data grid, Tekivex UI components, ' +
+    'Quantum Vault tokens on npm — plus 8 free in-browser tools (merge/split/compress PDF, ' +
+    'CSV to chart) and hosted apps. Files never uploaded.',
   keywords: [
     'enterprise developer tools',
     'free data grid',
