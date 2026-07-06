@@ -52,6 +52,21 @@ describe('pdf engine (real pdf-lib round-trips)', () => {
     await expect(getPageCount(garbage, 'junk.pdf')).rejects.toThrow(/could not be read/i);
   });
 
+  it('stays friendly for sneaky-corrupt files that start with %PDF', async () => {
+    // Survives a naive header check but has no valid structure — previously
+    // leaked raw pdf-lib internals ("Cannot read properties of undefined").
+    const sneaky = new TextEncoder().encode('%PDF-1.4 this is not really a pdf at all').buffer as ArrayBuffer;
+    for (const op of [
+      () => mergePdfs([{ name: 'sneaky.pdf', bytes: sneaky }]),
+      () => extractPages(sneaky, 'sneaky.pdf', [0]),
+      () => rotatePdf(sneaky, 'sneaky.pdf', 90),
+      () => removePages(sneaky, 'sneaky.pdf', [0]),
+      () => getPageCount(sneaky, 'sneaky.pdf'),
+    ]) {
+      await expect(op()).rejects.toThrow(/could not be read as a PDF/i);
+    }
+  });
+
   it('rejects unsupported image types with a clear message', async () => {
     const garbage = new TextEncoder().encode('GIF89a').buffer as ArrayBuffer;
     await expect(imagesToPdf([{ name: 'a.gif', type: 'image/gif', bytes: garbage }]))

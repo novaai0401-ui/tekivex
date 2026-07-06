@@ -305,7 +305,7 @@ const routes = [
     path: '/',
     title: 'Tekivex — Free Enterprise Developer Tools Platform',
     description:
-      'Tekivex is a free developer-tools platform. GridStorm data grid, Tekivex UI component library, and Quantum Vault post-quantum tokens are published on npm, and Pyntra (PDF editor), Analytics Studio (BI dashboards), and DataFlow (real-time streaming) are free hosted apps you can use directly — all free, accessibility-first.',
+      'Free developer tools & private web apps: GridStorm data grid, Tekivex UI components, Quantum Vault tokens on npm — plus 8 free in-browser tools (merge/split/compress PDF, CSV to chart) and hosted apps. Files never uploaded.',
     h1: 'Tekivex — free enterprise developer tools',
     body:
       'Tekivex groups several free products under one roof: the GridStorm, Tekivex UI, and Quantum Vault libraries on npm, plus the hosted apps Pyntra, Analytics Studio, and DataFlow that run in your browser with nothing to install.',
