@@ -402,7 +402,7 @@ export function getSeoForRoute(route: string): SeoConfig {
     const count = getAllArticles().length;
     return {
       title: 'Use Cases — Product Guides, Comparisons & Deep Dives | Tekivex',
-      description: `${count} in-depth articles on the Tekivex product suite — GridStorm, Tekivex UI, and Quantum Vault. Architecture deep dives, migration guides, and real-world use cases.`,
+      description: `${count} in-depth articles — standalone explainers on file formats, data, and accessibility, how-to guides for the free tools, and deep dives on the Tekivex product suite.`,
       keywords: ['Tekivex use cases', 'GridStorm guide', 'Tekivex UI', 'Quantum Vault', 'react data grid guide', 'developer tools articles'],
       canonical: `${BASE_URL}/use-cases`,
       ogTitle: 'Use Cases — Tekivex Product Guides & Deep Dives',
@@ -465,7 +465,11 @@ export function getSeoForRoute(route: string): SeoConfig {
             image: `${BASE_URL}/og-tekivex.png`,
             inLanguage: 'en',
             keywords: article.keywords.join(', '),
-            about: { '@type': 'SoftwareApplication', name: article.productName, applicationCategory: 'DeveloperApplication' },
+            // Standalone explainers (grouped as "Fundamentals") aren't about a
+            // software product, so only product-anchored articles get `about`.
+            ...(getProduct(article.productId)?.name === article.productName
+              ? { about: { '@type': 'SoftwareApplication', name: article.productName, applicationCategory: 'DeveloperApplication' } }
+              : {}),
             isPartOf: { '@type': 'CollectionPage', name: 'Tekivex Use Cases', url: `${BASE_URL}/use-cases` },
           },
           {
@@ -478,6 +482,45 @@ export function getSeoForRoute(route: string): SeoConfig {
             ],
           },
         ] as any,
+      };
+    }
+  }
+
+  // ── Author profile pages ──
+  if (route.startsWith('/authors/')) {
+    const id = route.slice('/authors/'.length).split('/')[0];
+    const author = id ? getAuthor(id) : undefined;
+    if (author) {
+      const url = `${BASE_URL}${route}`;
+      const count = getAllArticles().filter((a) => a.authorId === author.id).length;
+      const description = `${author.bio} Read all ${count} articles by ${author.name} on Tekivex.`;
+      return {
+        title: `${author.name} — ${author.role} | Tekivex`,
+        description,
+        keywords: [author.name, 'Tekivex Engineering', 'author'],
+        canonical: url,
+        ogTitle: `${author.name} — Tekivex Engineering`,
+        ogDescription: description,
+        ogImage: `${BASE_URL}/og-tekivex.png`,
+        ogType: 'profile',
+        twitterTitle: `${author.name} — Tekivex Engineering`,
+        twitterDescription: description,
+        twitterImage: `${BASE_URL}/og-tekivex.png`,
+        jsonLd: {
+          '@context': 'https://schema.org',
+          '@type': 'ProfilePage',
+          url,
+          mainEntity: {
+            '@type': 'Person',
+            name: author.name,
+            jobTitle: author.role,
+            description: author.bio,
+            url,
+            sameAs: author.sameAs,
+            email: `mailto:${author.email}`,
+            worksFor: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
+          },
+        },
       };
     }
   }

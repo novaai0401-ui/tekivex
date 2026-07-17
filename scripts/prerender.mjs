@@ -293,8 +293,42 @@ function featuredGuidesBlock(limit) {
     .join('');
   return `
       <h2 style="font-size:1.5rem;font-weight:800;color:#0a0f1f;margin:32px 0 8px">Guides &amp; engineering deep dives</h2>
-      <p style="color:#475569;font-size:15px;margin:0 0 16px">${ARTICLES.length} in-depth, original articles by the Tekivex Engineering team — architecture, migration guides, and real-world use cases, free to read. <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Browse all guides →</a></p>
+      <p style="color:#475569;font-size:15px;margin:0 0 16px">${ARTICLES.length} in-depth, original articles by the Tekivex Engineering team — plain-language explainers on file formats, data, and accessibility, plus architecture deep dives and how-to guides, free to read. <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Browse all guides →</a></p>
       <ul style="margin:0 0 8px;padding-left:20px;list-style:disc">${items}</ul>`;
+}
+
+// Crawlable author profile block — bio plus every article they've written,
+// so bylines resolve to a real, accountable person on this site (E-E-A-T).
+function authorProfileBlock(a) {
+  const theirs = ARTICLES.filter((art) => art.authorId === a.id);
+  const items = theirs
+    .map(
+      (art) =>
+        `<li style="margin-bottom:12px"><a href="/use-cases/${escapeHtml(art.slug)}" style="color:#3a86ff;text-decoration:none;font-weight:600">${escapeHtml(art.title)}</a><br><span style="color:#475569;font-size:14px">${escapeHtml(art.description)}</span></li>`,
+    )
+    .join('');
+  return `
+      <p style="font-size:15px;line-height:1.75;color:#334155;margin:0 0 8px">${escapeHtml(a.bio)}</p>
+      <p style="font-size:14px;margin:0 0 28px"><a href="${escapeHtml(a.url)}" rel="noopener noreferrer me" style="color:#3a86ff;text-decoration:none">LinkedIn</a> · <a href="mailto:${escapeHtml(a.email)}" style="color:#3a86ff;text-decoration:none">Email</a></p>
+      <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:0 0 12px">${theirs.length} article${theirs.length === 1 ? '' : 's'} by ${escapeHtml(a.name)}</h2>
+      <ul style="margin:0 0 8px;padding-left:20px;list-style:disc">${items}</ul>`;
+}
+
+function authorProfileLd(a) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    url: `${ORIGIN}/authors/${a.id}`,
+    mainEntity: {
+      '@type': 'Person',
+      name: a.name,
+      jobTitle: a.role,
+      description: a.bio,
+      url: `${ORIGIN}/authors/${a.id}`,
+      sameAs: a.sameAs,
+      worksFor: { '@type': 'Organization', name: 'Tekivex', url: ORIGIN },
+    },
+  };
 }
 
 // ─── Routes ────────────────────────────────────────────────────────────────
@@ -428,6 +462,15 @@ const routes = [
     body: t.description,
     contentHtml: toolDetailBlock(t),
     extraLd: toolFaqLd(t),
+  })),
+  ...Object.values(AUTHORS).map((a) => ({
+    path: `/authors/${a.id}`,
+    title: `${a.name} — ${a.role} | Tekivex`,
+    description: `${a.bio} Read every article by ${a.name} on Tekivex.`,
+    h1: a.name,
+    body: a.role,
+    contentHtml: authorProfileBlock(a),
+    extraLd: authorProfileLd(a),
   })),
   ...products.map((p) => ({
     path: `/product/${p.id}`,
@@ -641,7 +684,12 @@ function articleHtml(article, contentHtml) {
     image: `${ORIGIN}/og-tekivex.png`,
     inLanguage: 'en',
     keywords: (article.keywords || []).join(', '),
-    about: { '@type': 'SoftwareApplication', name: article.productName, applicationCategory: 'DeveloperApplication' },
+    // Only anchor `about` to a SoftwareApplication when the article's group is
+    // an actual product — standalone explainers (e.g. "Fundamentals") aren't
+    // about any software product.
+    ...(PRODUCTS.some((p) => p.name === article.productName)
+      ? { about: { '@type': 'SoftwareApplication', name: article.productName, applicationCategory: 'DeveloperApplication' } }
+      : {}),
     isPartOf: { '@type': 'CollectionPage', name: 'Tekivex Use Cases', url: `${ORIGIN}/use-cases` },
   };
   const breadcrumbLd = {
@@ -680,7 +728,7 @@ function articleHtml(article, contentHtml) {
           <p style="font-weight:700;color:#0a0f1f;margin:0">${escapeHtml(author.name)}</p>
           <p style="font-size:13px;color:#475569;margin:0 0 8px">${escapeHtml(author.role)}</p>
           <p style="font-size:14px;line-height:1.7;color:#334155;margin:0 0 8px">${escapeHtml(author.bio)}</p>
-          <p style="font-size:13px;margin:0"><a href="${escapeHtml(author.url)}" rel="noopener noreferrer author" style="color:#3a86ff;text-decoration:none">LinkedIn</a> · <a href="mailto:${escapeHtml(author.email)}" rel="author" style="color:#3a86ff;text-decoration:none">Email</a></p>
+          <p style="font-size:13px;margin:0"><a href="/authors/${escapeHtml(author.id)}" rel="author" style="color:#3a86ff;text-decoration:none">All articles by ${escapeHtml(author.name.split(' ')[0])}</a> · <a href="${escapeHtml(author.url)}" rel="noopener noreferrer author" style="color:#3a86ff;text-decoration:none">LinkedIn</a> · <a href="mailto:${escapeHtml(author.email)}" rel="author" style="color:#3a86ff;text-decoration:none">Email</a></p>
         </div>
       </aside>` : ''}
       <hr style="margin:44px 0 24px;border:none;border-top:1px solid #e6e8ef" />

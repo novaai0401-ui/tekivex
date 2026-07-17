@@ -22,6 +22,23 @@ It's especially handy for scans, ID cards, and receipts, where you want everythi
 
 If you later want to combine that PDF with others, use [Merge PDF](/tools/merge-pdf); to pull specific pages back out, try [Split PDF](/tools/split-pdf). For deeper document editing, there's [Pyntra](/product/pyntra).
 
+## Getting a scan-quality result from phone photos
+
+Since this tool is most often used to turn phone photos into document PDFs, a minute of prep makes the output look professional instead of improvised:
+
+- **Shoot straight-on, in even light.** Photograph the document flat on a table, camera parallel to the page, avoiding your own shadow. Harsh side light creates a gradient that makes text hard to read (and makes the file bigger, since shadows compress poorly).
+- **Crop before converting.** Crop each photo to just the document in your phone's photo editor — the desk, your thumb, and the background don't belong in the PDF. A tightly cropped page reads like a scan; an uncropped one reads like a photo of your kitchen table.
+- **Mind the resolution.** Modern phone photos are 12+ megapixels — far more than a document needs. That's harmless for quality, but a 10-photo PDF built from full-size images can reach tens of megabytes. If the result is too heavy to email, run it through [Compress PDF](/tools/compress-pdf) afterwards; document photos shrink dramatically.
+- **Fix sideways images first.** Rotate any landscape-scanned photos in your photo app before dropping them in (or rotate pages afterwards with [Rotate PDF](/tools/rotate-pdf)).
+
+One more thing worth knowing for sensitive documents: phone photos usually embed EXIF metadata — the time the photo was taken and often GPS coordinates. Conversion focuses on the image itself, but if metadata privacy matters for what you're sending, strip location data in your phone's share options first. Our [image formats guide](/use-cases/image-formats-explained) covers this and the HEIC situation in more depth.
+
+## Troubleshooting
+
+- **My files won't drop in at all.** They're probably HEIC (the iPhone default), WebP, or TIFF. Export or re-share them as JPG first — see the FAQ below for the quickest route.
+- **The PDF is enormous.** The source photos are full camera resolution. Either resize the images before converting or compress the finished PDF — for documents you'll barely see a difference at a fraction of the size.
+- **Pages come out in the wrong order.** Pages follow the on-screen image order, top to bottom. Reorder there and convert again; re-running costs nothing.
+
 ## Frequently asked questions
 
 ### How do I combine several photos into one PDF?

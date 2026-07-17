@@ -21,6 +21,15 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: '2026-07-17',
+    title: 'Fundamentals library & author profiles',
+    items: [
+      { tag: 'New', text: 'Published six standalone explainers useful to any reader: how PDF files work inside, why PDFs get large and how compression works, choosing between JPG/PNG/WebP/HEIC, why CSV files break, choosing the right chart type, and web accessibility fundamentals.' },
+      { tag: 'New', text: 'Added author profile pages — every byline now links to an on-site profile with the author\'s background and full list of articles.' },
+      { tag: 'Improved', text: 'Substantially expanded all six tool how-to guides with troubleshooting sections, real-world scenarios, and honest notes on what each operation does and doesn\'t change.' },
+    ],
+  },
+  {
     date: '2026-07-02',
     title: 'Free in-browser tools',
     items: [

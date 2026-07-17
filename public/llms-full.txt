@@ -39,6 +39,14 @@ URL: https://tekivex.com/product/dataflow
 
 ## Articles by product
 
+### Fundamentals
+- How PDF Files Work: A Look Inside the Format — PDFs are databases of drawing instructions, not pictures of pages. Understand objects, content streams, and incremental updates — and why copied text scrambles, "deleted" content survives, and merging is easy while editing is hard. (https://tekivex.com/use-cases/how-pdf-files-work)
+- Why Is My PDF So Large? What’s Inside and How Compression Works — Two PDFs of the same document can differ in size by 100×. Learn what actually takes up space — images, fonts, edit history — the arithmetic of scanned pages, and why compression sometimes shrinks a file 90% and sometimes does nothing. (https://tekivex.com/use-cases/what-makes-pdf-files-large)
+- JPG, PNG, WebP, HEIC: Which Image Format Should You Use? — Lossy vs lossless is the distinction that drives everything. A plain-language guide to the image formats you actually meet — what each is for, why iPhones save HEIC, when re-saving degrades photos, and a 30-second decision guide. (https://tekivex.com/use-cases/image-formats-explained)
+- Why CSV Files Break: Delimiters, Encodings, and Excel Quirks — There is no real CSV standard — just dialects that disagree on separators, quoting, and encodings. Learn why European CSVs use semicolons, why café becomes cafÃ©, how Excel silently destroys ZIP codes and IDs, and how to diagnose a broken file in two minutes. (https://tekivex.com/use-cases/why-csv-files-break)
+- How to Choose the Right Chart Type for Your Data — Most bad charts fail because the chart shape doesn’t match the question. A practical guide to the five question families — comparison, trend, part-to-whole, distribution, relationship — the chart each one deserves, and the mistakes that do the most damage. (https://tekivex.com/use-cases/choosing-the-right-chart-type)
+- Web Accessibility Fundamentals Every Developer Should Know — WCAG, POUR, and level AA demystified — plus the six habits that cover most real accessibility: native elements, keyboard support, labeled forms, sufficient contrast, meaningful alt text, and ARIA used as a last resort. With a testing pipeline that takes minutes, not weeks. (https://tekivex.com/use-cases/web-accessibility-fundamentals)
+
 ### Free Tools
 - How to Merge PDF Files for Free Without Uploading Them — A step-by-step guide to combining PDF files into one document entirely in your browser — no upload, no watermark, no account. Includes ordering, common pitfalls, and encrypted-PDF notes. (https://tekivex.com/use-cases/how-to-merge-pdf-free)
 - How to Split a PDF and Extract Pages in Your Browser — Extract a single page, a range, or any combination of pages from a PDF for free and privately. Learn the page-range syntax and how to avoid the mistakes that trip people up. (https://tekivex.com/use-cases/how-to-split-pdf-extract-pages)

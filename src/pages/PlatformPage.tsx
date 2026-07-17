@@ -200,8 +200,9 @@ function FeaturedGuides() {
       </h2>
       <p className="tx-section-sub">
         {total} in-depth, original articles written by the Tekivex Engineering team —
-        architecture deep dives, migration guides, and real-world use cases you can read
-        right here. No sign-up, no paywall.
+        plain-language explainers on file formats, data, and accessibility, plus
+        architecture deep dives and practical how-to guides you can read right here.
+        No sign-up, no paywall.
       </p>
 
       <div className="uc-hub-grid">

@@ -16,8 +16,9 @@ export function ContentHub() {
           Product guides, comparisons &amp; <span className="tx-gradient-text">deep dives</span>
         </h1>
         <p className="uc-hub-sub">
-          {total} in-depth articles on the Tekivex product suite — how each library works,
-          how to put it to work, and how it compares. Written by the Tekivex Engineering team.
+          {total} in-depth articles — standalone explainers on file formats, data, and
+          accessibility, practical how-to guides for the free tools, and deep dives on the
+          Tekivex product suite. Written by the Tekivex Engineering team.
         </p>
       </header>
 

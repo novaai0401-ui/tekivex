@@ -27,6 +27,13 @@ const AUTHOR_BY_SLUG: Record<string, string> = {
   'tekivex-ui-accessible-forms': 'seema-almas-shaikh',
   'tekivex-stack-how-products-fit': 'chandan-kumar',
   'tekivex-mit-open-source-model': 'chandan-kumar',
+  // Fundamentals — standalone educational explainers
+  'how-pdf-files-work': 'seema-almas-shaikh',
+  'image-formats-explained': 'seema-almas-shaikh',
+  'why-csv-files-break': 'chandan-kumar',
+  'choosing-the-right-chart-type': 'seema-almas-shaikh',
+  'what-makes-pdf-files-large': 'chandan-kumar',
+  'web-accessibility-fundamentals': 'seema-almas-shaikh',
   // Free-tools how-to guides
   'how-to-merge-pdf-free': 'seema-almas-shaikh',
   'how-to-split-pdf-extract-pages': 'seema-almas-shaikh',
@@ -57,13 +64,21 @@ const DATES: Record<string, { published: string; modified?: string }> = {
   'quantum-vault-post-quantum-tokens-explained':   { published: PUBLISHED, modified: MODIFIED },
   'quantum-vault-migrate-pqc-token-issuance':      { published: PUBLISHED, modified: MODIFIED },
   'quantum-vault-sovereign-token-verification':    { published: PUBLISHED, modified: MODIFIED },
-  // Free-tools how-to guides — shipped with the tools hub.
-  'how-to-merge-pdf-free':                         { published: '2026-07-02' },
-  'how-to-split-pdf-extract-pages':                { published: '2026-07-02' },
-  'how-to-convert-jpg-to-pdf':                     { published: '2026-07-02' },
-  'how-to-compress-pdf':                           { published: '2026-07-02' },
-  'how-to-make-chart-from-csv':                    { published: '2026-07-02' },
-  'why-browser-tools-keep-files-private':          { published: '2026-07-02' },
+  // Free-tools how-to guides — shipped with the tools hub, substantially
+  // expanded (troubleshooting, scenarios, honest trade-offs) on 2026-07-17.
+  'how-to-merge-pdf-free':                         { published: '2026-07-02', modified: '2026-07-17' },
+  'how-to-split-pdf-extract-pages':                { published: '2026-07-02', modified: '2026-07-17' },
+  'how-to-convert-jpg-to-pdf':                     { published: '2026-07-02', modified: '2026-07-17' },
+  'how-to-compress-pdf':                           { published: '2026-07-02', modified: '2026-07-17' },
+  'how-to-make-chart-from-csv':                    { published: '2026-07-02', modified: '2026-07-17' },
+  'why-browser-tools-keep-files-private':          { published: '2026-07-02', modified: '2026-07-17' },
+  // Fundamentals — standalone educational explainers.
+  'how-pdf-files-work':                            { published: '2026-07-17' },
+  'image-formats-explained':                       { published: '2026-07-17' },
+  'why-csv-files-break':                           { published: '2026-07-17' },
+  'choosing-the-right-chart-type':                 { published: '2026-07-17' },
+  'what-makes-pdf-files-large':                    { published: '2026-07-17' },
+  'web-accessibility-fundamentals':                { published: '2026-07-17' },
 };
 
 function article(
@@ -85,6 +100,75 @@ function article(
 }
 
 export const ARTICLES: Article[] = [
+  // ── Fundamentals — standalone educational explainers ──────────────────────
+  // Written to be useful to any reader, independent of Tekivex products. Each
+  // is anchored to the nearest product for breadcrumbs/related links only.
+  article({
+    slug: 'how-pdf-files-work',
+    title: 'How PDF Files Work: A Look Inside the Format',
+    description:
+      'PDFs are databases of drawing instructions, not pictures of pages. Understand objects, content streams, and incremental updates — and why copied text scrambles, "deleted" content survives, and merging is easy while editing is hard.',
+    productId: 'pyntra',
+    productName: 'Fundamentals',
+    kind: 'Explainer',
+    keywords: ['how pdf works', 'pdf file format explained', 'pdf internals', 'pdf structure', 'why pdf text extraction fails', 'pdf incremental updates'],
+    readingMinutes: 8,
+  }),
+  article({
+    slug: 'what-makes-pdf-files-large',
+    title: 'Why Is My PDF So Large? What’s Inside and How Compression Works',
+    description:
+      'Two PDFs of the same document can differ in size by 100×. Learn what actually takes up space — images, fonts, edit history — the arithmetic of scanned pages, and why compression sometimes shrinks a file 90% and sometimes does nothing.',
+    productId: 'pyntra',
+    productName: 'Fundamentals',
+    kind: 'Explainer',
+    keywords: ['why is my pdf so large', 'pdf compression explained', 'reduce pdf size', 'scanned pdf too big', 'pdf dpi downsampling', 'pdf fonts size'],
+    readingMinutes: 8,
+  }),
+  article({
+    slug: 'image-formats-explained',
+    title: 'JPG, PNG, WebP, HEIC: Which Image Format Should You Use?',
+    description:
+      'Lossy vs lossless is the distinction that drives everything. A plain-language guide to the image formats you actually meet — what each is for, why iPhones save HEIC, when re-saving degrades photos, and a 30-second decision guide.',
+    productId: 'pyntra',
+    productName: 'Fundamentals',
+    kind: 'Explainer',
+    keywords: ['jpg vs png', 'image formats explained', 'heic to jpg', 'webp format', 'lossy vs lossless', 'which image format to use', 'exif metadata privacy'],
+    readingMinutes: 7,
+  }),
+  article({
+    slug: 'why-csv-files-break',
+    title: 'Why CSV Files Break: Delimiters, Encodings, and Excel Quirks',
+    description:
+      'There is no real CSV standard — just dialects that disagree on separators, quoting, and encodings. Learn why European CSVs use semicolons, why café becomes cafÃ©, how Excel silently destroys ZIP codes and IDs, and how to diagnose a broken file in two minutes.',
+    productId: 'analytics-studio',
+    productName: 'Fundamentals',
+    kind: 'Explainer',
+    keywords: ['csv not opening correctly', 'csv semicolon vs comma', 'csv encoding utf-8', 'excel leading zeros csv', 'csv delimiter', 'excel scientific notation csv', 'rfc 4180'],
+    readingMinutes: 8,
+  }),
+  article({
+    slug: 'choosing-the-right-chart-type',
+    title: 'How to Choose the Right Chart Type for Your Data',
+    description:
+      'Most bad charts fail because the chart shape doesn’t match the question. A practical guide to the five question families — comparison, trend, part-to-whole, distribution, relationship — the chart each one deserves, and the mistakes that do the most damage.',
+    productId: 'analytics-studio',
+    productName: 'Fundamentals',
+    kind: 'Guide',
+    keywords: ['how to choose a chart type', 'bar vs line chart', 'when to use a pie chart', 'data visualization basics', 'histogram vs bar chart', 'chart mistakes'],
+    readingMinutes: 8,
+  }),
+  article({
+    slug: 'web-accessibility-fundamentals',
+    title: 'Web Accessibility Fundamentals Every Developer Should Know',
+    description:
+      'WCAG, POUR, and level AA demystified — plus the six habits that cover most real accessibility: native elements, keyboard support, labeled forms, sufficient contrast, meaningful alt text, and ARIA used as a last resort. With a testing pipeline that takes minutes, not weeks.',
+    productId: 'tekivex-ui',
+    productName: 'Fundamentals',
+    kind: 'Guide',
+    keywords: ['web accessibility basics', 'wcag 2.1 aa explained', 'keyboard navigation accessibility', 'aria best practices', 'color contrast requirements', 'accessible forms', 'screen reader testing'],
+    readingMinutes: 9,
+  }),
   // ── Free Tools — how-to guides for a consumer audience ─────────────────────
   article({
     slug: 'how-to-merge-pdf-free',

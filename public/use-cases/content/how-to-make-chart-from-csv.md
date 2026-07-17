@@ -27,6 +27,28 @@ Not sure your file's ready? There's a **Try sample data** button so you can see 
 
 If you need deeper analysis — filtering, pivoting, exploring larger datasets — take a look at [Analytics Studio](/product/analytics-studio). And if you're browsing our other free tools, the [tools hub](/tools) has the full set.
 
+## Getting your data into shape first
+
+Nine times out of ten, a chart that "comes out wrong" is really a data-shape problem. Charting tools — this one, Excel, all of them — want **tidy data**: one header row, then one row per item, with nothing else in the file. Before you chart, sweep for the usual suspects:
+
+- **Remove total and subtotal rows.** A "Total" row charts as just another category, towering over everything and flattening the real comparison.
+- **Un-merge and un-decorate.** Merged title cells, blank spacer rows, and notes below the data all confuse parsing. The file should start with headers on line one.
+- **Numbers must be plain numbers.** `$1,299` or `12%` may be read as text, not values. Strip currency symbols and thousands separators in your spreadsheet before exporting (formatting belongs on the chart, not in the data).
+- **Dates sort best in ISO format** (`2026-07-04`). Text months like "Jul" chart fine as labels but keep whatever order your rows are in — so sort rows the way you want them displayed.
+
+If the file itself is misbehaving — columns collapsing into one, accented characters garbled — that's a file-format issue rather than a charting one; [why CSV files break](/use-cases/why-csv-files-break) covers the fixes in depth.
+
+## Which chart type should you pick?
+
+The short version: **bar** to compare categories (sales by region), **line** to show change over time (revenue by month), **area** when the amount under the line matters, and **donut** only for a part-of-a-whole story with a handful of slices. Switching types is one click here, so try the same data both ways — the right chart is the one where the point becomes obvious without explanation. For the full reasoning (and the classic mistakes like truncated axes and ten-slice pies), see our guide to [choosing the right chart type](/use-cases/choosing-the-right-chart-type).
+
+## Troubleshooting
+
+- **Everything landed in one column.** Your file is semicolon- or tab-separated. Re-export as comma-separated, or paste the data instead — see the delimiter note below.
+- **A numeric column isn't offered as a series.** Something non-numeric is in it — a currency symbol, a "N/A", a stray note. Clean the column and re-drop the file.
+- **The chart order looks scrambled.** Rows chart in file order. Sort your rows in the spreadsheet (by date, or by value for a ranked bar chart) before exporting.
+- **Accents look like `Ã©`.** An encoding mismatch from the export. Re-save the CSV as UTF-8.
+
 ## Frequently asked questions
 
 ### What does my CSV need to look like?

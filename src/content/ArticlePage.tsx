@@ -70,7 +70,9 @@ export function ArticlePage({ slug }: { slug: string }) {
       <p className="uc-article-lead">{article.description}</p>
 
       <div className="uc-article-meta">
-        <span className="uc-byline">By {article.author}</span>
+        <span className="uc-byline">
+          By <Link to={`/authors/${article.authorId}`} rel="author">{article.author}</Link>
+        </span>
         <span className="uc-meta-sep">·</span>
         <time dateTime={article.datePublished}>{formatDate(article.datePublished)}</time>
         <span className="uc-meta-sep">·</span>
@@ -99,10 +101,14 @@ export function ArticlePage({ slug }: { slug: string }) {
           </div>
           <div className="uc-author-meta">
             <span className="uc-author-label">Written by</span>
-            <strong className="uc-author-name">{author.name}</strong>
+            <strong className="uc-author-name">
+              <Link to={`/authors/${author.id}`} rel="author">{author.name}</Link>
+            </strong>
             <span className="uc-author-role">{author.role}</span>
             <p className="uc-author-bio">{author.bio}</p>
             <span className="uc-author-links">
+              <Link to={`/authors/${author.id}`}>All articles by {author.name.split(' ')[0]}</Link>
+              <span className="uc-meta-sep">·</span>
               <a href={author.url} target="_blank" rel="noopener noreferrer author">LinkedIn</a>
               <span className="uc-meta-sep">·</span>
               <a href={`mailto:${author.email}`} rel="author">Email</a>

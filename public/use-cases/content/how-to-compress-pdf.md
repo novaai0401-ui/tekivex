@@ -24,6 +24,27 @@ Here's the honest part. To shrink your file, Compress PDF re-renders each page a
 
 For documents where keeping searchable text matters, or for more control over your files, [Pyntra](/product/pyntra) is our fuller editor. And if the file is large because it simply has many pages you don't all need, [Split PDF](/tools/split-pdf) may solve the problem instead.
 
+## What kind of result to expect, by document type
+
+Compression outcomes are predictable once you know what's inside the file (the full story is in [why PDFs get so large](/use-cases/what-makes-pdf-files-large)):
+
+- **Scanned documents** — the best case. A phone- or office-scanner PDF is one large photograph per page, and photographs have lots of room to optimise. Reductions of 60–90% are normal.
+- **Slide decks and image-heavy reports** — very good. Expect 40–80% depending on how oversized the embedded images are.
+- **Digital text documents** (exported from Word, Google Docs, LaTeX) — modest to none. Text is already tiny; there's little to squeeze. These files are usually small to begin with, so they rarely need compressing at all.
+- **Already-compressed files** — near zero. If someone has run the file through an optimiser already, a second pass can't find savings that no longer exist. The tool will tell you rather than hand you a file that's mysteriously the same size.
+
+## Before you compress: three checks that might solve it better
+
+1. **Is the file big because of pages you don't need?** Extracting just the relevant pages with [Split PDF](/tools/split-pdf) keeps full quality *and* selectable text — often a better answer than squeezing all 60 pages.
+2. **Do you need the text to stay searchable?** This tool's method trades selectable text for size (details below). If the recipient must be able to search or copy the text — court filings, anything going into a document-management system — compress a *copy* for sending and keep your original, or reduce size at the source instead (re-export from the original program with smaller image settings).
+3. **Is it going to be printed?** Screen-friendly compression can look visibly soft on paper. For print, stay on **High**, or don't compress at all.
+
+## Troubleshooting
+
+- **"Couldn't make it smaller."** The file is already efficient — usually a text-based or previously optimised PDF. Try removing unneeded pages instead.
+- **The output looks blurry.** Step the quality level back toward High and re-run from your *original* file — never compress an already-compressed copy, since quality losses stack while savings don't.
+- **It still doesn't fit the upload limit.** Combine strategies: extract only the required pages, then compress those. If a portal has a hard 2 MB cap and the document genuinely can't fit, split it and upload in parts at full quality.
+
 ## Frequently asked questions
 
 ### How much smaller will my PDF get?
@@ -37,6 +58,10 @@ Because compression works by turning each page into an optimised image. That ima
 ### Which quality setting should I choose?
 
 Start with **Balanced**. If you need the file even smaller and can accept some visible quality loss, use **Strong**. If the pages need to stay crisp, choose **High**. You can re-run with a different level anytime.
+
+### Is compressing a signed or legal document safe?
+
+Be careful here. Compression rewrites the file, which **invalidates digital signatures** and changes the bytes of a document you may need to preserve exactly. Keep signed originals untouched and compress only copies meant for convenience sharing.
 
 ### Is my PDF uploaded to a server?
 

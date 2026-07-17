@@ -21,6 +21,8 @@ import { getProduct } from './platform/registry';
 import { ContentHub } from './content/ContentHub';
 import { ArticlePage } from './content/ArticlePage';
 import { getArticle } from './content/registry';
+import { getAuthor } from './content/authors';
+import { AuthorPage } from './pages/AuthorPage';
 import { ToolsHub } from './tools/ToolsHub';
 import { ToolPage } from './tools/ToolPage';
 import { getTool } from './tools/registry';
@@ -46,6 +48,10 @@ function isKnownRoute(route: string): boolean {
   if (route.startsWith('/tools/')) {
     const slug = route.slice('/tools/'.length).split('/')[0];
     return !!slug && !!getTool(slug);
+  }
+  if (route.startsWith('/authors/')) {
+    const id = route.slice('/authors/'.length).split('/')[0];
+    return !!id && !!getAuthor(id);
   }
   return false;
 }
@@ -156,6 +162,9 @@ export function App() {
   } else if (route.startsWith('/use-cases/')) {
     const slug = route.slice('/use-cases/'.length).split('/')[0];
     page = <ArticlePage slug={slug ?? ''} />;
+  } else if (route.startsWith('/authors/')) {
+    const id = route.slice('/authors/'.length).split('/')[0];
+    page = <AuthorPage authorId={id ?? ''} />;
   } else if (route.startsWith('/product/')) {
     const productId = route.slice('/product/'.length).split('/')[0];
     page = <ProductHomePage productId={productId ?? ''} />;

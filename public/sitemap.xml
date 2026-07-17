@@ -4,224 +4,280 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://tekivex.com/</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/"/>
   </url>
   <url>
     <loc>https://tekivex.com/products</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/products"/>
   </url>
   <url>
     <loc>https://tekivex.com/about</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/about"/>
   </url>
   <url>
     <loc>https://tekivex.com/privacy-policy</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/privacy-policy"/>
   </url>
   <url>
     <loc>https://tekivex.com/terms-of-service</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/terms-of-service"/>
   </url>
   <url>
     <loc>https://tekivex.com/cookie-policy</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/cookie-policy"/>
   </url>
   <url>
     <loc>https://tekivex.com/disclaimer</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/disclaimer"/>
   </url>
   <url>
     <loc>https://tekivex.com/contact</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/contact"/>
   </url>
   <url>
     <loc>https://tekivex.com/faq</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/faq"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases"/>
   </url>
   <url>
     <loc>https://tekivex.com/changelog</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/changelog"/>
   </url>
   <url>
     <loc>https://tekivex.com/tools</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tools"/>
   </url>
   <url>
     <loc>https://tekivex.com/tools/merge-pdf</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tools/merge-pdf"/>
   </url>
   <url>
     <loc>https://tekivex.com/tools/split-pdf</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tools/split-pdf"/>
   </url>
   <url>
     <loc>https://tekivex.com/tools/jpg-to-pdf</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tools/jpg-to-pdf"/>
   </url>
   <url>
     <loc>https://tekivex.com/tools/compress-pdf</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tools/compress-pdf"/>
   </url>
   <url>
     <loc>https://tekivex.com/tools/pdf-to-jpg</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tools/pdf-to-jpg"/>
   </url>
   <url>
     <loc>https://tekivex.com/tools/rotate-pdf</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tools/rotate-pdf"/>
   </url>
   <url>
     <loc>https://tekivex.com/tools/remove-pages-pdf</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tools/remove-pages-pdf"/>
   </url>
   <url>
     <loc>https://tekivex.com/tools/csv-to-chart</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/tools/csv-to-chart"/>
   </url>
   <url>
+    <loc>https://tekivex.com/authors/chandan-kumar</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/authors/chandan-kumar"/>
+  </url>
+  <url>
+    <loc>https://tekivex.com/authors/seema-almas-shaikh</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/authors/seema-almas-shaikh"/>
+  </url>
+  <url>
     <loc>https://tekivex.com/product/gridstorm</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/gridstorm"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/tekivex-ui</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/tekivex-ui"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/quantum-vault</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/quantum-vault"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/pyntra</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/pyntra"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/analytics-studio</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/analytics-studio"/>
   </url>
   <url>
     <loc>https://tekivex.com/product/dataflow</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/product/dataflow"/>
   </url>
   <url>
+    <loc>https://tekivex.com/use-cases/how-pdf-files-work</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/how-pdf-files-work"/>
+  </url>
+  <url>
+    <loc>https://tekivex.com/use-cases/what-makes-pdf-files-large</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/what-makes-pdf-files-large"/>
+  </url>
+  <url>
+    <loc>https://tekivex.com/use-cases/image-formats-explained</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/image-formats-explained"/>
+  </url>
+  <url>
+    <loc>https://tekivex.com/use-cases/why-csv-files-break</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/why-csv-files-break"/>
+  </url>
+  <url>
+    <loc>https://tekivex.com/use-cases/choosing-the-right-chart-type</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/choosing-the-right-chart-type"/>
+  </url>
+  <url>
+    <loc>https://tekivex.com/use-cases/web-accessibility-fundamentals</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/web-accessibility-fundamentals"/>
+  </url>
+  <url>
     <loc>https://tekivex.com/use-cases/how-to-merge-pdf-free</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/how-to-merge-pdf-free"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/how-to-split-pdf-extract-pages</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/how-to-split-pdf-extract-pages"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/how-to-convert-jpg-to-pdf</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/how-to-convert-jpg-to-pdf"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/how-to-compress-pdf</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/how-to-compress-pdf"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/how-to-make-chart-from-csv</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/how-to-make-chart-from-csv"/>
   </url>
   <url>
     <loc>https://tekivex.com/use-cases/why-browser-tools-keep-files-private</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tekivex.com/use-cases/why-browser-tools-keep-files-private"/>
@@ -326,7 +382,7 @@
   </url>
   <url>
     <loc>https://ui.tekivex.com/</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
