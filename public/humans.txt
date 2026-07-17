@@ -9,9 +9,9 @@
   DataFlow         — real-time streaming engine
   Quantum Vault    — sovereign post-quantum tokens
   Pyntra           — browser-native PDF editor with headless React hooks
-  TekiVex UI       — React component library (113 components)
+  TekiVex UI       — accessible React/Vue/Svelte component library
 
 /* SITE */
-  Last update: 2026-06-18
-  Standards: HTML5, CSS3, ES2022, WCAG 2.1 AAA
+  Last update: 2026-06-25
+  Standards: HTML5, CSS3, ES2022, WCAG 2.1 AA
   License: MIT

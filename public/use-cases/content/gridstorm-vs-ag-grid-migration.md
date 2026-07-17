@@ -113,3 +113,7 @@ For deeper background on the plugin model you are adopting, see the [plugin arch
 - **Run both** during transition: GridStorm's headless core lets you migrate one screen at a time rather than in a single big-bang cutover.
 
 Migrations are never free, and a working grid has real value. But for teams whose constraints have shifted — toward cost predictability, smaller bundles, accessibility, or full ownership of the code — GridStorm offers a credible path. Try your hardest screen against the [live demo](https://gridstorm.tekivex.com) first, then browse the full set of [use cases](/use-cases) to gauge how it handles the workloads you care about before committing to the move.
+
+---
+
+*AG Grid is a trademark of its respective owner. Tekivex is not affiliated with, endorsed by, or sponsored by it. Comparisons reflect our understanding at the time of writing; verify current capabilities against the vendor's official documentation.*

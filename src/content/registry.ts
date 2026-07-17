@@ -100,19 +100,8 @@ export const ARTICLES: Article[] = [
     productId: 'pyntra',
     productName: 'Pyntra',
     kind: 'Architecture',
-    keywords: ['client-side PDF editor', 'browser PDF editing', 'Pyntra', 'no server PDF', 'private PDF editor'],
-    readingMinutes: 9,
-  }),
-  article({
-    slug: 'pyntra-fill-sign-pdf-browser',
-    title: 'Filling and Signing PDFs in the Browser with Pyntra (AES-256)',
-    description:
-      'A walkthrough of PDF form filling, signature capture, stamping, and AES-256 encryption with Pyntra’s headless React hooks.',
-    productId: 'pyntra',
-    productName: 'Pyntra',
-    kind: 'Use Case',
-    keywords: ['fill PDF form browser', 'sign PDF react', 'PDF signature', 'AES-256 PDF', 'Pyntra form filling'],
-    readingMinutes: 9,
+    keywords: ['client-side PDF editor', 'browser PDF editing', 'Pyntra', 'no server PDF', 'private PDF editor', 'fill PDF form browser', 'sign PDF react', 'AES-256 PDF'],
+    readingMinutes: 12,
   }),
   article({
     slug: 'pyntra-vs-pdfjs-puppeteer',
@@ -192,8 +181,8 @@ export const ARTICLES: Article[] = [
     productId: 'quantum-vault',
     productName: 'Quantum Vault',
     kind: 'Explainer',
-    keywords: ['post-quantum cryptography', 'CRYSTALS-Kyber', 'Dilithium', 'Q-Day', 'Quantum Vault', 'NIST PQC'],
-    readingMinutes: 10,
+    keywords: ['post-quantum cryptography', 'CRYSTALS-Kyber', 'Dilithium', 'Q-Day', 'Quantum Vault', 'NIST PQC', 'FIPS 203', 'FIPS 204', 'ML-KEM', 'ML-DSA'],
+    readingMinutes: 13,
   }),
   article({
     slug: 'quantum-vault-migrate-pqc-token-issuance',
@@ -215,17 +204,6 @@ export const ARTICLES: Article[] = [
     productName: 'Quantum Vault',
     kind: 'Use Case',
     keywords: ['sovereign identity', 'self-hosted tokens', 'no third party trust', 'Quantum Vault', 'token verification'],
-    readingMinutes: 9,
-  }),
-  article({
-    slug: 'quantum-vault-why-nist-pqc-matters',
-    title: 'Why NIST-Standardized PQC Matters (and What FIPS 203/204 Mean)',
-    description:
-      'NIST standardized the first post-quantum algorithms in 2024. Here is what FIPS 203 (ML-KEM) and FIPS 204 (ML-DSA) mean and why Quantum Vault builds on them.',
-    productId: 'quantum-vault',
-    productName: 'Quantum Vault',
-    kind: 'Explainer',
-    keywords: ['NIST PQC', 'FIPS 203', 'FIPS 204', 'ML-KEM', 'ML-DSA', 'post-quantum standards'],
     readingMinutes: 9,
   }),
 
@@ -284,19 +262,8 @@ export const ARTICLES: Article[] = [
     productId: 'tekivex-ui',
     productName: 'Tekivex UI',
     kind: 'Architecture',
-    keywords: ['headless components', 'design system', 'tree-shakeable UI', 'Tekivex UI', 'zero dependency components'],
-    readingMinutes: 9,
-  }),
-  article({
-    slug: 'tekivex-ui-theming-css-variables',
-    title: 'Theming with CSS Custom Properties in Tekivex UI',
-    description:
-      'Build dark, light, and high-contrast themes with Tekivex UI using CSS custom properties — no theme provider re-renders, no runtime cost.',
-    productId: 'tekivex-ui',
-    productName: 'Tekivex UI',
-    kind: 'Feature Deep-Dive',
-    keywords: ['CSS custom properties theming', 'dark mode components', 'design tokens', 'Tekivex UI theming', 'high contrast theme'],
-    readingMinutes: 9,
+    keywords: ['headless components', 'design system', 'tree-shakeable UI', 'Tekivex UI', 'zero dependency components', 'CSS custom properties theming', 'design tokens', 'high contrast theme'],
+    readingMinutes: 13,
   }),
   article({
     slug: 'tekivex-ui-accessible-forms',

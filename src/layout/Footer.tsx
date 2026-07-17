@@ -99,7 +99,6 @@ export function Footer() {
         </div>
         <div className="hub-footer-badges">
           <span className="hub-footer-badge">6 products</span>
-          <span className="hub-footer-badge">57 packages</span>
           <span className="hub-footer-badge">TypeScript-native</span>
           <span className="hub-footer-badge">MIT License</span>
         </div>

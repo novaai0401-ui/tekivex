@@ -58,8 +58,8 @@ Two of these deserve emphasis. First, **license audits**: with MIT there is noth
 You can also simply read the code. When a grid misbehaves at the edge of what virtual scrolling supports, or a PDF renders a font oddly, you open the source — all of it — and you can patch and vendor a fix without waiting on a vendor's roadmap.
 
 ```bash
-# Adopt a package the ordinary way
-npm install @tekivex/gridstorm tekivex-ui
+# Adopt a published package the ordinary way
+npm install tekivex-ui
 
 # Or vendor and patch it yourself — MIT lets you
 git clone https://github.com/tekivex/gridstorm

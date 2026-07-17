@@ -3,6 +3,8 @@ import { usePlatform } from '../platform/PlatformProvider';
 import { Icon } from '../icons/Icon';
 import type { ProductManifest, ProductStatus, ProductTier } from '../platform/types';
 import { BrandFaq } from '../layout/BrandFaq';
+import { Link } from '../App';
+import { getAllArticles } from '../content/registry';
 
 const STATUS_CONFIG: Record<ProductStatus, { label: string; color: string; bg: string }> = {
   ga:            { label: 'GA',          color: '#4ade80', bg: 'rgba(74,222,128,0.14)' },
@@ -180,6 +182,51 @@ function HeroStack({ products }: { products: ProductManifest[] }) {
   );
 }
 
+// ── Featured guides (content-first) ───────────────────────────────────
+// The homepage leads with original, first-party editorial content — the
+// substantial material that makes tekivex.com a content destination in its
+// own right, not a launcher that only links out to product subdomains.
+
+function FeaturedGuides() {
+  const articles = getAllArticles();
+  const total = articles.length;
+  const featured = articles.slice(0, 6);
+
+  return (
+    <section className="tx-section" id="tx-guides">
+      <div className="tx-section-label">Guides &amp; deep dives</div>
+      <h2 className="tx-section-title">
+        Learn from our <span className="tx-gradient-text">engineering articles</span>
+      </h2>
+      <p className="tx-section-sub">
+        {total} in-depth, original articles written by the Tekivex Engineering team —
+        architecture deep dives, migration guides, and real-world use cases you can read
+        right here. No sign-up, no paywall.
+      </p>
+
+      <div className="uc-hub-grid">
+        {featured.map((a) => (
+          <Link key={a.slug} to={`/use-cases/${a.slug}`} className="uc-hub-card">
+            <span className="uc-kind-pill uc-kind-pill--sm">{a.kind}</span>
+            <h3 className="uc-hub-card-title">{a.title}</h3>
+            <p className="uc-hub-card-desc">{a.description}</p>
+            <span className="uc-hub-card-foot">
+              {a.readingMinutes} min read
+              <span className="uc-hub-card-arrow" aria-hidden="true">→</span>
+            </span>
+          </Link>
+        ))}
+      </div>
+
+      <div className="tx-hero-ctas" style={{ marginTop: 32, justifyContent: 'center' }}>
+        <Link to="/use-cases" className="tx-cta-btn">
+          Browse all {total} guides →
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 // ── Platform Page ─────────────────────────────────────────────────────
 
 export function PlatformPage() {
@@ -243,6 +290,12 @@ export function PlatformPage() {
           <div className="tx-hero-ctas">
             <button
               className="tx-cta-btn"
+              onClick={() => document.getElementById('tx-guides')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Read the Guides
+            </button>
+            <button
+              className="tx-btn-demo"
               onClick={() => document.getElementById('tx-products')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Explore Products
@@ -262,6 +315,9 @@ export function PlatformPage() {
           </div>
         ))}
       </div>
+
+      {/* ── Featured guides (content-first) ── */}
+      <FeaturedGuides />
 
       {/* ── Showcase (animated promo) ── */}
       <section className="tx-section" id="tx-showcase">

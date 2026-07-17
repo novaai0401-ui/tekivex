@@ -30,15 +30,181 @@ if (!existsSync(join(DIST, 'index.html'))) {
 
 const baseHtml = readFileSync(join(DIST, 'index.html'), 'utf8');
 
+// ─── Shared tmp dir for compiling TS modules we read at build time ───────────
+const TMP_DIR = join(DIST, '.prerender-tmp');
+if (!existsSync(TMP_DIR)) mkdirSync(TMP_DIR, { recursive: true });
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// ─── Load the real product manifests (single source of truth) ───────────────
+// We bundle the platform registry with esbuild so the prerendered HTML carries
+// the exact same product copy — descriptions, stats, capabilities, tags — that
+// the React app renders. This keeps crawlers (and the AdSense reviewer) from
+// seeing a near-empty shell.
+async function loadProducts() {
+  const entry = join(ROOT, 'src', 'platform', 'registry.ts');
+  const outPath = join(TMP_DIR, 'registry.platform.mjs');
+  esbuild.buildSync({
+    entryPoints: [entry],
+    bundle: true,
+    format: 'esm',
+    platform: 'node',
+    target: 'esnext',
+    outfile: outPath,
+    logLevel: 'silent',
+  });
+  const mod = await import(pathToFileURL(outPath).href);
+  return mod.getAllProducts();
+}
+
+const PRODUCTS = await loadProducts();
+
+// Long-form editorial content (overview / how it works / use cases /
+// limitations / FAQ) — bundled the same way so the prerendered product pages
+// carry genuine on-page content instead of only linking out to a demo.
+async function loadEditorial() {
+  const entry = join(ROOT, 'src', 'platform', 'productEditorial.ts');
+  const outPath = join(TMP_DIR, 'editorial.mjs');
+  esbuild.buildSync({
+    entryPoints: [entry],
+    bundle: true,
+    format: 'esm',
+    platform: 'node',
+    target: 'esnext',
+    outfile: outPath,
+    logLevel: 'silent',
+  });
+  const mod = await import(pathToFileURL(outPath).href);
+  return mod.PRODUCT_EDITORIAL;
+}
+
+const EDITORIAL = await loadEditorial();
+
+function productEditorialBlock(id, name) {
+  const e = EDITORIAL[id];
+  if (!e) return '';
+  const overview = e.overview.map((p) => `<p style="margin:0 0 14px;line-height:1.78">${escapeHtml(p)}</p>`).join('');
+  const steps = e.howItWorks
+    .map((s) => `<li style="margin-bottom:10px;line-height:1.7"><strong>${escapeHtml(s.title)}.</strong> ${escapeHtml(s.body)}</li>`)
+    .join('');
+  const useCases = e.useCases.map((u) => `<li style="margin-bottom:6px;line-height:1.7">${escapeHtml(u)}</li>`).join('');
+  const limits = e.limitations.map((l) => `<li style="margin-bottom:6px;line-height:1.7">${escapeHtml(l)}</li>`).join('');
+  const faqs = e.faqs
+    .map(
+      (f) =>
+        `<div style="margin-bottom:16px"><p style="font-weight:700;color:#0a0f1f;margin:0 0 4px">${escapeHtml(f.q)}</p><p style="margin:0;line-height:1.7;color:#334155">${escapeHtml(f.a)}</p></div>`,
+    )
+    .join('');
+  return `
+      <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:40px 0 12px">What is ${escapeHtml(name)}?</h2>
+      <div style="color:#334155;font-size:16px">${overview}</div>
+      <h3 style="font-size:1.15rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">How it works</h3>
+      <ol style="margin:0 0 8px;padding-left:22px;color:#334155">${steps}</ol>
+      <h3 style="font-size:1.15rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">When to use ${escapeHtml(name)}</h3>
+      <ul style="margin:0 0 8px;padding-left:22px;color:#334155">${useCases}</ul>
+      <h3 style="font-size:1.15rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">Limitations &amp; honest trade-offs</h3>
+      <ul style="margin:0 0 8px;padding-left:22px;color:#334155">${limits}</ul>
+      <h3 style="font-size:1.15rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">Frequently asked questions</h3>
+      <div>${faqs}</div>`;
+}
+
+function productFaqLd(id) {
+  const e = EDITORIAL[id];
+  if (!e || !e.faqs.length) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: e.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
+}
+
+const STATUS_LABEL = {
+  ga: 'Generally Available',
+  beta: 'Beta',
+  preview: 'Preview',
+  'coming-soon': 'Coming Soon',
+};
+
+// Full, crawlable detail block for a single product page.
+function productDetailBlock(p) {
+  const stats = (p.stats || [])
+    .map(
+      (s) =>
+        `<div style="flex:1;min-width:120px;text-align:center;padding:16px;background:#f8fafc;border:1px solid #e6e8ef;border-radius:10px"><div style="font-size:1.6rem;font-weight:800;color:#0a0f1f">${escapeHtml(s.value)}</div><div style="font-size:13px;color:#64748b">${escapeHtml(s.label)}</div></div>`,
+    )
+    .join('');
+  const features = (p.keyFeatures || [])
+    .map((f) => `<li style="margin-bottom:8px">${escapeHtml(f)}</li>`)
+    .join('');
+  const links = (p.quickLinks || [])
+    .map(
+      (l) =>
+        `<li style="margin-bottom:6px"><a href="${escapeHtml(l.path)}" style="color:#3a86ff;text-decoration:none"${l.external ? ' rel="noopener noreferrer"' : ''}>${escapeHtml(l.label)}</a></li>`,
+    )
+    .join('');
+  const tags = (p.tags || [])
+    .map(
+      (t) =>
+        `<span style="display:inline-block;font-size:12px;color:#475569;background:#eef2f7;border:1px solid #e6e8ef;border-radius:999px;padding:4px 12px;margin:0 6px 6px 0">${escapeHtml(t)}</span>`,
+    )
+    .join('');
+  return `
+      <p style="font-size:13px;color:#64748b;margin:0 0 6px"><strong>${escapeHtml(STATUS_LABEL[p.status] || p.status)}</strong> · v${escapeHtml(p.version)} · MIT licensed</p>
+      <p style="font-size:18px;line-height:1.6;color:#3a3a52;margin:0 0 16px">${escapeHtml(p.tagline)}</p>
+      <p style="font-size:16px;line-height:1.78;color:#1f2937;margin:0 0 28px">${escapeHtml(p.description)}</p>
+      ${stats ? `<div style="display:flex;flex-wrap:wrap;gap:12px;margin:0 0 32px">${stats}</div>` : ''}
+      <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:0 0 12px">Key capabilities</h2>
+      <ul style="margin:0 0 32px;padding-left:20px;color:#1f2937;line-height:1.7">${features}</ul>
+      ${links ? `<h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:0 0 12px">Resources &amp; quick links</h2><ul style="margin:0 0 32px;padding-left:20px">${links}</ul>` : ''}
+      ${tags ? `<div style="margin:0 0 8px">${tags}</div>` : ''}`;
+}
+
+// Compact, crawlable card for catalogue/home pages.
+function productCardBlock(p) {
+  const features = (p.keyFeatures || [])
+    .slice(0, 4)
+    .map((f) => `<li style="margin-bottom:4px">${escapeHtml(f)}</li>`)
+    .join('');
+  return `
+      <section style="border:1px solid #e6e8ef;border-radius:12px;padding:24px;margin:0 0 20px">
+        <h2 style="font-size:1.4rem;font-weight:800;color:#0a0f1f;margin:0 0 4px"><a href="${escapeHtml(p.homePath)}" style="color:#0a0f1f;text-decoration:none">${escapeHtml(p.name)}</a> <span style="font-size:12px;font-weight:600;color:#64748b">${escapeHtml(STATUS_LABEL[p.status] || p.status)}</span></h2>
+        <p style="font-size:15px;color:#475569;margin:0 0 8px">${escapeHtml(p.tagline)}</p>
+        <p style="font-size:15px;line-height:1.7;color:#1f2937;margin:0 0 12px">${escapeHtml(p.description)}</p>
+        <ul style="margin:0 0 12px;padding-left:20px;color:#334155;line-height:1.6;font-size:14px">${features}</ul>
+        <a href="${escapeHtml(p.homePath)}" style="color:#3a86ff;text-decoration:none;font-weight:600">Explore ${escapeHtml(p.name)} →</a>
+      </section>`;
+}
+
+const productCatalogBlock = PRODUCTS.map(productCardBlock).join('');
+
+// ─── Load articles early so the home page can lead with content ──────────────
+// (loadArticles is a hoisted function declaration defined further below.)
+const ARTICLES = await loadArticles();
+
+// A crawlable "Featured guides" block — original first-party editorial content
+// shown above the product catalog so the homepage reads as a content
+// destination, not a launcher.
+function featuredGuidesBlock(limit) {
+  const items = ARTICLES.slice(0, limit)
+    .map(
+      (a) =>
+        `<li style="margin-bottom:12px"><a href="/use-cases/${escapeHtml(a.slug)}" style="color:#3a86ff;text-decoration:none;font-weight:600">${escapeHtml(a.title)}</a> <span style="color:#94a3b8;font-size:13px">· ${escapeHtml(a.readingMinutes + ' min read')}</span><br><span style="color:#475569;font-size:14px">${escapeHtml(a.description)}</span></li>`,
+    )
+    .join('');
+  return `
+      <h2 style="font-size:1.5rem;font-weight:800;color:#0a0f1f;margin:32px 0 8px">Guides &amp; engineering deep dives</h2>
+      <p style="color:#475569;font-size:15px;margin:0 0 16px">${ARTICLES.length} in-depth, original articles by the Tekivex Engineering team — architecture, migration guides, and real-world use cases, free to read. <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Browse all guides →</a></p>
+      <ul style="margin:0 0 8px;padding-left:20px;list-style:disc">${items}</ul>`;
+}
+
 // ─── Routes ────────────────────────────────────────────────────────────────
-const products = [
-  { id: 'gridstorm',        name: 'GridStorm',        tagline: 'High-performance React data grid with 35+ plugins. MIT-licensed, free forever.' },
-  { id: 'pyntra',           name: 'Pyntra',           tagline: 'Client-side PDF editor with React headless hooks — form filling, annotation, signing, AES-256.' },
-  { id: 'analytics-studio', name: 'Analytics Studio', tagline: 'Drag-and-drop business intelligence with 26+ chart types and live data binding.' },
-  { id: 'quantum-vault',    name: 'Quantum Vault',    tagline: 'Sovereign post-quantum tokens — CRYSTALS-Kyber + Dilithium, NIST-standardised.' },
-  { id: 'dataflow',         name: 'DataFlow',         tagline: 'Real-time streaming engine for React with backpressure and replay.' },
-  { id: 'tekivex-ui',       name: 'TekiVex UI',       tagline: 'Open-source React component library — 113 production-grade components, WCAG 2.1 AAA.' },
-];
+const products = PRODUCTS.map((p) => ({ id: p.id, name: p.name, tagline: p.tagline, manifest: p }));
 
 const routes = [
   {
@@ -49,6 +215,7 @@ const routes = [
     h1: 'Tekivex — open-source enterprise developer tools',
     body:
       'Tekivex groups several React-focused open-source products under one roof: GridStorm, Analytics Studio, DataFlow, Quantum Vault, and TekiVex UI. Every package is MIT-licensed, fully typed in TypeScript, and free for commercial use.',
+    contentHtml: `${featuredGuidesBlock(8)}<h2 style="font-size:1.5rem;font-weight:800;color:#0a0f1f;margin:40px 0 16px">The Tekivex product suite</h2>${productCatalogBlock}`,
   },
   {
     path: '/products',
@@ -58,6 +225,7 @@ const routes = [
     h1: 'Tekivex products',
     body:
       'A unified catalog of every Tekivex product — data grid, charts, streaming, PDF, components. All open source under the MIT license, all production-tested.',
+    contentHtml: productCatalogBlock,
   },
   {
     path: '/about',
@@ -75,7 +243,13 @@ const routes = [
       'How Tekivex collects, uses, and protects information about visitors to tekivex.com and users of the open-source Tekivex products.',
     h1: 'Privacy Policy',
     body:
-      'How Tekivex handles information about visitors to tekivex.com. Plain language, no dark patterns, only the third-party analytics needed to operate the site.',
+      'How Tekivex handles information about visitors to tekivex.com. Plain language, no dark patterns, only the third-party analytics and advertising needed to operate the site.',
+    contentHtml: `
+      <h2 style="font-size:1.25rem;font-weight:800;color:#0a0f1f;margin:32px 0 10px">Cookies, analytics &amp; advertising</h2>
+      <p style="line-height:1.78;margin:0 0 14px">tekivex.com uses cookies for essential functionality, analytics (Google Analytics 4), and advertising (Google AdSense, publisher ID ca-pub-4630229006617891). Google Analytics and Google AdSense are loaded only after you accept on the consent banner; if you reject non-essential cookies, no analytics or advertising cookies are placed on your device.</p>
+      <h3 style="font-size:1.05rem;font-weight:800;color:#0a0f1f;margin:24px 0 10px">Advertising (Google AdSense)</h3>
+      <p style="line-height:1.78;margin:0 0 14px">Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites. Learn how Google uses data when you use our partners' sites or apps at <a href="https://policies.google.com/technologies/partner-sites" rel="noopener noreferrer">policies.google.com/technologies/partner-sites</a>. You may opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" rel="noopener noreferrer">Google Ads Settings</a>, or opt out of a third-party vendor's use of cookies for personalised advertising at <a href="https://optout.aboutads.info/" rel="noopener noreferrer">aboutads.info</a> and <a href="https://www.youronlinechoices.com/" rel="noopener noreferrer">youronlinechoices.com</a>.</p>
+      <p style="line-height:1.78;margin:0 0 14px">You can change your consent choice at any time from the <a href="/cookie-policy">Cookie Policy</a> page, and exercise your GDPR/CCPA rights (access, rectification, erasure, portability) by contacting us. This summary is rendered for crawlers; the full policy, including data retention and your rights, loads on this page.</p>`,
   },
   {
     path: '/terms-of-service',
@@ -133,16 +307,14 @@ const routes = [
   },
   ...products.map((p) => ({
     path: `/product/${p.id}`,
-    title: `${p.name} — Tekivex`,
-    description: p.tagline,
+    title: p.manifest.seo?.title || `${p.name} — Tekivex`,
+    description: p.manifest.seo?.description || p.tagline,
     h1: p.name,
     body: p.tagline,
+    contentHtml: productDetailBlock(p.manifest) + productEditorialBlock(p.id, p.name),
+    extraLd: productFaqLd(p.id),
   })),
 ];
-
-function escapeHtml(s) {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
 
 function makeHtml(route) {
   let html = baseHtml;
@@ -195,7 +367,8 @@ function makeHtml(route) {
       <nav aria-label="Breadcrumb" style="font-size:13px;color:#64748b;margin-bottom:24px"><a href="/" style="color:#3a86ff;text-decoration:none">Tekivex</a></nav>
       <h1 style="font-size:2.4rem;font-weight:800;letter-spacing:-0.025em;color:#0a0f1f;margin:0 0 12px;line-height:1.15">${escapeHtml(route.h1)}</h1>
       <p style="color:#3a3a52;font-size:18px;line-height:1.6;margin:0 0 24px">${escapeHtml(route.body)}</p>
-      <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px">Tekivex · open-source enterprise developer tools · MIT licensed · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://ui.tekivex.com" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
+      ${route.contentHtml || ''}
+      <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px;margin-top:32px">Tekivex · open-source enterprise developer tools · MIT licensed · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://ui.tekivex.com" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
     </main>`;
   html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${ssr}</div>`);
 
@@ -228,6 +401,14 @@ function makeHtml(route) {
     `    <script type="application/ld+json">${JSON.stringify(breadcrumbLd)}</script>\n  </head>`,
   );
 
+  // Optional extra JSON-LD (e.g. FAQPage for product pages).
+  if (route.extraLd) {
+    html = html.replace(
+      '</head>',
+      `    <script type="application/ld+json">${JSON.stringify(route.extraLd)}</script>\n  </head>`,
+    );
+  }
+
   return html;
 }
 
@@ -258,9 +439,6 @@ writeFileSync(join(DIST, '404.html'), notFoundHtml, 'utf8');
 // Compile the article registry (TS) so we read the same metadata the app uses,
 // then server-render each article's full markdown so crawlers and AI agents see
 // the real content without executing JavaScript.
-const TMP_DIR = join(DIST, '.prerender-tmp');
-if (!existsSync(TMP_DIR)) mkdirSync(TMP_DIR, { recursive: true });
-
 async function loadArticles() {
   const srcPath = join(ROOT, 'src', 'content', 'registry.ts');
   const src = readFileSync(srcPath, 'utf8');
@@ -353,8 +531,7 @@ const CONTENT_DIR = join(ROOT, 'public', 'use-cases', 'content');
 const articleRoutes = [];
 let articleCount = 0;
 let articleSkipped = 0;
-const articles = await loadArticles();
-for (const article of articles) {
+for (const article of ARTICLES) {
   const mdPath = join(CONTENT_DIR, article.contentFile);
   if (!existsSync(mdPath)) {
     console.warn(`  ⚠ missing article markdown: ${article.contentFile}`);
@@ -463,11 +640,11 @@ const humans = [
   '  DataFlow         — real-time streaming engine',
   '  Quantum Vault    — sovereign post-quantum tokens',
   '  Pyntra           — browser-native PDF editor with headless React hooks',
-  '  TekiVex UI       — React component library (113 components)',
+  '  TekiVex UI       — accessible React/Vue/Svelte component library',
   '',
   '/* SITE */',
   `  Last update: ${TODAY}`,
-  '  Standards: HTML5, CSS3, ES2022, WCAG 2.1 AAA',
+  '  Standards: HTML5, CSS3, ES2022, WCAG 2.1 AA',
   '  License: MIT',
   '',
 ].join('\n');
@@ -475,13 +652,13 @@ const humans = [
 // ─── llms.txt / llms-full.txt (guide LLMs to the canonical facts) ─────────
 // Generated from the same product facts + article list so they never drift.
 const LLM_PRODUCTS = [
-  { name: 'GridStorm', url: `${ORIGIN}/product/gridstorm`, npm: '@tekivex/gridstorm',
+  { name: 'GridStorm', url: `${ORIGIN}/product/gridstorm`, npm: null,
     s: 'Headless, framework-agnostic enterprise data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35 composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. MIT-licensed.' },
-  { name: 'Pyntra', url: `${ORIGIN}/product/pyntra`, npm: '@pyntra/engine',
+  { name: 'Pyntra', url: `${ORIGIN}/product/pyntra`, npm: null,
     s: 'Client-side, browser-native PDF editor with React headless hooks and a bring-your-own-UI adapter. Form filling, signing, stamping, annotation, redaction, and RC4/AES-128/AES-256 encryption — entirely in the browser with zero third-party PDF dependencies.' },
   { name: 'Analytics Studio', url: `${ORIGIN}/product/analytics-studio`, npm: null,
     s: 'Drag-and-drop business-intelligence builder powered by GridStorm. Pivot tables, 26+ chart types, an in-browser SQL engine (SELECT/WHERE/GROUP BY/JOIN), KPI dashboards, and scheduled reports — no backend required.' },
-  { name: 'Quantum Vault', url: `${ORIGIN}/product/quantum-vault`, npm: '@tekivex/quantum-vault',
+  { name: 'Quantum Vault', url: `${ORIGIN}/product/quantum-vault`, npm: null,
     s: 'Sovereign, self-hosted post-quantum token issuance, validation, and rotation using NIST-standardized CRYSTALS-Kyber (ML-KEM / FIPS 203) and CRYSTALS-Dilithium (ML-DSA / FIPS 204).' },
   { name: 'DataFlow', url: `${ORIGIN}/product/dataflow`, npm: null,
     s: 'Real-time streaming engine for React: WebSocket and Server-Sent Events sources, backpressure handling, time-travel replay, and anomaly detection.' },

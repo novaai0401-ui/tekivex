@@ -61,7 +61,7 @@ Tekivex UI takes the CSS-variable route. Themes — including built-in dark, lig
 }
 ```
 
-This approach makes server rendering, theme persistence, and per-section overrides straightforward, and it plays nicely with native CSS cascading. If you want the full picture, we go deeper in [theming with CSS variables](/use-cases/tekivex-ui-theming-css-variables). The honest trade-off: a JS theme object can be more convenient for highly dynamic, computed themes, and MUI's and Chakra's tooling around that is more mature.
+This approach makes server rendering, theme persistence, and per-section overrides straightforward, and it plays nicely with native CSS cascading. If you want the full picture, the [headless design system guide](/use-cases/tekivex-ui-headless-design-system) goes deeper on the CSS-variable theming architecture. The honest trade-off: a JS theme object can be more convenient for highly dynamic, computed themes, and MUI's and Chakra's tooling around that is more mature.
 
 ## Accessibility
 
@@ -123,3 +123,7 @@ Be honest with yourself about the trade-off: if you adopt Tekivex UI you get a l
 There is no universally correct answer here, and any vendor who tells you otherwise is selling. MUI and Chakra are mature, well-supported, and richly featured, and they remain excellent defaults for React-only teams. Tekivex UI makes a deliberate set of different bets — sub-8 kB core, zero runtime styling, CSS-variable theming, headless primitives, and React, Vue, and Svelte support from a shared foundation — that pay off most for performance-sensitive and multi-framework organizations.
 
 Weigh ecosystem maturity against runtime cost and framework flexibility for your specific context. If those latter constraints describe your project, take a closer look at [Tekivex UI](/product/tekivex-ui) and the rest of our [use-case library](/use-cases). If they don't, the incumbents will serve you well — and we'd rather you ship the right thing than the thing we happened to build.
+
+---
+
+*MUI and Chakra UI are trademarks of their respective owners. Tekivex is not affiliated with, endorsed by, or sponsored by them. Comparisons reflect our understanding at the time of writing; verify current capabilities against each project's official documentation.*

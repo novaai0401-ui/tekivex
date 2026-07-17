@@ -131,7 +131,7 @@ npm install tekivex-ui @tekivex/gridstorm @tekivex/dataflow \
 # Analytics Studio added when you reach the BI phase.
 ```
 
-Drop any line you do not want. Need only a fast grid in an existing app? `npm install @tekivex/gridstorm` and stop there.
+Drop any line you do not want. Need only a fast grid in an existing app? Add GridStorm on its own and stop there.
 
 ## When to use the full stack — and when not to
 

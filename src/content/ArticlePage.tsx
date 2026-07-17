@@ -83,8 +83,12 @@ export function ArticlePage({ slug }: { slug: string }) {
 
       {source && <Markdown source={source} />}
 
-      {/* In-content ad — placed inside substantive editorial content only. */}
-      {source && <AdSlot slot="5896441076" label="Sponsored" className="ad-slot--article" />}
+      {/* In-content ad — placed inside substantive editorial content only.
+          Guard on a minimum length so stub/thin articles never carry ads
+          (Google inventory-value policy). */}
+      {source && source.length > 1500 && (
+        <AdSlot slot="5896441076" label="Sponsored" className="ad-slot--article" />
+      )}
 
       {product && (
         <aside className="uc-product-cta">

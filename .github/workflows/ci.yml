@@ -35,6 +35,7 @@ jobs:
     needs: [typecheck]
     strategy:
       fail-fast: false
+      matrix:
         # Node 18 dropped: Vite 8 requires Node ^20.19 || >=22.12 and Vitest 4 drops Node 18.
         node-version: [20, 22]
     steps:
@@ -119,4 +120,10 @@ jobs:
         run: npm audit --audit-level=high
 
       - name: License compliance check
-        run: npx --yes license-checker --onlyAllow 'MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;ISC;CC0-1.0;0BSD;Unlicense;Python-2.0'
+        # Audit third-party dependency licenses only. --excludePrivatePackages skips
+        # this repo's own private root package (license-checker reports any
+        # "private": true package as UNLICENSED regardless of its license field).
+        # MPL-2.0 is permitted for build-time-only deps (e.g. lightningcss, Vite's
+        # native CSS transformer); its file-level copyleft imposes no obligations
+        # on the distributed app.
+        run: npx --yes license-checker --excludePrivatePackages --onlyAllow 'MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;ISC;CC0-1.0;0BSD;Unlicense;Python-2.0;MPL-2.0'

@@ -78,7 +78,7 @@ const out = await doc.save({
 });
 ```
 
-This is the gap PDF.js leaves and Puppeteer cannot fill: an interactive editor that mutates a real PDF and re-serializes it without a backend. The full walkthrough is in [filling and signing PDFs in the browser](/use-cases/pyntra-fill-sign-pdf-browser).
+This is the gap PDF.js leaves and Puppeteer cannot fill: an interactive editor that mutates a real PDF and re-serializes it without a backend. The full walkthrough — fill, sign, and encrypt entirely in the browser — is in [the Pyntra client-side approach](/use-cases/pyntra-client-side-pdf-editing).
 
 ## When to use which
 
@@ -90,3 +90,7 @@ This is the gap PDF.js leaves and Puppeteer cannot fill: an interactive editor t
 The trade-offs, the architecture rationale, and the editing model are explored further across the [use-cases hub](/use-cases) — including a deeper look at the [client-side approach](/use-cases/pyntra-client-side-pdf-editing) and the [headless React hooks](/use-cases/pyntra-headless-react-pdf-hooks) that make custom editors practical.
 
 There is no single winner here, and any article claiming otherwise is selling something. PDF.js views, Pyntra edits, Puppeteer generates. Match the tool to the verb in your requirement, lean on more than one when the workflow spans verbs, and you will end up with a stack that is both capable and cheap to run.
+
+---
+
+*PDF.js and Puppeteer are projects/trademarks of their respective owners. Tekivex is not affiliated with, endorsed by, or sponsored by them. Comparisons reflect our understanding at the time of writing; verify current capabilities against each project's official documentation.*

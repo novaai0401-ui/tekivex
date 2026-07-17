@@ -6,17 +6,17 @@ const PRODUCTS = [
     name: 'GridStorm',
     color: '#3b82f6',
     icon: 'grid',
-    status: 'GA',
-    statusColor: '#4ade80',
-    description: 'Headless enterprise data grid — 57 packages, 35 plugins, 100K+ rows at 60fps.',
+    status: 'Beta',
+    statusColor: '#fbbf24',
+    description: 'Headless enterprise data grid — 35 plugins, 100K+ rows at 60fps.',
     href: '/product/gridstorm',
   },
   {
     name: 'Pyntra',
     color: '#ef4444',
     icon: 'file-pdf',
-    status: 'GA',
-    statusColor: '#4ade80',
+    status: 'Beta',
+    statusColor: '#fbbf24',
     description: 'Client-side PDF editor — form filling, annotation, signing, AES-256, headless React hooks.',
     href: '/product/pyntra',
   },
@@ -86,7 +86,7 @@ const TECH_STACK = [
   { label: 'Language', value: 'TypeScript 5.x (strict)' },
   { label: 'Runtime', value: 'Browser-first, Node-compatible' },
   { label: 'Build', value: 'tsup + pnpm monorepo' },
-  { label: 'Testing', value: 'Vitest + jsdom (1,899+ tests)' },
+  { label: 'Testing', value: 'Vitest + jsdom' },
   { label: 'Crypto', value: 'NIST PQC (Kyber + Dilithium)' },
   { label: 'Frameworks', value: 'React, Vue 3, Svelte 5, Angular 17+' },
 ];
@@ -242,10 +242,9 @@ export function AboutPage() {
       {/* ── Stats ── */}
       <div className="tx-stats-bar" style={{ marginTop: 0 }}>
         {[
-          { val: '4',      lbl: 'Live products' },
-          { val: '57',     lbl: 'npm packages' },
-          { val: '1,899+', lbl: 'Tests' },
+          { val: '6',      lbl: 'Products' },
           { val: 'MIT',    lbl: 'License' },
+          { val: 'TS',     lbl: 'TypeScript-native' },
           { val: '2025',   lbl: 'Founded' },
         ].map(s => (
           <div key={s.lbl} className="tx-stats-item">
