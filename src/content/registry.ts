@@ -34,6 +34,9 @@ const AUTHOR_BY_SLUG: Record<string, string> = {
   'how-to-compress-pdf': 'seema-almas-shaikh',
   'how-to-make-chart-from-csv': 'chandan-kumar',
   'why-browser-tools-keep-files-private': 'chandan-kumar',
+  'how-to-convert-pdf-to-jpg': 'seema-almas-shaikh',
+  'how-to-rotate-pdf': 'seema-almas-shaikh',
+  'how-to-delete-pages-from-pdf': 'seema-almas-shaikh',
 };
 
 const DEFAULT_AUTHOR_ID = 'chandan-kumar';
@@ -64,6 +67,9 @@ const DATES: Record<string, { published: string; modified?: string }> = {
   'how-to-compress-pdf':                           { published: '2026-07-02' },
   'how-to-make-chart-from-csv':                    { published: '2026-07-02' },
   'why-browser-tools-keep-files-private':          { published: '2026-07-02' },
+  'how-to-convert-pdf-to-jpg':                     { published: '2026-07-22' },
+  'how-to-rotate-pdf':                             { published: '2026-07-22' },
+  'how-to-delete-pages-from-pdf':                  { published: '2026-07-22' },
 };
 
 function article(
@@ -151,6 +157,39 @@ export const ARTICLES: Article[] = [
     kind: 'Explainer',
     keywords: ['client-side tools', 'no upload pdf tools', 'private online tools', 'browser file processing', 'are online pdf tools safe'],
     readingMinutes: 6,
+  }),
+  article({
+    slug: 'how-to-convert-pdf-to-jpg',
+    title: 'How to Convert a PDF to JPG Images, Privately',
+    description:
+      'A step-by-step guide to turning each page of a PDF into a JPG or PNG image entirely in your browser — no upload, no watermark. Covers when to pick JPG vs PNG and common pitfalls.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'How-To',
+    keywords: ['how to convert pdf to jpg', 'pdf to image free', 'pdf to png', 'convert pdf to jpg without upload', 'extract images from pdf'],
+    readingMinutes: 5,
+  }),
+  article({
+    slug: 'how-to-rotate-pdf',
+    title: 'How to Rotate a PDF and Fix Sideways Pages (Free, No Upload)',
+    description:
+      'A step-by-step guide to rotating PDF pages 90°, 180° or 270° and saving the corrected file in your browser — no quality loss, no upload. Includes how to rotate a single page.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'How-To',
+    keywords: ['how to rotate pdf', 'rotate pdf pages', 'fix sideways pdf', 'rotate pdf free', 'rotate pdf without upload'],
+    readingMinutes: 4,
+  }),
+  article({
+    slug: 'how-to-delete-pages-from-pdf',
+    title: 'How to Delete Pages from a PDF (Free, in Your Browser)',
+    description:
+      'A step-by-step guide to removing unwanted pages from a PDF — single pages, ranges, or a mix — and downloading the trimmed file, all in your browser with no upload and no watermark.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'How-To',
+    keywords: ['how to delete pages from pdf', 'remove pages from pdf', 'delete pdf pages free', 'trim pdf pages', 'remove page from pdf without upload'],
+    readingMinutes: 5,
   }),
 
   // ── GridStorm ──────────────────────────────────────────────────────────
