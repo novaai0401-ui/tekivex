@@ -6,16 +6,14 @@ describe('vercel.json — 404 handling', () => {
     expect((vercelConfig as Record<string, unknown>).cleanUrls).toBe(true);
   });
 
-  it('does NOT route unknown URLs back to /index.html as a soft 404', () => {
-    const routes = (vercelConfig as { routes?: Array<{ dest?: string }> }).routes ?? [];
-    const softFallback = routes.find((r) => r.dest === '/index.html');
-    expect(softFallback).toBeUndefined();
-  });
-
-  it('does NOT define a rewrite that swallows unknown URLs', () => {
-    const rewrites = (vercelConfig as { rewrites?: Array<{ destination?: string }> }).rewrites ?? [];
-    const swallow = rewrites.find((r) => r.destination === '/index.html');
-    expect(swallow).toBeUndefined();
+  // Prerendered files always win over rewrites on Vercel, so this fallback
+  // only catches paths with no static file. The app then renders the
+  // NotFound page with noindex instead of the visitor hitting a hard 404.
+  it('defines an SPA fallback rewrite for un-prerendered URLs', () => {
+    const rewrites = (vercelConfig as { rewrites?: Array<{ source?: string; destination?: string }> }).rewrites ?? [];
+    const fallback = rewrites.find((r) => r.destination === '/index.html');
+    expect(fallback).toBeDefined();
+    expect(fallback?.source).toBe('/:path*');
   });
 
   it('points at dist/ for output', () => {

@@ -381,7 +381,7 @@ export function PlatformPage() {
           <p className="tx-cta-body">
             Every tool on the platform is free to use and free for commercial use
             in production. Explore what's available today, or get in touch about
-            enterprise support, partnerships, and what we're building next.
+            commercial support, partnerships, and what we're building next.
           </p>
           <div className="tx-cta-actions">
             <button className="tx-cta-btn" onClick={() => navigate('/products')}>

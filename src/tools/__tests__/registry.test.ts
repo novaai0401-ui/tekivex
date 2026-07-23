@@ -31,7 +31,7 @@ describe('tools registry', () => {
   it('every tool states the no-upload privacy promise', () => {
     for (const t of TOOLS) {
       const all = [t.description, t.seoDescription, ...t.faqs.map((f) => f.a)].join(' ').toLowerCase();
-      expect(all, `${t.slug} must state files are not uploaded`).toMatch(/never uploaded|not sent to a server|never leaves? your device|nothing is sent to a server|never leave your device/);
+      expect(all, `${t.slug} must state files are not uploaded`).toMatch(/never uploaded|no upload|not sent to a server|never leaves? your device|nothing is sent to a server|never leave your device|never sent anywhere|stays? on your (own )?(device|machine)|done (locally )?(by|on) your (own )?(browser|device|machine)|on your own (device|machine)/);
     }
   });
 

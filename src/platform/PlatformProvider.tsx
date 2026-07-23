@@ -5,7 +5,7 @@ import { navigate } from '../App';
 
 const PLATFORM_CONFIG: PlatformConfig = {
   name: 'Tekivex',
-  tagline: 'Enterprise software, crafted with skill',
+  tagline: 'Free developer tools, independently built',
   version: '0.1.0',
   githubUrl: 'https://github.com/novaai0401-ui/tekivex-issue-report/issues',
 };

@@ -49,7 +49,7 @@ export const KNOWLEDGE_BASE: KbEntry[] = [
       'Who makes these products?',
       'What company is this?',
     ],
-    answer: `**Tekivex** is a developer tools company building next-generation free enterprise software products.
+    answer: `**Tekivex** is an independent software project building next-generation free developer tools.
 
 **Three npm libraries:**
 - 🟦 **GridStorm** — High-performance React/headless data grid (free for commercial use)
@@ -61,7 +61,7 @@ export const KNOWLEDGE_BASE: KbEntry[] = [
 - 📊 **Analytics Studio** — In-browser BI & dashboards · https://analytics.tekivex.com
 - 📈 **DataFlow** — Real-time streaming dashboard · https://dataflow.tekivex.com/stocks
 
-We believe enterprise-grade software should be accessible to every team regardless of budget.`,
+We believe professional-grade software should be accessible to every team regardless of budget.`,
     tags: ['tekivex', 'company', 'about', 'products', 'portfolio'],
   },
 
@@ -78,7 +78,7 @@ We believe enterprise-grade software should be accessible to every team regardle
 
 | Product | Type | Description |
 |---------|------|-------------|
-| GridStorm | Library | Enterprise data grid — 35 plugins, WCAG 2.1 AA |
+| GridStorm | Library | High-performance data grid — 35 plugins, WCAG 2.1 AA |
 | Tekivex UI | Library | Accessible React/Vue/Svelte component library |
 | Quantum Vault | Library | Sovereign post-quantum tokens (self-hosted) |
 | Pyntra | Hosted app | Browser PDF editor — open it at pyntra.tekivex.com |
@@ -120,7 +120,7 @@ Report issues at **github.com/novaai0401-ui/tekivex-issue-report/issues**.`,
       'What does the data grid do?',
       'GridStorm overview',
     ],
-    answer: `**GridStorm** is a free enterprise data grid built for modern web applications.
+    answer: `**GridStorm** is a free high-performance data grid built for modern web applications.
 
 **Key highlights:**
 - ⚡ Virtual scrolling — 100,000+ rows at 60fps

@@ -8,7 +8,7 @@ const PRODUCTS = [
     icon: 'grid',
     status: 'Beta',
     statusColor: '#fbbf24',
-    description: 'Headless enterprise data grid — 35 plugins, 100K+ rows at 60fps.',
+    description: 'Headless high-performance data grid — 35 plugins, 100K+ rows at 60fps.',
     href: '/product/gridstorm',
   },
   {
@@ -120,8 +120,8 @@ export function AboutPage() {
             About Tekivex
           </span>
           <h1 className="tx-hero-title">
-            Enterprise software,{' '}
-            <span className="tx-gradient-text">crafted with skill</span>
+            Free developer tools,{' '}
+            <span className="tx-gradient-text">independently built</span>
           </h1>
           <p className="tx-hero-tagline" style={{ maxWidth: 600 }}>
             Tekivex is an independent developer tools company building the next generation of
@@ -155,10 +155,10 @@ export function AboutPage() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginTop: '2rem' }}>
           <div className="about-prose-card">
             <h3 style={{ color: 'var(--hub-text)', marginBottom: '0.75rem', fontSize: '1.1rem' }}>
-              Enterprise tools shouldn't cost a fortune
+              Professional tools shouldn't cost a fortune
             </h3>
             <p style={{ color: 'var(--hub-text-muted)', lineHeight: 1.7, fontSize: '0.95rem' }}>
-              AG Grid charges $999/developer/year. Handsontable charges per seat. Most enterprise
+              AG Grid charges $999/developer/year. Handsontable charges per seat. Most commercial
               data-grid vendors lock features behind paywalls that make the software inaccessible
               to small teams and startups.
             </p>

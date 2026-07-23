@@ -107,7 +107,7 @@ export function Footer() {
           </div>
           <div>
             <div className="hub-footer-brand-name">Tekivex</div>
-            <div className="hub-footer-brand-tagline">Enterprise software, crafted with skill</div>
+            <div className="hub-footer-brand-tagline">Free developer tools, independently built</div>
           </div>
         </div>
         <div className="hub-footer-badges">
