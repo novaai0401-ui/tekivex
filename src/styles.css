@@ -65,6 +65,7 @@
   --hub-cyan: #14b8a6;
   --hub-red: #dc2626;
   --hub-radius: 12px;
+  --hub-card-bg: #ffffff;
   --hub-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   --hub-card-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.1);
   --hub-gradient-text: linear-gradient(135deg, #4f46e5 0%, #6366f1 55%, #8b5cf6 100%);
@@ -92,6 +93,7 @@
   --hub-pink: #f472b6;
   --hub-cyan: #2dd4bf;
   --hub-red: #ef4444;
+  --hub-card-bg: rgba(255, 255, 255, 0.04);
   --hub-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   --hub-card-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.3);
   --hub-gradient-text: linear-gradient(135deg, #818cf8 0%, #a5b4fc 55%, #c4b5fd 100%);
@@ -119,6 +121,7 @@
   --hub-pink: #ff66cc;
   --hub-cyan: #00ffff;
   --hub-red: #ff0000;
+  --hub-card-bg: #0a0a0a;
   --hub-card-shadow: none;
   --hub-card-shadow-hover: 0 0 0 2px #ffffff;
   --hub-gradient-text: linear-gradient(135deg, #ffff00 0%, #ff66ff 50%, #00ffff 100%);
@@ -5239,7 +5242,7 @@ body {
   height: 40px;
   border-radius: 10px;
   background: rgba(79,70,229,0.12);
-  color: #4f46e5;
+  color: var(--hub-accent); /* #4f46e5 light / #6366f1 dark — visible on both */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5253,7 +5256,9 @@ body {
 }
 .about-value-body {
   font-size: 0.875rem;
-  color: var(--hub-text-muted);
+  /* text-secondary, not text-muted: muted (#94a3b8) is 2.4:1 on a white card
+     — failing WCAG AA body text on the card that PROMISES "WCAG 2.1 AA". */
+  color: var(--hub-text-secondary);
   line-height: 1.65;
   margin: 0;
 }
