@@ -28,7 +28,7 @@ const FAQS: QA[] = [
   },
   {
     q: 'How do I report a bug or request a feature?',
-    a: 'Open a GitHub issue at github.com/novaai0401-ui/tekivex-issue-report/issues, or email hello@tekivex.com. See the contact page for a checklist of what to include.',
+    a: 'Open a GitHub issue at github.com/novaai0401-ui/tekivex-issue-report/issues, or email nishu_singh@tekivex.com. See the contact page for a checklist of what to include.',
   },
   {
     q: 'Do you collect personal data?',
@@ -44,7 +44,7 @@ const FAQS: QA[] = [
   },
   {
     q: 'Is Tekivex hiring?',
-    a: 'We hire opportunistically when a role unlocks something we cannot ship otherwise. If you build infrastructure-grade developer tools and want to work on them full-time, email hello@tekivex.com with examples of your work.',
+    a: 'We hire opportunistically when a role unlocks something we cannot ship otherwise. If you build infrastructure-grade developer tools and want to work on them full-time, email nishu_singh@tekivex.com with examples of your work.',
   },
 ];
 
@@ -76,8 +76,8 @@ export function FaqPage() {
       intro={
         <p style={{ ...legalProse, margin: 0 }}>
           Quick answers to the questions we get most often. Still stuck? Email{' '}
-          <a href="mailto:hello@tekivex.com" style={{ color: '#3b82f6' }}>
-            hello@tekivex.com
+          <a href="mailto:nishu_singh@tekivex.com" style={{ color: '#3b82f6' }}>
+            nishu_singh@tekivex.com
           </a>{' '}
           or visit the <a href="/contact" style={{ color: '#3b82f6' }}>contact page</a>.
         </p>

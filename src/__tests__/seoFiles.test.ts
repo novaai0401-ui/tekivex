@@ -29,7 +29,7 @@ describe('robots.txt — crawler policy', () => {
 
 describe('.well-known/security.txt', () => {
   it('has a contact and a future expiry', () => {
-    expect(securityTxt).toMatch(/Contact:\s*mailto:hello@tekivex\.com/);
+    expect(securityTxt).toMatch(/Contact:\s*mailto:nishu_singh@tekivex\.com/);
     const m = securityTxt.match(/Expires:\s*(\S+)/);
     expect(m).not.toBeNull();
     expect(new Date(m![1]).getTime()).toBeGreaterThan(Date.now());

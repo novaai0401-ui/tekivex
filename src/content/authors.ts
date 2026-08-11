@@ -29,7 +29,7 @@ export const AUTHORS: Record<string, Author> = {
     bio:
       'Chandan Kumar is a UI lead and technical project leader with 12+ years building React and Node.js enterprise platforms in the financial-services sector. He writes about frontend architecture, performance, AI innovation, and developer experience.',
     url: 'https://www.linkedin.com/in/chandankumar007',
-    email: 'hello@tekivex.com',
+    email: 'nishu_singh@tekivex.com',
     sameAs: [
       'https://www.linkedin.com/in/chandankumar007',
       'https://twitter.com/BharatTechPath',
@@ -42,7 +42,7 @@ export const AUTHORS: Record<string, Author> = {
     bio:
       'Seema Almas Shaikh is a frontend architect and technical lead with 12+ years of experience in ReactJS, Redux, and micro-frontends. She focuses on scalable UI architecture, design systems, accessibility, and GenAI proofs of concept.',
     url: 'https://www.linkedin.com/in/seema-almas-shaikh',
-    email: 'hello@tekivex.com',
+    email: 'nishu_singh@tekivex.com',
     sameAs: [
       'https://www.linkedin.com/in/seema-almas-shaikh',
       'https://twitter.com/BharatTechPath',

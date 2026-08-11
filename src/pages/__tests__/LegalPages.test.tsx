@@ -15,7 +15,7 @@ describe('TermsOfServicePage', () => {
   it('renders the heading and Tekivex contact', () => {
     render(<TermsOfServicePage />);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Terms of Service');
-    expect(screen.getByText(/hello@tekivex\.com/i)).toBeInTheDocument();
+    expect(screen.getByText(/nishu_singh@tekivex\.com/i)).toBeInTheDocument();
   });
 
   it('mentions MIT licensing and limitation of liability', () => {
@@ -61,7 +61,7 @@ describe('ContactPage', () => {
   it('exposes a real mailto link', () => {
     render(<ContactPage />);
     const link = screen.getByTestId('contact-email') as HTMLAnchorElement;
-    expect(link.getAttribute('href')).toBe('mailto:hello@tekivex.com');
+    expect(link.getAttribute('href')).toBe('mailto:nishu_singh@tekivex.com');
   });
 
   it('links to the public issue tracker', () => {

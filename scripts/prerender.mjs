@@ -434,10 +434,10 @@ const routes = [
     path: '/contact',
     title: 'Contact Tekivex',
     description:
-      'Reach the Tekivex team — email hello@tekivex.com, file a GitHub issue, or report a security disclosure privately.',
+      'Reach the Tekivex team — email nishu_singh@tekivex.com, file a GitHub issue, or report a security disclosure privately.',
     h1: 'Contact',
     body:
-      'Email hello@tekivex.com for general questions, or open a GitHub issue for bug reports and feature requests. Security disclosures go to the same email with a Security subject line.',
+      'Email nishu_singh@tekivex.com for general questions, or open a GitHub issue for bug reports and feature requests. Security disclosures go to the same email with a Security subject line.',
   },
   {
     path: '/faq',

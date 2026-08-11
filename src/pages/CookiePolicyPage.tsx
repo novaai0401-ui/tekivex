@@ -129,7 +129,7 @@ export function CookiePolicyPage() {
       <LegalSection title="5. Contact">
         <p style={legalProse}>
           For questions about this Cookie Policy, email{' '}
-          <a href="mailto:hello@tekivex.com" style={{ color: '#3b82f6' }}>hello@tekivex.com</a>.
+          <a href="mailto:nishu_singh@tekivex.com" style={{ color: '#3b82f6' }}>nishu_singh@tekivex.com</a>.
         </p>
       </LegalSection>
     </LegalLayout>

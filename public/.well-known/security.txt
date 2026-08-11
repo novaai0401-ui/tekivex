@@ -1,5 +1,5 @@
 # Tekivex security contact — https://securitytxt.org/
-Contact: mailto:hello@tekivex.com
+Contact: mailto:nishu_singh@tekivex.com
 Expires: 2027-06-18T00:00:00.000Z
 Preferred-Languages: en
 Canonical: https://tekivex.com/.well-known/security.txt
