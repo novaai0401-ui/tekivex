@@ -1,0 +1,67 @@
+# Render Blueprint for tekivex.com (static site).
+#
+# Mirrors vercel.json: Render does not read vercel.json, so the redirects and
+# the SPA fallback rewrite must be declared here too. Keep the two files in
+# sync when adding redirects.
+#
+# NOTE: If the site was created manually in the Render dashboard (not via
+# "New → Blueprint"), this file is NOT picked up automatically — the same
+# rules must be entered under the service's Redirects/Rewrites tab.
+services:
+  - type: web
+    name: tekivex
+    runtime: static
+    buildCommand: npm run build
+    staticPublishPath: dist
+    routes:
+      # ── Redirects (must precede the catch-all rewrite) ──
+      - type: redirect
+        source: /platform
+        destination: /products
+      - type: redirect
+        source: /use-cases/quantum-vault-why-nist-pqc-matters
+        destination: /use-cases/quantum-vault-post-quantum-tokens-explained
+      - type: redirect
+        source: /use-cases/tekivex-ui-theming-css-variables
+        destination: /use-cases/tekivex-ui-headless-design-system
+      - type: redirect
+        source: /product/pdfcraft
+        destination: /product/pyntra
+      - type: redirect
+        source: /use-cases/pyntra-fill-sign-pdf-browser
+        destination: /use-cases
+      - type: redirect
+        source: /use-cases/pyntra-client-side-pdf-editing
+        destination: /use-cases
+      - type: redirect
+        source: /use-cases/pyntra-vs-pdfjs-puppeteer
+        destination: /use-cases
+      - type: redirect
+        source: /use-cases/pyntra-headless-react-pdf-hooks
+        destination: /use-cases
+      - type: redirect
+        source: /use-cases/analytics-studio-drag-drop-dashboards
+        destination: /use-cases
+      - type: redirect
+        source: /use-cases/analytics-studio-in-browser-sql
+        destination: /use-cases
+      - type: redirect
+        source: /use-cases/analytics-studio-chart-types-guide
+        destination: /use-cases
+      - type: redirect
+        source: /use-cases/analytics-studio-vs-metabase-looker
+        destination: /use-cases
+      - type: redirect
+        source: /use-cases/dataflow-realtime-streaming-react
+        destination: /use-cases
+      - type: redirect
+        source: /use-cases/dataflow-backpressure-time-travel-replay
+        destination: /use-cases
+      - type: redirect
+        source: /use-cases/dataflow-anomaly-detection-streams
+        destination: /use-cases
+      # ── SPA fallback: any path with no static file loads the app, which
+      #    renders the branded, noindex NotFound page for unknown routes ──
+      - type: rewrite
+        source: /*
+        destination: /index.html
