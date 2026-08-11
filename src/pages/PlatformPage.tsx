@@ -10,7 +10,7 @@ const STATUS_CONFIG: Record<ProductStatus, { label: string; color: string; bg: s
   ga:            { label: 'GA',          color: '#4ade80', bg: 'rgba(74,222,128,0.14)' },
   beta:          { label: 'Beta',        color: '#fbbf24', bg: 'rgba(251,191,36,0.14)' },
   preview:       { label: 'Preview',     color: '#a78bfa', bg: 'rgba(167,139,250,0.14)' },
-  'coming-soon': { label: 'Coming Soon', color: '#94a3b8', bg: 'rgba(148,163,184,0.12)' },
+  'coming-soon': { label: 'Coming Soon', color: 'var(--hub-text-secondary)', bg: 'var(--hub-border)' },
 };
 
 const TIER_CONFIG: Record<ProductTier, { label: string }> = {

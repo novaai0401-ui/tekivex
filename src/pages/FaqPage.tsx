@@ -89,14 +89,14 @@ export function FaqPage() {
           <details
             key={q}
             style={{
-              borderBottom: '1px solid rgba(148,163,184,0.15)',
+              borderBottom: '1px solid var(--hub-border)',
               padding: '14px 0',
             }}
           >
             <summary
               style={{
                 cursor: 'pointer', fontSize: 16, fontWeight: 600,
-                color: '#f1f5f9', listStyle: 'none',
+                color: 'var(--hub-text)', listStyle: 'none',
               }}
             >
               {q}

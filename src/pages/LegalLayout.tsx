@@ -8,8 +8,11 @@ interface LegalLayoutProps {
   children: React.ReactNode;
 }
 
-const proseColor = '#94a3b8';
-const headingColor = '#f1f5f9';
+// Theme tokens, not hardcodes: these pages must be readable in BOTH themes.
+// (The old literals #94a3b8/#f1f5f9 assumed a dark background and rendered
+// near-invisible on the default light theme.)
+const proseColor = 'var(--hub-text-secondary)';
+const headingColor = 'var(--hub-text)';
 
 export const legalProse: React.CSSProperties = {
   fontSize: '15px', lineHeight: '1.85', color: proseColor, marginBottom: '14px',
@@ -25,7 +28,7 @@ export function LegalSection({ title, children }: { title: string; children: Rea
       <h2 style={{
         fontSize: '20px', fontWeight: 700, color: headingColor,
         marginBottom: '12px', paddingBottom: '8px',
-        borderBottom: '1px solid rgba(148,163,184,0.15)',
+        borderBottom: '1px solid var(--hub-border)',
       }}>
         {title}
       </h2>
@@ -57,13 +60,13 @@ export function LegalLayout({ eyebrow, title, lastUpdated, intro, children }: Le
         }}>
           {title}
         </h1>
-        <p style={{ ...legalProse, color: '#64748b', marginBottom: '20px' }}>
+        <p style={{ ...legalProse, color: 'var(--hub-text-muted)', marginBottom: '20px' }}>
           <strong style={{ color: proseColor }}>Last updated:</strong> {lastUpdated}
         </p>
         {intro && (
           <div style={{
             padding: '18px 22px', borderRadius: '10px',
-            background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(148,163,184,0.12)',
+            background: 'var(--hub-surface)', border: '1px solid var(--hub-border)',
           }}>
             <div style={{ ...legalProse, margin: 0 }}>{intro}</div>
           </div>

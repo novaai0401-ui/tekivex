@@ -11,7 +11,7 @@ const STATUS_CONFIG: Record<ProductStatus, { label: string; color: string; bg: s
   ga:           { label: 'Generally Available', color: '#16a34a', bg: 'rgba(22, 163, 74, 0.08)' },
   beta:         { label: 'Beta',                color: '#d97706', bg: 'rgba(217, 119, 6, 0.08)' },
   preview:      { label: 'Preview',             color: '#8b5cf6', bg: 'rgba(124, 58, 237, 0.08)' },
-  'coming-soon':{ label: 'Coming Soon',         color: '#64748b', bg: 'rgba(100, 116, 139, 0.08)' },
+  'coming-soon':{ label: 'Coming Soon',         color: 'var(--hub-text-secondary)', bg: 'rgba(100, 116, 139, 0.08)' },
 };
 
 // ── Editorial explainer section ───────────────────────────────────
@@ -214,7 +214,7 @@ export function ProductHomePage({ productId }: { productId: string }) {
     return (
       <div style={{ padding: '80px 24px', textAlign: 'center' }}>
         <h2 style={{ fontSize: 24, marginBottom: 12 }}>Product not found</h2>
-        <p style={{ color: '#64748b', marginBottom: 24 }}>No product registered with id "{productId}".</p>
+        <p style={{ color: 'var(--hub-text-secondary)', marginBottom: 24 }}>No product registered with id "{productId}".</p>
         <button
           style={{ padding: '10px 24px', background: '#4f46e5', color: '#fff', border: 'none', borderRadius: 8, cursor: 'pointer', fontSize: 14 }}
           onClick={() => navigate('/products')}

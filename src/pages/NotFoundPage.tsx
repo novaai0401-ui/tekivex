@@ -18,12 +18,12 @@ export function NotFoundPage() {
         404 · Page not found
       </p>
       <h1 style={{
-        fontSize: 44, fontWeight: 800, color: '#f1f5f9',
+        fontSize: 44, fontWeight: 800, color: 'var(--hub-text)',
         margin: '0 0 16px', lineHeight: 1.15,
       }}>
         We couldn't find that page
       </h1>
-      <p style={{ fontSize: 16, lineHeight: 1.7, color: '#94a3b8', margin: '0 0 32px' }}>
+      <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--hub-text-secondary)', margin: '0 0 32px' }}>
         The link may have moved, the product may have been renamed, or the URL may
         have a typo. Try one of these instead:
       </p>
@@ -44,6 +44,6 @@ const primaryBtn: React.CSSProperties = {
 };
 const ghostBtn: React.CSSProperties = {
   padding: '11px 22px', borderRadius: 10, background: 'transparent',
-  color: '#cbd5e1', fontWeight: 600, textDecoration: 'none', fontSize: 14,
+  color: 'var(--hub-text-secondary)', fontWeight: 600, textDecoration: 'none', fontSize: 14,
   border: '1px solid rgba(148,163,184,0.35)',
 };

@@ -4,9 +4,9 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   return (
     <section style={{ marginBottom: '44px' }}>
       <h2 style={{
-        fontSize: '20px', fontWeight: 700, color: '#f1f5f9',
+        fontSize: '20px', fontWeight: 700, color: 'var(--hub-text)',
         marginBottom: '12px', paddingBottom: '8px',
-        borderBottom: '1px solid rgba(148,163,184,0.15)',
+        borderBottom: '1px solid var(--hub-border)',
       }}>
         {title}
       </h2>
@@ -16,11 +16,11 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 }
 
 const prose: React.CSSProperties = {
-  fontSize: '15px', lineHeight: '1.85', color: '#94a3b8', marginBottom: '14px',
+  fontSize: '15px', lineHeight: '1.85', color: 'var(--hub-text-secondary)', marginBottom: '14px',
 };
 
 const li: React.CSSProperties = {
-  fontSize: '15px', lineHeight: '1.8', color: '#94a3b8', marginBottom: '6px',
+  fontSize: '15px', lineHeight: '1.8', color: 'var(--hub-text-secondary)', marginBottom: '6px',
 };
 
 export function PrivacyPolicyPage() {
@@ -39,33 +39,33 @@ export function PrivacyPolicyPage() {
             Legal
           </span>
         </div>
-        <h1 style={{ fontSize: '38px', fontWeight: 800, color: '#f1f5f9', margin: '0 0 16px', lineHeight: '1.2' }}>
+        <h1 style={{ fontSize: '38px', fontWeight: 800, color: 'var(--hub-text)', margin: '0 0 16px', lineHeight: '1.2' }}>
           Privacy Policy
         </h1>
-        <p style={{ ...prose, color: '#64748b', marginBottom: '20px' }}>
-          <strong style={{ color: '#94a3b8' }}>Last updated:</strong> May 28, 2026 &nbsp;·&nbsp;
-          <strong style={{ color: '#94a3b8' }}>Effective date:</strong> May 28, 2026
+        <p style={{ ...prose, color: 'var(--hub-text-secondary)', marginBottom: '20px' }}>
+          <strong style={{ color: 'var(--hub-text-secondary)' }}>Last updated:</strong> May 28, 2026 &nbsp;·&nbsp;
+          <strong style={{ color: 'var(--hub-text-secondary)' }}>Effective date:</strong> May 28, 2026
         </p>
         <div style={{
           padding: '18px 22px', borderRadius: '10px',
-          background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(148,163,184,0.12)',
+          background: 'var(--hub-surface)', border: '1px solid var(--hub-border)',
         }}>
           <p style={{ ...prose, margin: 0 }}>
-            Tekivex ("we", "our", or "us") operates <strong style={{ color: '#f1f5f9' }}>tekivex.com</strong> and related subdomains including <strong style={{ color: '#f1f5f9' }}>gridstorm.tekivex.com</strong>, <strong style={{ color: '#f1f5f9' }}>ui.tekivex.com</strong>, <strong style={{ color: '#f1f5f9' }}>pyntra.tekivex.com</strong>, <strong style={{ color: '#f1f5f9' }}>analytics.tekivex.com</strong>, and <strong style={{ color: '#f1f5f9' }}>dataflow.tekivex.com</strong>. This Privacy Policy explains how we collect, use, and protect your information when you visit these sites.
+            Tekivex ("we", "our", or "us") operates <strong style={{ color: 'var(--hub-text)' }}>tekivex.com</strong> and related subdomains including <strong style={{ color: 'var(--hub-text)' }}>gridstorm.tekivex.com</strong>, <strong style={{ color: 'var(--hub-text)' }}>ui.tekivex.com</strong>, <strong style={{ color: 'var(--hub-text)' }}>pyntra.tekivex.com</strong>, <strong style={{ color: 'var(--hub-text)' }}>analytics.tekivex.com</strong>, and <strong style={{ color: 'var(--hub-text)' }}>dataflow.tekivex.com</strong>. This Privacy Policy explains how we collect, use, and protect your information when you visit these sites.
           </p>
         </div>
       </header>
 
       {/* 1 */}
       <Section title="1. Information We Collect">
-        <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e2e8f0', margin: '20px 0 8px' }}>
+        <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--hub-text)', margin: '20px 0 8px' }}>
           1.1 Automatically Collected Data
         </h3>
         <p style={prose}>
           When you visit Tekivex sites our servers and third-party services automatically log standard data your browser sends: IP address (anonymized), browser type and version, operating system, referring URL, pages visited, time and date of visit, time spent on pages, and diagnostic data.
         </p>
 
-        <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e2e8f0', margin: '20px 0 8px' }}>
+        <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--hub-text)', margin: '20px 0 8px' }}>
           1.2 Cookies and Tracking Technologies
         </h3>
         <p style={prose}>We and our third-party partners (including Google) use cookies and similar tracking technologies — such as web beacons (pixel tags / clear GIFs), local storage, and IP addresses — to collect information as a result of ad serving and analytics on this site. Types of cookies we use:</p>
@@ -78,10 +78,10 @@ export function PrivacyPolicyPage() {
           ].map(t => <li key={t} style={li}>{t}</li>)}
         </ul>
         <p style={prose}>
-          When you first visit tekivex.com you will see a consent banner with <strong style={{ color: '#f1f5f9' }}>Accept all</strong> and <strong style={{ color: '#f1f5f9' }}>Reject non-essential</strong> buttons. We use Google Consent Mode v2: until you accept, all advertising and analytics storage signals default to <em>denied</em>, so no analytics or advertising cookies are stored on your device and any ads shown are non-personalised. You can change your choice at any time from the <a href="/cookie-policy" style={{ color: '#4f46e5' }}>Cookie Policy</a> page using the "Reopen cookie banner" button, or by clearing cookies and site data for tekivex.com in your browser.
+          When you first visit tekivex.com you will see a consent banner with <strong style={{ color: 'var(--hub-text)' }}>Accept all</strong> and <strong style={{ color: 'var(--hub-text)' }}>Reject non-essential</strong> buttons. We use Google Consent Mode v2: until you accept, all advertising and analytics storage signals default to <em>denied</em>, so no analytics or advertising cookies are stored on your device and any ads shown are non-personalised. You can change your choice at any time from the <a href="/cookie-policy" style={{ color: '#4f46e5' }}>Cookie Policy</a> page using the "Reopen cookie banner" button, or by clearing cookies and site data for tekivex.com in your browser.
         </p>
 
-        <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e2e8f0', margin: '20px 0 8px' }}>
+        <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--hub-text)', margin: '20px 0 8px' }}>
           1.3 Information You Voluntarily Provide
         </h3>
         <p style={prose}>
@@ -106,14 +106,14 @@ export function PrivacyPolicyPage() {
       {/* 3 */}
       <Section title="3. Google Analytics">
         <p style={prose}>
-          We use <strong style={{ color: '#f1f5f9' }}>Google Analytics 4 (GA4)</strong> to understand how visitors interact with our sites. Google Analytics places cookies on your device to collect information about your use of the site. This information is transmitted to and stored by Google on servers in the United States.
+          We use <strong style={{ color: 'var(--hub-text)' }}>Google Analytics 4 (GA4)</strong> to understand how visitors interact with our sites. Google Analytics places cookies on your device to collect information about your use of the site. This information is transmitted to and stored by Google on servers in the United States.
         </p>
         <p style={prose}>
           Measurement IDs used:
         </p>
         <ul style={{ paddingLeft: '24px', margin: '0 0 14px' }}>
-          <li style={li}><code style={{ background: 'rgba(15,23,42,0.8)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>G-C65SFGKM00</code> — tekivex.com</li>
-          <li style={li}><code style={{ background: 'rgba(15,23,42,0.8)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>G-E7HBFMG7BG</code> — ui.tekivex.com</li>
+          <li style={li}><code style={{ background: 'var(--hub-surface-2)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>G-C65SFGKM00</code> — tekivex.com</li>
+          <li style={li}><code style={{ background: 'var(--hub-surface-2)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>G-E7HBFMG7BG</code> — ui.tekivex.com</li>
         </ul>
         <p style={prose}>
           You can opt out of Google Analytics by installing the{' '}
@@ -127,9 +127,9 @@ export function PrivacyPolicyPage() {
       <Section title="4. Advertising (Google AdSense)">
         <p style={prose}>
           tekivex.com displays advertisements served by{' '}
-          <strong style={{ color: '#f1f5f9' }}>Google AdSense</strong> (publisher ID{' '}
-          <code style={{ background: 'rgba(15,23,42,0.8)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ca-pub-4630229006617891</code>)
-          to help keep this site free. The AdSense script loads under Google Consent Mode v2 with advertising storage defaulted to <strong style={{ color: '#f1f5f9' }}>denied</strong>: until you click <strong style={{ color: '#f1f5f9' }}>Accept all</strong> on the consent banner described in section 1.2, no advertising cookies are set and any ads shown are non-personalised.
+          <strong style={{ color: 'var(--hub-text)' }}>Google AdSense</strong> (publisher ID{' '}
+          <code style={{ background: 'var(--hub-surface-2)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ca-pub-4630229006617891</code>)
+          to help keep this site free. The AdSense script loads under Google Consent Mode v2 with advertising storage defaulted to <strong style={{ color: 'var(--hub-text)' }}>denied</strong>: until you click <strong style={{ color: 'var(--hub-text)' }}>Accept all</strong> on the consent banner described in section 1.2, no advertising cookies are set and any ads shown are non-personalised.
         </p>
         <p style={prose}>
           Once loaded, Google and its partners may use cookies — including the DART cookie — to serve ads based on your visit to this site and other sites on the Internet. The DART cookie enables Google to show personalised ads. You can opt out of the DART cookie and personalised advertising at any time by visiting{' '}
@@ -153,7 +153,7 @@ export function PrivacyPolicyPage() {
           </a>.
         </p>
         <p style={prose}>
-          If you reject non-essential cookies, no advertising cookies are stored on your device (Google Consent Mode keeps <code style={{ background: 'rgba(15,23,42,0.8)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ad_storage</code> and <code style={{ background: 'rgba(15,23,42,0.8)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ad_personalization</code> denied), and any ads shown remain non-personalised.
+          If you reject non-essential cookies, no advertising cookies are stored on your device (Google Consent Mode keeps <code style={{ background: 'var(--hub-surface-2)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ad_storage</code> and <code style={{ background: 'var(--hub-surface-2)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ad_personalization</code> denied), and any ads shown remain non-personalised.
         </p>
       </Section>
 
@@ -232,9 +232,9 @@ export function PrivacyPolicyPage() {
         <p style={prose}>For privacy-related questions or to exercise your rights, please contact us:</p>
         <div style={{
           padding: '20px 24px', borderRadius: '10px',
-          background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(148,163,184,0.12)',
+          background: 'var(--hub-surface)', border: '1px solid var(--hub-border)',
         }}>
-          <p style={{ ...prose, marginBottom: '8px' }}><strong style={{ color: '#f1f5f9' }}>Tekivex</strong></p>
+          <p style={{ ...prose, marginBottom: '8px' }}><strong style={{ color: 'var(--hub-text)' }}>Tekivex</strong></p>
           <p style={{ ...prose, marginBottom: '8px' }}>
             GitHub:{' '}
             <a href="https://github.com/007krcs" target="_blank" rel="noopener noreferrer" style={{ color: '#4f46e5' }}>
@@ -259,7 +259,7 @@ export function PrivacyPolicyPage() {
         marginTop: '52px', padding: '20px 24px', borderRadius: '10px',
         background: 'rgba(79,70,229,0.06)', border: '1px solid rgba(79,70,229,0.18)',
       }}>
-        <p style={{ ...prose, margin: 0, fontSize: '13px', color: '#64748b' }}>
+        <p style={{ ...prose, margin: 0, fontSize: '13px', color: 'var(--hub-text-secondary)' }}>
           This Privacy Policy was drafted to comply with the EU General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA), and to meet the cookie-and-data-collection disclosure obligations of the third-party services we integrate (currently Google Analytics 4 and Google AdSense). We are committed to handling your data transparently and responsibly.
         </p>
       </div>

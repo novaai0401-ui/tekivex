@@ -31,9 +31,9 @@ export function CookiePolicyPage() {
           overflowX: 'auto', border: '1px solid rgba(148,163,184,0.18)',
           borderRadius: '10px', marginBottom: '20px',
         }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', color: '#cbd5e1', fontSize: 14 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', color: 'var(--hub-text-secondary)', fontSize: 14 }}>
             <thead>
-              <tr style={{ background: 'rgba(15,23,42,0.5)', textAlign: 'left' }}>
+              <tr style={{ background: 'var(--hub-surface-2)', textAlign: 'left' }}>
                 <th style={{ padding: '10px 14px', fontWeight: 700 }}>Name</th>
                 <th style={{ padding: '10px 14px', fontWeight: 700 }}>Set by</th>
                 <th style={{ padding: '10px 14px', fontWeight: 700 }}>Purpose</th>
@@ -49,7 +49,7 @@ export function CookiePolicyPage() {
                 <td style={{ padding: '10px 14px' }}>Persistent until cleared</td>
                 <td style={{ padding: '10px 14px' }}>Essential</td>
               </tr>
-              <tr style={{ background: 'rgba(15,23,42,0.3)' }}>
+              <tr style={{ background: 'var(--hub-surface)' }}>
                 <td style={{ padding: '10px 14px' }}>hub-theme</td>
                 <td style={{ padding: '10px 14px' }}>Tekivex (localStorage)</td>
                 <td style={{ padding: '10px 14px' }}>Remembers light / dark theme</td>
@@ -63,7 +63,7 @@ export function CookiePolicyPage() {
                 <td style={{ padding: '10px 14px' }}>2 years</td>
                 <td style={{ padding: '10px 14px' }}>Analytics</td>
               </tr>
-              <tr style={{ background: 'rgba(15,23,42,0.3)' }}>
+              <tr style={{ background: 'var(--hub-surface)' }}>
                 <td style={{ padding: '10px 14px' }}>__gads, __gpi, IDE</td>
                 <td style={{ padding: '10px 14px' }}>Google AdSense</td>
                 <td style={{ padding: '10px 14px' }}>Ad selection, frequency capping, measurement</td>
@@ -106,10 +106,10 @@ export function CookiePolicyPage() {
         </ul>
         <div style={{
           marginTop: '16px', padding: '18px 22px', borderRadius: '10px',
-          background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(148,163,184,0.12)',
+          background: 'var(--hub-surface)', border: '1px solid var(--hub-border)',
         }}>
           <p style={{ ...legalProse, marginBottom: '12px' }}>
-            <strong style={{ color: '#f1f5f9' }}>Current choice:</strong>{' '}
+            <strong style={{ color: 'var(--hub-text)' }}>Current choice:</strong>{' '}
             <span data-testid="consent-status" style={{ color: '#4f46e5' }}>{status}</span>
           </p>
           <button

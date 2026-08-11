@@ -83,7 +83,7 @@ export function BrandFaq() {
       }}
     >
       <header style={{ marginBottom: 40, textAlign: 'center' }}>
-        <div className="tx-eyebrow" style={{ marginBottom: 12, color: '#3a86ff', fontWeight: 700, fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+        <div className="tx-eyebrow" style={{ marginBottom: 12, color: 'var(--hub-accent)', fontWeight: 700, fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
           About Tekivex
         </div>
         <h2
@@ -93,14 +93,14 @@ export function BrandFaq() {
             fontWeight: 800,
             letterSpacing: '-0.025em',
             lineHeight: 1.15,
-            color: '#0f172a',
+            color: 'var(--hub-text)',
           }}
         >
           What is Tekivex?
         </h2>
         <p
           style={{
-            color: '#475569',
+            color: 'var(--hub-text-secondary)',
             fontSize: 'clamp(15px, 1.2vw, 17px)',
             lineHeight: 1.65,
             maxWidth: 760,
@@ -123,14 +123,14 @@ export function BrandFaq() {
       <div
         className="tx-brand-prose"
         style={{
-          background: '#ffffff',
-          border: '1px solid #e6e8ef',
+          background: 'var(--hub-surface)',
+          border: '1px solid var(--hub-border)',
           borderRadius: 16,
           padding: 'clamp(20px, 3vw, 32px)',
           marginBottom: 40,
           fontSize: 15,
           lineHeight: 1.75,
-          color: '#1a1f2e',
+          color: 'var(--hub-text)',
           boxShadow: '0 2px 12px rgba(15, 23, 42, 0.04)',
         }}
       >
@@ -169,7 +169,7 @@ export function BrandFaq() {
           fontSize: 'clamp(1.3rem, 2.2vw, 1.7rem)',
           fontWeight: 800,
           letterSpacing: '-0.02em',
-          color: '#0f172a',
+          color: 'var(--hub-text)',
         }}
       >
         Frequently asked questions about Tekivex
@@ -182,8 +182,8 @@ export function BrandFaq() {
             <div
               key={f.question}
               style={{
-                background: '#ffffff',
-                border: `1px solid ${open ? '#3a86ff' : '#e6e8ef'}`,
+                background: 'var(--hub-surface)',
+                border: `1px solid ${open ? 'var(--hub-accent)' : 'var(--hub-border)'}`,
                 borderRadius: 12,
                 overflow: 'hidden',
                 transition: 'border-color 0.2s, box-shadow 0.2s',
@@ -207,12 +207,12 @@ export function BrandFaq() {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   gap: 12,
-                  color: '#0f172a',
+                  color: 'var(--hub-text)',
                   fontFamily: 'inherit',
                 }}
               >
                 <span>{f.question}</span>
-                <span style={{ color: '#3a86ff', fontSize: 22, fontWeight: 400 }}>
+                <span style={{ color: 'var(--hub-accent)', fontSize: 22, fontWeight: 400 }}>
                   {open ? '−' : '+'}
                 </span>
               </button>
@@ -220,7 +220,7 @@ export function BrandFaq() {
                 <div
                   style={{
                     padding: '0 22px 20px',
-                    color: '#334155',
+                    color: 'var(--hub-text-secondary)',
                     fontSize: 15,
                     lineHeight: 1.75,
                   }}

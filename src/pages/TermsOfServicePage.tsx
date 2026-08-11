@@ -9,7 +9,7 @@ export function TermsOfServicePage() {
       intro={
         <p style={{ ...legalProse, margin: 0 }}>
           These Terms of Service ("Terms") govern your access to and use of
-          <strong style={{ color: '#f1f5f9' }}> tekivex.com</strong>, its subdomains, and any
+          <strong style={{ color: 'var(--hub-text)' }}> tekivex.com</strong>, its subdomains, and any
           free software and demos we publish (the "Services").
           By using the Services you agree to these Terms.
         </p>

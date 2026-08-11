@@ -2443,7 +2443,7 @@ body {
 }
 
 .hub-footer-bottom-link:hover {
-  color: var(--hub-accent, #3a86ff);
+  color: var(--hub-accent, var(--hub-accent));
 }
 
 .hub-footer-social {
@@ -5439,7 +5439,7 @@ body {
   border-color: #475569;
 }
 .cookie-banner-btn--ghost:hover { background: #334155; border-color: #334155; }
-.cookie-banner-btn--primary { background: #3a86ff; color: #fff; }
+.cookie-banner-btn--primary { background: var(--hub-accent); color: #fff; }
 .cookie-banner-btn--primary:hover { background: #4338ca; }
 [data-hub-theme="light"] .cookie-banner {
   background: #ffffff; color: #0f172a; border-color: #e2e8f0;
