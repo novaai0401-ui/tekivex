@@ -287,7 +287,7 @@ export const TOOLS: ToolMeta[] = [
       'Free, no signup, and your data is parsed in the page — never sent anywhere.',
     keywords: ['csv to chart', 'chart maker online free', 'csv to graph', 'make a chart from csv', 'csv visualizer', 'chart generator no signup'],
     iconName: 'bar-chart',
-    color: '#3b82f6',
+    color: '#4f46e5',
     steps: [
       { title: 'Add your CSV', body: 'Drop a .csv file or paste CSV text. The first row is treated as headers; your data stays in the browser.' },
       { title: 'Pick columns and a chart type', body: 'Choose the label column and one or more numeric columns, then switch between bar, line, area, and donut to see what reads best.' },

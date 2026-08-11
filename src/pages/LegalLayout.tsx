@@ -41,11 +41,11 @@ export function LegalLayout({ eyebrow, title, lastUpdated, intro, children }: Le
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: '8px',
           padding: '4px 14px', borderRadius: '99px',
-          background: 'rgba(59,130,246,0.12)', border: '1px solid rgba(59,130,246,0.3)',
+          background: 'rgba(79,70,229,0.12)', border: '1px solid rgba(79,70,229,0.3)',
           marginBottom: '20px',
         }}>
           <span style={{
-            color: '#3b82f6', fontSize: '11px', fontWeight: 700,
+            color: '#4f46e5', fontSize: '11px', fontWeight: 700,
             letterSpacing: '0.08em', textTransform: 'uppercase',
           }}>
             {eyebrow}

@@ -32,10 +32,10 @@ export function PrivacyPolicyPage() {
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: '8px',
           padding: '4px 14px', borderRadius: '99px',
-          background: 'rgba(59,130,246,0.12)', border: '1px solid rgba(59,130,246,0.3)',
+          background: 'rgba(79,70,229,0.12)', border: '1px solid rgba(79,70,229,0.3)',
           marginBottom: '20px',
         }}>
-          <span style={{ color: '#3b82f6', fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+          <span style={{ color: '#4f46e5', fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
             Legal
           </span>
         </div>
@@ -78,7 +78,7 @@ export function PrivacyPolicyPage() {
           ].map(t => <li key={t} style={li}>{t}</li>)}
         </ul>
         <p style={prose}>
-          When you first visit tekivex.com you will see a consent banner with <strong style={{ color: '#f1f5f9' }}>Accept all</strong> and <strong style={{ color: '#f1f5f9' }}>Reject non-essential</strong> buttons. We use Google Consent Mode v2: until you accept, all advertising and analytics storage signals default to <em>denied</em>, so no analytics or advertising cookies are stored on your device and any ads shown are non-personalised. You can change your choice at any time from the <a href="/cookie-policy" style={{ color: '#3b82f6' }}>Cookie Policy</a> page using the "Reopen cookie banner" button, or by clearing cookies and site data for tekivex.com in your browser.
+          When you first visit tekivex.com you will see a consent banner with <strong style={{ color: '#f1f5f9' }}>Accept all</strong> and <strong style={{ color: '#f1f5f9' }}>Reject non-essential</strong> buttons. We use Google Consent Mode v2: until you accept, all advertising and analytics storage signals default to <em>denied</em>, so no analytics or advertising cookies are stored on your device and any ads shown are non-personalised. You can change your choice at any time from the <a href="/cookie-policy" style={{ color: '#4f46e5' }}>Cookie Policy</a> page using the "Reopen cookie banner" button, or by clearing cookies and site data for tekivex.com in your browser.
         </p>
 
         <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e2e8f0', margin: '20px 0 8px' }}>
@@ -117,7 +117,7 @@ export function PrivacyPolicyPage() {
         </ul>
         <p style={prose}>
           You can opt out of Google Analytics by installing the{' '}
-          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" style={{ color: '#4f46e5' }}>
             Google Analytics Opt-out Browser Add-on
           </a>.
         </p>
@@ -133,22 +133,22 @@ export function PrivacyPolicyPage() {
         </p>
         <p style={prose}>
           Once loaded, Google and its partners may use cookies — including the DART cookie — to serve ads based on your visit to this site and other sites on the Internet. The DART cookie enables Google to show personalised ads. You can opt out of the DART cookie and personalised advertising at any time by visiting{' '}
-          <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+          <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" style={{ color: '#4f46e5' }}>
             Google Ads Settings
           </a>{' '}or{' '}
-          <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+          <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" style={{ color: '#4f46e5' }}>
             Google's advertising policies
           </a>.
         </p>
         <p style={prose}>
           Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites. You can review how Google uses information from sites or apps that use its services at{' '}
-          <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+          <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" style={{ color: '#4f46e5' }}>
             How Google uses data when you use our partners' sites or apps
           </a>. You may also opt out of third-party vendor use of cookies for personalised advertising by visiting{' '}
-          <a href="https://optout.aboutads.info/" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+          <a href="https://optout.aboutads.info/" target="_blank" rel="noopener noreferrer" style={{ color: '#4f46e5' }}>
             aboutads.info
           </a>{' '}or{' '}
-          <a href="https://www.youronlinechoices.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+          <a href="https://www.youronlinechoices.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#4f46e5' }}>
             youronlinechoices.com
           </a>.
         </p>
@@ -237,19 +237,19 @@ export function PrivacyPolicyPage() {
           <p style={{ ...prose, marginBottom: '8px' }}><strong style={{ color: '#f1f5f9' }}>Tekivex</strong></p>
           <p style={{ ...prose, marginBottom: '8px' }}>
             GitHub:{' '}
-            <a href="https://github.com/007krcs" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+            <a href="https://github.com/007krcs" target="_blank" rel="noopener noreferrer" style={{ color: '#4f46e5' }}>
               github.com/007krcs
             </a>
           </p>
           <p style={{ ...prose, marginBottom: '8px' }}>
             Issue Tracker:{' '}
-            <a href="https://github.com/novaai0401-ui/tekivex-issue-report/issues" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+            <a href="https://github.com/novaai0401-ui/tekivex-issue-report/issues" target="_blank" rel="noopener noreferrer" style={{ color: '#4f46e5' }}>
               github.com/novaai0401-ui/tekivex-issue-report/issues
             </a>
           </p>
           <p style={{ ...prose, marginBottom: 0 }}>
             Website:{' '}
-            <a href="https://tekivex.com" style={{ color: '#3b82f6' }}>tekivex.com</a>
+            <a href="https://tekivex.com" style={{ color: '#4f46e5' }}>tekivex.com</a>
           </p>
         </div>
       </Section>
@@ -257,7 +257,7 @@ export function PrivacyPolicyPage() {
       {/* Compliance note */}
       <div style={{
         marginTop: '52px', padding: '20px 24px', borderRadius: '10px',
-        background: 'rgba(59,130,246,0.06)', border: '1px solid rgba(59,130,246,0.18)',
+        background: 'rgba(79,70,229,0.06)', border: '1px solid rgba(79,70,229,0.18)',
       }}>
         <p style={{ ...prose, margin: 0, fontSize: '13px', color: '#64748b' }}>
           This Privacy Policy was drafted to comply with the EU General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA), and to meet the cookie-and-data-collection disclosure obligations of the third-party services we integrate (currently Google Analytics 4 and Google AdSense). We are committed to handling your data transparently and responsibly.

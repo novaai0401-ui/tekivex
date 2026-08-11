@@ -176,7 +176,7 @@ function HeroStack({ products }: { products: ProductManifest[] }) {
           </div>
         ))}
         {/* Glow disc under the stack */}
-        <div className="tx-float-glow" style={{ background: `radial-gradient(ellipse, ${stack[0]?.color ?? '#2563eb'}55 0%, transparent 70%)` }} />
+        <div className="tx-float-glow" style={{ background: `radial-gradient(ellipse, ${stack[0]?.color ?? '#4338ca'}55 0%, transparent 70%)` }} />
       </div>
     </div>
   );

@@ -94,8 +94,8 @@ export function TermsOfServicePage() {
       <LegalSection title="9. Contact">
         <p style={legalProse}>
           Questions about these Terms? Email{' '}
-          <a href="mailto:nishu_singh@tekivex.com" style={{ color: '#3b82f6' }}>nishu_singh@tekivex.com</a>
-          {' '}or use the <a href="/contact" style={{ color: '#3b82f6' }}>contact page</a>.
+          <a href="mailto:nishu_singh@tekivex.com" style={{ color: '#4f46e5' }}>nishu_singh@tekivex.com</a>
+          {' '}or use the <a href="/contact" style={{ color: '#4f46e5' }}>contact page</a>.
         </p>
       </LegalSection>
     </LegalLayout>

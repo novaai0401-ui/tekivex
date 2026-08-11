@@ -88,10 +88,10 @@ export function CookiePolicyPage() {
           user's prior visits to our site or other sites, as described in Google's
           advertising policies. You can opt out of personalised advertising by
           visiting{' '}
-          <a href="https://www.google.com/settings/ads" style={{ color: '#3b82f6' }} target="_blank" rel="noopener noreferrer">
+          <a href="https://www.google.com/settings/ads" style={{ color: '#4f46e5' }} target="_blank" rel="noopener noreferrer">
             Google Ads Settings
           </a>{' '}or{' '}
-          <a href="https://optout.aboutads.info/" style={{ color: '#3b82f6' }} target="_blank" rel="noopener noreferrer">
+          <a href="https://optout.aboutads.info/" style={{ color: '#4f46e5' }} target="_blank" rel="noopener noreferrer">
             aboutads.info
           </a>.
         </p>
@@ -110,15 +110,15 @@ export function CookiePolicyPage() {
         }}>
           <p style={{ ...legalProse, marginBottom: '12px' }}>
             <strong style={{ color: '#f1f5f9' }}>Current choice:</strong>{' '}
-            <span data-testid="consent-status" style={{ color: '#3b82f6' }}>{status}</span>
+            <span data-testid="consent-status" style={{ color: '#4f46e5' }}>{status}</span>
           </p>
           <button
             onClick={reset}
             data-testid="manage-cookies"
             style={{
               padding: '9px 18px', fontSize: 13, fontWeight: 600,
-              borderRadius: 8, border: '1px solid #3b82f6',
-              background: 'transparent', color: '#3b82f6', cursor: 'pointer',
+              borderRadius: 8, border: '1px solid #4f46e5',
+              background: 'transparent', color: '#4f46e5', cursor: 'pointer',
             }}
           >
             Reopen cookie banner
@@ -129,7 +129,7 @@ export function CookiePolicyPage() {
       <LegalSection title="5. Contact">
         <p style={legalProse}>
           For questions about this Cookie Policy, email{' '}
-          <a href="mailto:nishu_singh@tekivex.com" style={{ color: '#3b82f6' }}>nishu_singh@tekivex.com</a>.
+          <a href="mailto:nishu_singh@tekivex.com" style={{ color: '#4f46e5' }}>nishu_singh@tekivex.com</a>.
         </p>
       </LegalSection>
     </LegalLayout>

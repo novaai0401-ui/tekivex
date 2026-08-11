@@ -76,10 +76,10 @@ export function FaqPage() {
       intro={
         <p style={{ ...legalProse, margin: 0 }}>
           Quick answers to the questions we get most often. Still stuck? Email{' '}
-          <a href="mailto:nishu_singh@tekivex.com" style={{ color: '#3b82f6' }}>
+          <a href="mailto:nishu_singh@tekivex.com" style={{ color: '#4f46e5' }}>
             nishu_singh@tekivex.com
           </a>{' '}
-          or visit the <a href="/contact" style={{ color: '#3b82f6' }}>contact page</a>.
+          or visit the <a href="/contact" style={{ color: '#4f46e5' }}>contact page</a>.
         </p>
       }
     >

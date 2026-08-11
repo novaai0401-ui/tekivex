@@ -25,7 +25,7 @@ export function ContactPage() {
           <a
             href={`mailto:${SUPPORT_EMAIL}`}
             data-testid="contact-email"
-            style={{ color: '#3b82f6', fontSize: 18, fontWeight: 600 }}
+            style={{ color: '#4f46e5', fontSize: 18, fontWeight: 600 }}
           >
             {SUPPORT_EMAIL}
           </a>
@@ -45,7 +45,7 @@ export function ContactPage() {
             href={GITHUB_ISSUES}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: '#3b82f6' }}
+            style={{ color: '#4f46e5' }}
           >
             github.com/novaai0401-ui/tekivex-issue-report/issues
           </a>
@@ -65,7 +65,7 @@ export function ContactPage() {
       <LegalSection title="Security disclosures">
         <p style={legalProse}>
           Please do not file public issues for security vulnerabilities. Email{' '}
-          <a href={`mailto:${SUPPORT_EMAIL}`} style={{ color: '#3b82f6' }}>{SUPPORT_EMAIL}</a>
+          <a href={`mailto:${SUPPORT_EMAIL}`} style={{ color: '#4f46e5' }}>{SUPPORT_EMAIL}</a>
           {' '}with the subject line "Security" and we'll respond privately.
         </p>
       </LegalSection>

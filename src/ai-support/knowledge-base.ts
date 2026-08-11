@@ -1107,7 +1107,7 @@ GridStorm sends your API the current sort/filter/group state — your backend ap
 // ─────────────────────────────────────────────
 export const CATEGORY_META: Record<Category, { label: string; emoji: string; color: string }> = {
   general:           { label: 'General',          emoji: '💬', color: '#6366f1' },
-  gridstorm:         { label: 'GridStorm',         emoji: '🟦', color: '#3b82f6' },
+  gridstorm:         { label: 'GridStorm',         emoji: '🟦', color: '#4f46e5' },
   'tekivex-ui':      { label: 'Tekivex UI',        emoji: '🎨', color: '#06b6d4' },
   'quantum-vault':   { label: 'Quantum Vault',     emoji: '🔐', color: '#8b5cf6' },
   pyntra:            { label: 'Pyntra',            emoji: '📄', color: '#ef4444' },

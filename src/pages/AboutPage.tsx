@@ -4,7 +4,7 @@ import { Link } from '../App';
 const PRODUCTS = [
   {
     name: 'GridStorm',
-    color: '#3b82f6',
+    color: '#4f46e5',
     icon: 'grid',
     status: 'Beta',
     statusColor: '#fbbf24',

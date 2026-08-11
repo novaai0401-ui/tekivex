@@ -13,7 +13,7 @@ export function NotFoundPage() {
     >
       <p style={{
         fontSize: 12, fontWeight: 700, letterSpacing: '0.18em',
-        textTransform: 'uppercase', color: '#3b82f6', margin: '0 0 12px',
+        textTransform: 'uppercase', color: '#4f46e5', margin: '0 0 12px',
       }}>
         404 · Page not found
       </p>
@@ -39,7 +39,7 @@ export function NotFoundPage() {
 }
 
 const primaryBtn: React.CSSProperties = {
-  padding: '11px 22px', borderRadius: 10, background: '#3b82f6',
+  padding: '11px 22px', borderRadius: 10, background: '#4f46e5',
   color: '#fff', fontWeight: 600, textDecoration: 'none', fontSize: 14,
 };
 const ghostBtn: React.CSSProperties = {
