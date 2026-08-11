@@ -74,9 +74,11 @@ export function CookiePolicyPage() {
           </table>
         </div>
         <p style={legalProse}>
-          Analytics and Advertising cookies are only set after you click <em>Accept all</em>
-          on our consent banner. If you reject or have not yet decided, neither the
-          Google Analytics nor the Google AdSense script is loaded.
+          We use Google Consent Mode v2. The Google Analytics and Google AdSense
+          scripts load with all storage signals defaulted to <em>denied</em>, so no
+          Analytics or Advertising cookies are set until you click <em>Accept all</em>
+          on our consent banner. If you reject or have not yet decided, these cookies
+          are not stored and any ads shown are non-personalised.
         </p>
       </LegalSection>
 

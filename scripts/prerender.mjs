@@ -304,6 +304,41 @@ const productCatalogBlock = PRODUCTS.map(productCardBlock).join('');
 const ARTICLES = await loadArticles();
 const AUTHORS = await loadAuthors();
 
+// ─── Author profile pages — E-E-A-T anchors for the Person schema ──────────
+function authorProfileBlock(author) {
+  const articles = ARTICLES.filter((a) => a.authorId === author.id);
+  const list = articles
+    .map(
+      (a) =>
+        `<li style="margin-bottom:10px"><a href="/use-cases/${escapeHtml(a.slug)}" style="color:#3a86ff;text-decoration:none;font-weight:600">${escapeHtml(a.title)}</a><br><span style="color:#475569;font-size:14px">${escapeHtml(a.description)}</span></li>`,
+    )
+    .join('');
+  return `
+      <p style="font-size:16px;line-height:1.75;color:#334155;margin:0 0 8px"><strong>${escapeHtml(author.role)}</strong></p>
+      <p style="font-size:16px;line-height:1.75;color:#334155;margin:0 0 16px">${escapeHtml(author.bio)}</p>
+      <p style="margin:0 0 24px"><a href="${escapeHtml(author.url)}" style="color:#3a86ff;text-decoration:none" rel="me">LinkedIn profile</a> · <a href="mailto:${escapeHtml(author.email)}" style="color:#3a86ff;text-decoration:none" rel="me">${escapeHtml(author.email)}</a></p>
+      <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:24px 0 12px">Articles by ${escapeHtml(author.name)} (${articles.length})</h2>
+      <ul style="margin:0;padding-left:20px;list-style:disc">${list}</ul>`;
+}
+
+function authorLd(author) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    url: `${ORIGIN}/authors/${author.id}`,
+    mainEntity: {
+      '@type': 'Person',
+      name: author.name,
+      url: author.url,
+      jobTitle: author.role,
+      description: author.bio,
+      email: author.email,
+      sameAs: author.sameAs,
+      worksFor: { '@type': 'Organization', name: 'Tekivex', url: ORIGIN },
+    },
+  };
+}
+
 // A crawlable "Featured guides" block — original first-party editorial content
 // shown above the product catalog so the homepage reads as a content
 // destination, not a launcher.
@@ -316,7 +351,7 @@ function featuredGuidesBlock(limit) {
     .join('');
   return `
       <h2 style="font-size:1.5rem;font-weight:800;color:#0a0f1f;margin:32px 0 8px">Guides &amp; engineering deep dives</h2>
-      <p style="color:#475569;font-size:15px;margin:0 0 16px">${ARTICLES.length} in-depth, original articles by the Tekivex Engineering team — architecture, migration guides, and real-world use cases, free to read. <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Browse all guides →</a></p>
+      <p style="color:#475569;font-size:15px;margin:0 0 16px">${ARTICLES.length} in-depth, original articles by <a href="/authors/chandan-kumar" style="color:#3a86ff;text-decoration:none">Chandan Kumar</a> and <a href="/authors/seema-almas-shaikh" style="color:#3a86ff;text-decoration:none">Seema Almas Shaikh</a> — architecture, migration guides, and real-world use cases, free to read. <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Browse all guides →</a></p>
       <ul style="margin:0 0 8px;padding-left:20px;list-style:disc">${items}</ul>`;
 }
 
@@ -443,6 +478,15 @@ const routes = [
       'on your device and never sent to a server — no accounts, no watermarks, no file limits from us.',
     contentHtml: toolsCatalogBlock,
   },
+  ...Object.values(AUTHORS).map((author) => ({
+    path: `/authors/${author.id}`,
+    title: `${author.name} — Author at Tekivex`,
+    description: `${author.bio}`.slice(0, 300),
+    h1: author.name,
+    body: `Guides and engineering deep dives written by ${author.name} for Tekivex.`,
+    contentHtml: authorProfileBlock(author),
+    extraLd: authorLd(author),
+  })),
   ...TOOLS.map((t) => ({
     path: `/tools/${t.slug}`,
     title: t.seoTitle,
