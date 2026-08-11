@@ -1,6 +1,6 @@
 import { LegalLayout, LegalSection, legalProse, legalLi } from './LegalLayout';
 
-const SUPPORT_EMAIL = 'hello@tekivex.com';
+const SUPPORT_EMAIL = 'nishu_singh@tekivex.com';
 const GITHUB_ISSUES = 'https://github.com/novaai0401-ui/tekivex-issue-report/issues';
 
 export function ContactPage() {
