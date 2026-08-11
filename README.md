@@ -1,7 +1,7 @@
 # Tekivex
 
-> **Enterprise software, crafted with skill.**
-> A platform shell that unifies multiple developer tools and enterprise products under one brand, one design system, and one launcher.
+> **Free developer tools, independently built.**
+> The marketing hub, product catalogue, and free in-browser tools for [tekivex.com](https://tekivex.com) — one brand, one design system, one launcher.
 >
 > *Tekivex — from Greek **techne** (craft, skill, art) + **vex** (to drive forward). The driving force of skilled engineering.*
 
@@ -9,18 +9,20 @@
 
 ## What is this?
 
-Tekivex is a **standalone platform shell** — a product launcher and marketing hub for a suite of enterprise software products. Each product is independently deployed and linked from here by URL.
+Tekivex is an independent project shipping free developer tools and web apps. This repo is the **apex site** (tekivex.com): the product catalogue, long-form guides, legal pages, and eight free client-side tools. The larger products are deployed on their own subdomains and linked from here.
 
 ```
-tekivex (this repo)            ← platform shell, product catalog, SEO
+tekivex.com (this repo)      ← hub, catalogue, guides, free in-browser tools
     └── links to →
-         grid-data (GridStorm) ← data grid packages, docs, demos
-         pdf-toolkit            ← (future repo)
-         nexa-recruit           ← (future repo)
-         nexa-care              ← (future repo)
+         gridstorm            ← data grid library (npm: gridstorm)
+         tekivex-ui           ← component library (ui.tekivex.com, npm: tekivex-ui)
+         quantum-vault        ← post-quantum tokens (npm: @sigvault/sdk)
+         pyntra               ← browser PDF editor (pyntra.tekivex.com)
+         analytics-studio     ← browser BI app (analytics.tekivex.com)
+         dataflow             ← real-time streaming dashboard (dataflow.tekivex.com)
 ```
 
-**This repo contains no product code.** It is purely the platform shell: product cards, landing pages, SEO metadata, branding, and navigation.
+The in-browser tools at `/tools` (merge/split/compress/rotate PDF, JPG↔PDF, CSV to chart) are implemented **in this repo** and run entirely client-side — nothing is uploaded.
 
 ---
 
@@ -28,10 +30,14 @@ tekivex (this repo)            ← platform shell, product catalog, SEO
 
 | Product | Status | Description |
 |---|---|---|
-| **GridStorm** | ✅ GA | Free enterprise data grid — 35 plugins, 100K rows @ 60fps, WCAG 2.1 AA |
-| **PDF Toolkit** | 🔵 Beta | WASM/Rust PDF renderer — 13 annotation types, PII detection, AES-256 |
-| **Analytics Studio** | 🔜 Q3 2026 | Visual BI & dashboards — drag-and-drop, 20+ chart types, no SQL |
-| **DataFlow** | 🔜 Q4 2026 | Real-time streaming — WebSocket, Kafka, sub-10ms latency |
+| **GridStorm** | Beta | Free high-performance data grid — 35 plugins, 100K rows @ 60fps, WCAG 2.1 AA |
+| **Tekivex UI** | Preview | Accessible component library for React, Vue & Svelte |
+| **Quantum Vault** | Beta | Post-quantum token issuance & verification (ML-DSA-87 + XChaCha20) |
+| **Pyntra** | Beta | Browser PDF editor — hosted at pyntra.tekivex.com |
+| **Analytics Studio** | Beta | In-browser BI & dashboards — hosted at analytics.tekivex.com |
+| **DataFlow** | Beta | Real-time streaming dashboard — hosted at dataflow.tekivex.com |
+
+All free for commercial use. Statuses are shown honestly on the site via each product manifest's `status` field.
 
 ---
 
@@ -51,142 +57,55 @@ export const myProductManifest: ProductManifest = {
   tagline: 'One-line description',
   description: 'Full description...',
   version: '0.1.0',
-  status: 'coming-soon', // 'ga' | 'beta' | 'preview' | 'coming-soon'
-  tier: 'enterprise',    // 'open-source' | 'enterprise' | 'platform'
+  status: 'beta',        // 'ga' | 'beta' | 'preview' | 'coming-soon'
+  tier: 'open-source',   // 'open-source' | 'enterprise' | 'platform'
   color: '#8b5cf6',
   accentColor: 'rgba(139, 92, 246, 0.1)',
   iconName: 'my-icon',
   homePath: '/product/my-product',
-  docsRoot: 'https://my-product.vercel.app/docs',
-  primaryDemoPath: 'https://my-product.vercel.app/demo',
-  stats: [...],
-  keyFeatures: [...],
-  quickLinks: [...],
-  tags: [...],
-  seo: {
-    title: 'My Product — Description | Tekivex',
-    description: '...',
-    keywords: [...],
-    jsonLdType: 'SoftwareApplication',
-  },
+  docsRoot: 'https://my-product.example.com/docs',
+  // ...
 };
 ```
 
-**Step 2 — Register it:**
+**Step 2 — Register it** in `src/platform/registry.ts`. The launcher, nav, routing, sitemap, and prerender pick it up automatically.
 
-```ts
-// src/platform/registry.ts
-import { myProductManifest } from './manifest-myproduct';
-
-const PRODUCT_MANIFESTS: ProductManifest[] = [
-  // existing products...
-  myProductManifest, // ← add here
-];
-```
-
-Done. The launcher, nav dropdown, product page, and SEO all pick it up automatically.
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Framework | React 18 + TypeScript |
-| Build tool | Vite 5 |
-| Styling | CSS custom properties (no CSS-in-JS) |
-| Routing | Hash-based (`#/products`, `#/product/:id`) |
-| SEO | Dynamic `useSeo` hook — injects `<title>`, OG, Twitter, JSON-LD per route |
-| Deployment | Vercel (SPA catch-all route) |
-
-**No external UI library. No state management library. Zero workspace dependencies** — fully standalone.
-
----
-
-## Local Development
-
-```bash
-# 1. Clone
-git clone https://github.com/007krcs/tekivex.git
-cd tekivex
-
-# 2. Install
-npm install
-
-# 3. Dev server (http://localhost:5173)
-npm run dev
-
-# 4. Production build
-npm run build
-```
-
----
-
-## Project Structure
+### Repo layout
 
 ```
-tekivex/
-├── index.html               # Static SEO: OG, Twitter, JSON-LD Organization schema
 ├── public/
 │   ├── robots.txt           # Crawl rules + sitemap pointer
-│   ├── sitemap.xml          # All product pages with priority/changefreq
-│   └── site.webmanifest     # PWA manifest
+│   ├── sitemap.xml          # Generated at build
+│   ├── ads.txt              # AdSense seller declaration
+│   └── use-cases/content/   # Markdown source for the 20+ guides
 ├── src/
-│   ├── App.tsx              # Hash router (/, /products, /product/:id)
-│   ├── main.tsx
-│   ├── styles.css
-│   ├── platform/
-│   │   ├── types.ts              # ProductManifest interface + SEO types
-│   │   ├── registry.ts           # Product list + getProduct() helpers
-│   │   ├── PlatformProvider.tsx  # React context (config, products, navigate)
-│   │   ├── useSeo.ts             # Dynamic <head> injection hook
-│   │   ├── seoConfig.ts          # Per-route SeoConfig map
-│   │   ├── manifest-gridstorm.ts
-│   │   ├── manifest-pdf-toolkit.ts
-│   │   ├── manifest-nexa-recruit.ts
-│   │   ├── manifest-nexa-care.ts
-│   │   └── manifest-coming-soon.ts
-│   ├── pages/
-│   │   ├── PlatformPage.tsx      # /products — product launcher
-│   │   └── ProductHomePage.tsx   # /product/:id — individual product page
-│   ├── layout/
-│   │   ├── TopNav.tsx       # Brand + ProductSwitcher dropdown
-│   │   └── Footer.tsx       # 6-column footer with all product links
-│   ├── icons/
-│   │   ├── Icon.tsx         # <Icon name="grid" size={20} />
-│   │   └── paths.ts         # SVG path registry (30+ icons)
-│   └── theme/
-│       ├── ThemeProvider.tsx
-│       └── ThemeToggle.tsx
-└── vercel.json              # SPA catch-all: all routes → /index.html
+│   ├── App.tsx              # History router (/, /products, /product/:id, /tools/:slug, /use-cases/:slug)
+│   ├── platform/            # Product manifests, registry, SEO config, useSeo()
+│   ├── tools/               # Free in-browser tools (pdf-lib / pdfjs-dist / CSV charts)
+│   ├── content/             # Article registry + article pages
+│   ├── pages/               # Static pages (About, FAQ, legal, contact, …)
+│   ├── ads/                 # Consent-gated AdSlot component
+│   ├── consent/             # Cookie banner + Consent Mode v2 script loader
+│   └── layout/              # TopNav, Footer, BrandFaq
+├── scripts/prerender.mjs    # Emits per-route static HTML + sitemaps + RSS at build
+└── vercel.json              # Redirects + SPA fallback rewrite
 ```
 
 ---
 
 ## SEO Strategy
 
-Every route gets unique `<title>`, `<meta description>`, Open Graph, Twitter Card, and a `SoftwareApplication` JSON-LD schema injected dynamically by `useSeo()`:
-
-```
-/ (home)                  → Tekivex Organization schema
-/products                 → product catalog page
-/product/gridstorm        → GridStorm SoftwareApplication schema
-/product/nexa-recruit     → NexaRecruit SoftwareApplication schema
-/product/nexa-care        → NexaCare SoftwareApplication schema
-... etc
-```
-
-Static fallbacks in `index.html` serve crawlers that don't execute JavaScript.
+`npm run build` runs Vite, then `scripts/prerender.mjs` writes a static HTML file per route with route-specific `<title>`, meta description, canonical, Open Graph/Twitter tags, JSON-LD (Organization, BreadcrumbList, FAQPage, TechArticle), and the real page content pre-rendered into `#root` — so crawlers see full content without executing JavaScript. React hydrates over it in the browser.
 
 ---
 
 ## Deployment (Vercel)
 
-1. Import `007krcs/tekivex` in Vercel
+1. Import `novaai0401-ui/tekivex` in Vercel
 2. Framework preset: **Other**
 3. Build command: `npm run build`
 4. Output directory: `dist`
-5. Deploy — `vercel.json` serves all routes from `index.html`
+5. Deploy — prerendered files are served directly; unmatched paths fall back to the SPA via the rewrite in `vercel.json`
 
 ---
 

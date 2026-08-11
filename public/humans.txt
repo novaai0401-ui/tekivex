@@ -12,6 +12,6 @@
   DataFlow         — hosted real-time streaming dashboard (dataflow.tekivex.com)
 
 /* SITE */
-  Last update: 2026-07-22
+  Last update: 2026-08-11
   Standards: HTML5, CSS3, ES2022, WCAG 2.1 AA
   License: MIT

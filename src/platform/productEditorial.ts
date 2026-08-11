@@ -176,7 +176,7 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
   // ── Tekivex UI ──────────────────────────────────────────────────────────
   'tekivex-ui': {
     overview: [
-      'Tekivex UI is an enterprise component library with 50+ accessible components — buttons, inputs, selects, modals, drawers, toasts, navigation, and layout primitives — plus a headless layer for full style control. It ships React 18+, Vue 3, and Svelte 5 bindings with idiomatic APIs, so design decisions stay consistent across frameworks.',
+      'Tekivex UI is a professional component library with 50+ accessible components — buttons, inputs, selects, modals, drawers, toasts, navigation, and layout primitives — plus a headless layer for full style control. It ships React 18+, Vue 3, and Svelte 5 bindings with idiomatic APIs, so design decisions stay consistent across frameworks.',
       'It is in Preview. The component set, theming system, and accessibility work are usable today; we are expanding coverage and stabilising APIs ahead of a 1.0. Everything is WCAG 2.1 AA, tree-shakeable ESM, and ships with zero runtime dependencies.',
     ],
     howItWorks: [
@@ -185,7 +185,7 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
       { title: 'Drop to headless when needed', body: 'Each component exposes a headless primitive, so when the styled version is not enough you keep the behaviour and accessibility while supplying your own markup.' },
     ],
     useCases: [
-      'Enterprise apps that need accessible components out of the box (WCAG 2.1 AA) without a heavy runtime.',
+      'Production apps that need accessible components out of the box (WCAG 2.1 AA) without a heavy runtime.',
       'Teams shipping the same design system across React, Vue, and Svelte codebases.',
       'Products with strict bundle budgets that benefit from tree-shakeable, zero-dependency components.',
       'Design systems that need headless primitives for full visual customisation.',

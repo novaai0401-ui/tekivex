@@ -27,6 +27,21 @@ Not sure your file's ready? There's a **Try sample data** button so you can see 
 
 If you need deeper analysis — filtering, pivoting, exploring larger datasets — take a look at [Analytics Studio](/product/analytics-studio). And if you're browsing our other free tools, the [tools hub](/tools) has the full set.
 
+## Picking the right chart type for your data
+
+The tool offers four chart types, and the choice matters more than any styling option:
+
+- **Bar** — the default for comparing categories: sales by region, tickets by team, spend by month. Bars stay readable even with longer category names, and every value is visible.
+- **Line** — for anything measured over time. A line makes the trend the story: growth, seasonality, a sudden drop. Use it when the horizontal axis is dates or ordered periods.
+- **Area** — a line chart that also emphasises cumulative magnitude. Good for showing volume building over time; less good when several series overlap and hide each other.
+- **Donut** — for showing shares of a whole, and only that. Beyond a handful of slices it stops being readable, which is why the tool folds smaller slices into "Other" after eight — if every category matters, a bar chart tells the story better.
+
+If you're unsure, try bar first and switch — the preview updates instantly, and switching costs nothing since the data is already loaded.
+
+## Where to get a clean CSV
+
+Every spreadsheet and analytics product exports CSV: in Excel or Google Sheets use *File → Download/Save As → CSV*; most databases, banking portals, and admin dashboards have an "Export CSV" button. Keep the header row — the tool uses it to name your columns — and prefer comma-separated output over semicolons or tabs, which need converting first.
+
 ## Frequently asked questions
 
 ### What does my CSV need to look like?

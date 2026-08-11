@@ -10,7 +10,7 @@ const GRIDSTORM_NPM = 'https://www.npmjs.com/package/gridstorm';
 export const gridstormManifest: ProductManifest = {
   id: 'gridstorm',
   name: 'GridStorm',
-  tagline: 'Enterprise Data Grid — 35 composable plugins',
+  tagline: 'High-Performance Data Grid — 35 composable plugins',
   githubUrl: GRIDSTORM_GITHUB,
   playgroundPath: `${GRIDSTORM_URL}/playground/`,
   description:
@@ -50,9 +50,9 @@ export const gridstormManifest: ProductManifest = {
   ],
   tags: ['Free', 'TypeScript', 'React', 'Vue', 'Svelte', 'Virtual Scroll', 'WCAG 2.1 AA'],
   seo: {
-    title: 'GridStorm — Enterprise React Data Grid | Tekivex',
+    title: 'GridStorm — High-Performance React Data Grid | Tekivex',
     description:
-      'Free enterprise data grid with virtual scrolling (100K rows @ 60fps), ' +
+      'Free high-performance data grid with virtual scrolling (100K rows @ 60fps), ' +
       'WCAG 2.1 AA, 42 Excel formula functions, and 35 composable plugins. Free forever.',
     keywords: [
       'enterprise data grid',

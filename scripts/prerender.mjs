@@ -163,16 +163,39 @@ const toolsCatalogBlock = TOOLS.map(
       </section>`,
 ).join('');
 
-function toolFaqLd(t) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: t.faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
-    })),
-  };
+function toolLd(t) {
+  const url = `${ORIGIN}/tools/${t.slug}`;
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: `${t.name} — Tekivex Tools`,
+      description: t.seoDescription,
+      url,
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'All (browser-based)',
+      browserRequirements: 'Requires JavaScript',
+      isAccessibleForFree: true,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      publisher: { '@type': 'Organization', name: 'Tekivex', url: ORIGIN },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: `How to use ${t.name}`,
+      description: t.short,
+      step: t.steps.map((s) => ({ '@type': 'HowToStep', name: s.title, text: s.body })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: t.faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ];
 }
 
 function productEditorialBlock(id, name) {
@@ -303,10 +326,10 @@ const products = PRODUCTS.map((p) => ({ id: p.id, name: p.name, tagline: p.tagli
 const routes = [
   {
     path: '/',
-    title: 'Tekivex — Free Enterprise Developer Tools Platform',
+    title: 'Tekivex — Free Developer Tools Platform',
     description:
       'Free developer tools & private web apps: GridStorm data grid, Tekivex UI components, Quantum Vault tokens on npm — plus 8 free in-browser tools (merge/split/compress PDF, CSV to chart) and hosted apps. Files never uploaded.',
-    h1: 'Tekivex — free enterprise developer tools',
+    h1: 'Tekivex — free developer tools',
     body:
       'Tekivex groups several free products under one roof: the GridStorm, Tekivex UI, and Quantum Vault libraries on npm, plus the hosted apps Pyntra, Analytics Studio, and DataFlow that run in your browser with nothing to install.',
     contentHtml: `${featuredGuidesBlock(8)}<h2 style="font-size:1.5rem;font-weight:800;color:#0a0f1f;margin:40px 0 16px">The Tekivex product suite</h2>${productCatalogBlock}`,
@@ -323,9 +346,9 @@ const routes = [
   },
   {
     path: '/about',
-    title: 'About Tekivex — Free enterprise tools',
+    title: 'About Tekivex — Independent developer tools project',
     description:
-      'Tekivex builds free enterprise developer tools that are free forever. Read about the platform, the mission, and the team behind GridStorm, Tekivex UI, Quantum Vault, Pyntra, Analytics Studio, and DataFlow.',
+      'Tekivex is an independent project building developer tools that are free forever. Read about the platform, the mission, and the team behind GridStorm, Tekivex UI, Quantum Vault, Pyntra, Analytics Studio, and DataFlow.',
     h1: 'About Tekivex',
     body:
       'Tekivex is an independent project that builds production-grade enterprise developer tools and releases them free for commercial use — no enterprise tier, no paywall, no per-seat pricing.',
@@ -427,7 +450,7 @@ const routes = [
     h1: t.name,
     body: t.description,
     contentHtml: toolDetailBlock(t),
-    extraLd: toolFaqLd(t),
+    extraLd: toolLd(t),
   })),
   ...products.map((p) => ({
     path: `/product/${p.id}`,
@@ -492,7 +515,7 @@ function makeHtml(route) {
       <h1 style="font-size:2.4rem;font-weight:800;letter-spacing:-0.025em;color:#0a0f1f;margin:0 0 12px;line-height:1.15">${escapeHtml(route.h1)}</h1>
       <p style="color:#3a3a52;font-size:18px;line-height:1.6;margin:0 0 24px">${escapeHtml(route.body)}</p>
       ${route.contentHtml || ''}
-      <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px;margin-top:32px">Tekivex · free enterprise developer tools · Free for commercial use · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://ui.tekivex.com" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
+      <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px;margin-top:32px">Tekivex · free developer tools · Free for commercial use · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://ui.tekivex.com" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
     </main>`;
   html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${ssr}</div>`);
 
@@ -830,7 +853,7 @@ const humans = [
 // Generated from the same product facts + article list so they never drift.
 const LLM_PRODUCTS = [
   { name: 'GridStorm', url: `${ORIGIN}/product/gridstorm`, npm: 'gridstorm',
-    s: 'Headless, framework-agnostic enterprise data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35+ composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. MIT-licensed, free for commercial use.' },
+    s: 'Headless, framework-agnostic high-performance data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35+ composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. MIT-licensed, free for commercial use.' },
   { name: 'Tekivex UI', url: `${ORIGIN}/product/tekivex-ui`, npm: 'tekivex-ui',
     s: 'Accessible React/Vue/Svelte component library: 100+ components (Tkx-prefixed), WCAG 2.1 AA (targeting AAA), dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, headless primitives. MIT-licensed, free for commercial use.' },
   { name: 'Quantum Vault', url: `${ORIGIN}/product/quantum-vault`, npm: '@sigvault/sdk',
@@ -843,7 +866,7 @@ const LLM_PRODUCTS = [
     s: 'Free, hosted browser-based real-time streaming dashboard (use it live at https://dataflow.tekivex.com/stocks — nothing to install). Live feeds with directional change highlighting, anomaly alerts, backpressure control, and time-travel replay.' },
 ];
 const LLM_INTRO =
-  'Tekivex is a free platform of enterprise developer tools for JavaScript and TypeScript. ' +
+  'Tekivex is an independently built platform of free developer tools for JavaScript and TypeScript. ' +
   'Every product is free for commercial use, framework-agnostic, accessibility-first, and production-tested. ' +
   'Built and maintained by the Tekivex Engineering team. Official site: ' + ORIGIN + '.';
 

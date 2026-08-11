@@ -32,6 +32,16 @@ It's a couple of extra steps, but it keeps the rest of the document untouched.
 - **Encrypted PDFs must be unlocked first.** Remove the password in a PDF reader, save an unlocked copy, then rotate that.
 - **No upload, no watermark, no account.** The rotation is applied in your browser with client-side code, so the file never leaves your device.
 
+## Where sideways PDFs come from (and how to avoid them)
+
+Almost every crooked PDF traces back to one of three sources. Flatbed scanners produce sideways pages when a document is placed with its long edge against the glass — many office copiers scan everything as landscape by default. Phone-camera "scan" apps guess orientation from the image content, and guess wrong on pages that are mostly tables or diagrams. And print-to-PDF drivers sometimes stamp a landscape orientation flag on portrait content when the source application had a landscape default.
+
+If the same scanner keeps producing sideways output, look for an "auto-rotate" or "orientation detection" option in its settings — fixing it at the source beats fixing every file afterwards. Until then, this tool corrects the output losslessly in seconds.
+
+## Rotation and file size
+
+Because rotation only rewrites each page's orientation flag, the output file is byte-for-byte almost identical in size to the input — no re-encoding, no quality change, no growth. This is different from tools that rasterise pages to rotate them, which can balloon a small text PDF into a large image-based one. If you also need the file smaller, that's a separate job for [Compress PDF](/tools/compress-pdf) — do the rotation first, then compress the corrected file.
+
 ## Frequently asked questions
 
 ### Is my PDF uploaded to rotate it?

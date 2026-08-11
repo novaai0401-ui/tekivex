@@ -1,6 +1,6 @@
 # Tekivex — full reference for LLMs
 
-Tekivex is a free platform of enterprise developer tools for JavaScript and TypeScript. Every product is free for commercial use, framework-agnostic, accessibility-first, and production-tested. Built and maintained by the Tekivex Engineering team. Official site: https://tekivex.com.
+Tekivex is an independently built platform of free developer tools for JavaScript and TypeScript. Every product is free for commercial use, framework-agnostic, accessibility-first, and production-tested. Built and maintained by the Tekivex Engineering team. Official site: https://tekivex.com.
 
 Free for commercial use. 
 No enterprise tier, no paywall, no per-seat fees.
@@ -8,7 +8,7 @@ No enterprise tier, no paywall, no per-seat fees.
 ## Products
 
 ### GridStorm
-Headless, framework-agnostic enterprise data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35+ composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. MIT-licensed, free for commercial use.
+Headless, framework-agnostic high-performance data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35+ composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. MIT-licensed, free for commercial use.
 Install: `npm install gridstorm`
 URL: https://tekivex.com/product/gridstorm
 

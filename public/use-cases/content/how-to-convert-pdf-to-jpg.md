@@ -30,6 +30,17 @@ If you're unsure, try JPG first — for most everyday pages it's the better bala
 
 If you later want to go the other way — turning images back into a single PDF — the [JPG to PDF](/tools/jpg-to-pdf) tool is the companion to this one. And if you only need a few pages as images, you can first pull them out with [Split PDF](/tools/split-pdf) and then convert just those.
 
+## What people actually use page images for
+
+- **Slides.** Presentation software makes embedding a PDF page awkward, but pastes an image instantly. Convert the page, drop it on the slide, done.
+- **Social posts and chat.** Messaging apps and social platforms preview images inline but show PDFs as opaque attachments. A JPG of the poster, flyer, or announcement gets seen instead of downloaded-and-forgotten.
+- **Forms that only accept images.** Plenty of upload forms accept JPG/PNG but not PDF. Rendering the relevant page to an image gets you through without hunting for another app.
+- **Thumbnails and previews.** If you're building a document library or catalogue, rendering the first page of each PDF gives you preview images without a server-side rendering pipeline.
+
+## Getting the best quality out of the conversion
+
+The renderer draws each page at a resolution chosen for crisp on-screen viewing. For content destined for a large print or a projector, PNG is the safer choice: it's lossless, so fine text and line art survive untouched, where JPG's compression can leave faint artefacts around sharp edges. For photos and scans the difference is invisible and JPG's smaller size wins. One thing no setting can change: the output is a picture of the page, so the text in it can't be selected or searched. If the recipient needs working text, send the PDF itself, or extract just the needed pages with [Split PDF](/tools/split-pdf).
+
 ## Frequently asked questions
 
 ### Is my PDF uploaded to convert it?

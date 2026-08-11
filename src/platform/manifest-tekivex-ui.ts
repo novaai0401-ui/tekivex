@@ -7,9 +7,9 @@ const UI_NPM    = 'https://www.npmjs.com/package/tekivex-ui';
 export const tekivexUiManifest: ProductManifest = {
   id: 'tekivex-ui',
   name: 'Tekivex UI',
-  tagline: 'Enterprise Component Library for React, Vue & Svelte',
+  tagline: 'Accessible Component Library for React, Vue & Svelte',
   description:
-    'Production-ready UI component library built for enterprise apps — buttons, forms, modals, ' +
+    'Production-ready UI component library built for real-world apps — buttons, forms, modals, ' +
     'tables, toasts, navigation, and layout primitives. Fully accessible (WCAG 2.1 AA), ' +
     'dark/light theme support via CSS custom properties, tree-shakeable ESM bundles, and ' +
     'zero runtime dependencies. React 18+, Vue 3, and Svelte 5 bindings included. Free for commercial use.',
@@ -48,7 +48,7 @@ export const tekivexUiManifest: ProductManifest = {
   ],
   tags: ['Preview', 'Free', 'React', 'Vue', 'Svelte', 'Accessible', 'Themeable', 'TypeScript', 'Headless'],
   seo: {
-    title: 'Tekivex UI — Enterprise Component Library for React, Vue & Svelte | Tekivex',
+    title: 'Tekivex UI — Accessible Component Library for React, Vue & Svelte | Tekivex',
     description:
       'Production-ready UI component library with 50+ accessible components, dark/light themes, ' +
       'tree-shakeable ESM bundles, and React/Vue/Svelte bindings. Free for commercial use.',

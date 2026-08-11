@@ -12,7 +12,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'What is Tekivex?',
     answer:
-      'Tekivex is a free enterprise developer-tools platform. It ships a suite of free-to-use products under one roof. Three are npm libraries: GridStorm (high-performance React data grid with 35+ plugins), Tekivex UI (accessible React/Vue/Svelte component library at ui.tekivex.com), and Quantum Vault (sovereign post-quantum token issuance and verification). Three are free hosted web apps you simply open and use in the browser: Pyntra, a PDF editor at pyntra.tekivex.com; Analytics Studio, an in-browser BI app at analytics.tekivex.com; and DataFlow, a real-time streaming dashboard at dataflow.tekivex.com. Everything is free forever.',
+      'Tekivex is an independently built platform of free developer tools. It ships a suite of free-to-use products under one roof. Three are npm libraries: GridStorm (high-performance React data grid with 35+ plugins), Tekivex UI (accessible React/Vue/Svelte component library at ui.tekivex.com), and Quantum Vault (sovereign post-quantum token issuance and verification). Three are free hosted web apps you simply open and use in the browser: Pyntra, a PDF editor at pyntra.tekivex.com; Analytics Studio, an in-browser BI app at analytics.tekivex.com; and DataFlow, a real-time streaming dashboard at dataflow.tekivex.com. Everything is free forever.',
   },
   {
     question: 'What does Tekivex offer for React developers?',
@@ -107,7 +107,7 @@ export function BrandFaq() {
             margin: '0 auto',
           }}
         >
-          Tekivex is a free platform of enterprise developer tools — a
+          Tekivex is an independently built platform of free developer tools — a
           single, free-to-use home for a high-performance data grid, a
           post-quantum token vault, and a complete React/Vue/Svelte
           component library, plus three free hosted web apps you open
