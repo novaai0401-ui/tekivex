@@ -36,6 +36,16 @@ Because deleting pages produces a brand-new file and leaves your source untouche
 
 If, instead of deleting pages, you want to *keep* a specific range as its own document, the [Split PDF](/tools/split-pdf) tool is the better fit. And to combine several trimmed documents afterwards, use [Merge PDF](/tools/merge-pdf).
 
+## The confidentiality angle: why local processing matters here
+
+Think about what page removal is usually *for*: stripping the pricing annex before sending a proposal to a second bidder, removing internal comments from a board pack, cutting the salary page out of a contract before sharing it with a broker. The pages being deleted are, almost by definition, the sensitive ones. Uploading that document to a random web service — where it sits on someone's server before and after processing — defeats the purpose. Because this tool edits the file on your own machine, the confidential pages never travel anywhere. The same logic applies to blanking scanner artefacts from documents that contain personal data.
+
+One caution that no tool can fix: deleting a page removes it from the *output file*, but your original still contains it. If you're sharing the trimmed version, double-check you attached the right file — the one habit that prevents most accidental disclosures.
+
+## Delete pages vs. extract pages
+
+This tool and [Split PDF](/tools/split-pdf) are mirror images: here you name the pages to *throw away*; there you name the pages to *keep*. Use whichever needs the shorter list. Removing 3 pages from a 200-page report is a job for this tool (`14,57,102`); keeping only the executive summary of that report is a job for Split PDF (`1-4`). Both produce a new PDF and leave your original untouched.
+
 ## Frequently asked questions
 
 ### Is my PDF uploaded to remove pages?

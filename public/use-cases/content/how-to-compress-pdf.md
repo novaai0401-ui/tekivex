@@ -24,6 +24,16 @@ Here's the honest part. To shrink your file, Compress PDF re-renders each page a
 
 For documents where keeping searchable text matters, or for more control over your files, [Pyntra](/product/pyntra) is our fuller editor. And if the file is large because it simply has many pages you don't all need, [Split PDF](/tools/split-pdf) may solve the problem instead.
 
+## Why file-size limits exist — and what usually fits
+
+Most compression jobs are driven by someone else's upload cap. Email providers commonly reject attachments over 20–25 MB. Government portals, job application systems, and university submission sites frequently cap uploads at 2–10 MB. A ten-page phone-scanned document can easily weigh 15–30 MB, so scans are the files that hit these walls hardest — and they're also the files this tool shrinks best, because photographic page images have huge amounts of removable detail.
+
+A rough guide to choosing a setting against a target size: start with **Balanced**. If the before/after readout shows you're still over the limit, re-run the original at **Strong**. If Balanced already gets you far under the limit, **High** may give you a visibly crisper document that still fits. Because the tool always shows both sizes before you download, you never have to guess.
+
+## When compression is the wrong tool
+
+Two situations call for a different approach. If your PDF is mostly *text* and still large, the bulk is usually embedded fonts or an inefficient export — rasterising it here will cost you selectable text without saving much; re-exporting from the source program at lower quality is the better fix. And if the file only needs to be *split up* rather than smaller — say a portal accepts multiple files — extracting the needed pages with [Split PDF](/tools/split-pdf) keeps full quality while cutting size proportionally.
+
 ## Frequently asked questions
 
 ### How much smaller will my PDF get?

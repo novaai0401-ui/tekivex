@@ -163,16 +163,39 @@ const toolsCatalogBlock = TOOLS.map(
       </section>`,
 ).join('');
 
-function toolFaqLd(t) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: t.faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
-    })),
-  };
+function toolLd(t) {
+  const url = `${ORIGIN}/tools/${t.slug}`;
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: `${t.name} — Tekivex Tools`,
+      description: t.seoDescription,
+      url,
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'All (browser-based)',
+      browserRequirements: 'Requires JavaScript',
+      isAccessibleForFree: true,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      publisher: { '@type': 'Organization', name: 'Tekivex', url: ORIGIN },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: `How to use ${t.name}`,
+      description: t.short,
+      step: t.steps.map((s) => ({ '@type': 'HowToStep', name: s.title, text: s.body })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: t.faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ];
 }
 
 function productEditorialBlock(id, name) {
@@ -427,7 +450,7 @@ const routes = [
     h1: t.name,
     body: t.description,
     contentHtml: toolDetailBlock(t),
-    extraLd: toolFaqLd(t),
+    extraLd: toolLd(t),
   })),
   ...products.map((p) => ({
     path: `/product/${p.id}`,

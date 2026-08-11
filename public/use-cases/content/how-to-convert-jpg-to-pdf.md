@@ -22,6 +22,16 @@ It's especially handy for scans, ID cards, and receipts, where you want everythi
 
 If you later want to combine that PDF with others, use [Merge PDF](/tools/merge-pdf); to pull specific pages back out, try [Split PDF](/tools/split-pdf). For deeper document editing, there's [Pyntra](/product/pyntra).
 
+## Making phone scans look professional
+
+A few habits turn a folder of phone pictures into a document people take seriously. Shoot straight down, with the page filling the frame — skewed photos read as sloppy in a PDF. Use daylight or a desk lamp from the side to kill shadows; the camera flash directly above a glossy page creates a washed-out hotspot. And crop each photo to the page edges before converting, since the PDF page takes each image's exact shape — a receipt photographed against a dark table becomes a page that is mostly table.
+
+For multi-page documents, photograph the pages in order and check the sequence in the tool's file list before converting: reordering takes two seconds there and is annoying to fix afterwards. For double-sided documents like ID cards, the convention most recipients expect is front first, back second — the same order a photocopier would produce.
+
+## What to do when the PDF comes out too large
+
+Phone cameras produce large images — a 12-megapixel photo per page adds up fast, and a twenty-receipt expense bundle can exceed an email attachment limit. Two fixes: photograph documents at a lower resolution if your camera app allows it, or convert first and then run the result through [Compress PDF](/tools/compress-pdf), which re-optimises the page images at a quality you choose and shows the size saving before you download.
+
 ## Frequently asked questions
 
 ### How do I combine several photos into one PDF?

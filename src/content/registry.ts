@@ -61,15 +61,15 @@ const DATES: Record<string, { published: string; modified?: string }> = {
   'quantum-vault-migrate-pqc-token-issuance':      { published: PUBLISHED, modified: MODIFIED },
   'quantum-vault-sovereign-token-verification':    { published: PUBLISHED, modified: MODIFIED },
   // Free-tools how-to guides — shipped with the tools hub.
-  'how-to-merge-pdf-free':                         { published: '2026-07-02' },
-  'how-to-split-pdf-extract-pages':                { published: '2026-07-02' },
-  'how-to-convert-jpg-to-pdf':                     { published: '2026-07-02' },
-  'how-to-compress-pdf':                           { published: '2026-07-02' },
-  'how-to-make-chart-from-csv':                    { published: '2026-07-02' },
-  'why-browser-tools-keep-files-private':          { published: '2026-07-02' },
-  'how-to-convert-pdf-to-jpg':                     { published: '2026-07-22' },
-  'how-to-rotate-pdf':                             { published: '2026-07-22' },
-  'how-to-delete-pages-from-pdf':                  { published: '2026-07-22' },
+  'how-to-merge-pdf-free':                         { published: '2026-07-02', modified: '2026-08-11' },
+  'how-to-split-pdf-extract-pages':                { published: '2026-07-02', modified: '2026-08-11' },
+  'how-to-convert-jpg-to-pdf':                     { published: '2026-07-02', modified: '2026-08-11' },
+  'how-to-compress-pdf':                           { published: '2026-07-02', modified: '2026-08-11' },
+  'how-to-make-chart-from-csv':                    { published: '2026-07-02', modified: '2026-08-11' },
+  'why-browser-tools-keep-files-private':          { published: '2026-07-02', modified: '2026-08-11' },
+  'how-to-convert-pdf-to-jpg':                     { published: '2026-07-22', modified: '2026-08-11' },
+  'how-to-rotate-pdf':                             { published: '2026-07-22', modified: '2026-08-11' },
+  'how-to-delete-pages-from-pdf':                  { published: '2026-07-22', modified: '2026-08-11' },
 };
 
 function article(

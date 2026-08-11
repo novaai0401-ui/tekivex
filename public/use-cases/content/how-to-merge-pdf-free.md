@@ -24,6 +24,20 @@ That's the whole process. You can merge two files or twenty; the steps are the s
 
 If you need to do more than merge — reordering pages inside a single document, editing, or annotating — take a look at [Pyntra](/product/pyntra), our fuller-featured editor. And if you later need to pull specific pages back out of your merged file, the [Split PDF](/tools/split-pdf) tool is the companion to this one.
 
+## Common merging scenarios and how to handle them
+
+**Combining scanned batches.** Scanners often save each page — or each side of a double-sided document — as its own PDF. Drop the whole batch in at once, then sort them in the file list before merging. If a scan came out upside down, run it through [Rotate PDF](/tools/rotate-pdf) first and merge the corrected copy.
+
+**Assembling an application or submission pack.** Cover letter, CV, certificates, references: portals frequently insist on "one PDF". Merge them in reading order and give the output a clear name before you upload it. If the pack comes out too large for the portal's size limit, pass the merged file through [Compress PDF](/tools/compress-pdf) afterwards.
+
+**Adding a signed page back into a contract.** Print-sign-scan workflows leave you with the original contract plus a one-page scan of the signature page. Extract everything except the unsigned page with [Split PDF](/tools/split-pdf), then merge the signed scan into its place.
+
+## Troubleshooting
+
+- **The merge button stays disabled** — you need at least two files. A single PDF has nothing to merge with.
+- **One of the files is rejected** — it is probably password-protected. The tool can't read encrypted PDFs, so unlock the file first (you need to know its password) or open it in [Pyntra](/product/pyntra), which handles encrypted documents.
+- **The page runs out of memory on a phone** — merging several very large scans can exceed a phone browser's memory since everything is processed locally. Retry on a desktop browser, or compress the largest inputs first.
+
 ## Frequently asked questions
 
 ### Is this PDF merger really free?

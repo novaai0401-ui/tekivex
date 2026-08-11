@@ -31,6 +31,21 @@ Because order is respected, `3,1` gives you page 3 followed by page 1 — handy 
 - **Encrypted PDFs must be unlocked first.** If your file is password-protected, remove the password in a PDF reader and save an unlocked copy before splitting.
 - **It's the mirror image of merging.** If you instead want to join files together, use [Merge PDF](/tools/merge-pdf). For heavier editing, [Pyntra](/product/pyntra) is our full editor.
 
+## Practical uses for page extraction
+
+The most common reason to split a PDF isn't technical at all — it's about sharing *less*. A few examples of where extracting pages beats sending the whole file:
+
+- **Sending one chapter, not the manual.** Product manuals and reports routinely run to hundreds of pages. Extracting the ten pages someone actually needs makes the file smaller and their life easier.
+- **Isolating the signature page.** Contracts are often signed on one page. Extract just that page to send for counter-signature, then use [Merge PDF](/tools/merge-pdf) to reassemble the fully signed document.
+- **Separating combined scans.** If a scanner batched several receipts or letters into one PDF, extract each document's page range into its own file — run the tool once per document.
+- **Reversing a backwards scan.** Some sheet-fed scanners output the last page first. A reverse range like `20-1` puts the whole document back in reading order in one pass.
+
+## Troubleshooting
+
+- **"Page out of range" error** — the tool shows the document's page count as soon as the file loads; every number you enter must fall inside it. Typos like `1,3,70` on a 7-page file are reported rather than silently ignored, so nothing unexpected ends up in your output.
+- **The file won't load** — password-protected PDFs must be unlocked before splitting. If you know the password, remove it in your PDF viewer's export options first.
+- **You need several output files** — the tool builds one PDF per run. Run it once per page set; since nothing uploads, each pass takes only seconds.
+
 ## Frequently asked questions
 
 ### How do I extract just one page from a PDF?

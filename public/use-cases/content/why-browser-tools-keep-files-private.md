@@ -30,6 +30,16 @@ If it still works with no connection, the file clearly isn't being uploaded anyw
 
 Every free tool in the Tekivex [tools hub](/tools) is built to run client-side. Your files are processed in your browser and are never uploaded. That includes [Merge PDF](/tools/merge-pdf), [Split PDF](/tools/split-pdf), [JPG to PDF](/tools/jpg-to-pdf), [Compress PDF](/tools/compress-pdf), and [CSV to Chart](/tools/csv-to-chart). Even the CSV chart tool's "share a link" feature keeps your data in the part of the URL after the `#`, which browsers never send to a server.
 
+## What a traditional upload tool does with your file
+
+To appreciate the difference, walk through what happens with a conventional "free online PDF tool". You pick a file; it travels over the internet to the company's server; the server processes it and holds the result until you download it. At minimum, your document has now existed on hardware you don't control, subject to that company's retention policy, logging, staff access rules, and breach history — none of which you can verify. Many such services promise deletion "within a few hours", which still means your contract, medical record, or ID scan sat on a third-party machine for a few hours. For throwaway documents that may be fine. For anything sensitive, it's a real cost that the convenience hides.
+
+There's a second-order issue, too: uploads create copies. Server-side processing typically produces the original, the converted result, temporary working files, and backups of all three. "Delete" rarely means all of them, immediately, everywhere.
+
+## The trade-offs, stated honestly
+
+In-browser processing isn't magically better at everything. Your device does the work, so a low-memory phone can struggle with a 500-page scan that a beefy server would shrug at. Features that genuinely require heavy infrastructure — OCR on huge batches, format conversions needing licensed engines — are harder to deliver client-side. The honest summary: for the common tasks these tools cover, local processing gives you equal results with a categorically better privacy model; for industrial-scale jobs, a server-based tool may be the right call, chosen with eyes open.
+
 ## Frequently asked questions
 
 ### Is a browser-based tool really more private than a normal online tool?
