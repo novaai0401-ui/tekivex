@@ -70,7 +70,7 @@ export function ArticlePage({ slug }: { slug: string }) {
       <p className="uc-article-lead">{article.description}</p>
 
       <div className="uc-article-meta">
-        <span className="uc-byline">By {article.author}</span>
+        <span className="uc-byline">By {author ? <Link to={`/authors/${author.id}`}>{author.name}</Link> : article.author}</span>
         <span className="uc-meta-sep">·</span>
         <time dateTime={article.datePublished}>{formatDate(article.datePublished)}</time>
         <span className="uc-meta-sep">·</span>
@@ -103,6 +103,8 @@ export function ArticlePage({ slug }: { slug: string }) {
             <span className="uc-author-role">{author.role}</span>
             <p className="uc-author-bio">{author.bio}</p>
             <span className="uc-author-links">
+              <Link to={`/authors/${author.id}`} rel="author">Profile</Link>
+              <span className="uc-meta-sep">·</span>
               <a href={author.url} target="_blank" rel="noopener noreferrer author">LinkedIn</a>
               <span className="uc-meta-sep">·</span>
               <a href={`mailto:${author.email}`} rel="author">Email</a>

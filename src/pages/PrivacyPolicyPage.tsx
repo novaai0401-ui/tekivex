@@ -73,8 +73,8 @@ export function PrivacyPolicyPage() {
           {[
             'Essential cookies — required for the site to function correctly (e.g. tekivex.consent.v1 in localStorage, which remembers your cookie choice).',
             'Preference cookies — remember your theme or settings (e.g. hub-theme in localStorage).',
-            'Analytics cookies — help us understand how visitors use our sites (Google Analytics 4, _ga / _ga_*). Loaded only after you accept on the consent banner.',
-            'Advertising cookies — set by Google AdSense (__gads, __gpi, IDE) so ads can be selected and frequency-capped. Loaded only after you accept on the consent banner.',
+            'Analytics cookies — help us understand how visitors use our sites (Google Analytics 4, _ga / _ga_*). Set only after you accept on the consent banner (Consent Mode v2 keeps analytics storage denied until then).',
+            'Advertising cookies — set by Google AdSense (__gads, __gpi, IDE) so ads can be selected and frequency-capped. Set only after you accept on the consent banner (Consent Mode v2 keeps ad storage denied until then).',
           ].map(t => <li key={t} style={li}>{t}</li>)}
         </ul>
         <p style={prose}>
@@ -129,7 +129,7 @@ export function PrivacyPolicyPage() {
           tekivex.com displays advertisements served by{' '}
           <strong style={{ color: '#f1f5f9' }}>Google AdSense</strong> (publisher ID{' '}
           <code style={{ background: 'rgba(15,23,42,0.8)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ca-pub-4630229006617891</code>)
-          to help keep this site free. AdSense is loaded only after you click <strong style={{ color: '#f1f5f9' }}>Accept all</strong> on the consent banner described in section 1.2.
+          to help keep this site free. The AdSense script loads under Google Consent Mode v2 with advertising storage defaulted to <strong style={{ color: '#f1f5f9' }}>denied</strong>: until you click <strong style={{ color: '#f1f5f9' }}>Accept all</strong> on the consent banner described in section 1.2, no advertising cookies are set and any ads shown are non-personalised.
         </p>
         <p style={prose}>
           Once loaded, Google and its partners may use cookies — including the DART cookie — to serve ads based on your visit to this site and other sites on the Internet. The DART cookie enables Google to show personalised ads. You can opt out of the DART cookie and personalised advertising at any time by visiting{' '}

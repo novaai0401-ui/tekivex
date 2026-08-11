@@ -432,6 +432,55 @@ export function getSeoForRoute(route: string): SeoConfig {
     };
   }
 
+  if (route.startsWith('/authors/')) {
+    const id = route.slice('/authors/'.length).split('/')[0];
+    const author = id ? getAuthor(id) : undefined;
+    if (author) {
+      const url = `${BASE_URL}${route}`;
+      const title = `${author.name} — Author at Tekivex`;
+      const description = `${author.bio} Read all guides and deep dives by ${author.name} on Tekivex.`;
+      return {
+        title,
+        description,
+        keywords: [author.name, 'Tekivex author', 'engineering guides', author.role],
+        canonical: url,
+        ogTitle: title,
+        ogDescription: description,
+        ogImage: `${BASE_URL}/og-tekivex.png`,
+        ogType: 'profile',
+        twitterTitle: title,
+        twitterDescription: description,
+        twitterImage: `${BASE_URL}/og-tekivex.png`,
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ProfilePage',
+            url,
+            mainEntity: {
+              '@type': 'Person',
+              name: author.name,
+              url: author.url,
+              jobTitle: author.role,
+              description: author.bio,
+              email: author.email,
+              sameAs: author.sameAs,
+              worksFor: { '@type': 'Organization', name: 'Tekivex', url: BASE_URL },
+            },
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+              { '@type': 'ListItem', position: 2, name: 'Use Cases', item: `${BASE_URL}/use-cases` },
+              { '@type': 'ListItem', position: 3, name: author.name, item: url },
+            ],
+          },
+        ] as any,
+      };
+    }
+  }
+
   if (route.startsWith('/use-cases/')) {
     const slug = route.slice('/use-cases/'.length).split('/')[0];
     const article = slug ? getArticle(slug) : undefined;
