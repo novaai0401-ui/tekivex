@@ -48,8 +48,8 @@ Because compression works by turning each page into an optimised image. That ima
 
 Start with **Balanced**. If you need the file even smaller and can accept some visible quality loss, use **Strong**. If the pages need to stay crisp, choose **High**. You can re-run with a different level anytime.
 
-### Is my PDF uploaded to a server?
+### How do I get a scan under an email or portal size limit?
 
-No. All the compression happens in your browser on your own device — your file is never sent across the internet. See [why browser tools keep files private](/use-cases/why-browser-tools-keep-files-private) for how that works.
+Compress at **Balanced** first and read the before/after size the tool shows. If it's still over the limit, re-run the compressed file at **Strong**. If it's a multi-page scan with pages you don't actually need, [delete those pages](/tools/remove-pages-pdf) before compressing — dropping pages is the most reliable size cut of all. Everything happens on your device throughout, so even oversized confidential scans are never uploaded ([why that matters](/use-cases/why-browser-tools-keep-files-private)).
 
 Your files never leave your browser — compression happens entirely on your own device.

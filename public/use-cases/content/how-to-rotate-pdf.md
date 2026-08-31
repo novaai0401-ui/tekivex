@@ -44,9 +44,9 @@ Because rotation only rewrites each page's orientation flag, the output file is 
 
 ## Frequently asked questions
 
-### Is my PDF uploaded to rotate it?
+### Why does my PDF look rotated in one app but upright in another?
 
-No. Rotation runs entirely in your browser — the file is never sent to a server. To understand how that works and why it's safer, see [why browser tools keep your files private](/use-cases/why-browser-tools-keep-files-private).
+Because there are two different "rotations" in a PDF. This tool sets each page's *orientation flag* — a piece of metadata every compliant reader is supposed to honour. Most do, but a few older viewers and some print pipelines ignore the flag and show the page at its "baked-in" orientation, which is why the same file can look right in one app and sideways in another. If a viewer stubbornly ignores the flag, rasterising the page (via [PDF to JPG](/tools/pdf-to-jpg) and back) bakes the rotation in permanently. Rotation runs entirely in your browser, so the file is never uploaded ([why that matters](/use-cases/why-browser-tools-keep-files-private)).
 
 ### Does rotating a PDF reduce its quality?
 

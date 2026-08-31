@@ -43,9 +43,9 @@ The renderer draws each page at a resolution chosen for crisp on-screen viewing.
 
 ## Frequently asked questions
 
-### Is my PDF uploaded to convert it?
+### When should I turn a PDF into images instead of keeping the PDF?
 
-No. Each page is rendered to an image in your browser with client-side code, so the file is never sent across the internet. If you want to understand why that matters, read [why browser tools keep your files private](/use-cases/why-browser-tools-keep-files-private).
+Convert to JPG or PNG when the destination only accepts images — a social post, a slide, a marketplace listing, or a form field that wants a picture rather than a document. Keep the PDF when the recipient needs to select text, follow links, or print at full fidelity, because page images lose all of that. A useful middle path: convert only the one or two pages you need as images and send the original PDF alongside. Either way the rendering happens in your browser, so nothing is uploaded ([why that matters](/use-cases/why-browser-tools-keep-files-private)).
 
 ### Can I convert just one page?
 

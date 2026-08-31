@@ -48,9 +48,9 @@ This tool and [Split PDF](/tools/split-pdf) are mirror images: here you name the
 
 ## Frequently asked questions
 
-### Is my PDF uploaded to remove pages?
+### Is deleting a page the same as redacting sensitive information?
 
-No. Page removal happens entirely in your browser with client-side code — the file is never sent to a server. Here's [why browser tools keep your files private](/use-cases/why-browser-tools-keep-files-private).
+No — and the difference matters. Deleting a page removes that whole page and everything on it from the file, so it genuinely can't be recovered from the result. But if the sensitive content is *text or an image on a page you're keeping*, deleting won't help — you need redaction, which permanently blacks out and removes that content while leaving the rest of the page. For that, use the redact tools in [Pyntra](/product/pyntra). (Never "hide" sensitive text by drawing a black box over it in a normal editor — the text underneath usually survives and can be copied out.) Page removal here runs in your browser, so the file is never uploaded ([why that matters](/use-cases/why-browser-tools-keep-files-private)).
 
 ### What page format can I enter?
 

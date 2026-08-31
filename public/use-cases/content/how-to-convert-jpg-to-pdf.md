@@ -46,8 +46,8 @@ Not directly, but it's an easy fix. HEIC, WebP, and TIFF aren't supported, so ex
 
 No. Each PDF page is sized to match its image's aspect ratio, so your pictures keep their original proportions instead of being forced into a fixed page shape.
 
-### Are my photos uploaded to a server?
+### Is it safe to convert photos of an ID card or passport this way?
 
-No. The conversion happens entirely in your browser on your own device, so your images — including sensitive ones like ID documents — are never sent across the internet. Learn more in [why browser tools keep files private](/use-cases/why-browser-tools-keep-files-private).
+It's one of the safest ways to do it — precisely because nothing is uploaded. Your browser turns the image into a PDF locally, so the file never reaches a server and there's no third-party copy of your ID to worry about. For anything that sensitive, avoid upload-based converters entirely; [here's how in-browser tools keep files private](/use-cases/why-browser-tools-keep-files-private).
 
 Your images never leave your browser — the conversion happens entirely on your own device.

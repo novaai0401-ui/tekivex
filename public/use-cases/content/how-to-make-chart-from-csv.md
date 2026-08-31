@@ -52,9 +52,9 @@ A header row on top, then your data below it, comma-separated. One column holds 
 
 Re-save it as a comma-separated CSV first. Most spreadsheet apps let you choose the delimiter when you export, so pick comma. Tab-separated files should be converted the same way.
 
-### Should I download SVG or PNG?
+### How do I make the chart accessible when I share it?
 
-Choose **SVG** if you want the chart to stay perfectly sharp at any size — ideal for printing or large slides. Choose **PNG** if you just need a regular image file to drop into a document or message.
+A chart image on its own is invisible to screen-reader users, so pair it with a text alternative. When you embed the image, write alt text that states the takeaway, not just "chart" — for example "Bar chart: Q4 revenue up 18% over Q3, the largest quarterly rise of the year." For anything important, also include the underlying numbers as a short data table nearby, so the information is available to everyone regardless of whether they can see the chart. Prefer **SVG** where you can (it stays sharp at any size and scales with zoom); use **PNG** only where SVG isn't accepted.
 
 ### If I share the link, does that upload my data?
 

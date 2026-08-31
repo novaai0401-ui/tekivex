@@ -60,8 +60,8 @@ Yes. Separate them with commas, like `1,3,7-9`. You can freely combine individua
 
 Yes. Write a range backwards, such as `9-7`, and those pages come out in reverse. You can also list single pages out of order, like `5,2,1`, to rearrange as you extract.
 
-### Are my files uploaded anywhere?
+### Split PDF or Delete Pages — which should I use?
 
-No. Your PDF is opened and split entirely within your browser on your own device — nothing is sent to a server. To learn how in-browser tools protect your privacy, see [why browser tools keep files private](/use-cases/why-browser-tools-keep-files-private).
+They solve opposite problems. Use **Split** when you know the pages you want to *keep* — pull page 4, or `1,3,7-9`, into a new file. Use [Delete Pages](/tools/remove-pages-pdf) when it's easier to name the pages you want to *remove* and keep everything else. For a contract where you need only the signature page, Split is quicker; for a report where you're stripping two internal appendices, Delete Pages is. Both run entirely in your browser, so nothing is uploaded either way ([why that matters](/use-cases/why-browser-tools-keep-files-private)).
 
 Your files never leave your browser — splitting happens entirely on your own device.
