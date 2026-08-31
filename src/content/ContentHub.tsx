@@ -9,7 +9,7 @@ export function ContentHub() {
   const apps = getAllProducts().filter((p) => p.tier === 'platform' && p.primaryDemoPath);
 
   return (
-    <main className="uc-hub">
+    <div className="uc-hub">
       <header className="uc-hub-header">
         <div className="uc-hub-eyebrow">Use Cases</div>
         <h1 className="uc-hub-title">
@@ -64,6 +64,6 @@ export function ContentHub() {
           </div>
         </section>
       ))}
-    </main>
+    </div>
   );
 }

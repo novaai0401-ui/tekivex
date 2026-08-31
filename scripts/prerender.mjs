@@ -431,6 +431,15 @@ const routes = [
       'Documentation and code samples on Tekivex are informational and reflect best practice at the time of writing. Always verify against authoritative sources before using in production.',
   },
   {
+    path: '/accessibility',
+    title: 'Accessibility Statement — Tekivex',
+    description:
+      'Tekivex.com targets WCAG 2.2 AA. What is in place, known limitations, and how to report an accessibility barrier.',
+    h1: 'Accessibility Statement',
+    body:
+      'Tekivex is committed to making tekivex.com and its free in-browser tools usable by everyone, including people who rely on keyboards and screen readers. We aim to meet WCAG 2.2 Level AA and welcome reports of any barrier at nishu_singh@tekivex.com.',
+  },
+  {
     path: '/contact',
     title: 'Contact Tekivex',
     description:
@@ -521,6 +530,7 @@ const LEGAL_FOOTER = `
         <a href="/cookie-policy" style="color:#3a86ff;text-decoration:none">Cookie Policy</a> &middot;
         <a href="/terms-of-service" style="color:#3a86ff;text-decoration:none">Terms of Service</a> &middot;
         <a href="/disclaimer" style="color:#3a86ff;text-decoration:none">Disclaimer</a> &middot;
+        <a href="/accessibility" style="color:#3a86ff;text-decoration:none">Accessibility</a> &middot;
         <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> &middot;
         <a href="/tools" style="color:#3a86ff;text-decoration:none">Tools</a> &middot;
         <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Guides</a> &middot;

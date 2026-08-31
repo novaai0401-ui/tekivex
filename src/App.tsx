@@ -14,6 +14,7 @@ import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsOfServicePage } from './pages/TermsOfServicePage';
 import { CookiePolicyPage } from './pages/CookiePolicyPage';
 import { DisclaimerPage } from './pages/DisclaimerPage';
+import { AccessibilityPage } from './pages/AccessibilityPage';
 import { ContactPage } from './pages/ContactPage';
 import { FaqPage } from './pages/FaqPage';
 import { NotFoundPage } from './pages/NotFoundPage';
@@ -31,7 +32,7 @@ import { getAuthor } from './content/authors';
 const STATIC_ROUTES = new Set<string>([
   '/', '/products', '/platform', '/about',
   '/privacy-policy', '/terms-of-service', '/cookie-policy',
-  '/disclaimer', '/contact', '/faq',
+  '/disclaimer', '/accessibility', '/contact', '/faq',
   '/use-cases', '/tools', '/changelog',
 ]);
 
@@ -64,6 +65,7 @@ const CONSENT_BANNER_SUPPRESS_ROUTES = new Set<string>([
   '/cookie-policy',
   '/terms-of-service',
   '/disclaimer',
+  '/accessibility',
 ]);
 
 // History API routing — real URLs (not hash fragments) so Google indexes
@@ -178,6 +180,8 @@ export function App() {
     page = <CookiePolicyPage />;
   } else if (route === '/disclaimer') {
     page = <DisclaimerPage />;
+  } else if (route === '/accessibility') {
+    page = <AccessibilityPage />;
   } else if (route === '/contact') {
     page = <ContactPage />;
   } else if (route === '/faq') {
@@ -190,11 +194,14 @@ export function App() {
     <ThemeProvider>
       <ConsentProvider>
         <PlatformProvider activeProductId={activeProductId}>
+          <a href="#main" className="skip-link">Skip to main content</a>
           <div className="bg-pattern" />
           <div className="bg-glow" />
           <div className="hub-container">
             <TopNav route={route} />
-            {page}
+            <main id="main" tabIndex={-1}>
+              {page}
+            </main>
             <Footer />
           </div>
           <CookieBanner suppressOnRoute={CONSENT_BANNER_SUPPRESS_ROUTES.has(route) || !isKnown} />

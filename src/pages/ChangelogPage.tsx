@@ -16,7 +16,7 @@ function formatDate(iso: string): string {
 export function ChangelogPage() {
   const entries = getChangelog();
   return (
-    <main className="cl-page" data-testid="changelog-page">
+    <div className="cl-page" data-testid="changelog-page">
       <header className="uc-hub-header">
         <div className="uc-hub-eyebrow">Changelog</div>
         <h1 className="uc-hub-title">What&apos;s <span className="tx-gradient-text">new</span></h1>
@@ -50,6 +50,6 @@ export function ChangelogPage() {
         <Link to="/use-cases">guides</Link>, or subscribe to the{' '}
         <a href="/feed.xml" rel="noopener noreferrer">RSS feed</a>.
       </p>
-    </main>
+    </div>
   );
 }

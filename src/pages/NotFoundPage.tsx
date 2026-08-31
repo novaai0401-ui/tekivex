@@ -2,7 +2,7 @@ import { Link } from '../App';
 
 export function NotFoundPage() {
   return (
-    <main
+    <div
       style={{
         maxWidth: 720,
         margin: '0 auto',
@@ -34,7 +34,7 @@ export function NotFoundPage() {
         <Link to="/products" style={ghostBtn}>Products</Link>
         <Link to="/contact" style={ghostBtn}>Contact</Link>
       </div>
-    </main>
+    </div>
   );
 }
 

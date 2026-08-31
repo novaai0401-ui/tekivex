@@ -43,11 +43,11 @@ export function ArticlePage({ slug }: { slug: string }) {
 
   if (!article) {
     return (
-      <main className="uc-article" style={{ textAlign: 'center' }}>
+      <div className="uc-article" style={{ textAlign: 'center' }}>
         <h1 className="uc-article-title">Article not found</h1>
         <p className="uc-article-lead">No article exists at this URL.</p>
         <Link to="/use-cases" className="uc-back-link">← All use cases</Link>
-      </main>
+      </div>
     );
   }
 
@@ -56,7 +56,7 @@ export function ArticlePage({ slug }: { slug: string }) {
   const related = getArticlesByProduct(article.productName).filter((a) => a.slug !== article.slug).slice(0, 3);
 
   return (
-    <main className="uc-article">
+    <div className="uc-article">
       <nav aria-label="Breadcrumb" className="uc-breadcrumb">
         <Link to="/">Tekivex</Link>
         <span className="uc-breadcrumb-sep">›</span>
@@ -147,6 +147,6 @@ export function ArticlePage({ slug }: { slug: string }) {
       )}
 
       <Link to="/use-cases" className="uc-back-link">← All use cases</Link>
-    </main>
+    </div>
   );
 }

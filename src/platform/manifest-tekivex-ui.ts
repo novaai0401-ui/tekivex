@@ -10,7 +10,7 @@ export const tekivexUiManifest: ProductManifest = {
   tagline: 'Accessible Component Library for React, Vue & Svelte',
   description:
     'Production-ready UI component library built for real-world apps — buttons, forms, modals, ' +
-    'tables, toasts, navigation, and layout primitives. Fully accessible (WCAG 2.1 AA), ' +
+    'tables, toasts, navigation, and layout primitives. Accessible, targeting WCAG 2.1 AA, ' +
     'dark/light theme support via CSS custom properties, tree-shakeable ESM bundles, and ' +
     'zero runtime dependencies. React 18+, Vue 3, and Svelte 5 bindings included. Free for commercial use.',
   version: '0.1.0',
@@ -32,7 +32,7 @@ export const tekivexUiManifest: ProductManifest = {
   ],
   keyFeatures: [
     '50+ production-ready components — buttons, inputs, selects, modals, drawers, toasts',
-    'Fully accessible — WCAG 2.1 AA compliant with ARIA roles and keyboard navigation',
+    'WCAG 2.1 AA patterns — ARIA roles and full keyboard navigation',
     'Dark / light / high-contrast themes via CSS custom properties',
     'Tree-shakeable ESM — import only what you use, zero runtime dependencies',
     'React 18+, Vue 3, and Svelte 5 bindings with idiomatic APIs',

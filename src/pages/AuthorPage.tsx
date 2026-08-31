@@ -9,18 +9,18 @@ export function AuthorPage({ authorId }: { authorId: string }) {
 
   if (!author) {
     return (
-      <main className="uc-article" style={{ textAlign: 'center' }}>
+      <div className="uc-article" style={{ textAlign: 'center' }}>
         <h1 className="uc-article-title">Author not found</h1>
         <p className="uc-article-lead">No author profile exists at this URL.</p>
         <Link to="/use-cases" className="uc-back-link">← All guides</Link>
-      </main>
+      </div>
     );
   }
 
   const articles = getAllArticles().filter((a) => a.authorId === author.id);
 
   return (
-    <main className="uc-article">
+    <div className="uc-article">
       <nav aria-label="Breadcrumb" className="uc-breadcrumb">
         <Link to="/">Tekivex</Link>
         <span className="uc-breadcrumb-sep">›</span>
@@ -62,6 +62,6 @@ export function AuthorPage({ authorId }: { authorId: string }) {
       <p style={{ marginTop: '2.5rem' }}>
         <Link to="/use-cases" className="uc-back-link">← Browse all guides</Link>
       </p>
-    </main>
+    </div>
   );
 }

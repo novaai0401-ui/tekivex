@@ -23,7 +23,7 @@ export function ToolPage({ slug }: { slug: string }) {
   const others = getAllTools().filter((t) => t.slug !== slug);
 
   return (
-    <main className="tool-page" data-testid={`tool-page-${slug}`}>
+    <div className="tool-page" data-testid={`tool-page-${slug}`}>
       <nav aria-label="Breadcrumb" className="tool-breadcrumb">
         <Link to="/">Tekivex</Link> <span aria-hidden="true">›</span>{' '}
         <Link to="/tools">Tools</Link> <span aria-hidden="true">›</span> <span>{tool.name}</span>
@@ -86,6 +86,6 @@ export function ToolPage({ slug }: { slug: string }) {
           redacts PDFs — free, in your browser.
         </p>
       </section>
-    </main>
+    </div>
   );
 }

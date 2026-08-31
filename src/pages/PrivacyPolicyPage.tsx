@@ -25,7 +25,7 @@ const li: React.CSSProperties = {
 
 export function PrivacyPolicyPage() {
   return (
-    <main style={{ maxWidth: '820px', margin: '0 auto', padding: '56px 32px 96px' }}>
+    <div style={{ maxWidth: '820px', margin: '0 auto', padding: '56px 32px 96px' }}>
 
       {/* Header */}
       <header style={{ marginBottom: '52px' }}>
@@ -263,6 +263,6 @@ export function PrivacyPolicyPage() {
           This Privacy Policy was drafted to comply with the EU General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA), and to meet the cookie-and-data-collection disclosure obligations of the third-party services we integrate (currently Google Analytics 4 and Google AdSense). We are committed to handling your data transparently and responsibly.
         </p>
       </div>
-    </main>
+    </div>
   );
 }

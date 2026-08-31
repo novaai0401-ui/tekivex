@@ -5,7 +5,7 @@ import { getAllTools } from './registry';
 export function ToolsHub() {
   const tools = getAllTools();
   return (
-    <main className="tools-hub" data-testid="tools-hub">
+    <div className="tools-hub" data-testid="tools-hub">
       <header className="uc-hub-header">
         <div className="uc-hub-eyebrow">Free Tools</div>
         <h1 className="uc-hub-title">
@@ -45,6 +45,6 @@ export function ToolsHub() {
           dashboards from your data — both free, both private by the same design.
         </p>
       </section>
-    </main>
+    </div>
   );
 }

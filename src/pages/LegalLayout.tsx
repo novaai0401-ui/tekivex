@@ -39,7 +39,7 @@ export function LegalSection({ title, children }: { title: string; children: Rea
 
 export function LegalLayout({ eyebrow, title, lastUpdated, intro, children }: LegalLayoutProps) {
   return (
-    <main style={{ maxWidth: '820px', margin: '0 auto', padding: '56px 32px 96px' }}>
+    <div style={{ maxWidth: '820px', margin: '0 auto', padding: '56px 32px 96px' }}>
       <header style={{ marginBottom: '52px' }}>
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: '8px',
@@ -73,6 +73,6 @@ export function LegalLayout({ eyebrow, title, lastUpdated, intro, children }: Le
         )}
       </header>
       {children}
-    </main>
+    </div>
   );
 }

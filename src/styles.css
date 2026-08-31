@@ -6091,3 +6091,32 @@ body {
   border-top: 1px solid var(--hub-border);
 }
 .tool-thumb figcaption .tool-ghost-btn { margin-top: 0; padding: 4px 10px; font-size: 0.8rem; }
+
+/* ── Accessibility: skip link + visible keyboard focus ─────────────────── */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -64px;
+  z-index: 2000;
+  padding: 10px 16px;
+  background: #0f172a;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 8px;
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+/* The main wrapper is only a programmatic focus target (skip-link destination);
+   it should not show a persistent ring when focused. */
+#main:focus,
+#main:focus-visible { outline: none; }

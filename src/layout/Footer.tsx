@@ -88,6 +88,7 @@ const FOOTER_COLS = [
       { label: 'Terms of Service',  href: '/terms-of-service' },
       { label: 'Cookie Policy',     href: '/cookie-policy' },
       { label: 'Disclaimer',        href: '/disclaimer' },
+      { label: 'Accessibility',     href: '/accessibility' },
       { label: 'Contact',           href: '/contact' },
     ],
   },
@@ -178,6 +179,7 @@ export function Footer() {
           <a href="/terms-of-service" className="hub-footer-bottom-link" style={footerLinkStyle}>Terms</a>
           <a href="/cookie-policy" className="hub-footer-bottom-link" style={footerLinkStyle}>Cookies</a>
           <a href="/disclaimer" className="hub-footer-bottom-link" style={footerLinkStyle}>Disclaimer</a>
+          <a href="/accessibility" className="hub-footer-bottom-link" style={footerLinkStyle}>Accessibility</a>
           <a href="https://github.com/novaai0401-ui/tekivex-issue-report/issues" className="hub-footer-bottom-link" style={footerLinkStyle} target="_blank" rel="noopener noreferrer">Report Issue</a>
         </div>
         <div className="hub-footer-social">

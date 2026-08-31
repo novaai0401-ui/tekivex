@@ -266,6 +266,12 @@ const CONTACT_SEO = makeBasicSeo(
   'Get in touch with the Tekivex team — email, GitHub issues, security disclosures, and partnership enquiries.',
 );
 
+const ACCESSIBILITY_SEO = makeBasicSeo(
+  '/accessibility',
+  'Accessibility Statement — Tekivex',
+  'Tekivex.com targets WCAG 2.2 AA. Read what is in place, known limitations, and how to report an accessibility barrier.',
+);
+
 const FAQ_SEO: SeoConfig = {
   ...makeBasicSeo(
     '/faq',
@@ -291,6 +297,7 @@ export function getSeoForRoute(route: string): SeoConfig {
   if (route === '/terms-of-service') return TERMS_SEO;
   if (route === '/cookie-policy') return COOKIE_SEO;
   if (route === '/disclaimer') return DISCLAIMER_SEO;
+  if (route === '/accessibility') return ACCESSIBILITY_SEO;
   if (route === '/contact') return CONTACT_SEO;
   if (route === '/faq') return FAQ_SEO;
 
