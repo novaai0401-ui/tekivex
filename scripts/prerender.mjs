@@ -522,7 +522,9 @@ const LEGAL_FOOTER = `
         <a href="/terms-of-service" style="color:#3a86ff;text-decoration:none">Terms of Service</a> &middot;
         <a href="/disclaimer" style="color:#3a86ff;text-decoration:none">Disclaimer</a> &middot;
         <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> &middot;
-        <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Guides</a>
+        <a href="/tools" style="color:#3a86ff;text-decoration:none">Tools</a> &middot;
+        <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Guides</a> &middot;
+        <a href="/faq" style="color:#3a86ff;text-decoration:none">FAQ</a>
       </nav>
       <p style="margin:14px 0 0">&copy; Tekivex &mdash; free, open developer tools. Questions? <a href="mailto:nishu_singh@tekivex.com" style="color:#3a86ff;text-decoration:none">nishu_singh@tekivex.com</a></p>
     </footer>`;

@@ -219,21 +219,10 @@
   </script>
 </head>
 <body>
-  <noscript>
-    <div style="max-width:720px;margin:40px auto;padding:24px;font-family:Inter,system-ui,sans-serif;color:#0f172a;">
-      <h1>Tekivex — Free Developer Tools Platform</h1>
-      <p>Tekivex builds free developer tools and web apps: GridStorm (data grid), Tekivex UI (component library) and Quantum Vault (post-quantum tokens, ML-DSA-87) on npm, plus free hosted apps you can use directly — Pyntra (browser PDF editor), Analytics Studio (BI dashboards) and DataFlow (real-time streaming).</p>
-      <p>This site requires JavaScript to load the full experience. Please enable JavaScript in your browser, or visit one of our product sites directly:</p>
-      <ul>
-        <li><a href="https://gridstorm.tekivex.com">GridStorm</a></li>
-        <li><a href="https://ui.tekivex.com">TekiVex UI</a></li>
-        <li><a href="https://pyntra.tekivex.com">Pyntra</a></li>
-        <li><a href="https://analytics.tekivex.com">Analytics Studio</a></li>
-        <li><a href="https://dataflow.tekivex.com/stocks">DataFlow</a></li>
-      </ul>
-    </div>
-  </noscript>
-
+  <!-- No noscript fallback: every route is prerendered with full content
+       (heading, body, nav, footer) directly into #root, so no-JS visitors and
+       crawlers already receive real per-page HTML. A generic noscript block
+       here would only add a second, duplicate top-level heading to every page. -->
   <div id="root"></div>
 
   <script type="module" src="/src/main.tsx"></script>
