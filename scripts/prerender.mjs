@@ -361,7 +361,7 @@ const products = PRODUCTS.map((p) => ({ id: p.id, name: p.name, tagline: p.tagli
 const routes = [
   {
     path: '/',
-    title: 'Tekivex — Free Developer Tools Platform',
+    title: 'Free PDF Tools & Developer Libraries, No Upload — Tekivex',
     description:
       'Free developer tools & private web apps: GridStorm data grid, Tekivex UI components, Quantum Vault tokens on npm — plus 8 free in-browser tools (merge/split/compress PDF, CSV to chart) and hosted apps. Files never uploaded.',
     h1: 'Tekivex — free developer tools',

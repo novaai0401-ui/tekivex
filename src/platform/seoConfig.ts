@@ -9,7 +9,7 @@ const BASE_URL = 'https://www.tekivex.com';
 
 // ── Home ──────────────────────────────────────────────────────────────────
 const HOME_SEO: SeoConfig = {
-  title: 'Tekivex — Free Developer Tools Platform',
+  title: 'Free PDF Tools & Developer Libraries, No Upload — Tekivex',
   description:
     'Free developer tools & private web apps: GridStorm data grid, Tekivex UI components, ' +
     'Quantum Vault tokens on npm — plus 8 free in-browser tools (merge/split/compress PDF, ' +
