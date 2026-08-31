@@ -1,17 +1,19 @@
 import type { ProductManifest } from './types';
 
-// Pyntra is a hosted, browser-based PDF editor. Users open the app and edit
-// PDFs directly — there is nothing to install and no library to import.
+// Pyntra is Tekivex's hosted, in-browser studio for the things people actually
+// send: festival & birthday cards, invitations, photo edits, short videos, and
+// PDFs (fill / sign / redact). Everything runs on the user's device — nothing
+// is uploaded, work autosaves locally, and there is nothing to install.
 const PYNTRA_URL = 'https://pyntra.tekivex.com';
 
 export const pyntraManifest: ProductManifest = {
   id: 'pyntra',
   name: 'Pyntra',
-  tagline: 'Edit, fill, sign & annotate PDFs right in your browser',
+  tagline: 'Cards, invites, photos, video & PDFs — a private studio in your browser',
   description:
-    'Pyntra is a free, browser-based PDF editor — open it and work with your documents directly. ' +
-    'Fill and add form fields, sign and stamp, annotate, redact, and open encrypted PDFs. ' +
-    'Everything runs in your browser: your files are never uploaded to a server, and there is ' +
+    'Pyntra is a free browser studio for the things people actually send: festival and birthday ' +
+    'cards, invitations, photo edits, short videos, and PDFs — fill, sign, and redact. Everything ' +
+    'runs on your device without uploading, your work autosaves on this device, and there is ' +
     'nothing to install.',
   version: '1.0.0',
   status: 'beta',
@@ -25,42 +27,45 @@ export const pyntraManifest: ProductManifest = {
   playgroundPath: PYNTRA_URL,
   githubUrl: null,
   stats: [
-    { value: 'In-browser', label: 'Runs client-side' },
-    { value: 'AES-256',    label: 'Opens encrypted PDFs' },
-    { value: 'No upload',  label: 'Files stay private' },
-    { value: 'Free',       label: 'No account needed' },
+    { value: 'No upload',   label: 'Files stay on your device' },
+    { value: 'Cards + Video', label: 'Design & short reels' },
+    { value: 'PDF tools',   label: 'Fill, sign, redact' },
+    { value: 'Free',        label: 'No install, no account' },
   ],
   keyFeatures: [
-    'Form filling — text, multiline, date, number, checkbox, radio, dropdown, listbox',
-    'Add new fields with a drag-to-draw interface',
-    'Sign & stamp with a signature pad and image embedding',
-    'Annotate — highlight, draw, eraser, redact, crop, shapes',
-    'Opens encrypted PDFs (RC4, AES-128, AES-256)',
-    'Runs entirely in the browser — your documents are never uploaded',
+    'Greeting cards and invitations for birthdays, weddings and festivals',
+    'Photo edit, collage, and scan-to-PDF',
+    'Short video: captions, memory slideshow, and trim',
+    'PDF: fill forms, sign, redact, and password-protect — still local',
+    'Autosaves in the browser; clear it any time',
+    'Optional AI copy for wishes/scripts sends only the text you type, after consent — never the file',
   ],
   quickLinks: [
-    { label: 'Launch Pyntra', path: PYNTRA_URL, external: true, isNew: true },
+    { label: 'Open Pyntra', path: PYNTRA_URL, external: true, isNew: true },
   ],
-  tags: ['PDF', 'Forms', 'Annotations', 'Signing', 'Browser app', 'Private'],
+  tags: ['Cards', 'Invitations', 'Photos', 'Video', 'PDF', 'Private'],
   seo: {
-    title: 'Pyntra — Free Browser-Based PDF Editor | Tekivex',
+    title: 'Pyntra — Cards, Invites, Photos, Video & PDF Studio in Your Browser | Tekivex',
     description:
-      'Pyntra is a free, browser-based PDF editor — fill forms, sign, annotate, redact, and open ' +
-      'encrypted PDFs. Everything runs client-side, your files are never uploaded. Nothing to install.',
+      'Design wishes and invitations, edit photos and short videos, and fill or sign PDFs in the ' +
+      'browser. Nothing is uploaded. Free to use.',
     keywords: [
-      'online PDF editor',
-      'browser PDF editor',
-      'free PDF editor',
-      'fill PDF forms online',
+      'greeting card maker',
+      'birthday card maker',
+      'festival card maker',
+      'invitation maker',
+      'photo editor online',
+      'short video maker',
+      'reels maker',
+      'fill PDF form',
       'sign PDF online',
-      'annotate PDF',
       'redact PDF',
-      'encrypted PDF editor',
-      'private PDF editor',
+      'private in-browser studio',
+      'no upload',
       'Pyntra',
     ],
     jsonLdType: 'WebApplication',
-    applicationCategory: 'BusinessApplication',
+    applicationCategory: 'MultimediaApplication',
     operatingSystem: 'All',
   },
 };

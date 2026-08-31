@@ -35,7 +35,7 @@ const PRODUCTS = [
     icon: 'file-pdf',
     status: 'Beta',
     statusColor: '#fbbf24',
-    description: 'Free hosted PDF editor — open the app to fill, sign, annotate & redact PDFs. Opens encrypted PDFs and runs entirely in your browser.',
+    description: 'Free private studio in your browser — greeting cards, invitations, photo & short-video edits, and PDF fill, sign & redact. Files stay on your device.',
     href: '/product/pyntra',
   },
   {

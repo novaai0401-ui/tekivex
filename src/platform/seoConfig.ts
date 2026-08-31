@@ -40,7 +40,7 @@ const HOME_SEO: SeoConfig = {
   ogTitle: 'Tekivex — Free Developer Tools Platform',
   ogDescription:
     'Free developer tools: GridStorm data grid, Tekivex UI component library, Quantum Vault, ' +
-    'plus hosted web apps — Pyntra PDF editor, Analytics Studio, and DataFlow. Free forever.',
+    'plus hosted web apps — Pyntra cards, photos, video & PDFs, Analytics Studio, and DataFlow. Free forever.',
   ogImage: `${BASE_URL}/og-tekivex.png`,
   ogType: 'website',
   twitterTitle: 'Tekivex — Free Developer Tools Platform',
@@ -92,11 +92,11 @@ const PRODUCTS_SEO: SeoConfig = {
   description:
     'Explore Tekivex: GridStorm high-performance data grid, Tekivex UI (accessible React/Vue/Svelte ' +
     'component library), and Quantum Vault (post-quantum tokens — ML-DSA-87 + XChaCha20), plus ' +
-    'three free hosted web apps you open and use in the browser — Pyntra (PDF editor), ' +
+    'three free hosted web apps you open and use in the browser — Pyntra (cards, photos, video & PDFs), ' +
     'Analytics Studio (BI & dashboards), and DataFlow (real-time streaming). All free for commercial use.',
   keywords: [
     'GridStorm data grid', 'Tekivex UI components', 'accessible component library',
-    'Quantum Vault PQC', 'Pyntra PDF editor', 'Analytics Studio BI app',
+    'Quantum Vault PQC', 'Pyntra cards, photos, video & PDFs', 'Analytics Studio BI app',
     'DataFlow streaming dashboard', 'online PDF editor', 'browser BI tool',
     'real-time dashboard', 'free browser tools', 'Tekivex products',
     'developer software suite', 'React data grid',
@@ -131,9 +131,9 @@ const PRODUCTS_SEO: SeoConfig = {
       { '@type': 'ListItem', position: 4,
         item: {
           '@type': 'WebApplication', name: 'Pyntra',
-          description: 'Free browser-based PDF editor — fill, sign, annotate & redact PDFs, opens encrypted PDFs, runs client-side. Open the app and use it.',
+          description: 'Free private in-browser studio — make greeting cards and invitations, edit photos and short videos, and fill, sign or redact PDFs. Nothing is uploaded.',
           url: `${BASE_URL}/product/pyntra`,
-          applicationCategory: 'BusinessApplication', operatingSystem: 'All',
+          applicationCategory: 'MultimediaApplication', operatingSystem: 'All',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
         } },
       { '@type': 'ListItem', position: 5,
@@ -162,7 +162,7 @@ const ABOUT_SEO: SeoConfig = {
   description:
     'Tekivex is an independent developer tools company building free software — GridStorm data grid, ' +
     'Tekivex UI component library, and Quantum Vault post-quantum tokens — plus three free hosted ' +
-    'web apps: Pyntra (PDF editor), Analytics Studio (BI), and DataFlow (real-time streaming). ' +
+    'web apps: Pyntra (cards, photos, video & PDFs), Analytics Studio (BI), and DataFlow (real-time streaming). ' +
     'Six products, all free for commercial use. Founded 2025.',
   keywords: [
     'about Tekivex', 'Tekivex company', 'free developer tools company',
@@ -208,7 +208,7 @@ const PLATFORM_SEO: SeoConfig = {
   title: 'Platform — Tekivex Developer Tools Hub',
   description:
     'The Tekivex platform hub — GridStorm, Tekivex UI, and Quantum Vault libraries, plus three ' +
-    'free hosted web apps you open and use right away: Pyntra (PDF editor), Analytics Studio (BI), ' +
+    'free hosted web apps you open and use right away: Pyntra (cards, photos, video & PDFs), Analytics Studio (BI), ' +
     'and DataFlow (real-time streaming). All six are free for commercial use.',
   keywords: [
     'Tekivex platform', 'developer tools hub', 'GridStorm',

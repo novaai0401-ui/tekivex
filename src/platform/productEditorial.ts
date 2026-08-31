@@ -62,28 +62,28 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
   // ── Pyntra (hosted web app) ──────────────────────────────────────────────
   pyntra: {
     overview: [
-      'Pyntra is a free, browser-based PDF editor you use directly — open pyntra.tekivex.com, drop in a PDF, and start editing. There is no account to create and no software to install, and there is no upload step: the document is processed entirely in your browser, so it never leaves your device.',
-      'It covers the everyday PDF tasks that usually push people toward expensive desktop software — filling and adding form fields, signing and stamping, annotating and redacting, and opening password-protected files. Because everything runs client-side, it is well suited to documents that contain personal or sensitive information.',
+      'Pyntra is Tekivex’s free browser app for the things people actually send: festival and birthday cards, invitations, photo edits, short reels, and PDFs. Everything runs on your device — open a file or start a design and it does not go to our servers.',
+      'On the design side, make greeting cards and invitations for birthdays, weddings and festivals, edit and collage photos, and build short captioned videos. On the document side, fill and sign PDF forms, redact sensitive content, and password-protect — all locally. Your work autosaves in this browser, and you can clear it any time. If you use the optional AI copy helper for a wish or script, only the text you type is sent (after you consent) — never your file.',
     ],
     howItWorks: [
-      { title: 'Open the app', body: 'Go to pyntra.tekivex.com in any modern browser. The editor loads right away — there is nothing to download and no sign-up.' },
-      { title: 'Edit your document', body: 'Open a PDF from your device and work on it directly: fill or draw form fields, add a signature or stamp, highlight, redact, or crop. The original file stays on your machine.' },
-      { title: 'Save it back', body: 'Download the edited PDF to your device when you are done. Nothing is uploaded to a server at any point in the process.' },
+      { title: 'Open Pyntra', body: 'Go to pyntra.tekivex.com in any browser. There is nothing to install and no account, and it works offline too.' },
+      { title: 'Start a design or open a file', body: 'Pick a card, invitation, photo or short video to create, or open a PDF to fill, sign or redact. Everything happens on your device.' },
+      { title: 'Save or share', body: 'Download or share your card, video or PDF. Your work autosaves in the browser and never leaves your device.' },
     ],
     useCases: [
-      'Filling out forms — applications, contracts, tax, and HR documents.',
-      'Signing and returning a document without printing and scanning.',
-      'Redacting sensitive content before sharing a file.',
-      'Quick annotation and markup during a review.',
+      'Making birthday, wedding, anniversary and festival cards and invitations.',
+      'Editing photos and building short captioned videos to share.',
+      'Filling and signing PDF forms without printing and scanning.',
+      'Redacting or password-protecting a PDF before you send it.',
     ],
     limitations: [
-      'Because everything runs in your browser, very large or heavily scanned PDFs are bounded by your device\'s available memory.',
-      'It is in beta — if you hit a problem with a specific document, your feedback helps us improve it.',
+      'Everything runs in your browser, so very large photos or long videos are bounded by your device’s available memory.',
+      'It is in beta — feedback on any card, video, or document helps us improve it.',
     ],
     faqs: [
-      { q: 'Do I need to install anything?', a: 'No. Pyntra runs entirely in your browser at pyntra.tekivex.com — there is nothing to install and no account to create.' },
-      { q: 'Are my files uploaded anywhere?', a: 'No. All editing happens client-side in your browser, so your documents never leave your device.' },
-      { q: 'Can it open password-protected PDFs?', a: 'Yes — Pyntra can open PDFs encrypted with RC4, AES-128, and AES-256.' },
+      { q: 'Do I need to install anything or sign up?', a: 'No. Pyntra runs in your browser at pyntra.tekivex.com with nothing to install and no account. It works offline, and your work autosaves on your own device.' },
+      { q: 'Do my files get uploaded?', a: 'No. Your cards, photos, videos and PDFs are created and edited on your own device and never sent to our servers. The only thing that can leave — and only if you use the optional AI copy helper and consent — is the text you type for a wish or script, never the file.' },
+      { q: 'Is Pyntra just a PDF editor?', a: 'No. People use it for cards and invitations as much as for PDFs. It makes greeting cards, invitations, photo edits and short videos, and it also fills, signs, redacts and password-protects PDFs — all in the browser.' },
     ],
   },
 

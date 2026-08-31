@@ -8,7 +8,7 @@ export function CookiePolicyPage() {
     <LegalLayout
       eyebrow="Legal"
       title="Cookie Policy"
-      lastUpdated="May 28, 2026"
+      lastUpdated="August 31, 2026"
       intro={
         <p style={{ ...legalProse, margin: 0 }}>
           This page explains the cookies and similar technologies tekivex.com uses,

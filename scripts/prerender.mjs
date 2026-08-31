@@ -373,7 +373,7 @@ const routes = [
     path: '/products',
     title: 'Tekivex products — Data grid, UI, tokens, PDF, BI & streaming apps',
     description:
-      'Browse Tekivex products: the GridStorm data grid, Tekivex UI component library, and Quantum Vault tokens on npm, plus the hosted Pyntra PDF editor, Analytics Studio BI app, and DataFlow streaming dashboard. All free.',
+      'Browse Tekivex products: the GridStorm data grid, Tekivex UI component library, and Quantum Vault tokens on npm, plus the hosted Pyntra cards, photos, video & PDFs, Analytics Studio BI app, and DataFlow streaming dashboard. All free.',
     h1: 'Tekivex products',
     body:
       'A unified catalog of every Tekivex product — the data grid, UI components, and post-quantum tokens on npm, plus the hosted PDF editor, BI app, and streaming dashboard. All free.',
@@ -914,7 +914,7 @@ const humans = [
   '  GridStorm        — high-performance React data grid (npm: gridstorm)',
   '  TekiVex UI       — accessible React/Vue/Svelte component library (npm: tekivex-ui)',
   '  Quantum Vault    — sovereign post-quantum tokens (npm: @sigvault/sdk)',
-  '  Pyntra           — hosted browser PDF editor (pyntra.tekivex.com)',
+  '  Pyntra           — private studio for cards, photos, video & PDFs (pyntra.tekivex.com)',
   '  Analytics Studio — hosted browser BI app (analytics.tekivex.com)',
   '  DataFlow         — hosted real-time streaming dashboard (dataflow.tekivex.com)',
   '',

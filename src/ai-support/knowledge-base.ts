@@ -57,7 +57,7 @@ export const KNOWLEDGE_BASE: KbEntry[] = [
 - 🔐 **Quantum Vault** — Sovereign post-quantum tokens (self-hosted library)
 
 **Three free hosted web apps** — nothing to install, just open the URL and use them:
-- 📄 **Pyntra** — Browser-based PDF editor · https://pyntra.tekivex.com
+- 📄 **Pyntra** — Private studio for cards, photos, video & PDFs · https://pyntra.tekivex.com
 - 📊 **Analytics Studio** — In-browser BI & dashboards · https://analytics.tekivex.com
 - 📈 **DataFlow** — Real-time streaming dashboard · https://dataflow.tekivex.com/stocks
 
@@ -81,7 +81,7 @@ We believe professional-grade software should be accessible to every team regard
 | GridStorm | Library | High-performance data grid — 35 plugins, WCAG 2.1 AA |
 | Tekivex UI | Library | Accessible React/Vue/Svelte component library |
 | Quantum Vault | Library | Sovereign post-quantum tokens (self-hosted) |
-| Pyntra | Hosted app | Browser PDF editor — open it at pyntra.tekivex.com |
+| Pyntra | Hosted app | Private studio for cards, photos, video & PDFs — open it at pyntra.tekivex.com |
 | Analytics Studio | Hosted app | In-browser BI & dashboards at analytics.tekivex.com |
 | DataFlow | Hosted app | Real-time streaming dashboard at dataflow.tekivex.com/stocks |
 
@@ -553,7 +553,7 @@ npm install @sigvault/sdk
       'How do I edit a PDF?',
       'Online PDF editor',
     ],
-    answer: `**Pyntra** is a free, browser-based PDF editor — there's nothing to install. Just open the app and start working with your documents.
+    answer: `**Pyntra** is a free, private studio in your browser for the things people actually send — greeting cards and invitations, photo edits, short videos, and PDFs (fill, sign, redact). Nothing is uploaded and there's nothing to install.
 
 👉 **Open Pyntra:** https://pyntra.tekivex.com
 
