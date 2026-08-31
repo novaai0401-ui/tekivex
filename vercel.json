@@ -10,6 +10,7 @@
   ],
   "redirects": [
     { "source": "/platform", "destination": "/products", "permanent": true },
+    { "source": "/privacy", "destination": "/privacy-policy", "permanent": true },
     { "source": "/use-cases/quantum-vault-why-nist-pqc-matters", "destination": "/use-cases/quantum-vault-post-quantum-tokens-explained", "permanent": true },
     { "source": "/use-cases/tekivex-ui-theming-css-variables", "destination": "/use-cases/tekivex-ui-headless-design-system", "permanent": true },
 

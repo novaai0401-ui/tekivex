@@ -19,6 +19,9 @@ services:
         source: /platform
         destination: /products
       - type: redirect
+        source: /privacy
+        destination: /privacy-policy
+      - type: redirect
         source: /use-cases/quantum-vault-why-nist-pqc-matters
         destination: /use-cases/quantum-vault-post-quantum-tokens-explained
       - type: redirect
