@@ -507,6 +507,26 @@ const routes = [
   })),
 ];
 
+// Crawlable legal/trust footer injected into every prerendered page's SSR
+// shell. Non-JS crawlers (and AdSense's AdsBot) read the static HTML, where the
+// React footer does not yet exist — so the required policy and contact links
+// must be present here, not only after hydration. React replaces the whole
+// shell on mount (createRoot, not hydrate), so users still see the app footer.
+const LEGAL_FOOTER = `
+    <footer style="max-width:820px;margin:56px auto 0;padding:24px 24px 40px;border-top:1px solid #e6e8ef;color:#64748b;font:14px/1.9 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;text-align:center">
+      <nav aria-label="Footer">
+        <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> &middot;
+        <a href="/contact" style="color:#3a86ff;text-decoration:none">Contact</a> &middot;
+        <a href="/privacy-policy" style="color:#3a86ff;text-decoration:none">Privacy Policy</a> &middot;
+        <a href="/cookie-policy" style="color:#3a86ff;text-decoration:none">Cookie Policy</a> &middot;
+        <a href="/terms-of-service" style="color:#3a86ff;text-decoration:none">Terms of Service</a> &middot;
+        <a href="/disclaimer" style="color:#3a86ff;text-decoration:none">Disclaimer</a> &middot;
+        <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> &middot;
+        <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Guides</a>
+      </nav>
+      <p style="margin:14px 0 0">&copy; Tekivex &mdash; free, open developer tools. Questions? <a href="mailto:nishu_singh@tekivex.com" style="color:#3a86ff;text-decoration:none">nishu_singh@tekivex.com</a></p>
+    </footer>`;
+
 function makeHtml(route) {
   let html = baseHtml;
   const url = `${ORIGIN}${route.path}`;
@@ -560,7 +580,7 @@ function makeHtml(route) {
       <p style="color:#3a3a52;font-size:18px;line-height:1.6;margin:0 0 24px">${escapeHtml(route.body)}</p>
       ${route.contentHtml || ''}
       <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px;margin-top:32px">Tekivex · free developer tools · Free for commercial use · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://ui.tekivex.com" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
-    </main>`;
+    </main>${LEGAL_FOOTER}`;
   html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${ssr}</div>`);
 
   // BreadcrumbList JSON-LD per route
@@ -755,7 +775,7 @@ function articleHtml(article, contentHtml) {
         Part of <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Tekivex use cases</a>.
         Explore our <a href="/products" style="color:#3a86ff;text-decoration:none">free products</a>.
       </p>
-    </article>`;
+    </article>${LEGAL_FOOTER}`;
   html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${ssr}</div>`);
   return html;
 }
