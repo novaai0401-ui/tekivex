@@ -140,7 +140,7 @@ export function App() {
     : {
         title: 'Page not found — Tekivex',
         description: 'The page you are looking for does not exist on tekivex.com. Browse our products or contact us.',
-        canonical: 'https://tekivex.com' + route,
+        canonical: 'https://www.tekivex.com' + route,
         noindex: true,
         jsonLd: null,
       };

@@ -19,7 +19,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, '..');
 const DIST = join(ROOT, 'dist');
-const ORIGIN = 'https://tekivex.com';
+const ORIGIN = 'https://www.tekivex.com';
 const TODAY = new Date().toISOString().slice(0, 10);
 const NOW_RFC = new Date().toUTCString();
 
@@ -895,7 +895,7 @@ const sitemapIndex =
 const humans = [
   '/* TEAM */',
   '  Project: Tekivex',
-  '  Site:    https://tekivex.com',
+  '  Site:    https://www.tekivex.com',
   '  Docs:    https://ui.tekivex.com',
   '',
   '/* PRODUCTS */',

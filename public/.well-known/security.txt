@@ -2,5 +2,5 @@
 Contact: mailto:nishu_singh@tekivex.com
 Expires: 2027-06-18T00:00:00.000Z
 Preferred-Languages: en
-Canonical: https://tekivex.com/.well-known/security.txt
-Policy: https://tekivex.com/disclaimer
+Canonical: https://www.tekivex.com/.well-known/security.txt
+Policy: https://www.tekivex.com/disclaimer

@@ -40,7 +40,7 @@ describe('use-cases routing', () => {
 describe('use-cases SEO', () => {
   it('hub returns a CollectionPage with canonical', () => {
     const seo = getSeoForRoute('/use-cases');
-    expect(seo.canonical).toBe('https://tekivex.com/use-cases');
+    expect(seo.canonical).toBe('https://www.tekivex.com/use-cases');
     const ld = seo.jsonLd as Record<string, unknown>;
     expect(ld['@type']).toBe('CollectionPage');
   });
@@ -48,7 +48,7 @@ describe('use-cases SEO', () => {
   it('an article returns TechArticle + BreadcrumbList JSON-LD and correct canonical', () => {
     const slug = ARTICLES[0].slug;
     const seo = getSeoForRoute(`/use-cases/${slug}`);
-    expect(seo.canonical).toBe(`https://tekivex.com/use-cases/${slug}`);
+    expect(seo.canonical).toBe(`https://www.tekivex.com/use-cases/${slug}`);
     expect(seo.ogType).toBe('article');
     const blocks = seo.jsonLd as Array<Record<string, any>>;
     expect(Array.isArray(blocks)).toBe(true);

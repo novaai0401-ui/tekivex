@@ -73,6 +73,6 @@ User-agent: cohere-ai
 Allow: /
 
 # ── Resources ───────────────────────────────────────────────────────────
-# LLM guide: https://tekivex.com/llms.txt
-Sitemap: https://tekivex.com/sitemap-index.xml
+# LLM guide: https://www.tekivex.com/llms.txt
+Sitemap: https://www.tekivex.com/sitemap-index.xml
 Sitemap: https://gridstorm.tekivex.com/sitemap.xml

@@ -249,7 +249,7 @@ export function PrivacyPolicyPage() {
           </p>
           <p style={{ ...prose, marginBottom: 0 }}>
             Website:{' '}
-            <a href="https://tekivex.com" style={{ color: '#4f46e5' }}>tekivex.com</a>
+            <a href="https://www.tekivex.com" style={{ color: '#4f46e5' }}>tekivex.com</a>
           </p>
         </div>
       </Section>

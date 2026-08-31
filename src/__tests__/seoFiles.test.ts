@@ -22,7 +22,7 @@ describe('robots.txt — crawler policy', () => {
 
   it('keeps AdSense crawlers and the sitemap', () => {
     expect(robots).toMatch(/User-agent:\s*Mediapartners-Google/);
-    expect(robots).toMatch(/Sitemap:\s*https:\/\/tekivex\.com\/sitemap-index\.xml/);
+    expect(robots).toMatch(/Sitemap:\s*https:\/\/www\.tekivex\.com\/sitemap-index\.xml/);
     expect(robots).toMatch(/llms\.txt/);
   });
 });

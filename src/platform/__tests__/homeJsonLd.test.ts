@@ -18,7 +18,7 @@ describe('Home JSON-LD', () => {
   it('includes a WebSite schema on the canonical domain', () => {
     const website = blocks.find((b) => (b as Record<string, unknown>)['@type'] === 'WebSite');
     expect(website).toBeDefined();
-    expect((website as Record<string, unknown>).url).toBe('https://tekivex.com');
+    expect((website as Record<string, unknown>).url).toBe('https://www.tekivex.com');
   });
 
   it('does not advertise an on-site SearchAction (no site search)', () => {

@@ -66,7 +66,7 @@ function setJsonLd(data: object | object[] | null) {
 // ── Build SeoConfig from a ProductSeoMeta manifest entry ─────────────────
 export function seoFromManifest(
   seo: ProductSeoMeta,
-  baseUrl = 'https://tekivex.com',
+  baseUrl = 'https://www.tekivex.com',
   route = '/',
 ): SeoConfig {
   const canonical = `${baseUrl}${route.startsWith('/') ? route : '/' + route}`;

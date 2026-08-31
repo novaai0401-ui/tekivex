@@ -5,7 +5,7 @@ import { getArticle, getAllArticles } from '../content/registry';
 import { getAuthor } from '../content/authors';
 import { getTool, getAllTools } from '../tools/registry';
 
-const BASE_URL = 'https://tekivex.com';
+const BASE_URL = 'https://www.tekivex.com';
 
 // ── Home ──────────────────────────────────────────────────────────────────
 const HOME_SEO: SeoConfig = {
