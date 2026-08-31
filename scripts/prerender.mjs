@@ -999,6 +999,43 @@ if (existsSync(pub)) {
   writeFileSync(join(pub, 'llms-full.txt'), llmsFull, 'utf8');
 }
 
+// ─── Redirect stub pages ─────────────────────────────────────────────────
+// Render only honours render.yaml `routes` when the service is a Blueprint. To
+// guarantee renamed/removed URLs never 404 in production regardless of how the
+// service is configured, emit a tiny client-side redirect page for every
+// redirect declared in render.yaml (canonical + meta-refresh + JS replace).
+// If real host-level 301s are active they take precedence and these are never
+// reached. render.yaml stays the single source of truth for the redirect list.
+let redirectStubs = 0;
+try {
+  const renderYaml = readFileSync(join(ROOT, 'render.yaml'), 'utf8');
+  const re = /-\s*type:\s*redirect\s+source:\s*(\S+)\s+destination:\s*(\S+)/g;
+  let m;
+  while ((m = re.exec(renderYaml))) {
+    const source = m[1];
+    const destination = m[2];
+    if (!source.startsWith('/') || source === '/' || source.includes('*')) continue;
+    const dir = join(DIST, source.replace(/^\//, ''));
+    const target = join(dir, 'index.html');
+    if (existsSync(target)) continue; // never clobber a real prerendered route
+    const destAbs = destination.startsWith('http') ? destination : `${ORIGIN}${destination}`;
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(
+      target,
+      `<!doctype html><html lang="en"><head><meta charset="utf-8">` +
+        `<title>Redirecting…</title><meta name="robots" content="noindex, follow">` +
+        `<link rel="canonical" href="${destAbs}">` +
+        `<meta http-equiv="refresh" content="0; url=${escapeHtml(destination)}">` +
+        `<script>location.replace(${JSON.stringify(destination)})</script></head>` +
+        `<body>Redirecting to <a href="${escapeHtml(destination)}">${escapeHtml(destination)}</a>…</body></html>`,
+      'utf8',
+    );
+    redirectStubs++;
+  }
+} catch (e) {
+  console.warn('redirect stubs skipped:', e.message);
+}
+
 const totalSitemapUrls = routes.length + articleRoutes.length + 1;
 console.log(
   `✓ ${count} static routes + ${articleCount} use-case articles prerendered` +
