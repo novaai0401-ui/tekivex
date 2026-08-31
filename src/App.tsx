@@ -195,6 +195,10 @@ export function App() {
       <ConsentProvider>
         <PlatformProvider activeProductId={activeProductId}>
           <a href="#main" className="skip-link">Skip to main content</a>
+          {/* Consent choice comes early in the DOM/reading order so keyboard and
+              screen-reader users reach it without traversing the whole page.
+              It is position:fixed, so its visual (bottom) placement is unchanged. */}
+          <CookieBanner suppressOnRoute={CONSENT_BANNER_SUPPRESS_ROUTES.has(route) || !isKnown} />
           <div className="bg-pattern" />
           <div className="bg-glow" />
           <div className="hub-container">
@@ -204,7 +208,6 @@ export function App() {
             </main>
             <Footer />
           </div>
-          <CookieBanner suppressOnRoute={CONSENT_BANNER_SUPPRESS_ROUTES.has(route) || !isKnown} />
           <ScriptLoader />
           {/* AI Support Chat — temporarily disabled */}
         </PlatformProvider>

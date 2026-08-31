@@ -14,8 +14,8 @@ export function CookieBanner({ suppressOnRoute }: CookieBannerProps) {
   return (
     <div
       className="cookie-banner"
-      role="dialog"
-      aria-live="polite"
+      role="region"
+      aria-label="Cookie consent"
       aria-labelledby="cookie-banner-title"
     >
       <div className="cookie-banner-inner">
