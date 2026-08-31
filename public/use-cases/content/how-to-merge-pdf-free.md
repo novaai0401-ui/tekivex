@@ -38,22 +38,41 @@ If you need to do more than merge — reordering pages inside a single document,
 - **One of the files is rejected** — it is probably password-protected. The tool can't read encrypted PDFs, so unlock the file first (you need to know its password) or open it in [Pyntra](/product/pyntra), which handles encrypted documents.
 - **The page runs out of memory on a phone** — merging several very large scans can exceed a phone browser's memory since everything is processed locally. Retry on a desktop browser, or compress the largest inputs first.
 
+## How a browser-based merger differs from upload-based tools
+
+Most "free" online PDF mergers work the same way under the hood: you upload your files to their server, the server stitches them together, and you download the result. That round trip is where the differences that matter to you show up.
+
+| What to check | Tekivex Merge PDF | Typical upload-based mergers |
+|---|---|---|
+| Where your files are processed | In your browser, on your device | Uploaded to the provider's servers |
+| A copy left on someone's server | None — nothing is sent | Yes, until their retention window clears it |
+| Watermark on the free result | Never | Sometimes, unless you upgrade |
+| Account or email to start | None | Often required after a few free tasks |
+| Daily task cap | None | Free tiers are commonly capped |
+| Works with no connection after the page loads | Yes | No — every step needs the server |
+
+The practical takeaway: if a document is sensitive — a contract, medical record, or anything with personal data — a tool that never uploads removes a whole category of risk. There's no server copy to breach, subpoena, or forget to delete. (For the full explanation, see [why browser tools keep files private](/use-cases/why-browser-tools-keep-files-private).)
+
 ## Frequently asked questions
 
-### Is this PDF merger really free?
+### Can I merge PDFs on my phone?
 
-Yes. There's no paid tier, no trial that expires, and no account to create. Open the tool, merge your files, download the result. Because everything runs in your browser, there's nothing for us to charge you to host.
+Yes — Merge PDF runs in any modern mobile browser, no app to install. The one caveat is memory: phones have less of it than laptops, and because the whole merge happens on your device, combining several large scans can occasionally exhaust a mobile browser. If a merge stalls on your phone, do it on a desktop or [compress the largest files](/tools/compress-pdf) first.
 
-### Will there be a watermark on my merged PDF?
+### Can I merge just a few pages from each file instead of the whole documents?
 
-No. Many free online tools add a watermark or logo unless you pay. Merge PDF does not — the file you download contains only your pages, exactly as they were.
+Merge combines entire files in the order you set. To cherry-pick pages, do it in two steps: use [Split PDF](/tools/split-pdf) to extract just the pages you want from each source into smaller files, then merge those. For heavier page-level editing — reordering pages inside one document, deleting some, inserting others — [Pyntra](/product/pyntra) is the fuller editor.
 
-### Are my files uploaded to a server?
+### Does merging lower the quality of my PDFs?
 
-No. This is the important part. Your PDFs are read and combined entirely within your browser on your own device. They are never sent across the internet to us or anyone else. If you'd like to understand why that matters and how to verify it, read [why browser tools keep files private](/use-cases/why-browser-tools-keep-files-private).
+No. Merging copies each page across exactly as it is — same resolution, same text, same embedded fonts. Nothing is re-encoded or downsampled, so your merged file looks identical to the originals. (Quality only changes if you deliberately run the result through [Compress PDF](/tools/compress-pdf) afterwards to shrink the file size.)
 
-### Is there a limit on how many PDFs I can combine?
+### Should I merge first and then compress, or compress first and then merge?
 
-We don't set one. You can merge as many PDFs as you like. The practical limit is your device's available memory, because the merging happens locally rather than on a powerful server.
+Merge first, then compress. Compressing the single combined file lets the tool deduplicate shared resources — repeated fonts and images across your documents get stored once instead of many times — so you usually get a smaller final file than if you compressed each input separately beforehand.
+
+### What if my merged file is rejected by an upload portal for being too large?
+
+Portals that demand "one PDF" often also cap the file size. Merge your files as normal, then pass the result through [Compress PDF](/tools/compress-pdf) to bring it under the limit before you submit.
 
 Your files never leave your browser — merging happens entirely on your own device.
