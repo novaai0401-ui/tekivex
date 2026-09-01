@@ -15,7 +15,7 @@ export interface Author {
   bio: string;
   /** Primary profile URL (used as the Person `url` in JSON-LD). */
   url: string;
-  /** Contact email. */
+  /** Shared editorial contact inbox — not the author's personal address. */
   email: string;
   /** External profiles for schema.org `sameAs`. */
   sameAs: string[];

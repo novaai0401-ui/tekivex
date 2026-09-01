@@ -82,6 +82,45 @@ async function loadEditorial() {
 
 const EDITORIAL = await loadEditorial();
 
+// Static "trust" pages (About, FAQ, legal, contact) — server-rendered from the
+// real React components via react-dom/server, so crawlers see the complete
+// page content (30+ FAQ answers, full privacy policy, full terms) instead of a
+// one-line summary. AdSense flagged the previous crawler-only summaries as
+// low-value content; the full text must live in the initial HTML response.
+async function loadStaticPages() {
+  const entry = join(__dirname, 'ssrStaticPages.tsx');
+  const outPath = join(TMP_DIR, 'staticPages.mjs');
+  esbuild.buildSync({
+    entryPoints: [entry],
+    bundle: true,
+    format: 'esm',
+    platform: 'node',
+    target: 'esnext',
+    jsx: 'automatic',
+    // Heavy browser-only runtimes are only ever loaded via dynamic import at
+    // user interaction time — never during SSR — so keep them out of the
+    // build-time bundle.
+    external: ['@mlc-ai/web-llm', 'pdfjs-dist', 'pdf-lib', 'react', 'react-dom', 'react/jsx-runtime', 'react-dom/server'],
+    outfile: outPath,
+    logLevel: 'silent',
+  });
+  const mod = await import(pathToFileURL(outPath).href);
+  return { html: mod.STATIC_PAGE_HTML, faqs: mod.FAQS };
+}
+
+const STATIC_PAGES = await loadStaticPages();
+
+// FAQPage JSON-LD built from the same FAQ data the page renders.
+const faqPageLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: STATIC_PAGES.faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
 // Free in-browser tools — bundled from the same registry the app renders, so
 // the prerendered tool pages carry the real copy, steps, and FAQs.
 async function loadTools() {
@@ -316,7 +355,7 @@ function authorProfileBlock(author) {
   return `
       <p style="font-size:16px;line-height:1.75;color:#334155;margin:0 0 8px"><strong>${escapeHtml(author.role)}</strong></p>
       <p style="font-size:16px;line-height:1.75;color:#334155;margin:0 0 16px">${escapeHtml(author.bio)}</p>
-      <p style="margin:0 0 24px"><a href="${escapeHtml(author.url)}" style="color:#3a86ff;text-decoration:none" rel="me">LinkedIn profile</a> · <a href="mailto:${escapeHtml(author.email)}" style="color:#3a86ff;text-decoration:none" rel="me">${escapeHtml(author.email)}</a></p>
+      <p style="margin:0 0 24px"><a href="${escapeHtml(author.url)}" style="color:#3a86ff;text-decoration:none" rel="me">LinkedIn profile</a> · <a href="mailto:${escapeHtml(author.email)}" style="color:#3a86ff;text-decoration:none">Contact the Tekivex editorial team</a></p>
       <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:24px 0 12px">Articles by ${escapeHtml(author.name)} (${articles.length})</h2>
       <ul style="margin:0;padding-left:20px;list-style:disc">${list}</ul>`;
 }
@@ -381,6 +420,7 @@ const routes = [
   },
   {
     path: '/about',
+    fullMain: STATIC_PAGES.html['/about'],
     title: 'About Tekivex — Independent developer tools project',
     description:
       'Tekivex is an independent project building developer tools that are free forever. Read about the platform, the mission, and the team behind GridStorm, Tekivex UI, Quantum Vault, Pyntra, Analytics Studio, and DataFlow.',
@@ -396,15 +436,11 @@ const routes = [
     h1: 'Privacy Policy',
     body:
       'How Tekivex handles information about visitors to tekivex.com. Plain language, no dark patterns, only the third-party analytics and advertising needed to operate the site.',
-    contentHtml: `
-      <h2 style="font-size:1.25rem;font-weight:800;color:#0a0f1f;margin:32px 0 10px">Cookies, analytics &amp; advertising</h2>
-      <p style="line-height:1.78;margin:0 0 14px">tekivex.com uses cookies for essential functionality, analytics (Google Analytics 4), and advertising (Google AdSense, publisher ID ca-pub-4630229006617891). Google Analytics and Google AdSense are loaded only after you accept on the consent banner; if you reject non-essential cookies, no analytics or advertising cookies are placed on your device.</p>
-      <h3 style="font-size:1.05rem;font-weight:800;color:#0a0f1f;margin:24px 0 10px">Advertising (Google AdSense)</h3>
-      <p style="line-height:1.78;margin:0 0 14px">Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites. Learn how Google uses data when you use our partners' sites or apps at <a href="https://policies.google.com/technologies/partner-sites" rel="noopener noreferrer">policies.google.com/technologies/partner-sites</a>. You may opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" rel="noopener noreferrer">Google Ads Settings</a>, or opt out of a third-party vendor's use of cookies for personalised advertising at <a href="https://optout.aboutads.info/" rel="noopener noreferrer">aboutads.info</a> and <a href="https://www.youronlinechoices.com/" rel="noopener noreferrer">youronlinechoices.com</a>.</p>
-      <p style="line-height:1.78;margin:0 0 14px">You can change your consent choice at any time from the <a href="/cookie-policy">Cookie Policy</a> page, and exercise your GDPR/CCPA rights (access, rectification, erasure, portability) by contacting us. This summary is rendered for crawlers; the full policy, including data retention and your rights, loads on this page.</p>`,
+    fullMain: STATIC_PAGES.html['/privacy-policy'],
   },
   {
     path: '/terms-of-service',
+    fullMain: STATIC_PAGES.html['/terms-of-service'],
     title: 'Terms of Service — Tekivex',
     description:
       'Terms governing your use of tekivex.com and the free software and demos published by Tekivex.',
@@ -414,6 +450,7 @@ const routes = [
   },
   {
     path: '/cookie-policy',
+    fullMain: STATIC_PAGES.html['/cookie-policy'],
     title: 'Cookie Policy — Tekivex',
     description:
       'How Tekivex uses cookies and similar technologies for analytics and advertising, and how you can manage your consent at any time.',
@@ -423,6 +460,7 @@ const routes = [
   },
   {
     path: '/disclaimer',
+    fullMain: STATIC_PAGES.html['/disclaimer'],
     title: 'Disclaimer — Tekivex',
     description:
       'Disclaimer for tekivex.com. Documentation is informational; product status badges describe maturity; advertisements support free content.',
@@ -432,6 +470,7 @@ const routes = [
   },
   {
     path: '/accessibility',
+    fullMain: STATIC_PAGES.html['/accessibility'],
     title: 'Accessibility Statement — Tekivex',
     description:
       'Tekivex.com targets WCAG 2.2 AA. What is in place, known limitations, and how to report an accessibility barrier.',
@@ -441,6 +480,7 @@ const routes = [
   },
   {
     path: '/contact',
+    fullMain: STATIC_PAGES.html['/contact'],
     title: 'Contact Tekivex',
     description:
       'Reach the Tekivex team — email nishu_singh@tekivex.com, file a GitHub issue, or report a security disclosure privately.',
@@ -450,6 +490,8 @@ const routes = [
   },
   {
     path: '/faq',
+    fullMain: STATIC_PAGES.html['/faq'],
+    extraLd: faqPageLd,
     title: 'FAQ — Tekivex',
     description:
       'Frequently asked questions about Tekivex products, free commercial use, demos, advertising, and cookies.',
@@ -588,9 +630,11 @@ function makeHtml(route) {
   const ssr = `
     <main style="max-width:780px;margin:0 auto;padding:64px 24px;color:#1a1f2e;font:16px/1.65 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
       <nav aria-label="Breadcrumb" style="font-size:13px;color:#64748b;margin-bottom:24px"><a href="/" style="color:#3a86ff;text-decoration:none">Tekivex</a></nav>
-      <h1 style="font-size:2.4rem;font-weight:800;letter-spacing:-0.025em;color:#0a0f1f;margin:0 0 12px;line-height:1.15">${escapeHtml(route.h1)}</h1>
+      ${route.fullMain
+        ? route.fullMain
+        : `<h1 style="font-size:2.4rem;font-weight:800;letter-spacing:-0.025em;color:#0a0f1f;margin:0 0 12px;line-height:1.15">${escapeHtml(route.h1)}</h1>
       <p style="color:#3a3a52;font-size:18px;line-height:1.6;margin:0 0 24px">${escapeHtml(route.body)}</p>
-      ${route.contentHtml || ''}
+      ${route.contentHtml || ''}`}
       <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px;margin-top:32px">Tekivex · free developer tools · Free for commercial use · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://ui.tekivex.com" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
     </main>${LEGAL_FOOTER}`;
   html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${ssr}</div>`);
@@ -779,7 +823,7 @@ function articleHtml(article, contentHtml) {
           <p style="font-weight:700;color:#0a0f1f;margin:0">${escapeHtml(author.name)}</p>
           <p style="font-size:13px;color:#475569;margin:0 0 8px">${escapeHtml(author.role)}</p>
           <p style="font-size:14px;line-height:1.7;color:#334155;margin:0 0 8px">${escapeHtml(author.bio)}</p>
-          <p style="font-size:13px;margin:0"><a href="${escapeHtml(author.url)}" rel="noopener noreferrer author" style="color:#3a86ff;text-decoration:none">LinkedIn</a> · <a href="mailto:${escapeHtml(author.email)}" rel="author" style="color:#3a86ff;text-decoration:none">Email</a></p>
+          <p style="font-size:13px;margin:0"><a href="${escapeHtml(author.url)}" rel="noopener noreferrer author" style="color:#3a86ff;text-decoration:none">LinkedIn</a> · <a href="mailto:${escapeHtml(author.email)}" style="color:#3a86ff;text-decoration:none">Contact the Tekivex editorial team</a></p>
         </div>
       </aside>` : ''}
       <hr style="margin:44px 0 24px;border:none;border-top:1px solid #e6e8ef" />
