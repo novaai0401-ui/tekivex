@@ -40,7 +40,7 @@ export function AuthorPage({ authorId }: { authorId: string }) {
           <span className="uc-author-links">
             <a href={author.url} target="_blank" rel="noopener noreferrer me">LinkedIn</a>
             <span className="uc-meta-sep">·</span>
-            <a href={`mailto:${author.email}`} rel="me">Email</a>
+            <a href={`mailto:${author.email}`}>Contact the Tekivex editorial team</a>
           </span>
         </div>
       </aside>
