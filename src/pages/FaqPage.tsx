@@ -46,6 +46,53 @@ export const FAQS: QA[] = [
     q: 'Is Tekivex hiring?',
     a: 'We hire opportunistically when a role unlocks something we cannot ship otherwise. If you build infrastructure-grade developer tools and want to work on them full-time, email nishu_singh@tekivex.com with examples of your work.',
   },
+  // ── Privacy & files ──────────────────────────────────────────────────────
+  {
+    q: 'Do Tekivex tools upload my files?',
+    a: 'No. The PDF and CSV tools, and the hosted apps, process your files entirely inside your browser using client-side code. Nothing is sent to our servers, so there is nothing for us to store, scan, or delete. Our guide "Why in-browser tools keep your files private" explains how to verify this yourself.',
+  },
+  {
+    q: 'Where is my PDF actually processed?',
+    a: 'On your own device. When you drop a PDF into a Tekivex tool, your browser reads it and performs the merge, split, rotation, or compression locally. The only real limit is your device memory, which is why very large files can be slow on older phones.',
+  },
+  {
+    q: 'Does Tekivex store, log, or see my files?',
+    a: 'No. Because processing never leaves your browser, we have no copy of your documents, images, or data. We only receive the standard, anonymised analytics and advertising signals described in our privacy policy, and only after you accept cookies.',
+  },
+  {
+    q: 'Does Tekivex use analytics or advertising cookies?',
+    a: 'Yes, but only with your consent. The site uses Google Analytics 4 and Google AdSense. Both run under Google Consent Mode v2 with storage defaulted to denied, so no analytics or advertising cookies are set until you click Accept on the consent banner. Choosing Reject keeps them off.',
+  },
+  // ── Using the site ───────────────────────────────────────────────────────
+  {
+    q: 'Do I need an account to use Tekivex?',
+    a: 'No. None of the tools, guides, or hosted apps require sign-up, an email address, or a login. Open the page and use it.',
+  },
+  {
+    q: 'Which browsers are supported, and is JavaScript required?',
+    a: 'Any current version of Chrome, Edge, Firefox, or Safari on desktop or mobile. The interactive tools and hosted apps need JavaScript, because that is what performs the processing on your device. Our guides, product pages, and policy pages are fully readable without it.',
+  },
+  {
+    q: 'Where is the source code?',
+    a: 'Our libraries are published on npm (gridstorm, tekivex-ui, @sigvault/sdk) and developed in public repositories under github.com/novaai0401-ui. Each product page links to its npm package and repository.',
+  },
+  // ── Products ─────────────────────────────────────────────────────────────
+  {
+    q: 'What is GridStorm?',
+    a: 'GridStorm is a free, high-performance data grid for React, Vue, Svelte, and Angular. It virtual-scrolls 100,000+ rows at 60fps, ships 35 composable plugins (sorting, filtering, grouping, pivoting, charts, Excel export), includes 42 Excel-compatible formula functions, and targets WCAG 2.1 AA. Install it from npm as gridstorm.',
+  },
+  {
+    q: 'What is Tekivex UI?',
+    a: 'Tekivex UI is an accessible component library for React, Vue, and Svelte, targeting WCAG 2.1 AA. It covers buttons, forms, modals, tables, toasts, navigation, and layout primitives, supports light and dark themes via CSS custom properties, and ships tree-shakeable ESM bundles with zero runtime dependencies. Install it from npm as tekivex-ui.',
+  },
+  {
+    q: 'What is Quantum Vault?',
+    a: 'Quantum Vault issues, validates, and rotates post-quantum cryptographic tokens using NIST-standardised ML-DSA-87 (FIPS 204) signatures with XChaCha20-Poly1305 encrypted payloads. It is self-hosted, designed for sovereign identity and quantum-resistant secrets, and ships on npm as @sigvault/sdk.',
+  },
+  {
+    q: 'What are Pyntra, Analytics Studio, and DataFlow?',
+    a: 'Three free hosted web apps you open and use in the browser with nothing to install. Pyntra is a private studio for greeting cards, invitations, photo and short-video edits, and PDF fill, sign, and redact. Analytics Studio builds drag-and-drop pivot tables, charts, and KPI dashboards. DataFlow is a real-time streaming dashboard with live feeds, anomaly alerts, and time-travel replay. All three run on your device and never upload your files.',
+  },
 ];
 
 function FaqJsonLd() {
@@ -72,7 +119,7 @@ export function FaqPage() {
     <LegalLayout
       eyebrow="Help"
       title="Frequently Asked Questions"
-      lastUpdated="May 28, 2026"
+      lastUpdated="September 6, 2026"
       intro={
         <p style={{ ...legalProse, margin: 0 }}>
           Quick answers to the questions we get most often. Still stuck? Email{' '}

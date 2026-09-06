@@ -12,6 +12,7 @@ import { TermsOfServicePage } from '../src/pages/TermsOfServicePage';
 import { CookiePolicyPage } from '../src/pages/CookiePolicyPage';
 import { DisclaimerPage } from '../src/pages/DisclaimerPage';
 import { AccessibilityPage } from '../src/pages/AccessibilityPage';
+import { EditorialPolicyPage } from '../src/pages/EditorialPolicyPage';
 import { ContactPage } from '../src/pages/ContactPage';
 import { ConsentProvider } from '../src/consent/ConsentProvider';
 
@@ -29,6 +30,7 @@ export const STATIC_PAGE_HTML: Record<string, string> = {
   '/cookie-policy': render(<CookiePolicyPage />),
   '/disclaimer': render(<DisclaimerPage />),
   '/accessibility': render(<AccessibilityPage />),
+  '/editorial-policy': render(<EditorialPolicyPage />),
   '/contact': render(<ContactPage />),
 };
 

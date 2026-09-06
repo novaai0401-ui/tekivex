@@ -272,6 +272,12 @@ const ACCESSIBILITY_SEO = makeBasicSeo(
   'Tekivex.com targets WCAG 2.2 AA. Read what is in place, known limitations, and how to report an accessibility barrier.',
 );
 
+const EDITORIAL_SEO = makeBasicSeo(
+  '/editorial-policy',
+  'Editorial Policy — Tekivex',
+  'Who writes Tekivex guides, how technical claims are verified, how articles are dated and corrected, and how editorial content stays independent of advertising.',
+);
+
 const FAQ_SEO: SeoConfig = {
   ...makeBasicSeo(
     '/faq',
@@ -298,6 +304,7 @@ export function getSeoForRoute(route: string): SeoConfig {
   if (route === '/cookie-policy') return COOKIE_SEO;
   if (route === '/disclaimer') return DISCLAIMER_SEO;
   if (route === '/accessibility') return ACCESSIBILITY_SEO;
+  if (route === '/editorial-policy') return EDITORIAL_SEO;
   if (route === '/contact') return CONTACT_SEO;
   if (route === '/faq') return FAQ_SEO;
 

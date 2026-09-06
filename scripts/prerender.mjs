@@ -479,6 +479,16 @@ const routes = [
       'Tekivex is committed to making tekivex.com and its free in-browser tools usable by everyone, including people who rely on keyboards and screen readers. We aim to meet WCAG 2.2 Level AA and welcome reports of any barrier at nishu_singh@tekivex.com.',
   },
   {
+    path: '/editorial-policy',
+    fullMain: STATIC_PAGES.html['/editorial-policy'],
+    title: 'Editorial Policy — Tekivex',
+    description:
+      'Who writes Tekivex guides, how technical claims are verified against the shipped software, how articles are dated and corrected, and how content stays independent of advertising.',
+    h1: 'Editorial Policy',
+    body:
+      'Every Tekivex article is written by a named author and checked against the software that actually ships. This page explains our verification standard, how we date and correct articles, and why advertising never influences what we publish.',
+  },
+  {
     path: '/contact',
     fullMain: STATIC_PAGES.html['/contact'],
     title: 'Contact Tekivex',
@@ -573,6 +583,7 @@ const LEGAL_FOOTER = `
         <a href="/terms-of-service" style="color:#3a86ff;text-decoration:none">Terms of Service</a> &middot;
         <a href="/disclaimer" style="color:#3a86ff;text-decoration:none">Disclaimer</a> &middot;
         <a href="/accessibility" style="color:#3a86ff;text-decoration:none">Accessibility</a> &middot;
+        <a href="/editorial-policy" style="color:#3a86ff;text-decoration:none">Editorial Policy</a> &middot;
         <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> &middot;
         <a href="/tools" style="color:#3a86ff;text-decoration:none">Tools</a> &middot;
         <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Guides</a> &middot;

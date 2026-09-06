@@ -237,8 +237,8 @@ export function PrivacyPolicyPage() {
           <p style={{ ...prose, marginBottom: '8px' }}><strong style={{ color: 'var(--hub-text)' }}>Tekivex</strong></p>
           <p style={{ ...prose, marginBottom: '8px' }}>
             GitHub:{' '}
-            <a href="https://github.com/007krcs" target="_blank" rel="noopener noreferrer" style={{ color: '#4f46e5' }}>
-              github.com/007krcs
+            <a href="https://github.com/novaai0401-ui" target="_blank" rel="noopener noreferrer" style={{ color: '#4f46e5' }}>
+              github.com/novaai0401-ui
             </a>
           </p>
           <p style={{ ...prose, marginBottom: '8px' }}>

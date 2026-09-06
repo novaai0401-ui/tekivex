@@ -33,7 +33,7 @@ Install: see the product page.
 URL: https://www.tekivex.com/product/analytics-studio
 
 ### DataFlow
-Free, hosted browser-based real-time streaming dashboard (use it live at https://dataflow.tekivex.com/stocks — nothing to install). Live feeds with directional change highlighting, anomaly alerts, backpressure control, and time-travel replay.
+Free, hosted browser-based real-time streaming dashboard (use it live at https://www.tekivex.com/dataflow/stocks — nothing to install). Live feeds with directional change highlighting, anomaly alerts, backpressure control, and time-travel replay.
 Install: see the product page.
 URL: https://www.tekivex.com/product/dataflow
 

@@ -15,6 +15,7 @@ import { TermsOfServicePage } from './pages/TermsOfServicePage';
 import { CookiePolicyPage } from './pages/CookiePolicyPage';
 import { DisclaimerPage } from './pages/DisclaimerPage';
 import { AccessibilityPage } from './pages/AccessibilityPage';
+import { EditorialPolicyPage } from './pages/EditorialPolicyPage';
 import { ContactPage } from './pages/ContactPage';
 import { FaqPage } from './pages/FaqPage';
 import { NotFoundPage } from './pages/NotFoundPage';
@@ -32,7 +33,7 @@ import { getAuthor } from './content/authors';
 const STATIC_ROUTES = new Set<string>([
   '/', '/products', '/platform', '/about',
   '/privacy-policy', '/terms-of-service', '/cookie-policy',
-  '/disclaimer', '/accessibility', '/contact', '/faq',
+  '/disclaimer', '/accessibility', '/editorial-policy', '/contact', '/faq',
   '/use-cases', '/tools', '/changelog',
 ]);
 
@@ -66,6 +67,7 @@ const CONSENT_BANNER_SUPPRESS_ROUTES = new Set<string>([
   '/terms-of-service',
   '/disclaimer',
   '/accessibility',
+  '/editorial-policy',
 ]);
 
 // History API routing — real URLs (not hash fragments) so Google indexes
@@ -182,6 +184,8 @@ export function App() {
     page = <DisclaimerPage />;
   } else if (route === '/accessibility') {
     page = <AccessibilityPage />;
+  } else if (route === '/editorial-policy') {
+    page = <EditorialPolicyPage />;
   } else if (route === '/contact') {
     page = <ContactPage />;
   } else if (route === '/faq') {

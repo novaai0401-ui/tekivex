@@ -9,7 +9,7 @@
   Quantum Vault    — sovereign post-quantum tokens (npm: @sigvault/sdk)
   Pyntra           — private studio for cards, photos, video & PDFs (pyntra.tekivex.com)
   Analytics Studio — hosted browser BI app (www.tekivex.com/analytics)
-  DataFlow         — hosted real-time streaming dashboard (dataflow.tekivex.com)
+  DataFlow         — hosted real-time streaming dashboard (www.tekivex.com/dataflow)
 
 /* SITE */
   Last update: 2026-09-06

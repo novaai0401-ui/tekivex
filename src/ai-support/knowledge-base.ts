@@ -502,7 +502,7 @@ grid.dispatch('charts:open', {
 npm install tekivex-ui
 \`\`\`
 
-[Docs & playground](https://www.tekivex.com/ui) · [Repo](https://github.com/007krcs/tekivex-ui)`,
+[Docs & playground](https://www.tekivex.com/ui) · [Repo](https://github.com/novaai0401-ui/tekivex-ui)`,
     tags: ['Tekivex UI', 'component library', 'React', 'Vue', 'Svelte', 'accessible'],
   },
 
