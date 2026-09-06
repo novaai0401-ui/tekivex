@@ -28,7 +28,7 @@ Install: see the product page.
 URL: https://www.tekivex.com/product/pyntra
 
 ### Analytics Studio
-Free, hosted browser-based BI app (use it live at https://analytics.tekivex.com — nothing to install). Drag-and-drop pivot tables, 26+ chart types, KPI dashboards, and an in-browser SQL engine, with no backend required.
+Free, hosted browser-based BI app (use it live at https://www.tekivex.com/analytics — nothing to install). Drag-and-drop pivot tables, 26+ chart types, KPI dashboards, and an in-browser SQL engine, with no backend required.
 Install: see the product page.
 URL: https://www.tekivex.com/product/analytics-studio
 

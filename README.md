@@ -15,11 +15,11 @@ Tekivex is an independent project shipping free developer tools and web apps. Th
 tekivex.com (this repo)      ← hub, catalogue, guides, free in-browser tools
     └── links to →
          gridstorm            ← data grid library (npm: gridstorm)
-         tekivex-ui           ← component library (ui.tekivex.com, npm: tekivex-ui)
+         tekivex-ui           ← component library (www.tekivex.com/ui, npm: tekivex-ui)
          quantum-vault        ← post-quantum tokens (npm: @sigvault/sdk)
          pyntra               ← browser PDF editor (pyntra.tekivex.com)
-         analytics-studio     ← browser BI app (analytics.tekivex.com)
-         dataflow             ← real-time streaming dashboard (dataflow.tekivex.com)
+         analytics-studio     ← browser BI app (www.tekivex.com/analytics)
+         dataflow             ← real-time streaming dashboard (www.tekivex.com/dataflow)
 ```
 
 The in-browser tools at `/tools` (merge/split/compress/rotate PDF, JPG↔PDF, CSV to chart) are implemented **in this repo** and run entirely client-side — nothing is uploaded.
@@ -34,8 +34,8 @@ The in-browser tools at `/tools` (merge/split/compress/rotate PDF, JPG↔PDF, CS
 | **Tekivex UI** | Preview | Accessible component library for React, Vue & Svelte |
 | **Quantum Vault** | Beta | Post-quantum token issuance & verification (ML-DSA-87 + XChaCha20) |
 | **Pyntra** | Beta | Browser PDF editor — hosted at pyntra.tekivex.com |
-| **Analytics Studio** | Beta | In-browser BI & dashboards — hosted at analytics.tekivex.com |
-| **DataFlow** | Beta | Real-time streaming dashboard — hosted at dataflow.tekivex.com |
+| **Analytics Studio** | Beta | In-browser BI & dashboards — hosted at www.tekivex.com/analytics |
+| **DataFlow** | Beta | Real-time streaming dashboard — hosted at www.tekivex.com/dataflow |
 
 All free for commercial use. Statuses are shown honestly on the site via each product manifest's `status` field.
 

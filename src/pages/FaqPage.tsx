@@ -8,7 +8,7 @@ interface QA {
 export const FAQS: QA[] = [
   {
     q: 'What is Tekivex?',
-    a: 'Tekivex is an independent developer-tools project with six free products. Three are npm libraries: GridStorm (data grid), Tekivex UI (accessible component library), and Quantum Vault (post-quantum tokens). Three are free hosted web apps you open and use in the browser — nothing to install: Pyntra (a private studio for cards, photos, video & PDFs at pyntra.tekivex.com), Analytics Studio (an in-browser BI app at analytics.tekivex.com), and DataFlow (a real-time streaming dashboard at dataflow.tekivex.com). All of our products are free for commercial use.',
+    a: 'Tekivex is an independent developer-tools project with six free products. Three are npm libraries: GridStorm (data grid), Tekivex UI (accessible component library), and Quantum Vault (post-quantum tokens). Three are free hosted web apps you open and use in the browser — nothing to install: Pyntra (a private studio for cards, photos, video & PDFs at pyntra.tekivex.com), Analytics Studio (an in-browser BI app at www.tekivex.com/analytics), and DataFlow (a real-time streaming dashboard at www.tekivex.com/dataflow). All of our products are free for commercial use.',
   },
   {
     q: 'Are Tekivex products really free to use commercially?',
@@ -24,7 +24,7 @@ export const FAQS: QA[] = [
   },
   {
     q: 'Where can I see live demos?',
-    a: 'Every product page has an "Open Demo" button that links to its hosted demo (e.g. gridstorm.tekivex.com). Demos run entirely in the browser — no sign-up required.',
+    a: 'Every product page has an "Open Demo" button that links to its hosted demo (e.g. www.tekivex.com/gridstorm). Demos run entirely in the browser — no sign-up required.',
   },
   {
     q: 'How do I report a bug or request a feature?',

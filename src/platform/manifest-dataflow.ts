@@ -2,7 +2,7 @@ import type { ProductManifest } from './types';
 
 // DataFlow is a hosted, browser-based real-time streaming dashboard. Users open
 // the live app and watch streaming data directly — there is nothing to install.
-const DATAFLOW_URL = 'https://dataflow.tekivex.com/stocks';
+const DATAFLOW_URL = 'https://www.tekivex.com/dataflow/stocks';
 
 export const dataFlowManifest: ProductManifest = {
   id: 'dataflow',

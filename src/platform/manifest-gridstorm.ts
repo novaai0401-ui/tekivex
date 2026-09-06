@@ -2,9 +2,9 @@ import type { ProductManifest } from './types';
 
 // GridStorm is deployed at its own Vercel URL.
 // All demo and docs links are external to the grid-data deployment.
-const GRIDSTORM_URL = 'https://gridstorm.tekivex.com';
+const GRIDSTORM_URL = 'https://www.tekivex.com/gridstorm';
 
-const GRIDSTORM_GITHUB = 'https://github.com/007krcs/grid-data';
+const GRIDSTORM_GITHUB = 'https://github.com/novaai0401-ui/grid-data';
 const GRIDSTORM_NPM = 'https://www.npmjs.com/package/gridstorm';
 
 export const gridstormManifest: ProductManifest = {

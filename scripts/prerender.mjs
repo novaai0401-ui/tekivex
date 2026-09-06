@@ -635,7 +635,7 @@ function makeHtml(route) {
         : `<h1 style="font-size:2.4rem;font-weight:800;letter-spacing:-0.025em;color:#0a0f1f;margin:0 0 12px;line-height:1.15">${escapeHtml(route.h1)}</h1>
       <p style="color:#3a3a52;font-size:18px;line-height:1.6;margin:0 0 24px">${escapeHtml(route.body)}</p>
       ${route.contentHtml || ''}`}
-      <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px;margin-top:32px">Tekivex · free developer tools · Free for commercial use · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://ui.tekivex.com" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
+      <p style="color:#64748b;font-size:13px;border-top:1px solid #e6e8ef;padding-top:20px;margin-top:32px">Tekivex · free developer tools · Free for commercial use · <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> · <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Use Cases</a> · <a href="/about" style="color:#3a86ff;text-decoration:none">About</a> · <a href="https://www.tekivex.com/ui" style="color:#3a86ff;text-decoration:none">TekiVex UI</a></p>
     </main>${LEGAL_FOOTER}`;
   html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${ssr}</div>`);
 
@@ -919,7 +919,7 @@ const sitemapXml =
       return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${r.lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
     })
     .join('\n') +
-  `\n  <url>\n    <loc>https://ui.tekivex.com/</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.95</priority>\n  </url>` +
+  `\n  <url>\n    <loc>https://www.tekivex.com/ui/</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.95</priority>\n  </url>` +
   `\n</urlset>\n`;
 
 // ─── RSS feed for the use-cases hub (freshness signal) ───────────────────
@@ -945,22 +945,22 @@ const sitemapIndex =
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
   `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   `  <sitemap>\n    <loc>${ORIGIN}/sitemap.xml</loc>\n    <lastmod>${TODAY}</lastmod>\n  </sitemap>\n` +
-  `  <sitemap>\n    <loc>https://ui.tekivex.com/sitemap.xml</loc>\n    <lastmod>${TODAY}</lastmod>\n  </sitemap>\n` +
+  `  <sitemap>\n    <loc>https://www.tekivex.com/ui/sitemap.xml</loc>\n    <lastmod>${TODAY}</lastmod>\n  </sitemap>\n` +
   `</sitemapindex>\n`;
 
 const humans = [
   '/* TEAM */',
   '  Project: Tekivex',
   '  Site:    https://www.tekivex.com',
-  '  Docs:    https://ui.tekivex.com',
+  '  Docs:    https://www.tekivex.com/ui',
   '',
   '/* PRODUCTS */',
   '  GridStorm        — high-performance React data grid (npm: gridstorm)',
   '  TekiVex UI       — accessible React/Vue/Svelte component library (npm: tekivex-ui)',
   '  Quantum Vault    — sovereign post-quantum tokens (npm: @sigvault/sdk)',
   '  Pyntra           — private studio for cards, photos, video & PDFs (pyntra.tekivex.com)',
-  '  Analytics Studio — hosted browser BI app (analytics.tekivex.com)',
-  '  DataFlow         — hosted real-time streaming dashboard (dataflow.tekivex.com)',
+  '  Analytics Studio — hosted browser BI app (www.tekivex.com/analytics)',
+  '  DataFlow         — hosted real-time streaming dashboard (www.tekivex.com/dataflow)',
   '',
   '/* SITE */',
   `  Last update: ${TODAY}`,
@@ -981,9 +981,9 @@ const LLM_PRODUCTS = [
   { name: 'Pyntra', url: `${ORIGIN}/product/pyntra`, npm: null,
     s: 'Free, hosted browser-based PDF editor (use it live at https://pyntra.tekivex.com — nothing to install). Fill and add form fields, sign, stamp, annotate, redact, and open encrypted PDFs entirely client-side; files are never uploaded.' },
   { name: 'Analytics Studio', url: `${ORIGIN}/product/analytics-studio`, npm: null,
-    s: 'Free, hosted browser-based BI app (use it live at https://analytics.tekivex.com — nothing to install). Drag-and-drop pivot tables, 26+ chart types, KPI dashboards, and an in-browser SQL engine, with no backend required.' },
+    s: 'Free, hosted browser-based BI app (use it live at https://www.tekivex.com/analytics — nothing to install). Drag-and-drop pivot tables, 26+ chart types, KPI dashboards, and an in-browser SQL engine, with no backend required.' },
   { name: 'DataFlow', url: `${ORIGIN}/product/dataflow`, npm: null,
-    s: 'Free, hosted browser-based real-time streaming dashboard (use it live at https://dataflow.tekivex.com/stocks — nothing to install). Live feeds with directional change highlighting, anomaly alerts, backpressure control, and time-travel replay.' },
+    s: 'Free, hosted browser-based real-time streaming dashboard (use it live at https://www.tekivex.com/dataflow/stocks — nothing to install). Live feeds with directional change highlighting, anomaly alerts, backpressure control, and time-travel replay.' },
 ];
 const LLM_INTRO =
   'Tekivex is an independently built platform of free developer tools for JavaScript and TypeScript. ' +

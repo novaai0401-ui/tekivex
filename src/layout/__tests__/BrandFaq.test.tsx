@@ -28,13 +28,13 @@ describe('BrandFaq', () => {
     render(<BrandFaq />);
     const content = readFaqJsonLd();
     expect(content).not.toContain('blog');
-    expect(content).not.toContain('ui.tekivex.com/blog');
+    expect(content).not.toContain('www.tekivex.com/ui/blog');
   });
 
   it('still surfaces the live demo and playground links', () => {
     render(<BrandFaq />);
     const content = readFaqJsonLd();
-    expect(content).toContain('gridstorm.tekivex.com');
-    expect(content).toContain('ui.tekivex.com/playground');
+    expect(content).toContain('www.tekivex.com/gridstorm');
+    expect(content).toContain('www.tekivex.com/ui/playground');
   });
 });

@@ -7,3 +7,6 @@ coverage/
 
 # Claude Code local config
 .claude/
+
+# transient clones made by scripts/fetch-apps.mjs
+.tmp-apps/

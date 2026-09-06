@@ -22,8 +22,8 @@ const PRODUCT_MANIFESTS: ProductManifest[] = [
   quantumVaultManifest,     // Post-Quantum Tokens (npm: @sigvault/sdk)
   // Hosted web apps (use them live — nothing to install)
   pyntraManifest,           // Browser PDF editor — pyntra.tekivex.com
-  analyticsStudioManifest,  // Browser BI app — analytics.tekivex.com
-  dataFlowManifest,         // Real-time streaming dashboard — dataflow.tekivex.com
+  analyticsStudioManifest,  // Browser BI app — www.tekivex.com/analytics
+  dataFlowManifest,         // Real-time streaming dashboard — www.tekivex.com/dataflow
 ];
 
 export function getAllProducts(): readonly ProductManifest[] {

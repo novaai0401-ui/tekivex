@@ -221,12 +221,12 @@ ${KNOWLEDGE_BASE
 ## Important Facts
 - All Tekivex products are free forever, no per-developer fees
 - Issues: https://github.com/novaai0401-ui/tekivex-issue-report/issues
-- GridStorm demo: https://gridstorm.tekivex.com
-- Tekivex UI demo: https://ui.tekivex.com
+- GridStorm demo: https://www.tekivex.com/gridstorm
+- Tekivex UI demo: https://www.tekivex.com/ui
 - Pyntra (hosted studio for cards, photos, video & PDFs — open and use it): https://pyntra.tekivex.com
-- Analytics Studio (hosted BI app — open and use it): https://analytics.tekivex.com
-- DataFlow (hosted real-time streaming dashboard — open and use it): https://dataflow.tekivex.com/stocks
-- Docs: https://gridstorm.tekivex.com/#/docs
+- Analytics Studio (hosted BI app — open and use it): https://www.tekivex.com/analytics
+- DataFlow (hosted real-time streaming dashboard — open and use it): https://www.tekivex.com/dataflow/stocks
+- Docs: https://www.tekivex.com/gridstorm/#/docs
 - Enterprise: enterprise@tekivex.com
 ${productSummary}${contextBlock}
 

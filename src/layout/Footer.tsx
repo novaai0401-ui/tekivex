@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from '../icons/Icon';
 
 // GridStorm lives at this URL — all docs/demo links point here
-const GS = 'https://gridstorm.tekivex.com';
+const GS = 'https://www.tekivex.com/gridstorm';
 
 const FOOTER_COLS = [
   {
@@ -170,7 +170,7 @@ export function Footer() {
           }}
         >
           <a href="/products" className="hub-footer-bottom-link" style={footerLinkStyle}>Products</a>
-          <a href="https://ui.tekivex.com" className="hub-footer-bottom-link" style={footerLinkStyle} target="_blank" rel="noopener noreferrer">TekiVex UI</a>
+          <a href="https://www.tekivex.com/ui" className="hub-footer-bottom-link" style={footerLinkStyle} target="_blank" rel="noopener noreferrer">TekiVex UI</a>
           <a href={`${GS}/#/docs/getting-started/introduction`} className="hub-footer-bottom-link" style={footerLinkStyle} target="_blank" rel="noopener noreferrer">Docs</a>
           <a href="/about" className="hub-footer-bottom-link" style={footerLinkStyle}>About</a>
           <a href="/contact" className="hub-footer-bottom-link" style={footerLinkStyle}>Contact</a>

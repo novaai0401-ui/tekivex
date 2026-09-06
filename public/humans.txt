@@ -1,17 +1,17 @@
 /* TEAM */
   Project: Tekivex
   Site:    https://www.tekivex.com
-  Docs:    https://ui.tekivex.com
+  Docs:    https://www.tekivex.com/ui
 
 /* PRODUCTS */
   GridStorm        — high-performance React data grid (npm: gridstorm)
   TekiVex UI       — accessible React/Vue/Svelte component library (npm: tekivex-ui)
   Quantum Vault    — sovereign post-quantum tokens (npm: @sigvault/sdk)
   Pyntra           — private studio for cards, photos, video & PDFs (pyntra.tekivex.com)
-  Analytics Studio — hosted browser BI app (analytics.tekivex.com)
+  Analytics Studio — hosted browser BI app (www.tekivex.com/analytics)
   DataFlow         — hosted real-time streaming dashboard (dataflow.tekivex.com)
 
 /* SITE */
-  Last update: 2026-09-01
+  Last update: 2026-09-06
   Standards: HTML5, CSS3, ES2022, WCAG 2.1 AA
   License: MIT

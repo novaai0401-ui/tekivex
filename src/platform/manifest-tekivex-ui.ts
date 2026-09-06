@@ -1,7 +1,7 @@
 import type { ProductManifest } from '../platform/types';
 
-const UI_URL    = 'https://ui.tekivex.com';
-const UI_GITHUB = 'https://github.com/007krcs/tekivex-ui';
+const UI_URL    = 'https://www.tekivex.com/ui';
+const UI_GITHUB = 'https://github.com/novaai0401-ui/tekivex-ui';
 const UI_NPM    = 'https://www.npmjs.com/package/tekivex-ui';
 
 export const tekivexUiManifest: ProductManifest = {
@@ -20,9 +20,9 @@ export const tekivexUiManifest: ProductManifest = {
   accentColor: 'rgba(249, 115, 22, 0.1)',
   iconName: 'layers',
   homePath: '/product/tekivex-ui',
-  docsRoot: `${UI_URL}/docs`,
-  primaryDemoPath: UI_URL,
-  playgroundPath: `${UI_URL}/playground`,
+  docsRoot: `${UI_URL}/`,
+  primaryDemoPath: `${UI_URL}/playground/`,
+  playgroundPath: `${UI_URL}/playground/`,
   githubUrl: UI_GITHUB,
   stats: [
     { value: '50+',     label: 'Components' },
@@ -42,9 +42,9 @@ export const tekivexUiManifest: ProductManifest = {
   ],
   quickLinks: [
     { label: 'npm — tekivex-ui', path: UI_NPM,                  external: true },
-    { label: 'Live Demo',     path: UI_URL,                     external: true, isNew: true },
-    { label: 'Docs',          path: `${UI_URL}/docs`,           external: true },
-    { label: 'Storybook',     path: `${UI_URL}/storybook`,      external: true },
+    { label: 'Playground',    path: `${UI_URL}/playground/`,  external: true, isNew: true },
+    { label: 'Docs',          path: `${UI_URL}/`,               external: true },
+    { label: 'Component catalog', path: `${UI_URL}/book/`,     external: true },
   ],
   tags: ['Preview', 'Free', 'React', 'Vue', 'Svelte', 'Accessible', 'Themeable', 'TypeScript', 'Headless'],
   seo: {

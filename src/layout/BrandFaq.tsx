@@ -12,17 +12,17 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'What is Tekivex?',
     answer:
-      'Tekivex is an independently built platform of free developer tools. It ships a suite of free-to-use products under one roof. Three are npm libraries: GridStorm (high-performance React data grid with 35+ plugins), Tekivex UI (accessible React/Vue/Svelte component library at ui.tekivex.com), and Quantum Vault (sovereign post-quantum token issuance and verification). Three are free hosted web apps you simply open and use in the browser: Pyntra, a private studio for cards, photos, video & PDFs at pyntra.tekivex.com; Analytics Studio, an in-browser BI app at analytics.tekivex.com; and DataFlow, a real-time streaming dashboard at dataflow.tekivex.com. Everything is free forever.',
+      'Tekivex is an independently built platform of free developer tools. It ships a suite of free-to-use products under one roof. Three are npm libraries: GridStorm (high-performance React data grid with 35+ plugins), Tekivex UI (accessible React/Vue/Svelte component library at www.tekivex.com/ui), and Quantum Vault (sovereign post-quantum token issuance and verification). Three are free hosted web apps you simply open and use in the browser: Pyntra, a private studio for cards, photos, video & PDFs at pyntra.tekivex.com; Analytics Studio, an in-browser BI app at www.tekivex.com/analytics; and DataFlow, a real-time streaming dashboard at www.tekivex.com/dataflow. Everything is free forever.',
   },
   {
     question: 'What does Tekivex offer for React developers?',
     answer:
-      'For React developers Tekivex offers the tekivex-ui component library (accessibility-first, WCAG 2.1 AA), free to use and documented at ui.tekivex.com, plus GridStorm, a high-performance headless data grid. Additional products are available as live, hosted demos linked from each product page.',
+      'For React developers Tekivex offers the tekivex-ui component library (accessibility-first, WCAG 2.1 AA), free to use and documented at www.tekivex.com/ui, plus GridStorm, a high-performance headless data grid. Additional products are available as live, hosted demos linked from each product page.',
   },
   {
     question: 'How do I get started with Tekivex products?',
     answer:
-      'Tekivex UI is free to use, documented at ui.tekivex.com. The other products are available as live, hosted demos linked from each product page; visit a product page to open its demo and documentation. Everything is built TypeScript-first with tree-shaking support so your bundle scales with what you use.',
+      'Tekivex UI is free to use, documented at www.tekivex.com/ui. The other products are available as live, hosted demos linked from each product page; visit a product page to open its demo and documentation. Everything is built TypeScript-first with tree-shaking support so your bundle scales with what you use.',
   },
   {
     question: 'Is Tekivex free for commercial use?',
@@ -37,7 +37,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'Where can I see Tekivex products in action?',
     answer:
-      'GridStorm has live demos at gridstorm.tekivex.com (financial trading, analytics explorer, feature showcase, spreadsheet, cookbook). The TekiVex UI component library has an interactive playground at ui.tekivex.com/playground. The three hosted web apps are live and ready to use right now: open Pyntra at pyntra.tekivex.com, Analytics Studio at analytics.tekivex.com, and DataFlow at dataflow.tekivex.com/stocks. Each product page on tekivex.com links straight to the app or its live demo.',
+      'GridStorm has live demos at www.tekivex.com/gridstorm (financial trading, analytics explorer, feature showcase, spreadsheet, cookbook). The TekiVex UI component library has an interactive playground at www.tekivex.com/ui/playground. The three hosted web apps are live and ready to use right now: open Pyntra at pyntra.tekivex.com, Analytics Studio at www.tekivex.com/analytics, and DataFlow at www.tekivex.com/dataflow/stocks. Each product page on tekivex.com links straight to the app or its live demo.',
   },
   {
     question: 'How do I report bugs or contribute to Tekivex?',
@@ -137,28 +137,28 @@ export function BrandFaq() {
         <p style={{ margin: 0 }}>
           The <strong>Tekivex</strong> platform groups six free products. Three are
           npm libraries: <strong>GridStorm</strong> (<code>gridstorm</code>, live at{' '}
-          <a href="https://gridstorm.tekivex.com" target="_blank" rel="noopener noreferrer">
-            gridstorm.tekivex.com
+          <a href="https://www.tekivex.com/gridstorm" target="_blank" rel="noopener noreferrer">
+            www.tekivex.com/gridstorm
           </a>
           ) is a high-performance data grid with 35+ plugins;{' '}
           <strong>Quantum Vault</strong> (<code>@sigvault/sdk</code>) is a sovereign
           post-quantum token vault; and{' '}
           <strong>TekiVex UI</strong> (<code>tekivex-ui</code>) is the accessible
           React/Vue/Svelte component library at{' '}
-          <a href="https://ui.tekivex.com" target="_blank" rel="noopener noreferrer">
-            ui.tekivex.com
+          <a href="https://www.tekivex.com/ui" target="_blank" rel="noopener noreferrer">
+            www.tekivex.com/ui
           </a>. Three are free hosted web apps — nothing to install, just open the URL
           and use them: <strong>Pyntra</strong>, a private studio for cards, photos, video & PDFs at{' '}
           <a href="https://pyntra.tekivex.com" target="_blank" rel="noopener noreferrer">
             pyntra.tekivex.com
           </a>;{' '}
           <strong>Analytics Studio</strong>, an in-browser BI app at{' '}
-          <a href="https://analytics.tekivex.com" target="_blank" rel="noopener noreferrer">
-            analytics.tekivex.com
+          <a href="https://www.tekivex.com/analytics" target="_blank" rel="noopener noreferrer">
+            www.tekivex.com/analytics
           </a>; and{' '}
           <strong>DataFlow</strong>, a real-time streaming dashboard at{' '}
-          <a href="https://dataflow.tekivex.com/stocks" target="_blank" rel="noopener noreferrer">
-            dataflow.tekivex.com
+          <a href="https://www.tekivex.com/dataflow/stocks" target="_blank" rel="noopener noreferrer">
+            www.tekivex.com/dataflow
           </a>. Every product is free for commercial use.
         </p>
       </div>

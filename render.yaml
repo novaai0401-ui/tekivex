@@ -63,6 +63,46 @@ services:
       - type: redirect
         source: /use-cases/dataflow-anomaly-detection-streams
         destination: /use-cases
+      # ── Vendored product apps (scripts/fetch-apps.mjs → dist/<path>/). Render
+      #    serves an existing file first and rewrites only on a miss, so these
+      #    SPA fallbacks are safe for the apps' prerendered/Astro pages. Must
+      #    stay above the site-wide catch-all. ──
+      - type: rewrite
+        source: /ui/*
+        destination: /ui/index.html
+      - type: rewrite
+        source: /gridstorm/playground/*
+        destination: /gridstorm/playground/index.html
+      - type: rewrite
+        source: /gridstorm/react-demo/*
+        destination: /gridstorm/react-demo/index.html
+      - type: rewrite
+        source: /gridstorm/financial-trading/*
+        destination: /gridstorm/financial-trading/index.html
+      - type: rewrite
+        source: /gridstorm/spreadsheet/*
+        destination: /gridstorm/spreadsheet/index.html
+      - type: rewrite
+        source: /gridstorm/analytics-explorer/*
+        destination: /gridstorm/analytics-explorer/index.html
+      - type: rewrite
+        source: /gridstorm/feature-showcase/*
+        destination: /gridstorm/feature-showcase/index.html
+      - type: rewrite
+        source: /gridstorm/pdf-viewer/*
+        destination: /gridstorm/pdf-viewer/index.html
+      - type: rewrite
+        source: /gridstorm/cookbook/*
+        destination: /gridstorm/cookbook/index.html
+      - type: rewrite
+        source: /gridstorm/*
+        destination: /gridstorm/index.html
+      - type: rewrite
+        source: /analytics/*
+        destination: /analytics/index.html
+      - type: rewrite
+        source: /dataflow/*
+        destination: /dataflow/index.html
       # ── SPA fallback: any path with no static file loads the app, which
       #    renders the branded, noindex NotFound page for unknown routes ──
       - type: rewrite

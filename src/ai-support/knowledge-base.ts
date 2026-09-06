@@ -58,8 +58,8 @@ export const KNOWLEDGE_BASE: KbEntry[] = [
 
 **Three free hosted web apps** — nothing to install, just open the URL and use them:
 - 📄 **Pyntra** — Private studio for cards, photos, video & PDFs · https://pyntra.tekivex.com
-- 📊 **Analytics Studio** — In-browser BI & dashboards · https://analytics.tekivex.com
-- 📈 **DataFlow** — Real-time streaming dashboard · https://dataflow.tekivex.com/stocks
+- 📊 **Analytics Studio** — In-browser BI & dashboards · https://www.tekivex.com/analytics
+- 📈 **DataFlow** — Real-time streaming dashboard · https://www.tekivex.com/dataflow/stocks
 
 We believe professional-grade software should be accessible to every team regardless of budget.`,
     tags: ['tekivex', 'company', 'about', 'products', 'portfolio'],
@@ -82,8 +82,8 @@ We believe professional-grade software should be accessible to every team regard
 | Tekivex UI | Library | Accessible React/Vue/Svelte component library |
 | Quantum Vault | Library | Sovereign post-quantum tokens (self-hosted) |
 | Pyntra | Hosted app | Private studio for cards, photos, video & PDFs — open it at pyntra.tekivex.com |
-| Analytics Studio | Hosted app | In-browser BI & dashboards at analytics.tekivex.com |
-| DataFlow | Hosted app | Real-time streaming dashboard at dataflow.tekivex.com/stocks |
+| Analytics Studio | Hosted app | In-browser BI & dashboards at www.tekivex.com/analytics |
+| DataFlow | Hosted app | Real-time streaming dashboard at www.tekivex.com/dataflow/stocks |
 
 The three apps are free and hosted — there's nothing to install, just open the URL and use them. Visit each product page for demos, docs, and quick-start guides.`,
     tags: ['products', 'list', 'overview', 'all'],
@@ -172,7 +172,7 @@ import { GridStorm } from '@gridstorm/react';
 />
 \`\`\`
 
-See the [full documentation](https://gridstorm.tekivex.com/#/docs/getting-started/introduction) for plugin setup, theming, and advanced configuration.`,
+See the [full documentation](https://www.tekivex.com/gridstorm/#/docs/getting-started/introduction) for plugin setup, theming, and advanced configuration.`,
     tags: ['install', 'npm', 'setup', 'quickstart', 'getting started'],
   },
 
@@ -397,7 +397,7 @@ document.documentElement.setAttribute('data-gs-density', 'compact');
 }
 \`\`\`
 
-All 80+ tokens are documented in the [theme reference](https://gridstorm.tekivex.com/#/docs).`,
+All 80+ tokens are documented in the [theme reference](https://www.tekivex.com/gridstorm/#/docs).`,
     tags: ['theme', 'dark mode', 'CSS', 'styling', 'customize', 'appearance'],
   },
 
@@ -502,7 +502,7 @@ grid.dispatch('charts:open', {
 npm install tekivex-ui
 \`\`\`
 
-[Docs & playground](https://ui.tekivex.com) · [Repo](https://github.com/007krcs/tekivex-ui)`,
+[Docs & playground](https://www.tekivex.com/ui) · [Repo](https://github.com/007krcs/tekivex-ui)`,
     tags: ['Tekivex UI', 'component library', 'React', 'Vue', 'Svelte', 'accessible'],
   },
 
@@ -586,7 +586,7 @@ Pyntra is free and currently in beta. No account needed — just open it and use
     ],
     answer: `**Analytics Studio** is a free, browser-based business-intelligence app — open it and start building, no backend to set up and nothing to install.
 
-👉 **Open Analytics Studio:** https://analytics.tekivex.com
+👉 **Open Analytics Studio:** https://www.tekivex.com/analytics
 
 **What you can do:**
 - 🧮 Drag-and-drop pivot builder — group, aggregate, and filter visually
@@ -616,7 +616,7 @@ Everything runs client-side in your browser. Analytics Studio is free and curren
     ],
     answer: `**DataFlow** is a free, browser-based real-time streaming dashboard — open the live app and watch high-frequency data update in place. Nothing to install.
 
-👉 **Open DataFlow:** https://dataflow.tekivex.com/stocks
+👉 **Open DataFlow:** https://www.tekivex.com/dataflow/stocks
 
 **What you get:**
 - 🔴 Live streaming feeds that update in place (WebSocket / SSE)
@@ -673,8 +673,8 @@ For partnerships or volume questions, contact **enterprise@tekivex.com**.`,
 
 1. **Choose your product** — visit the [product hub](/) to see all available products
 2. **GridStorm** (most popular) — \`npm install @gridstorm/core @gridstorm/react\`
-3. **Read the docs** — [gridstorm.tekivex.com/#/docs](https://gridstorm.tekivex.com/#/docs)
-4. **Try the demo** — [Live Feature Showcase](https://gridstorm.tekivex.com/feature-showcase/)
+3. **Read the docs** — [www.tekivex.com/gridstorm/#/docs](https://www.tekivex.com/gridstorm/#/docs)
+4. **Try the demo** — [Live Feature Showcase](https://www.tekivex.com/gridstorm/feature-showcase/)
 
 **5-minute quickstart for GridStorm:**
 \`\`\`bash
@@ -923,10 +923,10 @@ grid.on('cell:valueChanged', ({ rowId, columnId, newValue, oldValue }) => {
 [github.com/novaai0401-ui/tekivex-issue-report/issues](https://github.com/novaai0401-ui/tekivex-issue-report/issues)
 
 📖 **Documentation**
-[gridstorm.tekivex.com/#/docs](https://gridstorm.tekivex.com/#/docs)
+[www.tekivex.com/gridstorm/#/docs](https://www.tekivex.com/gridstorm/#/docs)
 
 🎮 **Live Demo & Playground**
-[gridstorm.tekivex.com/feature-showcase/](https://gridstorm.tekivex.com/feature-showcase/)
+[www.tekivex.com/gridstorm/feature-showcase/](https://www.tekivex.com/gridstorm/feature-showcase/)
 
 💼 **Enterprise inquiries**
 enterprise@tekivex.com

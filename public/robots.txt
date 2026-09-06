@@ -75,4 +75,4 @@ Allow: /
 # ── Resources ───────────────────────────────────────────────────────────
 # LLM guide: https://www.tekivex.com/llms.txt
 Sitemap: https://www.tekivex.com/sitemap-index.xml
-Sitemap: https://gridstorm.tekivex.com/sitemap.xml
+Sitemap: https://www.tekivex.com/gridstorm/sitemap.xml

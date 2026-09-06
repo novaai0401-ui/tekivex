@@ -90,11 +90,11 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
   // ── Analytics Studio (hosted web app) ────────────────────────────────────
   'analytics-studio': {
     overview: [
-      'Analytics Studio is a free, browser-based business-intelligence app. Open analytics.tekivex.com, bring your data, and build pivot tables, charts, and KPI dashboards by dragging fields — there is no backend to stand up and no software to install.',
+      'Analytics Studio is a free, browser-based business-intelligence app. Open www.tekivex.com/analytics, bring your data, and build pivot tables, charts, and KPI dashboards by dragging fields — there is no backend to stand up and no software to install.',
       'It is in beta. The pivot builder, 26+ chart types, KPI dashboards, and an in-browser SQL engine (SELECT / WHERE / GROUP BY / JOIN) all work today. Your data is processed in the browser, so you can explore it without sending it to a server.',
     ],
     howItWorks: [
-      { title: 'Open the app', body: 'Go to analytics.tekivex.com — the studio loads in your browser with nothing to install.' },
+      { title: 'Open the app', body: 'Go to www.tekivex.com/analytics — the studio loads in your browser with nothing to install.' },
       { title: 'Bring your data', body: 'Load tabular data into the app. Analytics Studio infers a schema and makes the fields available to the pivot builder and the SQL view.' },
       { title: 'Build and explore', body: 'Drag fields to group, aggregate, and filter; switch between 26+ chart types; compose a KPI dashboard; or run SQL directly. Export to PDF or Excel when you are done.' },
     ],
@@ -111,7 +111,7 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
     ],
     faqs: [
       { q: 'Do I need a backend or database?', a: 'No. Analytics Studio runs in your browser and processes data client-side, including its SQL engine. Just open the app and load your data.' },
-      { q: 'Is there anything to install?', a: 'No — it is a hosted web app at analytics.tekivex.com.' },
+      { q: 'Is there anything to install?', a: 'No — it is a hosted web app at www.tekivex.com/analytics.' },
       { q: 'What is it built on?', a: 'It uses the same high-performance GridStorm engine that powers our data grid, which is how it handles large datasets and pivoting smoothly in the browser.' },
     ],
   },
@@ -119,11 +119,11 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
   // ── DataFlow (hosted web app) ────────────────────────────────────────────
   dataflow: {
     overview: [
-      'DataFlow is a free, browser-based real-time streaming dashboard. Open the live app at dataflow.tekivex.com/stocks to watch high-frequency data update in place — values flash as they change, anomalies are flagged automatically, and you can rewind the stream.',
+      'DataFlow is a free, browser-based real-time streaming dashboard. Open the live app at www.tekivex.com/dataflow/stocks to watch high-frequency data update in place — values flash as they change, anomalies are flagged automatically, and you can rewind the stream.',
       'It is in beta. The live dashboard demonstrates streaming feeds, backpressure handling, anomaly detection, and time-travel replay — all running in the browser with nothing to install.',
     ],
     howItWorks: [
-      { title: 'Open the live app', body: 'Go to dataflow.tekivex.com/stocks — the streaming dashboard starts immediately, with no setup required.' },
+      { title: 'Open the live app', body: 'Go to www.tekivex.com/dataflow/stocks — the streaming dashboard starts immediately, with no setup required.' },
       { title: 'Watch data stream', body: 'Live values update in place with directional flash highlighting, while backpressure control keeps the view smooth even under a fast feed.' },
       { title: 'Investigate and replay', body: 'Anomalies are flagged automatically (Z-score, IQR, MAD, or thresholds), and time-travel replay lets you record, seek, and play the stream back at variable speed.' },
     ],
@@ -138,7 +138,7 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
       'Anomaly detection uses statistical methods (Z-score, IQR, MAD) suited to numeric streams rather than complex ML-based detection.',
     ],
     faqs: [
-      { q: 'Is there anything to install?', a: 'No. DataFlow is a hosted web app — open dataflow.tekivex.com/stocks and the live dashboard runs in your browser.' },
+      { q: 'Is there anything to install?', a: 'No. DataFlow is a hosted web app — open www.tekivex.com/dataflow/stocks and the live dashboard runs in your browser.' },
       { q: 'What can I do in the live app?', a: 'Watch streaming data update in place with change highlighting, see anomaly alerts, and use time-travel replay to record and rewind the stream.' },
       { q: 'Where does the data come from?', a: 'The hosted demo streams a live, simulated market-style feed so you can see the real-time behaviour end to end.' },
     ],

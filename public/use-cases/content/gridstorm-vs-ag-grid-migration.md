@@ -111,7 +111,7 @@ For deeper background on the plugin model you are adopting, see the [plugin arch
 - **Stay on AG Grid** if you depend heavily on its Enterprise-only features (integrated charting, server-side pivoting), if your team's productivity is tied to its mature ecosystem, or if a migration's cost outweighs the benefit for a stable, working application.
 - **Run both** during transition: GridStorm's headless core lets you migrate one screen at a time rather than in a single big-bang cutover.
 
-Migrations are never free, and a working grid has real value. But for teams whose constraints have shifted — toward cost predictability, smaller bundles, accessibility, or full ownership of the code — GridStorm offers a credible path. Try your hardest screen against the [live demo](https://gridstorm.tekivex.com) first, then browse the full set of [use cases](/use-cases) to gauge how it handles the workloads you care about before committing to the move.
+Migrations are never free, and a working grid has real value. But for teams whose constraints have shifted — toward cost predictability, smaller bundles, accessibility, or full ownership of the code — GridStorm offers a credible path. Try your hardest screen against the [live demo](https://www.tekivex.com/gridstorm) first, then browse the full set of [use cases](/use-cases) to gauge how it handles the workloads you care about before committing to the move.
 
 ---
 

@@ -2,7 +2,7 @@ import type { ProductManifest } from './types';
 
 // Analytics Studio is a hosted, browser-based BI app. Users open the app and
 // build dashboards directly — there is nothing to install.
-const ANALYTICS_URL = 'https://analytics.tekivex.com';
+const ANALYTICS_URL = 'https://www.tekivex.com/analytics';
 
 export const analyticsStudioManifest: ProductManifest = {
   id: 'analytics-studio',
