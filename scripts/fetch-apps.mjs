@@ -36,6 +36,16 @@ const STRICT =
     : Boolean(process.env.RENDER || process.env.CI);
 const ATTEMPTS = 4;
 
+// The app repos must be PUBLIC for an anonymous clone to work (Render and CI
+// have no GitHub credentials). If one has to stay private, set
+// APPS_GITHUB_TOKEN in the Render/CI environment to a fine-grained token with
+// read-only "Contents" access to that repo; it is injected via an extraHeader
+// so it never appears in the clone URL, remotes, or logs.
+const TOKEN = process.env.APPS_GITHUB_TOKEN || '';
+const AUTH = TOKEN
+  ? `-c http.https://github.com/.extraheader="AUTHORIZATION: basic ${Buffer.from('x-access-token:' + TOKEN).toString('base64')}"`
+  : '';
+
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /** Clone with retries; resolves to null on success or the last git error text. */
@@ -45,12 +55,16 @@ async function cloneBuildBranch(repo, dest) {
     rmSync(dest, { recursive: true, force: true });
     try {
       execSync(
-        `git clone --quiet --depth 1 --branch build --single-branch "${repo}" "${dest}"`,
-        { stdio: ['ignore', 'pipe', 'pipe'] },
+        `git ${AUTH} clone --quiet --depth 1 --branch build --single-branch "${repo}" "${dest}"`,
+        { stdio: ['ignore', 'pipe', 'pipe'], env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } },
       );
       return null;
     } catch (e) {
       lastErr = String(e?.stderr ?? e?.message ?? e).trim();
+      if (/could not read Username|Authentication failed|Repository not found/i.test(lastErr)) {
+        lastErr += `\n    → ${repo} is private or missing. Make it public, or set APPS_GITHUB_TOKEN (read-only Contents) in the build environment.`;
+        break; // credentials won't appear on retry
+      }
       if (attempt < ATTEMPTS) {
         const wait = 2000 * attempt;
         console.warn(`  ↻ clone of ${repo}#build failed (attempt ${attempt}/${ATTEMPTS}), retrying in ${wait / 1000}s: ${lastErr.split('\n')[0]}`);
