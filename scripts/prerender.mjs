@@ -822,7 +822,7 @@ function articleHtml(article, contentHtml) {
       </nav>
       <h1 style="font-size:2.2rem;font-weight:800;letter-spacing:-0.02em;color:#0a0f1f;margin:0 0 12px;line-height:1.18">${escapeHtml(article.title)}</h1>
       <p style="color:#475569;font-size:18px;line-height:1.6;margin:0 0 12px">${escapeHtml(article.description)}</p>
-      <p style="color:#94a3b8;font-size:13px;margin:0 0 28px">By ${escapeHtml(article.author)}${author ? `, ${escapeHtml(author.role)}` : ''} · ${escapeHtml(article.readingMinutes + ' min read')}</p>
+      <p style="color:#94a3b8;font-size:13px;margin:0 0 28px">By ${escapeHtml(article.author)}${author ? `, ${escapeHtml(author.role)}` : ''} · Published <time datetime="${escapeHtml(article.datePublished)}">${escapeHtml(article.datePublished)}</time>${article.dateModified !== article.datePublished ? ` · Updated <time datetime="${escapeHtml(article.dateModified)}">${escapeHtml(article.dateModified)}</time>` : ''} · ${escapeHtml(article.readingMinutes + ' min read')}</p>
       <div class="uc-article-body" style="font-size:16px;line-height:1.78;color:#1f2937">
         ${contentHtml}
       </div>
@@ -850,15 +850,13 @@ function articleHtml(article, contentHtml) {
 const CONTENT_DIR = join(ROOT, 'public', 'use-cases', 'content');
 const articleRoutes = [];
 let articleCount = 0;
-let articleSkipped = 0;
 for (const article of ARTICLES) {
   const mdPath = join(CONTENT_DIR, article.contentFile);
   if (!existsSync(mdPath)) {
-    console.warn(`  ⚠ missing article markdown: ${article.contentFile}`);
-    articleSkipped++;
-    continue;
+    throw new Error(`Missing article markdown: ${article.contentFile}`);
   }
   const md = readFileSync(mdPath, 'utf8');
+  if (!md.trim()) throw new Error(`Empty article markdown: ${article.contentFile}`);
   const contentHtml = marked.parse(md);
   const dir = join(DIST, 'use-cases', article.slug);
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
@@ -1066,46 +1064,10 @@ if (existsSync(pub)) {
   writeFileSync(join(pub, 'llms-full.txt'), llmsFull, 'utf8');
 }
 
-// ─── Redirect stub pages ─────────────────────────────────────────────────
-// Render only honours render.yaml `routes` when the service is a Blueprint. To
-// guarantee renamed/removed URLs never 404 in production regardless of how the
-// service is configured, emit a tiny client-side redirect page for every
-// redirect declared in render.yaml (canonical + meta-refresh + JS replace).
-// If real host-level 301s are active they take precedence and these are never
-// reached. render.yaml stays the single source of truth for the redirect list.
-let redirectStubs = 0;
-try {
-  const renderYaml = readFileSync(join(ROOT, 'render.yaml'), 'utf8');
-  const re = /-\s*type:\s*redirect\s+source:\s*(\S+)\s+destination:\s*(\S+)/g;
-  let m;
-  while ((m = re.exec(renderYaml))) {
-    const source = m[1];
-    const destination = m[2];
-    if (!source.startsWith('/') || source === '/' || source.includes('*')) continue;
-    const dir = join(DIST, source.replace(/^\//, ''));
-    const target = join(dir, 'index.html');
-    if (existsSync(target)) continue; // never clobber a real prerendered route
-    const destAbs = destination.startsWith('http') ? destination : `${ORIGIN}${destination}`;
-    mkdirSync(dir, { recursive: true });
-    writeFileSync(
-      target,
-      `<!doctype html><html lang="en"><head><meta charset="utf-8">` +
-        `<title>Redirecting…</title><meta name="robots" content="noindex, follow">` +
-        `<link rel="canonical" href="${destAbs}">` +
-        `<meta http-equiv="refresh" content="0; url=${escapeHtml(destination)}">` +
-        `<script>location.replace(${JSON.stringify(destination)})</script></head>` +
-        `<body>Redirecting to <a href="${escapeHtml(destination)}">${escapeHtml(destination)}</a>…</body></html>`,
-      'utf8',
-    );
-    redirectStubs++;
-  }
-} catch (e) {
-  console.warn('redirect stubs skipped:', e.message);
-}
+// Redirects are served by the host. Static stubs mask Render redirect rules.
 
 const totalSitemapUrls = routes.length + articleRoutes.length + 1;
 console.log(
   `✓ ${count} static routes + ${articleCount} use-case articles prerendered` +
-  (articleSkipped ? ` (${articleSkipped} skipped — markdown missing)` : '') +
   `, sitemap.xml (${totalSitemapUrls} URLs), sitemap-index.xml, feed.xml, humans.txt`,
 );

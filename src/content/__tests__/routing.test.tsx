@@ -35,6 +35,25 @@ describe('use-cases routing', () => {
     render(<App />);
     expect(screen.getByTestId('notfound-page')).toBeInTheDocument();
   });
+
+  it.each([
+    `/use-cases/${ARTICLES[0].slug}/made-up`,
+    '/product/gridstorm/made-up',
+    '/tools/merge-pdf/made-up',
+    '/authors/chandan-kumar/made-up',
+  ])('rejects extra path segments at %s', (path) => {
+    pushRoute(path);
+    render(<App />);
+    expect(screen.getByTestId('notfound-page')).toBeInTheDocument();
+    expect(document.querySelector('meta[name="robots"]')).toHaveAttribute('content', 'noindex, follow');
+  });
+
+  it('accepts a trailing slash on an existing article', () => {
+    pushRoute(`/use-cases/${ARTICLES[0].slug}/`);
+    render(<App />);
+    expect(screen.queryByTestId('notfound-page')).not.toBeInTheDocument();
+    expect(document.querySelector('.uc-article-body h2')).toBeTruthy();
+  });
 });
 
 describe('use-cases SEO', () => {
