@@ -16,11 +16,31 @@ Not sure your file's ready? There's a **Try sample data** button so you can see 
 
 ![The same data shown as a donut chart in the CSV to Chart tool](/images/tools/csv-chart-donut.png)
 
+## Worked example: revenue rises, but so do expenses
+
+[Download this example CSV](/examples/monthly-revenue-expenses.csv), or paste the following into the tool. These are invented teaching values, not customer data or measured business results. Revenue and expenses use the same currency and represent totals for each month.
+
+```csv
+Month,Revenue,Expenses
+January,12000,8000
+February,15000,9500
+March,14000,10000
+April,18000,11000
+```
+
+Choose **Month** for labels and **Revenue** and **Expenses** for the two numeric series. In a bar chart, you should see four month groups, with two values per group. Check the data table: April should show revenue of 18,000 and expenses of 11,000. If it does not, check your column selections and delimiter before trusting the image.
+
+January's difference is 12,000 − 8,000 = **4,000**; March's is 14,000 − 10,000 = **4,000**. March has more revenue than January but the same difference after these expenses. April's difference is **7,000**. The chart does not calculate a profit series automatically; add a separate column to your CSV if you want to plot that difference. These two columns alone do not establish accounting profit because the example does not include other costs or taxes.
+
+A line chart makes the month-to-month change easier to follow. Keep the rows in chronological order: labels are displayed in CSV order, so sorting month names alphabetically would tell the wrong story. Avoid a donut for this comparison; a single set of slices does not explain the gap between two series over time.
+
+Suggested text alternative: "Revenue and expenses from January to April. Revenue rises from 12,000 to 18,000; expenses rise from 8,000 to 11,000. The difference is 4,000 in both January and March, then 7,000 in April." Include the four-row data table alongside the exported image.
+
 ## Good to know and limitations
 
 - **Up to 8 numeric series.** You can plot as many as eight series at once. For a **donut** chart, any slices beyond the top 8 are folded together into a single "Other" slice to keep it readable.
 - **Comma-separated files work best.** If your file uses semicolons or tabs instead of commas, re-save it as a standard comma CSV first (most spreadsheets let you choose the delimiter when exporting).
-- **The shareable link keeps your data private.** When you copy a link, your data is encoded into the part of the URL after the `#` symbol. Browsers never send that fragment to a server, so sharing the link doesn't upload your data anywhere — the recipient's browser rebuilds the chart locally.
+- **A shareable link contains your data.** The tool encodes the chart data after `#` in the URL. That fragment is not included in the HTTP request for the page, but it is not encryption or access control. Anyone with the complete link can read the data. It can also be stored by browser history, extensions, or the messaging service you use to share it. For confidential data, export a suitably redacted chart instead of sharing a data-bearing URL.
 - **Dark mode is supported**, so your charts look right whether you prefer light or dark.
 
 ![A CSV to Chart bar chart displayed in dark mode](/images/tools/csv-chart-dark.png)
@@ -58,6 +78,6 @@ A chart image on its own is invisible to screen-reader users, so pair it with a 
 
 ### If I share the link, does that upload my data?
 
-No. Your data is packed into the URL after the `#`, and browsers never send that portion to any server. The person you share with has their chart rebuilt entirely in their own browser. More on this in [why browser tools keep files private](/use-cases/why-browser-tools-keep-files-private).
+The chart tool does not upload the dataset to its server to create the link. It packs the data after `#` in the URL, which is excluded from the page's HTTP request. However, sending that complete link through email or chat shares the data with the recipient and potentially with that service. Treat the link as a copy of your dataset, not a private or password-protected chart. More on local processing in [why browser tools keep files private](/use-cases/why-browser-tools-keep-files-private).
 
-Your data never leaves your browser — the chart is built entirely on your own device.
+The chart is built on your device. Exporting it or sharing a data-bearing link is your decision to share that information.

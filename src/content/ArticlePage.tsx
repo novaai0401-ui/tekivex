@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
 import { Link, navigate } from '../App';
 import { AdSlot } from '../ads/AdSlot';
 import { Markdown } from './Markdown';
 import { getArticle, getArticlesByProduct } from './registry';
 import { getAuthor } from './authors';
 import { getProduct } from '../platform/registry';
+import { getArticleSource } from './sources';
 
 function formatDate(iso: string): string {
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -17,29 +17,7 @@ function formatDate(iso: string): string {
 
 export function ArticlePage({ slug }: { slug: string }) {
   const article = getArticle(slug);
-  const [source, setSource] = useState<string | null>(null);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    if (!article) return;
-    let cancelled = false;
-    setSource(null);
-    setError(false);
-    fetch(`/use-cases/content/${article.contentFile}`)
-      .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.text();
-      })
-      .then((text) => {
-        if (!cancelled) setSource(text);
-      })
-      .catch(() => {
-        if (!cancelled) setError(true);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [article]);
+  const source = article ? getArticleSource(article.contentFile) : undefined;
 
   if (!article) {
     return (
@@ -73,11 +51,17 @@ export function ArticlePage({ slug }: { slug: string }) {
         <span className="uc-byline">By {author ? <Link to={`/authors/${author.id}`}>{author.name}</Link> : article.author}</span>
         <span className="uc-meta-sep">·</span>
         <time dateTime={article.datePublished}>{formatDate(article.datePublished)}</time>
+        {article.dateModified !== article.datePublished && (
+          <>
+            <span className="uc-meta-sep">·</span>
+            <span>Updated <time dateTime={article.dateModified}>{formatDate(article.dateModified)}</time></span>
+          </>
+        )}
         <span className="uc-meta-sep">·</span>
         <span>{article.readingMinutes} min read</span>
       </div>
 
-      {error && (
+      {!source && (
         <p className="uc-article-lead" role="alert">
           This article could not be loaded. Please try again later.
         </p>
@@ -85,9 +69,8 @@ export function ArticlePage({ slug }: { slug: string }) {
 
       {source && <Markdown source={source} />}
 
-      {/* In-content ad — placed inside substantive editorial content only.
-          Guard on a minimum length so stub/thin articles never carry ads
-          (Google inventory-value policy). */}
+      {/* This length guard prevents empty placements; it is not a content
+          quality assessment or an AdSense approval criterion. */}
       {source && source.length > 1500 && (
         <AdSlot slot="5896441076" label="Sponsored" className="ad-slot--article" />
       )}

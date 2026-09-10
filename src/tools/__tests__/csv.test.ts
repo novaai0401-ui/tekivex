@@ -1,10 +1,21 @@
 import { describe, it, expect } from 'vitest';
+import workedExample from '../../../public/examples/monthly-revenue-expenses.csv?raw';
 import {
   parseCsv, toNumber, guessColumns, buildChartModel, buildDonutSlices, niceTicks,
   MAX_DONUT_SLICES,
 } from '../lib/csv';
 
 describe('parseCsv', () => {
+  it('reproduces the published revenue/expenses walkthrough', () => {
+    const table = parseCsv(workedExample);
+    const columns = guessColumns(table);
+    const model = buildChartModel(table, columns.labelCol, columns.numericCols);
+    expect(model.labels).toEqual(['January', 'February', 'March', 'April']);
+    expect(model.series).toEqual([
+      { name: 'Revenue', values: [12000, 15000, 14000, 18000] },
+      { name: 'Expenses', values: [8000, 9500, 10000, 11000] },
+    ]);
+  });
   it('parses headers and rows', () => {
     const t = parseCsv('Month,Revenue\nJan,100\nFeb,200\n');
     expect(t.headers).toEqual(['Month', 'Revenue']);

@@ -39,6 +39,8 @@ const STATIC_ROUTES = new Set<string>([
 
 function isKnownRoute(route: string): boolean {
   if (STATIC_ROUTES.has(route)) return true;
+  // A registered slug is a complete page, not a prefix for arbitrary URLs.
+  if (!/^\/(use-cases|product|tools|authors)\/[^/]+$/.test(route)) return false;
   if (route.startsWith('/use-cases/')) {
     const slug = route.slice('/use-cases/'.length).split('/')[0];
     return !!slug && !!getArticle(slug);
@@ -130,7 +132,7 @@ export function Link({
 }
 
 export function App() {
-  const route = useHistoryRoute();
+  const route = useHistoryRoute().replace(/\/+$/, '') || '/';
   const activeProductId = getActiveProductId(route);
 
   // Scroll to top on every route change

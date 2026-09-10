@@ -65,7 +65,7 @@ const DATES: Record<string, { published: string; modified?: string }> = {
   'how-to-split-pdf-extract-pages':                { published: '2026-07-02', modified: '2026-08-11' },
   'how-to-convert-jpg-to-pdf':                     { published: '2026-07-02', modified: '2026-08-11' },
   'how-to-compress-pdf':                           { published: '2026-07-02', modified: '2026-08-11' },
-  'how-to-make-chart-from-csv':                    { published: '2026-07-02', modified: '2026-08-11' },
+  'how-to-make-chart-from-csv':                    { published: '2026-07-02', modified: '2026-09-10' },
   'why-browser-tools-keep-files-private':          { published: '2026-07-02', modified: '2026-08-11' },
   'how-to-convert-pdf-to-jpg':                     { published: '2026-07-22', modified: '2026-08-11' },
   'how-to-rotate-pdf':                             { published: '2026-07-22', modified: '2026-08-11' },
