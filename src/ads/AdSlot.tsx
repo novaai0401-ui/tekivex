@@ -23,8 +23,8 @@ declare global {
  * Renders an AdSense ad unit. Always rendered on substantive pages so
  * the Mediapartners-Google crawler can discover the inventory; whether
  * a personalised, non-personalised, or no ad serves to a given visitor
- * is governed by Google Consent Mode v2 signals dispatched by
- * ConsentProvider on Accept / Reject.
+ * is governed by Google's privacy message and serving rules. The analytics
+ * preference does not grant advertising consent.
  *
  * In dev (import.meta.env.DEV) a labelled placeholder is rendered so
  * authors can verify placements without loading real ads.
@@ -71,6 +71,7 @@ export function AdSlot({ slot, format = 'auto', label, className }: AdSlotProps)
         data-full-width-responsive="true"
         data-testid="ad-slot-ins"
       />
+      <AdvertisingPrivacy />
     </div>
   );
 }

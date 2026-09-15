@@ -22,11 +22,11 @@ This checklist tracks implementation and evidence. A passing build is not a Goog
 - [ ] Configure all five Render redirects and verify permanent HTTP redirects on the live domain.
 - [ ] Verify canonical URLs, sitemap/index files, crawler access and byte-exact ads.txt.
 - [ ] Verify real 404 responses, with no advertising on those responses.
-- [ ] Inspect public pages with and without JavaScript; maintain mobile navigation and readable layouts.
+- [x] Inspect public pages with and without JavaScript; maintain mobile navigation and readable layouts.
 
 ## Testing and release
 - [x] Add regression tests for confirmed defects.
-- [ ] Run TypeScript, unit tests, coverage and full build including all vendored apps; fix failures and repeat affected checks.
+- [x] Run TypeScript, unit tests, coverage and full build including all vendored apps; fix failures and repeat affected checks.
 - [ ] Run real browser tool workflows, invalid-input handling, mobile layouts and downloadable-output checks.
 - [ ] Publish changes, wait for GitHub CI, merge/deploy the passing revision and verify the live deployment.
 - [ ] Check Search Console retrieval/canonical diagnostics when an authenticated account is available.
@@ -36,10 +36,12 @@ This checklist tracks implementation and evidence. A passing build is not a Goog
 
 - TypeScript passes. All 323 tests pass across 39 files; line coverage 84.70%, branches 70.77%, functions 77.93%. PDF engine tests inspect real pdf-lib output (page counts, extraction, rotation, deletion and images); component tests cover invalid inputs.
 - Browser analytics sequence: undecided → accepted → reopened/undecided → denied → reload/denied. Cookie-policy banner now reappears. Cross-tab and storage failures are covered by regression tests.
-- Full build imported all four product apps; final rebuild and CI verification are release gates. 23 complete article bodies and the 404/no-global-ad-loader assertions pass. All 67 generated Gridstorm documentation/index pages passed the earlier output audit; the stronger same-site link check must pass the final build.
+- Full build imported all four product apps; final rebuild also passed; GitHub CI verifies the pushed revision. 23 complete article bodies and the 404/no-global-ad-loader assertions pass. All 67 generated Gridstorm documentation/index pages passed the earlier output audit; the stronger same-site link check passed the final build.
 - Google privacy-message integration is unit-tested against the documented callback interface, not certified as working for every regulated region. The user reports configuring the message; its published account settings remain unverified.
 - Render login via GitHub failed because that account is deployment-only. Automatic approval review rejected Google sign-in because access to that separate Google account had not been specifically authorized. No redirect settings were changed. The five exact rules are in ADSENSE-PRE-SUBMISSION.md.
 - Search Console, Auto ads exclusions, author credentials/permission and AdSense account eligibility require owner verification. Do not mark those as passing from code alone.
 - Browser file chooser automation timed out on the local sample-PDF test. This is not recorded as successful file processing or as a confirmed application defect.
 
 Google evaluates original publisher value and the actual live experience; tests and content counts do not guarantee approval. No review request has been submitted.
+
+Additional browser evidence: all eight production tool pages fit the mobile viewport and contain no advertising elements; no console errors were captured. The CSV sample renders. Article-to-cookie-policy navigation unloads the ad document after the analytics banner is dismissed. Browser file-picker and download event automation remain inconclusive. The analytics page URL now excludes query strings and fragments to protect chart payloads. A production check caught a missing rendered Google privacy control; it was connected to AdSlot and covered by an integration assertion.

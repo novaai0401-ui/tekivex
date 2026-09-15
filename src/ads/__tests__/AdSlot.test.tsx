@@ -46,6 +46,7 @@ describe('AdSlot', () => {
     expect(ins.getAttribute('data-ad-slot')).toBe('424242');
     expect(ins.getAttribute('data-ad-format')).toBe('rectangle');
     expect(ins.getAttribute('data-full-width-responsive')).toBe('true');
+    expect(screen.getByRole('button', { name: 'Advertising privacy choices' })).toBeInTheDocument();
   });
 
   it('renders the <ins> even when consent is denied (Consent Mode v2 handles serving)', () => {
