@@ -26,6 +26,7 @@ import { execSync } from 'node:child_process';
 import { cpSync, existsSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { prepareGridstorm } from './prepare-gridstorm.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = join(ROOT, 'dist');
@@ -109,6 +110,7 @@ for (const app of APPS) {
     continue;
   }
   console.log(`✓ /${app.path}: vendored ${entries} top-level entries from ${app.repo}#build`);
+  if (app.path === 'gridstorm') prepareGridstorm(target);
   ok++;
 }
 rmSync(TMP, { recursive: true, force: true });

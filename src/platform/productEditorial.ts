@@ -35,10 +35,10 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
   gridstorm: {
     overview: [
       'GridStorm is a headless, framework-agnostic data grid built for the hardest table problem in front-end engineering: rendering and editing very large datasets without dropping frames. Its core ships under 50 KB and knows nothing about the DOM — you bring the renderer (React, Vue, Svelte, or Angular) and GridStorm supplies the engine for windowing, selection, sorting, grouping, and formula evaluation.',
-      'The design goal is "spreadsheet behaviour, library ergonomics." That means 100,000+ rows scrolling at 60fps, Excel-compatible copy/paste with type coercion, 42 formula functions, and 35 composable plugins you opt into one at a time — all while keeping the bundle small and the accessibility tree intact (WCAG 2.1 AA).',
+      'The design goal is "spreadsheet behaviour, library ergonomics." That means virtual scrolling for large datasets, Excel-compatible copy/paste with type coercion, 42 formula functions, and 35 composable plugins you opt into one at a time — all while keeping the bundle small and the accessibility tree intact (WCAG 2.1 AA).',
     ],
     howItWorks: [
-      { title: 'Virtualised rendering', body: 'GridStorm only mounts the cells inside the visible viewport plus a small overscan buffer, recycling row nodes as you scroll. This keeps the DOM node count constant regardless of dataset size, which is what holds the frame budget at 60fps for six-figure row counts.' },
+      { title: 'Virtualised rendering', body: 'GridStorm only mounts the cells inside the visible viewport plus a small overscan buffer, recycling row nodes as you scroll. This keeps the DOM node count constant regardless of dataset size, which reduces rendering work; frame rate still depends on the device, cell renderers and enabled features.' },
       { title: 'Headless core + adapters', body: 'All state — selection, sort, filter, grouping, formulas — lives in a pure TypeScript core. Thin framework adapters subscribe to that state and render it idiomatically, so the same engine behaves identically across React, Vue, Svelte, and Angular.' },
       { title: 'Composable plugins', body: 'Features like accessibility, Excel formulas, copy/paste, and column pinning are separate plugins. You register only what you need, so an app that never uses formulas never pays for the formula engine in its bundle.' },
     ],

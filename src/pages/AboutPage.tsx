@@ -8,7 +8,7 @@ const PRODUCTS = [
     icon: 'grid',
     status: 'Beta',
     statusColor: '#fbbf24',
-    description: 'Headless high-performance data grid — 35 plugins, 100K+ rows at 60fps.',
+    description: 'Headless high-performance data grid — 35 plugins, large datasets with virtual scrolling.',
     href: '/product/gridstorm',
   },
   {
@@ -72,7 +72,7 @@ const VALUES = [
   {
     icon: 'cpu',
     title: 'Zero Dependencies',
-    body: "We obsess over bundle size. GridStorm's core is under 50KB, and every package is fully tree-shakable.",
+    body: "We obsess over bundle size. GridStorm separates its core and optional plugins. Measure the production bundle with the features your application actually imports.",
   },
   {
     icon: 'accessibility',

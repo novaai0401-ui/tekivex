@@ -1,0 +1,2 @@
+# PDF fixtures can use ASCII streams but still require byte-exact offsets.
+*.pdf binary

@@ -13,7 +13,7 @@ The core is deliberately minimal. It owns:
 - **An event/lifecycle bus**: well-defined hook points plugins subscribe to.
 - **A pipeline**: an ordered transform of source rows into the rows the grid actually displays.
 
-It does **not** own the DOM (that is the framework adapter's job) and it does not implement features. "Headless" means the core computes *what* to show and leaves *how* to render it to the adapter, and leaves *what features exist* to plugins. This is why the core stays under 50KB and why importing only the plugins you need keeps application bundles small.
+It does **not** own the DOM (that is the framework adapter's job) and it does not implement features. "Headless" means the core computes *what* to show and leaves *how* to render it to the adapter, and leaves *what features exist* to plugins. Importing only the plugins you need can reduce the shipped bundle. Measure your production imports rather than treating a core-only size as the application size.
 
 ## The plugin lifecycle
 
@@ -120,4 +120,4 @@ This is also what makes accessibility work as a plugin rather than a core concer
 - Use it when you want to **reason about** what the grid does — the plugin contracts are explicit and documented.
 - The trade-off: composing plugins requires understanding ordering and shared state, which is marginally more to learn than a grid where everything is on by default.
 
-The plugin architecture is the reason GridStorm can be both small and capable: the core stays under 50KB and feature breadth lives in 35+ independently versioned, separately importable plugins, validated by a comprehensive automated test suite. Explore the composition live on the [demo](https://www.tekivex.com/gridstorm), read how the [Tekivex products fit together](/use-cases/tekivex-stack-how-products-fit), or browse the full [use cases](/use-cases) hub.
+The plugin architecture is the reason GridStorm can be both small and capable: the core is separated from feature breadth in 35+ independently versioned, separately importable plugins, validated by a comprehensive automated test suite. Explore the composition live on the [demo](https://www.tekivex.com/gridstorm), read how the [Tekivex products fit together](/use-cases/tekivex-stack-how-products-fit), or browse the full [use cases](/use-cases) hub.

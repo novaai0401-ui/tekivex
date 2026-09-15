@@ -24,16 +24,16 @@ export const gridstormManifest: ProductManifest = {
   accentColor: 'rgba(79, 70, 229, 0.1)',
   iconName: 'grid',
   homePath: '/product/gridstorm',
-  docsRoot: `${GRIDSTORM_URL}/#/docs`,
+  docsRoot: `${GRIDSTORM_URL}/docs`,
   primaryDemoPath: `${GRIDSTORM_URL}/feature-showcase/`,
   stats: [
     { value: '35',     label: 'Plugins' },
-    { value: '100K+',  label: 'Rows @ 60fps' },
+    { value: '100K+',  label: 'Example row count' },
     { value: '42',     label: 'Excel functions' },
-    { value: '<50KB',  label: 'Core bundle' },
+    { value: 'Modular', label: 'Core + plugins' },
   ],
   keyFeatures: [
-    'Virtual scrolling — 100K+ rows at 60fps',
+    'Virtual scrolling for large datasets',
     'WCAG 2.1 AA accessibility (plugin-a11y)',
     '42 Excel-compatible formula functions',
     'Excel copy/paste with type coercion',
@@ -42,17 +42,17 @@ export const gridstormManifest: ProductManifest = {
   ],
   quickLinks: [
     { label: 'npm — gridstorm',        path: GRIDSTORM_NPM, external: true },
-    { label: 'Get Started',            path: `${GRIDSTORM_URL}/#/docs/getting-started/introduction`, external: true },
+    { label: 'Get Started',            path: `${GRIDSTORM_URL}/docs/getting-started/introduction`, external: true },
     { label: 'Feature Showcase',       path: `${GRIDSTORM_URL}/feature-showcase/`, external: true },
-    { label: 'Plugin Reference',       path: `${GRIDSTORM_URL}/#/docs/plugins/plugin-system`, external: true },
-    { label: 'Migration from AG Grid', path: `${GRIDSTORM_URL}/#/docs/guides/migration-from-ag-grid`, external: true },
+    { label: 'Plugin Reference',       path: `${GRIDSTORM_URL}/docs/plugins/plugin-system`, external: true },
+    { label: 'Migration from AG Grid', path: `${GRIDSTORM_URL}/docs/guides/migration-from-ag-grid`, external: true },
     { label: 'Playground',             path: `${GRIDSTORM_URL}/playground/`, external: true, isNew: true },
   ],
   tags: ['Free', 'TypeScript', 'React', 'Vue', 'Svelte', 'Virtual Scroll', 'WCAG 2.1 AA'],
   seo: {
     title: 'GridStorm — High-Performance React Data Grid | Tekivex',
     description:
-      'Free high-performance data grid with virtual scrolling (100K rows @ 60fps), ' +
+      'Free high-performance data grid with virtual scrolling (viewport-based rendering), ' +
       'WCAG 2.1 AA, 42 Excel formula functions, and 35 composable plugins. Free forever.',
     keywords: [
       'enterprise data grid',

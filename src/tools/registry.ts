@@ -152,7 +152,7 @@ export const TOOLS: ToolMeta[] = [
       'Get a scan under an email attachment limit or a portal’s upload cap. Each page is ' +
       're-rendered as an optimised image at a quality level you pick, which can cut ' +
       'image-heavy PDFs to a fraction of their size — and the before/after sizes are shown ' +
-      'so you can judge the trade-off before downloading. Compression runs on your device; ' +
+      'so you can judge the trade-off after the automatic download. Compression runs on your device; ' +
       'the document itself goes nowhere.',
     seoTitle: 'Compress PDF Online — Free & Private (No Upload) | Tekivex Tools',
     seoDescription:
@@ -164,7 +164,7 @@ export const TOOLS: ToolMeta[] = [
     steps: [
       { title: 'Add your PDF', body: 'Drop the oversized PDF onto the page — scans and photo-heavy documents benefit most.' },
       { title: 'Pick a quality level', body: 'Choose High, Balanced, or Strong compression. Stronger settings produce smaller files with softer image quality.' },
-      { title: 'Compress and download', body: 'Click Compress. Each page is re-rendered and re-packed in your browser, and you see the before/after size before downloading.' },
+      { title: 'Compress and download', body: 'Click Compress. Each page is re-rendered and re-packed in your browser, the download starts automatically, and the before/after sizes are shown afterward.' },
     ],
     faqs: [
       { q: 'How does the compression work?', a: 'Each page is re-rendered as an optimised JPEG image and re-packed into a new PDF. That is why it works so well on scans — and why text in the output is no longer selectable. If you need selectable text, keep the original alongside the compressed copy.' },

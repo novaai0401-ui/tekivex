@@ -35,30 +35,30 @@ const FOOTER_COLS = [
   {
     heading: 'GridStorm',
     links: [
-      { label: 'Introduction',    href: `${GS}/#/docs/getting-started/introduction` },
-      { label: 'Plugin System',   href: `${GS}/#/docs/plugins/plugin-system` },
-      { label: 'AI & MCP',        href: `${GS}/#/docs/core-concepts/architecture` },
-      { label: 'Migration Guide', href: `${GS}/#/docs/guides/migration-from-ag-grid` },
+      { label: 'Introduction',    href: `${GS}/docs/getting-started/introduction` },
+      { label: 'Plugin System',   href: `${GS}/docs/plugins/plugin-system` },
+      { label: 'AI & MCP',        href: `${GS}/docs/core-concepts/architecture` },
+      { label: 'Migration Guide', href: `${GS}/docs/guides/migration-from-ag-grid` },
     ],
   },
   {
     heading: 'Documentation',
     links: [
-      { label: 'Quick Start',   href: `${GS}/#/docs/getting-started/quick-start` },
-      { label: 'API Reference', href: `${GS}/#/docs/api/grid-api` },
-      { label: 'Column Defs',   href: `${GS}/#/docs/api/column-definitions` },
-      { label: 'Accessibility', href: `${GS}/#/docs/plugins/a11y` },
-      { label: 'Contributing',  href: `${GS}/#/docs/getting-started/introduction` },
+      { label: 'Quick Start',   href: `${GS}/docs/getting-started/quick-start` },
+      { label: 'API Reference', href: `${GS}/docs/api/grid-api` },
+      { label: 'Column Defs',   href: `${GS}/docs/api/column-definitions` },
+      { label: 'Accessibility', href: `${GS}/docs/plugins/a11y` },
+      { label: 'Contributing',  href: `${GS}/docs/getting-started/introduction` },
     ],
   },
   {
     heading: 'Frameworks',
     links: [
-      { label: 'React',   href: `${GS}/#/docs/frameworks/react` },
-      { label: 'Vue',     href: `${GS}/#/docs/frameworks/vue` },
-      { label: 'Angular', href: `${GS}/#/docs/frameworks/angular` },
-      { label: 'Svelte',  href: `${GS}/#/docs/frameworks/svelte` },
-      { label: 'Vanilla', href: `${GS}/#/docs/frameworks/vanilla` },
+      { label: 'React',   href: `${GS}/docs/frameworks/react` },
+      { label: 'Vue',     href: `${GS}/docs/frameworks/vue` },
+      { label: 'Angular', href: `${GS}/docs/frameworks/angular` },
+      { label: 'Svelte',  href: `${GS}/docs/frameworks/svelte` },
+      { label: 'Vanilla', href: `${GS}/docs/frameworks/vanilla` },
     ],
   },
   {
@@ -172,7 +172,7 @@ export function Footer() {
         >
           <a href="/products" className="hub-footer-bottom-link" style={footerLinkStyle}>Products</a>
           <a href="https://www.tekivex.com/ui" className="hub-footer-bottom-link" style={footerLinkStyle} target="_blank" rel="noopener noreferrer">TekiVex UI</a>
-          <a href={`${GS}/#/docs/getting-started/introduction`} className="hub-footer-bottom-link" style={footerLinkStyle} target="_blank" rel="noopener noreferrer">Docs</a>
+          <a href={`${GS}/docs/getting-started/introduction`} className="hub-footer-bottom-link" style={footerLinkStyle} target="_blank" rel="noopener noreferrer">Docs</a>
           <a href="/about" className="hub-footer-bottom-link" style={footerLinkStyle}>About</a>
           <a href="/contact" className="hub-footer-bottom-link" style={footerLinkStyle}>Contact</a>
           <a href="/faq" className="hub-footer-bottom-link" style={footerLinkStyle}>FAQ</a>

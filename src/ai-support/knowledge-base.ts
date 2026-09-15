@@ -123,13 +123,13 @@ Report issues at **github.com/novaai0401-ui/tekivex-issue-report/issues**.`,
     answer: `**GridStorm** is a free high-performance data grid built for modern web applications.
 
 **Key highlights:**
-- ⚡ Virtual scrolling — 100,000+ rows at 60fps
+- ⚡ Virtual scrolling for large datasets
 - 🔌 35 composable plugins (sorting, filtering, grouping, pivoting, charts, and more)
 - ♿ WCAG 2.1 AA accessibility (screen readers, keyboard navigation)
 - 🔢 42 Excel-compatible formula functions
 - 📋 True Excel copy/paste with type coercion
 - 🎨 Framework-agnostic: React, Vue, Svelte, Angular
-- 📦 <50KB core bundle
+- 📦 Modular core bundle; measure your selected imports
 - 📝 Comprehensive automated test suite
 - 🆓 Free forever
 
@@ -172,7 +172,7 @@ import { GridStorm } from '@gridstorm/react';
 />
 \`\`\`
 
-See the [full documentation](https://www.tekivex.com/gridstorm/#/docs/getting-started/introduction) for plugin setup, theming, and advanced configuration.`,
+See the [full documentation](https://www.tekivex.com/gridstorm/docs/getting-started/introduction) for plugin setup, theming, and advanced configuration.`,
     tags: ['install', 'npm', 'setup', 'quickstart', 'getting started'],
   },
 
@@ -218,14 +218,14 @@ Plugins are installed independently and loaded on demand — your bundle only in
     ],
     answer: `**GridStorm is engineered for extreme performance:**
 
-- **100,000+ rows at 60fps** via virtual scrolling (only renders visible rows)
-- **<16ms frame budget** — optimized DOM batch updates
-- **<50KB core bundle** — lazy-loaded plugins
-- **Sub-millisecond sort** on 100K rows with typed arrays
-- **Streaming plugin** — handles live data with batched cell updates at 60fps
+- **Viewport rendering** — only visible rows are rendered
+- **Frame budget** — measure complete frames on the target device
+- **Modular core bundle; measure your selected imports** — lazy-loaded plugins
+- **Sorting** — measure with your actual dataset and comparator
+- **Streaming plugin** — handles live data with batched cell updates
 - **Server-Side Row Model (SSRM)** — lazy-load millions of rows on demand
 
-The virtual scroller maintains a fixed DOM regardless of dataset size. On a mid-range laptop, GridStorm renders 1M rows with SSRM without any lag.`,
+The virtual scroller maintains a fixed DOM regardless of dataset size. Responsiveness depends on the device, renderer and workload; see the performance guide for a repeatable measurement procedure.`,
     tags: ['performance', 'speed', 'rows', 'virtual scroll', 'large data'],
   },
 
@@ -323,10 +323,10 @@ This satisfies procurement requirements for government, healthcare, and educatio
 | Pivoting | ✅ | ❌ | ✅ |
 | Server-Side RM | ✅ | ❌ | ✅ |
 | Streaming | ✅ | ❌ | ✅ |
-| Bundle size | <50KB core | ~300KB | ~300KB |
+| Bundle size | Measure selected imports | Measure selected imports | Measure selected imports |
 | Framework support | React, Vue, Svelte, Angular | Same | Same |
 
-GridStorm provides AG Grid Enterprise feature parity at **$0 per developer**.`,
+Check each required feature against the exact versions and licenses you plan to use; this table is not a guarantee of feature parity.`,
     tags: ['AG Grid', 'comparison', 'alternative', 'vs', 'pricing'],
   },
 
@@ -397,7 +397,7 @@ document.documentElement.setAttribute('data-gs-density', 'compact');
 }
 \`\`\`
 
-All 80+ tokens are documented in the [theme reference](https://www.tekivex.com/gridstorm/#/docs).`,
+All 80+ tokens are documented in the [theme reference](https://www.tekivex.com/gridstorm/docs).`,
     tags: ['theme', 'dark mode', 'CSS', 'styling', 'customize', 'appearance'],
   },
 
@@ -673,7 +673,7 @@ For partnerships or volume questions, contact **enterprise@tekivex.com**.`,
 
 1. **Choose your product** — visit the [product hub](/) to see all available products
 2. **GridStorm** (most popular) — \`npm install @gridstorm/core @gridstorm/react\`
-3. **Read the docs** — [www.tekivex.com/gridstorm/#/docs](https://www.tekivex.com/gridstorm/#/docs)
+3. **Read the docs** — [www.tekivex.com/gridstorm/docs](https://www.tekivex.com/gridstorm/docs)
 4. **Try the demo** — [Live Feature Showcase](https://www.tekivex.com/gridstorm/feature-showcase/)
 
 **5-minute quickstart for GridStorm:**
@@ -923,7 +923,7 @@ grid.on('cell:valueChanged', ({ rowId, columnId, newValue, oldValue }) => {
 [github.com/novaai0401-ui/tekivex-issue-report/issues](https://github.com/novaai0401-ui/tekivex-issue-report/issues)
 
 📖 **Documentation**
-[www.tekivex.com/gridstorm/#/docs](https://www.tekivex.com/gridstorm/#/docs)
+[www.tekivex.com/gridstorm/docs](https://www.tekivex.com/gridstorm/docs)
 
 🎮 **Live Demo & Playground**
 [www.tekivex.com/gridstorm/feature-showcase/](https://www.tekivex.com/gridstorm/feature-showcase/)

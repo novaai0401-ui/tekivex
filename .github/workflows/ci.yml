@@ -106,7 +106,9 @@ jobs:
         run: npm run build
 
       - name: Verify editorial HTML and Render routing artifacts
-        run: node scripts/verify-editorial-build.mjs
+        run: |
+          node scripts/verify-editorial-build.mjs
+          node scripts/verify-gridstorm-build.mjs
 
       - name: Upload dist artifact
         uses: actions/upload-artifact@v4
