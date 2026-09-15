@@ -79,7 +79,7 @@ export const FAQS: QA[] = [
   // ── Products ─────────────────────────────────────────────────────────────
   {
     q: 'What is GridStorm?',
-    a: 'GridStorm is a free, high-performance data grid for React, Vue, Svelte, and Angular. It virtual-scrolls large datasets with virtual scrolling, ships 35 composable plugins (sorting, filtering, grouping, pivoting, charts, Excel export), includes 42 Excel-compatible formula functions, and targets WCAG 2.1 AA. Install it from npm as gridstorm.',
+    a: 'GridStorm is a free, high-performance data grid for React, Vue, Svelte, and Angular. It virtual-scrolls large datasets with virtual scrolling, ships composable plugins (sorting, filtering, grouping, pivoting, charts, Excel export), includes 42 Excel-compatible formula functions, and targets WCAG 2.1 AA. Install it from npm as gridstorm.',
   },
   {
     q: 'What is Tekivex UI?',

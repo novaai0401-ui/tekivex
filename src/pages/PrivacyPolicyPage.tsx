@@ -43,7 +43,7 @@ export function PrivacyPolicyPage() {
           Privacy Policy
         </h1>
         <p style={{ ...prose, color: 'var(--hub-text-secondary)', marginBottom: '20px' }}>
-          <strong style={{ color: 'var(--hub-text-secondary)' }}>Last updated:</strong> May 28, 2026 &nbsp;·&nbsp;
+          <strong style={{ color: 'var(--hub-text-secondary)' }}>Last updated:</strong> September 15, 2026 &nbsp;·&nbsp;
           <strong style={{ color: 'var(--hub-text-secondary)' }}>Effective date:</strong> May 28, 2026
         </p>
         <div style={{
@@ -51,7 +51,7 @@ export function PrivacyPolicyPage() {
           background: 'var(--hub-surface)', border: '1px solid var(--hub-border)',
         }}>
           <p style={{ ...prose, margin: 0 }}>
-            Tekivex ("we", "our", or "us") operates <strong style={{ color: 'var(--hub-text)' }}>tekivex.com</strong> and related subdomains including <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/gridstorm</strong>, <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/ui</strong>, <strong style={{ color: 'var(--hub-text)' }}>pyntra.tekivex.com</strong>, <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/analytics</strong>, and <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/dataflow</strong>. This Privacy Policy explains how we collect, use, and protect your information when you visit these sites.
+            Tekivex ("we", "our", or "us") operates <strong style={{ color: 'var(--hub-text)' }}>tekivex.com</strong> and related product sites including <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/gridstorm</strong>, <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/ui</strong>, <strong style={{ color: 'var(--hub-text)' }}>pyntra.tekivex.com</strong>, <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/analytics</strong>, and <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/dataflow</strong>. This Privacy Policy explains how we collect, use, and protect your information when you visit these sites.
           </p>
         </div>
       </header>
@@ -62,7 +62,7 @@ export function PrivacyPolicyPage() {
           1.1 Automatically Collected Data
         </h3>
         <p style={prose}>
-          When you visit Tekivex sites our servers and third-party services automatically log standard data your browser sends: IP address (anonymized), browser type and version, operating system, referring URL, pages visited, time and date of visit, time spent on pages, and diagnostic data.
+          When you visit Tekivex sites our servers and third-party services automatically log standard data your browser sends: IP address, browser type and version, operating system, referring URL, pages visited, time and date of visit, time spent on pages, and diagnostic data.
         </p>
 
         <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--hub-text)', margin: '20px 0 8px' }}>
@@ -74,11 +74,11 @@ export function PrivacyPolicyPage() {
             'Essential cookies — required for the site to function correctly (e.g. tekivex.consent.v1 in localStorage, which remembers your cookie choice).',
             'Preference cookies — remember your theme or settings (e.g. hub-theme in localStorage).',
             'Analytics cookies — help us understand how visitors use our sites (Google Analytics 4, _ga / _ga_*). Set only after you accept on the consent banner (Consent Mode v2 keeps analytics storage denied until then).',
-            'Advertising cookies — set by Google AdSense (__gads, __gpi, IDE) so ads can be selected and frequency-capped. Set only after you accept on the consent banner (Consent Mode v2 keeps ad storage denied until then).',
+            'Advertising cookies — managed by Google through its advertising consent message and applicable serving rules.',
           ].map(t => <li key={t} style={li}>{t}</li>)}
         </ul>
         <p style={prose}>
-          When you first visit tekivex.com you will see a consent banner with <strong style={{ color: 'var(--hub-text)' }}>Accept all</strong> and <strong style={{ color: 'var(--hub-text)' }}>Reject non-essential</strong> buttons. We use Google Consent Mode v2: until you accept, all advertising and analytics storage signals default to <em>denied</em>, so no analytics or advertising cookies are stored on your device and any ads shown are non-personalised. You can change your choice at any time from the <a href="/cookie-policy" style={{ color: '#4f46e5' }}>Cookie Policy</a> page using the "Reopen cookie banner" button, or by clearing cookies and site data for tekivex.com in your browser.
+          When you first visit tekivex.com you will see a consent banner with <strong style={{ color: 'var(--hub-text)' }}>Accept analytics</strong> and <strong style={{ color: 'var(--hub-text)' }}>Reject analytics</strong> buttons. The Tekivex banner controls optional analytics. Google advertising preferences are handled separately by Google’s privacy message where applicable. You can change your choice at any time from the <a href="/cookie-policy" style={{ color: '#4f46e5' }}>Cookie Policy</a> page using the "Reopen cookie banner" button, or by clearing cookies and site data for tekivex.com in your browser.
         </p>
 
         <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--hub-text)', margin: '20px 0 8px' }}>
@@ -129,7 +129,7 @@ export function PrivacyPolicyPage() {
           tekivex.com displays advertisements served by{' '}
           <strong style={{ color: 'var(--hub-text)' }}>Google AdSense</strong> (publisher ID{' '}
           <code style={{ background: 'var(--hub-surface-2)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ca-pub-4630229006617891</code>)
-          to help keep this site free. The AdSense script loads under Google Consent Mode v2 with advertising storage defaulted to <strong style={{ color: 'var(--hub-text)' }}>denied</strong>: until you click <strong style={{ color: 'var(--hub-text)' }}>Accept all</strong> on the consent banner described in section 1.2, no advertising cookies are set and any ads shown are non-personalised.
+          to help keep this site free. The AdSense script is loaded on pages with editorial ad slots. Google’s privacy message controls advertising choices where applicable; analytics acceptance does not grant advertising consent.
         </p>
         <p style={prose}>
           Once loaded, Google and its partners may use cookies — including the DART cookie — to serve ads based on your visit to this site and other sites on the Internet. The DART cookie enables Google to show personalised ads. You can opt out of the DART cookie and personalised advertising at any time by visiting{' '}
@@ -153,7 +153,7 @@ export function PrivacyPolicyPage() {
           </a>.
         </p>
         <p style={prose}>
-          If you reject non-essential cookies, no advertising cookies are stored on your device (Google Consent Mode keeps <code style={{ background: 'var(--hub-surface-2)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ad_storage</code> and <code style={{ background: 'var(--hub-surface-2)', padding: '2px 7px', borderRadius: '4px', fontSize: '13px' }}>ad_personalization</code> denied), and any ads shown remain non-personalised.
+          Rejecting analytics sends a denied analytics-storage signal. Advertising consent is a separate choice in Google’s privacy message. Existing browser data can be removed using your browser’s site-data controls.
         </p>
       </Section>
 

@@ -1,5 +1,6 @@
+import { AdvertisingPrivacy } from '../consent/AdvertisingPrivacy';
 import { useEffect, useRef } from 'react';
-import { ADSENSE_CLIENT } from '../consent/ScriptLoader';
+import { ADSENSE_CLIENT, loadAdSense } from '../consent/ScriptLoader';
 
 interface AdSlotProps {
   /** AdSense ad unit slot id (numeric string from the AdSense dashboard). */
@@ -34,6 +35,8 @@ export function AdSlot({ slot, format = 'auto', label, className }: AdSlotProps)
   useEffect(() => {
     if (pushed.current) return;
     if (typeof window === 'undefined') return;
+    if (import.meta.env?.DEV) return;
+    loadAdSense();
     try {
       window.adsbygoogle = window.adsbygoogle || [];
       window.adsbygoogle.push({});

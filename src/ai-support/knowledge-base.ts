@@ -78,7 +78,7 @@ We believe professional-grade software should be accessible to every team regard
 
 | Product | Type | Description |
 |---------|------|-------------|
-| GridStorm | Library | High-performance data grid — 35 plugins, WCAG 2.1 AA |
+| GridStorm | Library | High-performance data grid — plugins, WCAG 2.1 AA |
 | Tekivex UI | Library | Accessible React/Vue/Svelte component library |
 | Quantum Vault | Library | Sovereign post-quantum tokens (self-hosted) |
 | Pyntra | Hosted app | Private studio for cards, photos, video & PDFs — open it at pyntra.tekivex.com |
@@ -124,8 +124,8 @@ Report issues at **github.com/novaai0401-ui/tekivex-issue-report/issues**.`,
 
 **Key highlights:**
 - ⚡ Virtual scrolling for large datasets
-- 🔌 35 composable plugins (sorting, filtering, grouping, pivoting, charts, and more)
-- ♿ WCAG 2.1 AA accessibility (screen readers, keyboard navigation)
+- 🔌 composable plugins (sorting, filtering, grouping, pivoting, charts, and more)
+- ♿ accessibility features targeting WCAG 2.1 AA (screen readers, keyboard navigation)
 - 🔢 42 Excel-compatible formula functions
 - 📋 True Excel copy/paste with type coercion
 - 🎨 Framework-agnostic: React, Vue, Svelte, Angular
@@ -186,7 +186,7 @@ See the [full documentation](https://www.tekivex.com/gridstorm/docs/getting-star
       'How many plugins?',
       'Plugin system',
     ],
-    answer: `GridStorm ships **35 composable plugins** across 3 tiers:
+    answer: `GridStorm ships **composable plugins** across 3 tiers:
 
 **Tier 1 — Core (Free)**
 sorting · filtering · selection · editing · pagination · column-pinning · column-resize · column-reorder · context-menu · clipboard
@@ -241,7 +241,7 @@ The virtual scroller maintains a fixed DOM regardless of dataset size. Responsiv
       'ARIA',
       'accessibility',
     ],
-    answer: `**GridStorm achieves WCAG 2.1 AA compliance** through the \`plugin-a11y\` plugin:
+    answer: `**GridStorm provides accessibility features targeting WCAG 2.1 AA** through the \`plugin-a11y\` plugin:
 
 **Keyboard Navigation**
 - Arrow keys — cell navigation
@@ -370,7 +370,7 @@ The headless core engine (\`@gridstorm/core\`) works in any JavaScript environme
 **Built-in themes:**
 - Light (default)
 - Dark
-- High-contrast (WCAG AAA)
+- High-contrast theme (verify contrast in your application)
 
 **Density modes:**
 - Comfortable (default)
@@ -491,7 +491,7 @@ grid.dispatch('charts:open', {
     answer: `**Tekivex UI** is an accessible component library for React, Vue, and Svelte.
 
 **Core highlights:**
-- ♿ WCAG 2.1 AA out of the box (targeting AAA — audit in progress)
+- ♿ patterns targeting WCAG 2.1 AA (verify in the finished application)
 - ⚛️ Works across React, Vue, and Svelte
 - 🎨 Themeable with CSS custom properties
 - 📦 Tree-shakable, TypeScript-native

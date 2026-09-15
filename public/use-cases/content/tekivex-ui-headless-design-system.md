@@ -74,7 +74,7 @@ The honest tradeoff: headless asks for more up-front work. If you need a generic
 
 Headless architecture has a happy side effect on bundle size. Because each primitive is a self-contained ESM module with no shared theme runtime, your bundler can drop everything you don't import. Tekivex UI ships as tree-shakeable ES modules with **zero runtime dependencies** — nothing is pulled in transitively at runtime, so there is no hidden weight and no version-conflict surface from a dependency tree you didn't choose.
 
-The core is under 8 kB. Everything else is pay-as-you-go: import a `TkxDialog` and you ship a dialog; you don't ship the data table you never touched.
+Bundle size depends on imports, adapters, styles and build settings. Everything else is pay-as-you-go: import a `TkxDialog` and you ship a dialog; you don't ship the data table you never touched.
 
 ```bash
 npm install tekivex-ui
@@ -91,7 +91,7 @@ import { useDismiss } from 'tekivex-ui/headless'
 
 Roughly, the budget breaks down like this:
 
-- **Core (<8 kB):** state primitives, the composition utilities, focus and dismiss management that most components reuse.
+- **Core:** state primitives, the composition utilities, focus and dismiss management that most components reuse.
 - **Per-component:** each primitive set (combobox, dialog, tabs, …) adds only its own logic.
 - **Layout system:** layout primitives are likewise independent named imports.
 - **Form toolkit:** validation and field-binding helpers, imported only when you build forms.
@@ -148,8 +148,11 @@ Lean toward a pre-styled kit when speed-to-prototype outweighs design ownership,
 
 ## Key takeaways
 
-Headless is a discipline of separation: the library guarantees behavior and accessibility; you guarantee presentation. That boundary is what makes the rest possible. Composition over configuration means you assemble small primitives instead of waiting on props. Zero runtime dependencies and tree-shakeable ESM mean a core under 8 kB and a bundle that grows only with the features you actually use. Theming through CSS custom properties means no inheritance battles and no provider overhead.
+Headless is a discipline of separation: the library supplies behavior primitives; your application must verify keyboard interaction, labeling, focus and presentation. That boundary is what makes the rest possible. Composition over configuration means you assemble small primitives instead of waiting on props. Zero runtime dependencies and tree-shakeable ESM let bundlers remove unused exports; measure the result in your application. Theming through CSS custom properties means no inheritance battles and no provider overhead.
 
 The cost is real — you write more markup and more styles up front. The return is a system you own outright, that won't fight you during a rebrand, won't surprise you with shifting internal classes, and won't tax users with code they never invoked. For teams building enterprise UIs across React 18+, Vue 3, and Svelte 5 that need to look the way *they* decide and stay accessible by default, that is a trade worth making.
 
 Explore the [full component catalog](/product/tekivex-ui) or browse more [Tekivex use cases](/use-cases) to see how teams put these primitives to work.
+
+
+**Correction — September 15, 2026:** Removed unmeasured size or fixed plugin-count claims. Accessibility targets require testing in the finished application; they are not a compliance certification.

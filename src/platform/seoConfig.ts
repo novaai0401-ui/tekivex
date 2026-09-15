@@ -120,7 +120,7 @@ const PRODUCTS_SEO: SeoConfig = {
     numberOfItems: 6,
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'GridStorm',
-        description: 'Free high-performance data grid — virtual scrolling, 35 plugins, free for commercial use',
+        description: 'Free high-performance data grid — virtual scrolling, plugins, free for commercial use',
         url: `${BASE_URL}/product/gridstorm` },
       { '@type': 'ListItem', position: 2, name: 'Tekivex UI',
         description: 'Accessible component library for React, Vue & Svelte — WCAG 2.1 AA',

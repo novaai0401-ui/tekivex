@@ -2,6 +2,7 @@
 // Parse modules as data: never execute code from the imported application.
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 import { marked } from 'marked';
 import { JSDOM } from 'jsdom';
@@ -32,6 +33,9 @@ export function prepareGridstorm(target) {
       }
     }
     if (!markdown) throw new Error(`No raw Markdown in Gridstorm doc ${slug}`);
+    const override = fileURLToPath(new URL(`../content/gridstorm/${slug}.md`, import.meta.url));
+    if (existsSync(override)) markdown = readFileSync(override, 'utf8');
+    markdown = markdown.replaceAll('/api/virtual-scroll', '/core-concepts/architecture/');
     const title = markdown.match(/^title:\s*(.+)$/m)?.[1]?.replace(/^['"]|['"]$/g, '') || slug;
     const content = markdown.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
     pages.push({ slug, title, content });

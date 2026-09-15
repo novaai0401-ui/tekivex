@@ -19,6 +19,7 @@ for (const url of urls) {
   assert.ok(existsSync(file), `Missing prerendered page: ${path}`);
   const document = new JSDOM(readFileSync(file, 'utf8')).window.document;
   assert.equal(document.querySelector('link[rel="canonical"]')?.getAttribute('href'), url);
+  assert.ok(!document.querySelector('script[src*="adsbygoogle"]'), `Global advertising loader on ${path}`);
   assert.ok(document.querySelector('h1'), `Missing heading: ${path}`);
   assert.ok(!document.querySelector('meta[name="robots"]')?.content.includes('noindex'), `Noindex sitemap page: ${path}`);
   if (!path.startsWith('/use-cases/')) continue;
@@ -32,6 +33,7 @@ for (const url of urls) {
 assert.ok(articles > 0, 'No articles found in sitemap');
 const notFound = new JSDOM(readFileSync(join(dist, '404.html'), 'utf8')).window.document;
 assert.ok(notFound.querySelector('meta[name="robots"]')?.content.includes('noindex'));
+assert.ok(!notFound.querySelector('script[src*="adsbygoogle"], ins.adsbygoogle'), 'Advertising on 404');
 const render = readFileSync(join(root, 'render.yaml'), 'utf8');
 assert.ok(!/source:\s*\/\*\s*\n\s*destination:\s*\/index\.html/.test(render), 'Site-wide SPA fallback would mask 404s');
 for (const match of render.matchAll(/type:\s*redirect\s+source:\s*(\S+)\s+destination:/g)) {

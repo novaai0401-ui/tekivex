@@ -47,17 +47,17 @@ const DEFAULT_AUTHOR_ID = 'chandan-kumar';
 const MODIFIED = '2026-06-28';
 const DATES: Record<string, { published: string; modified?: string }> = {
   'tekivex-mit-open-source-model':                 { published: PUBLISHED, modified: MODIFIED },
-  'tekivex-stack-how-products-fit':                { published: PUBLISHED, modified: MODIFIED },
+  'tekivex-stack-how-products-fit':                { published: PUBLISHED, modified: '2026-09-15' },
   'gridstorm-virtual-scrolling-60fps':             { published: PUBLISHED, modified: '2026-09-15' },
   'gridstorm-plugin-architecture':                 { published: PUBLISHED, modified: '2026-09-15' },
   'gridstorm-vs-ag-grid-migration':                { published: PUBLISHED, modified: '2026-09-15' },
   'gridstorm-accessible-data-grid':                { published: PUBLISHED, modified: MODIFIED },
   'gridstorm-excel-formulas':                      { published: PUBLISHED, modified: MODIFIED },
   'gridstorm-financial-trading-grid':              { published: PUBLISHED, modified: MODIFIED },
-  'tekivex-ui-headless-design-system':             { published: PUBLISHED, modified: MODIFIED },
+  'tekivex-ui-headless-design-system':             { published: PUBLISHED, modified: '2026-09-15' },
   'tekivex-ui-vs-mui-chakra':                      { published: PUBLISHED, modified: '2026-09-15' },
-  'tekivex-ui-accessible-forms':                   { published: PUBLISHED, modified: MODIFIED },
-  'quantum-vault-post-quantum-tokens-explained':   { published: PUBLISHED, modified: MODIFIED },
+  'tekivex-ui-accessible-forms':                   { published: PUBLISHED, modified: '2026-09-15' },
+  'quantum-vault-post-quantum-tokens-explained':   { published: PUBLISHED, modified: '2026-09-15' },
   'quantum-vault-migrate-pqc-token-issuance':      { published: PUBLISHED, modified: MODIFIED },
   'quantum-vault-sovereign-token-verification':    { published: PUBLISHED, modified: MODIFIED },
   // Free-tools how-to guides — shipped with the tools hub.
@@ -230,7 +230,7 @@ export const ARTICLES: Article[] = [
     slug: 'gridstorm-plugin-architecture',
     title: 'Inside GridStorm’s 35-Plugin Architecture',
     description:
-      'GridStorm ships a headless core and 35 composable plugins. Here is how the plugin system works and how to build your own.',
+      'GridStorm ships a headless core and composable plugins. Here is how the plugin system works and how to build your own.',
     productId: 'gridstorm',
     productName: 'GridStorm',
     kind: 'Architecture',
@@ -252,7 +252,7 @@ export const ARTICLES: Article[] = [
     slug: 'gridstorm-accessible-data-grid',
     title: 'Making Data Grids WCAG-Accessible with GridStorm',
     description:
-      'Data grids are notoriously hard to make accessible. GridStorm’s a11y plugin delivers WCAG 2.1 AA — keyboard nav, ARIA grid roles, and screen-reader support.',
+      'Data grids are notoriously hard to make accessible. GridStorm’s a11y plugin targets WCAG 2.1 AA — keyboard nav, ARIA grid roles, and screen-reader support.',
     productId: 'gridstorm',
     productName: 'GridStorm',
     kind: 'Accessibility',
@@ -322,7 +322,7 @@ export const ARTICLES: Article[] = [
     slug: 'tekivex-ui-accessible-forms',
     title: 'Building Accessible Forms with Tekivex UI Primitives',
     description:
-      'Accessible forms are hard: labels, error states, ARIA, focus management. Tekivex UI’s form toolkit handles them so you ship WCAG-compliant forms faster.',
+      'Accessible forms are hard: labels, error states, ARIA, focus management. Tekivex UI’s form toolkit handles them so you build forms with explicit labels, errors and keyboard behavior.',
     productId: 'tekivex-ui',
     productName: 'Tekivex UI',
     kind: 'Accessibility',

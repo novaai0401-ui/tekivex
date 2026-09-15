@@ -8,7 +8,7 @@ export function EditorialPolicyPage() {
     <LegalLayout
       eyebrow="How we publish"
       title="Editorial Policy"
-      lastUpdated="September 6, 2026"
+      lastUpdated="September 15, 2026"
       intro={
         <p style={{ ...legalProse, margin: 0 }}>
           This page explains who writes the guides and product pages on tekivex.com,
@@ -22,7 +22,7 @@ export function EditorialPolicyPage() {
     >
       <LegalSection title="Who writes for Tekivex">
         <p style={legalProse}>
-          Every article is written by a named practitioner and carries a byline that
+          Each guide has a named maintainer responsible for its upkeep and carries a byline that
           links to an author page. Our current authors are:
         </p>
         <ul>
@@ -36,9 +36,8 @@ export function EditorialPolicyPage() {
           </li>
         </ul>
         <p style={legalProse}>
-          Both build and maintain the products they write about. Author pages list the
-          role, background, and articles of each author. We do not publish anonymous or
-          ghost-written articles.
+          Author pages list the
+          role, background, and articles of each author. A byline identifies responsibility for upkeep; it is not evidence of an independent review.
         </p>
       </LegalSection>
 
@@ -48,12 +47,12 @@ export function EditorialPolicyPage() {
           are published on npm and developed in public repositories. That lets us hold
           articles to a simple standard —{' '}
           <strong style={strong}>a claim about a product must be true of the code that ships</strong>.
-          Before publication:
+          Our verification process is:
         </p>
         <ul>
-          <li style={legalLi}>Feature descriptions, limits, and behaviours are checked against the current release, not a roadmap.</li>
-          <li style={legalLi}>Step-by-step guides are walked through in a browser using the actual tool, and the honest limitations are written down alongside the steps.</li>
-          <li style={legalLi}>Performance figures (for example, row counts or frame rates) refer to the conditions under which they were measured.</li>
+          <li style={legalLi}>Check feature descriptions against a specific source revision or release and state that scope.</li>
+          <li style={legalLi}>Record the browser and inputs when a guide reports an executed workflow; distinguish tested examples from instructions.</li>
+          <li style={legalLi}>Only present a performance figure as measured when its method and conditions are provided; otherwise qualify or remove it.</li>
           <li style={legalLi}>Where a page describes a product as Beta or Preview, that label reflects its real maturity, as set out in our <a href="/disclaimer" style={link}>disclaimer</a>.</li>
         </ul>
       </LegalSection>
@@ -80,14 +79,13 @@ export function EditorialPolicyPage() {
 
       <LegalSection title="Advertising and editorial independence">
         <p style={legalProse}>
-          The marketing site shows Google AdSense advertisements to help keep every
+          The marketing site includes placements for Google AdSense advertisements to help keep every
           Tekivex product free, as described in our{' '}
           <a href="/privacy-policy" style={link}>privacy policy</a> and{' '}
           <a href="/cookie-policy" style={link}>cookie policy</a>. Advertising has no
           influence on what we write, which products we recommend, or how we describe
           alternatives. Ads are clearly distinguished from content, are never placed
-          inside the interactive tools, and load only under the consent choices you make
-          on the cookie banner.
+          inside the interactive tools. Google handles advertising preferences separately from our analytics banner.
         </p>
         <p style={legalProse}>
           We do not publish sponsored articles or affiliate links. If that ever changes,
@@ -99,10 +97,7 @@ export function EditorialPolicyPage() {
         <p style={legalProse}>
           A named author is accountable for every published article. Where software
           tools — including AI assistants — help with drafting, formatting, or research,
-          the author reviews the result, verifies every technical claim against the
-          product as described above, and takes responsibility for the published text.
-          We do not publish machine-generated content that has not been reviewed by a
-          named author.
+          the listed maintainer remains responsible for accuracy and corrections. Guides should provide source links or reproducible evidence for technical claims. Software assistance and a byline do not establish that every example has been independently tested.
         </p>
       </LegalSection>
 

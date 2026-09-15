@@ -22,9 +22,9 @@ export function CookieBanner({ suppressOnRoute }: CookieBannerProps) {
         <div className="cookie-banner-text">
           <strong id="cookie-banner-title">Cookies on Tekivex</strong>
           <p>
-            We use cookies for analytics and to personalise the ads from Google AdSense
-            that keep this site free. Accept to enable personalised ads and
-            analytics, or reject for non-personalised ads only. Read our{' '}
+            Allow optional analytics to help us understand how the site is used,
+            or reject it. Advertising choices are handled separately by Google's
+            privacy message where applicable. Read our{' '}
             <Link to="/cookie-policy" className="cookie-banner-link">
               cookie policy
             </Link>
@@ -38,7 +38,7 @@ export function CookieBanner({ suppressOnRoute }: CookieBannerProps) {
             onClick={reject}
             data-testid="cookie-reject"
           >
-            Reject non-essential
+            Reject analytics
           </button>
           <button
             type="button"
@@ -46,7 +46,7 @@ export function CookieBanner({ suppressOnRoute }: CookieBannerProps) {
             onClick={accept}
             data-testid="cookie-accept"
           >
-            Accept all
+            Accept analytics
           </button>
         </div>
       </div>
