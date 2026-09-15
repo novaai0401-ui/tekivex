@@ -28,7 +28,7 @@ For documents where keeping searchable text matters, or for more control over yo
 
 Most compression jobs are driven by someone else's upload cap. Email providers commonly reject attachments over 20–25 MB. Government portals, job application systems, and university submission sites frequently cap uploads at 2–10 MB. A ten-page phone-scanned document can easily weigh 15–30 MB, so scans are the files that hit these walls hardest — and they're also the files this tool shrinks best, because photographic page images have huge amounts of removable detail.
 
-A rough guide to choosing a setting against a target size: start with **Balanced**. If the before/after readout shows you're still over the limit, re-run the original at **Strong**. If Balanced already gets you far under the limit, **High** may give you a visibly crisper document that still fits. Because the tool always shows both sizes before you download, you never have to guess.
+A rough guide to choosing a setting against a target size: start with **Balanced**. If the before/after readout shows you're still over the limit, re-run the original at **Strong**. If Balanced already gets you far under the limit, **High** may give you a visibly crisper document that still fits. The tool downloads the result automatically and then shows both sizes. Keep your original and inspect the downloaded file before using it.
 
 ## When compression is the wrong tool
 
@@ -50,6 +50,30 @@ Start with **Balanced**. If you need the file even smaller and can accept some v
 
 ### How do I get a scan under an email or portal size limit?
 
-Compress at **Balanced** first and read the before/after size the tool shows. If it's still over the limit, re-run the compressed file at **Strong**. If it's a multi-page scan with pages you don't actually need, [delete those pages](/tools/remove-pages-pdf) before compressing — dropping pages is the most reliable size cut of all. Everything happens on your device throughout, so even oversized confidential scans are never uploaded ([why that matters](/use-cases/why-browser-tools-keep-files-private)).
+Compress at **Balanced** first and read the before/after size the tool shows. If it's still over the limit, re-run the original file at **Strong**. If it's a multi-page scan with pages you don't actually need, [delete those pages](/tools/remove-pages-pdf) before compressing — dropping pages is the most reliable size cut of all. Everything happens on your device throughout, so even oversized confidential scans are never uploaded ([why that matters](/use-cases/why-browser-tools-keep-files-private)).
 
 Your files never leave your browser — compression happens entirely on your own device.
+
+## Worked example: a synthetic image-heavy page
+
+[Download the original sample PDF](/examples/compression-sample.pdf). It contains one generated colour panel and selectable text, with no customer data. The fixture is deliberately image-heavy; its savings are not representative of text documents or every scan.
+
+On September 15, 2026, we processed the same original separately at each setting in Chrome 153.0.8010.36 on Windows. The tool used pdfjs-dist 6.1.200 and pdf-lib 1.17.1. Sizes below are exact bytes, not rounded download labels. JPEG encoding can vary between browser versions.
+
+| Setting | Original bytes | Output bytes | Output file |
+| --- | ---: | ---: | --- |
+| High quality | 3,067,920 | 104,163 | [High-quality PDF](/examples/compression-high.pdf) |
+| Balanced | 3,067,920 | 50,721 | [Balanced PDF](/examples/compression-balanced.pdf) |
+| Strong | 3,067,920 | 22,677 | [Strong PDF](/examples/compression-strong.pdf) |
+
+All three outputs retain one page measuring 595 × 842 PDF points. Text extraction finds text in the original and no text in the outputs: the compressor rasterises the page. The smaller file therefore has a meaningful cost, even when it looks readable. Keep the original for search, copying text or further editing.
+
+![Original synthetic PDF page with a textured colour panel and selectable text](/examples/compression-original.png)
+
+![Strong compression output: texture and small text are visibly softer](/examples/compression-strong.png)
+
+To repeat the comparison, open the tool, select the original sample, choose a level and press **Compress PDF**. The download starts automatically; the size comparison appears afterward. Always select the original again when changing levels, rather than recompressing an already degraded output.
+
+Check the heading and the small `SAMPLE-2026` line at 200% zoom. Search for that marker in both documents and compare page dimensions. If your destination requires searchable text, selectable links, forms or accessibility tags, this rasterising workflow is not an appropriate substitute for the original.
+
+The [machine-readable results](/examples/compression-results.json) record this run. The fixture generator is in the repository at `scripts/create-compression-fixture.py`; it uses a fixed seed with ReportLab and Pillow. These example files are distributed under the repository's MIT license.

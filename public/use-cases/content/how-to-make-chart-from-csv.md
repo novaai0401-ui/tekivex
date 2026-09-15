@@ -81,3 +81,19 @@ A chart image on its own is invisible to screen-reader users, so pair it with a 
 The chart tool does not upload the dataset to its server to create the link. It packs the data after `#` in the URL, which is excluded from the page's HTTP request. However, sending that complete link through email or chat shares the data with the recipient and potentially with that service. Treat the link as a copy of your dataset, not a private or password-protected chart. More on local processing in [why browser tools keep files private](/use-cases/why-browser-tools-keep-files-private).
 
 The chart is built on your device. Exporting it or sharing a data-bearing link is your decision to share that information.
+
+## Download and check the example output
+
+[Download the SVG exported from the example](/examples/monthly-revenue-expenses.svg). It was exported from the CSV tool using the four-row teaching dataset above. Compare your result with the numeric values before using it in a report; an attractive chart can still have the wrong columns selected.
+
+### Troubleshoot unexpected results
+
+| Symptom | Check and correction |
+| --- | --- |
+| Only one column appears | Check that the file uses commas, not semicolons or tabs. |
+| A value such as 12,000 becomes two columns | Quote the field as `"12,000"`, or remove the thousands separator and write `12000`. |
+| A series is missing | Check that its values are numeric and select it in the series controls. Empty cells are not measured zeros. |
+| Dates appear in the wrong order | Sort the source rows chronologically before importing; labels follow input order. |
+| The chart has fewer fields than expected | Ensure every row matches the header width. The parser pads short rows and ignores fields beyond the header width. Correct the CSV rather than relying on that normalization. |
+
+For a quoted value, a valid row is `January,"12,000",8000`. Do not paste a currency conversion or percentage interpretation into the chart without checking units: formatting cleanup does not establish that two series measure the same thing.

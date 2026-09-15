@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-15",
+  "browser": "153.0.8010.36",
+  "inputBytes": 3067920,
+  "results": [
+    {
+      "level": "high",
+      "bytes": 104163
+    },
+    {
+      "level": "balanced",
+      "bytes": 50721
+    },
+    {
+      "level": "strong",
+      "bytes": 22677
+    }
+  ]
+}

@@ -103,7 +103,7 @@ The migration steps in order:
 5. Replace AG Grid's `onGridReady`/API access with GridStorm's grid instance methods for programmatic sort, filter, and scroll.
 6. Re-test against your real dataset, especially the 100K-row paths where virtualization behavior matters.
 
-For deeper background on the plugin model you are adopting, see the [plugin architecture article](/use-cases/gridstorm-plugin-architecture), and if your priority for switching is rendering performance, the [virtual scrolling deep dive](/use-cases/gridstorm-virtual-scrolling-60fps) covers the 60fps path in detail.
+For deeper background on the plugin model you are adopting, see the [plugin architecture article](/use-cases/gridstorm-plugin-architecture), and if your priority for switching is rendering performance, the [virtual scrolling deep dive](/use-cases/gridstorm-virtual-scrolling-60fps) explains how to measure your own scrolling workload.
 
 ## When to migrate (and when not to)
 

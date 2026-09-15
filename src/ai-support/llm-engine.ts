@@ -226,7 +226,7 @@ ${KNOWLEDGE_BASE
 - Pyntra (hosted studio for cards, photos, video & PDFs — open and use it): https://pyntra.tekivex.com
 - Analytics Studio (hosted BI app — open and use it): https://www.tekivex.com/analytics
 - DataFlow (hosted real-time streaming dashboard — open and use it): https://www.tekivex.com/dataflow/stocks
-- Docs: https://www.tekivex.com/gridstorm/#/docs
+- Docs: https://www.tekivex.com/gridstorm/docs
 - Enterprise: enterprise@tekivex.com
 ${productSummary}${contextBlock}
 

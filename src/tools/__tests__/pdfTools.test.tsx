@@ -9,6 +9,9 @@ import { RotatePdfTool } from '../tools/RotatePdfTool';
 import { RemovePagesTool } from '../tools/RemovePagesTool';
 import { PdfToJpgTool } from '../tools/PdfToJpgTool';
 
+// jsdom exercises the controls; worker execution is checked in a real browser.
+vi.mock('pdfjs-dist/legacy/build/pdf.worker.min.mjs?url', () => ({ default: '/pdf.worker.mjs' }));
+
 const TINY_PNG = Uint8Array.from(atob(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
 ), (c) => c.charCodeAt(0));

@@ -1,104 +1,68 @@
-Rendering tabular data is deceptively hard. A grid that holds a few hundred rows feels trivial — until a customer pastes in a 100,000-row export and the browser locks up for several seconds. The naive approach of mounting one DOM node per cell does not scale: 100,000 rows times 20 columns is two million DOM nodes, and no browser will lay that out at an interactive frame rate.
+Virtual scrolling keeps a large table usable by rendering a small viewport rather than every record. It does not guarantee a particular frame rate. Plain text cells and charts in every cell are different workloads, even when both tables contain 100,000 rows.
 
-This article walks through how [GridStorm](/product/gridstorm) renders 100,000-plus rows while holding 60 frames per second. We will cover the core technique — windowing — and then the details that separate a demo from a production grid: row and cell recycling, the per-frame render budget, the trade-off between measuring and estimating row heights, how to avoid layout thrashing, and why GridStorm being a headless core makes all of this tractable.
+This guide explains windowing and a repeatable way to evaluate [GridStorm](/product/gridstorm). **This is a measurement procedure, not a published benchmark.** Earlier wording presented 60fps as an outcome without providing reproducible measurements. That claim has been removed.
 
-By the end you should understand not just *that* virtualization works, but the specific decisions that keep scrolling smooth under real-world data and interaction.
+## Calculate the visible window
 
-## The problem with rendering everything
+Consider 100,000 fixed-height rows, each 32 pixels tall, in a 640-pixel viewport. Twenty rows fit at a row-aligned scroll position. With six rows of overscan on each side, an interior window mounts 32 rows; a partially visible boundary can require 33. With ten columns, that is about 320–330 cells, excluding headers and pinned areas, instead of one million cells.
 
-Browsers are good at laying out content, but layout cost is roughly proportional to the number of nodes that participate in it. When you mount every row, three costs compound:
+This standalone teaching example is **not GridStorm's internal implementation or a grid API**:
 
-- **Construction**: creating elements and attaching event listeners.
-- **Layout and paint**: the browser must measure and position every node.
-- **Memory and GC pressure**: millions of nodes and their associated framework fibers or component instances consume memory and slow garbage collection.
-
-A 60fps target gives you a budget of about **16.67 milliseconds per frame**. Within that window the browser has to run your JavaScript, recalculate style, perform layout, paint, and composite. If your scroll handler alone blows past 16ms, you drop frames and the grid stutters. The only sustainable answer is to stop rendering rows the user cannot see.
-
-## Windowing: render only the visible slice
-
-Virtual scrolling — also called windowing — renders only the rows currently inside the viewport, plus a small overscan buffer above and below. As the user scrolls, GridStorm computes which rows should now be visible and updates the rendered set.
-
-The math is straightforward when rows share a fixed height. Given the scroll offset, viewport height, and row height, you can derive the first and last visible index directly. GridStorm's `VirtualScroller` does this internally; conceptually the calculation is:
-
-```ts
-import { createGrid } from 'gridstorm';
-import type { ColumnDef } from 'gridstorm';
-
-function visibleRange(scrollTop: number, viewportHeight: number, rowHeight: number, total: number, overscan = 6) {
-  const first = Math.floor(scrollTop / rowHeight);
-  const visibleCount = Math.ceil(viewportHeight / rowHeight);
-  const start = Math.max(0, first - overscan);
-  const end = Math.min(total - 1, first + visibleCount + overscan);
-  return { start, end };
+```js
+function visibleRange(scrollTop, viewportHeight, rowHeight, total, overscan = 6) {
+  if (rowHeight <= 0 || viewportHeight < 0 || total < 0) {
+    throw new RangeError('Invalid dimensions');
+  }
+  if (total === 0) return { start: 0, endExclusive: 0 };
+  const top = Math.max(0, Math.min(scrollTop, Math.max(0, total * rowHeight - viewportHeight)));
+  return {
+    start: Math.max(0, Math.floor(top / rowHeight) - overscan),
+    endExclusive: Math.min(total, Math.ceil((top + viewportHeight) / rowHeight) + overscan),
+  };
 }
-
-// You don't call this yourself — createGrid wires the scroller for you:
-const columnDefs: ColumnDef[] = [{ field: 'name', headerName: 'Name' }];
-const grid = createGrid({ container: el, columnDefs, rowData });
+visibleRange(3200, 640, 32, 100000); // { start: 94, endExclusive: 126 }
+visibleRange(0, 640, 32, 100000);    // { start: 0, endExclusive: 26 }
+visibleRange(0, 640, 32, 0);        // { start: 0, endExclusive: 0 }
 ```
 
-A full-height spacer element gives the scrollbar the correct size and position, so the browser's native scrolling behaves exactly as a user expects. The rendered rows are absolutely positioned (or translated) to their true offset within that spacer. The result: a viewport showing ~30 rows touches ~30 row's worth of DOM nodes regardless of whether the dataset has a thousand rows or a million.
+An exclusive end makes the mounted row count `endExclusive - start`. Dataset boundaries have less overscan because rows outside the dataset do not exist. Wrapped text and expanded rows require a different height model; this example assumes fixed heights.
 
-## Row and cell recycling
+## Treat a frame budget as a target
 
-Windowing alone reduces the *count* of nodes, but if you destroy and recreate rows on every scroll tick you still pay construction and GC costs constantly. GridStorm recycles.
+At 60Hz, a display refresh interval is approximately 16.67ms. JavaScript, style calculations, layout and painting share that interval. A 120Hz display offers about 8.33ms. A scroll callback below 16ms does not prove the complete frame is on time.
 
-Instead of unmounting a row that scrolls out of view and mounting a fresh one, the core maintains a pool of row containers keyed by their position in the window rather than by data identity. As you scroll, a container that leaves the top is reassigned to the row entering at the bottom; only its bound data and cell contents change. The DOM node, its event listeners, and its layout box survive.
+Windowing reduces DOM work, but sorting can still inspect the full dataset and custom renderers can trigger expensive layout. Extensions, power-saving settings and background tabs affect observations. See [MDN's requestAnimationFrame documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame) for scheduling and background-tab limitations.
 
-The same principle applies at the cell level for grids with many columns and horizontal virtualization. Cells are pooled per column slot, so a horizontal scroll reuses existing cell nodes and rebinds their values rather than tearing down and rebuilding the row's children.
+## Run a repeatable evaluation
 
-Recycling turns a steady stream of allocations into a near-zero-allocation steady state during scroll, which is precisely what keeps the garbage collector from introducing periodic frame drops.
+1. Start with the [playground](/gridstorm/playground/) or your own integration. Record the package version or source commit. Keep a fixed build because live demos can change.
+2. Use deterministic data: sequential IDs, fixed-length labels and repeatable numeric values. Record rows, columns, row height, viewport, framework adapter and enabled plugins.
+3. Start with plain text cells. Repeat with your real renderers, sorting, filtering, pinned columns and streaming updates. Report these as separate workloads.
+4. Record browser, OS, CPU, memory, refresh rate and battery status. Keep the tab foregrounded and retain the same zoom and viewport.
+5. Warm the page once. Record several equal-duration scroll runs in the Performance panel, using the same distance and direction. Inspect frame timing, long tasks and visible blank regions rather than reporting only an average frame rate.
+6. Repeat on the slowest device you support. Save the trace, dataset and reproduction steps.
 
-## Measuring vs estimating row heights
+| Field | Evidence to retain |
+| --- | --- |
+| Build | Package version, lockfile and source commit |
+| Data | Row and column counts, generator seed, cell types |
+| Rendering | Adapter, plugins, row height, viewport and zoom |
+| Environment | Browser, OS, hardware and refresh rate |
+| Runs | Number, duration, distance and warm-up |
+| Results | Frame distribution, long tasks, memory and visual defects |
 
-Fixed-height rows make windowing arithmetic exact. But real grids often need variable heights — wrapped text, expandable detail rows, differing font sizes. Variable heights break the simple `scrollTop / rowHeight` formula because you no longer know an arbitrary row's offset without summing every prior row.
+These are fields to measure, not implied passing results. Chrome's [Performance panel reference](https://developer.chrome.com/docs/devtools/performance/reference) explains trace inspection. One machine's result does not establish performance on every visitor's device.
 
-GridStorm supports both modes:
+## Diagnose a slow result
 
-| Strategy | When to use | Cost |
-| --- | --- | --- |
-| Fixed height | Uniform rows; the common case | O(1) offset lookup, cheapest |
-| Estimated height | Variable rows, offset approximated then corrected on measure | Slight scrollbar drift, corrected lazily |
-| Measured height | Precise variable layout required | Requires measuring rendered rows, more work per frame |
+If node count grows as you scroll, check whether the adapter retains off-screen elements. If nodes stay bounded but frames are slow, simplify cell renderers and disable optional plugins one at a time. Look for geometry reads after DOM writes, expensive formatters and large allocations during scrolling.
 
-The estimate-then-measure approach gives most of the benefit at most of the speed: GridStorm assigns every unmeasured row a uniform estimate, renders the window, measures the rows that actually got rendered, and stores their real heights. A prefix-sum index lets offset and index lookups stay logarithmic rather than linear as measurements accumulate. The scrollbar may shift slightly as estimates resolve into real values, but it converges quickly and stays stable in regions the user has already visited.
+For blank regions during rapid scrolling, test more overscan. It trades rendering work and memory for fewer gaps. If sorting pauses but scrolling stays smooth, investigate sorting separately: virtualization does not make every data operation cheap.
 
-## Avoiding layout thrash
+Include keyboard focus, row announcements and navigation to off-screen selections in your checks. A smooth visual demonstration alone does not establish accessibility.
 
-The subtlest performance killer is layout thrashing — interleaving DOM reads (like `getBoundingClientRect` or `offsetHeight`) with DOM writes within the same frame. Each read forces the browser to flush pending layout so it can return an accurate value; alternating read/write/read/write triggers repeated synchronous layouts and destroys your frame budget.
+## Use supported APIs and measure the complete application
 
-GridStorm batches strictly. Within a frame it performs all reads first (scroll position, any height measurements), then computes the new window, then performs all writes (repositioning recycled rows, updating contents). Scroll events are coalesced and the actual render work is scheduled inside `requestAnimationFrame`, so at most one render runs per frame regardless of how many scroll events fire.
+Follow the [installation guide](/gridstorm/docs/getting-started/installation/) and [grid API reference](/gridstorm/docs/api/grid-api/) for integration. Measure a production bundle with the adapter and plugins you actually import; a core-only figure excludes part of the download.
 
-```ts
-let pending = false;
-let lastScrollTop = 0;
-
-viewport.addEventListener('scroll', () => {
-  lastScrollTop = viewport.scrollTop; // read
-  if (pending) return;
-  pending = true;
-  requestAnimationFrame(() => {
-    pending = false;
-    const window = grid.updateWindow(lastScrollTop); // compute
-    grid.applyWindow(window);                        // batched writes
-  });
-});
-```
-
-This read/compute/write discipline is what lets the grid stay inside 16ms even while the user flings the scrollbar.
-
-## Why a headless core helps
-
-GridStorm is headless: the core owns state, windowing math, recycling, and the height index, but it does not own the DOM. It hands your framework adapter a description of which rows and cells should be visible and where, and the adapter renders them using the framework's own primitives.
-
-This separation matters for performance because the hot path — the per-frame windowing calculation — is plain TypeScript with no framework overhead. The core keeps the bundle small (under 50KB) and lets the React, Vue, Svelte, or Angular adapter do only the cheap, framework-native work of reconciling a few dozen visible rows. You can read more about how this composes in the [plugin architecture deep dive](/use-cases/gridstorm-plugin-architecture).
-
-## Key takeaways
-
-- Rendering every row does not scale; windowing renders only the visible slice plus a small overscan.
-- Recycling row and cell nodes turns per-scroll allocations into a near-zero-allocation steady state, avoiding GC-induced frame drops.
-- Fixed heights give O(1) offset math; estimated and measured heights support variable rows with a prefix-sum index for logarithmic lookups.
-- Batch reads before writes and render once per frame inside `requestAnimationFrame` to avoid layout thrash and stay within the 16ms budget.
-- A headless core keeps the hot path framework-free and the bundle small.
-
-These techniques are not exotic, but getting all of them right simultaneously — and keeping them correct as features like sorting, filtering, and pinned columns are layered on — is the actual engineering. You can see the result holding 60fps over 100,000 rows on the [live demo](https://www.tekivex.com/gridstorm), or explore the broader set of [GridStorm use cases](/use-cases) to see how the same core powers real-time and analytical workloads.
+A useful result is a documented workload that meets your product's responsiveness requirements. If it fails, preserve the fixture and trace when reporting the issue. Do not generalize a favorable result into a universal frame-rate promise.

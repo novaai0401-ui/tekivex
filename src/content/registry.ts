@@ -48,14 +48,14 @@ const MODIFIED = '2026-06-28';
 const DATES: Record<string, { published: string; modified?: string }> = {
   'tekivex-mit-open-source-model':                 { published: PUBLISHED, modified: MODIFIED },
   'tekivex-stack-how-products-fit':                { published: PUBLISHED, modified: MODIFIED },
-  'gridstorm-virtual-scrolling-60fps':             { published: PUBLISHED, modified: MODIFIED },
-  'gridstorm-plugin-architecture':                 { published: PUBLISHED, modified: MODIFIED },
-  'gridstorm-vs-ag-grid-migration':                { published: PUBLISHED, modified: MODIFIED },
+  'gridstorm-virtual-scrolling-60fps':             { published: PUBLISHED, modified: '2026-09-15' },
+  'gridstorm-plugin-architecture':                 { published: PUBLISHED, modified: '2026-09-15' },
+  'gridstorm-vs-ag-grid-migration':                { published: PUBLISHED, modified: '2026-09-15' },
   'gridstorm-accessible-data-grid':                { published: PUBLISHED, modified: MODIFIED },
   'gridstorm-excel-formulas':                      { published: PUBLISHED, modified: MODIFIED },
   'gridstorm-financial-trading-grid':              { published: PUBLISHED, modified: MODIFIED },
   'tekivex-ui-headless-design-system':             { published: PUBLISHED, modified: MODIFIED },
-  'tekivex-ui-vs-mui-chakra':                      { published: PUBLISHED, modified: MODIFIED },
+  'tekivex-ui-vs-mui-chakra':                      { published: PUBLISHED, modified: '2026-09-15' },
   'tekivex-ui-accessible-forms':                   { published: PUBLISHED, modified: MODIFIED },
   'quantum-vault-post-quantum-tokens-explained':   { published: PUBLISHED, modified: MODIFIED },
   'quantum-vault-migrate-pqc-token-issuance':      { published: PUBLISHED, modified: MODIFIED },
@@ -64,8 +64,8 @@ const DATES: Record<string, { published: string; modified?: string }> = {
   'how-to-merge-pdf-free':                         { published: '2026-07-02', modified: '2026-08-11' },
   'how-to-split-pdf-extract-pages':                { published: '2026-07-02', modified: '2026-08-11' },
   'how-to-convert-jpg-to-pdf':                     { published: '2026-07-02', modified: '2026-08-11' },
-  'how-to-compress-pdf':                           { published: '2026-07-02', modified: '2026-08-11' },
-  'how-to-make-chart-from-csv':                    { published: '2026-07-02', modified: '2026-09-10' },
+  'how-to-compress-pdf':                           { published: '2026-07-02', modified: '2026-09-15' },
+  'how-to-make-chart-from-csv':                    { published: '2026-07-02', modified: '2026-09-15' },
   'why-browser-tools-keep-files-private':          { published: '2026-07-02', modified: '2026-08-11' },
   'how-to-convert-pdf-to-jpg':                     { published: '2026-07-22', modified: '2026-08-11' },
   'how-to-rotate-pdf':                             { published: '2026-07-22', modified: '2026-08-11' },
@@ -138,9 +138,9 @@ export const ARTICLES: Article[] = [
   }),
   article({
     slug: 'how-to-make-chart-from-csv',
-    title: 'How to Make a Chart from a CSV File (and Share It Privately)',
+    title: 'How to Make a Chart from a CSV File and Share It Safely',
     description:
-      'Turn a spreadsheet export into a clean bar, line, area, or donut chart in seconds, download it as SVG or PNG, and share a link whose data never touches a server.',
+      'Turn a spreadsheet export into a clean bar, line, area, or donut chart in seconds, download it as SVG or PNG, and understand what a data-bearing share link exposes.',
     productId: 'analytics-studio',
     productName: 'Free Tools',
     kind: 'How-To',
@@ -195,9 +195,9 @@ export const ARTICLES: Article[] = [
   // ── GridStorm ──────────────────────────────────────────────────────────
   article({
     slug: 'gridstorm-virtual-scrolling-60fps',
-    title: 'How GridStorm Renders 100K Rows at 60fps',
+    title: 'Virtual Scrolling: How to Measure GridStorm Performance',
     description:
-      'A deep dive into GridStorm’s virtual scrolling engine: windowing, row recycling, and the render budget that keeps 100,000+ rows smooth at 60fps.',
+      'Understand viewport rendering, calculate a frame budget, and measure your GridStorm workload without assuming a universal frame rate.',
     productId: 'gridstorm',
     productName: 'GridStorm',
     kind: 'Architecture',
