@@ -27,8 +27,8 @@ export const tekivexUiManifest: ProductManifest = {
   stats: [
     { value: '50+',     label: 'Components' },
     { value: '3',       label: 'Frameworks' },
-    { value: 'AA',      label: 'WCAG level' },
-    { value: '<8 kB',   label: 'Core bundle' },
+    { value: 'AA',      label: 'WCAG target' },
+    { value: 'ESM',     label: 'Module format' },
   ],
   keyFeatures: [
     '50+ production-ready components — buttons, inputs, selects, modals, drawers, toasts',

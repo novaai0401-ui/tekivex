@@ -85,7 +85,7 @@ When a regulator or customer asks which algorithm you use, naming a published st
 
 ## What a post-quantum token is in Quantum Vault
 
-A post-quantum token in Quantum Vault is a structured, self-describing credential whose authenticity is guaranteed by an **ML-DSA-87 signature** and whose confidential claims, where present, are protected with **XChaCha20-Poly1305** symmetric encryption. Replay is prevented by a stateful **HYDRA mutation chain** that advances on every issuance. Functionally it behaves like a signed token you already know — claims, expiry, issuer — but the cryptographic core is quantum-resistant.
+A post-quantum token in Quantum Vault is a structured, self-describing credential whose authenticity is verified using an **ML-DSA-87 signature**, subject to correct implementation and key management and whose confidential claims, where present, are protected with **XChaCha20-Poly1305** symmetric encryption. Replay is prevented by a stateful **HYDRA mutation chain** that advances on every issuance. Functionally it behaves like a signed token you already know — claims, expiry, issuer — but the cryptographic core is quantum-resistant.
 
 A Quantum Vault token therefore carries:
 

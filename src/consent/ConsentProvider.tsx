@@ -22,6 +22,13 @@ const ConsentContext = createContext<ConsentContextValue | null>(null);
 export const CONSENT_KEY = 'tekivex.consent.v1';
 export const CONSENT_CHANGE_EVENT = 'tekivex:consent-change';
 
+function signal(status: ConsentStatus) {
+  const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag;
+  // This preference is for analytics. Advertising consent belongs to Google's
+  // certified message; a custom Accept button must not impersonate its choice.
+  gtag?.('consent', 'update', { analytics_storage: status === 'accepted' ? 'granted' : 'denied' });
+}
+
 function readStored(): ConsentStatus {
   try {
     const raw = localStorage.getItem(CONSENT_KEY);
@@ -37,7 +44,13 @@ export function ConsentProvider({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState<ConsentStatus>(() => readStored());
 
   useEffect(() => {
-    const handler = () => setStatus(readStored());
+    const handler = (event: Event) => {
+      if (event instanceof StorageEvent && event.key !== CONSENT_KEY && event.key !== null) return;
+      const detail = (event as CustomEvent<ConsentStatus>).detail;
+      const next = ['accepted', 'denied', 'undecided'].includes(detail) ? detail : readStored();
+      setStatus(next);
+      signal(next);
+    };
     window.addEventListener(CONSENT_CHANGE_EVENT, handler);
     window.addEventListener('storage', handler);
     return () => {
@@ -54,19 +67,7 @@ export function ConsentProvider({ children }: { children: ReactNode }) {
       // ignore — UI still updates in-memory
     }
     setStatus(next);
-    // Google Consent Mode v2: upgrade or downgrade the default-denied
-    // signals from index.html based on the user's choice.
-    const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag;
-    if (typeof gtag === 'function' && (next === 'accepted' || next === 'denied')) {
-      const grant = next === 'accepted' ? 'granted' : 'denied';
-      gtag('consent', 'update', {
-        ad_storage: grant,
-        ad_user_data: grant,
-        ad_personalization: grant,
-        analytics_storage: grant,
-      });
-    }
-    window.dispatchEvent(new Event(CONSENT_CHANGE_EVENT));
+    window.dispatchEvent(new CustomEvent(CONSENT_CHANGE_EVENT, { detail: next }));
   }, []);
 
   // On mount, if we hydrated to a decided state from localStorage, push
@@ -75,15 +76,7 @@ export function ConsentProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const initial = readStored();
     if (initial === 'undecided') return;
-    const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag;
-    if (typeof gtag !== 'function') return;
-    const grant = initial === 'accepted' ? 'granted' : 'denied';
-    gtag('consent', 'update', {
-      ad_storage: grant,
-      ad_user_data: grant,
-      ad_personalization: grant,
-      analytics_storage: grant,
-    });
+    signal(initial);
   }, []);
 
   const value = useMemo<ConsentContextValue>(

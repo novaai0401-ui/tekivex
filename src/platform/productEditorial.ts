@@ -34,8 +34,8 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
   // ── GridStorm ────────────────────────────────────────────────────────────
   gridstorm: {
     overview: [
-      'GridStorm is a headless, framework-agnostic data grid built for the hardest table problem in front-end engineering: rendering and editing very large datasets without dropping frames. Its core ships under 50 KB and knows nothing about the DOM — you bring the renderer (React, Vue, Svelte, or Angular) and GridStorm supplies the engine for windowing, selection, sorting, grouping, and formula evaluation.',
-      'The design goal is "spreadsheet behaviour, library ergonomics." That means virtual scrolling for large datasets, Excel-compatible copy/paste with type coercion, 42 formula functions, and 35 composable plugins you opt into one at a time — all while keeping the bundle small and the accessibility tree intact (WCAG 2.1 AA).',
+      'GridStorm is a headless, framework-agnostic data grid built for the hardest table problem in front-end engineering: rendering and editing very large datasets with virtualized rendering. Its core separates features into optional imports and knows nothing about the DOM — you bring the renderer (React, Vue, Svelte, or Angular) and GridStorm supplies the engine for windowing, selection, sorting, grouping, and formula evaluation.',
+      'The design goal is "spreadsheet behaviour, library ergonomics." That means virtual scrolling for large datasets, Excel-compatible copy/paste with type coercion, 42 formula functions, and composable plugins you opt into one at a time — all while keeping the bundle small and the accessibility tree intact (WCAG 2.1 AA).',
     ],
     howItWorks: [
       { title: 'Virtualised rendering', body: 'GridStorm only mounts the cells inside the visible viewport plus a small overscan buffer, recycling row nodes as you scroll. This keeps the DOM node count constant regardless of dataset size, which reduces rendering work; frame rate still depends on the device, cell renderers and enabled features.' },
@@ -177,7 +177,7 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
   'tekivex-ui': {
     overview: [
       'Tekivex UI is a professional component library with 50+ accessible components — buttons, inputs, selects, modals, drawers, toasts, navigation, and layout primitives — plus a headless layer for full style control. It ships React 18+, Vue 3, and Svelte 5 bindings with idiomatic APIs, so design decisions stay consistent across frameworks.',
-      'It is in Preview. The component set, theming system, and accessibility work are usable today; we are expanding coverage and stabilising APIs ahead of a 1.0. Everything is WCAG 2.1 AA, tree-shakeable ESM, and ships with zero runtime dependencies.',
+      'It is in Preview. The component set, theming system, and accessibility work are usable today; we are expanding coverage and stabilising APIs ahead of a 1.0. Accessibility targets WCAG 2.1 AA; the package uses tree-shakeable ESM and and ships with zero runtime dependencies.',
     ],
     howItWorks: [
       { title: 'Install only what you use', body: 'Components are distributed as tree-shakeable ESM, so your bundle includes only the parts you import — the core stays under 8 KB.' },
@@ -195,7 +195,7 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
       'As a deliberately lightweight library, it focuses on core primitives rather than a vast catalogue of niche widgets.',
     ],
     faqs: [
-      { q: 'Is it accessible by default?', a: 'Yes. Components are WCAG 2.1 AA compliant with ARIA roles and full keyboard navigation built in, not bolted on.' },
+      { q: 'Is it accessible by default?', a: 'Yes. Components are designed toward WCAG 2.1 AA with ARIA roles and full keyboard navigation built in, not bolted on.' },
       { q: 'Can I use it with Vue or Svelte, not just React?', a: 'Yes — React 18+, Vue 3, and Svelte 5 bindings ship in the box with idiomatic APIs for each.' },
       { q: 'How do I customise the look?', a: 'Re-theme via CSS custom properties for dark/light/high-contrast, or drop to the headless primitive of any component to supply your own markup while keeping the behaviour and accessibility.' },
     ],

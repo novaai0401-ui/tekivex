@@ -33,10 +33,8 @@ describe('index.html — Google Consent Mode v2', () => {
     expect(indexHtml).toMatch(/<script[^>]+googletagmanager\.com\/gtag\/js/);
   });
 
-  it('loads the AdSense script with the publisher client id', () => {
-    expect(indexHtml).toMatch(
-      /<script[^>]+pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=ca-pub-4630229006617891/,
-    );
+  it('does not load advertising globally on non-content pages', () => {
+    expect(indexHtml).not.toMatch(/<script[^>]+adsbygoogle/);
   });
 
   it('default consent block precedes the gtag.js script tag', () => {

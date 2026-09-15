@@ -9,8 +9,8 @@ We will compare licensing and cost, bundle size, the plugin and feature model, a
 | Dimension | AG Grid | GridStorm |
 | --- | --- | --- |
 | Licensing | Community edition MIT; Enterprise features require a paid per-developer license | Free for commercial use, no per-developer fees |
-| Enterprise features | Extensive (pivoting, aggregation, integrated charting, server-side row model) behind Enterprise | Composable via 35 plugins, all included free |
-| Bundle size | Larger; full-featured by design | Under 50KB core, plus only the plugins you import |
+| Enterprise features | Extensive (pivoting, aggregation, integrated charting, server-side row model) behind Enterprise | Composable via plugins, all included free |
+| Bundle size | Larger; full-featured by design | Measure the core and selected plugins in your production build |
 | Architecture | Integrated grid with module system | Headless core + plugin system |
 | Frameworks | React, Angular, Vue, vanilla JS | React, Vue, Svelte, Angular adapters |
 | Accessibility | Good ARIA support | WCAG 2.1 AA via the a11y plugin |
@@ -107,7 +107,7 @@ For deeper background on the plugin model you are adopting, see the [plugin arch
 
 ## When to migrate (and when not to)
 
-- **Migrate** if per-developer licensing cost is a growing line item, if bundle size matters for your application, if you need WCAG 2.1 AA accessibility without bolting it on, or if you want a grid that is free for commercial use with no Enterprise tier.
+- **Migrate** if per-developer licensing cost is a growing line item, if bundle size matters for your application, if you need accessibility features targeting WCAG 2.1 AA without bolting it on, or if you want a grid that is free for commercial use with no Enterprise tier.
 - **Stay on AG Grid** if you depend heavily on its Enterprise-only features (integrated charting, server-side pivoting), if your team's productivity is tied to its mature ecosystem, or if a migration's cost outweighs the benefit for a stable, working application.
 - **Run both** during transition: GridStorm's headless core lets you migrate one screen at a time rather than in a single big-bang cutover.
 
@@ -116,3 +116,6 @@ Migrations are never free, and a working grid has real value. But for teams whos
 ---
 
 *AG Grid is a trademark of its respective owner. Tekivex is not affiliated with, endorsed by, or sponsored by it. Comparisons reflect our understanding at the time of writing; verify current capabilities against the vendor's official documentation.*
+
+
+**Correction — September 15, 2026:** Removed unmeasured size or fixed plugin-count claims. Accessibility targets require testing in the finished application; they are not a compliance certification.

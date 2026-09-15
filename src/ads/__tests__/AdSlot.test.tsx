@@ -14,6 +14,7 @@ function renderSlot(props: Parameters<typeof AdSlot>[0]) {
 
 describe('AdSlot', () => {
   beforeEach(() => {
+    document.getElementById('tekivex-ad-loader')?.remove();
     localStorage.clear();
     delete (window as Window & { adsbygoogle?: unknown[] }).adsbygoogle;
     vi.unstubAllEnvs();
@@ -24,6 +25,7 @@ describe('AdSlot', () => {
     renderSlot({ slot: '999' });
     const placeholder = screen.getByTestId('ad-slot-placeholder');
     expect(placeholder).toBeInTheDocument();
+    expect(document.getElementById('tekivex-ad-loader')).toBeNull();
     expect(placeholder.textContent).toContain('999');
   });
 
@@ -39,10 +41,12 @@ describe('AdSlot', () => {
     renderSlot({ slot: '424242', format: 'rectangle' });
     const ins = screen.getByTestId('ad-slot-ins');
     expect(ins).toBeInTheDocument();
+    expect(document.querySelectorAll('#tekivex-ad-loader')).toHaveLength(1);
     expect(ins.getAttribute('data-ad-client')).toBe(ADSENSE_CLIENT);
     expect(ins.getAttribute('data-ad-slot')).toBe('424242');
     expect(ins.getAttribute('data-ad-format')).toBe('rectangle');
     expect(ins.getAttribute('data-full-width-responsive')).toBe('true');
+    expect(screen.getByRole('button', { name: 'Advertising privacy choices' })).toBeInTheDocument();
   });
 
   it('renders the <ins> even when consent is denied (Consent Mode v2 handles serving)', () => {

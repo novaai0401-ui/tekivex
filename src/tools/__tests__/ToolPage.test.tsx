@@ -18,15 +18,11 @@ describe('ToolPage', () => {
     }
   });
 
-  it('renders an ad slot only below the tool and editorial content', async () => {
+  it('keeps file processing pages free of ad placements', async () => {
     const { container } = render(<ToolPage slug="split-pdf" />);
     await screen.findByTestId('tool-split-pdf');
-    const ad = container.querySelector('.ad-slot--tool');
-    expect(ad).not.toBeNull();
-    const faqHeading = screen.getByRole('heading', { name: /frequently asked/i });
-    // Ad precedes the FAQ section but follows the tool body in document order.
-    expect(ad!.compareDocumentPosition(screen.getByTestId('tool-split-pdf')) & Node.DOCUMENT_POSITION_PRECEDING).toBeTruthy();
-    expect(ad!.compareDocumentPosition(faqHeading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(container.querySelector('.ad-slot, ins.adsbygoogle')).toBeNull();
+    expect(screen.getByRole('heading', { name: /frequently asked/i })).toBeInTheDocument();
   });
 
   it('links to the how-to guide for the tool', async () => {

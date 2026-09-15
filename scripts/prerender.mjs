@@ -457,7 +457,7 @@ const routes = [
       'How Tekivex uses cookies and similar technologies for analytics and advertising, and how you can manage your consent at any time.',
     h1: 'Cookie Policy',
     body:
-      'Tekivex uses a small set of cookies — essential, analytics, and advertising. Analytics and advertising cookies only load after you accept on the consent banner.',
+      'Tekivex uses a small set of cookies — essential, analytics, and advertising. The Tekivex banner controls analytics. Google handles advertising preferences separately where applicable.',
   },
   {
     path: '/disclaimer',
@@ -983,7 +983,7 @@ const humans = [
 // Generated from the same product facts + article list so they never drift.
 const LLM_PRODUCTS = [
   { name: 'GridStorm', url: `${ORIGIN}/product/gridstorm`, npm: 'gridstorm',
-    s: 'Headless, framework-agnostic high-performance data grid. Virtual scrolling for large datasets with virtual scrolling, 42 Excel-compatible formula functions, Excel copy/paste, 35+ composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, Modular core. MIT-licensed, free for commercial use.' },
+    s: 'Headless, framework-agnostic high-performance data grid. Virtual scrolling for large datasets with virtual scrolling, 42 Excel-compatible formula functions, Excel copy/paste, composable plugins, accessibility features targeting WCAG 2.1 AA, React/Vue/Svelte/Angular adapters, Modular core. MIT-licensed, free for commercial use.' },
   { name: 'Tekivex UI', url: `${ORIGIN}/product/tekivex-ui`, npm: 'tekivex-ui',
     s: 'Accessible React/Vue/Svelte component library: 100+ components (Tkx-prefixed), WCAG 2.1 AA (targeting AAA), dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, headless primitives. MIT-licensed, free for commercial use.' },
   { name: 'Quantum Vault', url: `${ORIGIN}/product/quantum-vault`, npm: '@sigvault/sdk',

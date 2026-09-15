@@ -12,7 +12,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'What is Tekivex?',
     answer:
-      'Tekivex is an independently built platform of free developer tools. It ships a suite of free-to-use products under one roof. Three are npm libraries: GridStorm (high-performance React data grid with 35+ plugins), Tekivex UI (accessible React/Vue/Svelte component library at www.tekivex.com/ui), and Quantum Vault (sovereign post-quantum token issuance and verification). Three are free hosted web apps you simply open and use in the browser: Pyntra, a private studio for cards, photos, video & PDFs at pyntra.tekivex.com; Analytics Studio, an in-browser BI app at www.tekivex.com/analytics; and DataFlow, a real-time streaming dashboard at www.tekivex.com/dataflow. Everything is free forever.',
+      'Tekivex is an independently built platform of free developer tools. It ships a suite of free-to-use products under one roof. Three are npm libraries: GridStorm (high-performance React data grid with plugins), Tekivex UI (accessible React/Vue/Svelte component library at www.tekivex.com/ui), and Quantum Vault (sovereign post-quantum token issuance and verification). Three are free hosted web apps you simply open and use in the browser: Pyntra, a private studio for cards, photos, video & PDFs at pyntra.tekivex.com; Analytics Studio, an in-browser BI app at www.tekivex.com/analytics; and DataFlow, a real-time streaming dashboard at www.tekivex.com/dataflow. Everything is free forever.',
   },
   {
     question: 'What does Tekivex offer for React developers?',
@@ -32,7 +32,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'How is Tekivex different from AG Grid, Material UI, or Chakra?',
     answer:
-      'Three differences. First, Tekivex is a unified platform — one brand, one design language, one issue tracker for the data grid, the component library, and the post-quantum token vault. Second, every Tekivex product targets WCAG 2.1 AA out of the box, not as a paid add-on. Third, the entire stack is free for commercial use with no enterprise tier hidden behind a paywall — every feature is free, with no paywall.',
+      'Three differences. First, Tekivex is a unified platform — one brand, one design language, one issue tracker for the data grid, the component library, and the post-quantum token vault. Second, every Tekivex product targets patterns targeting WCAG 2.1 AA, not as a paid add-on. Third, the entire stack is free for commercial use with no enterprise tier hidden behind a paywall — every feature is free, with no paywall.',
   },
   {
     question: 'Where can I see Tekivex products in action?',
@@ -140,7 +140,7 @@ export function BrandFaq() {
           <a href="https://www.tekivex.com/gridstorm" target="_blank" rel="noopener noreferrer">
             www.tekivex.com/gridstorm
           </a>
-          ) is a high-performance data grid with 35+ plugins;{' '}
+          ) is a high-performance data grid with plugins;{' '}
           <strong>Quantum Vault</strong> (<code>@sigvault/sdk</code>) is a sovereign
           post-quantum token vault; and{' '}
           <strong>TekiVex UI</strong> (<code>tekivex-ui</code>) is the accessible

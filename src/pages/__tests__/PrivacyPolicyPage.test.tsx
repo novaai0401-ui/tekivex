@@ -30,7 +30,7 @@ describe('PrivacyPolicyPage — AdSense disclosure', () => {
 
   it('lists Advertising cookies in the cookie types section', () => {
     render(<PrivacyPolicyPage />);
-    expect(screen.getByText(/Advertising cookies — set by Google AdSense/i)).toBeInTheDocument();
+    expect(screen.getByText(/Advertising cookies — managed by Google/i)).toBeInTheDocument();
   });
 
   it('links to aboutads.info for third-party opt-out', () => {

@@ -1,6 +1,6 @@
 Most data grids are monoliths. Every feature you might ever want — sorting, filtering, grouping, editing, clipboard, charting — ships in the same bundle, coupled to the same internal state, whether you use it or not. That design optimizes for "it just works" out of the box at the cost of bundle size, extensibility, and the ability to reason about what the grid is actually doing.
 
-[GridStorm](/product/gridstorm) takes the opposite approach. It is organized around a small headless core and 35 composable plugins. The core knows almost nothing about features; it owns state, the windowing engine, and a lifecycle that plugins hook into. Everything else — sorting, filtering, selection, the formula engine, accessibility, clipboard — is a plugin you opt into.
+[GridStorm](/product/gridstorm) takes the opposite approach. It is organized around a small headless core and composable plugins. The core knows almost nothing about features; it owns state, the windowing engine, and a lifecycle that plugins hook into. Everything else — sorting, filtering, selection, the formula engine, accessibility, clipboard — is a plugin you opt into.
 
 This article explains how that architecture works: the responsibilities of the headless core, the plugin lifecycle and registration model, how to write a custom plugin, and how plugins compose without stepping on one another. If you have only used integrated grids, this is the mental model shift that makes GridStorm worth understanding.
 
@@ -105,7 +105,7 @@ Three things to notice. The plugin returns its teardown function from `setup`, s
 
 ## How plugins compose
 
-Composition works because the contracts are narrow. Pipeline stages are pure transforms over rows; event handlers are isolated; contributions like row classes and cell decorations are additive (the core merges contributions from all plugins rather than letting one win). The result is that the 35 shipped plugins, and your own, slot together in predictable ways:
+Composition works because the contracts are narrow. Pipeline stages are pure transforms over rows; event handlers are isolated; contributions like row classes and cell decorations are additive (the core merges contributions from all plugins rather than letting one win). The result is that the shipped plugins, and your own, slot together in predictable ways:
 
 - **Independent plugins** (selection and flash highlighting) simply coexist.
 - **Ordered plugins** (filtering before sorting) rely on the deterministic pipeline order.
@@ -120,4 +120,7 @@ This is also what makes accessibility work as a plugin rather than a core concer
 - Use it when you want to **reason about** what the grid does — the plugin contracts are explicit and documented.
 - The trade-off: composing plugins requires understanding ordering and shared state, which is marginally more to learn than a grid where everything is on by default.
 
-The plugin architecture is the reason GridStorm can be both small and capable: the core is separated from feature breadth in 35+ independently versioned, separately importable plugins, validated by a comprehensive automated test suite. Explore the composition live on the [demo](https://www.tekivex.com/gridstorm), read how the [Tekivex products fit together](/use-cases/tekivex-stack-how-products-fit), or browse the full [use cases](/use-cases) hub.
+The plugin architecture is the reason GridStorm can be both small and capable: the core is separated from feature breadth in independently versioned, separately importable plugins, validated by a comprehensive automated test suite. Explore the composition live on the [demo](https://www.tekivex.com/gridstorm), read how the [Tekivex products fit together](/use-cases/tekivex-stack-how-products-fit), or browse the full [use cases](/use-cases) hub.
+
+
+**Correction — September 15, 2026:** Removed unmeasured size or fixed plugin-count claims. Accessibility targets require testing in the finished application; they are not a compliance certification.

@@ -15,8 +15,11 @@ declare global {
 function sendPageview(): void {
   const gtag = window.gtag;
   if (typeof gtag !== 'function') return;
-  const path = window.location.pathname + window.location.search;
-  gtag('event', 'page_view', { page_path: path });
+  // Shared chart data must not enter analytics through page_location.
+  const path = window.location.pathname;
+  const page_location = window.location.origin + path;
+  gtag('set', { page_location });
+  gtag('event', 'page_view', { page_path: path, page_location });
 }
 
 let installed = false;

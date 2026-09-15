@@ -21,6 +21,14 @@ for (const loc of sitemap.window.document.querySelectorAll('loc')) {
     const path = link.getAttribute('href').split('#')[0].split('?')[0];
     assert.ok(existsSync(join(root, path.slice('/gridstorm/'.length), 'index.html')), `Broken documentation link ${path}`);
   }
+  if (!process.argv[2]) {
+    for (const link of document.querySelectorAll('a[href]')) {
+      const target = new URL(link.getAttribute('href'), url);
+      if (target.origin !== url.origin) continue;
+      const local = join(root, '..', decodeURIComponent(target.pathname));
+      assert.ok(existsSync(local) || existsSync(join(local, 'index.html')), `Broken same-site documentation link: ${target}`);
+    }
+  }
   docs++;
 }
 assert.ok(docs > 1, 'Missing documentation pages');

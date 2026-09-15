@@ -8,7 +8,7 @@ export function CookiePolicyPage() {
     <LegalLayout
       eyebrow="Legal"
       title="Cookie Policy"
-      lastUpdated="August 31, 2026"
+      lastUpdated="September 15, 2026"
       intro={
         <p style={{ ...legalProse, margin: 0 }}>
           This page explains the cookies and similar technologies tekivex.com uses,
@@ -74,11 +74,10 @@ export function CookiePolicyPage() {
           </table>
         </div>
         <p style={legalProse}>
-          We use Google Consent Mode v2. The Google Analytics and Google AdSense
-          scripts load with all storage signals defaulted to <em>denied</em>, so no
-          Analytics or Advertising cookies are set until you click <em>Accept all</em>
-          on our consent banner. If you reject or have not yet decided, these cookies
-          are not stored and any ads shown are non-personalised.
+          Optional analytics is controlled by the Tekivex analytics banner below.
+          Google advertising preferences are collected separately through Google’s
+          privacy message where applicable. Ad availability and personalization
+          depend on those choices and Google’s serving rules.
         </p>
       </LegalSection>
 
@@ -99,17 +98,17 @@ export function CookiePolicyPage() {
 
       <LegalSection title="4. Your choices">
         <ul>
-          <li style={legalLi}>Use the consent banner buttons (Accept all / Reject non-essential).</li>
+          <li style={legalLi}>Use the consent banner buttons (Accept analytics / Reject analytics).</li>
           <li style={legalLi}>Change your choice at any time using the button below.</li>
-          <li style={legalLi}>Clear cookies in your browser to wipe all stored data.</li>
-          <li style={legalLi}>Enable "Do Not Track" in your browser settings.</li>
+          <li style={legalLi}>Use browser site-data controls to remove existing cookies and local storage.</li>
+          <li style={legalLi}>Changing a preference does not delete files you have downloaded.</li>
         </ul>
         <div style={{
           marginTop: '16px', padding: '18px 22px', borderRadius: '10px',
           background: 'var(--hub-surface)', border: '1px solid var(--hub-border)',
         }}>
           <p style={{ ...legalProse, marginBottom: '12px' }}>
-            <strong style={{ color: 'var(--hub-text)' }}>Current choice:</strong>{' '}
+            <strong style={{ color: 'var(--hub-text)' }}>Analytics choice:</strong>{' '}
             <span data-testid="consent-status" style={{ color: '#4f46e5' }}>{status}</span>
           </p>
           <button
@@ -126,6 +125,7 @@ export function CookiePolicyPage() {
         </div>
       </LegalSection>
 
+      <LegalSection title="Advertising preferences"><p style={legalProse}>To reopen Google’s advertising message, use the Advertising privacy choices control below a guide, such as <a href="/use-cases/how-to-merge-pdf-free#advertising-privacy">our PDF merging guide</a>. Availability depends on Google’s message configuration and your location. This control is separate from the analytics choice above.</p></LegalSection>
       <LegalSection title="5. Contact">
         <p style={legalProse}>
           For questions about this Cookie Policy, email{' '}

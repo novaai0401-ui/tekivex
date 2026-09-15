@@ -18,7 +18,7 @@ Read top to bottom and you have roughly the request lifecycle of our example app
 
 ## The application shell: Tekivex UI
 
-[Tekivex UI](/product/tekivex-ui) is the foundation most teams start with because it owns everything the user actually touches: the app frame, the sidebar, modals, buttons, and form controls. It is headless and tree-shakeable, ships with zero runtime dependencies, targets WCAG 2.1 AA (with AAA on the roadmap), themes entirely through CSS variables, and keeps its core under 8kB. Headless matters here — it gives you behavior and accessibility without imposing visual opinions, so the shell can host a GridStorm data grid without style collisions.
+[Tekivex UI](/product/tekivex-ui) is the foundation most teams start with because it owns everything the user actually touches: the app frame, the sidebar, modals, buttons, and form controls. It is headless and tree-shakeable, ships with zero runtime dependencies, targets WCAG 2.1 AA (with AAA on the roadmap), themes entirely through CSS variables, and supports importing only the components you need. Headless matters here — it gives you behavior and accessibility without imposing visual opinions, so the shell can host a GridStorm data grid without style collisions.
 
 In our dashboard, Tekivex UI provides the chrome and the layout grid. Everything else mounts inside it.
 
@@ -54,7 +54,7 @@ Note what is *not* happening: Tekivex UI does not know what GridStorm is. It ren
 
 ## High-performance tables: GridStorm
 
-[GridStorm](/product/gridstorm) handles the part that breaks naive implementations — rendering and updating large, frequently-changing datasets without dropping frames. It virtualizes rows and columns so only the visible viewport is in the DOM, which is what makes a live-updating inventory or trade-blotter view feasible.
+[GridStorm](/product/gridstorm) handles the part that breaks naive implementations — rendering and updating large, frequently-changing datasets with virtualized rendering. It virtualizes rows and columns so only the visible viewport is in the DOM, which is what makes a live-updating inventory or trade-blotter view feasible.
 
 The contract GridStorm exposes is deliberately plain: give it `rowData`, `columnDefs`, and a stable `rowKey`. It does not prescribe how you fetch or mutate data. You can hand it a static array from a REST call, a paginated cursor, or a buffer that a websocket keeps mutating. Because the grid is keyed by `sku`, incoming changes reconcile against existing rows instead of forcing full re-renders.
 
@@ -132,3 +132,6 @@ This is the practical upshot of the [free, no-paywall model](/use-cases/tekivex-
 ## Conclusion
 
 The Tekivex Stack is a set of layers — identity, shell, and grids — that happen to compose cleanly because they were built with consistent, decoupled contracts. Quantum Vault guards the door, Tekivex UI frames the app, and GridStorm renders the rows. Used together they cover the core of an operations dashboard. Used apart, each still stands on its own. That independence, backed by a no-paywall, free-to-use model, is what lets you start with one product today and grow into the rest only if and when the problem calls for it.
+
+
+**Correction — September 15, 2026:** Removed unmeasured size or fixed plugin-count claims. Accessibility targets require testing in the finished application; they are not a compliance certification.

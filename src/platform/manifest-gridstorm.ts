@@ -10,11 +10,11 @@ const GRIDSTORM_NPM = 'https://www.npmjs.com/package/gridstorm';
 export const gridstormManifest: ProductManifest = {
   id: 'gridstorm',
   name: 'GridStorm',
-  tagline: 'High-Performance Data Grid — 35 composable plugins',
+  tagline: 'High-Performance Data Grid — composable plugins',
   githubUrl: GRIDSTORM_GITHUB,
   playgroundPath: `${GRIDSTORM_URL}/playground/`,
   description:
-    'Headless data grid engine with virtual scrolling, WCAG 2.1 AA accessibility, ' +
+    'Headless data grid engine with virtual scrolling, accessibility features targeting WCAG 2.1 AA, ' +
     '42 Excel-compatible formula functions, Excel copy/paste, and a full plugin ' +
     'ecosystem. Free for commercial use. No per-dev license fees.',
   version: '0.1.3',
@@ -27,14 +27,14 @@ export const gridstormManifest: ProductManifest = {
   docsRoot: `${GRIDSTORM_URL}/docs`,
   primaryDemoPath: `${GRIDSTORM_URL}/feature-showcase/`,
   stats: [
-    { value: '35',     label: 'Plugins' },
+    { value: 'Modular', label: 'Plugins' },
     { value: '100K+',  label: 'Example row count' },
     { value: '42',     label: 'Excel functions' },
     { value: 'Modular', label: 'Core + plugins' },
   ],
   keyFeatures: [
     'Virtual scrolling for large datasets',
-    'WCAG 2.1 AA accessibility (plugin-a11y)',
+    'accessibility features targeting WCAG 2.1 AA (plugin-a11y)',
     '42 Excel-compatible formula functions',
     'Excel copy/paste with type coercion',
     'Headless + framework-agnostic (React, Vue, Svelte, Angular)',
@@ -53,7 +53,7 @@ export const gridstormManifest: ProductManifest = {
     title: 'GridStorm — High-Performance React Data Grid | Tekivex',
     description:
       'Free high-performance data grid with virtual scrolling (viewport-based rendering), ' +
-      'WCAG 2.1 AA, 42 Excel formula functions, and 35 composable plugins. Free forever.',
+      'WCAG 2.1 AA, 42 Excel formula functions, and composable plugins. Free forever.',
     keywords: [
       'enterprise data grid',
       'react data grid',

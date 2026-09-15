@@ -65,7 +65,6 @@ import { ScriptLoader } from './consent/ScriptLoader';
 
 const CONSENT_BANNER_SUPPRESS_ROUTES = new Set<string>([
   '/privacy-policy',
-  '/cookie-policy',
   '/terms-of-service',
   '/disclaimer',
   '/accessibility',
@@ -80,7 +79,13 @@ function useHistoryRoute(): string {
     typeof window === 'undefined' ? '/' : window.location.pathname || '/',
   );
   React.useEffect(() => {
-    const handler = () => setPath(window.location.pathname || '/');
+    const handler = (event: Event) => {
+      if (event.type === 'popstate' && document.getElementById('tekivex-ad-loader')) {
+        window.location.reload();
+        return;
+      }
+      setPath(window.location.pathname || '/');
+    };
     window.addEventListener('popstate', handler);
     // Custom event so navigate() can notify subscribers without round-tripping
     window.addEventListener('tekivex:navigate', handler);
@@ -100,6 +105,12 @@ export function navigate(path: string) {
     return;
   }
   if (window.location.pathname !== path) {
+    // Unload advertising scripts when leaving their document. Removing a script
+    // element alone does not stop a running Auto ads instance.
+    if (document.getElementById('tekivex-ad-loader')) {
+      window.location.assign(path);
+      return;
+    }
     window.history.pushState(null, '', path);
     window.dispatchEvent(new Event('tekivex:navigate'));
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '../App';
-import { AdSlot } from '../ads/AdSlot';
+
 import { getAllTools, getTool } from './registry';
 import { NotFoundPage } from '../pages/NotFoundPage';
 
@@ -62,7 +62,7 @@ export function ToolPage({ slug }: { slug: string }) {
         </ul>
       </section>
 
-      <AdSlot slot="5896441076" label="Sponsored" className="ad-slot--tool" />
+
 
       <section className="tool-section" aria-label="Frequently asked questions">
         <h2>Frequently asked questions</h2>

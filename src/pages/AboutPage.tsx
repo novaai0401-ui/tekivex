@@ -8,7 +8,7 @@ const PRODUCTS = [
     icon: 'grid',
     status: 'Beta',
     statusColor: '#fbbf24',
-    description: 'Headless high-performance data grid — 35 plugins, large datasets with virtual scrolling.',
+    description: 'Headless high-performance data grid — plugins, large datasets with virtual scrolling.',
     href: '/product/gridstorm',
   },
   {
@@ -17,7 +17,7 @@ const PRODUCTS = [
     icon: 'layers',
     status: 'Beta',
     statusColor: '#fbbf24',
-    description: 'Accessible component library for React, Vue & Svelte — WCAG 2.1 AA out of the box.',
+    description: 'Accessible component library for React, Vue & Svelte — patterns targeting WCAG 2.1 AA.',
     href: '/product/tekivex-ui',
   },
   {
@@ -163,8 +163,8 @@ export function AboutPage() {
               to small teams and startups.
             </p>
             <p style={{ color: 'var(--hub-text-muted)', lineHeight: 1.7, fontSize: '0.95rem', marginTop: '0.75rem' }}>
-              GridStorm is our answer: a fully-featured, WCAG 2.1 AA compliant, 100K-row data grid
-              with 35 composable plugins — <strong style={{ color: 'var(--hub-text)' }}>free forever</strong>.
+              GridStorm is our answer: a fully-featured, designed toward WCAG 2.1 AA, 100K-row data grid
+              with composable plugins — <strong style={{ color: 'var(--hub-text)' }}>free forever</strong>.
             </p>
           </div>
           <div className="about-prose-card">
