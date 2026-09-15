@@ -33,13 +33,21 @@ beforeAll(async () => {
 afterEach(() => vi.restoreAllMocks());
 
 function stubDownload() {
-  vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:test');
-  return vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {});
+  const blobs: Blob[] = [];
+  const filenames: string[] = [];
+  vi.spyOn(URL, 'createObjectURL').mockImplementation((blob) => {
+    blobs.push(blob as Blob);
+    return 'blob:test';
+  });
+  const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(function (this: HTMLAnchorElement) {
+    filenames.push(this.download);
+  });
+  return { blobs, filenames, click };
 }
 
 describe('MergePdfTool', () => {
   it('lists added files, reorders, and merges to a download', async () => {
-    const click = stubDownload();
+    const download = stubDownload();
     render(<MergePdfTool />);
     fireEvent.change(screen.getByTestId('tool-fileinput'), { target: { files: [pdf2, pdf3] } });
     expect(screen.getByText(/1\. two\.pdf/)).toBeInTheDocument();
@@ -50,7 +58,11 @@ describe('MergePdfTool', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /^merge/i }));
     await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(/merged 2 files/i));
-    expect(click).toHaveBeenCalledOnce();
+    expect(download.click).toHaveBeenCalledOnce();
+    expect(download.filenames).toEqual(['merged.pdf']);
+    expect(download.blobs[0]?.type).toBe('application/pdf');
+    const merged = await PDFDocument.load(await download.blobs[0]!.arrayBuffer());
+    expect(merged.getPageCount()).toBe(5);
   });
 
   it('keeps the merge button disabled with fewer than two files', () => {
@@ -71,7 +83,7 @@ describe('MergePdfTool', () => {
 
 describe('SplitPdfTool', () => {
   it('shows the page count, validates ranges, and extracts', async () => {
-    const click = stubDownload();
+    const download = stubDownload();
     render(<SplitPdfTool />);
     fireEvent.change(screen.getByTestId('tool-fileinput'), { target: { files: [pdf3] } });
     await screen.findByText(/three\.pdf · 3 pages/);
@@ -83,19 +95,25 @@ describe('SplitPdfTool', () => {
     fireEvent.change(input, { target: { value: '1,3' } });
     fireEvent.click(screen.getByRole('button', { name: /extract pages/i }));
     await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(/extracted 2 pages/i));
-    expect(click).toHaveBeenCalledOnce();
+    expect(download.click).toHaveBeenCalledOnce();
+    expect(download.filenames).toEqual(['three-pages.pdf']);
+    const extracted = await PDFDocument.load(await download.blobs[0]!.arrayBuffer());
+    expect(extracted.getPageCount()).toBe(2);
   });
 });
 
 describe('JpgToPdfTool', () => {
   it('converts images into a paged PDF download', async () => {
-    const click = stubDownload();
+    const download = stubDownload();
     render(<JpgToPdfTool />);
     const png = new File([TINY_PNG], 'scan.png', { type: 'image/png' });
     fireEvent.change(screen.getByTestId('tool-fileinput'), { target: { files: [png] } });
     fireEvent.click(screen.getByRole('button', { name: /convert 1 image/i }));
     await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(/1-page PDF/i));
-    expect(click).toHaveBeenCalledOnce();
+    expect(download.click).toHaveBeenCalledOnce();
+    expect(download.filenames).toEqual(['images.pdf']);
+    const images = await PDFDocument.load(await download.blobs[0]!.arrayBuffer());
+    expect(images.getPageCount()).toBe(1);
   });
 });
 
@@ -115,25 +133,31 @@ describe('CompressPdfTool', () => {
 
 describe('RotatePdfTool', () => {
   it('rotates and downloads the file', async () => {
-    const click = stubDownload();
+    const download = stubDownload();
     render(<RotatePdfTool />);
     fireEvent.change(screen.getByTestId('tool-fileinput'), { target: { files: [pdf2] } });
     fireEvent.click(screen.getByRole('button', { name: /90° right/i }));
     await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(/rotated/i));
-    expect(click).toHaveBeenCalledOnce();
+    expect(download.click).toHaveBeenCalledOnce();
+    expect(download.filenames).toEqual(['two-rotated.pdf']);
+    const rotated = await PDFDocument.load(await download.blobs[0]!.arrayBuffer());
+    expect(rotated.getPages().map((page) => page.getRotation().angle)).toEqual([90, 90]);
   });
 });
 
 describe('RemovePagesTool', () => {
   it('shows page count, removes pages, and downloads', async () => {
-    const click = stubDownload();
+    const download = stubDownload();
     render(<RemovePagesTool />);
     fireEvent.change(screen.getByTestId('tool-fileinput'), { target: { files: [pdf3] } });
     await screen.findByText(/three\.pdf · 3 pages/);
     fireEvent.change(screen.getByLabelText(/pages to remove/i), { target: { value: '2' } });
     fireEvent.click(screen.getByRole('button', { name: /remove pages/i }));
     await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(/removed 1 page/i));
-    expect(click).toHaveBeenCalledOnce();
+    expect(download.click).toHaveBeenCalledOnce();
+    expect(download.filenames).toEqual(['three-edited.pdf']);
+    const edited = await PDFDocument.load(await download.blobs[0]!.arrayBuffer());
+    expect(edited.getPageCount()).toBe(2);
   });
 
   it('blocks removing every page', async () => {
