@@ -20,13 +20,13 @@ describe('initPageviewTracking', () => {
   it('sends a page_view to gtag on tekivex:navigate', () => {
     window.history.pushState(null, '', '/about');
     window.dispatchEvent(new Event('tekivex:navigate'));
-    expect(gtagSpy).toHaveBeenCalledWith('event', 'page_view', { page_path: '/about' });
+    expect(gtagSpy).toHaveBeenCalledWith('event', 'page_view', { page_path: '/about', page_location: window.location.origin + '/about' });
   });
 
   it('sends a page_view on popstate (back/forward)', () => {
     window.history.pushState(null, '', '/products');
     window.dispatchEvent(new Event('popstate'));
-    expect(gtagSpy).toHaveBeenCalledWith('event', 'page_view', { page_path: '/products' });
+    expect(gtagSpy).toHaveBeenCalledWith('event', 'page_view', { page_path: '/products', page_location: window.location.origin + '/products' });
   });
 
   it('uses the current pathname, not a hash fragment', () => {
@@ -34,14 +34,14 @@ describe('initPageviewTracking', () => {
     window.dispatchEvent(new Event('tekivex:navigate'));
     const calls = gtagSpy.mock.calls;
     const last = calls[calls.length - 1];
-    expect(last?.[2]).toEqual({ page_path: '/product/gridstorm' });
+    expect(last?.[2]).toEqual({ page_path: '/product/gridstorm', page_location: window.location.origin + '/product/gridstorm' });
     expect(String(last?.[2]?.page_path ?? '')).not.toContain('#');
   });
 
-  it('includes the search string when present', () => {
-    window.history.pushState(null, '', '/products?utm=x');
+  it('omits query and fragment data from analytics URLs', () => {
+    window.history.pushState(null, '', '/products?utm=x#private-chart-data');
     window.dispatchEvent(new Event('tekivex:navigate'));
-    expect(gtagSpy).toHaveBeenLastCalledWith('event', 'page_view', { page_path: '/products?utm=x' });
+    expect(gtagSpy).toHaveBeenLastCalledWith('event', 'page_view', { page_path: '/products', page_location: window.location.origin + '/products' });
   });
 
   it('is a no-op when gtag is not loaded', () => {
@@ -55,6 +55,6 @@ describe('initPageviewTracking', () => {
     initPageviewTracking();
     window.history.pushState(null, '', '/faq');
     window.dispatchEvent(new Event('tekivex:navigate'));
-    expect(gtagSpy).toHaveBeenCalledTimes(1);
+    expect(gtagSpy).toHaveBeenCalledTimes(2);
   });
 });

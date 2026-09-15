@@ -71,7 +71,8 @@
       wait_for_update: 500,
     });
     gtag('js', new Date());
-    gtag('config', 'G-C65SFGKM00', { anonymize_ip: true });
+    gtag('set', { page_location: location.origin + location.pathname });
+    gtag('config', 'G-C65SFGKM00', { anonymize_ip: true, page_location: location.origin + location.pathname });
   </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-C65SFGKM00"></script>
 
