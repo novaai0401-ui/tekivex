@@ -24,7 +24,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: '2026-09-30',
     title: 'Thin pages out of search and ad inventory',
     items: [
-      { tag: 'Fixed', text: 'The vendored Tekivex UI documentation shells no longer load advertising and are marked noindex until they carry full server-rendered documentation; their sitemap was removed from the site sitemap index.' },
+      { tag: 'Fixed', text: 'No page under /ui loads advertising any more. Tekivex UI pages with fewer than 200 words of initial HTML are marked noindex, and the /ui sitemap lists only the substantial component, recipe and blueprint pages.' },
       { tag: 'Fixed', text: 'GridStorm application and demo shells (hub, playground, spreadsheet, financial trading, feature showcase, cookbook, analytics explorer, PDF viewer, React demo) are marked noindex; the GridStorm sitemap now lists only the readable documentation pages.' },
       { tag: 'Improved', text: 'Sitemap lastmod dates now reflect the newest changelog entry instead of the build date, so a redeploy without content changes no longer claims every page was updated.' },
     ],

@@ -1,48 +1,46 @@
-import { it, expect } from 'vitest';
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, existsSync } from 'node:fs';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
-import { prepareUi, cleanUiPage } from './prepare-ui.mjs';
+import {it,expect} from 'vitest';
+import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,existsSync,rmSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {prepareUi,MIN_WORDS} from './prepare-ui.mjs';
 
-const LOADER = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4630229006617891" crossorigin="anonymous"></script>';
+const AD_LOADER='<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4630229006617891" crossorigin="anonymous"></script>';
+const page=(words,extra='')=>`<!doctype html><html><head><meta name="robots" content="index, follow">${AD_LOADER}</head><body><h1>Title</h1><p>${'word '.repeat(words)}</p>${extra}<script>window.x=1</script></body></html>`;
 
-it('removes advertising and marks every vendored UI page noindex', () => {
-  const root = mkdtempSync(join(tmpdir(), 'tekivex-ui-'));
+it('strips every ad tag, noindexes thin shells and lists only substantial pages',()=>{
+  const root=mkdtempSync(join(tmpdir(),'tekivex-ui-'));
   try {
-    mkdirSync(join(root, 'docs/button'), { recursive: true });
-    writeFileSync(join(root, 'index.html'), `<html><head>${LOADER}<meta name="robots" content="index, follow, max-image-preview:large" /></head><body><h1>Tekivex UI</h1><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1"></ins></body></html>`);
-    writeFileSync(join(root, 'docs/button/index.html'), '<html><head><title>Button</title></head><body><div id="app"></div></body></html>');
-    writeFileSync(join(root, 'sitemap.xml'), '<urlset></urlset>');
-    writeFileSync(join(root, 'sitemap-0.xml'), '<urlset></urlset>');
-    writeFileSync(join(root, 'sitemap-index.xml'), '<sitemapindex></sitemapindex>');
-    writeFileSync(join(root, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://www.tekivex.com/ui/sitemap.xml\n');
-    writeFileSync(join(root, 'assets.js'), 'window.adsbygoogle=[]');
-
-    expect(prepareUi(root)).toEqual({ pages: 2, adsRemoved: 1 });
-
-    const home = readFileSync(join(root, 'index.html'), 'utf8');
-    expect(home).not.toContain('adsbygoogle');
-    expect(home).toContain('<meta name="robots" content="noindex, follow" />');
-    expect(home).not.toMatch(/index, follow, max-image/);
-    expect(home).toContain('<h1>Tekivex UI</h1>');
-    const doc = readFileSync(join(root, 'docs/button/index.html'), 'utf8');
-    expect(doc).toContain('<head><meta name="robots" content="noindex, follow" /><title>Button</title>');
-    expect(existsSync(join(root, 'sitemap.xml'))).toBe(false);
-    expect(existsSync(join(root, 'sitemap-0.xml'))).toBe(false);
-    expect(existsSync(join(root, 'sitemap-index.xml'))).toBe(false);
-    expect(readFileSync(join(root, 'robots.txt'), 'utf8')).not.toMatch(/Sitemap:/);
-    expect(readFileSync(join(root, 'assets.js'), 'utf8')).toBe('window.adsbygoogle=[]'); // app code untouched
-    expect(prepareUi(root).adsRemoved).toBe(0); // idempotent
-  } finally { rmSync(root, { recursive: true, force: true }); }
+    mkdirSync(join(root,'docs/button'),{recursive:true});
+    mkdirSync(join(root,'components/button'),{recursive:true});
+    writeFileSync(join(root,'index.html'),page(40));
+    writeFileSync(join(root,'404.html'),page(400));
+    writeFileSync(join(root,'sitemap-0.xml'),'<urlset/>');
+    writeFileSync(join(root,'docs/button/index.html'),page(60,'<ins class="adsbygoogle" data-ad-client="ca-pub-1"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>'));
+    writeFileSync(join(root,'components/button/index.html'),page(MIN_WORDS+50));
+    const result=prepareUi(root);
+    expect(result.adsRemoved).toBe(6); // 4 loaders + <ins> + push()
+    expect(result.indexable).toEqual(['/components/button/']);
+    for (const f of ['index.html','docs/button/index.html','components/button/index.html','404.html']) {
+      expect(readFileSync(join(root,f),'utf8')).not.toMatch(/adsbygoogle|googlesyndication/);
+    }
+    expect(readFileSync(join(root,'index.html'),'utf8')).toContain('content="noindex, follow"');
+    expect(readFileSync(join(root,'docs/button/index.html'),'utf8')).toContain('content="noindex, follow"');
+    expect(readFileSync(join(root,'404.html'),'utf8')).toContain('content="noindex, follow"');
+    expect(readFileSync(join(root,'components/button/index.html'),'utf8')).toContain('content="index, follow"');
+    const sitemap=readFileSync(join(root,'sitemap.xml'),'utf8');
+    expect(sitemap).toContain('<loc>https://www.tekivex.com/ui/components/button/</loc>');
+    expect(sitemap).not.toContain('/ui/docs/button/');
+    expect(sitemap).not.toContain('<loc>https://www.tekivex.com/ui/</loc>');
+    expect(readFileSync(join(root,'sitemap-index.xml'),'utf8')).toContain('/ui/sitemap.xml');
+    expect(existsSync(join(root,'sitemap-0.xml'))).toBe(false);
+    expect(prepareUi(root).indexable).toEqual(['/components/button/']); // repeat build stays valid
+  } finally {rmSync(root,{recursive:true,force:true});}
 });
 
-it('keeps a single robots meta when cleaning twice', () => {
-  const once = cleanUiPage('<html><head></head><body></body></html>');
-  expect(cleanUiPage(once).match(/name="robots"/g)).toHaveLength(1);
-});
-
-it('refuses a build without an index page', () => {
-  const root = mkdtempSync(join(tmpdir(), 'tekivex-ui-'));
-  try { expect(() => prepareUi(root)).toThrow('no index.html'); }
-  finally { rmSync(root, { recursive: true, force: true }); }
+it('refuses to publish a build with no substantial pages',()=>{
+  const root=mkdtempSync(join(tmpdir(),'tekivex-ui-'));
+  try {
+    writeFileSync(join(root,'index.html'),page(10));
+    expect(()=>prepareUi(root)).toThrow('no substantial pages');
+  } finally {rmSync(root,{recursive:true,force:true});}
 });
