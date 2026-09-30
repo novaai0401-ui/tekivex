@@ -8,7 +8,7 @@ No enterprise tier, no paywall, no per-seat fees.
 ## Products
 
 ### GridStorm
-Headless, framework-agnostic high-performance data grid. Virtual scrolling for 100K+ rows at 60fps, 42 Excel-compatible formula functions, Excel copy/paste, 35+ composable plugins, WCAG 2.1 AA accessibility, React/Vue/Svelte/Angular adapters, <50KB core. MIT-licensed, free for commercial use.
+Headless, framework-agnostic high-performance data grid. Virtual scrolling for large datasets with virtual scrolling, 42 Excel-compatible formula functions, Excel copy/paste, composable plugins, accessibility features targeting WCAG 2.1 AA, React/Vue/Svelte/Angular adapters, Modular core. MIT-licensed, free for commercial use.
 Install: `npm install gridstorm`
 URL: https://www.tekivex.com/product/gridstorm
 
@@ -44,19 +44,19 @@ URL: https://www.tekivex.com/product/dataflow
 - How to Split a PDF and Extract Pages in Your Browser — Extract a single page, a range, or any combination of pages from a PDF for free and privately. Learn the page-range syntax and how to avoid the mistakes that trip people up. (https://www.tekivex.com/use-cases/how-to-split-pdf-extract-pages)
 - How to Convert JPG or PNG Images to a PDF, Privately — Turn photos and scans into a single PDF without uploading them anywhere — ideal for IDs, receipts, and documents. Covers image order, page sizing, and unsupported formats like HEIC. (https://www.tekivex.com/use-cases/how-to-convert-jpg-to-pdf)
 - How to Compress a PDF to a Smaller File Size (Free, No Upload) — Shrink a large PDF so it fits an email or upload limit — in your browser, with an honest look at what compression can and cannot do, and why scanned PDFs shrink most. (https://www.tekivex.com/use-cases/how-to-compress-pdf)
-- How to Make a Chart from a CSV File (and Share It Privately) — Turn a spreadsheet export into a clean bar, line, area, or donut chart in seconds, download it as SVG or PNG, and share a link whose data never touches a server. (https://www.tekivex.com/use-cases/how-to-make-chart-from-csv)
+- How to Make a Chart from a CSV File and Share It Safely — Turn a spreadsheet export into a clean bar, line, area, or donut chart in seconds, download it as SVG or PNG, and understand what a data-bearing share link exposes. (https://www.tekivex.com/use-cases/how-to-make-chart-from-csv)
 - Why In-Browser Tools Keep Your Files Private (No Upload, Explained) — Most online PDF and file tools upload your document to their servers. Here is what "runs in your browser" actually means, why it is more private, and how to tell the difference. (https://www.tekivex.com/use-cases/why-browser-tools-keep-files-private)
 - How to Convert a PDF to JPG Images, Privately — A step-by-step guide to turning each page of a PDF into a JPG or PNG image entirely in your browser — no upload, no watermark. Covers when to pick JPG vs PNG and common pitfalls. (https://www.tekivex.com/use-cases/how-to-convert-pdf-to-jpg)
 - How to Rotate a PDF and Fix Sideways Pages (Free, No Upload) — A step-by-step guide to rotating PDF pages 90°, 180° or 270° and saving the corrected file in your browser — no quality loss, no upload. Includes how to rotate a single page. (https://www.tekivex.com/use-cases/how-to-rotate-pdf)
 - How to Delete Pages from a PDF (Free, in Your Browser) — A step-by-step guide to removing unwanted pages from a PDF — single pages, ranges, or a mix — and downloading the trimmed file, all in your browser with no upload and no watermark. (https://www.tekivex.com/use-cases/how-to-delete-pages-from-pdf)
 
 ### GridStorm
-- How GridStorm Renders 100K Rows at 60fps — A deep dive into GridStorm’s virtual scrolling engine: windowing, row recycling, and the render budget that keeps 100,000+ rows smooth at 60fps. (https://www.tekivex.com/use-cases/gridstorm-virtual-scrolling-60fps)
+- Virtual Scrolling: How to Measure GridStorm Performance — Understand viewport rendering, calculate a frame budget, and measure your GridStorm workload without assuming a universal frame rate. (https://www.tekivex.com/use-cases/gridstorm-virtual-scrolling-60fps)
 - GridStorm vs AG Grid: Feature Comparison and Migration Guide — A practical, honest comparison of GridStorm and AG Grid — licensing, bundle size, plugins, accessibility — plus a step-by-step migration path. (https://www.tekivex.com/use-cases/gridstorm-vs-ag-grid-migration)
 - Building a Real-Time Financial Trading Grid with GridStorm — How to build a high-frequency trading blotter with GridStorm: streaming cell updates, flash highlighting, conditional formatting, and frozen columns. (https://www.tekivex.com/use-cases/gridstorm-financial-trading-grid)
-- Inside GridStorm’s 35-Plugin Architecture — GridStorm ships a headless core and 35 composable plugins. Here is how the plugin system works and how to build your own. (https://www.tekivex.com/use-cases/gridstorm-plugin-architecture)
+- Inside GridStorm’s 35-Plugin Architecture — GridStorm ships a headless core and composable plugins. Here is how the plugin system works and how to build your own. (https://www.tekivex.com/use-cases/gridstorm-plugin-architecture)
 - Excel-Compatible Formulas in GridStorm: 42 Functions in the Browser — GridStorm implements 42 Excel-compatible formula functions with a real dependency graph and copy/paste type coercion. Here is how the formula engine works. (https://www.tekivex.com/use-cases/gridstorm-excel-formulas)
-- Making Data Grids WCAG-Accessible with GridStorm — Data grids are notoriously hard to make accessible. GridStorm’s a11y plugin delivers WCAG 2.1 AA — keyboard nav, ARIA grid roles, and screen-reader support. (https://www.tekivex.com/use-cases/gridstorm-accessible-data-grid)
+- Making Data Grids WCAG-Accessible with GridStorm — Data grids are notoriously hard to make accessible. GridStorm’s a11y plugin targets WCAG 2.1 AA — keyboard nav, ARIA grid roles, and screen-reader support. (https://www.tekivex.com/use-cases/gridstorm-accessible-data-grid)
 
 ### Quantum Vault
 - Post-Quantum Tokens Explained: ML-DSA-87 (Dilithium) in Quantum Vault — What post-quantum tokens are, why Q-Day threatens today’s cryptography, and how Quantum Vault uses NIST-standardised CRYSTALS-Dilithium (ML-DSA-87 / FIPS 204) signatures to stay safe. (https://www.tekivex.com/use-cases/quantum-vault-post-quantum-tokens-explained)
@@ -66,7 +66,7 @@ URL: https://www.tekivex.com/product/dataflow
 ### Tekivex UI
 - Tekivex UI vs MUI vs Chakra: An Honest Comparison — How Tekivex UI compares with Material UI and Chakra on bundle size, theming, accessibility, and headless flexibility — with guidance on when to pick which. (https://www.tekivex.com/use-cases/tekivex-ui-vs-mui-chakra)
 - Tree-Shakeable, Headless Components: The Tekivex UI Design System — Tekivex UI ships headless primitives with zero runtime dependencies and tree-shakeable ESM. Here is the design-system philosophy and how to compose it. (https://www.tekivex.com/use-cases/tekivex-ui-headless-design-system)
-- Building Accessible Forms with Tekivex UI Primitives — Accessible forms are hard: labels, error states, ARIA, focus management. Tekivex UI’s form toolkit handles them so you ship WCAG-compliant forms faster. (https://www.tekivex.com/use-cases/tekivex-ui-accessible-forms)
+- Building Accessible Forms with Tekivex UI Primitives — Accessible forms are hard: labels, error states, ARIA, focus management. Tekivex UI’s form toolkit handles them so you build forms with explicit labels, errors and keyboard behavior. (https://www.tekivex.com/use-cases/tekivex-ui-accessible-forms)
 
 ### Tekivex Platform
 - The Tekivex Stack: How the Products Fit Together — GridStorm, Tekivex UI, and Quantum Vault are designed to compose. Here is how the pieces fit into one application stack. (https://www.tekivex.com/use-cases/tekivex-stack-how-products-fit)
