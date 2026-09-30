@@ -64,12 +64,23 @@ export function prepareGridstorm(target) {
   }
   mkdirSync(join(target, 'docs'), {recursive:true});
   writeFileSync(join(target, 'docs/index.html'), page('Documentation', '/docs/', `<h1>GridStorm documentation</h1><p>Installation, API reference, framework adapters and plugin guides. These pages are published from the same documentation used by the interactive hub.</p><ul>${nav}</ul>`));
+  // The hub and the example apps (playground, spreadsheet, financial-trading…)
+  // are JavaScript application shells with almost no initial HTML and no
+  // heading. They stay reachable and linkable, but are marked noindex so only
+  // the readable documentation represents GridStorm in search results.
+  const NOINDEX = '<meta name="robots" content="noindex, follow" />';
+  const ROBOTS_META = /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/i;
+  let shells = 0;
   function walk(directory) {
     for (const entry of readdirSync(directory, {withFileTypes:true})) {
       const file = join(directory, entry.name);
       if (entry.isDirectory()) walk(file);
       else if (entry.name.endsWith('.html')) {
-        const html = readFileSync(file, 'utf8').replace(/https:\/\/(?:gridstorm|griddata)\.tekivex\.com/g, BASE);
+        let html = readFileSync(file, 'utf8').replace(/https:\/\/(?:gridstorm|griddata)\.tekivex\.com/g, BASE);
+        if (!file.startsWith(join(target, 'docs') + '/')) {
+          html = ROBOTS_META.test(html) ? html.replace(ROBOTS_META, NOINDEX) : html.replace(/<head[^>]*>/i, (m) => `${m}${NOINDEX}`);
+          shells++;
+        }
         writeFileSync(file, html);
       }
     }
@@ -83,15 +94,12 @@ export function prepareGridstorm(target) {
   if (!hubHtml.includes('src="/gridstorm/documentation-route.js"')) hubHtml = hubHtml.replace('<head>', '<head><script src="/gridstorm/documentation-route.js"></script>');
   writeFileSync(hub, hubHtml);
   const sitemap = join(target, 'sitemap.xml');
-  const prior = existsSync(sitemap) ? readFileSync(sitemap, 'utf8') : '';
-  const urls = new Set([BASE+'/', BASE+'/docs/', ...pages.map(p => `${BASE}/docs/${p.slug}/`)]);
-  for (const match of prior.matchAll(/<loc>(.*?)<\/loc>/g)) {
-    const url = new URL(match[1]);
-    if (!url.hash && url.origin === 'https://www.tekivex.com' && url.pathname.startsWith('/gridstorm/')) urls.add(url.href);
-  }
+  // Only readable documentation is listed; the noindex application shells the
+  // upstream sitemap advertised (hub, demos, fragment routes) are dropped.
+  const urls = new Set([BASE+'/docs/', ...pages.map(p => `${BASE}/docs/${p.slug}/`)]);
   writeFileSync(sitemap, `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[...urls].map(u=>`<url><loc>${escape(u)}</loc></url>`).join('')}</urlset>`);
   // The upstream index points to an Astro sitemap that is absent in this build.
   writeFileSync(join(target, 'sitemap-index.xml'), `<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>${BASE}/sitemap.xml</loc></sitemap></sitemapindex>`);
-  console.log(`Prepared ${pages.length} Gridstorm documentation pages and canonical URLs.`);
+  console.log(`Prepared ${pages.length} Gridstorm documentation pages and canonical URLs; ${shells} application shells marked noindex.`);
   return pages.length;
 }

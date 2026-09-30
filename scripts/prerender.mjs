@@ -154,6 +154,10 @@ async function loadChangelog() {
 }
 
 const CHANGELOG = await loadChangelog();
+// Sitemap <lastmod> for site-owned pages is the date of the newest changelog
+// entry, i.e. the last time the site's content actually changed — never the
+// build date, which would re-stamp every URL on every deploy.
+const SITE_LASTMOD = CHANGELOG[0]?.date ?? TODAY;
 
 function changelogBlock() {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -909,6 +913,9 @@ try { rmSync(TMP_DIR, { recursive: true, force: true }); } catch {}
 }
 
 // ─── Sitemap (real URLs, hreflang, image extension) ──────────────────────
+// The vendored /ui documentation is deliberately absent: its pages are thin
+// app shells marked noindex by scripts/prepare-ui.mjs until upstream
+// prerenders full documentation.
 const sitemapXml =
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n` +
@@ -919,7 +926,7 @@ const sitemapXml =
       const url = `${ORIGIN}${r.path}`;
       const priority = r.path === '/' ? '1.0' : r.path.startsWith('/product/') || r.path.startsWith('/tools') ? '0.85' : '0.7';
       const changefreq = r.path === '/' || r.path === '/products' ? 'weekly' : r.path === '/privacy-policy' ? 'yearly' : 'monthly';
-      return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
+      return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${SITE_LASTMOD}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
     })
     .join('\n') +
   '\n' +
@@ -929,7 +936,6 @@ const sitemapXml =
       return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${r.lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
     })
     .join('\n') +
-  `\n  <url>\n    <loc>https://www.tekivex.com/ui/</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.95</priority>\n  </url>` +
   `\n</urlset>\n`;
 
 // ─── RSS feed for the use-cases hub (freshness signal) ───────────────────
@@ -954,8 +960,7 @@ const rssXml =
 const sitemapIndex =
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
   `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  `  <sitemap>\n    <loc>${ORIGIN}/sitemap.xml</loc>\n    <lastmod>${TODAY}</lastmod>\n  </sitemap>\n` +
-  `  <sitemap>\n    <loc>https://www.tekivex.com/ui/sitemap.xml</loc>\n    <lastmod>${TODAY}</lastmod>\n  </sitemap>\n` +
+  `  <sitemap>\n    <loc>${ORIGIN}/sitemap.xml</loc>\n    <lastmod>${SITE_LASTMOD}</lastmod>\n  </sitemap>\n` +
   `</sitemapindex>\n`;
 
 const humans = [
@@ -973,7 +978,7 @@ const humans = [
   '  DataFlow         — hosted real-time streaming dashboard (www.tekivex.com/dataflow)',
   '',
   '/* SITE */',
-  `  Last update: ${TODAY}`,
+  `  Last update: ${SITE_LASTMOD}`,
   '  Standards: HTML5, CSS3, ES2022, WCAG 2.1 AA',
   '  License: MIT',
   '',

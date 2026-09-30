@@ -12,8 +12,9 @@ for (const loc of sitemap.window.document.querySelectorAll('loc')) {
   assert.ok(url.pathname.startsWith('/gridstorm/'));
   const file = join(root, url.pathname.slice('/gridstorm/'.length), 'index.html');
   assert.ok(existsSync(file), `Missing sitemap file: ${file}`);
-  if (!url.pathname.startsWith('/gridstorm/docs/')) continue;
+  assert.ok(url.pathname.startsWith('/gridstorm/docs/'), `Application shell listed in sitemap: ${url}`);
   const document = new JSDOM(readFileSync(file, 'utf8')).window.document;
+  assert.ok(!document.querySelector('meta[name="robots"]')?.content.includes('noindex'), `Noindex documentation page: ${url}`);
   assert.equal(document.querySelector('link[rel=canonical]')?.href, url.href);
   assert.ok(document.querySelector('main h1'), `Missing document heading: ${url}`);
   assert.ok(document.querySelector('main')?.textContent.length > 100);
@@ -32,6 +33,13 @@ for (const loc of sitemap.window.document.querySelectorAll('loc')) {
   docs++;
 }
 assert.ok(docs > 1, 'Missing documentation pages');
+for (const shell of ['index.html', 'playground/index.html', 'spreadsheet/index.html', 'financial-trading/index.html', 'feature-showcase/index.html', 'cookbook/index.html', 'analytics-explorer/index.html', 'pdf-viewer/index.html', 'react-demo/index.html']) {
+  const file = join(root, shell);
+  if (!existsSync(file)) continue;
+  const document = new JSDOM(readFileSync(file, 'utf8')).window.document;
+  assert.ok(document.querySelector('meta[name="robots"]')?.content.includes('noindex'), `Application shell is indexable: ${shell}`);
+  assert.ok(!document.querySelector('script[src*="adsbygoogle"], ins.adsbygoogle'), `Advertising on application shell: ${shell}`);
+}
 const hub = new JSDOM(readFileSync(join(root, 'index.html'), 'utf8')).window.document;
 assert.equal(hub.querySelector('link[rel=canonical]')?.href, 'https://www.tekivex.com/gridstorm/');
 assert.ok(hub.querySelector('script[src="/gridstorm/documentation-route.js"]'));
