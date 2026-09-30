@@ -16,7 +16,13 @@ it('publishes Markdown without executing imported code and preserves doc links',
     const html=readFileSync(join(root,'docs/getting-started/introduction/index.html'),'utf8');
     expect(html).toContain('<h1>Introduction</h1>');
     expect(html).toContain('href="/gridstorm/docs/getting-started/introduction/"');
-    expect(readFileSync(join(root,'sitemap.xml'),'utf8')).not.toContain('#');
+    const sitemap=readFileSync(join(root,'sitemap.xml'),'utf8');
+    expect(sitemap).not.toContain('#');
+    expect(sitemap).toContain('/gridstorm/docs/getting-started/introduction/');
+    expect(sitemap).not.toContain('<loc>https://www.tekivex.com/gridstorm/</loc>'); // app shell is not content
+    expect(readFileSync(join(root,'index.html'),'utf8')).toContain('content="noindex, follow"');
+    expect(html).not.toContain('noindex');
+    expect(readFileSync(join(root,'docs/index.html'),'utf8')).toContain('A useful introduction.');
     expect(readFileSync(join(root,'sitemap-index.xml'),'utf8')).not.toContain('/docs/sitemap');
     expect(prepareGridstorm(root)).toBe(1); // repeat build stays valid
   } finally {rmSync(root,{recursive:true,force:true});}

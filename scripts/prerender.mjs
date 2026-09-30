@@ -909,6 +909,14 @@ try { rmSync(TMP_DIR, { recursive: true, force: true }); } catch {}
 }
 
 // ─── Sitemap (real URLs, hreflang, image extension) ──────────────────────
+// Static routes are stamped with the most recent editorial change (newest
+// article revision or changelog entry), not the build date: every deploy used
+// to rewrite every <lastmod> to "today", which made the site look churned
+// rather than maintained.
+const LATEST_CHANGE = [
+  ...articleRoutes.map((r) => r.lastmod),
+  ...CHANGELOG.map((e) => e.date),
+].sort().at(-1) || TODAY;
 const sitemapXml =
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n` +
@@ -919,7 +927,7 @@ const sitemapXml =
       const url = `${ORIGIN}${r.path}`;
       const priority = r.path === '/' ? '1.0' : r.path.startsWith('/product/') || r.path.startsWith('/tools') ? '0.85' : '0.7';
       const changefreq = r.path === '/' || r.path === '/products' ? 'weekly' : r.path === '/privacy-policy' ? 'yearly' : 'monthly';
-      return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
+      return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${LATEST_CHANGE}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
     })
     .join('\n') +
   '\n' +
@@ -929,7 +937,6 @@ const sitemapXml =
       return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${r.lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
     })
     .join('\n') +
-  `\n  <url>\n    <loc>https://www.tekivex.com/ui/</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.95</priority>\n  </url>` +
   `\n</urlset>\n`;
 
 // ─── RSS feed for the use-cases hub (freshness signal) ───────────────────
@@ -954,9 +961,11 @@ const rssXml =
 const sitemapIndex =
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
   `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  `  <sitemap>\n    <loc>${ORIGIN}/sitemap.xml</loc>\n    <lastmod>${TODAY}</lastmod>\n  </sitemap>\n` +
-  `  <sitemap>\n    <loc>https://www.tekivex.com/ui/sitemap.xml</loc>\n    <lastmod>${TODAY}</lastmod>\n  </sitemap>\n` +
+  `  <sitemap>\n    <loc>${ORIGIN}/sitemap.xml</loc>\n    <lastmod>${LATEST_CHANGE}</lastmod>\n  </sitemap>\n` +
   `</sitemapindex>\n`;
+// /ui/sitemap.xml and /gridstorm/sitemap.xml are regenerated from the vendored
+// builds (scripts/prepare-ui.mjs, scripts/prepare-gridstorm.mjs) and are
+// listed in robots.txt; only substantial documentation pages appear in them.
 
 const humans = [
   '/* TEAM */',
