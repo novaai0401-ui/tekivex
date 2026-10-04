@@ -21,9 +21,19 @@ the second rejection.
 
 | Path | Step | Effect |
 |---|---|---|
-| `/ui/*` | `scripts/prepare-ui.mjs` | Removes every AdSense loader and `<ins class="adsbygoogle">`; marks pages with fewer than 200 words of initial HTML `noindex, follow`; regenerates `/ui/sitemap.xml` from the substantial pages only (`/ui/components/*`, `/ui/recipes/*`, `/ui/blueprints/*`, …). |
-| `/gridstorm/*` | `scripts/prepare-gridstorm.mjs` | Marks the hub, playground and example-app shells `noindex, follow`; `/gridstorm/sitemap.xml` lists documentation pages only. |
+| `/ui/*` | `scripts/prepare-ui.mjs` | Removes every AdSense loader and `<ins class="adsbygoogle">`; marks pages with fewer than 200 words of initial HTML `noindex, follow`; regenerates `/ui/sitemap.xml` from the substantial pages only; re-prefixes the upstream build's base-less links (`/components/x/` → `/ui/components/x/`), follows renamed pages, unlinks fake demo URLs; disambiguates duplicate titles. |
+| `/gridstorm/*` | `scripts/prepare-gridstorm.mjs` | Marks the hub, playground and example-app shells `noindex, follow`; `/gridstorm/sitemap.xml` lists documentation pages only; every doc page gets a meta description, `TechArticle` and `BreadcrumbList` data, and a unique title. |
 | `/analytics/*`, `/dataflow/*` | — | Contain no ad code upstream; left as-is. |
+
+Each app is vendored from the exact commit pinned in `apps.lock.json`, never
+from the moving tip of its `build` branch, and `dist/deploy-manifest.json`
+records which commits are live. To take an upstream change:
+`npm run pins:update`, review, `npm run build` (which ends with
+`scripts/audit-dist.mjs`), then commit the new pins.
+
+`scripts/audit-dist.mjs` fails the build on any internal broken link, a
+sitemap page that is thin, noindexed, untitled, undescribed or uncanonical,
+a duplicate title, or ad markup outside `/use-cases/*` and `/product/*`.
 
 So even if an upstream app repo re-adds ad code, the deployed `www.tekivex.com`
 tree will not serve it. Please still remove it at the source so the standalone

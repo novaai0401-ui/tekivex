@@ -44,3 +44,39 @@ it('refuses to publish a build with no substantial pages',()=>{
     expect(()=>prepareUi(root)).toThrow('no substantial pages');
   } finally {rmSync(root,{recursive:true,force:true});}
 });
+
+it('re-prefixes base-less links, follows renames and unlinks fake demo URLs',()=>{
+  const dist=mkdtempSync(join(tmpdir(),'tekivex-ui-links-'));
+  const root=join(dist,'ui');
+  try {
+    for (const d of ['components/button','components/theme-builder','playground']) mkdirSync(join(root,d),{recursive:true});
+    writeFileSync(join(dist,'index.html'),'<html></html>');
+    writeFileSync(join(root,'components/theme-builder/index.html'),page(MIN_WORDS+10));
+    writeFileSync(join(root,'playground/index.html'),page(MIN_WORDS+10));
+    writeFileSync(join(root,'components/button/index.html'),page(MIN_WORDS+10,
+      '<a href="/components/theme-builder/#api">a</a><a href="/playground/?c=button">b</a><a href="/ui/theme-builder/">c</a>'+
+      '<a href="/">home</a><a href="/2026/q2">demo</a><a href="https://github.com/x">ext</a><a href="#top">hash</a>'));
+    const {links}=prepareUi(root);
+    expect(links).toEqual({prefixed:2,renamed:1,neutralised:1});
+    const html=readFileSync(join(root,'components/button/index.html'),'utf8');
+    expect(html).toContain('href="/ui/components/theme-builder/#api"');
+    expect(html).toContain('href="/ui/playground/?c=button"');
+    expect(html).toContain('href="/ui/components/theme-builder/">c');
+    expect(html).toContain('href="/">home');
+    expect(html).toContain('<a data-unlinked-href="/2026/q2">demo</a>');
+    expect(html).toContain('href="https://github.com/x"');
+  } finally {rmSync(dist,{recursive:true,force:true});}
+});
+
+it('gives pages that share a title distinct titles',()=>{
+  const root=mkdtempSync(join(tmpdir(),'tekivex-ui-titles-'));
+  try {
+    for (const d of ['components/toast','components/toast-provider']) {
+      mkdirSync(join(root,d),{recursive:true});
+      writeFileSync(join(root,d,'index.html'),page(MIN_WORDS+10).replace('<head>','<head><title>TkxToast | TekiVex UI</title>'));
+    }
+    expect(prepareUi(root).retitled).toBe(2);
+    expect(readFileSync(join(root,'components/toast-provider/index.html'),'utf8')).toContain('<title>TkxToast — Toast Provider | TekiVex UI</title>');
+    expect(readFileSync(join(root,'components/toast/index.html'),'utf8')).toContain('<title>TkxToast — Toast | TekiVex UI</title>');
+  } finally {rmSync(root,{recursive:true,force:true});}
+});
