@@ -47,13 +47,40 @@ export function prepareGridstorm(target) {
     // page's summary on the documentation index.
     const excerpt = content.split(/\r?\n\s*\r?\n/).map((b) => b.trim())
       .find((b) => b && !/^(#|```|import |<|\||[-*] |\d+\. |:::)/.test(b)) || '';
-    pages.push({ slug, title, content, excerpt: excerpt.replace(/\s+/g, ' ').replace(/[`*_]/g, '').slice(0, 220) });
+    const front = markdown.match(/^description:\s*(.+)$/m)?.[1]?.replace(/^['"]|['"]$/g, '').trim();
+    const summary = excerpt.replace(/\s+/g, ' ').replace(/[`*_]/g, '').replace(/\[([^\]]*)\]\([^)]*\)/g, '$1');
+    pages.push({ slug, title, content, excerpt: summary.slice(0, 220), description: (front || summary).slice(0, 160) });
   }
+  const label = (g) => ({ 'getting-started': 'Getting started', 'core-concepts': 'Core concepts', plugins: 'Plugins', guides: 'Guides', api: 'API reference', frameworks: 'Framework adapters', blog: 'Articles' })[g] || g.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
+  const section = (slug) => (slug.includes('/') ? slug.split('/')[0] : 'general');
+  // Two pages may share a front-matter title (e.g. core-concepts/plugin-system
+  // and plugins/plugin-system); qualify those with their section.
+  const titleCount = new Map();
+  for (const p of pages) titleCount.set(p.title, (titleCount.get(p.title) || 0) + 1);
+  for (const p of pages) if (titleCount.get(p.title) > 1) p.title = `${p.title} (${label(section(p.slug))})`;
   const nav = pages.map(({slug, title, excerpt}) => `<li><a href="/gridstorm/docs/${slug}/">${escape(title)}</a>${excerpt ? ` — ${escape(excerpt)}` : ''}</li>`).join('');
-  function page(title, path, body) {
-    return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)} | GridStorm documentation</title><link rel="canonical" href="${BASE}${path}"><style>body{font:17px/1.65 system-ui,sans-serif;color:#182332;max-width:1000px;margin:auto;padding:24px}a{color:#214fbe}nav{display:flex;gap:24px;flex-wrap:wrap}pre{padding:16px;background:#f0f3f7;overflow:auto}table{display:block;overflow:auto;border-collapse:collapse}td,th{padding:10px;border:1px solid #ccd3df}img{max-width:100%}h1,h2,h3{line-height:1.25}footer{border-top:1px solid #ccd3df;margin-top:40px;padding-top:16px}</style></head><body><nav aria-label="Main"><a href="/">Tekivex</a><a href="/product/gridstorm">GridStorm</a><a href="/gridstorm/docs/">Documentation</a><a href="/gridstorm/playground/">Playground</a></nav><main>${body}</main><footer><a href="/contact">Contact</a> · <a href="/privacy-policy">Privacy</a> · <a href="https://github.com/novaai0401-ui/grid-data">Source repository</a></footer></body></html>`;
+  function page(title, path, body, description, slug) {
+    const url = `${BASE}${path}`;
+    const crumbs = [['Tekivex', 'https://www.tekivex.com/'], ['GridStorm documentation', `${BASE}/docs/`]];
+    if (slug) {
+      if (slug.includes('/')) crumbs.push([label(section(slug)), `${BASE}/docs/#${section(slug)}`]);
+      crumbs.push([title, url]);
+    }
+    const ld = [{
+      '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+      itemListElement: crumbs.map(([name, item], i) => ({ '@type': 'ListItem', position: i + 1, name, item })),
+    }];
+    if (slug) ld.push({
+      '@context': 'https://schema.org', '@type': 'TechArticle', headline: title, description, url,
+      inLanguage: 'en', proficiencyLevel: 'Expert',
+      about: { '@type': 'SoftwareApplication', name: 'GridStorm', applicationCategory: 'DeveloperApplication' },
+      isPartOf: { '@type': 'WebSite', name: 'Tekivex', url: 'https://www.tekivex.com/' },
+      publisher: { '@type': 'Organization', name: 'Tekivex', url: 'https://www.tekivex.com/' },
+    });
+    const json = JSON.stringify(ld).replaceAll('<', '\\u003c');
+    return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)} | GridStorm documentation</title><meta name="description" content="${escape(description)}"><link rel="canonical" href="${url}"><script type="application/ld+json">${json}</script><style>body{font:17px/1.65 system-ui,sans-serif;color:#182332;max-width:1000px;margin:auto;padding:24px}a{color:#214fbe}nav{display:flex;gap:24px;flex-wrap:wrap}pre{padding:16px;background:#f0f3f7;overflow:auto}table{display:block;overflow:auto;border-collapse:collapse}td,th{padding:10px;border:1px solid #ccd3df}img{max-width:100%}h1,h2,h3{line-height:1.25}footer{border-top:1px solid #ccd3df;margin-top:40px;padding-top:16px}</style></head><body><nav aria-label="Main"><a href="/">Tekivex</a><a href="/product/gridstorm">GridStorm</a><a href="/gridstorm/docs/">Documentation</a><a href="/gridstorm/playground/">Playground</a></nav><main>${body}</main><footer><a href="/contact">Contact</a> · <a href="/privacy-policy">Privacy</a> · <a href="https://github.com/novaai0401-ui/grid-data">Source repository</a></footer></body></html>`;
   }
-  for (const {slug, title, content} of pages) {
+  for (const {slug, title, content, description} of pages) {
     const dom = new JSDOM(marked.parse(content));
     if (!dom.window.document.querySelector('h1')) {
       const heading = dom.window.document.createElement('h1');
@@ -69,7 +96,7 @@ export function prepareGridstorm(target) {
     }
     const directory = join(target, 'docs', slug);
     mkdirSync(directory, {recursive:true});
-    writeFileSync(join(directory, 'index.html'), page(title, `/docs/${slug}/`, dom.window.document.body.innerHTML));
+    writeFileSync(join(directory, 'index.html'), page(title, `/docs/${slug}/`, dom.window.document.body.innerHTML, description || `${title} — GridStorm data grid documentation.`, slug));
   }
   mkdirSync(join(target, 'docs'), {recursive:true});
   const sections = new Map();
@@ -78,9 +105,8 @@ export function prepareGridstorm(target) {
     if (!sections.has(group)) sections.set(group, []);
     sections.get(group).push(p);
   }
-  const label = (g) => ({ 'getting-started': 'Getting started', plugins: 'Plugins', guides: 'Guides', api: 'API reference', frameworks: 'Framework adapters' })[g] || g.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
-  const grouped = [...sections].map(([g, items]) => `<h2>${escape(label(g))}</h2><ul>${items.map(({slug, title, excerpt}) => `<li><a href="/gridstorm/docs/${slug}/">${escape(title)}</a>${excerpt ? ` — ${escape(excerpt)}` : ''}</li>`).join('')}</ul>`).join('');
-  writeFileSync(join(target, 'docs/index.html'), page('Documentation', '/docs/', `<h1>GridStorm documentation</h1><p>GridStorm is a headless, framework-agnostic data grid for large datasets: virtual scrolling, Excel-style formulas, composable plugins and accessibility features, with adapters for React, Vue, Angular and Svelte. This index links every published guide and reference page; each is rendered from the same Markdown that powers the interactive hub, so the text here is the canonical, readable version.</p><p>Start with <a href="/gridstorm/docs/getting-started/introduction/">Introduction</a> and <a href="/gridstorm/docs/getting-started/quick-start/">Quick start</a>, then read the plugin system and API reference. The <a href="/gridstorm/playground/">interactive playground</a> and example applications are tools, not documentation, and are intentionally left out of search indexes.</p>${grouped}<h2>Related reading</h2><ul><li><a href="/product/gridstorm">GridStorm product overview</a> — capabilities, limitations and FAQ.</li><li><a href="/use-cases">Engineering guides</a> — virtual scrolling internals, plugin architecture, migration from AG Grid, accessibility and formulas.</li></ul>`));
+  const grouped = [...sections].map(([g, items]) => `<h2 id="${g}">${escape(label(g))}</h2><ul>${items.map(({slug, title, excerpt}) => `<li><a href="/gridstorm/docs/${slug}/">${escape(title)}</a>${excerpt ? ` — ${escape(excerpt)}` : ''}</li>`).join('')}</ul>`).join('');
+  writeFileSync(join(target, 'docs/index.html'), page('Documentation', '/docs/', `<h1>GridStorm documentation</h1><p>GridStorm is a headless, framework-agnostic data grid for large datasets: virtual scrolling, Excel-style formulas, composable plugins and accessibility features, with adapters for React, Vue, Angular and Svelte. This index links every published guide and reference page; each is rendered from the same Markdown that powers the interactive hub, so the text here is the canonical, readable version.</p><p>Start with <a href="/gridstorm/docs/getting-started/introduction/">Introduction</a> and <a href="/gridstorm/docs/getting-started/quick-start/">Quick start</a>, then read the plugin system and API reference. The <a href="/gridstorm/playground/">interactive playground</a> and example applications are tools, not documentation, and are intentionally left out of search indexes.</p>${grouped}<h2>Related reading</h2><ul><li><a href="/product/gridstorm">GridStorm product overview</a> — capabilities, limitations and FAQ.</li><li><a href="/use-cases">Engineering guides</a> — virtual scrolling internals, plugin architecture, migration from AG Grid, accessibility and formulas.</li></ul>`, 'GridStorm data grid documentation: installation, core concepts, every plugin, framework adapters for React, Vue, Angular and Svelte, and the full API reference.'));
   function walk(directory) {
     for (const entry of readdirSync(directory, {withFileTypes:true})) {
       const file = join(directory, entry.name);

@@ -23,7 +23,7 @@
 // on offline. Override either way with FETCH_APPS_STRICT=1|0.
 // ─────────────────────────────────────────────────────────────────────────────
 import { execSync } from 'node:child_process';
-import { cpSync, existsSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { prepareGridstorm } from './prepare-gridstorm.mjs';
@@ -50,16 +50,24 @@ const AUTH = TOKEN
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-/** Clone with retries; resolves to null on success or the last git error text. */
-async function cloneBuildBranch(repo, dest) {
+/**
+ * Fetch one app with retries; resolves to null on success or the last git
+ * error text. With a commit, fetches exactly that commit (the reviewed pin);
+ * without one, the tip of the `build` branch (APPS_FOLLOW_BRANCH=1 previews).
+ */
+async function fetchApp(repo, dest, commit) {
   let lastErr = '';
   for (let attempt = 1; attempt <= ATTEMPTS; attempt++) {
     rmSync(dest, { recursive: true, force: true });
     try {
-      execSync(
-        `git ${AUTH} clone --quiet --depth 1 --branch build --single-branch "${repo}" "${dest}"`,
-        { stdio: ['ignore', 'pipe', 'pipe'], env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } },
-      );
+      const opts = { stdio: ['ignore', 'pipe', 'pipe'], env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } };
+      if (commit) {
+        execSync(`git init --quiet "${dest}"`, opts);
+        execSync(`git ${AUTH} -C "${dest}" fetch --quiet --depth 1 "${repo}" ${commit}`, opts);
+        execSync(`git -C "${dest}" checkout --quiet FETCH_HEAD`, opts);
+      } else {
+        execSync(`git ${AUTH} clone --quiet --depth 1 --branch build --single-branch "${repo}" "${dest}"`, opts);
+      }
       return null;
     } catch (e) {
       lastErr = String(e?.stderr ?? e?.message ?? e).trim();
@@ -77,12 +85,17 @@ async function cloneBuildBranch(repo, dest) {
   return lastErr || 'unknown git error';
 }
 
-const APPS = [
-  { path: 'ui',        repo: 'https://github.com/novaai0401-ui/tekivex-ui.git' },
-  { path: 'gridstorm', repo: 'https://github.com/novaai0401-ui/grid-data.git' },
-  { path: 'analytics', repo: 'https://github.com/novaai0401-ui/analytics-builder.git' },
-  { path: 'dataflow',  repo: 'https://github.com/novaai0401-ui/dataflow.git' },
-];
+// Each app is pinned to a reviewed commit in apps.lock.json, so a push to an
+// app's build branch never changes the live site on its own.
+const LOCK = JSON.parse(readFileSync(join(ROOT, 'apps.lock.json'), 'utf8'));
+const FOLLOW = process.env.APPS_FOLLOW_BRANCH === '1';
+const APPS = Object.entries(LOCK)
+  .filter(([path]) => !path.startsWith('_'))
+  .map(([path, { repo, commit }]) => {
+    if (!FOLLOW && !/^[0-9a-f]{40}$/.test(commit || '')) throw new Error(`apps.lock.json: /${path} needs a full 40-character commit`);
+    return { path, repo, commit: FOLLOW ? null : commit };
+  });
+if (FOLLOW) console.warn('⚠ APPS_FOLLOW_BRANCH=1 — vendoring unreviewed build-branch tips, not the pinned commits');
 
 if (!existsSync(DIST)) {
   console.error('fetch-apps: dist/ not found — run vite build + prerender first');
@@ -91,15 +104,20 @@ if (!existsSync(DIST)) {
 
 let ok = 0;
 const failed = [];
+// Deploy record: which commit of this site and of every app is live.
+const siteCommit = process.env.RENDER_GIT_COMMIT || (() => { try { return execSync('git rev-parse HEAD', { cwd: ROOT }).toString().trim(); } catch { return null; } })();
+const manifest = { builtAt: new Date().toISOString(), site: { commit: siteCommit }, apps: {} };
 for (const app of APPS) {
   const clone = join(TMP, app.path);
   const target = join(DIST, app.path);
-  const err = await cloneBuildBranch(app.repo, clone);
+  const ref = app.commit || 'build';
+  const err = await fetchApp(app.repo, clone, app.commit);
   if (err) {
-    console.error(`✗ /${app.path}: could not fetch ${app.repo}#build after ${ATTEMPTS} attempts\n    ${err.replace(/\n/g, '\n    ')}`);
+    console.error(`✗ /${app.path}: could not fetch ${app.repo}@${ref} after ${ATTEMPTS} attempts\n    ${err.replace(/\n/g, '\n    ')}`);
     failed.push(app.path);
     continue;
   }
+  const commit = execSync(`git -C "${clone}" rev-parse HEAD`).toString().trim();
   rmSync(join(clone, '.git'), { recursive: true, force: true });
   rmSync(target, { recursive: true, force: true });
   mkdirSync(target, { recursive: true });
@@ -110,12 +128,14 @@ for (const app of APPS) {
     failed.push(app.path);
     continue;
   }
-  console.log(`✓ /${app.path}: vendored ${entries} top-level entries from ${app.repo}#build`);
+  console.log(`✓ /${app.path}: vendored ${entries} top-level entries from ${app.repo}@${commit.slice(0, 12)}`);
+  manifest.apps[app.path] = { repo: app.repo, commit, pinned: Boolean(app.commit) };
   if (app.path === 'gridstorm') prepareGridstorm(target);
   if (app.path === 'ui') prepareUi(target);
   ok++;
 }
 rmSync(TMP, { recursive: true, force: true });
+writeFileSync(join(DIST, 'deploy-manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
 
 if (failed.length) {
   const msg = `apps vendored — ${ok} ok, ${failed.length} FAILED (${failed.map((p) => '/' + p).join(', ')})`;
