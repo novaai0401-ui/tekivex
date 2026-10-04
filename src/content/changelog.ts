@@ -21,6 +21,58 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: '2026-09-30',
+    title: 'Documentation-first indexing',
+    items: [
+      { tag: 'Improved', text: 'The Tekivex UI sitemap now lists its 151 full documentation pages (components, recipes, blueprints) instead of 27 short landing screens, which are no longer indexed.' },
+      { tag: 'Improved', text: 'The GridStorm documentation index now summarises every guide and reference page, grouped by section. The interactive playground and example apps stay available but are no longer indexed as articles.' },
+      { tag: 'Fixed', text: 'Removed advertising from the Tekivex UI documentation screens. Ads now appear only on long-form guides.' },
+    ],
+  },
+  {
+    date: '2026-09-15',
+    title: 'Measured examples and readable GridStorm docs',
+    items: [
+      { tag: 'New', text: 'Published the GridStorm documentation as plain, readable pages under /gridstorm/docs, with working links between guides.' },
+      { tag: 'Improved', text: 'The Compress PDF guide now includes a downloadable sample PDF and its measured results at each compression level.' },
+      { tag: 'Improved', text: 'Rewrote the GridStorm virtual-scrolling and AG Grid comparison guides with dated, sourced evaluation criteria.' },
+      { tag: 'Fixed', text: 'Charts shared from CSV to Chart no longer send their data to analytics in the page URL.' },
+    ],
+  },
+  {
+    date: '2026-09-06',
+    title: 'One domain for every product',
+    items: [
+      { tag: 'Improved', text: 'Tekivex UI, GridStorm, Analytics Studio and DataFlow are now served from www.tekivex.com under their own paths instead of separate subdomains.' },
+      { tag: 'New', text: 'Added an editorial policy page, an expanded FAQ and a categorised contact page.' },
+    ],
+  },
+  {
+    date: '2026-08-31',
+    title: 'Accessibility and crawlable pages',
+    items: [
+      { tag: 'New', text: 'Published an accessibility statement and added a skip link, a single main landmark and visible focus styles.' },
+      { tag: 'Improved', text: 'About, FAQ, legal and contact pages are now fully server-rendered, so they read correctly without JavaScript.' },
+      { tag: 'Fixed', text: 'Corrected the cookie banner role and reading order for screen readers, and removed a duplicate page heading.' },
+    ],
+  },
+  {
+    date: '2026-08-11',
+    title: 'Author profiles and a readable theme',
+    items: [
+      { tag: 'New', text: 'Added author profile pages linking each guide to the person who wrote it.' },
+      { tag: 'Fixed', text: 'Every page is now readable in both light and dark themes.' },
+      { tag: 'Improved', text: 'Expanded the PDF and CSV guides with more worked detail.' },
+    ],
+  },
+  {
+    date: '2026-07-22',
+    title: 'Three more PDF tools',
+    items: [
+      { tag: 'New', text: 'Added PDF to JPG, Rotate PDF and Remove Pages tools, each with a step-by-step guide. Files stay in your browser.' },
+    ],
+  },
+  {
     date: '2026-07-02',
     title: 'Free in-browser tools',
     items: [
