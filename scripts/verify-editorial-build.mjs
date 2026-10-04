@@ -10,11 +10,13 @@ const dist = join(root, 'dist');
 const sitemap = readFileSync(join(dist, 'sitemap.xml'), 'utf8');
 const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
 assert.equal(new Set(urls).size, urls.length, 'Duplicate sitemap URLs');
+assert.ok(!urls.some((u) => u.includes('/ui/')), 'Thin /ui shells must not be in the sitemap');
+const index = readFileSync(join(dist, 'sitemap-index.xml'), 'utf8');
+assert.ok(!index.includes('/ui/'), 'Sitemap index must not reference the /ui sitemap');
+
 let articles = 0;
 for (const url of urls) {
   const path = new URL(url).pathname;
-  // /ui is built in a separate repository; this check covers this site's pages.
-  if (path === '/ui/') continue;
   const file = join(dist, path.slice(1), 'index.html');
   assert.ok(existsSync(file), `Missing prerendered page: ${path}`);
   const document = new JSDOM(readFileSync(file, 'utf8')).window.document;
