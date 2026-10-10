@@ -31,4 +31,11 @@ export interface Article {
   authorId: string;
   /** Markdown file under public/use-cases/content/<contentFile> */
   contentFile: string;
+  /**
+   * Whether this article may carry an ad unit. Off unless an editor turns it
+   * on after the article has passed review: original, firsthand material that
+   * serves readers rather than promoting a Tekivex product (see
+   * docs/EDITORIAL-REVIEW.md). Product pages and documentation never carry ads.
+   */
+  ads?: boolean;
 }

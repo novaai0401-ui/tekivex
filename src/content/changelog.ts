@@ -21,6 +21,14 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: '2026-10-10',
+    title: 'Sourced comparisons and fewer ads',
+    items: [
+      { tag: 'Fixed', text: 'Rewrote the GridStorm and AG Grid comparison table so every statement about AG Grid links to AG Grid’s own documentation, and removed unmeasured size and accessibility claims.' },
+      { tag: 'Improved', text: 'Ads now appear only on reader guides an editor has approved. Product pages, tools and documentation carry none.' },
+    ],
+  },
+  {
     date: '2026-09-30',
     title: 'Documentation-first indexing',
     items: [

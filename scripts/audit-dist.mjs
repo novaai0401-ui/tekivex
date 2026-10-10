@@ -8,7 +8,7 @@
 //   • two sitemap pages sharing a <title>;
 //   • a same-site link, on any sitemap page, to a path that is neither a
 //     file, a configured redirect, nor an app route served by a rewrite;
-//   • AdSense loader or ad-unit markup in any HTML file outside ADS_ALLOWED.
+//   • AdSense loader or ad-unit markup in any HTML file outside /use-cases/.
 //
 // AdSense rejected the site for low-value content; each check above is a
 // regression of a fix made for that review. Usage: node scripts/audit-dist.mjs [distDir]
@@ -18,8 +18,12 @@ import { JSDOM, VirtualConsole } from 'jsdom';
 
 export const ORIGIN = 'https://www.tekivex.com';
 export const MIN_WORDS = 250;
-/** Path prefixes whose prerendered HTML may carry ad markup (long-form editorial). */
-export const ADS_ALLOWED = ['/use-cases/', '/product/'];
+/**
+ * Path prefixes whose prerendered HTML may carry ad markup: editorial articles
+ * only. Product pages promote Tekivex's own software and documentation is
+ * reference material; neither is publisher content to monetise.
+ */
+export const ADS_ALLOWED = ['/use-cases/'];
 const quiet = new VirtualConsole();
 
 function* htmlFiles(dir) {

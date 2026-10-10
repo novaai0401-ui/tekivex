@@ -31,3 +31,12 @@ describe('article availability', () => {
     expect(container.querySelector('.adsbygoogle')).toBeNull();
   });
 });
+
+describe('ad placement is an editorial decision', () => {
+  it('renders no ad unit on an article that has not been approved for ads', () => {
+    const article = ARTICLES.find((a) => a.ads !== true)!;
+    const { container } = render(<ArticlePage slug={article.slug} />);
+    expect(container.querySelector('.uc-article-body h2')).toBeTruthy();
+    expect(container.querySelector('.ad-slot')).toBeNull();
+  });
+});
