@@ -21,6 +21,17 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: '2026-10-11',
+    title: 'Real data and checked limits in the last three guides',
+    items: [
+      { tag: 'Fixed', text: 'Compress PDF no longer downloads a result that is larger than the original. It says so and offers the larger file only if you ask. In our test, an 8 KB text-only PDF became 50 to 110 KB.' },
+      { tag: 'Fixed', text: 'CSV to Chart now uses the first column for labels when every column is numeric. Before, a numeric column with a few missing values could be picked as the labels instead of Year.' },
+      { tag: 'Improved', text: 'The Compress PDF guide lists the attachment limits Gmail, Outlook.com, Yahoo Mail and iCloud Mail state on their own help pages, with links, and measures what happens to a text-only PDF.' },
+      { tag: 'Improved', text: 'The CSV to Chart guide adds a worked example with NASA’s GISTEMP global temperature record, including the title-line and missing-value problems real downloads have.' },
+      { tag: 'Improved', text: 'The privacy guide explains how to check for uploads in your browser’s network panel and publishes the request log from a test on the live Merge PDF page.' },
+    ],
+  },
+  {
     date: '2026-10-10',
     title: 'Sourced comparisons, tested tools and fewer ads',
     items: [

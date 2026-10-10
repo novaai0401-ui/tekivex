@@ -84,7 +84,11 @@ export function guessColumns(table: CsvTable): ColumnGuess {
     if (score >= 0.8 && table.rows.some((r) => (r[i] ?? '').trim() !== '')) numericCols.push(i);
     if (score < worstScore) { worstScore = score; labelCol = i; }
   });
-  // If every column is numeric, fall back to labeling by the first column.
+  // If every column is numeric (years, IDs, measurements), label by the first
+  // column. Otherwise a numeric column with a few gaps or placeholders such as
+  // "***" would score lowest and be picked as the labels, as happened with
+  // NASA's GISTEMP table (labels taken from "D-N" while Year was plotted).
+  if (worstScore >= 0.8) labelCol = 0;
   const filteredNumeric = numericCols.filter((c) => c !== labelCol);
   return { labelCol, numericCols: filteredNumeric.length ? filteredNumeric : numericCols.slice(1) };
 }

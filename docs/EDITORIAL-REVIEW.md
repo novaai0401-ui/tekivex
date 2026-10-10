@@ -104,9 +104,25 @@ switching any of these six, the byline author should repeat the tests in the
 live tool on a phone and a desktop, confirm the tables, and replace "we" with
 their own account where it applies.
 
-Still open in group B: how-to-compress-pdf (provider size limits),
-how-to-make-chart-from-csv (public dataset), why-browser-tools-keep-files-private
-(developer-tools screenshots).
+## Update, October 11, 2026: evidence for the remaining three group B guides
+
+| Article | Evidence added | Product change it led to |
+| --- | --- | --- |
+| how-to-compress-pdf | Gmail, Outlook.com, Yahoo Mail and iCloud Mail limits from each provider's own help page, checked 2026-10-11 and linked. Text-only PDF measured at all three settings (`compress-browser.json`). The September image sample was re-run and matched within one byte. | Compress PDF no longer auto-downloads a result larger than the input |
+| how-to-make-chart-from-csv | Worked example with NASA GISTEMP v4, cited as NASA asks. Raw download kept unmodified (`gistemp-glb-2026-10-11.csv`), 25-row extract, and the tool's own SVG export. | Label-column guess fixed for all-numeric tables |
+| why-browser-tools-keep-files-private | Developer-tools steps, and the request log from merging two marked test PDFs on the live site (`privacy-network-log.json`). No request carried data out. | None needed |
+
+Still open for these three:
+
+- why-browser-tools-keep-files-private still has no screenshots of the network
+  panel. They have to be taken by a person in a normal browser window. The
+  published log is machine-recorded, not a screenshot.
+- Re-check the four email limits before each AdSense review; providers change them.
+- NASA revises recent GISTEMP values monthly. The guide says the figures are a
+  snapshot; refresh the extract and chart if they are updated.
+
+The same rule as before applies: a named person must repeat these checks
+before any of these guides is switched to `ads: true`. None has been.
 
 ## Before switching any article to `ads: true`
 

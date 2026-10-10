@@ -155,7 +155,7 @@ export const TOOLS: ToolMeta[] = [
       'Get a scan under an email attachment limit or a portal’s upload cap. Each page is ' +
       're-rendered as an optimised image at a quality level you pick, which can cut ' +
       'image-heavy PDFs to a fraction of their size — and the before/after sizes are shown ' +
-      'so you can judge the trade-off after the automatic download. Compression runs on your device; ' +
+      'so you can judge the trade-off. Compression runs on your device; ' +
       'the document itself goes nowhere.',
     seoTitle: 'Compress PDF Online — Free & Private (No Upload) | Tekivex Tools',
     seoDescription:
@@ -167,16 +167,16 @@ export const TOOLS: ToolMeta[] = [
     steps: [
       { title: 'Add your PDF', body: 'Drop the oversized PDF onto the page — scans and photo-heavy documents benefit most.' },
       { title: 'Pick a quality level', body: 'Choose High, Balanced, or Strong compression. Stronger settings produce smaller files with softer image quality.' },
-      { title: 'Compress and download', body: 'Click Compress. Each page is re-rendered and re-packed in your browser, the download starts automatically, and the before/after sizes are shown afterward.' },
+      { title: 'Compress and download', body: 'Click Compress. Each page is re-rendered and re-packed in your browser. If the file got smaller it downloads automatically, with the before/after sizes shown. If it would get bigger, nothing downloads unless you ask.' },
     ],
     faqs: [
       { q: 'How does the compression work?', a: 'Each page is re-rendered as an optimised JPEG image and re-packed into a new PDF. That is why it works so well on scans — and why text in the output is no longer selectable. If you need selectable text, keep the original alongside the compressed copy.' },
-      { q: 'Will it always make my PDF smaller?', a: 'No — and we show you the before/after size instead of pretending. Text-only PDFs are already compact and can even get bigger when rasterised; the tool warns you when the result is not smaller.' },
+      { q: 'Will it always make my PDF smaller?', a: 'No — and we show you the before/after size instead of pretending. Text-only PDFs are already compact and can get much bigger when rasterised: in our test an 8 KB text file became 50–110 KB. When the result is not smaller, the tool says so and does not download it unless you ask.' },
       { q: 'Is my PDF uploaded?', a: 'No. Rendering and re-packing are done by your own browser. A side effect worth knowing: compression speed depends on your device, not on our servers — a long PDF on an old phone will take longer than on a laptop.' },
     ],
     limitations: [
       'Output pages are images — text becomes non-selectable and non-searchable.',
-      'Text-only PDFs may not shrink (the tool tells you instead of silently delivering a bigger file).',
+      'Text-only PDFs may not shrink and can grow several times larger. The tool tells you and holds back the download.',
       'Encrypted PDFs must be unlocked first.',
     ],
   },
@@ -307,6 +307,7 @@ export const TOOLS: ToolMeta[] = [
     limitations: [
       'Charts are capped at 8 series / 8 donut slices for readability — extra donut slices fold into "Other".',
       'Semicolon- or tab-delimited files should be exported as comma-separated CSV first.',
+      'The first line must be the column names. Delete any title lines above them, as in many government and research downloads.',
     ],
   },
 ];
