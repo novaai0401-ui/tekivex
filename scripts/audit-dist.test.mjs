@@ -17,16 +17,16 @@ function site(files){
 }
 const sitemap=(...paths)=>`<urlset>${paths.map(p=>`<url><loc>https://www.tekivex.com${p}</loc></url>`).join('')}</urlset>`;
 
-it('passes a clean site, following redirects and app rewrites',()=>{
+it('passes a clean site, following redirects and app rewrites',async()=>{
   const {root,dist}=site({
     'sitemap.xml':sitemap('/','/a/'),
     'index.html':page('/',{extra:'<a href="/a/">a</a><a href="/old">r</a><a href="/gridstorm/playground/x">p</a><a href="https://example.com/x">e</a>'}),
     'a/index.html':page('/a/'),
   });
-  try{expect(audit(dist).failures).toEqual([]);}finally{rmSync(root,{recursive:true,force:true});}
+  try{expect((await audit(dist)).failures).toEqual([]);}finally{rmSync(root,{recursive:true,force:true});}
 });
 
-it('reports every class of regression',()=>{
+it('reports every class of regression',async()=>{
   const {root,dist}=site({
     'sitemap.xml':sitemap('/','/thin/','/hidden/','/dup/','/missing/'),
     'index.html':page('/',{title:'Same',extra:'<a href="/components/button/">b</a><a href="/ui/nowhere/">soft 404</a>'}),
@@ -37,7 +37,7 @@ it('reports every class of regression',()=>{
     'use-cases/guide/index.html':'<html><body><ins class="adsbygoogle"></ins></body></html>',
   });
   try{
-    const kinds=audit(dist).failures.map(f=>`${f.kind} ${f.where} ${f.detail??''}`.trim());
+    const kinds=(await audit(dist)).failures.map(f=>`${f.kind} ${f.where} ${f.detail??''}`.trim());
     expect(kinds).toEqual(expect.arrayContaining([
       'broken-link / /components/button/',
       'broken-link / /ui/nowhere/',

@@ -121,7 +121,7 @@ function setRobots(document, content) {
   meta.setAttribute('content', content);
 }
 
-export function prepareUi(target) {
+export async function prepareUi(target) {
   const indexable = [];
   let adsRemoved = 0;
   let thin = 0;
@@ -158,6 +158,10 @@ export function prepareUi(target) {
       indexable.push(path);
     }
     writeFileSync(file, dom.serialize());
+    dom.window.close();
+    // jsdom frees a closed window only once the event loop turns; yield so
+    // ~180 parsed pages do not accumulate in memory.
+    await new Promise((r) => setImmediate(r));
   }
   if (!indexable.length) throw new Error('Tekivex UI build contains no substantial pages; refusing to publish an empty sitemap');
   indexable.sort();
