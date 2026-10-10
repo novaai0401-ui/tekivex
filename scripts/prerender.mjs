@@ -338,6 +338,13 @@ function productCardBlock(p) {
 }
 
 const productCatalogBlock = PRODUCTS.map(productCardBlock).join('');
+// The home page links to each product with its one-line tagline instead of
+// repeating the full /products catalogue, which made the two pages share
+// over half their text.
+const productSummaryBlock =
+  `<ul style="margin:0 0 8px;padding-left:20px">` +
+  PRODUCTS.map((p) => `<li style="margin-bottom:8px"><a href="${escapeHtml(p.homePath)}" style="color:#3a86ff;text-decoration:none;font-weight:600">${escapeHtml(p.name)}</a> — <span style="color:#475569">${escapeHtml(p.tagline)}</span></li>`).join('') +
+  `</ul><p style="margin:0 0 8px"><a href="/products" style="color:#3a86ff;text-decoration:none">Compare all products →</a></p>`;
 
 // ─── Load articles early so the home page can lead with content ──────────────
 // (loadArticles is a hoisted function declaration defined further below.)
@@ -407,7 +414,7 @@ const routes = [
     h1: 'Tekivex — free developer tools',
     body:
       'Tekivex groups several free products under one roof: the GridStorm, Tekivex UI, and Quantum Vault libraries on npm, plus the hosted apps Pyntra, Analytics Studio, and DataFlow that run in your browser with nothing to install.',
-    contentHtml: `${featuredGuidesBlock(8)}<h2 style="font-size:1.5rem;font-weight:800;color:#0a0f1f;margin:40px 0 16px">The Tekivex product suite</h2>${productCatalogBlock}`,
+    contentHtml: `${featuredGuidesBlock(8)}<h2 style="font-size:1.5rem;font-weight:800;color:#0a0f1f;margin:40px 0 16px">The Tekivex product suite</h2>${productSummaryBlock}`,
   },
   {
     path: '/products',
@@ -588,7 +595,8 @@ const LEGAL_FOOTER = `
         <a href="/products" style="color:#3a86ff;text-decoration:none">Products</a> &middot;
         <a href="/tools" style="color:#3a86ff;text-decoration:none">Tools</a> &middot;
         <a href="/use-cases" style="color:#3a86ff;text-decoration:none">Guides</a> &middot;
-        <a href="/faq" style="color:#3a86ff;text-decoration:none">FAQ</a>
+        <a href="/faq" style="color:#3a86ff;text-decoration:none">FAQ</a> &middot;
+        <a href="/changelog" style="color:#3a86ff;text-decoration:none">Changelog</a>
       </nav>
       <p style="margin:14px 0 0">&copy; Tekivex &mdash; free, open developer tools. Questions? <a href="mailto:nishu_singh@tekivex.com" style="color:#3a86ff;text-decoration:none">nishu_singh@tekivex.com</a></p>
     </footer>`;
@@ -996,7 +1004,7 @@ const LLM_PRODUCTS = [
   { name: 'GridStorm', url: `${ORIGIN}/product/gridstorm`, npm: 'gridstorm',
     s: 'Headless, framework-agnostic high-performance data grid. Virtual scrolling for large datasets with virtual scrolling, 42 Excel-compatible formula functions, Excel copy/paste, composable plugins, accessibility features targeting WCAG 2.1 AA, React/Vue/Svelte/Angular adapters, Modular core. MIT-licensed, free for commercial use.' },
   { name: 'Tekivex UI', url: `${ORIGIN}/product/tekivex-ui`, npm: 'tekivex-ui',
-    s: 'Accessible React/Vue/Svelte component library: 100+ components (Tkx-prefixed), WCAG 2.1 AA (targeting AAA), dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, headless primitives. MIT-licensed, free for commercial use.' },
+    s: 'Accessible React/Vue/Svelte component library: 100+ components (Tkx-prefixed), self-tested against WCAG 2.1 AAA criteria (independent audit not yet completed), dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, headless primitives. MIT-licensed, free for commercial use.' },
   { name: 'Quantum Vault', url: `${ORIGIN}/product/quantum-vault`, npm: '@sigvault/sdk',
     s: 'Sovereign, self-hosted post-quantum token issuance, validation, and rotation using NIST-standardized CRYSTALS-Dilithium (ML-DSA-87 / FIPS 204) signatures with XChaCha20-Poly1305 encrypted payloads and a HYDRA mutation chain for replay protection. Apache-2.0.' },
   { name: 'Pyntra', url: `${ORIGIN}/product/pyntra`, npm: null,

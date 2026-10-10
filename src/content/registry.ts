@@ -47,7 +47,7 @@ const DEFAULT_AUTHOR_ID = 'chandan-kumar';
 const MODIFIED = '2026-06-28';
 const DATES: Record<string, { published: string; modified?: string }> = {
   'tekivex-mit-open-source-model':                 { published: PUBLISHED, modified: MODIFIED },
-  'tekivex-stack-how-products-fit':                { published: PUBLISHED, modified: '2026-09-15' },
+  'tekivex-stack-how-products-fit':                { published: PUBLISHED, modified: '2026-10-10' },
   'gridstorm-virtual-scrolling-60fps':             { published: PUBLISHED, modified: '2026-09-15' },
   'gridstorm-plugin-architecture':                 { published: PUBLISHED, modified: '2026-09-15' },
   'gridstorm-vs-ag-grid-migration':                { published: PUBLISHED, modified: '2026-10-10' },

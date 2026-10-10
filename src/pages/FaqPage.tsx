@@ -83,7 +83,7 @@ export const FAQS: QA[] = [
   },
   {
     q: 'What is Tekivex UI?',
-    a: 'Tekivex UI is an accessible component library for React, Vue, and Svelte, targeting WCAG 2.1 AA. It covers buttons, forms, modals, tables, toasts, navigation, and layout primitives, supports light and dark themes via CSS custom properties, and ships tree-shakeable ESM bundles with zero runtime dependencies. Install it from npm as tekivex-ui.',
+    a: 'Tekivex UI is an accessible component library for React, Vue, and Svelte, self-tested against WCAG 2.1 AAA criteria. It covers buttons, forms, modals, tables, toasts, navigation, and layout primitives, supports light and dark themes via CSS custom properties, and ships tree-shakeable ESM bundles with zero runtime dependencies. Install it from npm as tekivex-ui.',
   },
   {
     q: 'What is Quantum Vault?',

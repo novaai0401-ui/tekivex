@@ -80,3 +80,19 @@ it('gives pages that share a title distinct titles',async()=>{
     expect(readFileSync(join(root,'components/toast/index.html'),'utf8')).toContain('<title>TkxToast — Toast | TekiVex UI</title>');
   } finally {rmSync(root,{recursive:true,force:true});}
 });
+
+it('judges thinness on the page content, not the sidebar, and drops placeholder pages',async()=>{
+  const root=mkdtempSync(join(tmpdir(),'tekivex-ui-content-'));
+  try {
+    const sidebar=`<nav aria-label="Main">${'<a href="/ui/x/">Component link</a>'.repeat(200)}</nav>`;
+    const starlight=(words,extra='')=>`<!doctype html><html><head><title>T</title></head><body>${sidebar}<main><div class="sl-markdown-content"><h1>Title</h1><p>${'word '.repeat(words)}</p>${extra}</div></main></body></html>`;
+    for (const d of ['components/stub','components/real','components/scaffold']) mkdirSync(join(root,d),{recursive:true});
+    writeFileSync(join(root,'components/stub/index.html'),starlight(60));
+    writeFileSync(join(root,'components/real/index.html'),starlight(MIN_WORDS+40));
+    writeFileSync(join(root,'components/scaffold/index.html'),starlight(MIN_WORDS+400,'<p>This page is a generated scaffold. It will be replaced with hand-authored examples.</p>'));
+    const {indexable}=await prepareUi(root);
+    expect(indexable).toEqual(['/components/real/']);
+    expect(readFileSync(join(root,'components/stub/index.html'),'utf8')).toContain('content="noindex, follow"');
+    expect(readFileSync(join(root,'components/scaffold/index.html'),'utf8')).toContain('content="noindex, follow"');
+  } finally {rmSync(root,{recursive:true,force:true});}
+});

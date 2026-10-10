@@ -10,7 +10,7 @@ export const tekivexUiManifest: ProductManifest = {
   tagline: 'Accessible Component Library for React, Vue & Svelte',
   description:
     'Production-ready UI component library built for real-world apps — buttons, forms, modals, ' +
-    'tables, toasts, navigation, and layout primitives. Accessible, targeting WCAG 2.1 AA, ' +
+    'tables, toasts, navigation, and layout primitives. Accessible: components are self-tested against WCAG 2.1 AAA criteria, ' +
     'dark/light theme support via CSS custom properties, tree-shakeable ESM bundles, and ' +
     'zero runtime dependencies. React 18+, Vue 3, and Svelte 5 bindings included. Free for commercial use.',
   version: '0.1.0',
@@ -25,14 +25,14 @@ export const tekivexUiManifest: ProductManifest = {
   playgroundPath: `${UI_URL}/playground/`,
   githubUrl: UI_GITHUB,
   stats: [
-    { value: '50+',     label: 'Components' },
+    { value: '100+',    label: 'Components' },
     { value: '3',       label: 'Frameworks' },
     { value: 'AA',      label: 'WCAG target' },
     { value: 'ESM',     label: 'Module format' },
   ],
   keyFeatures: [
-    '50+ production-ready components — buttons, inputs, selects, modals, drawers, toasts',
-    'WCAG 2.1 AA patterns — ARIA roles and full keyboard navigation',
+    '100+ documented components — buttons, inputs, selects, modals, drawers, toasts',
+    'Self-tested against WCAG 2.1 AAA criteria — ARIA roles and full keyboard navigation',
     'Dark / light / high-contrast themes via CSS custom properties',
     'Tree-shakeable ESM — import only what you use, zero runtime dependencies',
     'React 18+, Vue 3, and Svelte 5 bindings with idiomatic APIs',
@@ -50,7 +50,7 @@ export const tekivexUiManifest: ProductManifest = {
   seo: {
     title: 'Tekivex UI — Accessible Component Library for React, Vue & Svelte | Tekivex',
     description:
-      'Production-ready UI component library with 50+ accessible components, dark/light themes, ' +
+      'Production-ready UI component library with 100+ accessible components, dark/light themes, ' +
       'tree-shakeable ESM bundles, and React/Vue/Svelte bindings. Free for commercial use.',
     keywords: [
       'UI component library',
