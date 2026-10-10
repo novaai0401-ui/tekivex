@@ -22,10 +22,14 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: '2026-10-10',
-    title: 'Sourced comparisons and fewer ads',
+    title: 'Sourced comparisons, tested tools and fewer ads',
     items: [
       { tag: 'Fixed', text: 'Rewrote the GridStorm and AG Grid comparison table so every statement about AG Grid links to AG Grid’s own documentation, and removed unmeasured size and accessibility claims.' },
       { tag: 'Improved', text: 'Ads now appear only on reader guides an editor has approved. Product pages, tools and documentation carry none.' },
+      { tag: 'Fixed', text: 'JPG to PDF now reads the orientation tag phones store with portrait photos, so they no longer come out as sideways pages. The photo is placed upright without being re-compressed.' },
+      { tag: 'Fixed', text: 'Split PDF and Delete PDF Pages no longer leave an image from a removed page embedded in the output when the source file shares one resource list across pages.' },
+      { tag: 'Fixed', text: 'The PDF tools now say a file is encrypted rather than password-protected, because files that open without a password but restrict editing are rejected too.' },
+      { tag: 'Improved', text: 'The merge, split, delete, rotate, JPG to PDF and PDF to JPG guides now report what we tested on published sample files, including what each tool keeps and drops. The merge guide no longer claims that compressing after merging deduplicates fonts and images.' },
     ],
   },
   {

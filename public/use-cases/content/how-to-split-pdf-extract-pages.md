@@ -28,8 +28,23 @@ Because order is respected, `3,1` gives you page 3 followed by page 1 — handy 
 
 - **One output file per run.** Each run produces a single new PDF with your selected pages. If you need several separate files, just run the tool again with different page numbers.
 - **Out-of-range pages show an error.** If you ask for page 50 in a 10-page document, the tool tells you rather than guessing. Check the page count it displays and adjust.
-- **Encrypted PDFs must be unlocked first.** If your file is password-protected, remove the password in a PDF reader and save an unlocked copy before splitting.
+- **Encrypted PDFs must be unlocked first.** That includes files that open without a password but restrict copying or editing. Save an unencrypted copy before splitting.
+- **Bookmarks and fillable fields are not copied.** The extracted pages look exactly as before, but the new file has no bookmark sidebar, links that jump to another page stop working, and form fields can no longer be filled in.
 - **It's the mirror image of merging.** If you instead want to join files together, use [Merge PDF](/tools/merge-pdf). For heavier editing, [Pyntra](/product/pyntra) is our full editor.
+
+## What we tested
+
+On 10 October 2026 we ran the tool's own extraction code on a synthetic six-page test PDF. Page 1 has a link to a website and a link that jumps to page 5, and the file has six bookmarks. We extracted pages `1,5`, so both the link and its target were in the output.
+
+| In the original | In the extracted file |
+|---|---|
+| Page content | Kept, byte-for-byte identical |
+| Link to a website | Kept |
+| Link from page 1 to page 5 | No longer goes anywhere, even though page 5 was extracted too |
+| Bookmarks | Removed |
+| An image used only on a page you did not extract, in a file where all pages share one resource list | Not in the output. Before 10 October 2026 such an image stayed embedded, invisibly. We fixed that after this test. |
+
+The [test PDF](/examples/tool-tests/structured.pdf) and [raw results](/examples/tool-tests/results.json) are published, and the [test script](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/tool-evidence.mjs) is in our public repository, so you can repeat the test.
 
 ## Practical uses for page extraction
 
@@ -43,7 +58,7 @@ The most common reason to split a PDF isn't technical at all — it's about shar
 ## Troubleshooting
 
 - **"Page out of range" error** — the tool shows the document's page count as soon as the file loads; every number you enter must fall inside it. Typos like `1,3,70` on a 7-page file are reported rather than silently ignored, so nothing unexpected ends up in your output.
-- **The file won't load** — password-protected PDFs must be unlocked before splitting. If you know the password, remove it in your PDF viewer's export options first.
+- **The file won't load** — the file is probably encrypted. Some encrypted files need a password to open. Others open normally but restrict copying or editing, and the tool rejects those too. Save an unencrypted copy first, which needs the file's owner password if it has one.
 - **You need several output files** — the tool builds one PDF per run. Run it once per page set; since nothing uploads, each pass takes only seconds.
 
 ## Frequently asked questions
