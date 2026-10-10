@@ -909,10 +909,9 @@ try { rmSync(TMP_DIR, { recursive: true, force: true }); } catch {}
 }
 
 // ─── Sitemap (real URLs, hreflang, image extension) ──────────────────────
-// Static routes are stamped with the most recent editorial change (newest
-// article revision or changelog entry), not the build date: every deploy used
-// to rewrite every <lastmod> to "today", which made the site look churned
-// rather than maintained.
+// Articles carry their real dateModified as <lastmod>; other routes carry none.
+// LATEST_CHANGE (newest article revision or changelog entry) dates the sitemap
+// file itself in sitemap-index.xml.
 const LATEST_CHANGE = [
   ...articleRoutes.map((r) => r.lastmod),
   ...CHANGELOG.map((e) => e.date),
@@ -927,7 +926,10 @@ const sitemapXml =
       const url = `${ORIGIN}${r.path}`;
       const priority = r.path === '/' ? '1.0' : r.path.startsWith('/product/') || r.path.startsWith('/tools') ? '0.85' : '0.7';
       const changefreq = r.path === '/' || r.path === '/products' ? 'weekly' : r.path === '/privacy-policy' ? 'yearly' : 'monthly';
-      return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${LATEST_CHANGE}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
+      // No <lastmod> for these routes: the build cannot tell when a static
+      // page's text last changed, and stamping every route with the newest
+      // edit anywhere on the site is a false freshness signal.
+      return `  <url>\n    <loc>${url}</loc>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n    <xhtml:link rel="alternate" hreflang="en" href="${url}"/>\n  </url>`;
     })
     .join('\n') +
   '\n' +

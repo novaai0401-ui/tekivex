@@ -50,7 +50,7 @@ const DATES: Record<string, { published: string; modified?: string }> = {
   'tekivex-stack-how-products-fit':                { published: PUBLISHED, modified: '2026-09-15' },
   'gridstorm-virtual-scrolling-60fps':             { published: PUBLISHED, modified: '2026-09-15' },
   'gridstorm-plugin-architecture':                 { published: PUBLISHED, modified: '2026-09-15' },
-  'gridstorm-vs-ag-grid-migration':                { published: PUBLISHED, modified: '2026-09-15' },
+  'gridstorm-vs-ag-grid-migration':                { published: PUBLISHED, modified: '2026-10-10' },
   'gridstorm-accessible-data-grid':                { published: PUBLISHED, modified: MODIFIED },
   'gridstorm-excel-formulas':                      { published: PUBLISHED, modified: MODIFIED },
   'gridstorm-financial-trading-grid':              { published: PUBLISHED, modified: MODIFIED },

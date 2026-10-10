@@ -6,20 +6,22 @@ We will compare licensing and cost, bundle size, the plugin and feature model, a
 
 ## An honest comparison
 
+**Disclosure:** Tekivex publishes this article and develops GridStorm. We have not published a side-by-side benchmark of the two grids, so this section makes no speed or size ranking. AG Grid details below are taken from AG Grid's own documentation pages, linked in the table, as published in October 2026. Vendors change editions and prices, so confirm them on those pages before deciding.
+
 | Dimension | AG Grid | GridStorm |
 | --- | --- | --- |
-| Licensing | Community edition MIT; Enterprise features require a paid per-developer license | Free for commercial use, no per-developer fees |
-| Enterprise features | Extensive (pivoting, aggregation, integrated charting, server-side row model) behind Enterprise | Composable via plugins, all included free |
-| Bundle size | Larger; full-featured by design | Measure the core and selected plugins in your production build |
-| Architecture | Integrated grid with module system | Headless core + plugin system |
-| Frameworks | React, Angular, Vue, vanilla JS | React, Vue, Svelte, Angular adapters |
-| Accessibility | Good ARIA support | WCAG 2.1 AA via the a11y plugin |
-| Maturity / ecosystem | Very mature, huge community, deep docs | Younger, smaller community |
-| Formulas | Not a built-in spreadsheet engine | 42 Excel-compatible functions built in |
+| Licensing | Community edition is MIT-licensed and free in production; Enterprise features need a commercial licence ([Community vs Enterprise](https://www.ag-grid.com/javascript-data-grid/community-vs-enterprise/), [licence and pricing](https://www.ag-grid.com/license-pricing/)) | MIT; no paid tier ([source repository](https://github.com/novaai0401-ui/grid-data)) |
+| Advanced features | Pivoting, integrated charts, server-side row model and similar features are listed as Enterprise ([feature matrix](https://www.ag-grid.com/javascript-data-grid/community-vs-enterprise/)) | Provided as plugins in the same repository; check that each plugin you need covers your workflow before assuming parity |
+| Bundle size | Feature modules can be selected to keep builds smaller ([modules](https://www.ag-grid.com/javascript-data-grid/modules/)) | Core plus the plugins you register |
+| Architecture | Integrated grid with a module system | Headless core with framework adapters and plugins |
+| Frameworks | React, Angular, Vue and plain JavaScript | React, Vue, Svelte and Angular adapters |
+| Accessibility | ARIA support and keyboard navigation are listed in the Community edition ([feature matrix](https://www.ag-grid.com/javascript-data-grid/community-vs-enterprise/)) | An accessibility plugin targets WCAG 2.1 AA; neither library's stated target certifies your application, so test your own screens |
+| Maturity | Long-established, large community and documentation | Younger project with a much smaller community |
+| Formulas | Check the current feature matrix for formula and Excel-export support | A formula plugin ships with GridStorm; verify the functions you rely on |
 
-Where AG Grid wins today: ecosystem maturity, breadth of out-of-the-box enterprise features, and the depth of community knowledge you can search for when you hit an edge case. If you need integrated charting or server-side pivoting *right now* and budget for the Enterprise license is not a concern, AG Grid is a safe, excellent choice.
+Where AG Grid is the safer choice today: ecosystem maturity, the breadth of documented enterprise features, and the amount of community knowledge you can search when you hit an edge case. If you need integrated charting or server-side pivoting now and the Enterprise licence fits your budget, AG Grid is a sound choice.
 
-Where GridStorm tends to win: cost predictability (there is no per-seat license to negotiate as your team grows, and no Enterprise tier to buy), bundle size for applications that only need a subset of features, and accessibility out of the box. The headless model also means you fully own rendering, which some teams value and others would rather not deal with.
+Where GridStorm may fit better: teams that want an MIT-licensed grid with no paid tier, prefer a headless core where they own rendering, or need a Svelte adapter. Whether it is smaller or faster for your screens is something to measure with your own build, using the procedure in our [GridStorm and AG Grid evaluation guide](/gridstorm/docs/blog/gridstorm-vs-ag-grid/).
 
 Choose deliberately. The migration below assumes you have weighed these and decided to move.
 

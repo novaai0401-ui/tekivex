@@ -69,9 +69,9 @@ export function ArticlePage({ slug }: { slug: string }) {
 
       {source && <Markdown source={source} />}
 
-      {/* This length guard prevents empty placements; it is not a content
-          quality assessment or an AdSense approval criterion. */}
-      {source && source.length > 1500 && (
+      {/* Ads appear only on articles an editor has approved for them
+          (article.ads). The length guard only prevents empty placements. */}
+      {article.ads === true && source && source.length > 1500 && (
         <AdSlot slot="5896441076" label="Sponsored" className="ad-slot--article" />
       )}
 
