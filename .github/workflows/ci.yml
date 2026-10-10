@@ -104,6 +104,11 @@ jobs:
 
       - name: Vite build
         run: npm run build
+        env:
+          # Render's build ran out of heap when the post-build audit kept every
+          # parsed page alive. Build here under a quarter of Render's heap so a
+          # memory regression fails CI instead of the deploy.
+          NODE_OPTIONS: --max-old-space-size=512
 
       - name: Verify editorial HTML and Render routing artifacts
         run: |

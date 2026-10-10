@@ -131,7 +131,7 @@ for (const app of APPS) {
   console.log(`✓ /${app.path}: vendored ${entries} top-level entries from ${app.repo}@${commit.slice(0, 12)}`);
   manifest.apps[app.path] = { repo: app.repo, commit, pinned: Boolean(app.commit) };
   if (app.path === 'gridstorm') prepareGridstorm(target);
-  if (app.path === 'ui') prepareUi(target);
+  if (app.path === 'ui') await prepareUi(target);
   ok++;
 }
 rmSync(TMP, { recursive: true, force: true });

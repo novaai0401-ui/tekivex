@@ -50,7 +50,7 @@ export function routing(renderYaml) {
   return { redirects, rewrites };
 }
 
-export function audit(dist) {
+export async function audit(dist) {
   const failures = [];
   const fail = (kind, where, detail) => failures.push({ kind, where, detail });
   const renderYaml = existsSync(join(dist, '..', 'render.yaml')) ? readFileSync(join(dist, '..', 'render.yaml'), 'utf8') : '';
@@ -69,7 +69,14 @@ export function audit(dist) {
       const file = fileFor(dist, url.pathname);
       if (!file) { fail('sitemap-missing', where, relative(dist, map)); continue; }
       pages++;
-      const { document } = new JSDOM(readFileSync(file, 'utf8'), { virtualConsole: quiet, url: loc }).window;
+      // Scripts and styles are never inspected here; dropping them before
+      // parsing keeps jsdom from building a CSSOM for every page, which ran
+      // the Render build out of memory across ~280 pages.
+      const html = readFileSync(file, 'utf8')
+        .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
+        .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '');
+      const { window } = new JSDOM(html, { virtualConsole: quiet, url: loc });
+      const { document } = window;
       const title = document.title.trim();
       if (!title) fail('no-title', where);
       else titles.set(title, [...(titles.get(title) || []), where]);
@@ -88,6 +95,10 @@ export function audit(dist) {
         if (target.origin !== ORIGIN) continue;
         if (!resolves(target.pathname)) fail('broken-link', where, target.pathname);
       }
+      window.close();
+      // jsdom frees a closed window only once the event loop turns; without
+      // this yield every page stays in memory and the build hits the heap limit.
+      await new Promise((r) => setImmediate(r));
     }
   }
   for (const [title, where] of titles) if (where.length > 1) fail('duplicate-title', where.join(' | '), title);
@@ -103,7 +114,7 @@ export function audit(dist) {
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const dist = resolve(process.argv[2] || 'dist');
-  const { pages, sitemaps, failures } = audit(dist);
+  const { pages, sitemaps, failures } = await audit(dist);
   const byKind = {};
   for (const f of failures) (byKind[f.kind] ||= []).push(f);
   for (const [kind, list] of Object.entries(byKind)) {
