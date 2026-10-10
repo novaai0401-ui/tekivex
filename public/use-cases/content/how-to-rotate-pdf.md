@@ -24,13 +24,27 @@ This tool rotates every page together, which is exactly what you want when a who
 2. Rotate that single-page PDF here.
 3. Use [Merge PDF](/tools/merge-pdf) to slot it back into the document in the right position.
 
-It's a couple of extra steps, but it keeps the rest of the document untouched.
+It's a couple of extra steps. The pages themselves stay untouched, but splitting and merging drop bookmarks, links that jump to another page, and fillable form fields. If your document has those, rotate the whole file instead, or use a desktop editor that can rotate a single page.
 
 ## Good to know and limitations
 
 - **Rotation applies to all pages at once.** For per-page control, use the split-rotate-merge approach above.
-- **Encrypted PDFs must be unlocked first.** Remove the password in a PDF reader, save an unlocked copy, then rotate that.
+- **Encrypted PDFs must be unlocked first.** That includes files that open without a password but restrict copying or editing. Save an unencrypted copy, then rotate that.
 - **No upload, no watermark, no account.** The rotation is applied in your browser with client-side code, so the file never leaves your device.
+
+## What we tested
+
+On 10 October 2026 we ran the tool's own rotation code on a synthetic six-page test PDF with bookmarks, a link to a website, a link that jumps to page 5, and a fillable name field. We rotated every page by 90°.
+
+| In the original | After rotating |
+|---|---|
+| Page content | Byte-for-byte identical. Only each page's rotation value changed, from 0 to 90. |
+| Bookmarks | All six kept |
+| Both links | Kept and working |
+| Fillable name field | Kept and fillable |
+| File size | 8,037 bytes before, 4,369 after |
+
+The file got smaller because saving repacks the file's internal structure more compactly. The pages were not re-compressed. The [test PDF](/examples/tool-tests/structured.pdf) and [raw results](/examples/tool-tests/results.json) are published, and the [test script](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/tool-evidence.mjs) is in our public repository, so you can repeat the test.
 
 ## Where sideways PDFs come from (and how to avoid them)
 
@@ -40,7 +54,7 @@ If the same scanner keeps producing sideways output, look for an "auto-rotate" o
 
 ## Rotation and file size
 
-Because rotation only rewrites each page's orientation flag, the output file is byte-for-byte almost identical in size to the input — no re-encoding, no quality change, no growth. This is different from tools that rasterise pages to rotate them, which can balloon a small text PDF into a large image-based one. If you also need the file smaller, that's a separate job for [Compress PDF](/tools/compress-pdf) — do the rotation first, then compress the corrected file.
+Rotation only rewrites each page's orientation flag, so the page content is not re-encoded and its quality does not change. The file size can still change a little, usually downwards, because the tool saves the file with a more compact internal layout. In our test it went from 8,037 to 4,369 bytes. This is different from tools that rasterise pages to rotate them, which can balloon a small text PDF into a large image-based one. If you also need the file smaller, that's a separate job for [Compress PDF](/tools/compress-pdf) — do the rotation first, then compress the corrected file.
 
 ## Frequently asked questions
 

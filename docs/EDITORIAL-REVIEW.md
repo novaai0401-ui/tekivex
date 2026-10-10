@@ -69,6 +69,61 @@ Tekivex can show.
 | how-to-delete-pages-from-pdf | Test on a PDF with links and bookmarks; report what survives. |
 | why-browser-tools-keep-files-private | Show how a reader can verify "no upload" in browser developer tools, with screenshots. |
 
+## Update, October 10, 2026 (later the same day): tested evidence added
+
+Six group B guides now carry a "What we tested" or "What we measured" section.
+The results come from running the site's own tool code on synthetic files
+published under `/examples/tool-tests/`:
+
+- `scripts/create-tool-test-fixtures.py` builds the sample files.
+- `scripts/tool-evidence.mjs` runs merge, split, delete, rotate and JPG to PDF
+  and writes `results.json`.
+- `scripts/tool-evidence.test.mjs` fails the test suite if a fresh run no
+  longer matches the published results. Regenerate the results and re-read the
+  guides when it fails.
+- PDF to JPG sizes were measured in Chromium 152 and are recorded in
+  `pdf-to-jpg-browser.json`. That run is manual.
+
+The tests found and corrected problems in the product, not only in the prose:
+
+| Finding | Action |
+| --- | --- |
+| Portrait phone photos (EXIF orientation) became sideways pages in JPG to PDF | Fixed in `src/tools/lib/pdf.ts`; all eight orientations verified by rendering |
+| Split and Delete left an image from a removed page embedded when pages share resources | Fixed; unused images are pruned before saving |
+| Restriction-only encrypted files were reported as "password-protected" | Message corrected |
+| Merge, split and delete drop bookmarks, internal links and form fields | Documented in guides and on tool pages |
+| Merge guide claimed compression deduplicates fonts and images | Removed; the compressor rasterises each page |
+| Rotate guide claimed output size is "almost identical" | Corrected with the measured sizes |
+| PDF to JPG guide claimed print-ready resolution | Corrected: 144 pixels per inch |
+| Merge tool FAQ said the page is "supported by the ads on this page" | Removed; tool pages carry no ads |
+
+**What this does not change.** These are machine-run tests. They do not meet
+checklist item 1 below, which needs a named person to test the steps in a real
+browser and own the byline. No article has been switched to `ads: true`. Before
+switching any of these six, the byline author should repeat the tests in the
+live tool on a phone and a desktop, confirm the tables, and replace "we" with
+their own account where it applies.
+
+## Update, October 11, 2026: evidence for the remaining three group B guides
+
+| Article | Evidence added | Product change it led to |
+| --- | --- | --- |
+| how-to-compress-pdf | Gmail, Outlook.com, Yahoo Mail and iCloud Mail limits from each provider's own help page, checked 2026-10-11 and linked. Text-only PDF measured at all three settings (`compress-browser.json`). The September image sample was re-run and matched within one byte. | Compress PDF no longer auto-downloads a result larger than the input |
+| how-to-make-chart-from-csv | Worked example with NASA GISTEMP v4, cited as NASA asks. Raw download kept unmodified (`gistemp-glb-2026-10-11.csv`), 25-row extract, and the tool's own SVG export. | Label-column guess fixed for all-numeric tables |
+| why-browser-tools-keep-files-private | Developer-tools steps, and the request log from merging two marked test PDFs on the live site (`privacy-network-log.json`). No request carried data out. | None needed |
+
+Still open for these three:
+
+- why-browser-tools-keep-files-private still has no screenshots of the network
+  panel. They have to be taken by a person in a normal browser window. The
+  published log is machine-recorded, not a screenshot.
+- Re-check the four email limits before each AdSense review; providers change them.
+- NASA revises recent GISTEMP values monthly. The guide says the figures are a
+  snapshot; refresh the extract and chart if they are updated.
+
+The same rule as before applies: a named person must repeat these checks
+before any of these guides is switched to `ads: true`. None has been.
+
 ## Before switching any article to `ads: true`
 
 1. A named person has tested the steps, added the evidence in its row, and is

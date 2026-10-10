@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import workedExample from '../../../public/examples/monthly-revenue-expenses.csv?raw';
+import gistemp from '../../../public/examples/global-temperature-2001-2025.csv?raw';
 import {
   parseCsv, toNumber, guessColumns, buildChartModel, buildDonutSlices, niceTicks,
   MAX_DONUT_SLICES,
@@ -56,6 +57,23 @@ describe('guessColumns + buildChartModel', () => {
     const g = guessColumns(table);
     expect(g.numericCols).toEqual([1, 2]);
     expect([0, 3]).toContain(g.labelCol);
+  });
+
+  it('labels an all-numeric table by its first column even when another column has gaps', () => {
+    const g = guessColumns(parseCsv('Year,Jan,D-N\n1880,-.19,***\n1881,-.20,-.10\n1882,.16,-.11\n1883,.01,-.12\n1884,.05,-.20\n1885,.10,-.15'));
+    expect(g.labelCol).toBe(0);
+    expect(g.numericCols).toEqual([1, 2]);
+  });
+
+  it('charts the published NASA GISTEMP extract by year', () => {
+    const table = parseCsv(gistemp);
+    const g = guessColumns(table);
+    const m = buildChartModel(table, g.labelCol, g.numericCols);
+    expect(m.labels).toHaveLength(25);
+    expect(m.labels[0]).toBe('2001');
+    expect(m.labels[24]).toBe('2025');
+    expect(m.series).toHaveLength(1);
+    expect(m.series[0]!.values[23]).toBe(1.28); // 2024, the warmest year in the extract
   });
 
   it('builds a chart model with parsed values', () => {

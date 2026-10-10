@@ -24,7 +24,34 @@ You don't have to take anyone's word for it. Here's a simple test:
 2. Disconnect from the internet — turn off Wi-Fi or unplug the network.
 3. Now use the tool. Merge, split, compress, or chart your file.
 
-If it still works with no connection, the file clearly isn't being uploaded anywhere — there's nowhere for it to go. That offline test is one of the clearest signs that a tool is genuinely doing its work on your device. (Technically inclined users can go further and watch their browser's network activity while using the tool, but the offline check is enough for most people.)
+If it still works with no connection, the file isn't being uploaded anywhere — there's nowhere for it to go.
+
+One catch: some tools download extra code the first time you use them. Our PDF tools fetch their PDF library when you first press the button, so if you disconnect before that, the first attempt fails even though nothing would have been uploaded. Use the tool once with a harmless file while online, then disconnect and try again.
+
+## Checking with your browser's developer tools
+
+The offline test tells you the tool *can* work without the network. Your browser's network panel shows exactly what it *does* send. These steps are for Chrome and Edge on a computer; Firefox and Safari have the same panel under similar names.
+
+1. Open the tool page, for example [Merge PDF](/tools/merge-pdf).
+2. Press **F12** (on a Mac, **Cmd+Option+I**) and choose the **Network** tab.
+3. Tick **Preserve log**, then click the clear button (a circle with a line through it) so the list is empty.
+4. Use the tool with your files.
+5. Look at the list. The **Method** column is hidden by default: right-click any column header and tick **Method**. An upload usually shows as a **POST** or **PUT** request, with a size close to your file's size. A tool that works locally shows only **GET** requests, which fetch code, fonts and images.
+6. Click any request you are unsure about and open its **Payload** tab. A GET request has no payload.
+
+## What we saw when we did this
+
+On 11 October 2026 we ran this check on the live [Merge PDF](/tools/merge-pdf) page in Chromium 152, after rejecting optional analytics in the cookie banner. We merged two small test PDFs, each containing the made-up marker word `TEKIVEX-PRIVACY-CHECK-7731`, and recorded every request.
+
+| What we checked | Result |
+|---|---|
+| Requests made while merging | One: a GET for the PDF library, 179 KB, from www.tekivex.com |
+| Requests that carried any data out (POST, PUT, beacon or similar) | None |
+| Requests containing the marker word | None |
+| Requests to any server other than www.tekivex.com | None |
+| Where the merged file was | A `blob:` address, which exists only inside your browser tab |
+
+The [full log](/examples/tool-tests/privacy-network-log.json) is published. Two limits apply. We tested Merge PDF, not every tool, and we did not repeat the test with analytics accepted. The steps above let you check any tool yourself, in your own browser, on your own files.
 
 ## Tekivex's tools all work this way
 
@@ -48,7 +75,7 @@ For the specific question of "does my file get uploaded," yes — a client-side 
 
 ### Do I need to trust that the file isn't uploaded?
 
-You can verify it rather than trust it. Load the tool, disconnect from the internet, and try using it. If it still works, your file isn't going anywhere online.
+You can verify it rather than trust it. Load the tool, use it once while online so it can fetch its code, then disconnect and try again. If it still works, your file isn't going anywhere online. For a more exact check, watch the Network tab in your browser's developer tools while you use the tool, as described above.
 
 ### Does an in-browser tool work offline?
 

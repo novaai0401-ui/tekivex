@@ -71,11 +71,12 @@ export const TOOLS: ToolMeta[] = [
     faqs: [
       { q: 'Are my files uploaded to a server?', a: 'No. The merge happens entirely in your browser using client-side code. Your PDFs never leave your device, which also means there is nothing for us to store, scan, or delete afterwards.' },
       { q: 'Is there a file-size or page limit?', a: 'We impose none. The practical limit is your device’s memory — merging very large PDFs on a low-memory phone can fail, in which case try it on a desktop browser.' },
-      { q: 'Does it add a watermark or require an account?', a: 'No watermark, no account, no email. The tool is free and supported by the ads on this page.' },
+      { q: 'Does it add a watermark or require an account?', a: 'No watermark, no account, no email. The tool is free. Tool pages carry no ads.' },
       { q: 'Are password-protected PDFs supported?', a: 'Encrypted PDFs cannot be merged directly. Remove the password first (you need to know it), or use the full Pyntra editor, which can open encrypted PDFs.' },
     ],
     limitations: [
-      'Encrypted (password-protected) PDFs must be unlocked before merging.',
+      'Encrypted PDFs must be unlocked before merging. This includes files that open without a password but restrict copying or editing.',
+      'Bookmarks, links that jump to another page, and fillable form fields are not carried into the new file. Page content and links to websites are kept unchanged.',
       'Very large files are bounded by your device’s memory, since everything runs locally.',
     ],
   },
@@ -108,6 +109,7 @@ export const TOOLS: ToolMeta[] = [
     ],
     limitations: [
       'Encrypted PDFs must be unlocked before splitting.',
+      'Bookmarks, links that jump to another page, and fillable form fields are not carried into the new file. Page content and links to websites are kept unchanged.',
       'One output file per run — repeat the extraction for multiple outputs.',
     ],
   },
@@ -137,6 +139,7 @@ export const TOOLS: ToolMeta[] = [
       { q: 'Are my photos uploaded?', a: 'No. The conversion runs client-side in your browser. For sensitive scans (IDs, medical or financial documents) this is the whole point — the image never touches a server.' },
       { q: 'Which image formats work?', a: 'JPG/JPEG and PNG. Other formats (HEIC, WebP, TIFF) need converting to JPG or PNG first — most phones can export HEIC photos as JPG.' },
       { q: 'How are page sizes chosen?', a: 'Each PDF page matches its image’s aspect ratio at a printable size, so nothing is cropped or stretched.' },
+      { q: 'Will portrait phone photos come out sideways?', a: 'No. Phones often save a portrait photo as landscape pixels plus an orientation tag. The tool reads that tag and places the photo upright, without re-compressing it.' },
     ],
     limitations: [
       'HEIC, WebP, and TIFF are not supported directly — export them as JPG or PNG first.',
@@ -152,7 +155,7 @@ export const TOOLS: ToolMeta[] = [
       'Get a scan under an email attachment limit or a portal’s upload cap. Each page is ' +
       're-rendered as an optimised image at a quality level you pick, which can cut ' +
       'image-heavy PDFs to a fraction of their size — and the before/after sizes are shown ' +
-      'so you can judge the trade-off after the automatic download. Compression runs on your device; ' +
+      'so you can judge the trade-off. Compression runs on your device; ' +
       'the document itself goes nowhere.',
     seoTitle: 'Compress PDF Online — Free & Private (No Upload) | Tekivex Tools',
     seoDescription:
@@ -164,16 +167,16 @@ export const TOOLS: ToolMeta[] = [
     steps: [
       { title: 'Add your PDF', body: 'Drop the oversized PDF onto the page — scans and photo-heavy documents benefit most.' },
       { title: 'Pick a quality level', body: 'Choose High, Balanced, or Strong compression. Stronger settings produce smaller files with softer image quality.' },
-      { title: 'Compress and download', body: 'Click Compress. Each page is re-rendered and re-packed in your browser, the download starts automatically, and the before/after sizes are shown afterward.' },
+      { title: 'Compress and download', body: 'Click Compress. Each page is re-rendered and re-packed in your browser. If the file got smaller it downloads automatically, with the before/after sizes shown. If it would get bigger, nothing downloads unless you ask.' },
     ],
     faqs: [
       { q: 'How does the compression work?', a: 'Each page is re-rendered as an optimised JPEG image and re-packed into a new PDF. That is why it works so well on scans — and why text in the output is no longer selectable. If you need selectable text, keep the original alongside the compressed copy.' },
-      { q: 'Will it always make my PDF smaller?', a: 'No — and we show you the before/after size instead of pretending. Text-only PDFs are already compact and can even get bigger when rasterised; the tool warns you when the result is not smaller.' },
+      { q: 'Will it always make my PDF smaller?', a: 'No — and we show you the before/after size instead of pretending. Text-only PDFs are already compact and can get much bigger when rasterised: in our test an 8 KB text file became 50–110 KB. When the result is not smaller, the tool says so and does not download it unless you ask.' },
       { q: 'Is my PDF uploaded?', a: 'No. Rendering and re-packing are done by your own browser. A side effect worth knowing: compression speed depends on your device, not on our servers — a long PDF on an old phone will take longer than on a laptop.' },
     ],
     limitations: [
       'Output pages are images — text becomes non-selectable and non-searchable.',
-      'Text-only PDFs may not shrink (the tool tells you instead of silently delivering a bigger file).',
+      'Text-only PDFs may not shrink and can grow several times larger. The tool tells you and holds back the download.',
       'Encrypted PDFs must be unlocked first.',
     ],
   },
@@ -205,6 +208,7 @@ export const TOOLS: ToolMeta[] = [
     ],
     limitations: [
       'Rendered images are pictures of the pages — the text in them is not selectable.',
+      'Pages render at 144 pixels per inch (about 1190 × 1684 pixels for A4). That is sharp on screens but below the 300 per inch usually wanted for print.',
       'Each page downloads as its own file (no ZIP), so very large PDFs mean many downloads.',
       'Encrypted PDFs must be unlocked first.',
     ],
@@ -269,6 +273,7 @@ export const TOOLS: ToolMeta[] = [
     limitations: [
       'At least one page must remain.',
       'Encrypted PDFs must be unlocked first.',
+      'Bookmarks, links that jump to another page, and fillable form fields are not carried into the new file. Page content and links to websites are kept unchanged.',
     ],
   },
   {
@@ -302,6 +307,7 @@ export const TOOLS: ToolMeta[] = [
     limitations: [
       'Charts are capped at 8 series / 8 donut slices for readability — extra donut slices fold into "Other".',
       'Semicolon- or tab-delimited files should be exported as comma-separated CSV first.',
+      'The first line must be the column names. Delete any title lines above them, as in many government and research downloads.',
     ],
   },
 ];
