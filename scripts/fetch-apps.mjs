@@ -28,6 +28,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { prepareGridstorm } from './prepare-gridstorm.mjs';
 import { prepareUi } from './prepare-ui.mjs';
+import { prepareDataflow } from './prepare-dataflow.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = join(ROOT, 'dist');
@@ -132,6 +133,7 @@ for (const app of APPS) {
   manifest.apps[app.path] = { repo: app.repo, commit, pinned: Boolean(app.commit) };
   if (app.path === 'gridstorm') prepareGridstorm(target);
   if (app.path === 'ui') await prepareUi(target);
+  if (app.path === 'dataflow') prepareDataflow(target);
   ok++;
 }
 rmSync(TMP, { recursive: true, force: true });

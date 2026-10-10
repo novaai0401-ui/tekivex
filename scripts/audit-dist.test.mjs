@@ -28,7 +28,10 @@ it('passes a clean site, following redirects and app rewrites',async()=>{
 
 it('reports every class of regression',async()=>{
   const {root,dist}=site({
-    'sitemap.xml':sitemap('/','/thin/','/hidden/','/dup/','/missing/'),
+    'sitemap.xml':sitemap('/','/thin/','/hidden/','/dup/','/missing/','/scaffold/','/paid/','/sidebar/'),
+    'scaffold/index.html':page('/scaffold/',{body:words(300)+' This page is a generated scaffold.'}),
+    'paid/index.html':page('/paid/',{body:words(300)+' This is an enterprise plugin that requires a license for production use.'}),
+    'sidebar/index.html':page('/sidebar/',{body:words(30),extra:`<nav>${'<a href="/">link text here</a>'.repeat(200)}</nav>`}),
     'index.html':page('/',{title:'Same',extra:'<a href="/components/button/">b</a><a href="/ui/nowhere/">soft 404</a>'}),
     'thin/index.html':page('/thin/',{body:words(20)}),
     'hidden/index.html':page('/hidden/',{robots:'noindex, follow',desc:''}),
@@ -41,12 +44,15 @@ it('reports every class of regression',async()=>{
     expect(kinds).toEqual(expect.arrayContaining([
       'broken-link / /components/button/',
       'broken-link / /ui/nowhere/',
-      'thin /thin/ 20 words',
+      'thin /thin/ 20 words of own content',
+      'placeholder-text /scaffold/',
+      'false-licence-claim /paid/',
       'noindex-in-sitemap /hidden/',
       'no-description /hidden/',
       'sitemap-missing /missing/ sitemap.xml',
       'duplicate-title / | /dup/ Same',
       'ads-outside-editorial /ui/docs/index.html',
+      'thin /sidebar/ 30 words of own content',
     ]));
     expect(kinds.some(k=>k.includes('/use-cases/'))).toBe(false);
   }finally{rmSync(root,{recursive:true,force:true});}

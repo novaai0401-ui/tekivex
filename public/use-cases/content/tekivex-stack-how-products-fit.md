@@ -18,7 +18,7 @@ Read top to bottom and you have roughly the request lifecycle of our example app
 
 ## The application shell: Tekivex UI
 
-[Tekivex UI](/product/tekivex-ui) is the foundation most teams start with because it owns everything the user actually touches: the app frame, the sidebar, modals, buttons, and form controls. It is headless and tree-shakeable, ships with zero runtime dependencies, targets WCAG 2.1 AA (with AAA on the roadmap), themes entirely through CSS variables, and supports importing only the components you need. Headless matters here — it gives you behavior and accessibility without imposing visual opinions, so the shell can host a GridStorm data grid without style collisions.
+[Tekivex UI](/product/tekivex-ui) is the foundation most teams start with because it owns everything the user actually touches: the app frame, the sidebar, modals, buttons, and form controls. It is headless and tree-shakeable, ships with zero runtime dependencies, is self-tested against WCAG 2.1 AAA criteria (an independent audit has not been completed yet), themes entirely through CSS variables, and supports importing only the components you need. Headless matters here — it gives you behavior and accessibility without imposing visual opinions, so the shell can host a GridStorm data grid without style collisions.
 
 In our dashboard, Tekivex UI provides the chrome and the layout grid. Everything else mounts inside it.
 
