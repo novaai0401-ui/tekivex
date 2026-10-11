@@ -26,6 +26,9 @@ export const CHANGELOG: ChangelogEntry[] = [
     items: [
       { tag: 'Fixed', text: 'Rewrote the GridStorm and AG Grid comparison table so every statement about AG Grid links to AG Grid’s own documentation, and removed unmeasured size and accessibility claims.' },
       { tag: 'Improved', text: 'Ads now appear only on reader guides an editor has approved. Product pages, tools and documentation carry none.' },
+      { tag: 'Fixed', text: 'GridStorm plugin documentation no longer says some plugins need a paid licence. Every GridStorm plugin is free, including for commercial use.' },
+      { tag: 'Improved', text: 'Search engines now index only Tekivex UI pages with real documentation, not unfinished component stubs, and one page for the DataFlow demos instead of six identical copies.' },
+      { tag: 'Fixed', text: 'Tekivex UI accessibility statements now match across the site: components are self-tested against WCAG 2.1 AAA criteria, and an independent audit has not been completed yet.' },
     ],
   },
   {

@@ -123,7 +123,7 @@ const PRODUCTS_SEO: SeoConfig = {
         description: 'Free high-performance data grid — virtual scrolling, plugins, free for commercial use',
         url: `${BASE_URL}/product/gridstorm` },
       { '@type': 'ListItem', position: 2, name: 'Tekivex UI',
-        description: 'Accessible component library for React, Vue & Svelte — WCAG 2.1 AA',
+        description: 'Accessible component library for React, Vue & Svelte — self-tested to WCAG 2.1 AAA',
         url: `${BASE_URL}/product/tekivex-ui` },
       { '@type': 'ListItem', position: 3, name: 'Quantum Vault',
         description: 'Sovereign post-quantum tokens — ML-DSA-87 (FIPS 204) + XChaCha20-Poly1305',

@@ -11,7 +11,7 @@ it('publishes Markdown without executing imported code and preserves doc links',
     writeFileSync(join(root,'index.html'),'<html><head><link rel="canonical" href="https://gridstorm.tekivex.com/"></head><body></body></html>');
     writeFileSync(join(root,'sitemap.xml'),'<urlset><url><loc>https://www.tekivex.com/gridstorm/#/docs</loc></url></urlset>');
     writeFileSync(join(root,'hub-assets/index.js'),'const docs={"../../docs/src/content/docs/getting-started/introduction.md":()=>Q(()=>import("./intro.js"),[])};');
-    writeFileSync(join(root,'hub-assets/intro.js'),'throw new Error("must never execute");const text="---\\ntitle: Introduction\\n---\\nA useful introduction. [Read again](/getting-started/introduction/)";export {text as default};');
+    writeFileSync(join(root,'hub-assets/intro.js'),'throw new Error("must never execute");const text="---\\ntitle: Introduction\\n---\\nA useful introduction. This is an enterprise plugin that requires a license for production use. [Read again](/getting-started/introduction/)";export {text as default};');
     expect(prepareGridstorm(root)).toBe(1);
     const html=readFileSync(join(root,'docs/getting-started/introduction/index.html'),'utf8');
     expect(html).toContain('<h1>Introduction</h1>');
@@ -22,6 +22,7 @@ it('publishes Markdown without executing imported code and preserves doc links',
     expect(sitemap).not.toContain('<loc>https://www.tekivex.com/gridstorm/</loc>'); // app shell is not content
     expect(readFileSync(join(root,'index.html'),'utf8')).toContain('content="noindex, follow"');
     expect(html).not.toContain('noindex');
+    expect(html).not.toMatch(/licen[cs]e/i); // GridStorm has no paid tier
     expect(html).toContain('<meta name="description" content="A useful introduction. Read again">');
     expect(html).toContain('"@type":"TechArticle"');
     expect(html).toContain('"@type":"BreadcrumbList"');

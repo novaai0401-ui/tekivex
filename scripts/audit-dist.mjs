@@ -4,7 +4,9 @@
 // will be deployed, and exits non-zero on any of:
 //
 //   • a sitemap URL with no file, no <title>, no meta description, no
-//     canonical, a noindex directive, or fewer than MIN_WORDS visible words;
+//     canonical, a noindex directive, fewer than MIN_WORDS words of its own
+//     content (navigation, sidebars, headers and footers excluded), placeholder
+//     text, or a claim that a Tekivex product needs a paid licence;
 //   • two sitemap pages sharing a <title>;
 //   • a same-site link, on any sitemap page, to a path that is neither a
 //     file, a configured redirect, nor an app route served by a rewrite;
@@ -17,7 +19,11 @@ import { join, relative, resolve, sep } from 'node:path';
 import { JSDOM, VirtualConsole } from 'jsdom';
 
 export const ORIGIN = 'https://www.tekivex.com';
-export const MIN_WORDS = 250;
+export const MIN_WORDS = 150;
+/** Unfinished-page markers that must never be indexed. */
+export const PLACEHOLDER = /generated scaffold|will be replaced with hand-authored|lorem ipsum/i;
+/** Every Tekivex product is free; licence-gating wording is a false claim. */
+export const PAID_LICENCE = /enterprise plugin that requires a licen[cs]e|requires? a (paid |commercial )?licen[cs]e for production/i;
 /**
  * Path prefixes whose prerendered HTML may carry ad markup: editorial articles
  * only. Product pages promote Tekivex's own software and documentation is
@@ -87,10 +93,15 @@ export async function audit(dist) {
       if (!document.querySelector('meta[name="description"]')?.getAttribute('content')?.trim()) fail('no-description', where);
       if (!document.querySelector('link[rel="canonical"]')?.getAttribute('href')) fail('no-canonical', where);
       if (/noindex/i.test(document.querySelector('meta[name="robots"]')?.getAttribute('content') || '')) fail('noindex-in-sitemap', where);
-      const body = document.body.cloneNode(true);
-      for (const n of body.querySelectorAll('script, style, noscript, template')) n.remove();
-      const words = body.textContent.split(/\s+/).filter(Boolean).length;
-      if (words < MIN_WORDS) fail('thin', where, `${words} words`);
+      // Own content only: a docs sidebar lists ~150 links and would otherwise
+      // make every stub page look substantial.
+      const root = (document.querySelector('.sl-markdown-content') || document.querySelector('main') || document.body).cloneNode(true);
+      for (const n of root.querySelectorAll('script, style, noscript, template, nav, aside, header, footer')) n.remove();
+      const own = root.textContent.replace(/\s+/g, ' ').trim();
+      const words = own ? own.split(' ').length : 0;
+      if (words < MIN_WORDS) fail('thin', where, `${words} words of own content`);
+      if (PLACEHOLDER.test(own)) fail('placeholder-text', where);
+      if (PAID_LICENCE.test(own)) fail('false-licence-claim', where);
       for (const a of document.querySelectorAll('a[href]')) {
         const href = a.getAttribute('href');
         if (/^(#|mailto:|tel:|javascript:|data:)/i.test(href)) continue;

@@ -41,6 +41,12 @@ export function prepareGridstorm(target) {
     const override = fileURLToPath(new URL(`../content/gridstorm/${slug}.md`, import.meta.url));
     if (existsSync(override)) markdown = readFileSync(override, 'utf8');
     markdown = markdown.replaceAll('/api/virtual-scroll', '/core-concepts/architecture/');
+    // Upstream plugin pages still say some plugins "require a license for
+    // production use". GridStorm has no paid tier (confirmed by the owner,
+    // October 2026), so the sentence is false and contradicts the rest of
+    // the site. Remove it; fail if any other licence-gating wording remains.
+    markdown = markdown.replace(/This is an enterprise plugin that requires a licen[cs]e for production use\.[ \t]*/gi, '');
+    if (/requires? a (paid |commercial )?licen[cs]e/i.test(markdown)) throw new Error(`Gridstorm doc ${slug} claims a paid licence; GridStorm has none`);
     const title = markdown.match(/^title:\s*(.+)$/m)?.[1]?.replace(/^['"]|['"]$/g, '') || slug;
     const content = markdown.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
     // First real paragraph (skip headings, code, imports, tables) — used as the

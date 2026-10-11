@@ -491,7 +491,7 @@ grid.dispatch('charts:open', {
     answer: `**Tekivex UI** is an accessible component library for React, Vue, and Svelte.
 
 **Core highlights:**
-- ♿ patterns targeting WCAG 2.1 AA (verify in the finished application)
+- ♿ self-tested against WCAG 2.1 AAA criteria (verify in the finished application)
 - ⚛️ Works across React, Vue, and Svelte
 - 🎨 Themeable with CSS custom properties
 - 📦 Tree-shakable, TypeScript-native
