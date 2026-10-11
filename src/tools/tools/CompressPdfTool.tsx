@@ -15,7 +15,10 @@ export function CompressPdfTool() {
   const [busy, setBusy] = React.useState(false);
   const [progress, setProgress] = React.useState<string | null>(null);
   const [error, setError] = React.useState<string | null>(null);
-  const [result, setResult] = React.useState<{ before: number; after: number } | null>(null);
+  // `pending` holds an output that is not smaller than the input. It is only
+  // downloaded if the visitor asks, because a "compressed" file several times
+  // larger than the original is never what they came for.
+  const [result, setResult] = React.useState<{ before: number; after: number; pending?: Uint8Array; name: string } | null>(null);
 
   const compress = async () => {
     if (!file) return;
@@ -25,9 +28,13 @@ export function CompressPdfTool() {
       const before = bytes.byteLength;
       const out = await compressPdf(bytes, level, (p) => setProgress(`Rendering page ${p.page} of ${p.totalPages}…`));
       setProgress(null);
-      const base = file.name.replace(/\.pdf$/i, '');
-      downloadBlob(out, `${base}-compressed.pdf`, 'application/pdf');
-      setResult({ before, after: out.byteLength });
+      const name = `${file.name.replace(/\.pdf$/i, '')}-compressed.pdf`;
+      if (out.byteLength < before) {
+        downloadBlob(out, name, 'application/pdf');
+        setResult({ before, after: out.byteLength, name });
+      } else {
+        setResult({ before, after: out.byteLength, pending: out, name });
+      }
     } catch (e) {
       setProgress(null);
       setError(e instanceof Error ? e.message : 'Something went wrong compressing the file.');
@@ -69,8 +76,17 @@ export function CompressPdfTool() {
           {formatBytes(result.before)} → {formatBytes(result.after)}
           {result.after < result.before
             ? ` (${Math.round((1 - result.after / result.before) * 100)}% smaller) — check your downloads.`
-            : ' — this PDF did not get smaller (it is likely text-only and already compact). The download still ran; keep the original.'}
+            : ' — this PDF would get bigger, not smaller, so nothing was downloaded. It is probably text-only and already compact: keep the original.'}
         </p>
+      )}
+      {result?.pending && (
+        <button
+          className="tool-cta tool-cta--secondary"
+          type="button"
+          onClick={() => downloadBlob(result.pending!, result.name, 'application/pdf')}
+        >
+          Download the larger file anyway
+        </button>
       )}
       <button className="tool-cta" type="button" disabled={!file || busy} onClick={compress}>
         {busy ? 'Compressing…' : 'Compress PDF'}

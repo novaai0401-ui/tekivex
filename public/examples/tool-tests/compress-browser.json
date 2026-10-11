@@ -1,0 +1,13 @@
+{
+  "generated": "2026-10-11",
+  "method": "compressPdf() from src/tools/lib/pdfCompress.ts, called in the page on the local dev server. The browser pane was hidden, so requestAnimationFrame was replaced with a zero-delay timer for the run; this changes when render steps are scheduled, not what they draw. The compression-sample.pdf results match the 2026-09-15 run in Chrome 153 to within 1 byte.",
+  "browser": "Chromium 152.0.7977.130 (Claude desktop app browser pane), Windows 11",
+  "results": [
+    { "input": "tool-tests/structured.pdf", "kind": "six text-only pages", "inputBytes": 8037, "level": "high", "outputBytes": 110437 },
+    { "input": "tool-tests/structured.pdf", "kind": "six text-only pages", "inputBytes": 8037, "level": "balanced", "outputBytes": 80748 },
+    { "input": "tool-tests/structured.pdf", "kind": "six text-only pages", "inputBytes": 8037, "level": "strong", "outputBytes": 50304 },
+    { "input": "compression-sample.pdf", "kind": "one image-heavy page", "inputBytes": 3067920, "level": "high", "outputBytes": 104162 },
+    { "input": "compression-sample.pdf", "kind": "one image-heavy page", "inputBytes": 3067920, "level": "balanced", "outputBytes": 50720 },
+    { "input": "compression-sample.pdf", "kind": "one image-heavy page", "inputBytes": 3067920, "level": "strong", "outputBytes": 22677 }
+  ]
+}

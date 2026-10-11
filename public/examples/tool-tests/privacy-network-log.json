@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-11",
+  "page": "https://www.tekivex.com/tools/merge-pdf (live site)",
+  "browser": "Chromium 152.0.7977.130 (Claude desktop app browser pane), Windows 11",
+  "consent": "Optional analytics rejected in the cookie banner before the test.",
+  "method": [
+    "Two synthetic one-page PDFs were created in the page, each containing the text TEKIVEX-PRIVACY-CHECK-7731.",
+    "Before merging, fetch, XMLHttpRequest, navigator.sendBeacon and WebSocket were wrapped to record every outgoing request and its body.",
+    "The automatic download was intercepted so nothing was written to disk; the merged file stayed a blob: URL in the page.",
+    "The browser's own network log for the tab was read afterwards, to catch requests the page-level wrappers could miss."
+  ],
+  "result": {
+    "merged": "2 files, 891 bytes",
+    "requestsWithABody": 0,
+    "requestsContainingTheMarker": 0,
+    "requestsStartedByPressingMerge": [
+      { "method": "GET", "url": "https://www.tekivex.com/assets/es-t3cpeKTL.js", "what": "the PDF library (pdf-lib), downloaded the first time a file is processed", "transferBytes": 178864 }
+    ],
+    "allRequestsForThePage": [
+      "GET https://www.tekivex.com/tools/merge-pdf",
+      "GET https://www.tekivex.com/assets/index-B1Avc0xT.js",
+      "GET https://www.tekivex.com/assets/index-Boxnaajd.css",
+      "GET https://www.tekivex.com/assets/MergePdfTool-De_tKzKw.js",
+      "GET https://www.tekivex.com/assets/download-CoHNi-gC.js",
+      "GET https://www.tekivex.com/assets/pdf-CdgVe8gy.js",
+      "GET https://www.tekivex.com/favicon.svg",
+      "GET https://www.tekivex.com/assets/es-t3cpeKTL.js"
+    ],
+    "thirdPartyRequests": 0
+  },
+  "notes": "Asset file names contain build hashes and change with each deployment. The test was not repeated with analytics accepted."
+}

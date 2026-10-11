@@ -1,0 +1,309 @@
+{
+  "generated": "2026-10-10",
+  "runtime": "Node v24.13.0",
+  "pdfLib": "1.17.1",
+  "engine": "src/tools/lib/pdf.ts",
+  "fixtures": "public/examples/tool-tests/ (synthetic, from scripts/create-tool-test-fixtures.py)",
+  "source": {
+    "file": "structured.pdf",
+    "pageCount": 6,
+    "pages": [
+      {
+        "w": 595,
+        "h": 842,
+        "rotate": 0
+      },
+      {
+        "w": 595,
+        "h": 842,
+        "rotate": 0
+      },
+      {
+        "w": 595,
+        "h": 842,
+        "rotate": 0
+      },
+      {
+        "w": 595,
+        "h": 842,
+        "rotate": 0
+      },
+      {
+        "w": 595,
+        "h": 842,
+        "rotate": 0
+      },
+      {
+        "w": 595,
+        "h": 842,
+        "rotate": 0
+      }
+    ],
+    "bookmarks": 6,
+    "externalLinks": 1,
+    "internalLinks": 1,
+    "workingInternalLinks": 1,
+    "formFields": 1,
+    "widgets": 1
+  },
+  "tests": [
+    {
+      "label": "merge: structured.pdf + structured.pdf",
+      "ok": true,
+      "bytes": 6496,
+      "pageCount": 12,
+      "pages": [
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        }
+      ],
+      "bookmarks": 0,
+      "externalLinks": 2,
+      "internalLinks": 2,
+      "workingInternalLinks": 0,
+      "formFields": 0,
+      "widgets": 2,
+      "contentStreamsUnchanged": true
+    },
+    {
+      "label": "split: extract pages \"1,5\" (link source and link target)",
+      "ok": true,
+      "bytes": 1566,
+      "pageCount": 2,
+      "pages": [
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        }
+      ],
+      "bookmarks": 0,
+      "externalLinks": 1,
+      "internalLinks": 1,
+      "workingInternalLinks": 0,
+      "formFields": 0,
+      "widgets": 0,
+      "contentStreamsUnchanged": true
+    },
+    {
+      "label": "delete: remove page 2",
+      "ok": true,
+      "bytes": 3659,
+      "pageCount": 5,
+      "pages": [
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 0
+        }
+      ],
+      "bookmarks": 0,
+      "externalLinks": 1,
+      "internalLinks": 1,
+      "workingInternalLinks": 0,
+      "formFields": 0,
+      "widgets": 1,
+      "contentStreamsUnchanged": true,
+      "deletedPageTextFound": false,
+      "sourceHasDeletedPageText": true
+    },
+    {
+      "label": "rotate: 90 degrees, all pages",
+      "ok": true,
+      "bytes": 4369,
+      "pageCount": 6,
+      "pages": [
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 90
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 90
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 90
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 90
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 90
+        },
+        {
+          "w": 595,
+          "h": 842,
+          "rotate": 90
+        }
+      ],
+      "bookmarks": 6,
+      "externalLinks": 1,
+      "internalLinks": 1,
+      "workingInternalLinks": 1,
+      "formFields": 1,
+      "widgets": 1,
+      "contentStreamsUnchanged": true
+    },
+    {
+      "label": "merge: password-to-open PDF",
+      "ok": false,
+      "error": "\"locked.pdf\" is encrypted. That covers password-protected files and also files that open without a password but restrict copying or editing. Save an unencrypted copy first, then try again."
+    },
+    {
+      "label": "merge: restrictions-only PDF (opens without a password)",
+      "ok": false,
+      "error": "\"restricted.pdf\" is encrypted. That covers password-protected files and also files that open without a password but restrict copying or editing. Save an unencrypted copy first, then try again."
+    },
+    {
+      "label": "jpg-to-pdf: phone portrait photo stored with EXIF orientation 6",
+      "ok": true,
+      "bytes": 15521,
+      "pageCount": 1,
+      "pages": [
+        {
+          "w": 595,
+          "h": 794,
+          "rotate": 0
+        }
+      ],
+      "bookmarks": 0,
+      "externalLinks": 0,
+      "internalLinks": 0,
+      "workingInternalLinks": 0,
+      "formFields": 0,
+      "widgets": 0
+    },
+    {
+      "label": "delete: remove page 2 of a file whose pages share one resource list (image only on page 2)",
+      "ok": true,
+      "bytes": 781,
+      "pageCount": 1,
+      "pages": [
+        {
+          "w": 200,
+          "h": 200,
+          "rotate": 0
+        }
+      ],
+      "bookmarks": 0,
+      "externalLinks": 0,
+      "internalLinks": 0,
+      "workingInternalLinks": 0,
+      "formFields": 0,
+      "widgets": 0,
+      "imagesInSource": 1,
+      "imagesInOutput": 0
+    },
+    {
+      "label": "split: extract page 1 of the same shared-resources file",
+      "ok": true,
+      "bytes": 781,
+      "pageCount": 1,
+      "pages": [
+        {
+          "w": 200,
+          "h": 200,
+          "rotate": 0
+        }
+      ],
+      "bookmarks": 0,
+      "externalLinks": 0,
+      "internalLinks": 0,
+      "workingInternalLinks": 0,
+      "formFields": 0,
+      "widgets": 0,
+      "imagesInSource": 1,
+      "imagesInOutput": 0
+    }
+  ]
+}

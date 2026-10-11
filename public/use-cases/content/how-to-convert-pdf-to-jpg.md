@@ -25,10 +25,22 @@ If you're unsure, try JPG first — for most everyday pages it's the better bala
 
 - **The images are pictures, not text.** Once a page becomes a JPG or PNG, the text in it is no longer selectable or searchable. If you need editable text, keep the original PDF too.
 - **Each page downloads as its own file.** To keep the tool lightweight, there's no ZIP bundling — "Download all" simply triggers each image in turn. Your browser may ask permission to download multiple files the first time; that's expected.
-- **Encrypted PDFs need unlocking first.** If your PDF is password-protected, open it in a reader, save an unlocked copy, and convert that.
+- **Encrypted PDFs need unlocking first.** That includes files that open without a password but restrict copying or editing. Save an unencrypted copy, and convert that.
+- **Images are sized for screens, not print.** Pages render at 144 pixels per inch, which is about 1190 × 1684 pixels for an A4 page. That is sharp on a monitor or phone, but print shops usually ask for 300 pixels per inch.
 - **No upload, no watermark, no account.** Every page is rendered in your browser using client-side code, so the PDF never leaves your device.
 
 If you later want to go the other way — turning images back into a single PDF — the [JPG to PDF](/tools/jpg-to-pdf) tool is the companion to this one. And if you only need a few pages as images, you can first pull them out with [Split PDF](/tools/split-pdf) and then convert just those.
+
+## What we measured
+
+On 10 October 2026 we ran the tool's own rendering code in Chromium 152 on two published sample files. The sizes are for the first page, at the tool's settings.
+
+| Sample | JPG | PNG |
+|---|---|---|
+| [Photo-like image with text](/examples/compression-sample.pdf), 3.1 MB PDF | 175 KB | 1.77 MB |
+| [Text-only page](/examples/tool-tests/structured.pdf), 8 KB PDF | 33 KB | 74 KB |
+
+Both images were 1190 × 1684 pixels. On the photo-like page, PNG was ten times the size of JPG. On the text page it was about twice the size. That is the practical difference: choose PNG for text and diagrams when the extra size is acceptable, and JPG for anything photographic. The [raw measurements](/examples/tool-tests/pdf-to-jpg-browser.json) are published. Sizes will differ a little in other browsers, because each browser has its own image encoder.
 
 ## What people actually use page images for
 
@@ -39,7 +51,7 @@ If you later want to go the other way — turning images back into a single PDF 
 
 ## Getting the best quality out of the conversion
 
-The renderer draws each page at a resolution chosen for crisp on-screen viewing. For content destined for a large print or a projector, PNG is the safer choice: it's lossless, so fine text and line art survive untouched, where JPG's compression can leave faint artefacts around sharp edges. For photos and scans the difference is invisible and JPG's smaller size wins. One thing no setting can change: the output is a picture of the page, so the text in it can't be selected or searched. If the recipient needs working text, send the PDF itself, or extract just the needed pages with [Split PDF](/tools/split-pdf).
+The renderer draws each page at 144 pixels per inch, which suits screens, slides and projectors. PNG keeps fine text and line art free of the faint artefacts JPG compression can leave around sharp edges, but it does not add resolution. For a large print, send the PDF itself. Its text and drawn graphics print at the printer's full resolution. For photos and scans the JPG and PNG versions look the same and JPG's smaller size wins. One thing no setting can change: the output is a picture of the page, so the text in it can't be selected or searched. If the recipient needs working text, send the PDF itself, or extract just the needed pages with [Split PDF](/tools/split-pdf).
 
 ## Frequently asked questions
 
@@ -53,4 +65,4 @@ Yes. After the PDF is loaded, every page is rendered separately, so you can down
 
 ### Will the image quality be good?
 
-Yes. Pages are rendered at a high resolution suitable for screen and most printing. For the sharpest text and line art, choose PNG; for photos and scans, JPG gives you a much smaller file with no visible difference.
+Good for screens. Pages are rendered at 144 pixels per inch, about 1190 × 1684 pixels for A4. That is sharp on a monitor or phone and fine for slides, but below the 300 pixels per inch usually wanted for print. For the sharpest text and line art, choose PNG; for photos and scans, JPG gives you a much smaller file with no visible difference.
