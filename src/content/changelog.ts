@@ -41,6 +41,9 @@ export const CHANGELOG: ChangelogEntry[] = [
       { tag: 'Fixed', text: 'Split PDF and Delete PDF Pages no longer leave an image from a removed page embedded in the output when the source file shares one resource list across pages.' },
       { tag: 'Fixed', text: 'The PDF tools now say a file is encrypted rather than password-protected, because files that open without a password but restrict editing are rejected too.' },
       { tag: 'Improved', text: 'The merge, split, delete, rotate, JPG to PDF and PDF to JPG guides now report what we tested on published sample files, including what each tool keeps and drops. The merge guide no longer claims that compressing after merging deduplicates fonts and images.' },
+      { tag: 'Fixed', text: 'GridStorm plugin documentation no longer says some plugins need a paid licence. Every GridStorm plugin is free, including for commercial use.' },
+      { tag: 'Improved', text: 'Search engines now index only Tekivex UI pages with real documentation, not unfinished component stubs, and one page for the DataFlow demos instead of six identical copies.' },
+      { tag: 'Fixed', text: 'Tekivex UI accessibility statements now match across the site: components are self-tested against WCAG 2.1 AAA criteria, and an independent audit has not been completed yet.' },
     ],
   },
   {

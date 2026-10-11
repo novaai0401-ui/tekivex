@@ -17,7 +17,7 @@ const PRODUCTS = [
     icon: 'layers',
     status: 'Beta',
     statusColor: '#fbbf24',
-    description: 'Accessible component library for React, Vue & Svelte — patterns targeting WCAG 2.1 AA.',
+    description: 'Accessible component library for React, Vue & Svelte — self-tested against WCAG 2.1 AAA criteria.',
     href: '/product/tekivex-ui',
   },
   {

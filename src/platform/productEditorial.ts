@@ -176,7 +176,7 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
   // ── Tekivex UI ──────────────────────────────────────────────────────────
   'tekivex-ui': {
     overview: [
-      'Tekivex UI is a professional component library with 50+ accessible components — buttons, inputs, selects, modals, drawers, toasts, navigation, and layout primitives — plus a headless layer for full style control. It ships React 18+, Vue 3, and Svelte 5 bindings with idiomatic APIs, so design decisions stay consistent across frameworks.',
+      'Tekivex UI is a professional component library with 100+ accessible components — buttons, inputs, selects, modals, drawers, toasts, navigation, and layout primitives — plus a headless layer for full style control. It ships React 18+, Vue 3, and Svelte 5 bindings with idiomatic APIs, so design decisions stay consistent across frameworks.',
       'It is in Preview. The component set, theming system, and accessibility work are usable today; we are expanding coverage and stabilising APIs ahead of a 1.0. Accessibility targets WCAG 2.1 AA; the package uses tree-shakeable ESM and and ships with zero runtime dependencies.',
     ],
     howItWorks: [
@@ -185,7 +185,7 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
       { title: 'Drop to headless when needed', body: 'Each component exposes a headless primitive, so when the styled version is not enough you keep the behaviour and accessibility while supplying your own markup.' },
     ],
     useCases: [
-      'Production apps that need accessible components out of the box (WCAG 2.1 AA) without a heavy runtime.',
+      'Production apps that need accessible components out of the box (self-tested against WCAG 2.1 AAA criteria) without a heavy runtime.',
       'Teams shipping the same design system across React, Vue, and Svelte codebases.',
       'Products with strict bundle budgets that benefit from tree-shakeable, zero-dependency components.',
       'Design systems that need headless primitives for full visual customisation.',
@@ -195,7 +195,7 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
       'As a deliberately lightweight library, it focuses on core primitives rather than a vast catalogue of niche widgets.',
     ],
     faqs: [
-      { q: 'Is it accessible by default?', a: 'Yes. Components are designed toward WCAG 2.1 AA with ARIA roles and full keyboard navigation built in, not bolted on.' },
+      { q: 'Is it accessible by default?', a: 'Yes. Every component is self-tested against WCAG 2.1 AAA criteria, with ARIA roles and full keyboard navigation built in, not bolted on. An independent third-party audit has not been completed yet.' },
       { q: 'Can I use it with Vue or Svelte, not just React?', a: 'Yes — React 18+, Vue 3, and Svelte 5 bindings ship in the box with idiomatic APIs for each.' },
       { q: 'How do I customise the look?', a: 'Re-theme via CSS custom properties for dark/light/high-contrast, or drop to the headless primitive of any component to supply your own markup while keeping the behaviour and accessibility.' },
     ],

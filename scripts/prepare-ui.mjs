@@ -9,7 +9,8 @@
 //
 // This step, mirroring prepare-gridstorm.mjs, makes the vendored tree honest:
 //   1. strips every AdSense loader / ad unit from /ui — no ads on any /ui page;
-//   2. marks thin pages (below MIN_WORDS of visible text) noindex,follow;
+//   2. marks thin pages (below MIN_WORDS of the page's own content, sidebar
+//      excluded) and self-declared placeholder pages noindex,follow;
 //   3. regenerates /ui/sitemap.xml from the pages that remain indexable;
 //   4. repairs internal links: the upstream Starlight build is not configured
 //      with the /ui base path, so its pages link to /components/x/ instead of
@@ -26,8 +27,16 @@ import { JSDOM, VirtualConsole } from 'jsdom';
 const BASE = 'https://www.tekivex.com/ui';
 // Vendored pages ship modern CSS jsdom's parser rejects; those warnings are noise.
 const quiet = new VirtualConsole();
-/** Pages with fewer visible words than this are application shells, not content. */
-export const MIN_WORDS = 200;
+/**
+ * Pages whose own content (sidebar, header and footer excluded) is shorter
+ * than this are template stubs or application shells, not documentation.
+ * Measured on the October 2026 build: 63 of 151 component pages fell below
+ * it, each a generated stub (import line, demo heading, shared accessibility
+ * bullets, source path). Code-heavy pages above it are real documentation.
+ */
+export const MIN_WORDS = 150;
+/** Text that marks a page as an unfinished placeholder, whatever its length. */
+export const PLACEHOLDER = /generated scaffold|will be replaced with hand-authored|lorem ipsum/i;
 
 const escape = (s) => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('"', '&quot;');
 
@@ -52,12 +61,24 @@ export function stripAds(document) {
   return removed;
 }
 
-/** Count the words a reader (or crawler) sees in the initial HTML. */
+/**
+ * The page's own content: the Starlight article body, else <main>, else the
+ * body, with navigation, sidebars, headers, footers and scripts removed. The
+ * sidebar alone lists ~150 links, so counting the whole body made every stub
+ * look substantial.
+ */
+export function pageContent(document) {
+  const root = document.querySelector('.sl-markdown-content') || document.querySelector('main') || document.body;
+  if (!root) return '';
+  const clone = root.cloneNode(true);
+  for (const node of clone.querySelectorAll('script, style, noscript, template, nav, aside, header, footer')) node.remove();
+  return (clone.textContent || '').replace(/\s+/g, ' ').trim();
+}
+
+/** Count the words of a page's own content (see pageContent). */
 export function visibleWords(document) {
-  const clone = document.body?.cloneNode(true);
-  if (!clone) return 0;
-  for (const node of clone.querySelectorAll('script, style, noscript, template')) node.remove();
-  return (clone.textContent || '').split(/\s+/).filter(Boolean).length;
+  const text = pageContent(document);
+  return text ? text.split(' ').length : 0;
 }
 
 /** Pages that moved upstream; the old path is still linked from other pages. */
@@ -150,7 +171,8 @@ export async function prepareUi(target) {
     }
     const isPage = rel.endsWith('/index.html') || rel === 'index.html';
     const words = visibleWords(document);
-    if (!isPage || words < MIN_WORDS) {
+    const placeholder = PLACEHOLDER.test(pageContent(document));
+    if (!isPage || words < MIN_WORDS || placeholder) {
       setRobots(document, 'noindex, follow');
       if (isPage) thin++;
     } else {

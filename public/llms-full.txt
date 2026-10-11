@@ -13,7 +13,7 @@ Install: `npm install gridstorm`
 URL: https://www.tekivex.com/product/gridstorm
 
 ### Tekivex UI
-Accessible React/Vue/Svelte component library: 100+ components (Tkx-prefixed), WCAG 2.1 AA (targeting AAA), dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, headless primitives. MIT-licensed, free for commercial use.
+Accessible React/Vue/Svelte component library: 100+ components (Tkx-prefixed), self-tested against WCAG 2.1 AAA criteria (independent audit not yet completed), dark/light/high-contrast themes via CSS custom properties, tree-shakeable ESM, headless primitives. MIT-licensed, free for commercial use.
 Install: `npm install tekivex-ui`
 URL: https://www.tekivex.com/product/tekivex-ui
 
