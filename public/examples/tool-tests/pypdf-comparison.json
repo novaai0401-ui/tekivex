@@ -1,0 +1,81 @@
+{
+  "generated_by": "scripts/pdf-structure-comparison.py",
+  "pypdf": "6.17.0",
+  "source": {
+    "file": "structured.pdf",
+    "pages": 6,
+    "bookmarks": 6,
+    "bookmarks_pointing_nowhere": 0,
+    "external_links": 1,
+    "internal_links": 1,
+    "working_internal_links": 1,
+    "form_fields": 1,
+    "form_widgets": 1,
+    "widget_field_names": [
+      "full_name"
+    ]
+  },
+  "pypdf_operations": {
+    "merge: structured.pdf + structured.pdf (PdfWriter.append twice)": {
+      "pages": 12,
+      "bookmarks": 12,
+      "bookmarks_pointing_nowhere": 0,
+      "external_links": 2,
+      "internal_links": 2,
+      "working_internal_links": 2,
+      "form_fields": 1,
+      "form_widgets": 2,
+      "widget_field_names": [
+        "full_name",
+        "full_name"
+      ]
+    },
+    "split: extract pages 1 and 5 (PdfWriter.append pages=[0, 4])": {
+      "pages": 2,
+      "bookmarks": 2,
+      "bookmarks_pointing_nowhere": 0,
+      "external_links": 1,
+      "internal_links": 1,
+      "working_internal_links": 1,
+      "form_fields": 0,
+      "form_widgets": 0,
+      "widget_field_names": []
+    },
+    "delete: remove page 2 (clone_from, remove_page)": {
+      "pages": 5,
+      "bookmarks": 6,
+      "bookmarks_pointing_nowhere": 1,
+      "external_links": 1,
+      "internal_links": 1,
+      "working_internal_links": 1,
+      "form_fields": 1,
+      "form_widgets": 1,
+      "widget_field_names": [
+        "full_name"
+      ]
+    },
+    "rotate: 90 degrees, all pages (PageObject.rotate)": {
+      "pages": 6,
+      "bookmarks": 6,
+      "bookmarks_pointing_nowhere": 0,
+      "external_links": 1,
+      "internal_links": 1,
+      "working_internal_links": 1,
+      "form_fields": 1,
+      "form_widgets": 1,
+      "widget_field_names": [
+        "full_name"
+      ]
+    }
+  },
+  "hidden_image_after_page_deletion": {
+    "source: only page 2 draws the image": 1,
+    "Tekivex before the fix: delete page 2": 1,
+    "Tekivex after the fix: delete page 2": 0,
+    "pypdf: clone_from, remove_page": 1,
+    "pypdf: leftover image is byte-identical to the original": true,
+    "pypdf: clone_from, remove_page, compress_identical_objects(remove_unreferenced=True)": 1,
+    "pypdf: append page 1 only": 1
+  },
+  "note": "The shared-resources file is synthetic (scripts/tool-evidence.mjs sharedResourcesPdf): two pages share one resource list and only page 2 draws the image. How common this layout is in real files was not measured."
+}

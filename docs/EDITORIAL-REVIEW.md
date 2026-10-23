@@ -124,6 +124,21 @@ Still open for these three:
 The same rule as before applies: a named person must repeat these checks
 before any of these guides is switched to `ads: true`. None has been.
 
+## Update, October 23, 2026: three new guides drafted, not published
+
+The AdSense review was requested again on 2026-10-23. Three new reader guides
+are in `drafts/use-cases/`, each built on a test nobody else has published.
+They are AI-drafted and unpublished; `drafts/README.md` lists what the byline
+author must repeat and fill in before each goes live.
+
+| Draft | Original finding |
+| --- | --- |
+| why-phone-photos-turn-sideways-in-pdf | Pillow 12.1.1 and Tekivex before its fix got 1 of 8 EXIF orientations right; Tekivex now gets 8 of 8 |
+| is-a-deleted-pdf-page-really-gone | With shared page resources, an image from a deleted page stays in the file after Tekivex's old engine and every pypdf 6.17.0 method tried, including `remove_unreferenced` |
+| what-survives-merge-split-rotate-pdf | Side-by-side record of bookmarks, jump links and form fields kept by Tekivex and pypdf for merge, split, delete and rotate |
+
+Publish them one at a time, a week or more apart, under the real author's name.
+
 ## Before switching any article to `ads: true`
 
 1. A named person has tested the steps, added the evidence in its row, and is
