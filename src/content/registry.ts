@@ -8,6 +8,15 @@ import { AUTHORS } from './authors';
 
 const PUBLISHED = '2026-06-17';
 
+/**
+ * Guides drafted with an AI assistant from tests whose scripts and results are
+ * published, and not written or tested by a named person. They are credited to
+ * the team instead of borrowing a person's name, and each one says how it was
+ * made (pinned in registry.test.ts). See drafts/README.md.
+ */
+export const TEAM_AUTHOR_ID = 'tekivex-team';
+export const TEAM_AUTHOR_NAME = 'Tekivex team';
+
 // Which real author wrote each guide. Chandan leads on architecture, performance,
 // data/streaming, crypto, and platform pieces; Seema leads on UI, accessibility,
 // design systems, PDF tooling, and analytics dashboards — matching their stated
@@ -37,6 +46,7 @@ const AUTHOR_BY_SLUG: Record<string, string> = {
   'how-to-convert-pdf-to-jpg': 'seema-almas-shaikh',
   'how-to-rotate-pdf': 'seema-almas-shaikh',
   'how-to-delete-pages-from-pdf': 'seema-almas-shaikh',
+  'why-phone-photos-turn-sideways-in-pdf': TEAM_AUTHOR_ID,
 };
 
 const DEFAULT_AUTHOR_ID = 'chandan-kumar';
@@ -70,6 +80,7 @@ const DATES: Record<string, { published: string; modified?: string }> = {
   'how-to-convert-pdf-to-jpg':                     { published: '2026-07-22', modified: '2026-10-10' },
   'how-to-rotate-pdf':                             { published: '2026-07-22', modified: '2026-10-10' },
   'how-to-delete-pages-from-pdf':                  { published: '2026-07-22', modified: '2026-10-10' },
+  'why-phone-photos-turn-sideways-in-pdf':         { published: '2026-10-23' },
 };
 
 function article(
@@ -81,7 +92,7 @@ function article(
   const modified = a.dateModified ?? d?.modified ?? published;
   const authorId = AUTHOR_BY_SLUG[a.slug] ?? DEFAULT_AUTHOR_ID;
   return {
-    author: AUTHORS[authorId].name,
+    author: authorId === TEAM_AUTHOR_ID ? TEAM_AUTHOR_NAME : AUTHORS[authorId].name,
     authorId,
     datePublished: published,
     dateModified: modified,
@@ -123,6 +134,17 @@ export const ARTICLES: Article[] = [
     productName: 'Free Tools',
     kind: 'How-To',
     keywords: ['jpg to pdf', 'convert images to pdf', 'png to pdf', 'scan to pdf private', 'photos to pdf'],
+    readingMinutes: 5,
+  }),
+  article({
+    slug: 'why-phone-photos-turn-sideways-in-pdf',
+    title: 'Why Phone Photos Turn Sideways When You Make a PDF',
+    description:
+      'Your gallery shows the photo upright, but the PDF shows it on its side. We tested the eight ways a camera can record orientation with three converters, and explain the cause and the fix.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'Explainer',
+    keywords: ['photo sideways in pdf', 'jpg to pdf rotated', 'exif orientation', 'phone photo upside down pdf', 'image rotated after converting'],
     readingMinutes: 5,
   }),
   article({

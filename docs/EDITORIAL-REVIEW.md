@@ -139,6 +139,13 @@ author must repeat and fill in before each goes live.
 
 Publish them one at a time, a week or more apart, under the real author's name.
 
+2026-10-23: on the owner's instruction, `why-phone-photos-turn-sideways-in-pdf`
+was published without an author having repeated the test. It is credited to
+"Tekivex team", not a person, ends with a note that it was drafted with an AI
+assistant, and has `ads` off. The editorial policy page now describes team
+bylines. It does not meet checklist item 1 below and must not carry ads until
+a named person has repeated the test and taken over the byline.
+
 ## Before switching any article to `ads: true`
 
 1. A named person has tested the steps, added the evidence in its row, and is

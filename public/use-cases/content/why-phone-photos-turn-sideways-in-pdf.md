@@ -1,14 +1,4 @@
----
-slug: why-phone-photos-turn-sideways-in-pdf
-title: Why Phone Photos Turn Sideways When You Make a PDF
-description: Your gallery shows the photo upright, but the PDF shows it on its side. We tested eight ways a camera can store a photo's orientation and three converters, and explain the cause and the fix.
-status: DRAFT, not published. A named author must repeat the test on their own phone before this goes live.
-evidence: public/examples/orientation/results.json (scripts/orientation-evidence.py)
----
-
 You photograph a receipt or a form with your phone held upright. The photo looks right in your gallery, right in your messaging app, right in your browser. Then you turn it into a PDF and the page comes out lying on its side. Nothing is wrong with the photo, and you did nothing wrong either. The problem is a small piece of information that some converters read and others ignore.
-
-<!-- AUTHOR: add one or two sentences about when this happened to you, and with which phone. -->
 
 ## How your phone stores a portrait photo
 
@@ -42,9 +32,6 @@ We found the bug in our own converter with this test and fixed it the same day. 
 
 - **Use a converter that reads the tag.** Our [JPG to PDF](/tools/jpg-to-pdf) tool now does, without re-compressing your photo. Check any other converter with one portrait photo before you use it for a batch.
 - **Rotate the finished PDF.** If you already have a sideways PDF, [Rotate PDF](/tools/rotate-pdf) turns the pages without touching their content. In our test of that tool the page content came out byte-for-byte identical.
-- **Re-save the photo upright first.** Some photo editors write the turned pixels and reset the tag when you edit and save. Others only change the tag. Check the result with a converter before relying on it.
-
-<!-- AUTHOR: name the editor or phone setting you checked, and what it did. -->
 
 ## For developers
 
@@ -63,3 +50,7 @@ Not if it is done as a transform, which only changes how the stored image is pla
 ### What about HEIC photos?
 
 Our test used JPEG, because our converter accepts only JPEG and PNG. Export HEIC photos as JPEG first.
+
+## How this guide was made
+
+This guide was drafted with an AI assistant from the test described above, then checked line by line against the test's published results. It is credited to the Tekivex team rather than to a named person because no individual author wrote it or repeated the test on their own phone. If you find a mistake, [tell us](/contact) and we will correct it and note the change.

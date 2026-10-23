@@ -5,6 +5,8 @@ import {
   getArticlesByProduct,
   getArticlesForProductId,
   getArticlesGroupedByProduct,
+  TEAM_AUTHOR_ID,
+  TEAM_AUTHOR_NAME,
 } from '../registry';
 import { getProduct } from '../../platform/registry';
 import { getAuthor } from '../authors';
@@ -42,8 +44,16 @@ describe('use-cases article registry', () => {
       expect(a.keywords.length).toBeGreaterThan(0);
       expect(a.readingMinutes).toBeGreaterThan(0);
       expect(a.author.length).toBeGreaterThan(0);
-      expect(getAuthor(a.authorId), `unknown author for ${a.slug}`).toBeDefined();
-      expect(a.author).toBe(getAuthor(a.authorId)!.name);
+      if (a.authorId === TEAM_AUTHOR_ID) {
+        // No named person wrote it, so it must not borrow one and must say how it was made.
+        expect(a.author).toBe(TEAM_AUTHOR_NAME);
+        expect(readArticle(a.contentFile), `${a.slug} must disclose AI drafting`).toMatch(
+          /## How this guide was made\n\nThis guide was drafted with an AI assistant/,
+        );
+      } else {
+        expect(getAuthor(a.authorId), `unknown author for ${a.slug}`).toBeDefined();
+        expect(a.author).toBe(getAuthor(a.authorId)!.name);
+      }
       expect(a.contentFile).toBe(`${a.slug}.md`);
       expect(a.datePublished).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }
