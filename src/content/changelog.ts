@@ -21,6 +21,14 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: '2026-10-23',
+    title: 'New guide: why phone photos turn sideways in PDFs',
+    items: [
+      { tag: 'New', text: 'Published a guide on why portrait phone photos come out sideways in PDFs, based on a test of all eight orientation values with three converters. The test photos, results and script are published with it.' },
+      { tag: 'Improved', text: 'Guides drafted with an AI assistant are now credited to the Tekivex team rather than a named person, and say how they were made. The editorial policy explains this.' },
+    ],
+  },
+  {
     date: '2026-10-11',
     title: 'Real data and checked limits in the last three guides',
     items: [

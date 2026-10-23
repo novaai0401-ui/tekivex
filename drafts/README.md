@@ -10,7 +10,6 @@ below.
 
 | Draft | Evidence | Script |
 | --- | --- | --- |
-| `why-phone-photos-turn-sideways-in-pdf.md` | `public/examples/orientation/results.json`, `comparison.png` | `scripts/orientation-evidence.py` |
 | `is-a-deleted-pdf-page-really-gone.md` | `public/examples/tool-tests/pypdf-comparison.json` | `scripts/pdf-structure-comparison.py` |
 | `what-survives-merge-split-rotate-pdf.md` | `results.json` and `pypdf-comparison.json` in `public/examples/tool-tests/` | `scripts/tool-evidence.mjs`, `scripts/pdf-structure-comparison.py` |
 
@@ -32,3 +31,11 @@ below.
    `docs/EDITORIAL-REVIEW.md` before switching it on.
 
 Publish one guide at a time, a week or more apart, rather than all at once.
+
+## Published
+
+- 2026-10-23: `why-phone-photos-turn-sideways-in-pdf` went live credited to the
+  **Tekivex team**, not a person, because no author had repeated the test. Its
+  author notes and one unverified sentence were removed, and it ends with a
+  "How this guide was made" note (pinned in `src/content/__tests__/registry.test.ts`).
+  A named author can take it over later by repeating the test and rewriting it.

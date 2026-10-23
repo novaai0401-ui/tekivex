@@ -494,7 +494,7 @@ const routes = [
       'Who writes Tekivex guides, how technical claims are verified against the shipped software, how articles are dated and corrected, and how content stays independent of advertising.',
     h1: 'Editorial Policy',
     body:
-      'Every Tekivex article is written by a named author and checked against the software that actually ships. This page explains our verification standard, how we date and correct articles, and why advertising never influences what we publish.',
+      'Every Tekivex article names who is accountable for it — a named author, or the Tekivex team for guides drafted with an AI assistant — and is checked against the software that actually ships. This page explains our verification standard, how we date and correct articles, and why advertising never influences what we publish.',
   },
   {
     path: '/contact',

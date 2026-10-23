@@ -34,7 +34,7 @@ We built a six-page test document with six bookmarks, a link to a website, a lin
 
 Links to websites survived every operation in both tools. Page content came through unchanged in every Tekivex operation: we compared each page's drawing instructions byte by byte.
 
-The test ran on 11 October 2026. The [Tekivex results](/examples/tool-tests/results.json), [pypdf results](/examples/tool-tests/pypdf-comparison.json), the [test file](/examples/tool-tests/structured.pdf) and both scripts ([Tekivex](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/tool-evidence.mjs), [pypdf](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/pdf-structure-comparison.py)) are published. It is one synthetic file; other files and other tools may behave differently.
+The Tekivex operations ran on 10 October 2026 and the pypdf ones on 23 October 2026. The [Tekivex results](/examples/tool-tests/results.json), [pypdf results](/examples/tool-tests/pypdf-comparison.json), the [test file](/examples/tool-tests/structured.pdf) and both scripts ([Tekivex](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/tool-evidence.mjs), [pypdf](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/pdf-structure-comparison.py)) are published. It is one synthetic file; other files and other tools may behave differently.
 
 ## Reading the results
 

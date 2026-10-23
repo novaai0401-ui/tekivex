@@ -17,7 +17,7 @@ It's especially handy for scans, ID cards, and receipts, where you want everythi
 
 - **One image per page.** Each picture becomes a full page in the PDF, in the order you set.
 - **Pages fit the image.** Every page is sized to its image's aspect ratio, so a tall receipt and a wide document each keep their natural proportions.
-- **Portrait phone photos stay upright.** Phones often save a portrait photo as landscape pixels plus a tag that says "turn this 90°". Your gallery obeys the tag, but PDF files have no such tag. The tool reads it and places the photo upright, without re-compressing it.
+- **Portrait phone photos stay upright.** Phones often save a portrait photo as landscape pixels plus a tag that says "turn this 90°". Your gallery obeys the tag, but PDF files have no such tag. The tool reads it and places the photo upright, without re-compressing it. [Why phones store photos this way](/use-cases/why-phone-photos-turn-sideways-in-pdf).
 - **Supported formats: JPG/JPEG and PNG only.** If your files are HEIC, WebP, or TIFF, export them to JPG or PNG first. Most phones can save or share a HEIC photo as a JPG — check your camera or share settings — and then you're good to go.
 - **Great for scans, IDs, and receipts.** Anything you'd photograph and need as a document works well here.
 

@@ -39,6 +39,12 @@ export function EditorialPolicyPage() {
           Author pages list the
           role, background, and articles of each author. A byline identifies responsibility for upkeep; it is not evidence of an independent review.
         </p>
+        <p style={legalProse}>
+          Some guides are credited to the <strong>Tekivex team</strong> instead of a person. These
+          were drafted with an AI assistant from tests whose scripts and results we publish, and
+          no individual author wrote them. We do not put a person&rsquo;s name on work they did not do.
+          Each such guide ends with a note saying how it was made.
+        </p>
       </LegalSection>
 
       <LegalSection title="How technical claims are verified">
@@ -95,9 +101,10 @@ export function EditorialPolicyPage() {
 
       <LegalSection title="Use of AI tools">
         <p style={legalProse}>
-          A named author is accountable for every published article. Where software
+          Every published article names who is accountable for it: a named author, or the
+          Tekivex team for guides drafted with an AI assistant. Where software
           tools — including AI assistants — help with drafting, formatting, or research,
-          the listed maintainer remains responsible for accuracy and corrections. Guides should provide source links or reproducible evidence for technical claims. Software assistance and a byline do not establish that every example has been independently tested.
+          the credited author or team remains responsible for accuracy and corrections. Guides should provide source links or reproducible evidence for technical claims. Software assistance and a byline do not establish that every example has been independently tested.
         </p>
       </LegalSection>
 
