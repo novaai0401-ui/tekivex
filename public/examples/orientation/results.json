@@ -1,0 +1,185 @@
+{
+  "generated_by": "scripts/orientation-evidence.py",
+  "tools": {
+    "before": "Tekivex JPG to PDF at commit 558cac6, before the fix",
+    "pillow": "Pillow 12.1.1 Image.save(..., \"PDF\")",
+    "after": "Tekivex JPG to PDF, current src/tools/lib/pdf.ts"
+  },
+  "renderer": "pypdfium2 5.6.0",
+  "test_picture": "300x400 portrait; orientation N stored with the inverse transform and EXIF Orientation=N",
+  "results": [
+    {
+      "orientation": 1,
+      "before": {
+        "page": "595x794",
+        "portrait": true,
+        "matches_phone_view": true,
+        "mean_pixel_difference": 0.63
+      },
+      "pillow": {
+        "page": "300x400",
+        "portrait": true,
+        "matches_phone_view": true,
+        "mean_pixel_difference": 0.54
+      },
+      "after": {
+        "page": "595x794",
+        "portrait": true,
+        "matches_phone_view": true,
+        "mean_pixel_difference": 0.63
+      }
+    },
+    {
+      "orientation": 2,
+      "before": {
+        "page": "595x794",
+        "portrait": true,
+        "matches_phone_view": false,
+        "mean_pixel_difference": 19.51
+      },
+      "pillow": {
+        "page": "300x400",
+        "portrait": true,
+        "matches_phone_view": false,
+        "mean_pixel_difference": 19.67
+      },
+      "after": {
+        "page": "595x794",
+        "portrait": true,
+        "matches_phone_view": true,
+        "mean_pixel_difference": 0.63
+      }
+    },
+    {
+      "orientation": 3,
+      "before": {
+        "page": "595x794",
+        "portrait": true,
+        "matches_phone_view": false,
+        "mean_pixel_difference": 42.0
+      },
+      "pillow": {
+        "page": "300x400",
+        "portrait": true,
+        "matches_phone_view": false,
+        "mean_pixel_difference": 42.07
+      },
+      "after": {
+        "page": "595x794",
+        "portrait": true,
+        "matches_phone_view": true,
+        "mean_pixel_difference": 0.63
+      }
+    },
+    {
+      "orientation": 4,
+      "before": {
+        "page": "595x794",
+        "portrait": true,
+        "matches_phone_view": false,
+        "mean_pixel_difference": 41.99
+      },
+      "pillow": {
+        "page": "300x400",
+        "portrait": true,
+        "matches_phone_view": false,
+        "mean_pixel_difference": 42.05
+      },
+      "after": {
+        "page": "595x794",
+        "portrait": true,
+        "matches_phone_view": true,
+        "mean_pixel_difference": 0.63
+      }
+    },
+    {
+      "orientation": 5,
+      "before": {
+        "page": "595x446",
+        "portrait": false,
+        "matches_phone_view": false,
+        "mean_pixel_difference": null
+      },
+      "pillow": {
+        "page": "400x300",
+        "portrait": false,
+        "matches_phone_view": false,
+        "mean_pixel_difference": null
+      },
+      "after": {
+        "page": "595x794",
+        "portrait": true,
+        "matches_phone_view": true,
+        "mean_pixel_difference": 0.63
+      }
+    },
+    {
+      "orientation": 6,
+      "before": {
+        "page": "595x446",
+        "portrait": false,
+        "matches_phone_view": false,
+        "mean_pixel_difference": null
+      },
+      "pillow": {
+        "page": "400x300",
+        "portrait": false,
+        "matches_phone_view": false,
+        "mean_pixel_difference": null
+      },
+      "after": {
+        "page": "595x794",
+        "portrait": true,
+        "matches_phone_view": true,
+        "mean_pixel_difference": 0.63
+      }
+    },
+    {
+      "orientation": 7,
+      "before": {
+        "page": "595x446",
+        "portrait": false,
+        "matches_phone_view": false,
+        "mean_pixel_difference": null
+      },
+      "pillow": {
+        "page": "400x300",
+        "portrait": false,
+        "matches_phone_view": false,
+        "mean_pixel_difference": null
+      },
+      "after": {
+        "page": "595x794",
+        "portrait": true,
+        "matches_phone_view": true,
+        "mean_pixel_difference": 0.63
+      }
+    },
+    {
+      "orientation": 8,
+      "before": {
+        "page": "595x446",
+        "portrait": false,
+        "matches_phone_view": false,
+        "mean_pixel_difference": null
+      },
+      "pillow": {
+        "page": "400x300",
+        "portrait": false,
+        "matches_phone_view": false,
+        "mean_pixel_difference": null
+      },
+      "after": {
+        "page": "595x794",
+        "portrait": true,
+        "matches_phone_view": true,
+        "mean_pixel_difference": 0.63
+      }
+    }
+  ],
+  "counts": {
+    "before": 1,
+    "pillow": 1,
+    "after": 8
+  }
+}
