@@ -24,9 +24,9 @@ We built one test picture with no symmetry: an arrow pointing up, a red block to
 | Pillow 12.1.1, a widely used Python imaging library, saving straight to PDF | 1 | The same as above. |
 | Tekivex JPG to PDF now | 8 | None. Every page matched the upright picture. |
 
-The test ran on 11 October 2026. A page counted as correct when it had the same shape as the upright picture and differed from it by less than 3 on the 0–255 colour scale on average. The correct pages differed by 0.63, which is JPEG compression noise. The [test photos](/examples/orientation/), [raw results](/examples/orientation/results.json) and [test script](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/orientation-evidence.py) are published, so you can repeat it.
+The test ran on 23 October 2026. A page counted as correct when it had the same shape as the upright picture and differed from it by less than 3 on the 0–255 colour scale on average. The correct pages differed by 0.63, which is JPEG compression noise. The [portrait test photo](/examples/orientation/o6.jpg), [raw results](/examples/orientation/results.json) and [test script](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/orientation-evidence.py) are published, so you can repeat it.
 
-We found the bug in our own converter with this test and fixed it the same day. The fix places the original JPEG on the page with the right turn applied, so the photo is not re-compressed and loses no quality.
+We first found this bug in our own converter on 10 October 2026 and fixed it that day; this comparison shows the old and new behaviour side by side. The fix places the original JPEG on the page with the right turn applied, so the photo is not re-compressed and loses no quality.
 
 ## How to fix a sideways page
 
