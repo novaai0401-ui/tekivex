@@ -10,7 +10,7 @@ This guide walks through removing pages, explains the page syntax, and covers th
 4. Double-check your list against the page count — it's easy to be off by one.
 5. Click **Remove pages**. A new PDF without those pages is built in your browser and downloaded automatically.
 
-The pages you keep stay in their original order and quality; only the ones you named are dropped.
+The pages you keep stay in their original order and quality; only the ones you named are dropped. Bookmarks, links that jump to another page, and fillable form fields are not carried into the new file, as the test below shows.
 
 ## Understanding the page syntax
 
@@ -23,6 +23,22 @@ You can remove a single page, a continuous range, or a mix of both:
 
 Pages are counted from 1, matching how your PDF reader numbers them. If you enter a page that doesn't exist — page 30 in a 20-page document — the tool tells you rather than quietly ignoring it, so you can correct the list.
 
+## What we tested
+
+On 10 October 2026 we ran the tool's own page-removal code on a synthetic six-page test PDF. Each page carries a unique marker word, and the file also has bookmarks, links and a fillable field. We deleted page 2, then searched every part of the output file, decompressed, for page 2's marker.
+
+| Check | Result |
+|---|---|
+| Page 2's text anywhere in the output file | Not found. The original contains it, the trimmed file does not. |
+| Content of the five kept pages | Byte-for-byte identical to the original |
+| An image that appeared only on the deleted page, in a file where all pages share one resource list | Not in the output. Before 10 October 2026 such an image stayed embedded, invisibly. We fixed that after this test. |
+| Link to a website | Kept |
+| Link that jumps to another page | No longer goes anywhere |
+| Bookmarks | Removed |
+| Fillable name field | Still visible, but no longer fillable |
+
+The [test PDF](/examples/tool-tests/structured.pdf) and [raw results](/examples/tool-tests/results.json) are published, and the [test script](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/tool-evidence.mjs) is in our public repository, so you can repeat the test.
+
 ## A safer way to work: keep the original
 
 Because deleting pages produces a brand-new file and leaves your source untouched on disk, the safest habit is to keep the original until you've confirmed the trimmed version is correct. Open the downloaded PDF, scroll through it, and make sure you removed exactly what you meant to — and nothing you needed. If you got the list wrong, just run the original through the tool again with a corrected selection.
@@ -31,7 +47,8 @@ Because deleting pages produces a brand-new file and leaves your source untouche
 
 - **At least one page must remain.** The tool won't let you delete every page — a PDF needs at least one — and it will say so if you try.
 - **Removed pages take their content with them.** Anything on a deleted page — text, images, form fields, annotations — goes too. There's no partial delete of just part of a page.
-- **Encrypted PDFs must be unlocked first.** Remove the password in a reader, save an unlocked copy, then trim that.
+- **Encrypted PDFs must be unlocked first.** That includes files that open without a password but restrict copying or editing. Save an unencrypted copy, then trim that.
+- **Bookmarks and fillable fields are lost.** Fill in any form before you trim it.
 - **No upload, no watermark, no account.** Page removal runs entirely in your browser, so the file never leaves your device.
 
 If, instead of deleting pages, you want to *keep* a specific range as its own document, the [Split PDF](/tools/split-pdf) tool is the better fit. And to combine several trimmed documents afterwards, use [Merge PDF](/tools/merge-pdf).
@@ -50,7 +67,7 @@ This tool and [Split PDF](/tools/split-pdf) are mirror images: here you name the
 
 ### Is deleting a page the same as redacting sensitive information?
 
-No — and the difference matters. Deleting a page removes that whole page and everything on it from the file, so it genuinely can't be recovered from the result. But if the sensitive content is *text or an image on a page you're keeping*, deleting won't help — you need redaction, which permanently blacks out and removes that content while leaving the rest of the page. For that, use the redact tools in [Pyntra](/product/pyntra). (Never "hide" sensitive text by drawing a black box over it in a normal editor — the text underneath usually survives and can be copied out.) Page removal here runs in your browser, so the file is never uploaded ([why that matters](/use-cases/why-browser-tools-keep-files-private)).
+No — and the difference matters. Deleting a page removes that whole page and everything on it from the file, so it can't be recovered from the result. In our tests, neither the deleted page's text nor an image used only on that page appeared anywhere in the output. But if the sensitive content is *text or an image on a page you're keeping*, deleting won't help — you need redaction, which permanently blacks out and removes that content while leaving the rest of the page. For that, use the redact tools in [Pyntra](/product/pyntra). (Never "hide" sensitive text by drawing a black box over it in a normal editor — the text underneath usually survives and can be copied out.) Page removal here runs in your browser, so the file is never uploaded ([why that matters](/use-cases/why-browser-tools-keep-files-private)).
 
 ### What page format can I enter?
 

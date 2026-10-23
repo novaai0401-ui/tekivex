@@ -19,10 +19,26 @@ That's the whole process. You can merge two files or twenty; the steps are the s
 
 - **Order matters, and you control it.** The final document follows the top-to-bottom order shown on screen, so reorder before you click Merge.
 - **No file-size cap from us.** We don't impose a limit on how big your PDFs can be. The only real ceiling is your own device's memory, since all the work happens locally. Very large files on an older phone may feel slow.
-- **Password-protected PDFs need to be unlocked first.** If a file is encrypted, open it in a PDF reader, remove the password (or save an unlocked copy), and then merge that version.
+- **Encrypted PDFs need to be unlocked first.** That includes files you can open without a password but which restrict copying or editing, as many statements and e-tickets do. Save an unencrypted copy, then merge that version.
+- **Bookmarks and fillable fields do not come along.** The merged file keeps every page exactly as it looked, but not the bookmark sidebar, links that jump to another page, or form fields you could type into. Fill in forms before you merge. The test below shows what survives.
 - **No account, no watermark, no upload.** You won't be asked to register, and nothing gets stamped onto your pages.
 
 If you need to do more than merge — reordering pages inside a single document, editing, or annotating — take a look at [Pyntra](/product/pyntra), our fuller-featured editor. And if you later need to pull specific pages back out of your merged file, the [Split PDF](/tools/split-pdf) tool is the companion to this one.
+
+## What we tested
+
+On 10 October 2026 we ran the tool's own merge code on a synthetic six-page test PDF. It has six bookmarks, a link to a website, a link that jumps to page 5, and a fillable name field. We merged the file with a copy of itself and inspected the result.
+
+| In the original | After merging |
+|---|---|
+| Page content | Kept. The drawing instructions of all 12 pages are byte-for-byte identical to the originals, so nothing was re-compressed. |
+| Link to a website | Kept, in both copies |
+| Link that jumps to page 5 | Still clickable, but it no longer goes anywhere |
+| Bookmarks | Removed |
+| Fillable name field | Still visible, but no longer fillable |
+| File that opens without a password but restricts editing | Rejected with an "encrypted" message |
+
+You can repeat the test yourself. The [test PDF](/examples/tool-tests/structured.pdf) and [raw results](/examples/tool-tests/results.json) are published, and the [test script](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/tool-evidence.mjs) is in our public repository. If bookmarks or live form fields matter for your document, merge it in a desktop PDF editor instead, and check that the result still has them.
 
 ## Common merging scenarios and how to handle them
 
@@ -35,21 +51,24 @@ If you need to do more than merge — reordering pages inside a single document,
 ## Troubleshooting
 
 - **The merge button stays disabled** — you need at least two files. A single PDF has nothing to merge with.
-- **One of the files is rejected** — it is probably password-protected. The tool can't read encrypted PDFs, so unlock the file first (you need to know its password) or open it in [Pyntra](/product/pyntra), which handles encrypted documents.
+- **One of the files is rejected** — it is probably encrypted. Some encrypted files need a password to open. Others open normally but restrict copying or editing, and the tool rejects those too. Save an unencrypted copy first, which needs the file's owner password if it has one, or open it in [Pyntra](/product/pyntra), which handles encrypted documents.
 - **The page runs out of memory on a phone** — merging several very large scans can exceed a phone browser's memory since everything is processed locally. Retry on a desktop browser, or compress the largest inputs first.
 
 ## How a browser-based merger differs from upload-based tools
 
 Most "free" online PDF mergers work the same way under the hood: you upload your files to their server, the server stitches them together, and you download the result. That round trip is where the differences that matter to you show up.
 
-| What to check | Tekivex Merge PDF | Typical upload-based mergers |
-|---|---|---|
-| Where your files are processed | In your browser, on your device | Uploaded to the provider's servers |
-| A copy left on someone's server | None — nothing is sent | Yes, until their retention window clears it |
-| Watermark on the free result | Never | Sometimes, unless you upgrade |
-| Account or email to start | None | Often required after a few free tasks |
-| Daily task cap | None | Free tiers are commonly capped |
-| Works with no connection after the page loads | Yes | No — every step needs the server |
+| Question to ask of any merger | Tekivex Merge PDF |
+|---|---|
+| Where are my files processed? | In your browser, on your device |
+| Does a copy stay on someone's server, and for how long? | No copy is made. Nothing is sent. |
+| Is the free result watermarked? | No |
+| Do I need an account or email? | No |
+| Is there a daily limit? | No |
+| Does it keep bookmarks and form fields? | No. See the test above. |
+| Does it work offline once the page has loaded? | Yes |
+
+For an upload-based service, the answers to the first two questions are in its privacy policy. Read the retention period before uploading anything sensitive.
 
 The practical takeaway: if a document is sensitive — a contract, medical record, or anything with personal data — a tool that never uploads removes a whole category of risk. There's no server copy to breach, subpoena, or forget to delete. (For the full explanation, see [why browser tools keep files private](/use-cases/why-browser-tools-keep-files-private).)
 
@@ -65,11 +84,11 @@ Merge combines entire files in the order you set. To cherry-pick pages, do it in
 
 ### Does merging lower the quality of my PDFs?
 
-No. Merging copies each page across exactly as it is — same resolution, same text, same embedded fonts. Nothing is re-encoded or downsampled, so your merged file looks identical to the originals. (Quality only changes if you deliberately run the result through [Compress PDF](/tools/compress-pdf) afterwards to shrink the file size.)
+No. Merging copies each page across exactly as it is — same resolution, same text, same embedded fonts. In our test the page content came out byte-for-byte identical. What is lost is structure around the pages: bookmarks, links that jump within the document, and fillable form fields. (Quality only changes if you deliberately run the result through [Compress PDF](/tools/compress-pdf) afterwards to shrink the file size.)
 
 ### Should I merge first and then compress, or compress first and then merge?
 
-Merge first, then compress. Compressing the single combined file lets the tool deduplicate shared resources — repeated fonts and images across your documents get stored once instead of many times — so you usually get a smaller final file than if you compressed each input separately beforehand.
+For file size it makes little difference. [Compress PDF](/tools/compress-pdf) turns every page into its own JPEG image, one page at a time, so the pages compress the same way whichever order you choose. Merging first is simpler because you compress one file instead of several. Compress only when you have to: it makes text unselectable and removes links. If the destination needs searchable text, merge without compressing.
 
 ### What if my merged file is rejected by an upload portal for being too large?
 

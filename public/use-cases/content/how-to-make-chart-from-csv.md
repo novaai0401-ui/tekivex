@@ -36,6 +36,35 @@ A line chart makes the month-to-month change easier to follow. Keep the rows in 
 
 Suggested text alternative: "Revenue and expenses from January to April. Revenue rises from 12,000 to 18,000; expenses rise from 8,000 to 11,000. The difference is 4,000 in both January and March, then 7,000 in April." Include the four-row data table alongside the exported image.
 
+## Worked example with real data: global temperatures since 2001
+
+The revenue example above uses invented numbers. This one uses a real public dataset, including the problems real files bring.
+
+**The data.** NASA's Goddard Institute for Space Studies publishes the GISTEMP global temperature record as a CSV file. Each value is a *temperature anomaly*: how much warmer or cooler that period was than the 1951–1980 average, in degrees Celsius. We downloaded [the global land and ocean table](https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv) on 11 October 2026 and kept [an unmodified copy](/examples/gistemp-glb-2026-10-11.csv). NASA revises recent values as more measurements arrive, so a later download can differ slightly.
+
+Source: GISTEMP Team, 2026: GISS Surface Temperature Analysis (GISTEMP), version 4. NASA Goddard Institute for Space Studies. Dataset accessed 2026-10-11 at https://data.giss.nasa.gov/gistemp/. Data paper: Lenssen et al., 2024, *Journal of Geophysical Research: Atmospheres*, 129, e2023JD040179.
+
+**Problem 1: a title line above the headers.** The file's first line is `Land-Ocean: Global Means`, not column names. When we pasted the file into the tool unchanged, it took that title as the only header and showed: "No numeric columns found — at least one column must contain numbers to chart." Many government and research downloads start this way. Delete the title line so the `Year,Jan,Feb,...` row is first.
+
+**Problem 2: placeholders for missing values.** The file uses `***` where a value does not exist yet, such as the months of 2026 that had not happened when we downloaded it. The tool treats `***` as empty: a line chart shows a gap and a bar chart leaves the bar out. Neither treats it as zero, which is what you want.
+
+**A bug this example found.** With the title line removed, the tool picked the `D-N` column as the labels and plotted `Year` as data. Every column in this file is numeric, and `D-N` was chosen because its `***` placeholders made it look slightly less numeric. After this test we changed the tool so that when every column is numeric, the first column becomes the labels. It now picks `Year`, as it should.
+
+**The chart.** For a clean, focused example we kept only `Year` and the annual mean column, `J-D`, for 2001 to 2025: [download the 25-row extract](/examples/global-temperature-2001-2025.csv). The tool chose `Year` for the labels automatically. We switched to **Line**, because these are values over time.
+
+![Line chart of the global temperature anomaly from 2001 to 2025, rising from 0.53 °C in 2001 to 1.28 °C in 2024](/examples/global-temperature-2001-2025.svg)
+
+The image above is [the SVG the tool exports](/examples/global-temperature-2001-2025.svg), unedited.
+
+**Reading it correctly.**
+
+- The anomaly rises from 0.53 °C in 2001 to a peak of 1.28 °C in 2024. The three highest years in the extract are 2024, 2025 and 2023.
+- The line is not smooth. 2008 and 2011 dip below the years around them. Single years vary, so do not read a trend from two neighbouring points.
+- These are differences from the 1951–1980 average, not temperatures. "1.28" means 1.28 °C warmer than that average, not 1.28 °C.
+- The vertical axis starts at zero, which here is the 1951–1980 average. That is a meaningful baseline, so the chart does not exaggerate the change.
+
+Suggested text alternative: "Line chart of global temperature anomaly relative to the 1951–1980 average, 2001 to 2025, from NASA GISTEMP v4. Values rise from 0.53 °C in 2001 to 1.28 °C in 2024, the highest in the period. 2025 is 1.18 °C."
+
 ## Good to know and limitations
 
 - **Up to 8 numeric series.** You can plot as many as eight series at once. For a **donut** chart, any slices beyond the top 8 are folded together into a single "Other" slice to keep it readable.
@@ -91,6 +120,9 @@ The chart is built on your device. Exporting it or sharing a data-bearing link i
 | Symptom | Check and correction |
 | --- | --- |
 | Only one column appears | Check that the file uses commas, not semicolons or tabs. |
+| "No numeric columns found" on a file that is full of numbers | The first line is probably a title, not column names. Delete everything above the header row. |
+| The wrong column is used for the labels | Pick the label column yourself in the controls. If every column is numeric, the tool uses the first one. |
+| A line has a gap | That row's value is empty or not a number, such as `***`. The tool leaves a gap instead of inventing a zero. |
 | A value such as 12,000 becomes two columns | Quote the field as `"12,000"`, or remove the thousands separator and write `12000`. |
 | A series is missing | Check that its values are numeric and select it in the series controls. Empty cells are not measured zeros. |
 | Dates appear in the wrong order | Sort the source rows chronologically before importing; labels follow input order. |

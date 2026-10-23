@@ -17,10 +17,19 @@ It's especially handy for scans, ID cards, and receipts, where you want everythi
 
 - **One image per page.** Each picture becomes a full page in the PDF, in the order you set.
 - **Pages fit the image.** Every page is sized to its image's aspect ratio, so a tall receipt and a wide document each keep their natural proportions.
+- **Portrait phone photos stay upright.** Phones often save a portrait photo as landscape pixels plus a tag that says "turn this 90°". Your gallery obeys the tag, but PDF files have no such tag. The tool reads it and places the photo upright, without re-compressing it.
 - **Supported formats: JPG/JPEG and PNG only.** If your files are HEIC, WebP, or TIFF, export them to JPG or PNG first. Most phones can save or share a HEIC photo as a JPG — check your camera or share settings — and then you're good to go.
 - **Great for scans, IDs, and receipts.** Anything you'd photograph and need as a document works well here.
 
 If you later want to combine that PDF with others, use [Merge PDF](/tools/merge-pdf); to pull specific pages back out, try [Split PDF](/tools/split-pdf). For deeper document editing, there's [Pyntra](/product/pyntra).
+
+## What we tested
+
+On 10 October 2026 we built a test photo the way phones store portrait shots: 800 × 600 landscape pixels with the orientation tag set to "rotate 90° clockwise". Before that day the tool ignored the tag and produced a sideways, landscape page. We fixed it the same day. The tool now produces a portrait page, 595 × 794 points.
+
+To check the fix, we made eight versions of one test image, one for each orientation a camera can record, including mirrored ones. We converted each with the tool, rendered the resulting PDF, and compared it with the upright image. All eight matched, with an average difference of under 1 on the 0 to 255 colour scale, which is JPEG noise. The [test photo](/examples/tool-tests/phone-portrait-exif6.jpg) and [raw results](/examples/tool-tests/results.json) are published, and the [test script](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/tool-evidence.mjs) is in our public repository.
+
+We did not test HEIC files, because the tool does not accept them. Export HEIC photos as JPG first.
 
 ## Making phone scans look professional
 

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // Post-build quality gate for the complete www.tekivex.com tree (marketing
 // site + vendored apps). Runs after fetch-apps.mjs so it sees exactly what
 // will be deployed, and exits non-zero on any of:

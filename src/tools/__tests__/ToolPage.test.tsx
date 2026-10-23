@@ -3,13 +3,17 @@ import { render, screen } from '@testing-library/react';
 import { ToolPage } from '../ToolPage';
 import { getTool, TOOLS } from '../registry';
 
-describe('ToolPage', () => {
+// Tool UIs are React.lazy chunks. Under a full parallel run, transforming them
+// can take longer than Testing Library's 1 s default wait.
+const LAZY = { timeout: 10000 };
+
+describe('ToolPage', { timeout: 20000 }, () => {
   it('renders the tool heading, steps, limitations, FAQs, and cross-links', async () => {
     render(<ToolPage slug="merge-pdf" />);
     const tool = getTool('merge-pdf')!;
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(tool.name);
     // Lazy tool UI resolves.
-    expect(await screen.findByTestId('tool-merge-pdf')).toBeInTheDocument();
+    expect(await screen.findByTestId('tool-merge-pdf', undefined, LAZY)).toBeInTheDocument();
     for (const s of tool.steps) expect(screen.getByText(new RegExp(`${s.title}\\.`))).toBeInTheDocument();
     for (const f of tool.faqs) expect(screen.getByText(f.q)).toBeInTheDocument();
     // Cross-links to every other tool.
@@ -20,14 +24,14 @@ describe('ToolPage', () => {
 
   it('keeps file processing pages free of ad placements', async () => {
     const { container } = render(<ToolPage slug="split-pdf" />);
-    await screen.findByTestId('tool-split-pdf');
+    await screen.findByTestId('tool-split-pdf', undefined, LAZY);
     expect(container.querySelector('.ad-slot, ins.adsbygoogle')).toBeNull();
     expect(screen.getByRole('heading', { name: /frequently asked/i })).toBeInTheDocument();
   });
 
   it('links to the how-to guide for the tool', async () => {
     render(<ToolPage slug="csv-to-chart" />);
-    await screen.findByTestId('tool-csv-to-chart');
+    await screen.findByTestId('tool-csv-to-chart', undefined, LAZY);
     const link = screen.getByRole('link', { name: /how to use csv to chart/i });
     expect(link).toHaveAttribute('href', '/use-cases/how-to-make-chart-from-csv');
   });

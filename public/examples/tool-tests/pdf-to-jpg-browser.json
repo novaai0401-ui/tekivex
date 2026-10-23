@@ -1,0 +1,11 @@
+{
+  "generated": "2026-10-10",
+  "method": "renderPdfToImages() from src/tools/lib/pdfRender.ts, called in the page on the local dev server with the settings the PDF to JPG tool uses (scale 2, JPG quality 0.85). Sizes are for page 1.",
+  "browser": "Chromium 152.0.7977.130 (Claude desktop app browser pane), Windows 11",
+  "results": [
+    { "input": "compression-sample.pdf", "kind": "photo-like image plus text", "inputBytes": 3067920, "format": "JPG", "pixels": "1190x1684", "bytes": 175038 },
+    { "input": "compression-sample.pdf", "kind": "photo-like image plus text", "inputBytes": 3067920, "format": "PNG", "pixels": "1190x1684", "bytes": 1774897 },
+    { "input": "tool-tests/structured.pdf", "kind": "text only", "inputBytes": 8037, "format": "JPG", "pixels": "1191x1684", "bytes": 32908 },
+    { "input": "tool-tests/structured.pdf", "kind": "text only", "inputBytes": 8037, "format": "PNG", "pixels": "1191x1684", "bytes": 73898 }
+  ]
+}
