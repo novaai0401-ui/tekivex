@@ -1,14 +1,4 @@
----
-slug: is-a-deleted-pdf-page-really-gone
-title: When You Delete a Page From a PDF, Is It Really Gone?
-description: Removing a page should remove what was on it. In our test, an image from a deleted page stayed inside the file with two of three methods, invisible but extractable. Here is why, and how to check your own files.
-status: DRAFT, not published. A named author must repeat the check on a real document before this goes live.
-evidence: public/examples/tool-tests/pypdf-comparison.json (scripts/pdf-structure-comparison.py), public/examples/tool-tests/results.json (scripts/tool-evidence.mjs)
----
-
 People delete pages from PDFs for a reason. It might be a pricing annex before a proposal goes to a second bidder, a salary page before a contract goes to a broker, or a page of ID scans that a portal did not need. The natural assumption is that once a page is gone from the file, everything on it is gone too. Usually that is true. We found a case where it was not, in our own tool and in a popular PDF library, and fixed ours.
-
-<!-- AUTHOR: add the kind of document you trim most often, and why it matters that the page is really gone. -->
 
 ## What a PDF page is made of
 
@@ -63,8 +53,6 @@ This lists the images each remaining page refers to, including ones the page nev
 
 3. For anything that must not leak, delete the pages with a tool that rebuilds each page's resources, as [ours now does](/tools/remove-pages-pdf), and run the check again.
 
-<!-- AUTHOR: run step 2 on one of your own trimmed files and note the result. -->
-
 ## Deleting is not redacting
 
 Deleting removes whole pages. If the sensitive part is on a page you are keeping, you need redaction, which removes that text or image from the page itself. Drawing a black box over it in an ordinary editor usually leaves the original underneath, where it can be copied out.
@@ -78,3 +66,8 @@ Only if its pages share one resource list and a deleted page drew something the 
 ### Does this affect Tekivex's other tools?
 
 Delete Pages and Split PDF both had it, and both are fixed. Merge PDF keeps every page, and Rotate PDF changes no content, so neither drops anything to leak.
+
+
+## How this guide was made
+
+This guide was drafted with an AI assistant from the tests described above, then checked line by line against the tests' published results. It is credited to the Tekivex team rather than to a named person because no individual author wrote it or repeated the check on their own documents. If you find a mistake, [tell us](/contact) and we will correct it and note the change.

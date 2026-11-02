@@ -22,6 +22,14 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: '2026-11-02',
+    title: 'Two new guides: deleted PDF pages, and what merging keeps',
+    items: [
+      { tag: 'New', text: 'Published a guide on whether a deleted PDF page is really gone, based on a test where an image from a deleted page stayed in the file after every pypdf method tried. The results and script are published with it.' },
+      { tag: 'New', text: 'Published a side-by-side record of the bookmarks, jump links and form fields Tekivex and pypdf keep when merging, splitting, deleting and rotating the same test file.' },
+    ],
+  },
+  {
+    date: '2026-11-02',
     title: 'Test results on every tool page',
     items: [
       { tag: 'Improved', text: 'Every tool page now has a “What we tested” section with the measured results from running the tool on published sample files, links to those files and raw results, and a link to the full guide.' },

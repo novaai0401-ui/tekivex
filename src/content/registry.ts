@@ -47,6 +47,8 @@ const AUTHOR_BY_SLUG: Record<string, string> = {
   'how-to-rotate-pdf': 'seema-almas-shaikh',
   'how-to-delete-pages-from-pdf': 'seema-almas-shaikh',
   'why-phone-photos-turn-sideways-in-pdf': TEAM_AUTHOR_ID,
+  'is-a-deleted-pdf-page-really-gone': TEAM_AUTHOR_ID,
+  'what-survives-merge-split-rotate-pdf': TEAM_AUTHOR_ID,
 };
 
 const DEFAULT_AUTHOR_ID = 'chandan-kumar';
@@ -81,6 +83,8 @@ const DATES: Record<string, { published: string; modified?: string }> = {
   'how-to-rotate-pdf':                             { published: '2026-07-22', modified: '2026-10-10' },
   'how-to-delete-pages-from-pdf':                  { published: '2026-07-22', modified: '2026-10-10' },
   'why-phone-photos-turn-sideways-in-pdf':         { published: '2026-10-23' },
+  'is-a-deleted-pdf-page-really-gone':             { published: '2026-11-02' },
+  'what-survives-merge-split-rotate-pdf':          { published: '2026-11-02' },
 };
 
 function article(
@@ -145,6 +149,28 @@ export const ARTICLES: Article[] = [
     productName: 'Free Tools',
     kind: 'Explainer',
     keywords: ['photo sideways in pdf', 'jpg to pdf rotated', 'exif orientation', 'phone photo upside down pdf', 'image rotated after converting'],
+    readingMinutes: 5,
+  }),
+  article({
+    slug: 'is-a-deleted-pdf-page-really-gone',
+    title: 'When You Delete a Page From a PDF, Is It Really Gone?',
+    description:
+      'Removing a page should remove what was on it. In our test, an image from a deleted page stayed inside the file after every pypdf method we tried, invisible but extractable. Here is why, and how to check your own files.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'Explainer',
+    keywords: ['delete pdf page securely', 'deleted pdf page still there', 'pdf hidden image', 'remove pages from pdf privacy', 'pypdf remove page'],
+    readingMinutes: 5,
+  }),
+  article({
+    slug: 'what-survives-merge-split-rotate-pdf',
+    title: 'Bookmarks, Links and Form Fields: What Survives When You Merge, Split or Rotate a PDF',
+    description:
+      'Page content almost always survives a merge or split. Bookmarks, links that jump inside the document, and fillable fields often do not. We ran the same test file through two tools and recorded exactly what each kept.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'Explainer',
+    keywords: ['merge pdf keep bookmarks', 'pdf links broken after merge', 'merge pdf form fields', 'split pdf bookmarks', 'what does merging a pdf lose'],
     readingMinutes: 5,
   }),
   article({

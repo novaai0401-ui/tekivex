@@ -1,14 +1,4 @@
----
-slug: what-survives-merge-split-rotate-pdf
-title: "Bookmarks, Links and Form Fields: What Survives When You Merge, Split or Rotate a PDF"
-description: Page content almost always survives a merge or split. Bookmarks, links that jump inside the document, and fillable fields often do not. We ran the same test file through two tools and recorded exactly what each kept.
-status: DRAFT, not published. A named author must repeat at least one operation in a desktop PDF reader and add what they saw.
-evidence: public/examples/tool-tests/results.json (scripts/tool-evidence.mjs), public/examples/tool-tests/pypdf-comparison.json (scripts/pdf-structure-comparison.py)
----
-
 When you merge two PDFs, you check that the pages are there and in the right order. You rarely check whether the bookmark sidebar still works, whether "see page 5" still jumps to page 5, or whether the form can still be filled in. Those parts are stored separately from the pages, and they are what most often goes missing.
-
-<!-- AUTHOR: add a time a merged or trimmed file lost something you needed. -->
 
 ## Why pages survive and the rest does not
 
@@ -46,12 +36,10 @@ The Tekivex operations ran on 10 October 2026 and the pypdf ones on 23 October 2
 
 ## What to do
 
-- **Fill in forms before merging.** The boxes stay visible after a Tekivex merge, so what you typed should still show, but the fields can no longer be edited. We did not test a filled-in form, so check the result.
+- **Fill in forms before merging with Tekivex.** After a Tekivex merge the boxes stay visible but can no longer be edited. We did not test a form that was filled in before merging, so check that your entries still show.
 - **Rotate rather than split and re-merge** when only the orientation is wrong. Our [Rotate PDF](/tools/rotate-pdf) tool turns every page at once and keeps everything.
 - **Check the parts you rely on.** After merging or trimming, click two or three bookmarks and one internal link, and try typing in one field.
 - **Merge forms that have the same field names with care.** If two documents both have a field called "name", the merged file may link them.
-
-<!-- AUTHOR: open one merged result in your usual PDF reader and describe what you saw in the bookmark panel. -->
 
 ## Frequently asked questions
 
@@ -62,3 +50,8 @@ Our tools copy pages into a new file and do not rebuild the bookmark list, links
 ### Will my merged file look different?
 
 No. In every Tekivex test the page content was byte-for-byte identical. What changes is the navigation and form layer around the pages.
+
+
+## How this guide was made
+
+This guide was drafted with an AI assistant from the tests described above, then checked line by line against the tests' published results. It is credited to the Tekivex team rather than to a named person because no individual author wrote it or repeated the operations in a desktop PDF reader. If you find a mistake, [tell us](/contact) and we will correct it and note the change.

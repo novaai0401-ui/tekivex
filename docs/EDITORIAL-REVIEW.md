@@ -146,6 +146,10 @@ assistant, and has `ads` off. The editorial policy page now describes team
 bylines. It does not meet checklist item 1 below and must not carry ads until
 a named person has repeated the test and taken over the byline.
 
+2026-11-02: on the owner's instruction, the other two drafts were published
+together, credited to "Tekivex team" with the same AI-drafting note and `ads`
+off. The same limits apply: they do not meet checklist item 1.
+
 ## Before switching any article to `ads: true`
 
 1. A named person has tested the steps, added the evidence in its row, and is

@@ -40,6 +40,8 @@ On 10 October 2026 we ran the tool's own merge code on a synthetic six-page test
 
 You can repeat the test yourself. The [test PDF](/examples/tool-tests/structured.pdf) and [raw results](/examples/tool-tests/results.json) are published, and the [test script](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/tool-evidence.mjs) is in our public repository. If bookmarks or live form fields matter for your document, merge it in a desktop PDF editor instead, and check that the result still has them.
 
+For the same test run through pypdf as well, see [what survives when you merge, split or rotate a PDF](/use-cases/what-survives-merge-split-rotate-pdf).
+
 ## Common merging scenarios and how to handle them
 
 **Combining scanned batches.** Scanners often save each page — or each side of a double-sided document — as its own PDF. Drop the whole batch in at once, then sort them in the file list before merging. If a scan came out upside down, run it through [Rotate PDF](/tools/rotate-pdf) first and merge the corrected copy.

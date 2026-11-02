@@ -39,6 +39,8 @@ On 10 October 2026 we ran the tool's own page-removal code on a synthetic six-pa
 
 The [test PDF](/examples/tool-tests/structured.pdf) and [raw results](/examples/tool-tests/results.json) are published, and the [test script](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/tool-evidence.mjs) is in our public repository, so you can repeat the test.
 
+Why an image from a deleted page can stay inside a file, and how to check, is explained in [is a deleted PDF page really gone?](/use-cases/is-a-deleted-pdf-page-really-gone)
+
 ## A safer way to work: keep the original
 
 Because deleting pages produces a brand-new file and leaves your source untouched on disk, the safest habit is to keep the original until you've confirmed the trimmed version is correct. Open the downloaded PDF, scroll through it, and make sure you removed exactly what you meant to — and nothing you needed. If you got the list wrong, just run the original through the tool again with a corrected selection.
