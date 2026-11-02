@@ -71,6 +71,11 @@ Only if its pages share one resource list and a deleted page drew something the 
 
 Delete Pages and Split PDF both had it, and both are fixed. Merge PDF keeps every page, and Rotate PDF changes no content, so neither drops anything to leak.
 
+## Sources
+
+- [pdf-lib](https://pdf-lib.js.org/), the open-source JavaScript library the tool uses to read and write PDFs in your browser: version 1.17.1, MIT licence, checked on the package registry on November 2, 2026
+- [pypdf](https://pypdf.readthedocs.io/en/latest/), the Python PDF library used for comparison ([source](https://github.com/py-pdf/pypdf)): version 6.17.0, BSD-3-Clause licence, checked on the package registry on November 2, 2026
+
 ## How this guide was made
 
 This guide was drafted with an AI assistant from the tests described above, then checked line by line against the tests' published results. It is credited to the Tekivex team rather than to a named person because no individual author wrote it or repeated the check on their own documents. If you find a mistake, [tell us](/contact) and we will correct it and note the change.

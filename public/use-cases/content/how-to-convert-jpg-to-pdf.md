@@ -60,3 +60,7 @@ No. Each PDF page is sized to match its image's aspect ratio, so your pictures k
 It's one of the safest ways to do it — precisely because nothing is uploaded. Your browser turns the image into a PDF locally, so the file never reaches a server and there's no third-party copy of your ID to worry about. For anything that sensitive, avoid upload-based converters entirely; [here's how in-browser tools keep files private](/use-cases/why-browser-tools-keep-files-private).
 
 Your images never leave your browser — the conversion happens entirely on your own device.
+
+## Sources
+
+- [pdf-lib](https://pdf-lib.js.org/), the open-source JavaScript library the tool uses to read and write PDFs in your browser: version 1.17.1, MIT licence, checked on the package registry on November 2, 2026

@@ -86,3 +86,7 @@ Not from the trimmed file — the removed pages aren't stored in it. That's why 
 ### What if I only want to keep a few pages?
 
 If you're keeping fewer pages than you're deleting, it's often easier to use [Split PDF](/tools/split-pdf) to extract the pages you want, rather than listing all the ones to remove.
+
+## Sources
+
+- [pdf-lib](https://pdf-lib.js.org/), the open-source JavaScript library the tool uses to read and write PDFs in your browser: version 1.17.1, MIT licence, checked on the package registry on November 2, 2026

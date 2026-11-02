@@ -97,3 +97,8 @@ For file size it makes little difference. [Compress PDF](/tools/compress-pdf) tu
 Portals that demand "one PDF" often also cap the file size. Merge your files as normal, then pass the result through [Compress PDF](/tools/compress-pdf) to bring it under the limit before you submit.
 
 Your files never leave your browser — merging happens entirely on your own device.
+
+## Sources
+
+- [pdf-lib](https://pdf-lib.js.org/), the open-source JavaScript library the tool uses to read and write PDFs in your browser: version 1.17.1, MIT licence, checked on the package registry on November 2, 2026
+- [pypdf](https://pypdf.readthedocs.io/en/latest/), the Python PDF library used for comparison ([source](https://github.com/py-pdf/pypdf)): version 6.17.0, BSD-3-Clause licence, checked on the package registry on November 2, 2026

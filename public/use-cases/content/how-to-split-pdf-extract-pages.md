@@ -80,3 +80,7 @@ Yes. Write a range backwards, such as `9-7`, and those pages come out in reverse
 They solve opposite problems. Use **Split** when you know the pages you want to *keep* — pull page 4, or `1,3,7-9`, into a new file. Use [Delete Pages](/tools/remove-pages-pdf) when it's easier to name the pages you want to *remove* and keep everything else. For a contract where you need only the signature page, Split is quicker; for a report where you're stripping two internal appendices, Delete Pages is. Both run entirely in your browser, so nothing is uploaded either way ([why that matters](/use-cases/why-browser-tools-keep-files-private)).
 
 Your files never leave your browser — splitting happens entirely on your own device.
+
+## Sources
+
+- [pdf-lib](https://pdf-lib.js.org/), the open-source JavaScript library the tool uses to read and write PDFs in your browser: version 1.17.1, MIT licence, checked on the package registry on November 2, 2026

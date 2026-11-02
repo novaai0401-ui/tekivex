@@ -77,3 +77,7 @@ No — PDFs rotate in 90° increments (90, 180, 270). Free rotation to arbitrary
 ### The pages already have some rotation — what happens?
 
 The rotation you choose is added to whatever the page already has. So a page that's 90° off, rotated another 90° the right way, ends up upright. Preview before downloading to be sure.
+
+## Sources
+
+- [pdf-lib](https://pdf-lib.js.org/), the open-source JavaScript library the tool uses to read and write PDFs in your browser: version 1.17.1, MIT licence, checked on the package registry on November 2, 2026
