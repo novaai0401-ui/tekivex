@@ -1,3 +1,4 @@
+import { TOOL_EVIDENCE, type ToolEvidence } from './evidence';
 // ─── Free in-browser tools registry ──────────────────────────────────────────
 // Single source of truth for the /tools hub. Every tool runs entirely
 // client-side — files are processed in the visitor's browser and never
@@ -43,9 +44,11 @@ export interface ToolMeta {
   limitations: string[];
   /** Slug of the in-depth how-to guide in /use-cases (optional). */
   guideSlug?: string;
+  /** Measured results on published sample files (see ./evidence.ts). */
+  evidence?: ToolEvidence;
 }
 
-export const TOOLS: ToolMeta[] = [
+const TOOL_LIST: ToolMeta[] = [
   {
     slug: 'merge-pdf',
     guideSlug: 'how-to-merge-pdf-free',
@@ -139,6 +142,7 @@ export const TOOLS: ToolMeta[] = [
       { q: 'Are my photos uploaded?', a: 'No. The conversion runs client-side in your browser. For sensitive scans (IDs, medical or financial documents) this is the whole point — the image never touches a server.' },
       { q: 'Which image formats work?', a: 'JPG/JPEG and PNG. Other formats (HEIC, WebP, TIFF) need converting to JPG or PNG first — most phones can export HEIC photos as JPG.' },
       { q: 'How are page sizes chosen?', a: 'Each PDF page matches its image’s aspect ratio at a printable size, so nothing is cropped or stretched.' },
+      { q: 'Does the PDF keep my photo’s location?', a: 'No. Phone photos often record the camera model, the time and a GPS position. The tool removes those details from each JPG before placing it in the PDF, and keeps the picture itself unchanged. Before November 2, 2026 they were kept.' },
       { q: 'Will portrait phone photos come out sideways?', a: 'No. Phones often save a portrait photo as landscape pixels plus an orientation tag. The tool reads that tag and places the photo upright, without re-compressing it.' },
     ],
     limitations: [
@@ -182,12 +186,13 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     slug: 'pdf-to-jpg',
+    guideSlug: 'how-to-convert-pdf-to-jpg',
     name: 'PDF to JPG',
     short: 'Turn each page of a PDF into a downloadable image.',
     description:
       'Need a page of a PDF as a picture — for a slide, a social post, or a document that ' +
       'only accepts images? This tool renders every page to a JPG or PNG you can save ' +
-      'individually or all at once, using your browser’s own PDF renderer rather than a ' +
+      'individually or all at once, using PDF.js, Mozilla’s open-source renderer, inside your browser rather than a ' +
       'server-side converter.',
     seoTitle: 'PDF to JPG — Convert PDF Pages to Images, Free & Private | Tekivex Tools',
     seoDescription:
@@ -215,6 +220,7 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     slug: 'rotate-pdf',
+    guideSlug: 'how-to-rotate-pdf',
     name: 'Rotate PDF',
     short: 'Rotate the pages of a PDF and save the result.',
     description:
@@ -246,6 +252,7 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     slug: 'remove-pages-pdf',
+    guideSlug: 'how-to-delete-pages-from-pdf',
     name: 'Delete PDF Pages',
     short: 'Remove unwanted pages from a PDF and keep the rest.',
     description:
@@ -311,6 +318,8 @@ export const TOOLS: ToolMeta[] = [
     ],
   },
 ];
+
+export const TOOLS: ToolMeta[] = TOOL_LIST.map((t) => ({ ...t, evidence: TOOL_EVIDENCE[t.slug] }));
 
 export function getAllTools(): readonly ToolMeta[] {
   return TOOLS;

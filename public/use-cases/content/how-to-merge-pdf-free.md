@@ -40,6 +40,8 @@ On 10 October 2026 we ran the tool's own merge code on a synthetic six-page test
 
 You can repeat the test yourself. The [test PDF](/examples/tool-tests/structured.pdf) and [raw results](/examples/tool-tests/results.json) are published, and the [test script](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/tool-evidence.mjs) is in our public repository. If bookmarks or live form fields matter for your document, merge it in a desktop PDF editor instead, and check that the result still has them.
 
+For the same test run through pypdf as well, see [what survives when you merge, split or rotate a PDF](/use-cases/what-survives-merge-split-rotate-pdf).
+
 ## Common merging scenarios and how to handle them
 
 **Combining scanned batches.** Scanners often save each page — or each side of a double-sided document — as its own PDF. Drop the whole batch in at once, then sort them in the file list before merging. If a scan came out upside down, run it through [Rotate PDF](/tools/rotate-pdf) first and merge the corrected copy.
@@ -95,3 +97,8 @@ For file size it makes little difference. [Compress PDF](/tools/compress-pdf) tu
 Portals that demand "one PDF" often also cap the file size. Merge your files as normal, then pass the result through [Compress PDF](/tools/compress-pdf) to bring it under the limit before you submit.
 
 Your files never leave your browser — merging happens entirely on your own device.
+
+## Sources
+
+- [pdf-lib](https://pdf-lib.js.org/), the open-source JavaScript library the tool uses to read and write PDFs in your browser: version 1.17.1, MIT licence, checked on the package registry on November 2, 2026
+- [pypdf](https://pypdf.readthedocs.io/en/latest/), the Python PDF library used for comparison ([source](https://github.com/py-pdf/pypdf)): version 6.17.0, BSD-3-Clause licence, checked on the package registry on November 2, 2026

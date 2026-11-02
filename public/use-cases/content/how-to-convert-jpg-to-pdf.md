@@ -18,6 +18,7 @@ It's especially handy for scans, ID cards, and receipts, where you want everythi
 - **One image per page.** Each picture becomes a full page in the PDF, in the order you set.
 - **Pages fit the image.** Every page is sized to its image's aspect ratio, so a tall receipt and a wide document each keep their natural proportions.
 - **Portrait phone photos stay upright.** Phones often save a portrait photo as landscape pixels plus a tag that says "turn this 90°". Your gallery obeys the tag, but PDF files have no such tag. The tool reads it and places the photo upright, without re-compressing it. [Why phones store photos this way](/use-cases/why-phone-photos-turn-sideways-in-pdf).
+- **Photo location and camera details are removed.** Phone photos often record the camera model, the time and a GPS position. Since November 2, 2026 the tool leaves those records out of the PDF; the picture itself is not re-compressed. In [our test](/examples/metadata/results.json), a photo carrying a GPS position produced a PDF with no EXIF record in it.
 - **Supported formats: JPG/JPEG and PNG only.** If your files are HEIC, WebP, or TIFF, export them to JPG or PNG first. Most phones can save or share a HEIC photo as a JPG — check your camera or share settings — and then you're good to go.
 - **Great for scans, IDs, and receipts.** Anything you'd photograph and need as a document works well here.
 
@@ -60,3 +61,7 @@ No. Each PDF page is sized to match its image's aspect ratio, so your pictures k
 It's one of the safest ways to do it — precisely because nothing is uploaded. Your browser turns the image into a PDF locally, so the file never reaches a server and there's no third-party copy of your ID to worry about. For anything that sensitive, avoid upload-based converters entirely; [here's how in-browser tools keep files private](/use-cases/why-browser-tools-keep-files-private).
 
 Your images never leave your browser — the conversion happens entirely on your own device.
+
+## Sources
+
+- [pdf-lib](https://pdf-lib.js.org/), the open-source JavaScript library the tool uses to read and write PDFs in your browser: version 1.17.1, MIT licence, checked on the package registry on November 2, 2026

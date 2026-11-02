@@ -86,3 +86,8 @@ Once the page has loaded, yes — the work happens on your device, so many in-br
 They're all listed in the [tools hub](/tools). Pick the one you need — each processes your files entirely in your browser.
 
 Your files never leave your browser — everything happens on your own device.
+
+## Sources
+
+- [pdf-lib](https://pdf-lib.js.org/), the open-source library that merges, splits, rotates and edits PDFs inside the browser on this site: version 1.17.1, MIT licence, checked on the package registry on November 2, 2026
+- [PDF.js](https://mozilla.github.io/pdf.js/), Mozilla's open-source PDF renderer, which the PDF to JPG and Compress PDF tools use to draw pages

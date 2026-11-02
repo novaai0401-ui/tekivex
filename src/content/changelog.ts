@@ -21,6 +21,29 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: '2026-11-02',
+    title: 'Two new guides: deleted PDF pages, and what merging keeps',
+    items: [
+      { tag: 'Fixed', text: 'JPG to PDF kept each photo’s EXIF details, including the camera model and GPS position, inside the PDF. It now removes the EXIF, XMP and IPTC records before embedding the photo; the picture data and colour profile are unchanged. A test with a photo carrying a GPS position is published.' },
+      { tag: 'Improved', text: 'Added a Sources section and an image to eight guides that had neither: the three Quantum Vault guides, the two Tekivex UI guides, the two company overviews and PDF to JPG. Sources are the NIST, IETF and W3C standards the guides rely on and the licence listed on npm for each package; the images are screenshots of the live tools and documentation, or diagrams of the steps each guide describes.' },
+      { tag: 'Improved', text: 'Added screenshots to the six GridStorm guides and to the Rotate PDF and Delete PDF Pages guides, taken from the live demos, documentation and tools.' },
+      { tag: 'Improved', text: 'Added images to the last three guides without one: a diagram of the shared-resources test file, a chart of what Tekivex and pypdf kept in each operation drawn from the published results, and a screenshot of the Tekivex UI comparison page.' },
+      { tag: 'Improved', text: 'The eight PDF guides that linked to no outside source now list the libraries behind the tools and tests (pdf-lib, pypdf, PDF.js), with versions and licences.' },
+      { tag: 'Fixed', text: 'The PDF to JPG tool page said it used the browser’s own PDF renderer. It uses PDF.js, Mozilla’s open-source renderer, running in the browser.' },
+      { tag: 'New', text: 'Published a guide on whether a deleted PDF page is really gone, based on a test where an image from a deleted page stayed in the file after every pypdf method tried. The results and script are published with it.' },
+      { tag: 'New', text: 'Published a side-by-side record of the bookmarks, jump links and form fields Tekivex and pypdf keep when merging, splitting, deleting and rotating the same test file.' },
+    ],
+  },
+  {
+    date: '2026-11-02',
+    title: 'Test results on every tool page',
+    items: [
+      { tag: 'Improved', text: 'Every tool page now has a “What we tested” section with the measured results from running the tool on published sample files, links to those files and raw results, and a link to the full guide.' },
+      { tag: 'Improved', text: 'The PDF to JPG, Rotate PDF and Remove Pages tools now link to their step-by-step guides.' },
+      { tag: 'Improved', text: 'The Tekivex UI product page links its getting-started guide, component reference and PDF primitives reference, and the DataFlow product page links its overview.' },
+    ],
+  },
+  {
     date: '2026-10-23',
     title: 'New guide: why phone photos turn sideways in PDFs',
     items: [

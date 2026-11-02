@@ -4,6 +4,10 @@ This article shows how to build a real-time financial trading grid with [GridSto
 
 The throughline is the same idea that lets the grid handle 100,000 rows: do the least work possible per frame, and never let update volume dictate render volume.
 
+![The GridStorm Financial Trading demo with 50,000 instruments grouped by sector, the Technology group expanded and live price changes in red and green](/images/guides/gridstorm-financial-trading.png)
+
+*The GridStorm Financial Trading demo: 50,000 generated instruments grouped by sector, with live updates. Its prices are simulated, not market data. Captured November 2, 2026.*
+
 ## Streaming cell updates without re-rendering everything
 
 The first instinct — replace the whole row dataset whenever a price changes — is also the most expensive. At hundreds of ticks per second, that approach forces constant reconciliation across the entire visible window even though a single cell changed.

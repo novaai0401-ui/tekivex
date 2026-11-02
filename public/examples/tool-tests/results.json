@@ -1,6 +1,6 @@
 {
-  "generated": "2026-10-10",
-  "runtime": "Node v24.13.0",
+  "generated": "2026-11-02",
+  "runtime": "Node v22.23.4",
   "pdfLib": "1.17.1",
   "engine": "src/tools/lib/pdf.ts",
   "fixtures": "public/examples/tool-tests/ (synthetic, from scripts/create-tool-test-fixtures.py)",
@@ -50,7 +50,7 @@
     {
       "label": "merge: structured.pdf + structured.pdf",
       "ok": true,
-      "bytes": 6496,
+      "bytes": 6500,
       "pageCount": 12,
       "pages": [
         {
@@ -125,7 +125,7 @@
     {
       "label": "split: extract pages \"1,5\" (link source and link target)",
       "ok": true,
-      "bytes": 1566,
+      "bytes": 1565,
       "pageCount": 2,
       "pages": [
         {
@@ -247,7 +247,7 @@
     {
       "label": "jpg-to-pdf: phone portrait photo stored with EXIF orientation 6",
       "ok": true,
-      "bytes": 15521,
+      "bytes": 15485,
       "pageCount": 1,
       "pages": [
         {

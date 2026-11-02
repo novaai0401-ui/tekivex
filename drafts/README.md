@@ -10,8 +10,9 @@ below.
 
 | Draft | Evidence | Script |
 | --- | --- | --- |
-| `is-a-deleted-pdf-page-really-gone.md` | `public/examples/tool-tests/pypdf-comparison.json` | `scripts/pdf-structure-comparison.py` |
-| `what-survives-merge-split-rotate-pdf.md` | `results.json` and `pypdf-comparison.json` in `public/examples/tool-tests/` | `scripts/tool-evidence.mjs`, `scripts/pdf-structure-comparison.py` |
+| `what-a-pdf-says-about-you.md` (drafted 2026-11-02) | `public/examples/metadata/results.json` | `scripts/metadata-evidence.mjs`, `scripts/create-metadata-fixtures.py` |
+
+The first three drafts have been published (below).
 
 ## To publish a draft
 
@@ -39,3 +40,9 @@ Publish one guide at a time, a week or more apart, rather than all at once.
   author notes and one unverified sentence were removed, and it ends with a
   "How this guide was made" note (pinned in `src/content/__tests__/registry.test.ts`).
   A named author can take it over later by repeating the test and rewriting it.
+- 2026-11-02: `is-a-deleted-pdf-page-really-gone` and
+  `what-survives-merge-split-rotate-pdf` went live the same way, on the owner's
+  instruction, together rather than a week apart. Author notes were removed, one
+  untested claim about filled-in forms was reworded as a check for the reader,
+  and both end with the "How this guide was made" note. Every number was
+  re-checked against `results.json` and `pypdf-comparison.json`.

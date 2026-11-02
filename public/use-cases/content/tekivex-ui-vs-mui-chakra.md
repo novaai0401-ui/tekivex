@@ -2,6 +2,10 @@ Choosing a component library starts with the interface you need to ship. A small
 
 **Disclosure:** Tekivex publishes this article and develops [Tekivex UI](/product/tekivex-ui). We have not published an equivalent-application benchmark comparing these three libraries. Treat performance claims as questions to test, not measured rankings.
 
+![The Tekivex UI Honest comparison page, which opens by saying tekivex-ui has about 85 weekly npm downloads and that every library compared beats it on adoption](/images/guides/tekivex-ui-comparison-docs.png)
+
+*The comparison page in the Tekivex UI documentation, with its own figures collected on August 10, 2026. Captured November 2, 2026.*
+
 ## Scope and sources
 
 The external documentation checked on September 15, 2026 identifies Material UI **9.4.0** and Chakra UI **3.37.0**. Those are documentation versions, not versions we installed for a benchmark. Pin exact package versions in your own evaluation and retain the lockfile.

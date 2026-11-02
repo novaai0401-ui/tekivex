@@ -39,6 +39,7 @@ export const dataFlowManifest: ProductManifest = {
   ],
   quickLinks: [
     { label: 'Launch DataFlow', path: DATAFLOW_URL, external: true, isNew: true },
+    { label: 'DataFlow overview and demos', path: 'https://www.tekivex.com/dataflow/', external: true },
   ],
   tags: ['Streaming', 'Real-time', 'Dashboards', 'Anomaly', 'Browser app'],
   seo: {

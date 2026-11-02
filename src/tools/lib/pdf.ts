@@ -230,6 +230,36 @@ export function jpegOrientation(bytes: ArrayBuffer): number {
 }
 
 /**
+ * Copy of JPEG bytes without the segments that describe the photo rather than
+ * draw it: APP1 (EXIF, with camera model, time and GPS position, and XMP),
+ * APP13 (IPTC) and comments. Colour data is kept: APP0 (JFIF), APP2 (ICC
+ * profile) and APP14 (Adobe colour transform). The image data itself is copied
+ * unchanged, so quality is not affected. Read the orientation before calling
+ * this; it lives in the EXIF block. Unrecognised input is returned as is.
+ */
+export function stripJpegMetadata(bytes: ArrayBuffer): ArrayBuffer {
+  const v = new DataView(bytes);
+  if (v.byteLength < 4 || v.getUint16(0) !== 0xffd8) return bytes;
+  const keep: Uint8Array[] = [new Uint8Array(bytes, 0, 2)];
+  let off = 2;
+  while (off + 4 <= v.byteLength) {
+    const marker = v.getUint16(off);
+    if ((marker & 0xff00) !== 0xff00) return bytes;
+    if (marker === 0xffda) { keep.push(new Uint8Array(bytes, off)); break; }
+    const len = v.getUint16(off + 2);
+    if (len < 2 || off + 2 + len > v.byteLength) return bytes;
+    const drop = marker === 0xffe1 || marker === 0xffed || marker === 0xfffe;
+    if (!drop) keep.push(new Uint8Array(bytes, off, 2 + len));
+    off += 2 + len;
+  }
+  if (off + 4 > v.byteLength) return bytes; // never reached the image data
+  const out = new Uint8Array(keep.reduce((n, k) => n + k.length, 0));
+  let at = 0;
+  for (const k of keep) { out.set(k, at); at += k.length; }
+  return out.buffer;
+}
+
+/**
  * Matrix [a b c d e f] mapping the image's unit square onto a page of the
  * displayed size, so the original JPEG bytes are placed upright without being
  * decoded or re-encoded. Derived per EXIF orientation (TIFF 6.0 / EXIF 2.32).
@@ -260,7 +290,7 @@ export async function imagesToPdf(files: { name: string; type: string; bytes: Ar
     const isPng = f.type === 'image/png' || /\.png$/i.test(f.name);
     let img;
     try {
-      img = isPng ? await out.embedPng(f.bytes) : await out.embedJpg(f.bytes);
+      img = isPng ? await out.embedPng(f.bytes) : await out.embedJpg(stripJpegMetadata(f.bytes));
     } catch {
       throw new Error(`"${f.name}" could not be embedded — only JPG and PNG images are supported.`);
     }

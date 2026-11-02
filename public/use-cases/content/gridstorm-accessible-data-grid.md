@@ -4,6 +4,10 @@ Accessibility is where most data grids quietly fail. A grid can look polished, s
 
 The hard part is that accessibility and virtualization are in tension — assistive technology expects a complete, stable structure, while virtualization deliberately renders an incomplete, shifting one. Reconciling the two is the real work, and it is what the a11y plugin exists to do.
 
+![The GridStorm accessibility demo with a focused Salary cell in row 2 and the live region showing what a screen reader would announce](/images/guides/gridstorm-accessibility-demo.png)
+
+*The GridStorm accessibility demo after moving focus with the arrow keys. The live-region panel shows the text sent to screen readers. This is not a screen-reader test. Captured November 2, 2026.*
+
 ## Turning on accessibility
 
 Like everything else, accessibility is a plugin you compose onto the grid. It hooks the same lifecycle described in the [plugin architecture article](/use-cases/gridstorm-plugin-architecture) to contribute roles, attributes, and keyboard handling.

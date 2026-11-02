@@ -4,6 +4,10 @@ Most data grids are monoliths. Every feature you might ever want — sorting, fi
 
 This article explains how that architecture works: the responsibilities of the headless core, the plugin lifecycle and registration model, how to write a custom plugin, and how plugins compose without stepping on one another. If you have only used integrated grids, this is the mental model shift that makes GridStorm worth understanding.
 
+![The GridStorm Plugin System documentation page describing the register, install and destroy lifecycle](/images/guides/gridstorm-plugin-system-docs.png)
+
+*The plugin lifecycle in the GridStorm documentation. Captured November 2, 2026.*
+
 ## What the headless core owns — and what it doesn't
 
 The core is deliberately minimal. It owns:
@@ -121,6 +125,5 @@ This is also what makes accessibility work as a plugin rather than a core concer
 - The trade-off: composing plugins requires understanding ordering and shared state, which is marginally more to learn than a grid where everything is on by default.
 
 The plugin architecture is the reason GridStorm can be both small and capable: the core is separated from feature breadth in independently versioned, separately importable plugins, validated by a comprehensive automated test suite. Explore the composition live on the [demo](https://www.tekivex.com/gridstorm), read how the [Tekivex products fit together](/use-cases/tekivex-stack-how-products-fit), or browse the full [use cases](/use-cases) hub.
-
 
 **Correction — September 15, 2026:** Removed unmeasured size or fixed plugin-count claims. Accessibility targets require testing in the finished application; they are not a compliance certification.

@@ -4,6 +4,10 @@ That decision shapes how teams adopt and budget for these tools, so it is worth 
 
 If you are an engineering lead evaluating whether to build on Tekivex, pricing is not a footnote. It determines whether a procurement review is a half-day or a half-quarter, and whether your costs scale with the size of your team.
 
+![The Tekivex UI License page stating that tekivex-ui is released under the MIT License, with the full licence text](/images/guides/tekivex-ui-license-page.png)
+
+*The licence page in the Tekivex UI documentation. Captured November 2, 2026.*
+
 ## What "free to use" actually means here
 
 Tekivex products are **free and open — MIT or Apache-2.0 — and free of charge for commercial and non-commercial use**. GridStorm and Tekivex UI are MIT-licensed; Quantum Vault (`@sigvault/sdk`) is Apache-2.0. Both are permissive, OSI-approved licenses. You can:
@@ -66,3 +70,11 @@ A free-to-use model is sustained through means that do not depend on gating the 
 - **Low procurement friction.** Nothing to license, audit, or true-up.
 
 The free-to-use choice is a bet that the most valuable thing a developer-tools company can do is remove the obstacles — cost, contracts, seat counts — between a team and a working tool. You can see how the individual products combine in [The Tekivex Stack](/use-cases/tekivex-stack-how-products-fit), or browse the rest of the [use-case library](/use-cases). The pricing is the same wherever you start: free to use, with no surprises later.
+
+## Sources
+
+- [tekivex-ui on npm](https://www.npmjs.com/package/tekivex-ui): version 4.7.1, MIT licence, checked on the npm registry on November 2, 2026
+- [gridstorm on npm](https://www.npmjs.com/package/gridstorm): version 0.6.1, MIT licence, checked on the npm registry on November 2, 2026
+- [@sigvault/sdk on npm](https://www.npmjs.com/package/@sigvault/sdk): version 4.3.11, Apache-2.0 licence, checked on the npm registry on November 2, 2026
+- [The MIT License](https://opensource.org/license/mit), Open Source Initiative
+- [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0), Apache Software Foundation

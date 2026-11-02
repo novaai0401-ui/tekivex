@@ -43,8 +43,9 @@ export const tekivexUiManifest: ProductManifest = {
   quickLinks: [
     { label: 'npm — tekivex-ui', path: UI_NPM,                  external: true },
     { label: 'Playground',    path: `${UI_URL}/playground/`,  external: true, isNew: true },
-    { label: 'Docs',          path: `${UI_URL}/`,               external: true },
-    { label: 'Component catalog', path: `${UI_URL}/book/`,     external: true },
+    { label: 'Getting started', path: `${UI_URL}/getting-started/`, external: true },
+    { label: 'Component reference', path: `${UI_URL}/components/`, external: true },
+    { label: 'PDF primitives reference', path: `${UI_URL}/pdf-primitives/`, external: true },
   ],
   tags: ['Preview', 'Free', 'React', 'Vue', 'Svelte', 'Accessible', 'Themeable', 'TypeScript', 'Headless'],
   seo: {

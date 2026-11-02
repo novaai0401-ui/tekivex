@@ -4,6 +4,10 @@ When business users meet a data grid, they often expect it to behave like a spre
 
 If you have ever wondered what it actually takes to put a working formula bar in a web grid, this is the walkthrough.
 
+![The GridStorm Cell Formulas demo after Define Formula: a Revenue column computed as price times quantity for every row](/images/guides/gridstorm-cell-formulas.png)
+
+*The Cell Formulas demo after clicking Define Formula: Revenue is computed as price × quantity for each row. Captured November 2, 2026.*
+
 ## Turning the formula engine on
 
 The engine is a plugin, so you opt in and point it at the columns that should accept formulas.

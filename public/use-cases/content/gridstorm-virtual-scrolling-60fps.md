@@ -2,6 +2,10 @@ Virtual scrolling keeps a large table usable by rendering a small viewport rathe
 
 This guide explains windowing and a repeatable way to evaluate [GridStorm](/product/gridstorm). **This is a measurement procedure, not a published benchmark.** Earlier wording presented 60fps as an outcome without providing reproducible measurements. That claim has been removed.
 
+![The GridStorm Performance guide showing how the virtual scroller renders the visible rows plus an overscan buffer and leaves the rest out of the page](/images/guides/gridstorm-performance-docs.png)
+
+*How GridStorm's own performance guide describes the rendered window and overscan. This is documentation, not a measurement. Captured November 2, 2026.*
+
 ## Calculate the visible window
 
 Consider 100,000 fixed-height rows, each 32 pixels tall, in a 640-pixel viewport. Twenty rows fit at a row-aligned scroll position. With six rows of overscan on each side, an interior window mounts 32 rows; a partially visible boundary can require 33. With ten columns, that is about 320–330 cells, excluding headers and pinned areas, instead of one million cells.

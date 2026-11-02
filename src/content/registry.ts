@@ -47,6 +47,8 @@ const AUTHOR_BY_SLUG: Record<string, string> = {
   'how-to-rotate-pdf': 'seema-almas-shaikh',
   'how-to-delete-pages-from-pdf': 'seema-almas-shaikh',
   'why-phone-photos-turn-sideways-in-pdf': TEAM_AUTHOR_ID,
+  'is-a-deleted-pdf-page-really-gone': TEAM_AUTHOR_ID,
+  'what-survives-merge-split-rotate-pdf': TEAM_AUTHOR_ID,
 };
 
 const DEFAULT_AUTHOR_ID = 'chandan-kumar';
@@ -56,31 +58,33 @@ const DEFAULT_AUTHOR_ID = 'chandan-kumar';
 // revision — honest dates, not a back-dated editorial calendar.
 const MODIFIED = '2026-06-28';
 const DATES: Record<string, { published: string; modified?: string }> = {
-  'tekivex-mit-open-source-model':                 { published: PUBLISHED, modified: MODIFIED },
-  'tekivex-stack-how-products-fit':                { published: PUBLISHED, modified: '2026-10-10' },
+  'tekivex-mit-open-source-model':                 { published: PUBLISHED, modified: '2026-11-02' },
+  'tekivex-stack-how-products-fit':                { published: PUBLISHED, modified: '2026-11-02' },
   'gridstorm-virtual-scrolling-60fps':             { published: PUBLISHED, modified: '2026-09-15' },
   'gridstorm-plugin-architecture':                 { published: PUBLISHED, modified: '2026-09-15' },
   'gridstorm-vs-ag-grid-migration':                { published: PUBLISHED, modified: '2026-10-10' },
   'gridstorm-accessible-data-grid':                { published: PUBLISHED, modified: MODIFIED },
   'gridstorm-excel-formulas':                      { published: PUBLISHED, modified: MODIFIED },
   'gridstorm-financial-trading-grid':              { published: PUBLISHED, modified: MODIFIED },
-  'tekivex-ui-headless-design-system':             { published: PUBLISHED, modified: '2026-09-15' },
+  'tekivex-ui-headless-design-system':             { published: PUBLISHED, modified: '2026-11-02' },
   'tekivex-ui-vs-mui-chakra':                      { published: PUBLISHED, modified: '2026-09-15' },
-  'tekivex-ui-accessible-forms':                   { published: PUBLISHED, modified: '2026-09-15' },
-  'quantum-vault-post-quantum-tokens-explained':   { published: PUBLISHED, modified: '2026-09-15' },
-  'quantum-vault-migrate-pqc-token-issuance':      { published: PUBLISHED, modified: MODIFIED },
-  'quantum-vault-sovereign-token-verification':    { published: PUBLISHED, modified: MODIFIED },
+  'tekivex-ui-accessible-forms':                   { published: PUBLISHED, modified: '2026-11-02' },
+  'quantum-vault-post-quantum-tokens-explained':   { published: PUBLISHED, modified: '2026-11-02' },
+  'quantum-vault-migrate-pqc-token-issuance':      { published: PUBLISHED, modified: '2026-11-02' },
+  'quantum-vault-sovereign-token-verification':    { published: PUBLISHED, modified: '2026-11-02' },
   // Free-tools how-to guides — shipped with the tools hub.
   'how-to-merge-pdf-free':                         { published: '2026-07-02', modified: '2026-10-10' },
   'how-to-split-pdf-extract-pages':                { published: '2026-07-02', modified: '2026-10-10' },
-  'how-to-convert-jpg-to-pdf':                     { published: '2026-07-02', modified: '2026-10-10' },
+  'how-to-convert-jpg-to-pdf':                     { published: '2026-07-02', modified: '2026-11-02' },
   'how-to-compress-pdf':                           { published: '2026-07-02', modified: '2026-10-11' },
   'how-to-make-chart-from-csv':                    { published: '2026-07-02', modified: '2026-10-11' },
   'why-browser-tools-keep-files-private':          { published: '2026-07-02', modified: '2026-10-11' },
-  'how-to-convert-pdf-to-jpg':                     { published: '2026-07-22', modified: '2026-10-10' },
+  'how-to-convert-pdf-to-jpg':                     { published: '2026-07-22', modified: '2026-11-02' },
   'how-to-rotate-pdf':                             { published: '2026-07-22', modified: '2026-10-10' },
   'how-to-delete-pages-from-pdf':                  { published: '2026-07-22', modified: '2026-10-10' },
   'why-phone-photos-turn-sideways-in-pdf':         { published: '2026-10-23' },
+  'is-a-deleted-pdf-page-really-gone':             { published: '2026-11-02' },
+  'what-survives-merge-split-rotate-pdf':          { published: '2026-11-02' },
 };
 
 function article(
@@ -145,6 +149,28 @@ export const ARTICLES: Article[] = [
     productName: 'Free Tools',
     kind: 'Explainer',
     keywords: ['photo sideways in pdf', 'jpg to pdf rotated', 'exif orientation', 'phone photo upside down pdf', 'image rotated after converting'],
+    readingMinutes: 5,
+  }),
+  article({
+    slug: 'is-a-deleted-pdf-page-really-gone',
+    title: 'When You Delete a Page From a PDF, Is It Really Gone?',
+    description:
+      'Removing a page should remove what was on it. In our test, an image from a deleted page stayed inside the file after every pypdf method we tried, invisible but extractable. Here is why, and how to check your own files.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'Explainer',
+    keywords: ['delete pdf page securely', 'deleted pdf page still there', 'pdf hidden image', 'remove pages from pdf privacy', 'pypdf remove page'],
+    readingMinutes: 5,
+  }),
+  article({
+    slug: 'what-survives-merge-split-rotate-pdf',
+    title: 'Bookmarks, Links and Form Fields: What Survives When You Merge, Split or Rotate a PDF',
+    description:
+      'Page content almost always survives a merge or split. Bookmarks, links that jump inside the document, and fillable fields often do not. We ran the same test file through two tools and recorded exactly what each kept.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'Explainer',
+    keywords: ['merge pdf keep bookmarks', 'pdf links broken after merge', 'merge pdf form fields', 'split pdf bookmarks', 'what does merging a pdf lose'],
     readingMinutes: 5,
   }),
   article({

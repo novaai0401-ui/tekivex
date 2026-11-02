@@ -2,6 +2,10 @@ Not every page in a PDF earns its place. A scanned document often picks up a bla
 
 This guide walks through removing pages, explains the page syntax, and covers the pitfalls. There's no account to create and no watermark on the result.
 
+![The Delete PDF Pages tool with structured.pdf loaded, showing 6 pages and page 2 entered in the pages to remove box](/images/guides/delete-pages-loaded.png)
+
+*Delete PDF Pages with the published 6-page test file loaded and page 2 entered for removal. Captured November 2, 2026.*
+
 ## How to delete pages from a PDF
 
 1. Open the [Delete PDF Pages](/tools/remove-pages-pdf) tool in your browser. Nothing to install.
@@ -38,6 +42,8 @@ On 10 October 2026 we ran the tool's own page-removal code on a synthetic six-pa
 | Fillable name field | Still visible, but no longer fillable |
 
 The [test PDF](/examples/tool-tests/structured.pdf) and [raw results](/examples/tool-tests/results.json) are published, and the [test script](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/tool-evidence.mjs) is in our public repository, so you can repeat the test.
+
+Why an image from a deleted page can stay inside a file, and how to check, is explained in [is a deleted PDF page really gone?](/use-cases/is-a-deleted-pdf-page-really-gone)
 
 ## A safer way to work: keep the original
 
@@ -80,3 +86,7 @@ Not from the trimmed file — the removed pages aren't stored in it. That's why 
 ### What if I only want to keep a few pages?
 
 If you're keeping fewer pages than you're deleting, it's often easier to use [Split PDF](/tools/split-pdf) to extract the pages you want, rather than listing all the ones to remove.
+
+## Sources
+
+- [pdf-lib](https://pdf-lib.js.org/), the open-source JavaScript library the tool uses to read and write PDFs in your browser: version 1.17.1, MIT licence, checked on the package registry on November 2, 2026

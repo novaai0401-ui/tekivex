@@ -4,6 +4,10 @@ The Tekivex UI form toolkit exists to make the correct version the default. It i
 
 This article walks through how the toolkit handles label association, error states, ARIA wiring, focus management, validation, and field groups, and then maps each of those behaviors to the WCAG 2.1 AA success criteria they satisfy. Tekivex UI targets WCAG 2.1 AA across its components and is built toward AAA (a third-party AAA audit is on the roadmap, not yet completed). The code examples use React for concreteness; the Vue and Svelte APIs mirror them one to one.
 
+![The TkxForm documentation page in Tekivex UI, showing its accessibility notes and a link to the component source](/images/guides/tekivex-ui-form-docs.png)
+
+*The TkxForm documentation page, with its accessibility notes and source file. Captured November 2, 2026.*
+
 ## Label and input association
 
 The single most common form accessibility defect is a visible label that is not programmatically associated with its control. A placeholder is not a label, and a `<div>` styled to look like a label tells assistive technology nothing. `TkxInput` solves this by generating a stable, unique ID and binding the rendered label to it, so the control is connected without you managing `htmlFor`/`id` pairs by hand.
@@ -159,5 +163,11 @@ If you are weighing it against other libraries, the [Tekivex UI vs MUI and Chakr
 
 Accessible forms are not a feature you bolt on at the end; they are a set of relationships you either maintain consistently or break silently. The form toolkit's value is that consistency, the same correct associations, ARIA, and focus behavior on every field, in every form, on every framework you ship. Explore the full component set on the [Tekivex UI product page](/product/tekivex-ui) or browse more [engineering use cases](/use-cases).
 
+## Sources
+
+- [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG21/), W3C Recommendation
+- [Accessible Rich Internet Applications (WAI-ARIA) 1.2](https://www.w3.org/TR/wai-aria-1.2/), W3C Recommendation, June 6, 2023
+- [Forms Tutorial](https://www.w3.org/WAI/tutorials/forms/), W3C Web Accessibility Initiative
+- [tekivex-ui on npm](https://www.npmjs.com/package/tekivex-ui): version 4.7.1, MIT licence, checked on the npm registry on November 2, 2026
 
 **Correction — September 15, 2026:** Removed unmeasured size or fixed plugin-count claims. Accessibility targets require testing in the finished application; they are not a compliance certification.
