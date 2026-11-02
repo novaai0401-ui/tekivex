@@ -6120,3 +6120,14 @@ body {
    it should not show a persistent ring when focused. */
 #main:focus,
 #main:focus-visible { outline: none; }
+
+/* "What we tested" evidence on tool pages (src/tools/evidence.ts) */
+.tool-evidence-table { border-collapse: collapse; width: 100%; margin: 0 0 12px; font-size: 15px; }
+.tool-evidence-table th,
+.tool-evidence-table td { text-align: left; vertical-align: top; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--hub-border-subtle); }
+.tool-evidence-table th { font-weight: 600; width: 45%; }
+.tool-evidence-method,
+.tool-evidence-sources { color: var(--hub-text-secondary); line-height: 1.7; }
+.tool-evidence-figure { margin: 16px 0; }
+.tool-evidence-figure img { max-width: 100%; height: auto; border: 1px solid var(--hub-border); border-radius: 8px; background: #fff; }
+.tool-evidence-figure figcaption { font-size: 14px; color: var(--hub-text-secondary); margin-top: 6px; }

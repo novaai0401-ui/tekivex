@@ -55,6 +55,49 @@ export function ToolPage({ slug }: { slug: string }) {
         </ol>
       </section>
 
+      {tool.evidence && (
+        <section className="tool-section tool-evidence" aria-label="What we tested">
+          <h2>What we tested</h2>
+          <p className="tool-evidence-method">
+            Tested <time>{tool.evidence.tested}</time>. {tool.evidence.method}
+          </p>
+          <table className="tool-evidence-table">
+            <tbody>
+              {tool.evidence.rows.map((r) => (
+                <tr key={r.label}><th scope="row">{r.label}</th><td>{r.value}</td></tr>
+              ))}
+            </tbody>
+          </table>
+          {tool.evidence.image && (
+            <figure className="tool-evidence-figure">
+              <img
+                src={tool.evidence.image.src}
+                alt={tool.evidence.image.alt}
+                width={tool.evidence.image.width}
+                height={tool.evidence.image.height}
+                loading="lazy"
+              />
+              <figcaption>{tool.evidence.image.caption}</figcaption>
+            </figure>
+          )}
+          <p className="tool-evidence-sources">
+            Check it yourself:{' '}
+            {tool.evidence.sources.map((src, i) => (
+              <React.Fragment key={src.href}>
+                {i > 0 && ' · '}
+                <a href={src.href} {...(src.href.startsWith('http') ? { rel: 'noopener noreferrer' } : {})}>{src.label}</a>
+              </React.Fragment>
+            ))}
+            {tool.guideSlug && (
+              <>
+                {' · '}
+                <Link to={`/use-cases/${tool.guideSlug}`}>Full write-up in the guide</Link>
+              </>
+            )}
+          </p>
+        </section>
+      )}
+
       <section className="tool-section" aria-label="Limitations">
         <h2>Honest limitations</h2>
         <ul className="tool-limits">

@@ -1,3 +1,4 @@
+import { TOOL_EVIDENCE, type ToolEvidence } from './evidence';
 // ─── Free in-browser tools registry ──────────────────────────────────────────
 // Single source of truth for the /tools hub. Every tool runs entirely
 // client-side — files are processed in the visitor's browser and never
@@ -43,9 +44,11 @@ export interface ToolMeta {
   limitations: string[];
   /** Slug of the in-depth how-to guide in /use-cases (optional). */
   guideSlug?: string;
+  /** Measured results on published sample files (see ./evidence.ts). */
+  evidence?: ToolEvidence;
 }
 
-export const TOOLS: ToolMeta[] = [
+const TOOL_LIST: ToolMeta[] = [
   {
     slug: 'merge-pdf',
     guideSlug: 'how-to-merge-pdf-free',
@@ -182,6 +185,7 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     slug: 'pdf-to-jpg',
+    guideSlug: 'how-to-convert-pdf-to-jpg',
     name: 'PDF to JPG',
     short: 'Turn each page of a PDF into a downloadable image.',
     description:
@@ -215,6 +219,7 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     slug: 'rotate-pdf',
+    guideSlug: 'how-to-rotate-pdf',
     name: 'Rotate PDF',
     short: 'Rotate the pages of a PDF and save the result.',
     description:
@@ -246,6 +251,7 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     slug: 'remove-pages-pdf',
+    guideSlug: 'how-to-delete-pages-from-pdf',
     name: 'Delete PDF Pages',
     short: 'Remove unwanted pages from a PDF and keep the rest.',
     description:
@@ -311,6 +317,8 @@ export const TOOLS: ToolMeta[] = [
     ],
   },
 ];
+
+export const TOOLS: ToolMeta[] = TOOL_LIST.map((t) => ({ ...t, evidence: TOOL_EVIDENCE[t.slug] }));
 
 export function getAllTools(): readonly ToolMeta[] {
   return TOOLS;

@@ -21,6 +21,15 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: '2026-11-02',
+    title: 'Test results on every tool page',
+    items: [
+      { tag: 'Improved', text: 'Every tool page now has a “What we tested” section with the measured results from running the tool on published sample files, links to those files and raw results, and a link to the full guide.' },
+      { tag: 'Improved', text: 'The PDF to JPG, Rotate PDF and Remove Pages tools now link to their step-by-step guides.' },
+      { tag: 'Improved', text: 'The Tekivex UI product page links its getting-started guide, component reference and PDF primitives reference, and the DataFlow product page links its overview.' },
+    ],
+  },
+  {
     date: '2026-10-23',
     title: 'New guide: why phone photos turn sideways in PDFs',
     items: [

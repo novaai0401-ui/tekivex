@@ -171,6 +171,28 @@ function changelogBlock() {
   }).join('');
 }
 
+// Same content as the "What we tested" section ToolPage renders (src/tools/evidence.ts).
+function toolEvidenceBlock(t) {
+  const e = t.evidence;
+  if (!e) return '';
+  const rows = e.rows
+    .map((r) => `<tr><th scope="row" style="text-align:left;padding:6px 12px 6px 0;vertical-align:top;color:#0a0f1f">${escapeHtml(r.label)}</th><td style="padding:6px 0;color:#334155">${escapeHtml(r.value)}</td></tr>`)
+    .join('');
+  const img = e.image
+    ? `<figure style="margin:16px 0"><img src="${escapeHtml(e.image.src)}" alt="${escapeHtml(e.image.alt)}" width="${e.image.width}" height="${e.image.height}" loading="lazy" style="max-width:100%;height:auto;border:1px solid #e6e8ef;border-radius:8px"><figcaption style="font-size:14px;color:#64748b;margin-top:6px">${escapeHtml(e.image.caption)}</figcaption></figure>`
+    : '';
+  const links = e.sources
+    .map((s) => `<a href="${escapeHtml(s.href)}" style="color:#3a86ff;text-decoration:none"${s.href.startsWith('http') ? ' rel="noopener noreferrer"' : ''}>${escapeHtml(s.label)}</a>`)
+    .concat(t.guideSlug ? [`<a href="/use-cases/${escapeHtml(t.guideSlug)}" style="color:#3a86ff;text-decoration:none">Full write-up in the guide</a>`] : [])
+    .join(' &middot; ');
+  return `
+      <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">What we tested</h2>
+      <p style="margin:0 0 12px;line-height:1.7;color:#334155">Tested <time>${escapeHtml(e.tested)}</time>. ${escapeHtml(e.method)}</p>
+      <table style="border-collapse:collapse;margin:0 0 8px;font-size:15px"><tbody>${rows}</tbody></table>
+      ${img}
+      <p style="margin:8px 0 0;font-size:15px;color:#334155">Check it yourself: ${links}</p>`;
+}
+
 function toolDetailBlock(t) {
   const steps = t.steps
     .map((s) => `<li style="margin-bottom:10px;line-height:1.7"><strong>${escapeHtml(s.title)}.</strong> ${escapeHtml(s.body)}</li>`)
@@ -186,6 +208,7 @@ function toolDetailBlock(t) {
       <p style="font-size:14px;color:#0a7d4f;font-weight:600;margin:0 0 16px">🔒 100% private — this tool runs in your browser; files are never uploaded.</p>
       <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">How it works</h2>
       <ol style="margin:0 0 8px;padding-left:22px;color:#334155">${steps}</ol>
+${toolEvidenceBlock(t)}
       <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">Honest limitations</h2>
       <ul style="margin:0 0 8px;padding-left:22px;color:#334155">${limits}</ul>
       <h2 style="font-size:1.35rem;font-weight:800;color:#0a0f1f;margin:28px 0 12px">Frequently asked questions</h2>
