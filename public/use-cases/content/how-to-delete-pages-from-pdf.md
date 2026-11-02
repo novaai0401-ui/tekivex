@@ -2,6 +2,10 @@ Not every page in a PDF earns its place. A scanned document often picks up a bla
 
 This guide walks through removing pages, explains the page syntax, and covers the pitfalls. There's no account to create and no watermark on the result.
 
+![The Delete PDF Pages tool with structured.pdf loaded, showing 6 pages and page 2 entered in the pages to remove box](/images/guides/delete-pages-loaded.png)
+
+*Delete PDF Pages with the published 6-page test file loaded and page 2 entered for removal. Captured November 2, 2026.*
+
 ## How to delete pages from a PDF
 
 1. Open the [Delete PDF Pages](/tools/remove-pages-pdf) tool in your browser. Nothing to install.

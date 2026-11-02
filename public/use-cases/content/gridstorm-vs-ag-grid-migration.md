@@ -4,6 +4,10 @@ We are not going to pretend [GridStorm](/product/gridstorm) is strictly better. 
 
 We will compare licensing and cost, bundle size, the plugin and feature model, accessibility, and framework support — then walk through converting column definitions, cell renderers, and sorting and filtering from an AG Grid setup to GridStorm.
 
+![The GridStorm Migration from AG Grid guide, starting with capturing current behaviour and verifying packages and licences](/images/guides/gridstorm-ag-grid-migration-docs.png)
+
+*The first steps of GridStorm's own AG Grid migration guide. Captured November 2, 2026.*
+
 ## An honest comparison
 
 **Disclosure:** Tekivex publishes this article and develops GridStorm. We have not published a side-by-side benchmark of the two grids, so this section makes no speed or size ranking. AG Grid details below are taken from AG Grid's own documentation pages, linked in the table, as published in October 2026. Vendors change editions and prices, so confirm them on those pages before deciding.
@@ -118,6 +122,5 @@ Migrations are never free, and a working grid has real value. But for teams whos
 ---
 
 *AG Grid is a trademark of its respective owner. Tekivex is not affiliated with, endorsed by, or sponsored by it. Comparisons reflect our understanding at the time of writing; verify current capabilities against the vendor's official documentation.*
-
 
 **Correction — September 15, 2026:** Removed unmeasured size or fixed plugin-count claims. Accessibility targets require testing in the finished application; they are not a compliance certification.

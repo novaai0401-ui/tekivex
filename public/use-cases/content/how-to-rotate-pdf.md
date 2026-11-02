@@ -2,6 +2,10 @@ You open a PDF and every page is on its side — or worse, upside down. It usual
 
 This guide shows how to rotate a PDF, explains why it doesn't hurt quality, and covers how to handle a single stubborn page. There's no sign-up and no watermark.
 
+![The Rotate PDF tool with the 6-page test file structured.pdf loaded, the 90 degrees left, 90 degrees right and 180 degrees buttons, and the measured test results below](/images/guides/rotate-pdf-loaded.png)
+
+*Rotate PDF with the published test file loaded, above the results of the rotation test. Captured November 2, 2026.*
+
 ## How to rotate a PDF
 
 1. Open the [Rotate PDF](/tools/rotate-pdf) tool in your browser. Nothing to install.
