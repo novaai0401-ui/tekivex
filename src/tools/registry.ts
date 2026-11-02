@@ -191,7 +191,7 @@ const TOOL_LIST: ToolMeta[] = [
     description:
       'Need a page of a PDF as a picture — for a slide, a social post, or a document that ' +
       'only accepts images? This tool renders every page to a JPG or PNG you can save ' +
-      'individually or all at once, using your browser’s own PDF renderer rather than a ' +
+      'individually or all at once, using PDF.js, Mozilla’s open-source renderer, inside your browser rather than a ' +
       'server-side converter.',
     seoTitle: 'PDF to JPG — Convert PDF Pages to Images, Free & Private | Tekivex Tools',
     seoDescription:

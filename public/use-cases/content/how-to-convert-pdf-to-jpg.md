@@ -2,6 +2,10 @@ Sometimes you need a picture, not a PDF. Maybe you want to post a single page of
 
 This guide covers how to convert a PDF to images, when to pick JPG versus PNG, and the few things worth knowing before you start. It takes under a minute, there's no sign-up, and nothing is watermarked.
 
+![The PDF to JPG tool after converting compression-sample.pdf: one page preview with a Download button and a Download all button](/images/guides/pdf-to-jpg-result.png)
+
+*PDF to JPG after converting the published sample file, compression-sample.pdf (2.93 MB). Captured November 2, 2026.*
+
 ## How to convert a PDF to JPG
 
 1. Open the [PDF to JPG](/tools/pdf-to-jpg) tool in your browser. There's nothing to install.
@@ -66,3 +70,9 @@ Yes. After the PDF is loaded, every page is rendered separately, so you can down
 ### Will the image quality be good?
 
 Good for screens. Pages are rendered at 144 pixels per inch, about 1190 × 1684 pixels for A4. That is sharp on a monitor or phone and fine for slides, but below the 300 pixels per inch usually wanted for print. For the sharpest text and line art, choose PNG; for photos and scans, JPG gives you a much smaller file with no visible difference.
+
+## Sources
+
+- [PDF.js](https://mozilla.github.io/pdf.js/), Mozilla's open-source PDF renderer; the tool uses pdfjs-dist 6.3.289
+- [HTMLCanvasElement: toBlob() method](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob), MDN Web Docs; the tool saves JPG at quality 0.85
+- [ISO 216 paper sizes](https://www.iso.org/standard/36631.html), ISO: A4 is 210 × 297 mm, which at 144 pixels per inch is about 1190 × 1684 pixels

@@ -4,6 +4,10 @@ Tekivex UI takes a different stance. It is a headless-first component system for
 
 This article walks through the design philosophy behind that split, why headless matters more than it first appears, and how zero runtime dependencies plus tree-shakeable ESM keep your bundle honest. Tekivex UI is free to use and ships 50+ accessible components meeting WCAG 2.1 AA. The full reference lives on the [Tekivex UI product page](/product/tekivex-ui).
 
+![The Tekivex UI All components page listing 99 components grouped into families](/images/guides/tekivex-ui-components-index.png)
+
+*The Tekivex UI component index, which lists 99 components in nine families. Captured November 2, 2026.*
+
 ## What "headless" actually means
 
 A headless component is one that exposes behavior and state without prescribing how it renders. A headless `Dialog` knows how to trap focus, close on `Escape`, restore focus to the trigger, and announce itself to assistive technology. What it deliberately does *not* know is whether your modal has rounded corners, a backdrop blur, or a slide-up animation. Those are your problems — and that is the point.
@@ -154,5 +158,10 @@ The cost is real — you write more markup and more styles up front. The return 
 
 Explore the [full component catalog](/product/tekivex-ui) or browse more [Tekivex use cases](/use-cases) to see how teams put these primitives to work.
 
+## Sources
+
+- [tekivex-ui on npm](https://www.npmjs.com/package/tekivex-ui): version 4.7.1, MIT licence, checked on the npm registry on November 2, 2026
+- [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG21/), W3C Recommendation
+- [Accessible Rich Internet Applications (WAI-ARIA) 1.2](https://www.w3.org/TR/wai-aria-1.2/), W3C Recommendation, June 6, 2023
 
 **Correction — September 15, 2026:** Removed unmeasured size or fixed plugin-count claims. Accessibility targets require testing in the finished application; they are not a compliance certification.

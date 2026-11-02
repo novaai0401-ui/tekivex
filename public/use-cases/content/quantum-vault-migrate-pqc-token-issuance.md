@@ -4,6 +4,10 @@ This article is a migration playbook: how to move from RSA/ECDSA-signed, JWT-sty
 
 We assume you currently issue tokens signed with RS256 or ES256 and verify them across multiple services, some of which you cannot upgrade simultaneously. That is the realistic enterprise starting point, and it is the one this playbook is written for.
 
+![Diagram of the four migration phases: inventory, dual-issue, verifier upgrade, retire classical, with issuer and verifier behaviour and exit criteria](/images/guides/pqc-migration-phases.svg)
+
+*The four phases described in this article, from the table below.*
+
 ## Why you cannot just flip the algorithm
 
 A token's value is that an independent verifier can validate it. The moment you change the signing algorithm to ML-DSA, every verifier still expecting ES256 rejects the new tokens — or worse, fails open. Three constraints make a single-step cutover unsafe:
@@ -131,3 +135,9 @@ If the underlying primitives behind these signatures are unfamiliar, our [post-q
 - **Adopt crypto-agility regardless of timeline**, because it is the part of this work that pays off in every future migration, not just this one.
 
 The migration to post-quantum token issuance is fundamentally a compatibility problem solved by additive, staged change: issue both signatures, upgrade verifiers, then retire the old anchor — all governed by tokens that declare their own algorithm so the next change is cheap. For the primitives and standards rationale behind ML-DSA, see [post-quantum tokens explained](/use-cases/quantum-vault-post-quantum-tokens-explained), explore related [use cases](/use-cases), or start on the [Quantum Vault product page](/product/quantum-vault).
+
+## Sources
+
+- [FIPS 204, Module-Lattice-Based Digital Signature Standard (ML-DSA)](https://csrc.nist.gov/pubs/fips/204/final), NIST, published August 13, 2024
+- [RFC 7519, JSON Web Token (JWT)](https://www.rfc-editor.org/rfc/rfc7519), IETF, May 2015
+- [@sigvault/sdk on npm](https://www.npmjs.com/package/@sigvault/sdk): version 4.3.11, Apache-2.0 licence, checked on the npm registry on November 2, 2026

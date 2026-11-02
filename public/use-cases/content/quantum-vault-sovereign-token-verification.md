@@ -4,6 +4,10 @@ Sovereign, self-hosted token verification means you run issuance and verificatio
 
 The post-quantum dimension sharpens the argument. If you are migrating to quantum-resistant tokens precisely because you do not trust the future, handing your signing keys to a third party reintroduces exactly the kind of trust dependency you are trying to eliminate.
 
+![Timeline diagram: the old key signs until the new key is generated, then only verifies during an overlap window at least as long as the longest token lifetime, then is dropped](/images/guides/key-rotation-overlap.svg)
+
+*Key rotation with an overlap window, as described under "Rotating keys without downtime".*
+
 ## What sovereignty buys you
 
 Three concrete properties distinguish a self-hosted crypto stack from a managed one, and each maps to a real failure mode of the outsourced model.
@@ -113,3 +117,9 @@ The overlap window must be at least the maximum lifetime of any token signed by 
 If your needs are a low-stakes consumer login with no residency constraints, a managed IdP may be the pragmatic choice — sovereignty has an operational cost in key custody and rotation discipline, and you should adopt it where the threat model warrants it.
 
 Sovereign token verification puts the cryptographic root of trust where it belongs for high-assurance systems: inside your boundary, on keys only you hold, validated offline with no external dependency. Combined with post-quantum signatures, it gives you a credential system that is resistant to both quantum adversaries and third-party compromise. To understand the primitives and the NIST standards behind them, see [post-quantum tokens explained](/use-cases/quantum-vault-post-quantum-tokens-explained); or browse related [use cases](/use-cases) and the [Quantum Vault product page](/product/quantum-vault).
+
+## Sources
+
+- [FIPS 204, Module-Lattice-Based Digital Signature Standard (ML-DSA)](https://csrc.nist.gov/pubs/fips/204/final), NIST, published August 13, 2024
+- [RFC 8439, ChaCha20 and Poly1305 for IETF Protocols](https://www.rfc-editor.org/rfc/rfc8439), IETF, June 2018 (XChaCha20-Poly1305 extends its nonce)
+- [@sigvault/sdk on npm](https://www.npmjs.com/package/@sigvault/sdk): version 4.3.11, Apache-2.0 licence, checked on the npm registry on November 2, 2026

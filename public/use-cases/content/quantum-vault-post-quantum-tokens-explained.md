@@ -4,6 +4,10 @@ Post-quantum cryptography (PQC) is the set of algorithms designed to resist atta
 
 The goal is to give you an accurate mental model, not marketing. Quantum computers do not break RSA today. But the migration is a multi-year exercise, and the data you protect now may need to stay protected long after Q-Day.
 
+![The Quantum Vault product page listing FIPS 204, ML-DSA-87, XChaCha20 encryption and self-hosting](/images/guides/quantum-vault-product-page.png)
+
+*The Quantum Vault product page and the standards it names. Captured November 2, 2026.*
+
 ## What "post-quantum" actually means
 
 Two quantum algorithms drive the concern. **Shor's algorithm** can factor integers and compute discrete logarithms in polynomial time on a large fault-tolerant quantum computer — that directly breaks RSA, Diffie-Hellman, and elliptic-curve cryptography. **Grover's algorithm** gives a quadratic speedup against unstructured search, which weakens symmetric ciphers and hashes but is handled simply by doubling key sizes (AES-256 stays comfortable).
@@ -130,3 +134,11 @@ You can inspect a token's structure without verifying it using `inspectToken`, w
 - Prefer **standardised** PQC (the most-attacked algorithm still standing) over bespoke schemes; Quantum Vault tracks the NIST FIPS 204 standard rather than shipping a homegrown lattice variant.
 
 The migration to post-quantum tokens is not a single switch you flip — it is a transition you stage. Understanding the primitives is step one. For the staged rollout, see the [migration playbook](/use-cases/quantum-vault-migrate-pqc-token-issuance), browse related [use cases](/use-cases), or look at the [Quantum Vault product page](/product/quantum-vault) to start issuing tokens against keys you hold yourself.
+
+## Sources
+
+- [FIPS 204, Module-Lattice-Based Digital Signature Standard (ML-DSA)](https://csrc.nist.gov/pubs/fips/204/final), NIST, published August 13, 2024
+- [FIPS 203, Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)](https://csrc.nist.gov/pubs/fips/203/final), NIST, published August 13, 2024
+- [NIST releases first 3 finalized post-quantum encryption standards](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards), NIST news release, August 13, 2024
+- [RFC 8439, ChaCha20 and Poly1305 for IETF Protocols](https://www.rfc-editor.org/rfc/rfc8439), IETF, June 2018 (XChaCha20-Poly1305 extends its nonce)
+- [@sigvault/sdk on npm](https://www.npmjs.com/package/@sigvault/sdk): version 4.3.11, Apache-2.0 licence, checked on the npm registry on November 2, 2026

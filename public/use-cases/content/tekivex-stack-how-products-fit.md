@@ -4,6 +4,10 @@ This article is about how those three products fit together when you *do* want t
 
 The goal is to give you a mental model precise enough to make adoption decisions: which package owns which concern, how data moves between them, and where the seams are.
 
+![The Tekivex products page listing GridStorm, Tekivex UI, Quantum Vault, Pyntra, Analytics Studio and DataFlow](/images/guides/tekivex-products-page.png)
+
+*The Tekivex products page. Captured November 2, 2026.*
+
 ## The three products at a glance
 
 Each product occupies a distinct layer of a typical data-heavy frontend. They share design conventions — CSS-variable theming, framework-agnostic APIs — but no hard runtime coupling.
@@ -133,5 +137,12 @@ This is the practical upshot of the [free, no-paywall model](/use-cases/tekivex-
 
 The Tekivex Stack is a set of layers — identity, shell, and grids — that happen to compose cleanly because they were built with consistent, decoupled contracts. Quantum Vault guards the door, Tekivex UI frames the app, and GridStorm renders the rows. Used together they cover the core of an operations dashboard. Used apart, each still stands on its own. That independence, backed by a no-paywall, free-to-use model, is what lets you start with one product today and grow into the rest only if and when the problem calls for it.
 
+## Sources
+
+- [tekivex-ui on npm](https://www.npmjs.com/package/tekivex-ui): version 4.7.1, MIT licence, checked on the npm registry on November 2, 2026
+- [gridstorm on npm](https://www.npmjs.com/package/gridstorm): version 0.6.1, MIT licence, checked on the npm registry on November 2, 2026
+- [@sigvault/sdk on npm](https://www.npmjs.com/package/@sigvault/sdk): version 4.3.11, Apache-2.0 licence, checked on the npm registry on November 2, 2026
+- [FIPS 204, Module-Lattice-Based Digital Signature Standard (ML-DSA)](https://csrc.nist.gov/pubs/fips/204/final), NIST, published August 13, 2024
+- [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG21/), W3C Recommendation
 
 **Correction — September 15, 2026:** Removed unmeasured size or fixed plugin-count claims. Accessibility targets require testing in the finished application; they are not a compliance certification.
