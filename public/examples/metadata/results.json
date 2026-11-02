@@ -1,0 +1,110 @@
+{
+  "generated": "2026-11-02",
+  "pdfLib": "1.17.1",
+  "generatedBy": "scripts/metadata-evidence.mjs",
+  "results": {
+    "source file": {
+      "pages": 3,
+      "info": {
+        "title": "Q3 salary review",
+        "author": "Priya Example",
+        "subject": "Internal draft",
+        "keywords": "salary confidential",
+        "creator": "Example Word Processor 2026",
+        "producer": "Example PDF Writer 3.1",
+        "created": "2026-01-15T10:00:00.000Z",
+        "modified": "2026-01-16T12:30:00.000Z"
+      },
+      "xmpPacket": true,
+      "authorNameAnywhere": true,
+      "cameraModelAnywhere": false,
+      "gpsBlockAnywhere": false
+    },
+    "merge: file + copy of itself": {
+      "pages": 6,
+      "info": {
+        "title": null,
+        "author": null,
+        "subject": null,
+        "keywords": null,
+        "creator": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+        "producer": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+        "created": "2026-11-02T17:13:35.000Z",
+        "modified": "2026-11-02T17:13:35.000Z"
+      },
+      "xmpPacket": false,
+      "authorNameAnywhere": false,
+      "cameraModelAnywhere": false,
+      "gpsBlockAnywhere": false
+    },
+    "split: extract page 1": {
+      "pages": 1,
+      "info": {
+        "title": null,
+        "author": null,
+        "subject": null,
+        "keywords": null,
+        "creator": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+        "producer": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+        "created": "2026-11-02T17:13:35.000Z",
+        "modified": "2026-11-02T17:13:35.000Z"
+      },
+      "xmpPacket": false,
+      "authorNameAnywhere": false,
+      "cameraModelAnywhere": false,
+      "gpsBlockAnywhere": false
+    },
+    "delete: remove page 2": {
+      "pages": 2,
+      "info": {
+        "title": null,
+        "author": null,
+        "subject": null,
+        "keywords": null,
+        "creator": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+        "producer": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+        "created": "2026-11-02T17:13:35.000Z",
+        "modified": "2026-11-02T17:13:35.000Z"
+      },
+      "xmpPacket": false,
+      "authorNameAnywhere": false,
+      "cameraModelAnywhere": false,
+      "gpsBlockAnywhere": false
+    },
+    "rotate: 90 degrees, all pages": {
+      "pages": 3,
+      "info": {
+        "title": "Q3 salary review",
+        "author": "Priya Example",
+        "subject": "Internal draft",
+        "keywords": "salary confidential",
+        "creator": "Example Word Processor 2026",
+        "producer": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+        "created": "2026-01-15T10:00:00.000Z",
+        "modified": "2026-11-02T17:13:35.000Z"
+      },
+      "xmpPacket": true,
+      "authorNameAnywhere": true,
+      "cameraModelAnywhere": false,
+      "gpsBlockAnywhere": false
+    },
+    "jpg-to-pdf: photo-with-gps.jpg": {
+      "pages": 1,
+      "info": {
+        "title": null,
+        "author": null,
+        "subject": null,
+        "keywords": null,
+        "creator": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+        "producer": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+        "created": "2026-11-02T17:13:35.000Z",
+        "modified": "2026-11-02T17:13:35.000Z"
+      },
+      "xmpPacket": false,
+      "authorNameAnywhere": false,
+      "cameraModelAnywhere": true,
+      "gpsBlockAnywhere": true,
+      "embeddedImageIdenticalToInput": true
+    }
+  }
+}

@@ -8,7 +8,11 @@ and `docs/EDITORIAL-REVIEW.md` requires a named person to test each guide and
 own its byline. So a draft only goes live after a person has done the steps
 below.
 
-There are no drafts waiting; all three have been published (below).
+| Draft | Evidence | Script |
+| --- | --- | --- |
+| `what-a-pdf-says-about-you.md` (drafted 2026-11-02) | `public/examples/metadata/results.json` | `scripts/metadata-evidence.mjs`, `scripts/create-metadata-fixtures.py` |
+
+The first three drafts have been published (below).
 
 ## To publish a draft
 
