@@ -26,6 +26,10 @@ Links to websites survived every operation in both tools. Page content came thro
 
 The Tekivex operations ran on 10 October 2026 and the pypdf ones on 23 October 2026. The [Tekivex results](/examples/tool-tests/results.json), [pypdf results](/examples/tool-tests/pypdf-comparison.json), the [test file](/examples/tool-tests/structured.pdf) and both scripts ([Tekivex](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/tool-evidence.mjs), [pypdf](https://github.com/novaai0401-ui/tekivex/blob/master/scripts/pdf-structure-comparison.py)) are published. It is one synthetic file; other files and other tools may behave differently.
 
+![Table chart comparing what Tekivex and pypdf kept for each operation: Tekivex kept no bookmarks, jump links or form fields after merge, extract or delete, while pypdf kept them; both kept everything after rotation](/images/guides/what-survives-results.svg)
+
+*The results table below as a chart, generated from the two published result files.*
+
 ## Reading the results
 
 **Rotation is safe everywhere.** Rotating only changes a number on each page, so nothing else is touched.
@@ -50,7 +54,6 @@ Our tools copy pages into a new file and do not rebuild the bookmark list, links
 ### Will my merged file look different?
 
 No. In every Tekivex test the page content was byte-for-byte identical. What changes is the navigation and form layer around the pages.
-
 
 ## How this guide was made
 

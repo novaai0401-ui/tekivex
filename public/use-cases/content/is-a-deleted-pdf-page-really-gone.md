@@ -6,6 +6,10 @@ A PDF page is not a picture. It is a short list of drawing instructions, such as
 
 Most files give each page its own resource list. Some give every page the same list, which names every image in the document. In that layout a page can point at an image it never draws. A viewer shows nothing, because no instruction draws it, but the image is still in the file.
 
+![Diagram: page 1 and page 2 both point to one shared resource list, which names image Im1; only page 2 draws Im1, and after page 2 is deleted page 1 still points to the list](/images/guides/shared-resources-diagram.svg)
+
+*The layout of the test file. Only page 2 draws the image, but both pages point to the list that names it.*
+
 ## What we tested
 
 We built a two-page test file in that shared layout. Only page 2 draws an image; page 1 has a line of text. Then we deleted page 2 with several methods, and counted the images left in each result.
@@ -66,7 +70,6 @@ Only if its pages share one resource list and a deleted page drew something the 
 ### Does this affect Tekivex's other tools?
 
 Delete Pages and Split PDF both had it, and both are fixed. Merge PDF keeps every page, and Rotate PDF changes no content, so neither drops anything to leak.
-
 
 ## How this guide was made
 
