@@ -29,8 +29,8 @@
         "keywords": null,
         "creator": "pdf-lib (https://github.com/Hopding/pdf-lib)",
         "producer": "pdf-lib (https://github.com/Hopding/pdf-lib)",
-        "created": "2026-11-02T17:13:35.000Z",
-        "modified": "2026-11-02T17:13:35.000Z"
+        "created": "2026-11-02T17:15:59.000Z",
+        "modified": "2026-11-02T17:15:59.000Z"
       },
       "xmpPacket": false,
       "authorNameAnywhere": false,
@@ -46,8 +46,8 @@
         "keywords": null,
         "creator": "pdf-lib (https://github.com/Hopding/pdf-lib)",
         "producer": "pdf-lib (https://github.com/Hopding/pdf-lib)",
-        "created": "2026-11-02T17:13:35.000Z",
-        "modified": "2026-11-02T17:13:35.000Z"
+        "created": "2026-11-02T17:15:59.000Z",
+        "modified": "2026-11-02T17:15:59.000Z"
       },
       "xmpPacket": false,
       "authorNameAnywhere": false,
@@ -63,8 +63,8 @@
         "keywords": null,
         "creator": "pdf-lib (https://github.com/Hopding/pdf-lib)",
         "producer": "pdf-lib (https://github.com/Hopding/pdf-lib)",
-        "created": "2026-11-02T17:13:35.000Z",
-        "modified": "2026-11-02T17:13:35.000Z"
+        "created": "2026-11-02T17:15:59.000Z",
+        "modified": "2026-11-02T17:15:59.000Z"
       },
       "xmpPacket": false,
       "authorNameAnywhere": false,
@@ -81,7 +81,7 @@
         "creator": "Example Word Processor 2026",
         "producer": "pdf-lib (https://github.com/Hopding/pdf-lib)",
         "created": "2026-01-15T10:00:00.000Z",
-        "modified": "2026-11-02T17:13:35.000Z"
+        "modified": "2026-11-02T17:15:59.000Z"
       },
       "xmpPacket": true,
       "authorNameAnywhere": true,
@@ -97,14 +97,14 @@
         "keywords": null,
         "creator": "pdf-lib (https://github.com/Hopding/pdf-lib)",
         "producer": "pdf-lib (https://github.com/Hopding/pdf-lib)",
-        "created": "2026-11-02T17:13:35.000Z",
-        "modified": "2026-11-02T17:13:35.000Z"
+        "created": "2026-11-02T17:15:59.000Z",
+        "modified": "2026-11-02T17:15:59.000Z"
       },
       "xmpPacket": false,
       "authorNameAnywhere": false,
-      "cameraModelAnywhere": true,
-      "gpsBlockAnywhere": true,
-      "embeddedImageIdenticalToInput": true
+      "cameraModelAnywhere": false,
+      "gpsBlockAnywhere": false,
+      "embeddedImageIdenticalToInput": false
     }
   }
 }

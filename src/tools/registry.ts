@@ -142,6 +142,7 @@ const TOOL_LIST: ToolMeta[] = [
       { q: 'Are my photos uploaded?', a: 'No. The conversion runs client-side in your browser. For sensitive scans (IDs, medical or financial documents) this is the whole point — the image never touches a server.' },
       { q: 'Which image formats work?', a: 'JPG/JPEG and PNG. Other formats (HEIC, WebP, TIFF) need converting to JPG or PNG first — most phones can export HEIC photos as JPG.' },
       { q: 'How are page sizes chosen?', a: 'Each PDF page matches its image’s aspect ratio at a printable size, so nothing is cropped or stretched.' },
+      { q: 'Does the PDF keep my photo’s location?', a: 'No. Phone photos often record the camera model, the time and a GPS position. The tool removes those details from each JPG before placing it in the PDF, and keeps the picture itself unchanged. Before November 2, 2026 they were kept.' },
       { q: 'Will portrait phone photos come out sideways?', a: 'No. Phones often save a portrait photo as landscape pixels plus an orientation tag. The tool reads that tag and places the photo upright, without re-compressing it.' },
     ],
     limitations: [

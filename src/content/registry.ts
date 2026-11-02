@@ -75,7 +75,7 @@ const DATES: Record<string, { published: string; modified?: string }> = {
   // Free-tools how-to guides — shipped with the tools hub.
   'how-to-merge-pdf-free':                         { published: '2026-07-02', modified: '2026-10-10' },
   'how-to-split-pdf-extract-pages':                { published: '2026-07-02', modified: '2026-10-10' },
-  'how-to-convert-jpg-to-pdf':                     { published: '2026-07-02', modified: '2026-10-10' },
+  'how-to-convert-jpg-to-pdf':                     { published: '2026-07-02', modified: '2026-11-02' },
   'how-to-compress-pdf':                           { published: '2026-07-02', modified: '2026-10-11' },
   'how-to-make-chart-from-csv':                    { published: '2026-07-02', modified: '2026-10-11' },
   'why-browser-tools-keep-files-private':          { published: '2026-07-02', modified: '2026-10-11' },
