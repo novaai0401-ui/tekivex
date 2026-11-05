@@ -21,6 +21,13 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: '2026-11-05',
+    title: 'New guide: what a PDF says about you',
+    items: [
+      { tag: 'New', text: 'Published a guide on the author names, dates and photo locations a PDF can carry, based on a test of which details survive merge, split, delete, rotate and JPG to PDF. The test files, results and scripts are published with it.' },
+    ],
+  },
+  {
     date: '2026-11-02',
     title: 'Two new guides: deleted PDF pages, and what merging keeps',
     items: [

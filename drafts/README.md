@@ -8,11 +8,7 @@ and `docs/EDITORIAL-REVIEW.md` requires a named person to test each guide and
 own its byline. So a draft only goes live after a person has done the steps
 below.
 
-| Draft | Evidence | Script |
-| --- | --- | --- |
-| `what-a-pdf-says-about-you.md` (drafted 2026-11-02) | `public/examples/metadata/results.json` | `scripts/metadata-evidence.mjs`, `scripts/create-metadata-fixtures.py` |
-
-The first three drafts have been published (below).
+There are no drafts waiting; all four have been published (below).
 
 ## To publish a draft
 
@@ -46,3 +42,6 @@ Publish one guide at a time, a week or more apart, rather than all at once.
   untested claim about filled-in forms was reworded as a check for the reader,
   and both end with the "How this guide was made" note. Every number was
   re-checked against `results.json` and `pypdf-comparison.json`.
+- 2026-11-05: `what-a-pdf-says-about-you` went live the same way, on the
+  owner's instruction, before anyone had repeated the phone-photo check. Its
+  author notes were removed and it ends with the "How this guide was made" note.

@@ -1,14 +1,4 @@
----
-slug: what-a-pdf-says-about-you
-title: "What a PDF Says About You: Author Names, Dates and Photo Locations Hidden in the File"
-description: A PDF can carry your name, the software you used, when you wrote it and, if it contains a phone photo, where the photo was taken. We tested which of these survive merging, splitting, rotating and converting photos, found our own photo converter kept the location, fixed it, and explain how to check a file before you send it.
-status: DRAFT, not published. A named author must repeat at least the JPG to PDF check with a photo from their own phone (location on) and fill in the AUTHOR notes.
-evidence: public/examples/metadata/results.json (scripts/metadata-evidence.mjs), public/examples/metadata/photo-with-gps.jpg (scripts/create-metadata-fixtures.py)
----
-
 When you send a PDF, you send more than its pages. Most PDFs also carry a small record about the file itself: a title, an author name, the program that made it, and when it was created and last changed. A PDF made from phone photos can also carry each photo's own record, which often includes the phone model and the exact place the photo was taken. None of this shows on the page, but anyone who opens the file's properties can read it.
-
-<!-- AUTHOR: add a time you, or someone you know, found a name or detail in a file's properties that was not meant to be shared. -->
 
 ## The two places PDF details hide
 
@@ -43,15 +33,11 @@ JPG to PDF places your photo into the PDF without re-compressing it, which keeps
 
 Other converters may still copy the photo as it is, so the advice below applies to any tool.
 
-<!-- AUTHOR: convert a photo from your own phone, taken with location on, with the live JPG to PDF tool. Check the PDF's image with an EXIF viewer and note that no location is shown. Do not publish the coordinates. -->
-
 ## How to check a file before you send it
 
 1. **Look at the document properties.** In Adobe Acrobat Reader, choose File, then Properties. In macOS Preview, choose Tools, then Show Inspector. In a Chromium-based browser's PDF viewer, open the menu and choose Document properties. Check the Title, Author, Subject and Keywords.
 2. **For photos, check before converting.** Your phone's photo details screen, or the file's properties on a computer, shows whether a location is stored. If it is, turn it off for that photo or export a copy without location before making the PDF.
 3. **Remember the dates.** A created date in the properties can reveal when a draft was started, even if the document says otherwise.
-
-<!-- AUTHOR: confirm the menu names above in the viewers you use, and correct any that differ. -->
 
 ## What we did not test
 
@@ -66,3 +52,12 @@ With the Tekivex tools, merging, extracting and deleting pages removed the autho
 ### Can a PDF reveal where a photo was taken?
 
 Yes, if the photo was taken with location on and the PDF tool copied the photo file as it is. Our JPG to PDF tool did this until 2 November 2026; it now removes the location and other photo records.
+
+## Sources
+
+- [pdf-lib](https://pdf-lib.js.org/), the open-source library the Tekivex PDF tools use: version 1.17.1, MIT licence, checked on the npm registry on November 2, 2026
+- [Pillow](https://pillow.readthedocs.io/), the Python imaging library used to read the photos' EXIF records: version 12.1.1
+
+## How this guide was made
+
+This guide was drafted with an AI assistant from the tests described above, then checked line by line against the tests' published results. It is credited to the Tekivex team rather than to a named person because no individual author wrote it or repeated the check with their own phone. If you find a mistake, [tell us](/contact) and we will correct it and note the change.
