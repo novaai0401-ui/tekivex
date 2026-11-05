@@ -49,6 +49,7 @@ const AUTHOR_BY_SLUG: Record<string, string> = {
   'why-phone-photos-turn-sideways-in-pdf': TEAM_AUTHOR_ID,
   'is-a-deleted-pdf-page-really-gone': TEAM_AUTHOR_ID,
   'what-survives-merge-split-rotate-pdf': TEAM_AUTHOR_ID,
+  'what-a-pdf-says-about-you': TEAM_AUTHOR_ID,
 };
 
 const DEFAULT_AUTHOR_ID = 'chandan-kumar';
@@ -85,6 +86,7 @@ const DATES: Record<string, { published: string; modified?: string }> = {
   'why-phone-photos-turn-sideways-in-pdf':         { published: '2026-10-23' },
   'is-a-deleted-pdf-page-really-gone':             { published: '2026-11-02' },
   'what-survives-merge-split-rotate-pdf':          { published: '2026-11-02' },
+  'what-a-pdf-says-about-you':                     { published: '2026-11-05' },
 };
 
 function article(
@@ -171,6 +173,17 @@ export const ARTICLES: Article[] = [
     productName: 'Free Tools',
     kind: 'Explainer',
     keywords: ['merge pdf keep bookmarks', 'pdf links broken after merge', 'merge pdf form fields', 'split pdf bookmarks', 'what does merging a pdf lose'],
+    readingMinutes: 5,
+  }),
+  article({
+    slug: 'what-a-pdf-says-about-you',
+    title: 'What a PDF Says About You: Author Names, Dates and Photo Locations Hidden in the File',
+    description:
+      'A PDF can carry your name, the software you used, when you wrote it and where a photo in it was taken. We tested which details survive merging, splitting, rotating and converting photos, and fixed our own converter.',
+    productId: 'pyntra',
+    productName: 'Free Tools',
+    kind: 'Explainer',
+    keywords: ['pdf metadata', 'remove author from pdf', 'pdf photo location', 'exif gps in pdf', 'pdf document properties privacy'],
     readingMinutes: 5,
   }),
   article({

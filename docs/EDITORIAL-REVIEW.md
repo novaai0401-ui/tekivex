@@ -150,6 +150,11 @@ a named person has repeated the test and taken over the byline.
 together, credited to "Tekivex team" with the same AI-drafting note and `ads`
 off. The same limits apply: they do not meet checklist item 1.
 
+2026-11-05: `what-a-pdf-says-about-you` was published the same way, on the
+owner's instruction, credited to "Tekivex team" with `ads` off. Its test found
+that JPG to PDF kept photo GPS data; the tool was fixed on 2026-11-02. It does
+not meet checklist item 1.
+
 ## Before switching any article to `ads: true`
 
 1. A named person has tested the steps, added the evidence in its row, and is
