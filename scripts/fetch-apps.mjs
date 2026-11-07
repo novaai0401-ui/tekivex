@@ -28,6 +28,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { prepareGridstorm } from './prepare-gridstorm.mjs';
 import { prepareUi } from './prepare-ui.mjs';
+import { DOCS_INDEXED, deindexDocs } from './docs-index-policy.mjs';
 import { prepareDataflow } from './prepare-dataflow.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -134,6 +135,9 @@ for (const app of APPS) {
   if (app.path === 'gridstorm') prepareGridstorm(target);
   if (app.path === 'ui') await prepareUi(target);
   if (app.path === 'dataflow') prepareDataflow(target);
+  if (!DOCS_INDEXED && (app.path === 'ui' || app.path === 'gridstorm')) {
+    console.log(`  /${app.path}: ${deindexDocs(target)} pages marked noindex; sitemap emptied (see scripts/docs-index-policy.mjs)`);
+  }
   ok++;
 }
 rmSync(TMP, { recursive: true, force: true });
