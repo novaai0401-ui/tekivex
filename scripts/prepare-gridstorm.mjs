@@ -15,6 +15,36 @@ export function noindex(html) {
   return html.replace(/<head([^>]*)>/i, `<head$1>${ROBOTS_NOINDEX}`);
 }
 
+/**
+ * Internal sales notes that upstream wrote as tips: unsourced competitor
+ * prices, revenue claims and lawsuit figures. They read as marketing copy in
+ * reference documentation, so the whole callout is dropped.
+ */
+export const SALES_NOTE = /differentiator|paywalled|drives the most revenue|lawsuits? average/i;
+const CALLOUT_LABEL = { tip: 'Tip', note: 'Note', info: 'Note', caution: 'Caution', warning: 'Warning', danger: 'Warning' };
+
+/**
+ * Upstream Markdown uses `:::kind ... :::` containers that marked does not
+ * understand, so they were published as raw text on ~50 pages. Render each as
+ * a labelled blockquote; `:::example{title href}` becomes a link to the live
+ * demo in the hub. Throws if any container syntax is left over.
+ */
+export function renderCallouts(markdown, slug = '') {
+  const out = markdown.replace(/^:::(\w+)(\{[^}\n]*\})?[ \t]*\r?\n([\s\S]*?)\r?\n:::[ \t]*$/gm, (_, kind, attrs = '', body) => {
+    if (SALES_NOTE.test(body)) return '';
+    const quote = (text) => text.trim().split(/\r?\n/).map((l) => `> ${l}`.trimEnd()).join('\n');
+    if (kind === 'example') {
+      const title = attrs.match(/title="([^"]*)"/)?.[1] || 'Live example';
+      const href = attrs.match(/href="([^"]*)"/)?.[1];
+      const link = href ? `[${title}](/gridstorm${href.startsWith('/') ? '' : '/'}${href})` : title;
+      return `> **Live example:** ${link}\n>\n${quote(body)}`;
+    }
+    return `> **${CALLOUT_LABEL[kind] || kind.replace(/^./, (c) => c.toUpperCase())}:**\n>\n${quote(body)}`;
+  });
+  if (/^:::/m.test(out)) throw new Error(`Gridstorm doc ${slug} has container syntax renderCallouts could not render`);
+  return out;
+}
+
 export function prepareGridstorm(target) {
   const assets = join(target, 'hub-assets');
   const docs = new Map();
@@ -47,6 +77,9 @@ export function prepareGridstorm(target) {
     // the site. Remove it; fail if any other licence-gating wording remains.
     markdown = markdown.replace(/This is an enterprise plugin that requires a licen[cs]e for production use\.[ \t]*/gi, '');
     if (/requires? a (paid |commercial )?licen[cs]e/i.test(markdown)) throw new Error(`Gridstorm doc ${slug} claims a paid licence; GridStorm has none`);
+    markdown = renderCallouts(markdown, slug);
+    // Unsourced competitor comparison in the formula-engine introduction.
+    markdown = markdown.replace(/[^.\n]*on par with Handsontable[^.\n]*\.[ \t]*/g, '');
     const title = markdown.match(/^title:\s*(.+)$/m)?.[1]?.replace(/^['"]|['"]$/g, '') || slug;
     const content = markdown.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
     // First real paragraph (skip headings, code, imports, tables) — used as the

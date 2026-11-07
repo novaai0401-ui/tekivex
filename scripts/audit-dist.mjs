@@ -6,6 +6,7 @@
 //     canonical, a noindex directive, fewer than MIN_WORDS words of its own
 //     content (navigation, sidebars, headers and footers excluded), placeholder
 //     text, or a claim that a Tekivex product needs a paid licence;
+//   • unrendered Markdown container syntax (:::tip ... :::) in page prose;
 //   • two sitemap pages sharing a <title>;
 //   • a same-site link, on any sitemap page, to a path that is neither a
 //     file, a configured redirect, nor an app route served by a rewrite;
@@ -21,6 +22,8 @@ export const ORIGIN = 'https://www.tekivex.com';
 export const MIN_WORDS = 150;
 /** Unfinished-page markers that must never be indexed. */
 export const PLACEHOLDER = /generated scaffold|will be replaced with hand-authored|lorem ipsum/i;
+/** Markdown container syntax that a renderer failed to turn into HTML. */
+export const RAW_MARKUP = /(^|\s):::(\w+(\{[^}]*\})?)?(\s|$)/;
 /** Every Tekivex product is free; licence-gating wording is a false claim. */
 export const PAID_LICENCE = /enterprise plugin that requires a licen[cs]e|requires? a (paid |commercial )?licen[cs]e for production/i;
 /**
@@ -101,6 +104,10 @@ export async function audit(dist) {
       if (words < MIN_WORDS) fail('thin', where, `${words} words of own content`);
       if (PLACEHOLDER.test(own)) fail('placeholder-text', where);
       if (PAID_LICENCE.test(own)) fail('false-licence-claim', where);
+      // Code samples may legitimately contain ':::'; prose may not.
+      const prose = root.cloneNode(true);
+      for (const n of prose.querySelectorAll('pre, code')) n.remove();
+      if (RAW_MARKUP.test(prose.textContent)) fail('raw-markup', where, 'unrendered ::: container');
       for (const a of document.querySelectorAll('a[href]')) {
         const href = a.getAttribute('href');
         if (/^(#|mailto:|tel:|javascript:|data:)/i.test(href)) continue;

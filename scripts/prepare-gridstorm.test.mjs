@@ -1,8 +1,8 @@
-import {it,expect} from 'vitest';
+import {it,expect,describe} from 'vitest';
 import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {prepareGridstorm} from './prepare-gridstorm.mjs';
+import {prepareGridstorm, renderCallouts, SALES_NOTE} from './prepare-gridstorm.mjs';
 
 it('publishes Markdown without executing imported code and preserves doc links',()=>{
   const root=mkdtempSync(join(tmpdir(),'tekivex-docs-'));
@@ -38,4 +38,21 @@ it('fails when the upstream documentation format disappears',()=>{
     mkdirSync(join(root,'hub-assets'));
     expect(()=>prepareGridstorm(root)).toThrow('import map changed');
   } finally {rmSync(root,{recursive:true,force:true});}
+});
+
+describe('renderCallouts', () => {
+  it('turns containers into labelled blockquotes and examples into hub links', () => {
+    const out = renderCallouts('a\n\n:::caution\nDo not reuse.\n:::\n\n:::example{title="Theme Demo" href="/cookbook/#t"}\nTry it.\n:::\n');
+    expect(out).toContain('> **Caution:**');
+    expect(out).toContain('[Theme Demo](/gridstorm/cookbook/#t)');
+    expect(out).not.toMatch(/^:::/m);
+  });
+  it('drops upstream sales notes', () => {
+    const out = renderCallouts(':::tip\nThe formula engine is a $990/dev/year differentiator.\n:::\nkept');
+    expect(out.trim()).toBe('kept');
+    expect(SALES_NOTE.test('ADA lawsuits average $20K')).toBe(true);
+  });
+  it('refuses to publish container syntax it cannot render', () => {
+    expect(() => renderCallouts(':::tip\nnever closed', 'x')).toThrow(/container syntax/);
+  });
 });
