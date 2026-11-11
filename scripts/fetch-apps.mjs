@@ -11,7 +11,9 @@
 //   /gridstorm  ← grid-data         (hub + example apps + Astro docs)
 //   /analytics  ← analytics-builder (demo app)
 //   /dataflow   ← dataflow          (demo app)
-//   /pyntra     ← pdfcraft          (document app + guides, tools, legal pages)
+//   /pyntra     ← pdfcraft          (document app + guides, tools, legal pages;
+//                                    pdfcraft is private, so its build is
+//                                    published to this repo's `pyntra-build` branch)
 //
 // One domain, one routing tree, no subdomains — and no cross-repo builds:
 // this script never installs or compiles anything, it only copies.
@@ -58,7 +60,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
  * error text. With a commit, fetches exactly that commit (the reviewed pin);
  * without one, the tip of the `build` branch (APPS_FOLLOW_BRANCH=1 previews).
  */
-async function fetchApp(repo, dest, commit) {
+async function fetchApp(repo, dest, commit, branch = 'build') {
   let lastErr = '';
   for (let attempt = 1; attempt <= ATTEMPTS; attempt++) {
     rmSync(dest, { recursive: true, force: true });
@@ -69,7 +71,7 @@ async function fetchApp(repo, dest, commit) {
         execSync(`git ${AUTH} -C "${dest}" fetch --quiet --depth 1 "${repo}" ${commit}`, opts);
         execSync(`git -C "${dest}" checkout --quiet FETCH_HEAD`, opts);
       } else {
-        execSync(`git ${AUTH} clone --quiet --depth 1 --branch build --single-branch "${repo}" "${dest}"`, opts);
+        execSync(`git ${AUTH} clone --quiet --depth 1 --branch ${branch} --single-branch "${repo}" "${dest}"`, opts);
       }
       return null;
     } catch (e) {
@@ -80,7 +82,7 @@ async function fetchApp(repo, dest, commit) {
       }
       if (attempt < ATTEMPTS) {
         const wait = 2000 * attempt;
-        console.warn(`  ↻ clone of ${repo}#build failed (attempt ${attempt}/${ATTEMPTS}), retrying in ${wait / 1000}s: ${lastErr.split('\n')[0]}`);
+        console.warn(`  ↻ clone of ${repo}#${branch} failed (attempt ${attempt}/${ATTEMPTS}), retrying in ${wait / 1000}s: ${lastErr.split('\n')[0]}`);
         await sleep(wait);
       }
     }
@@ -94,9 +96,9 @@ const LOCK = JSON.parse(readFileSync(join(ROOT, 'apps.lock.json'), 'utf8'));
 const FOLLOW = process.env.APPS_FOLLOW_BRANCH === '1';
 const APPS = Object.entries(LOCK)
   .filter(([path]) => !path.startsWith('_'))
-  .map(([path, { repo, commit }]) => {
+  .map(([path, { repo, commit, branch = 'build' }]) => {
     if (!FOLLOW && !/^[0-9a-f]{40}$/.test(commit || '')) throw new Error(`apps.lock.json: /${path} needs a full 40-character commit`);
-    return { path, repo, commit: FOLLOW ? null : commit };
+    return { path, repo, branch, commit: FOLLOW ? null : commit };
   });
 if (FOLLOW) console.warn('⚠ APPS_FOLLOW_BRANCH=1 — vendoring unreviewed build-branch tips, not the pinned commits');
 
@@ -113,8 +115,8 @@ const manifest = { builtAt: new Date().toISOString(), site: { commit: siteCommit
 for (const app of APPS) {
   const clone = join(TMP, app.path);
   const target = join(DIST, app.path);
-  const ref = app.commit || 'build';
-  const err = await fetchApp(app.repo, clone, app.commit);
+  const ref = app.commit || app.branch;
+  const err = await fetchApp(app.repo, clone, app.commit, app.branch);
   if (err) {
     console.error(`✗ /${app.path}: could not fetch ${app.repo}@${ref} after ${ATTEMPTS} attempts\n    ${err.replace(/\n/g, '\n    ')}`);
     failed.push(app.path);
