@@ -1,0 +1,1 @@
+const e="pyntra:simple";function n(){try{return localStorage.getItem(e)==="1"}catch{return!1}}function i(t){try{localStorage.setItem(e,t?"1":"0")}catch{}typeof document<"u"&&document.documentElement.setAttribute("data-simple",t?"1":"0")}function c(){const t=!n();return i(t),t}function o(){n()&&i(!0)}export{n as getSimple,o as initSimple,i as setSimple,c as toggleSimple};
