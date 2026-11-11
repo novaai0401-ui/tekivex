@@ -23,7 +23,7 @@ Install: `npm install @sigvault/sdk`
 URL: https://www.tekivex.com/product/quantum-vault
 
 ### Pyntra
-Free, hosted browser-based PDF editor (use it live at https://pyntra.tekivex.com — nothing to install). Fill and add form fields, sign, stamp, annotate, redact, and open encrypted PDFs entirely client-side; files are never uploaded.
+Free, hosted browser-based PDF editor (use it live at https://www.tekivex.com/pyntra — nothing to install). Fill and add form fields, sign, stamp, annotate, redact, and open encrypted PDFs entirely client-side; files are never uploaded.
 Install: see the product page.
 URL: https://www.tekivex.com/product/pyntra
 

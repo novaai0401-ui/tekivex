@@ -1,21 +1,23 @@
 import type { ProductManifest } from './types';
 
-// Pyntra is Tekivex's hosted, in-browser studio for the things people actually
-// send: festival & birthday cards, invitations, photo edits, short videos, and
-// PDFs (fill / sign / redact). Everything runs on the user's device — nothing
-// is uploaded, work autosaves locally, and there is nothing to install.
-const PYNTRA_URL = 'https://pyntra.tekivex.com';
+// Pyntra is Tekivex's document app. It opens PDFs and office files in the
+// browser and works on them on the user's own device: read, fix, hide (redact
+// and protect) and prove (compare, accessibility, PDF/A). It also carries
+// Blackout, a short daily redaction game. Its pages are part of this site,
+// under /pyntra (see apps.lock.json and scripts/fetch-apps.mjs).
+const PYNTRA_URL = 'https://www.tekivex.com/pyntra/app/';
+const PYNTRA_HOME = 'https://www.tekivex.com/pyntra/welcome';
 
 export const pyntraManifest: ProductManifest = {
   id: 'pyntra',
   name: 'Pyntra',
-  tagline: 'Cards, invites, photos, video & PDFs — a private studio in your browser',
+  tagline: 'Read, fix, redact and check documents — on your own device',
   description:
-    'Pyntra is a free browser studio for the things people actually send: festival and birthday ' +
-    'cards, invitations, photo edits, short videos, and PDFs — fill, sign, and redact. Everything ' +
-    'runs on your device without uploading, your work autosaves on this device, and there is ' +
-    'nothing to install.',
-  version: '1.0.0',
+    'Pyntra is a free document app that runs in your browser. Open a PDF or an office file and ' +
+    'read it, fix it, hide what should not be seen, and check it before you send it. The file ' +
+    'stays on your device: nothing is uploaded and there is nothing to install. It also has ' +
+    'Blackout, a two-minute daily redaction game.',
+  version: '2.0.0',
   status: 'beta',
   tier: 'platform',
   color: '#ef4444',
@@ -27,45 +29,46 @@ export const pyntraManifest: ProductManifest = {
   playgroundPath: PYNTRA_URL,
   githubUrl: null,
   stats: [
-    { value: 'No upload',   label: 'Files stay on your device' },
-    { value: 'Cards + Video', label: 'Design & short reels' },
-    { value: 'PDF tools',   label: 'Fill, sign, redact' },
-    { value: 'Free',        label: 'No install, no account' },
+    { value: 'No upload',  label: 'Files stay on your device' },
+    { value: '4 jobs',     label: 'Read, fix, hide, prove' },
+    { value: 'AES-256',    label: 'Password protection' },
+    { value: 'Free',       label: 'No install, no account' },
   ],
   keyFeatures: [
-    'Greeting cards and invitations for birthdays, weddings and festivals',
-    'Photo edit, collage, and scan-to-PDF',
-    'Short video: captions, memory slideshow, and trim',
-    'PDF: fill forms, sign, redact, and password-protect — still local',
-    'Autosaves in the browser; clear it any time',
-    'Optional AI copy for wishes/scripts sends only the text you type, after consent — never the file',
+    'Read: open PDF, Word, Excel and PowerPoint files, pull out tables, and translate text',
+    'Fix: convert between formats, compress, fill and add form fields, watermark, flatten',
+    'Hide: redact text for good and check nothing is left underneath, find personal details, protect with an AES-256 password',
+    'Prove: compare two versions, run an accessibility report, save as PDF/A for archiving',
+    'Blackout: a daily two-minute game where you uncover the hidden words of a contract',
+    'Your work is saved in this browser only, and you can clear it at any time',
   ],
   quickLinks: [
     { label: 'Open Pyntra', path: PYNTRA_URL, external: true, isNew: true },
+    { label: "Play today's Blackout", path: `${PYNTRA_URL}?play=today`, external: true, isNew: true },
+    { label: 'What Pyntra does', path: PYNTRA_HOME, external: true },
+    { label: 'Guides', path: 'https://www.tekivex.com/pyntra/guides', external: true },
   ],
-  tags: ['Cards', 'Invitations', 'Photos', 'Video', 'PDF', 'Private'],
+  tags: ['PDF', 'Documents', 'Redaction', 'Private', 'Browser app'],
   seo: {
-    title: 'Pyntra — Cards, Invites, Photos, Video & PDF Studio in Your Browser | Tekivex',
+    title: 'Pyntra — Read, Fix, Redact and Check Documents in Your Browser | Tekivex',
     description:
-      'Design wishes and invitations, edit photos and short videos, and fill or sign PDFs in the ' +
-      'browser. Nothing is uploaded. Free to use.',
+      'Open a PDF or office file and read, convert, redact, password-protect and compare it in ' +
+      'the browser. The file stays on your device. Free to use.',
     keywords: [
-      'greeting card maker',
-      'birthday card maker',
-      'festival card maker',
-      'invitation maker',
-      'photo editor online',
-      'short video maker',
-      'reels maker',
-      'fill PDF form',
-      'sign PDF online',
       'redact PDF',
-      'private in-browser studio',
+      'password protect PDF',
+      'fill PDF form',
+      'convert PDF',
+      'compress PDF',
+      'compare PDF versions',
+      'PDF accessibility check',
+      'PDF/A',
+      'private PDF editor',
       'no upload',
       'Pyntra',
     ],
     jsonLdType: 'WebApplication',
-    applicationCategory: 'MultimediaApplication',
+    applicationCategory: 'BusinessApplication',
     operatingSystem: 'All',
   },
 };

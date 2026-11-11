@@ -11,6 +11,7 @@
 //   /gridstorm  ← grid-data         (hub + example apps + Astro docs)
 //   /analytics  ← analytics-builder (demo app)
 //   /dataflow   ← dataflow          (demo app)
+//   /pyntra     ← pdfcraft          (document app + guides, tools, legal pages)
 //
 // One domain, one routing tree, no subdomains — and no cross-repo builds:
 // this script never installs or compiles anything, it only copies.

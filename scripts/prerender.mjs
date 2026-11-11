@@ -443,7 +443,7 @@ const routes = [
     path: '/products',
     title: 'Tekivex products — Data grid, UI, tokens, PDF, BI & streaming apps',
     description:
-      'Browse Tekivex products: the GridStorm data grid, Tekivex UI component library, and Quantum Vault tokens on npm, plus the hosted Pyntra cards, photos, video & PDFs, Analytics Studio BI app, and DataFlow streaming dashboard. All free.',
+      'Browse Tekivex products: the GridStorm data grid, Tekivex UI component library, and Quantum Vault tokens on npm, plus the hosted Pyntra private document tools, Analytics Studio BI app, and DataFlow streaming dashboard. All free.',
     h1: 'Tekivex products',
     body:
       'A unified catalog of every Tekivex product — the data grid, UI components, and post-quantum tokens on npm, plus the hosted PDF editor, BI app, and streaming dashboard. All free.',
@@ -1010,7 +1010,7 @@ const humans = [
   '  GridStorm        — high-performance React data grid (npm: gridstorm)',
   '  TekiVex UI       — accessible React/Vue/Svelte component library (npm: tekivex-ui)',
   '  Quantum Vault    — sovereign post-quantum tokens (npm: @sigvault/sdk)',
-  '  Pyntra           — private studio for cards, photos, video & PDFs (pyntra.tekivex.com)',
+  '  Pyntra           — document app that keeps files on your device (www.tekivex.com/pyntra)',
   '  Analytics Studio — hosted browser BI app (www.tekivex.com/analytics)',
   '  DataFlow         — hosted real-time streaming dashboard (www.tekivex.com/dataflow)',
   '',
@@ -1031,7 +1031,7 @@ const LLM_PRODUCTS = [
   { name: 'Quantum Vault', url: `${ORIGIN}/product/quantum-vault`, npm: '@sigvault/sdk',
     s: 'Sovereign, self-hosted post-quantum token issuance, validation, and rotation using NIST-standardized CRYSTALS-Dilithium (ML-DSA-87 / FIPS 204) signatures with XChaCha20-Poly1305 encrypted payloads and a HYDRA mutation chain for replay protection. Apache-2.0.' },
   { name: 'Pyntra', url: `${ORIGIN}/product/pyntra`, npm: null,
-    s: 'Free, hosted browser-based PDF editor (use it live at https://pyntra.tekivex.com — nothing to install). Fill and add form fields, sign, stamp, annotate, redact, and open encrypted PDFs entirely client-side; files are never uploaded.' },
+    s: 'Free, hosted browser-based PDF editor (use it live at https://www.tekivex.com/pyntra — nothing to install). Fill and add form fields, sign, stamp, annotate, redact, and open encrypted PDFs entirely client-side; files are never uploaded.' },
   { name: 'Analytics Studio', url: `${ORIGIN}/product/analytics-studio`, npm: null,
     s: 'Free, hosted browser-based BI app (use it live at https://www.tekivex.com/analytics — nothing to install). Drag-and-drop pivot tables, 26+ chart types, KPI dashboards, and an in-browser SQL engine, with no backend required.' },
   { name: 'DataFlow', url: `${ORIGIN}/product/dataflow`, npm: null,
