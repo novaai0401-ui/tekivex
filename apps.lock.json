@@ -1,7 +1,8 @@
 {
-  "_comment": "Reviewed commits of each product app's published `build` branch. The deploy vendors exactly these commits, so an upstream push cannot change live pages until a pin here is updated (node scripts/update-app-pins.mjs) and the change is reviewed and passes scripts/audit-dist.mjs.",
+  "_comment": "Reviewed commits of each product app's published `build` branch. The deploy vendors exactly these commits, so an upstream push cannot change live pages until a pin here is updated (node scripts/update-app-pins.mjs) and the change is reviewed and passes scripts/audit-dist.mjs. An app publishes to its `build` branch unless `branch` names another one: pdfcraft is a private repo, so its built site is published to the `pyntra-build` branch of this public repo instead.",
   "ui":        { "repo": "https://github.com/novaai0401-ui/tekivex-ui.git",        "commit": "9b041cb73939a66bd10c3f4d8b01d893a2861ddc" },
   "gridstorm": { "repo": "https://github.com/novaai0401-ui/grid-data.git",         "commit": "976d93823b66b617769744a6a2461ebe44b62acb" },
   "analytics": { "repo": "https://github.com/novaai0401-ui/analytics-builder.git", "commit": "2b81d98685af4259f240f6d7d69b065d9569ad19" },
-  "dataflow":  { "repo": "https://github.com/novaai0401-ui/dataflow.git",          "commit": "de196bad6c26856338d6e2bd7accc249a028e3fe" }
+  "dataflow":  { "repo": "https://github.com/novaai0401-ui/dataflow.git",          "commit": "de196bad6c26856338d6e2bd7accc249a028e3fe" },
+  "pyntra":    { "repo": "https://github.com/novaai0401-ui/tekivex.git",           "commit": "26102962586bb485a42b032fc5ae897bac2a8701", "branch": "pyntra-build" }
 }

@@ -8,7 +8,7 @@ interface QA {
 export const FAQS: QA[] = [
   {
     q: 'What is Tekivex?',
-    a: 'Tekivex is an independent developer-tools project with six free products. Three are npm libraries: GridStorm (data grid), Tekivex UI (accessible component library), and Quantum Vault (post-quantum tokens). Three are free hosted web apps you open and use in the browser — nothing to install: Pyntra (a private studio for cards, photos, video & PDFs at pyntra.tekivex.com), Analytics Studio (an in-browser BI app at www.tekivex.com/analytics), and DataFlow (a real-time streaming dashboard at www.tekivex.com/dataflow). All of our products are free for commercial use.',
+    a: 'Tekivex is an independent developer-tools project with six free products. Three are npm libraries: GridStorm (data grid), Tekivex UI (accessible component library), and Quantum Vault (post-quantum tokens). Three are free hosted web apps you open and use in the browser — nothing to install: Pyntra (a document app that keeps files on your device at www.tekivex.com/pyntra), Analytics Studio (an in-browser BI app at www.tekivex.com/analytics), and DataFlow (a real-time streaming dashboard at www.tekivex.com/dataflow). All of our products are free for commercial use.',
   },
   {
     q: 'Are Tekivex products really free to use commercially?',
@@ -91,7 +91,7 @@ export const FAQS: QA[] = [
   },
   {
     q: 'What are Pyntra, Analytics Studio, and DataFlow?',
-    a: 'Three free hosted web apps you open and use in the browser with nothing to install. Pyntra is a private studio for greeting cards, invitations, photo and short-video edits, and PDF fill, sign, and redact. Analytics Studio builds drag-and-drop pivot tables, charts, and KPI dashboards. DataFlow is a real-time streaming dashboard with live feeds, anomaly alerts, and time-travel replay. All three run on your device and never upload your files.',
+    a: 'Three free hosted web apps you open and use in the browser with nothing to install. Pyntra is a document app that keeps files on your device: read, convert, redact, password-protect and compare PDF fill, sign, and redact. Analytics Studio builds drag-and-drop pivot tables, charts, and KPI dashboards. DataFlow is a real-time streaming dashboard with live feeds, anomaly alerts, and time-travel replay. All three run on your device and never upload your files.',
   },
 ];
 

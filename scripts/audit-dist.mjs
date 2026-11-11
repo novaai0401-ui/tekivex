@@ -69,7 +69,7 @@ export async function audit(dist) {
   const { redirects, rewrites } = routing(renderYaml);
   const resolves = (path) => fileFor(dist, path) || redirects.has(path.replace(/\/$/, '')) || rewrites.some((r) => path.startsWith(r));
 
-  const sitemaps = ['sitemap.xml', 'ui/sitemap.xml', 'gridstorm/sitemap.xml', 'analytics/sitemap.xml', 'dataflow/sitemap.xml']
+  const sitemaps = ['sitemap.xml', 'ui/sitemap.xml', 'gridstorm/sitemap.xml', 'analytics/sitemap.xml', 'dataflow/sitemap.xml', 'pyntra/sitemap.xml']
     .map((s) => join(dist, s)).filter(existsSync);
   const titles = new Map();
   let pages = 0;

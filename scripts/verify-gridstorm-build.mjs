@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync, existsSync, readdirSync} from 'node:fs';
 import {join, resolve} from 'node:path';
 import {JSDOM} from 'jsdom';
+import {DOCS_INDEXED} from './docs-index-policy.mjs';
 const root = resolve(process.argv[2] || 'dist/gridstorm');
 const sitemap = new JSDOM(readFileSync(join(root, 'sitemap.xml'), 'utf8'), {contentType:'text/xml'});
 let docs = 0;
@@ -32,7 +33,10 @@ for (const loc of sitemap.window.document.querySelectorAll('loc')) {
   }
   docs++;
 }
-assert.ok(docs > 1, 'Missing documentation pages');
+// While documentation is kept out of search (docs-index-policy.mjs) the
+// sitemap is emptied on purpose, so there is nothing to list.
+if (DOCS_INDEXED) assert.ok(docs > 1, 'Missing documentation pages');
+else assert.equal(docs, 0, 'Documentation is listed in the sitemap while DOCS_INDEXED is false');
 for (const shell of ['index.html', 'playground/index.html', 'spreadsheet/index.html', 'financial-trading/index.html', 'feature-showcase/index.html', 'cookbook/index.html', 'analytics-explorer/index.html', 'pdf-viewer/index.html', 'react-demo/index.html']) {
   const file = join(root, shell);
   if (!existsSync(file)) continue;

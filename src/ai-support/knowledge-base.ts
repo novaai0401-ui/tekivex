@@ -57,7 +57,7 @@ export const KNOWLEDGE_BASE: KbEntry[] = [
 - 🔐 **Quantum Vault** — Sovereign post-quantum tokens (self-hosted library)
 
 **Three free hosted web apps** — nothing to install, just open the URL and use them:
-- 📄 **Pyntra** — Private studio for cards, photos, video & PDFs · https://pyntra.tekivex.com
+- 📄 **Pyntra** — Document app that keeps files on your device · https://www.tekivex.com/pyntra
 - 📊 **Analytics Studio** — In-browser BI & dashboards · https://www.tekivex.com/analytics
 - 📈 **DataFlow** — Real-time streaming dashboard · https://www.tekivex.com/dataflow/stocks
 
@@ -81,7 +81,7 @@ We believe professional-grade software should be accessible to every team regard
 | GridStorm | Library | High-performance data grid — plugins, WCAG 2.1 AA |
 | Tekivex UI | Library | Accessible React/Vue/Svelte component library |
 | Quantum Vault | Library | Sovereign post-quantum tokens (self-hosted) |
-| Pyntra | Hosted app | Private studio for cards, photos, video & PDFs — open it at pyntra.tekivex.com |
+| Pyntra | Hosted app | Document app that keeps files on your device — open it at www.tekivex.com/pyntra |
 | Analytics Studio | Hosted app | In-browser BI & dashboards at www.tekivex.com/analytics |
 | DataFlow | Hosted app | Real-time streaming dashboard at www.tekivex.com/dataflow/stocks |
 
@@ -553,20 +553,20 @@ npm install @sigvault/sdk
       'How do I edit a PDF?',
       'Online PDF editor',
     ],
-    answer: `**Pyntra** is a free, private studio in your browser for the things people actually send — greeting cards and invitations, photo edits, short videos, and PDFs (fill, sign, redact). Nothing is uploaded and there's nothing to install.
+    answer: `**Pyntra** is a free document app that runs in your browser. Open a PDF or an office file and work on it on your own device — nothing is uploaded and there's nothing to install.
 
-👉 **Open Pyntra:** https://pyntra.tekivex.com
+👉 **Open Pyntra:** https://www.tekivex.com/pyntra/app/
 
 **What you can do:**
-- 📝 Fill forms — text, multiline, date, number, checkbox, radio, dropdown, listbox
-- ✏️ Add new form fields with a drag-to-draw interface
-- ✍️ Sign & stamp with a signature pad and image embedding
-- 🖍️ Annotate — highlight, draw, eraser, redact, crop, shapes
-- 🔓 Opens encrypted PDFs (RC4, AES-128, AES-256)
+- 📖 Read — open PDF, Word, Excel and PowerPoint files, pull out tables, translate text
+- 🛠️ Fix — convert, compress, fill and add form fields, watermark, flatten
+- ⬛ Hide — redact for good, find personal details, protect with an AES-256 password
+- ✅ Prove — compare two versions, run an accessibility report, save as PDF/A
+- 🎯 Blackout — a two-minute daily game of uncovering hidden contract words
 - 🔒 Runs entirely in your browser — your files are **never uploaded** to a server
 
 Pyntra is free and currently in beta. No account needed — just open it and use it.`,
-    tags: ['Pyntra', 'PDF', 'PDF editor', 'forms', 'sign', 'annotate', 'redact', 'encrypted', 'web app'],
+    tags: ['Pyntra', 'PDF', 'PDF editor', 'forms', 'redact', 'password', 'convert', 'compare', 'Blackout', 'web app'],
   },
 
   // ══════════════════════════════════════

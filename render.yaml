@@ -69,4 +69,10 @@ services:
       - type: rewrite
         source: /dataflow/*
         destination: /dataflow/index.html
+      # Pyntra: only the editor under /pyntra/app routes on the client. Its
+      # other pages (guides, tools, legal) are real files, so a wrong address
+      # there is a genuine 404.
+      - type: rewrite
+        source: /pyntra/app/*
+        destination: /pyntra/app/index.html
       # No site-wide catch-all. Missing marketing pages use dist/404.html.

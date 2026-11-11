@@ -62,28 +62,32 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
   // ── Pyntra (hosted web app) ──────────────────────────────────────────────
   pyntra: {
     overview: [
-      'Pyntra is Tekivex’s free browser app for the things people actually send: festival and birthday cards, invitations, photo edits, short reels, and PDFs. Everything runs on your device — open a file or start a design and it does not go to our servers.',
-      'On the design side, make greeting cards and invitations for birthdays, weddings and festivals, edit and collage photos, and build short captioned videos. On the document side, fill and sign PDF forms, redact sensitive content, and password-protect — all locally. Your work autosaves in this browser, and you can clear it any time. If you use the optional AI copy helper for a wish or script, only the text you type is sent (after you consent) — never your file.',
+      'Pyntra is Tekivex’s free document app. Open a PDF or an office file in your browser and work on it on your own device: the file is not sent to our servers.',
+      'It is organised around four jobs. Read: open PDF, Word, Excel and PowerPoint files, pull out tables and translate text. Fix: convert between formats, compress, fill and add form fields, watermark and flatten. Hide: redact text for good and check that nothing is left underneath, find personal details, and protect a file with an AES-256 password. Prove: compare two versions, run an accessibility report, and save as PDF/A for archiving. Pyntra also has Blackout, a two-minute daily game where you uncover the hidden words of a made-up contract.',
     ],
     howItWorks: [
-      { title: 'Open Pyntra', body: 'Go to pyntra.tekivex.com in any browser. There is nothing to install and no account, and it works offline too.' },
-      { title: 'Start a design or open a file', body: 'Pick a card, invitation, photo or short video to create, or open a PDF to fill, sign or redact. Everything happens on your device.' },
-      { title: 'Save or share', body: 'Download or share your card, video or PDF. Your work autosaves in the browser and never leaves your device.' },
+      { title: 'Open Pyntra', body: 'Go to www.tekivex.com/pyntra in any browser. There is nothing to install and no account.' },
+      { title: 'Open a file', body: 'Drop in a PDF or an office file. It is read and changed on your device, and your work is saved in this browser only.' },
+      { title: 'Save the result', body: 'Download the finished file. Nothing was uploaded along the way, and you can clear what the browser saved at any time.' },
     ],
     useCases: [
-      'Making birthday, wedding, anniversary and festival cards and invitations.',
-      'Editing photos and building short captioned videos to share.',
-      'Filling and signing PDF forms without printing and scanning.',
-      'Redacting or password-protecting a PDF before you send it.',
+      'Redacting names, numbers or clauses in a PDF before sharing it, and checking the text is really gone.',
+      'Protecting a PDF with a password, or removing one you know.',
+      'Filling a form, or turning a plain PDF into one that can be filled.',
+      'Converting, compressing or watermarking a document before sending it.',
+      'Comparing two versions of a contract to see what changed.',
     ],
     limitations: [
-      'Everything runs in your browser, so very large photos or long videos are bounded by your device’s available memory.',
-      'It is in beta — feedback on any card, video, or document helps us improve it.',
+      'Everything runs in your browser, so very large files are limited by your device’s memory.',
+      'Text it writes into a PDF uses standard Latin fonts; other scripts are not yet supported there.',
+      'Work is saved per browser. It does not follow you to another device or browser.',
+      'It is in beta, and feedback on any document helps us improve it.',
     ],
     faqs: [
-      { q: 'Do I need to install anything or sign up?', a: 'No. Pyntra runs in your browser at pyntra.tekivex.com with nothing to install and no account. It works offline, and your work autosaves on your own device.' },
-      { q: 'Do my files get uploaded?', a: 'No. Your cards, photos, videos and PDFs are created and edited on your own device and never sent to our servers. The only thing that can leave — and only if you use the optional AI copy helper and consent — is the text you type for a wish or script, never the file.' },
-      { q: 'Is Pyntra just a PDF editor?', a: 'No. People use it for cards and invitations as much as for PDFs. It makes greeting cards, invitations, photo edits and short videos, and it also fills, signs, redacts and password-protects PDFs — all in the browser.' },
+      { q: 'Do I need to install anything or sign up?', a: 'No. Pyntra runs in your browser at www.tekivex.com/pyntra with nothing to install and no account.' },
+      { q: 'Do my files get uploaded?', a: 'No. Files are opened and changed on your own device and are not sent to our servers. If you choose to use an AI feature with your own provider, only the text needed for that request is sent, and only after you turn it on.' },
+      { q: 'What is Blackout?', a: 'A short daily game inside Pyntra. Each day there is one made-up contract with five hidden words and three tries to uncover each. It has no ads and nothing to buy.' },
+      { q: 'Did Pyntra used to make cards and videos?', a: 'Yes. Those tools were removed so Pyntra can concentrate on documents. Old links to them now lead to the closest remaining page.' },
     ],
   },
 

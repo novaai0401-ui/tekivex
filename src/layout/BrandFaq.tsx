@@ -12,7 +12,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'What is Tekivex?',
     answer:
-      'Tekivex is an independently built platform of free developer tools. It ships a suite of free-to-use products under one roof. Three are npm libraries: GridStorm (high-performance React data grid with plugins), Tekivex UI (accessible React/Vue/Svelte component library at www.tekivex.com/ui), and Quantum Vault (sovereign post-quantum token issuance and verification). Three are free hosted web apps you simply open and use in the browser: Pyntra, a private studio for cards, photos, video & PDFs at pyntra.tekivex.com; Analytics Studio, an in-browser BI app at www.tekivex.com/analytics; and DataFlow, a real-time streaming dashboard at www.tekivex.com/dataflow. Everything is free forever.',
+      'Tekivex is an independently built platform of free developer tools. It ships a suite of free-to-use products under one roof. Three are npm libraries: GridStorm (high-performance React data grid with plugins), Tekivex UI (accessible React/Vue/Svelte component library at www.tekivex.com/ui), and Quantum Vault (sovereign post-quantum token issuance and verification). Three are free hosted web apps you simply open and use in the browser: Pyntra, a document app that keeps files on your device at www.tekivex.com/pyntra; Analytics Studio, an in-browser BI app at www.tekivex.com/analytics; and DataFlow, a real-time streaming dashboard at www.tekivex.com/dataflow. Everything is free forever.',
   },
   {
     question: 'What does Tekivex offer for React developers?',
@@ -37,7 +37,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'Where can I see Tekivex products in action?',
     answer:
-      'GridStorm has live demos at www.tekivex.com/gridstorm (financial trading, analytics explorer, feature showcase, spreadsheet, cookbook). The TekiVex UI component library has an interactive playground at www.tekivex.com/ui/playground. The three hosted web apps are live and ready to use right now: open Pyntra at pyntra.tekivex.com, Analytics Studio at www.tekivex.com/analytics, and DataFlow at www.tekivex.com/dataflow/stocks. Each product page on tekivex.com links straight to the app or its live demo.',
+      'GridStorm has live demos at www.tekivex.com/gridstorm (financial trading, analytics explorer, feature showcase, spreadsheet, cookbook). The TekiVex UI component library has an interactive playground at www.tekivex.com/ui/playground. The three hosted web apps are live and ready to use right now: open Pyntra at www.tekivex.com/pyntra, Analytics Studio at www.tekivex.com/analytics, and DataFlow at www.tekivex.com/dataflow/stocks. Each product page on tekivex.com links straight to the app or its live demo.',
   },
   {
     question: 'How do I report bugs or contribute to Tekivex?',
@@ -148,9 +148,9 @@ export function BrandFaq() {
           <a href="https://www.tekivex.com/ui" target="_blank" rel="noopener noreferrer">
             www.tekivex.com/ui
           </a>. Three are free hosted web apps — nothing to install, just open the URL
-          and use them: <strong>Pyntra</strong>, a private studio for cards, photos, video & PDFs at{' '}
-          <a href="https://pyntra.tekivex.com" target="_blank" rel="noopener noreferrer">
-            pyntra.tekivex.com
+          and use them: <strong>Pyntra</strong>, a document app that keeps files on your device at{' '}
+          <a href="https://www.tekivex.com/pyntra" target="_blank" rel="noopener noreferrer">
+            www.tekivex.com/pyntra
           </a>;{' '}
           <strong>Analytics Studio</strong>, an in-browser BI app at{' '}
           <a href="https://www.tekivex.com/analytics" target="_blank" rel="noopener noreferrer">

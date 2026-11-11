@@ -35,7 +35,7 @@ const PRODUCTS = [
     icon: 'file-pdf',
     status: 'Beta',
     statusColor: '#fbbf24',
-    description: 'Free private studio in your browser — greeting cards, invitations, photo & short-video edits, and PDF fill, sign & redact. Files stay on your device.',
+    description: 'Free document app in your browser — read, convert, redact, password-protect and compare PDFs and office files. Files stay on your device.',
     href: '/product/pyntra',
   },
   {

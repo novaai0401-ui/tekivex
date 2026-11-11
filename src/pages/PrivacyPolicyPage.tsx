@@ -51,7 +51,7 @@ export function PrivacyPolicyPage() {
           background: 'var(--hub-surface)', border: '1px solid var(--hub-border)',
         }}>
           <p style={{ ...prose, margin: 0 }}>
-            Tekivex ("we", "our", or "us") operates <strong style={{ color: 'var(--hub-text)' }}>tekivex.com</strong> and related product sites including <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/gridstorm</strong>, <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/ui</strong>, <strong style={{ color: 'var(--hub-text)' }}>pyntra.tekivex.com</strong>, <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/analytics</strong>, and <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/dataflow</strong>. This Privacy Policy explains how we collect, use, and protect your information when you visit these sites.
+            Tekivex ("we", "our", or "us") operates <strong style={{ color: 'var(--hub-text)' }}>tekivex.com</strong> and related product sites including <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/gridstorm</strong>, <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/ui</strong>, <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/pyntra</strong>, <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/analytics</strong>, and <strong style={{ color: 'var(--hub-text)' }}>www.tekivex.com/dataflow</strong>. This Privacy Policy explains how we collect, use, and protect your information when you visit these sites.
           </p>
         </div>
       </header>

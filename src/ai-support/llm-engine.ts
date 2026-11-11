@@ -223,7 +223,7 @@ ${KNOWLEDGE_BASE
 - Issues: https://github.com/novaai0401-ui/tekivex-issue-report/issues
 - GridStorm demo: https://www.tekivex.com/gridstorm
 - Tekivex UI demo: https://www.tekivex.com/ui
-- Pyntra (hosted studio for cards, photos, video & PDFs — open and use it): https://pyntra.tekivex.com
+- Pyntra (hosted document app — open and use it): https://www.tekivex.com/pyntra
 - Analytics Studio (hosted BI app — open and use it): https://www.tekivex.com/analytics
 - DataFlow (hosted real-time streaming dashboard — open and use it): https://www.tekivex.com/dataflow/stocks
 - Docs: https://www.tekivex.com/gridstorm/docs
