@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Check a proof certificate — Pyntra</title>
+  <meta name="description" content="Check that a file is exactly the one a Pyntra proof certificate describes. The check runs in your browser: the file is never uploaded." />
+  <link rel="canonical" href="https://www.tekivex.com/pyntra/verify" />
+  <meta name="robots" content="index, follow" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#2e5bff" />
+  <style>
+    :root { color-scheme: light dark; --ink: #1e293b; --soft: #64748b; --line: #e2e8f0; --card: #fff; --page: #f8fafc; --blue: #2e5bff; --good: #0d7a55; --bad: #c0262d; --warn: #9a6400; }
+    @media (prefers-color-scheme: dark) { :root { --ink: #e2e8f0; --soft: #94a3b8; --line: #263247; --card: #0f172a; --page: #0b1120; --blue: #7da2ff; --good: #4ade9b; --bad: #ff8a8f; --warn: #f2c063; } }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--page); }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 24px 20px 72px; background: var(--card); min-height: 100vh; }
+    header nav { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; padding: 10px 0 14px; border-bottom: 1px solid var(--line); }
+    header nav a { text-decoration: none; color: var(--blue); font-weight: 600; }
+    header .brand { font-weight: 800; font-size: 18px; margin-right: auto; color: inherit; }
+    h1 { font-size: 28px; line-height: 1.2; margin: 26px 0 6px; }
+    h2 { font-size: 18px; margin: 30px 0 8px; }
+    p { margin: 8px 0; } .soft { color: var(--soft); } a { color: var(--blue); }
+    .box { border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin: 16px 0; }
+    .drop { border: 2px dashed var(--line); border-radius: 12px; padding: 22px 16px; text-align: center; cursor: pointer; display: block; }
+    .drop.over, .drop:focus-within { border-color: var(--blue); }
+    .drop input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    .drop strong { display: block; font-size: 17px; }
+    textarea { width: 100%; min-height: 76px; font: 13px/1.4 ui-monospace, Menlo, Consolas, monospace; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: inherit; }
+    button { font: inherit; font-weight: 600; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--blue); background: var(--blue); color: #fff; cursor: pointer; }
+    @media (prefers-color-scheme: dark) { button { color: #0b1120; } }
+    #verdict { font-size: 22px; font-weight: 800; margin: 0 0 8px; }
+    #verdict.good { color: var(--good); } #verdict.bad { color: var(--bad); } #verdict.incomplete { color: var(--warn); }
+    ul.lines { list-style: none; padding: 0; margin: 0; }
+    ul.lines li { padding: 7px 0 7px 30px; position: relative; border-top: 1px solid var(--line); }
+    ul.lines li:first-child { border-top: 0; }
+    ul.lines li::before { position: absolute; left: 2px; top: 7px; font-weight: 800; }
+    li.ok::before { content: "✓"; color: var(--good); } li.no::before { content: "✕"; color: var(--bad); } li.na::before { content: "–"; color: var(--soft); }
+    dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 0; font-size: 14px; }
+    dt { color: var(--soft); } dd { margin: 0; overflow-wrap: anywhere; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; }
+    .err { color: var(--bad); font-weight: 600; }
+    [hidden] { display: none !important; }
+    footer { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 18px; color: var(--soft); font-size: 14px; }
+    footer a { color: inherit; margin-right: 14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header><nav>
+      <a class="brand" href="/pyntra/welcome">Pyntra</a>
+      <a href="/pyntra/app/">Open app</a>
+      <a href="/pyntra/privacy">Privacy</a>
+    </nav></header>
+
+    <main>
+      <h1>Check a proof certificate</h1>
+      <p>Someone sent you a file and a Pyntra certificate for it. This page tells you whether the file is
+        exactly the one the certificate describes, down to the last byte.</p>
+      <p class="soft">The check runs in this browser tab. Your file is read here and is never uploaded.</p>
+
+      <section class="box" id="need-cert">
+        <h2 style="margin-top:0">1. The certificate</h2>
+        <p id="cert-status" class="soft">Open the link you were sent, or paste the certificate below.</p>
+        <textarea id="cert-text" aria-label="Certificate link or text" placeholder="Paste the certificate link or the contents of the .proof.json file"></textarea>
+        <p><button id="cert-use" type="button">Use this certificate</button>
+          <label style="margin-left:10px">or <input id="cert-file" type="file" accept=".json,application/json" aria-label="Certificate file" /></label></p>
+        <p id="cert-error" class="err" role="alert" hidden></p>
+      </section>
+
+      <section class="box">
+        <h2 style="margin-top:0">2. The file</h2>
+        <label class="drop" id="drop">
+          <input id="file" type="file" aria-label="File to check" />
+          <strong>Choose the file, or drop it here</strong>
+          <span class="soft">Any kind of file. It stays on your device.</span>
+        </label>
+        <p id="file-name" class="soft" hidden></p>
+      </section>
+
+      <section class="box" id="result" aria-live="polite" hidden>
+        <p id="verdict"></p>
+        <ul class="lines" id="lines"></ul>
+        <h2>What a certificate does not tell you</h2>
+        <ul id="limits"></ul>
+        <h2>Details</h2>
+        <dl id="details"></dl>
+      </section>
+
+      <h2>How this works</h2>
+      <p>When someone finishes a document in Pyntra, the app can take the file's fingerprint: a short code
+        worked out from every byte of the file. Change one comma and the fingerprint is completely
+        different. The app signs that fingerprint with a key that lives only on the maker's device, and
+        that signed note is the certificate.</p>
+      <p>This page works out the fingerprint of the file you choose and compares it with the one in the
+        certificate, then checks the signature. If the maker's app also asked Pyntra's server for a time
+        stamp, the page checks that too. To do so it asks the server for its public key; nothing about
+        your file is sent.</p>
+      <p>The certificate holds no part of the file, not even its name, so sharing a certificate reveals
+        nothing about the document.</p>
+    </main>
+
+    <footer>
+      <a href="/pyntra/welcome">Home</a>
+      <a href="/pyntra/about">About</a>
+      <a href="/pyntra/contact">Contact</a>
+      <a href="/pyntra/terms">Terms</a>
+      <a href="/pyntra/privacy">Privacy</a>
+      <div style="margin-top:8px">© 2026 Pyntra. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <script type="module">
+/**
+ * Proof certificates: the part shared by the app, the public verify page and
+ * the server. Plain JavaScript with no imports, so the verify page can carry it
+ * inline and anyone can read exactly what it checks.
+ *
+ * A certificate says: "the holder of this device key recorded this exact file,
+ * with this claim, at this time". It names the file only by its SHA-256
+ * fingerprint, so the certificate reveals nothing about the file's contents.
+ *
+ *   {
+ *     v: 1, type: 'pyntra-proof',
+ *     file:   { sha256, size },
+ *     action: 'certify' | 'redact' | 'protect' | 'flatten' | 'sign',
+ *     note?:  string,                      // the maker's own words
+ *     source?: { sha256, size },           // the file it was made from
+ *     madeAt: ISO time from the maker's own clock,
+ *     device: { alg: 'ES256', jwk },       // the maker's public key
+ *     sig:    signature by that key over everything above,
+ *     stamp?: { at, kid, sig }             // optional: the server's clock
+ *   }
+ *
+ * What it proves and does not prove is spelled out in `explain()` below, and
+ * that wording is what both the app and the verify page show.
+ */
+
+export const PROOF_TYPE = 'pyntra-proof';
+export const ACTIONS = ['certify', 'redact', 'protect', 'flatten', 'sign'];
+export const MAX_NOTE = 200;
+/** A certificate is tiny; anything much larger is not one. */
+export const MAX_ENCODED = 6000;
+
+const SIGN = { name: 'ECDSA', hash: 'SHA-256' };
+const KEY = { name: 'ECDSA', namedCurve: 'P-256' };
+const enc = new TextEncoder();
+
+// ── bytes and text ──────────────────────────────────────────────────────────
+
+export function toHex(bytes) {
+  let s = '';
+  for (const b of new Uint8Array(bytes)) s += b.toString(16).padStart(2, '0');
+  return s;
+}
+
+export function b64urlEncode(bytes) {
+  let bin = '';
+  for (const b of new Uint8Array(bytes)) bin += String.fromCharCode(b);
+  return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+export function b64urlDecode(text) {
+  const bin = atob(String(text).replace(/-/g, '+').replace(/_/g, '/'));
+  const out = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
+}
+
+export async function sha256Hex(bytes) {
+  return toHex(await crypto.subtle.digest('SHA-256', bytes));
+}
+
+/** JSON with keys in sorted order, so the same data always signs the same. */
+export function canonical(value) {
+  if (value === null || typeof value !== 'object') return JSON.stringify(value);
+  if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
+  const keys = Object.keys(value).filter((k) => value[k] !== undefined).sort();
+  return `{${keys.map((k) => `${JSON.stringify(k)}:${canonical(value[k])}`).join(',')}}`;
+}
+
+// ── keys ────────────────────────────────────────────────────────────────────
+
+export function generateKeyPair(extractable = false) {
+  return crypto.subtle.generateKey(KEY, extractable, ['sign', 'verify']);
+}
+
+/** Only the public parts of a key, in a fixed shape. */
+export function publicJwk(jwk) {
+  return { kty: jwk.kty, crv: jwk.crv, x: jwk.x, y: jwk.y };
+}
+
+export async function exportPublicJwk(publicKey) {
+  return publicJwk(await crypto.subtle.exportKey('jwk', publicKey));
+}
+
+function importPublic(jwk) {
+  return crypto.subtle.importKey('jwk', publicJwk(jwk), KEY, false, ['verify']);
+}
+
+/** A short, stable name for a public key: the start of its fingerprint. */
+export async function keyId(jwk) {
+  return (await sha256Hex(enc.encode(canonical(publicJwk(jwk))))).slice(0, 16);
+}
+
+// ── making ──────────────────────────────────────────────────────────────────
+
+const isHash = (s) => typeof s === 'string' && /^[0-9a-f]{64}$/.test(s);
+const isSize = (n) => Number.isSafeInteger(n) && n >= 0;
+const isTime = (s) => typeof s === 'string' && s.length <= 40 && !Number.isNaN(Date.parse(s));
+const isSig = (s) => typeof s === 'string' && /^[A-Za-z0-9_-]{80,100}$/.test(s);
+
+/** Everything the device key signs: the certificate without `sig` and `stamp`. */
+export function signedPart(cert) {
+  const { sig: _sig, stamp: _stamp, ...rest } = cert;
+  return enc.encode(canonical(rest));
+}
+
+/**
+ * Make and sign a certificate.
+ * @param {{ sha256: string, size: number, action?: string, note?: string,
+ *           source?: { sha256: string, size: number }, madeAt?: string }} input
+ * @param {{ privateKey: CryptoKey, publicKey: CryptoKey }} keys
+ */
+export async function createCertificate(input, keys) {
+  const note = (input.note ?? '').trim().slice(0, MAX_NOTE);
+  const cert = {
+    v: 1,
+    type: PROOF_TYPE,
+    file: { sha256: input.sha256, size: input.size },
+    action: input.action ?? 'certify',
+    ...(note ? { note } : {}),
+    ...(input.source ? { source: { sha256: input.source.sha256, size: input.source.size } } : {}),
+    madeAt: input.madeAt ?? new Date().toISOString(),
+    device: { alg: 'ES256', jwk: await exportPublicJwk(keys.publicKey) },
+  };
+  const problem = shapeProblem({ ...cert, sig: 'A'.repeat(86) });
+  if (problem) throw new Error(problem);
+  const sig = await crypto.subtle.sign(SIGN, keys.privateKey, signedPart(cert));
+  return { ...cert, sig: b64urlEncode(sig) };
+}
+
+/** The exact text the server signs when it adds its clock to a certificate. */
+export async function stampMessage(fileSha256, sig, at) {
+  return stampText(fileSha256, await sha256Hex(b64urlDecode(sig)), at);
+}
+
+/** The same text, built from the two fingerprints the server is given. */
+export function stampText(fileSha256, sigHash, at) {
+  return enc.encode(`pyntra-stamp-v1\n${fileSha256}\n${sigHash}\n${at}`);
+}
+
+/** What the app sends to be stamped: two fingerprints, nothing else. */
+export async function stampRequest(cert) {
+  return { sha256: cert.file.sha256, sigHash: await sha256Hex(b64urlDecode(cert.sig)) };
+}
+
+// ── reading ─────────────────────────────────────────────────────────────────
+
+/** Why `cert` is not a well-formed certificate, or null when it is. */
+export function shapeProblem(cert) {
+  if (!cert || typeof cert !== 'object' || Array.isArray(cert)) return 'Not a certificate.';
+  if (cert.type !== PROOF_TYPE) return 'Not a Pyntra proof certificate.';
+  if (cert.v !== 1) return 'This certificate was made by a newer version.';
+  if (!cert.file || !isHash(cert.file.sha256) || !isSize(cert.file.size)) return 'The file fingerprint is missing or damaged.';
+  if (!ACTIONS.includes(cert.action)) return 'The certificate names an unknown action.';
+  if (cert.note !== undefined && (typeof cert.note !== 'string' || cert.note.length > MAX_NOTE)) return 'The note is damaged.';
+  if (cert.source !== undefined && (!cert.source || !isHash(cert.source.sha256) || !isSize(cert.source.size))) return 'The source fingerprint is damaged.';
+  if (!isTime(cert.madeAt)) return 'The time is missing or damaged.';
+  const jwk = cert.device?.jwk;
+  if (cert.device?.alg !== 'ES256' || !jwk || jwk.kty !== 'EC' || jwk.crv !== 'P-256' || typeof jwk.x !== 'string' || typeof jwk.y !== 'string') return 'The signing key is missing or damaged.';
+  if (!isSig(cert.sig)) return 'The signature is missing or damaged.';
+  if (cert.stamp !== undefined) {
+    const s = cert.stamp;
+    if (!s || !isTime(s.at) || typeof s.kid !== 'string' || !/^[0-9a-f]{16}$/.test(s.kid) || !isSig(s.sig)) return 'The time stamp is damaged.';
+  }
+  return null;
+}
+
+/** For a link: the certificate as one URL-safe string. */
+export function encodeCertificate(cert) {
+  return b64urlEncode(enc.encode(JSON.stringify(cert)));
+}
+
+/** Read a certificate from a link fragment, a pasted string or a .json file. */
+export function decodeCertificate(text) {
+  let s = String(text ?? '').trim();
+  if (s.length > MAX_ENCODED * 2) throw new Error('That is too large to be a certificate.');
+  const hash = s.indexOf('#c=');
+  if (hash >= 0) s = s.slice(hash + 3);
+  else if (s.startsWith('c=')) s = s.slice(2);
+  let cert;
+  try {
+    cert = JSON.parse(s.startsWith('{') ? s : new TextDecoder().decode(b64urlDecode(s)));
+  } catch {
+    throw new Error('That is not a certificate.');
+  }
+  const problem = shapeProblem(cert);
+  if (problem) throw new Error(problem);
+  return cert;
+}
+
+// ── checking ────────────────────────────────────────────────────────────────
+
+/**
+ * Check a certificate.
+ * @param {object} cert  a certificate that passed `decodeCertificate`
+ * @param {{ fileBytes?: Uint8Array|ArrayBuffer, stampKeys?: Array<{ kid: string, jwk: object }> }} [given]
+ * @returns {Promise<{ signature: boolean, deviceId: string,
+ *   file: 'match'|'different'|'not-checked',
+ *   stamp: 'valid'|'invalid'|'unknown-key'|'none' }>}
+ */
+export async function verifyCertificate(cert, given = {}) {
+  const problem = shapeProblem(cert);
+  if (problem) throw new Error(problem);
+
+  let signature = false;
+  try {
+    signature = await crypto.subtle.verify(SIGN, await importPublic(cert.device.jwk), b64urlDecode(cert.sig), signedPart(cert));
+  } catch { signature = false; }
+
+  let file = 'not-checked';
+  if (given.fileBytes) {
+    const bytes = given.fileBytes instanceof Uint8Array ? given.fileBytes : new Uint8Array(given.fileBytes);
+    file = bytes.length === cert.file.size && (await sha256Hex(bytes)) === cert.file.sha256 ? 'match' : 'different';
+  }
+
+  let stamp = 'none';
+  if (cert.stamp) {
+    const known = (given.stampKeys ?? []).find((k) => k.kid === cert.stamp.kid);
+    if (!known) stamp = 'unknown-key';
+    else {
+      try {
+        const ok = await crypto.subtle.verify(SIGN, await importPublic(known.jwk), b64urlDecode(cert.stamp.sig), await stampMessage(cert.file.sha256, cert.sig, cert.stamp.at));
+        stamp = ok ? 'valid' : 'invalid';
+      } catch { stamp = 'invalid'; }
+    }
+  }
+  return { signature, deviceId: await keyId(cert.device.jwk), file, stamp };
+}
+
+const ACTION_TEXT = {
+  certify: 'recorded this file',
+  redact: 'recorded this file as redacted',
+  protect: 'recorded this file as password-protected',
+  flatten: 'recorded this file as flattened',
+  sign: 'recorded this file as signed off',
+};
+
+/**
+ * Plain-language reading of a check, in the order a person needs it.
+ * `verdict` is 'good' only when the file matches and the signature holds.
+ */
+export function explain(cert, result) {
+  const lines = [];
+  let verdict = 'good';
+  if (!result.signature) {
+    verdict = 'bad';
+    lines.push({ ok: false, text: 'The certificate has been altered since it was made. Do not rely on it.' });
+  } else {
+    lines.push({ ok: true, text: `The certificate is intact. Device ${result.deviceId} ${ACTION_TEXT[cert.action]}.` });
+  }
+  if (result.file === 'match') lines.push({ ok: true, text: 'This is exactly the file the certificate describes. Not one byte differs.' });
+  else if (result.file === 'different') { verdict = 'bad'; lines.push({ ok: false, text: 'This is not the file the certificate describes. It was changed, or it is a different file.' }); }
+  else { if (verdict === 'good') verdict = 'incomplete'; lines.push({ ok: null, text: 'No file was checked yet. Add the file to see whether it matches.' }); }
+
+  if (result.stamp === 'valid') lines.push({ ok: true, text: `Pyntra's server saw this certificate at ${cert.stamp.at}, so it existed by then.` });
+  else if (result.stamp === 'invalid') { verdict = 'bad'; lines.push({ ok: false, text: 'The time stamp does not belong to this certificate.' }); }
+  else if (result.stamp === 'unknown-key') lines.push({ ok: null, text: 'The time stamp could not be checked: the server key was not available.' });
+  else lines.push({ ok: null, text: `No independent time stamp. The time ${cert.madeAt} comes from the maker's own clock.` });
+
+  const limits = [
+    'It does not say who the maker is. It ties the file to one device key, not to a name.',
+    'It does not say the contents are true, complete or correctly redacted.',
+  ];
+  return { verdict, lines, limits };
+}
+
+
+const API_ORIGIN = 'https://pyntra.tekivex.com';
+const $ = (id) => document.getElementById(id);
+let cert = null;
+let fileBytes = null;
+let stampKeys = null; // fetched once, only when a certificate carries a stamp
+
+function showError(message) {
+  $('cert-error').textContent = message;
+  $('cert-error').hidden = !message;
+}
+
+function useCertificate(text) {
+  try {
+    cert = decodeCertificate(text);
+  } catch (e) {
+    cert = null;
+    showError(e.message);
+    $('result').hidden = true;
+    return;
+  }
+  showError('');
+  $('cert-status').textContent = 'Certificate loaded.';
+  $('cert-status').className = '';
+  void check();
+}
+
+async function loadStampKeys() {
+  if (stampKeys) return stampKeys;
+  try {
+    const res = await fetch(`${API_ORIGIN}/api/proof/key`, { credentials: 'omit', referrerPolicy: 'no-referrer' });
+    if (res.ok) stampKeys = (await res.json()).keys ?? [];
+  } catch { /* offline, or the server has no stamps: reported as "could not be checked" */ }
+  return stampKeys ?? [];
+}
+
+function row(list, cls, text) {
+  const li = document.createElement('li');
+  if (cls) li.className = cls;
+  li.textContent = text;
+  list.appendChild(li);
+}
+
+async function check() {
+  if (!cert) return;
+  const keys = cert.stamp ? await loadStampKeys() : [];
+  const result = await verifyCertificate(cert, { fileBytes: fileBytes ?? undefined, stampKeys: keys });
+  const reading = explain(cert, result);
+
+  const verdict = $('verdict');
+  verdict.className = reading.verdict;
+  verdict.textContent = reading.verdict === 'good' ? 'This file matches its certificate.'
+    : reading.verdict === 'bad' ? 'Do not rely on this.' : 'Now add the file.';
+
+  const lines = $('lines'); lines.replaceChildren();
+  for (const l of reading.lines) row(lines, l.ok === true ? 'ok' : l.ok === false ? 'no' : 'na', l.text);
+  const limits = $('limits'); limits.replaceChildren();
+  for (const t of reading.limits) row(limits, '', t);
+
+  const details = $('details'); details.replaceChildren();
+  const add = (k, v) => {
+    const dt = document.createElement('dt'); dt.textContent = k;
+    const dd = document.createElement('dd'); dd.textContent = v;
+    details.append(dt, dd);
+  };
+  add('File fingerprint', cert.file.sha256);
+  add('File size', `${cert.file.size.toLocaleString()} bytes`);
+  add('Recorded as', cert.action);
+  if (cert.note) add("Maker's note", cert.note);
+  if (cert.source) add('Made from', cert.source.sha256);
+  add("Maker's clock", cert.madeAt);
+  if (cert.stamp) add('Server time', cert.stamp.at);
+  add('Device', result.deviceId);
+  $('result').hidden = false;
+  // The answer is the point of the page: bring it into view once a file is in.
+  if (fileBytes) $('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+async function useFile(file) {
+  if (!file) return;
+  fileBytes = new Uint8Array(await file.arrayBuffer());
+  $('file-name').textContent = `Checking: ${file.name} (${file.size.toLocaleString()} bytes)`;
+  $('file-name').hidden = false;
+  if (!cert) { showError('Add the certificate first, then the result appears here.'); return; }
+  void check();
+}
+
+$('cert-use').addEventListener('click', () => useCertificate($('cert-text').value));
+$('cert-file').addEventListener('change', async (e) => {
+  const f = e.target.files?.[0];
+  if (f) useCertificate(await f.text());
+});
+$('file').addEventListener('change', (e) => void useFile(e.target.files?.[0]));
+const drop = $('drop');
+for (const ev of ['dragenter', 'dragover']) drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add('over'); });
+for (const ev of ['dragleave', 'drop']) drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove('over'); });
+drop.addEventListener('drop', (e) => void useFile(e.dataTransfer?.files?.[0]));
+
+// A link carries the certificate after "#c=". The part after # is never sent
+// to any server, so opening the link reveals the certificate to no one.
+if (location.hash.startsWith('#c=')) {
+  $('cert-text').value = location.hash;
+  useCertificate(location.hash);
+}
+  </script>
+</body>
+</html>
