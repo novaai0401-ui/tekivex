@@ -63,7 +63,7 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
   pyntra: {
     overview: [
       'Pyntra is Tekivex’s free document app. Open a PDF or an office file in your browser and work on it on your own device: the file is not sent to our servers.',
-      'It is organised around four jobs. Read: open PDF, Word, Excel and PowerPoint files, pull out tables and translate text. Fix: convert between formats, compress, fill and add form fields, watermark and flatten. Hide: redact text for good and check that nothing is left underneath, find personal details, and protect a file with an AES-256 password. Prove: compare two versions, run an accessibility report, and save as PDF/A for archiving. Pyntra also has Blackout, a two-minute daily game where you uncover the hidden words of a made-up contract.',
+      'It is organised around four jobs. Read: open PDF, Word, Excel and PowerPoint files, pull out tables and translate text. Fix: convert between formats, compress, fill and add form fields, watermark and flatten. Hide: redact text for good and check that nothing is left underneath, find personal details, and protect a file with an AES-256 password. Prove: make a proof certificate so the person you send a file to can check it has not changed by a single byte, compare two versions, run an accessibility report, and save as PDF/A for archiving. Pyntra also has Blackout, a two-minute daily game where you uncover the hidden words of a made-up contract.',
     ],
     howItWorks: [
       { title: 'Open Pyntra', body: 'Go to www.tekivex.com/pyntra in any browser. There is nothing to install and no account.' },
@@ -86,6 +86,7 @@ export const PRODUCT_EDITORIAL: Record<string, ProductEditorial> = {
     faqs: [
       { q: 'Do I need to install anything or sign up?', a: 'No. Pyntra runs in your browser at www.tekivex.com/pyntra with nothing to install and no account.' },
       { q: 'Do my files get uploaded?', a: 'No. Files are opened and changed on your own device and are not sent to our servers. If you choose to use an AI feature with your own provider, only the text needed for that request is sent, and only after you turn it on.' },
+      { q: 'What is a proof certificate?', a: 'A small signed note that holds a file’s fingerprint. You send it with the file, and the receiver checks at www.tekivex.com/pyntra/verify that the file is unchanged. It contains no part of the file, and it does not say who you are or that the contents are correct.' },
       { q: 'What is Blackout?', a: 'A short daily game inside Pyntra. Each day there is one made-up contract with five hidden words and three tries to uncover each. It has no ads and nothing to buy.' },
       { q: 'Did Pyntra used to make cards and videos?', a: 'Yes. Those tools were removed so Pyntra can concentrate on documents. Old links to them now lead to the closest remaining page.' },
     ],
