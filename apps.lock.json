@@ -4,5 +4,5 @@
   "gridstorm": { "repo": "https://github.com/novaai0401-ui/grid-data.git",         "commit": "976d93823b66b617769744a6a2461ebe44b62acb" },
   "analytics": { "repo": "https://github.com/novaai0401-ui/analytics-builder.git", "commit": "2b81d98685af4259f240f6d7d69b065d9569ad19" },
   "dataflow":  { "repo": "https://github.com/novaai0401-ui/dataflow.git",          "commit": "de196bad6c26856338d6e2bd7accc249a028e3fe" },
-  "pyntra":    { "repo": "https://github.com/novaai0401-ui/tekivex.git",           "commit": "afd9d7e9583354ad8a4b7ac5aa1852dac534362e", "branch": "pyntra-build" }
+  "pyntra":    { "repo": "https://github.com/novaai0401-ui/tekivex.git",           "commit": "d434ef25cfbf1267ab32218aae9db68afb219abc", "branch": "pyntra-build" }
 }

@@ -35,10 +35,11 @@ export const pyntraManifest: ProductManifest = {
     { value: 'Free',       label: 'No install, no account' },
   ],
   keyFeatures: [
-    'Read: open PDF, Word, Excel and PowerPoint files, pull out tables, and translate text',
+    'Read: Contract X-ray lists the clauses worth a second look in a lease, offer or policy; also open office files, pull out tables, translate text',
     'Fix: convert between formats, compress, fill and add form fields, watermark, flatten',
     'Hide: redact text for good and check nothing is left underneath, find personal details, protect with an AES-256 password',
     'Prove: make a proof certificate that shows a file has not changed, compare two versions, run an accessibility report, save as PDF/A',
+    'Privacy check: switch your connection off and watch it still work, so you do not have to take "nothing is uploaded" on trust',
     'Blackout: a daily two-minute game where you uncover the hidden words of a contract',
     'Your work is saved in this browser only, and you can clear it at any time',
   ],
