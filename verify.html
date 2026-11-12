@@ -125,6 +125,10 @@
  *     action: 'certify' | 'redact' | 'protect' | 'flatten' | 'sign',
  *     note?:  string,                      // the maker's own words
  *     source?: { sha256, size },           // the file it was made from
+ *     redaction?: { regions },             // the maker's app re-read the
+ *                                          // saved file: no text under
+ *                                          // this many areas, and no
+ *                                          // earlier version in the file
  *     madeAt: ISO time from the maker's own clock,
  *     device: { alg: 'ES256', jwk },       // the maker's public key
  *     sig:    signature by that key over everything above,
@@ -218,7 +222,8 @@ export function signedPart(cert) {
 /**
  * Make and sign a certificate.
  * @param {{ sha256: string, size: number, action?: string, note?: string,
- *           source?: { sha256: string, size: number }, madeAt?: string }} input
+ *           source?: { sha256: string, size: number }, redaction?: { regions: number },
+ *           madeAt?: string }} input
  * @param {{ privateKey: CryptoKey, publicKey: CryptoKey }} keys
  */
 export async function createCertificate(input, keys) {
@@ -230,6 +235,7 @@ export async function createCertificate(input, keys) {
     action: input.action ?? 'certify',
     ...(note ? { note } : {}),
     ...(input.source ? { source: { sha256: input.source.sha256, size: input.source.size } } : {}),
+    ...(input.redaction ? { redaction: { regions: input.redaction.regions } } : {}),
     madeAt: input.madeAt ?? new Date().toISOString(),
     device: { alg: 'ES256', jwk: await exportPublicJwk(keys.publicKey) },
   };
@@ -265,6 +271,11 @@ export function shapeProblem(cert) {
   if (!ACTIONS.includes(cert.action)) return 'The certificate names an unknown action.';
   if (cert.note !== undefined && (typeof cert.note !== 'string' || cert.note.length > MAX_NOTE)) return 'The note is damaged.';
   if (cert.source !== undefined && (!cert.source || !isHash(cert.source.sha256) || !isSize(cert.source.size))) return 'The source fingerprint is damaged.';
+  if (cert.redaction !== undefined) {
+    const n = cert.redaction?.regions;
+    if (!Number.isSafeInteger(n) || n < 1 || n > 100000) return 'The redaction record is damaged.';
+    if (cert.action !== 'redact') return 'The redaction record does not belong on this certificate.';
+  }
   if (!isTime(cert.madeAt)) return 'The time is missing or damaged.';
   const jwk = cert.device?.jwk;
   if (cert.device?.alg !== 'ES256' || !jwk || jwk.kty !== 'EC' || jwk.crv !== 'P-256' || typeof jwk.x !== 'string' || typeof jwk.y !== 'string') return 'The signing key is missing or damaged.';
@@ -363,6 +374,11 @@ export function explain(cert, result) {
   else if (result.file === 'different') { verdict = 'bad'; lines.push({ ok: false, text: 'This is not the file the certificate describes. It was changed, or it is a different file.' }); }
   else { if (verdict === 'good') verdict = 'incomplete'; lines.push({ ok: null, text: 'No file was checked yet. Add the file to see whether it matches.' }); }
 
+  if (cert.redaction && result.signature) {
+    const n = cert.redaction.regions;
+    lines.push({ ok: null, text: `The maker's app re-read the saved file and found no text left under ${n} redacted area${n === 1 ? '' : 's'}, and no earlier version of the document inside the file. This page cannot repeat that check: it is the maker's record, covered by their signature.` });
+  }
+
   if (result.stamp === 'valid') lines.push({ ok: true, text: `Pyntra's server saw this certificate at ${cert.stamp.at}, so it existed by then.` });
   else if (result.stamp === 'invalid') { verdict = 'bad'; lines.push({ ok: false, text: 'The time stamp does not belong to this certificate.' }); }
   else if (result.stamp === 'unknown-key') lines.push({ ok: null, text: 'The time stamp could not be checked: the server key was not available.' });
@@ -370,7 +386,9 @@ export function explain(cert, result) {
 
   const limits = [
     'It does not say who the maker is. It ties the file to one device key, not to a name.',
-    'It does not say the contents are true, complete or correctly redacted.',
+    cert.redaction
+      ? 'It does not say that everything sensitive was redacted, only that the areas the maker chose hold no text. Images and handwriting are not checked.'
+      : 'It does not say the contents are true, complete or correctly redacted.',
   ];
   return { verdict, lines, limits };
 }
@@ -445,6 +463,7 @@ async function check() {
   add('Recorded as', cert.action);
   if (cert.note) add("Maker's note", cert.note);
   if (cert.source) add('Made from', cert.source.sha256);
+  if (cert.redaction) add('Redacted areas', `${cert.redaction.regions}, found empty by the maker's app, with no earlier version in the file`);
   add("Maker's clock", cert.madeAt);
   if (cert.stamp) add('Server time', cert.stamp.at);
   add('Device', result.deviceId);
