@@ -151,7 +151,9 @@ jobs:
       - run: npm ci
 
       - name: Dependency audit (hard failure)
-        run: npm audit --audit-level=high
+        # npm audit --audit-level=high, except advisories listed with a reason and
+        # an end date in scripts/audit-deps.mjs (only when no fixed version exists).
+        run: node scripts/audit-deps.mjs
 
       - name: License compliance check
         # Audit third-party dependency licenses only. --excludePrivatePackages skips
