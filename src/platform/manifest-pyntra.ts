@@ -39,6 +39,7 @@ export const pyntraManifest: ProductManifest = {
     'Fix: convert between formats, compress, fill and add form fields, watermark, flatten',
     'Hide: redact text for good and check nothing is left underneath, find personal details, protect with an AES-256 password',
     'Prove: make a proof certificate that shows a file has not changed, compare two versions, run an accessibility report, save as PDF/A',
+    'AI Handoff (test): hide names and account numbers before you paste a document into an AI, then put them back and check the answer',
     'Inspect a PDF: find text you cannot see but an AI or a search will read, plus old versions, comments, attachments and the author’s name',
     'Privacy check: switch your connection off and watch it still work, so you do not have to take "nothing is uploaded" on trust',
     'Blackout: a daily two-minute game where you uncover the hidden words of a contract',
